@@ -1,0 +1,1325 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MOIDA · 조직관리</title>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<style>
+  :root{
+    --bg:#f3f5f8; --surface:#ffffff; --line:#e8eaf0; --line-soft:#f1f3f7;
+    --ink:#1c2030; --ink-2:#5a6072; --ink-3:#9298a8; --ink-4:#b6bcca;
+    --primary:#1452a0; --primary-600:#0e3f80; --primary-soft:#e7f0fb;
+    --shadow-sm:0 1px 2px rgba(22,26,45,.04),0 1px 3px rgba(22,26,45,.03);
+    --shadow-md:0 4px 16px rgba(22,26,45,.06),0 1px 3px rgba(22,26,45,.04);
+    --shadow-panel:0 2px 6px rgba(22,26,45,.05),0 12px 32px rgba(22,26,45,.10);
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html,body{ height:100%; }
+  body{ font-family:"Pretendard Variable",Pretendard,-apple-system,system-ui,sans-serif; background:var(--bg); color:var(--ink); -webkit-font-smoothing:antialiased; letter-spacing:-.01em; }
+  .app{ display:grid; grid-template-columns:236px 1fr; min-height:100vh; transition:grid-template-columns .22s ease; }
+  a{ color:inherit; text-decoration:none; }
+
+  /* ===== Sidebar (shared) ===== */
+  .sidebar{ background:var(--surface); border-right:1px solid var(--line); display:flex; flex-direction:column; padding:18px 16px; position:sticky; top:0; height:100vh; overflow-y:auto; }
+  .logo{ display:flex; align-items:center; gap:11px; padding:8px 8px 18px; }
+  .logo-mark{ width:36px; height:36px; border-radius:11px; flex-shrink:0; background:linear-gradient(140deg,#2f74c9 0%,#1452a0 60%,#0e3f80 100%); display:flex; align-items:center; justify-content:center; box-shadow:0 5px 14px rgba(79,70,229,.34); position:relative; overflow:hidden; }
+  .logo-mark::after{ content:""; position:absolute; inset:0; background:radial-gradient(65% 55% at 28% 20%, rgba(255,255,255,.42), rgba(255,255,255,0) 70%); }
+  .logo-name{ font-size:20px; font-weight:800; letter-spacing:-.04em; color:#1c2030; line-height:1; }
+  .logo-name b{ color:var(--primary); font-weight:800; }
+
+  /* collapse toggle */
+  .side-top{ display:flex; align-items:center; justify-content:space-between; gap:8px; }
+  .collapse-btn{ position:absolute; top:29px; right:16px; z-index:5; width:30px; height:30px; border-radius:9px; border:1px solid var(--line); background:var(--surface); color:var(--ink-3); display:flex; align-items:center; justify-content:center; cursor:pointer; flex-shrink:0; transition:background .14s,color .14s; }
+  .collapse-btn:hover{ background:var(--line-soft); color:var(--ink-2); }
+  .collapse-btn svg{ transition:transform .22s ease; }
+  /* collapsed state */
+  .app.collapsed{ grid-template-columns:72px 1fr; }
+  .app.collapsed .sidebar{ padding:18px 12px; align-items:stretch; }
+  .app.collapsed .side-top{ flex-direction:column; gap:12px; }
+  .app.collapsed .logo{ justify-content:center; }
+  .app.collapsed .logo-name{ display:none; }
+  .app.collapsed .collapse-btn{ position:static; transform:none; }
+  .app.collapsed .collapse-btn svg{ transform:rotate(180deg); }
+  .app.collapsed .new-btn{ display:none; }
+  .app.collapsed nav{ align-items:stretch; }
+  .app.collapsed .nav-item{ justify-content:center; padding:11px 0; gap:0; }
+  .app.collapsed .nav-item .nm,
+  .app.collapsed .nav-item .badge{ display:none; }
+  .app.collapsed .sec{ display:none; }
+  .app.collapsed .upd-item{ display:none; }
+  .app.collapsed .foot-item{ justify-content:center; gap:0; padding:9px 0; }
+  .app.collapsed .foot-item span{ display:none; }
+  .app.collapsed .foot-mail{ display:none; }
+
+  /* hover tooltips when collapsed */
+  .app.collapsed .sidebar{ overflow:visible; z-index:40; }
+  .app.collapsed .nav-item, .app.collapsed .foot-item{ position:relative; }
+  .app.collapsed .nav-item[data-tip]:hover::after,
+  .app.collapsed .foot-item[data-tip]:hover::after{
+    content:attr(data-tip); position:absolute; left:calc(100% + 14px); top:50%; transform:translateY(-50%);
+    background:#15182a; color:#fff; font-size:12.5px; font-weight:600; padding:7px 11px; border-radius:9px;
+    white-space:nowrap; z-index:60; box-shadow:0 8px 20px rgba(22,26,45,.24); pointer-events:none;
+  }
+  .app.collapsed .nav-item[data-tip]:hover::before,
+  .app.collapsed .foot-item[data-tip]:hover::before{
+    content:""; position:absolute; left:calc(100% + 8px); top:50%; transform:translateY(-50%) rotate(45deg);
+    width:9px; height:9px; background:#15182a; z-index:60; pointer-events:none; border-radius:1px;
+  }
+  .new-btn{ display:flex; align-items:center; justify-content:center; gap:8px; background:#15182a; color:#fff; border:none; border-radius:12px; padding:13px; font-size:14.5px; font-weight:700; cursor:pointer; font-family:inherit; transition:transform .12s,box-shadow .15s; box-shadow:0 6px 16px rgba(21,24,42,.22); }
+  .new-btn:hover{ transform:translateY(-1px); box-shadow:0 10px 22px rgba(21,24,42,.3); }
+  nav{ display:flex; flex-direction:column; gap:2px; margin-top:14px; }
+  .nav-item{ display:flex; align-items:center; gap:11px; padding:10px 10px; border-radius:11px; cursor:pointer; color:var(--ink-2); font-size:14px; font-weight:600; transition:background .14s,color .14s; }
+  .nav-item:hover{ background:var(--line-soft); color:var(--ink); }
+  .nav-item.active{ background:var(--primary-soft); color:var(--primary); }
+  .nav-item.active svg{ color:var(--primary); }
+  .nav-item svg{ color:var(--ink-3); }
+  .nav-item .nm{ flex:1; }
+  .badge{ min-width:19px; height:19px; padding:0 6px; border-radius:20px; background:var(--primary); color:#fff; font-size:11px; font-weight:700; display:flex; align-items:center; justify-content:center; }
+  .badge.muted{ background:#eef0f5; color:var(--ink-3); font-size:10.5px; font-weight:600; }
+  .nav-item.dim{ color:var(--ink-3); cursor:default; }
+  .nav-item.dim:hover{ background:transparent; }
+  .sec{ display:flex; align-items:center; justify-content:space-between; padding:18px 10px 8px; }
+  .sec-t{ font-size:11.5px; font-weight:700; color:var(--ink-3); letter-spacing:.04em; }
+  .swatch{ width:14px; height:14px; border-radius:5px; flex-shrink:0; }
+  .s-blue{ background:#3b82f6;} .s-orange{ background:#f59e0b;} .s-red{ background:#ef4444;} .s-yellow{ background:#eab308;} .s-sky{ background:#38bdf8;} .s-green{background:#22c55e;} .s-violet{background:#8b5cf6;} .s-slate{background:#64748b;}
+  .upd-item{ display:flex; align-items:center; gap:11px; padding:8px 10px; border-radius:10px; cursor:pointer; color:var(--ink-2); font-size:13.5px; font-weight:600; transition:background .14s; }
+  .upd-item:hover{ background:var(--line-soft); }
+  .side-foot{ margin-top:auto; padding-top:14px; border-top:1px solid var(--line); display:flex; flex-direction:column; gap:1px; }
+  .foot-item{ display:flex; align-items:center; gap:10px; padding:9px 10px; border-radius:10px; color:var(--ink-2); font-size:13.5px; font-weight:600; cursor:pointer; transition:background .14s; }
+  .foot-item:hover{ background:var(--line-soft); }
+  .foot-item svg{ color:var(--ink-3); }
+  .foot-mail{ font-size:11.5px; color:var(--ink-3); padding:4px 10px 2px; font-weight:500; }
+
+  /* ===== Main / page ===== */
+  .main{ display:flex; flex-direction:column; min-width:0; }
+  .page-head{ display:flex; align-items:flex-start; gap:16px; padding:22px 28px 0; }
+  .ph-mark{ width:46px; height:46px; border-radius:13px; background:linear-gradient(140deg,#2f74c9,#0e3f80); color:#fff; display:flex; align-items:center; justify-content:center; font-size:21px; font-weight:800; flex-shrink:0; box-shadow:0 6px 16px rgba(79,70,229,.3); }
+  .ph-info h1{ font-size:21px; font-weight:800; letter-spacing:-.025em; }
+  .ph-sub{ margin-top:5px; font-size:13px; color:var(--ink-2); font-weight:500; }
+  .ph-conn{ display:inline-flex; align-items:center; gap:5px; margin-top:7px; font-size:12px; font-weight:600; color:#10936a; }
+  .ph-conn .led{ width:7px; height:7px; border-radius:50%; background:#10b981; box-shadow:0 0 0 3px rgba(16,185,129,.16); }
+  .ph-right{ margin-left:auto; display:flex; align-items:center; gap:10px; }
+  .quote-card{ display:flex; align-items:flex-start; gap:12px; max-width:360px; padding:13px 17px; border-radius:15px; background:linear-gradient(135deg,#0f3d8c 0%,#1452a0 55%,#2563c9 100%); color:#fff; box-shadow:0 10px 26px -10px rgba(20,82,160,.55); position:relative; overflow:hidden; }
+  .quote-card::after{ content:''; position:absolute; right:-26px; top:-26px; width:96px; height:96px; border-radius:50%; background:rgba(255,255,255,.09); }
+  .quote-mark{ font-size:30px; line-height:1; font-weight:800; opacity:.5; margin-top:-2px; }
+  .quote-body{ position:relative; z-index:1; }
+  .quote-eyebrow{ font-size:10.5px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; opacity:.7; margin-bottom:3px; }
+  .quote-text{ font-size:13.5px; font-weight:600; line-height:1.5; text-wrap:pretty; }
+  .quote-by{ font-size:11.5px; font-weight:600; opacity:.78; margin-top:5px; }
+  .count-pill{ display:inline-flex; align-items:center; gap:6px; background:var(--primary-soft); color:var(--primary-600); font-size:13px; font-weight:700; padding:8px 14px; border-radius:999px; }
+  .logout-btn{ font-size:12.5px; font-weight:600; color:var(--ink-2); border:1px solid var(--line); background:var(--surface); padding:8px 13px; border-radius:10px; cursor:pointer; font-family:inherit; transition:background .14s; }
+  .logout-btn:hover{ background:var(--line-soft); }
+
+  /* status chips */
+  .chips{ display:flex; flex-wrap:nowrap; align-items:center; gap:8px; padding:18px 28px 0; overflow-x:auto; }
+  .chips::-webkit-scrollbar{ height:0; }
+  .chips > *{ flex-shrink:0; }
+  .chip{ display:inline-flex; align-items:center; gap:7px; padding:8px 14px; border-radius:999px; border:1px solid var(--line); background:var(--surface); font-size:13px; font-weight:600; color:var(--ink-2); cursor:pointer; transition:border-color .14s,box-shadow .14s,color .14s; }
+  .chip:hover{ box-shadow:var(--shadow-sm); }
+  .chip.active{ border-color:transparent; color:#fff; }
+  .chip .cdot{ width:8px; height:8px; border-radius:50%; }
+  .chip[data-k="all"].active{ background:#15182a; }
+  .chip[data-k="vote"].active{ background:#10b981; }
+  .chip[data-k="old"].active{ background:#3b82f6; }
+  .chip[data-k="new"].active{ background:#8b5cf6; }
+  .chip[data-k="out"].active{ background:#ef4444; }
+  .chip[data-k="err"].active{ background:#f59e0b; }
+
+  /* toolbar */
+  .selbox.pill{ border-radius:999px; padding:8px 13px; min-width:104px; justify-content:space-between; }
+  .selbox.pill .cdot{ width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+  .selbox.pill .f-lbl{ flex:1; text-align:left; }
+  .chip.pill-all{ min-width:118px; padding:8px 16px; justify-content:center; }
+  .chips .search{ flex:1 1 150px; min-width:150px; max-width:none; }
+  .selbox.pill.on{ border-color:var(--primary); color:var(--primary); background:var(--primary-soft); }
+  .toolbar{ display:flex; flex-wrap:wrap; align-items:center; gap:9px; padding:16px 28px 0; }
+  .search{ display:flex; align-items:center; gap:9px; background:var(--surface); border:1px solid var(--line); border-radius:11px; padding:0 14px; height:38px; box-sizing:border-box; min-width:120px; flex:0 1 130px; max-width:130px; }
+  .search input{ flex:1; border:none; background:transparent; font-family:inherit; font-size:13.5px; color:var(--ink); outline:none; }
+  .search input::placeholder{ color:var(--ink-3); }
+  .search svg{ color:var(--ink-3); }
+  .selbox{ display:inline-flex; align-items:center; gap:7px; background:var(--surface); border:1px solid var(--line); border-radius:11px; padding:9px 13px; font-size:13px; font-weight:600; color:var(--ink-2); cursor:pointer; transition:background .14s; }
+  .selbox:hover{ background:var(--line-soft); }
+  .selbox svg{ color:var(--ink-3); }
+  .tb-spacer{ flex:1; }
+  .btn{ display:inline-flex; align-items:center; gap:7px; padding:0 14px; height:38px; box-sizing:border-box; border-radius:11px; font-size:13px; font-weight:700; cursor:pointer; border:1px solid var(--line); background:var(--surface); color:var(--ink-2); font-family:inherit; transition:background .14s,box-shadow .14s,transform .12s; }
+  .btn:hover{ background:var(--line-soft); }
+  .btn svg{ width:15px; height:15px; }
+  .btn.ghost-red{ color:#dc2626; border-color:#f3d2d2; }
+  .btn.ghost-red:hover{ background:#fdf0f0; }
+  .btn.primary{ background:var(--primary); border-color:var(--primary); color:#fff; box-shadow:0 4px 12px rgba(79,70,229,.28); }
+  .btn.primary:hover{ background:var(--primary-600); transform:translateY(-1px); }
+  .btn.warn{ background:#fff8ec; border-color:#f6e3bf; color:#b97e10; }
+  .btn.warn:hover{ background:#fdf0d8; }
+
+  /* layout: table + detail */
+  .work{ display:block; padding:18px 28px 24px; min-width:0; }
+  .table-card{ background:var(--surface); border:1px solid var(--line); border-radius:16px; box-shadow:var(--shadow-md); overflow:hidden; min-width:0; }
+  .table-scroll{ overflow-x:auto; }
+  table{ border-collapse:collapse; width:100%; min-width:1180px; font-size:13px; }
+  thead th{ position:sticky; top:0; background:#fafbfd; text-align:center; padding:13px 14px; font-size:12px; font-weight:700; color:var(--ink-3); white-space:nowrap; border-bottom:1px solid var(--line); }
+  tbody td{ padding:13px 14px; border-bottom:1px solid var(--line-soft); white-space:nowrap; color:var(--ink-2); text-align:center; }
+  thead th:last-child, tbody td:last-child{ text-align:left; min-width:200px; }
+  tbody tr{ cursor:pointer; transition:background .12s; }
+  tbody tr:hover{ background:#fafbff; }
+  tbody tr.sel{ background:var(--primary-soft); }
+  tbody tr:last-child td{ border-bottom:none; }
+  .nm-cell{ font-weight:700; color:var(--ink); }
+  .rec-link{ cursor:pointer; }
+  .rec-link:hover{ text-decoration:underline; text-decoration-color:var(--primary); }
+  .rec-pop{ position:fixed; z-index:1300; display:none; background:#fff; border:1px solid var(--line); border-radius:12px; box-shadow:0 14px 38px rgba(22,26,45,.2); padding:11px 12px; width:max-content; min-width:0; }
+  .rec-pop.show{ display:block; }
+  .rec-pop .rp-t{ font-size:11.5px; font-weight:700; color:var(--ink-3); margin-bottom:9px; }
+  .rec-pop .rp-row{ display:flex; align-items:center; gap:9px; padding:6px 6px; border-radius:8px; cursor:grab; }
+  .rec-pop .rp-row:hover{ background:var(--line-soft); }
+  .rec-pop .rp-row.drag{ opacity:.4; }
+  .rec-pop .rp-row.over{ box-shadow:inset 0 2px 0 var(--primary); }
+  .rec-pop .rp-grip{ color:var(--ink-4); cursor:grab; flex-shrink:0; }
+  .rec-pop .rp-foot{ font-size:11px; color:var(--ink-4); margin-top:7px; padding-top:7px; border-top:1px solid var(--line-soft); }
+  .rec-pop .rp-n{ width:20px; height:20px; border-radius:50%; font-size:11px; font-weight:800; display:flex; align-items:center; justify-content:center; flex-shrink:0; color:#fff; }
+  .rec-pop .rp-name{ font-size:13.5px; font-weight:700; color:var(--ink); }
+  .rec-pop .rp-lab{ font-size:11px; color:var(--ink-4); margin-left:14px; font-weight:600; flex-shrink:0; }
+  th[data-sort]{ cursor:pointer; user-select:none; white-space:nowrap; }
+  th[data-sort]:hover{ color:var(--primary); }
+  th .sarr{ opacity:.3; margin-left:3px; font-size:10px; }
+  th[data-sort].asc .sarr, th[data-sort].desc .sarr{ opacity:1; color:var(--primary); }
+  .gauge{ display:inline-flex; gap:3px; align-items:center; }
+  .gauge .gb{ width:9px; height:16px; border-radius:3px; background:#e8eaf0; cursor:pointer; transition:background .12s; }
+  .gauge .gb:hover{ background:#cfd8e6; }
+  .gauge .gb.on1{ background:#dc2626; } .gauge .gb.on2{ background:#f59e0b; } .gauge .gb.on3{ background:#eab308; } .gauge .gb.on4{ background:#65b741; } .gauge .gb.on5{ background:#06a35a; }
+  .gauge .gv{ font-size:11px; font-weight:700; margin-left:5px; color:var(--ink-2); }
+  .score{ display:inline-flex; align-items:center; justify-content:center; min-width:30px; height:24px; padding:0 8px; border-radius:7px; font-weight:800; font-size:12.5px; }
+  .sc-hi{ background:#e7f6ee; color:#0f9d63; } .sc-mid{ background:#e7f0fb; color:#1452a0; } .sc-lo{ background:#f1f3f7; color:#9298a8; }
+  .tag{ display:inline-flex; align-items:center; gap:6px; padding:3px 9px; border-radius:7px; font-size:12px; font-weight:600; }
+  .tag .d{ width:7px; height:7px; border-radius:50%; }
+  .tg-vote{ background:#e7f6ee; color:#0f9d63;} .tg-old{ background:#e8f1fe; color:#2563eb;} .tg-new{ background:#f1ebfd; color:#7c3aed;} .tg-out{ background:#fdeaea; color:#dc2626;} .tg-err{ background:#fdf0e0; color:#cd7d18;}
+  .muted-cell{ color:var(--ink-4); }
+  /* 성향 신호등 */
+  .sig{ display:inline-flex; align-items:center; gap:8px; font-size:12.5px; font-weight:700; color:var(--ink-2); white-space:nowrap; }
+  .sig-dot{ width:11px; height:11px; border-radius:50%; background:var(--c); flex:none; box-shadow:0 0 0 3px color-mix(in srgb, var(--c) 20%, transparent), 0 0 6px color-mix(in srgb, var(--c) 75%, transparent); }
+  .sig-dot.pulse{ animation:sigPulse 2.4s ease-in-out infinite; }
+  @keyframes sigPulse{ 0%,100%{ box-shadow:0 0 0 3px color-mix(in srgb, var(--c) 22%, transparent), 0 0 5px color-mix(in srgb, var(--c) 60%, transparent);} 50%{ box-shadow:0 0 0 5px color-mix(in srgb, var(--c) 8%, transparent), 0 0 11px color-mix(in srgb, var(--c) 85%, transparent);} }
+  /* 소속 칩 (표) */
+  .org-cell{ display:flex; align-items:center; gap:6px; white-space:nowrap; }
+  .org-chip{ display:inline-flex; align-items:center; gap:5px; padding:3px 9px; border-radius:7px; font-size:12px; font-weight:600; background:var(--line-soft); color:var(--ink-2); max-width:170px; overflow:hidden; text-overflow:ellipsis; }
+  .org-chip .oc-dot{ width:6px; height:6px; border-radius:50%; flex:none; }
+  .org-chip .oc-title{ color:var(--ink-3); font-weight:500; }
+  .org-link{ cursor:pointer; }
+  .org-link:hover{ text-decoration:underline; text-decoration-color:var(--primary); }
+  .org-link .oc-title{ color:var(--ink-3); font-weight:500; }
+  /* 소속 편집기 (상세 패널) */
+  .orged-add{ display:grid; grid-template-columns:88px 1fr 96px auto; gap:7px; align-items:center; }
+  .orged-add select, .orged-add input{ border:1px solid var(--line); border-radius:9px; padding:8px 10px; font-family:inherit; font-size:12.5px; color:var(--ink); background:var(--surface); outline:none; min-width:0; }
+  .orged-add select:focus, .orged-add input:focus{ border-color:var(--primary); box-shadow:0 0 0 3px var(--primary-soft); }
+  .orged-add .orged-plus{ display:inline-flex; align-items:center; justify-content:center; gap:4px; height:35px; padding:0 13px; border:none; border-radius:9px; background:var(--primary); color:#fff; font-size:12.5px; font-weight:700; cursor:pointer; font-family:inherit; }
+  .orged-add .orged-plus:hover{ filter:brightness(1.07); }
+  .orged-list{ display:flex; flex-direction:column; gap:6px; margin-top:9px; max-height:168px; overflow-y:auto; }
+  .orged-row{ display:flex; align-items:center; gap:9px; padding:8px 10px; border:1px solid var(--line); border-radius:10px; background:var(--surface); }
+  .orged-row.is-rep{ border-color:var(--primary); background:var(--primary-soft); }
+  .orged-row{ cursor:grab; }
+  .orged-row.oe-dragging{ opacity:.4; }
+  .orged-row.oe-over{ box-shadow:inset 0 2px 0 var(--primary); }
+  .oe-grip{ color:var(--ink-4); flex:none; }
+  .orged-repbadge{ font-size:10px; font-weight:700; color:var(--primary-600); background:#fff; border:1px solid var(--primary); padding:1px 6px; border-radius:5px; flex:none; }
+  .orged-cat{ font-size:10.5px; font-weight:700; padding:2px 7px; border-radius:6px; flex:none; }
+  .orged-name{ font-size:13px; font-weight:600; color:var(--ink); }
+  .orged-ttl{ font-size:12px; color:var(--ink-3); }
+  .orged-sp{ flex:1; }
+  .orged-rep, .orged-del{ width:26px; height:26px; border-radius:7px; border:1px solid var(--line); background:#fff; cursor:pointer; font-size:13px; display:inline-flex; align-items:center; justify-content:center; line-height:1; }
+  .orged-rep.on{ background:var(--primary); border-color:var(--primary); color:#fff; }
+  .orged-del{ color:var(--ink-3); }
+  .orged-del:hover{ color:#dc2626; border-color:#f3c4c0; }
+  .orged-empty{ font-size:12px; color:var(--ink-4); padding:10px 2px; }
+  .ico-cell{ display:inline-flex; gap:6px; }
+  .mini-ico{ width:28px; height:28px; border-radius:8px; display:flex; align-items:center; justify-content:center; background:var(--line-soft); color:var(--ink-3); transition:background .14s,color .14s; }
+  .mini-ico:hover{ background:var(--primary-soft); color:var(--primary); }
+
+  .table-foot{ display:flex; align-items:center; justify-content:space-between; padding:13px 18px; border-top:1px solid var(--line); background:#fafbfd; font-size:13px; }
+  .tf-left{ color:var(--ink-2); font-weight:600; }
+  .tf-left b{ color:var(--primary); }
+  .pager{ display:flex; gap:4px; }
+  .pg{ min-width:30px; height:30px; border-radius:8px; border:1px solid var(--line); background:var(--surface); font-size:12.5px; font-weight:600; color:var(--ink-2); display:flex; align-items:center; justify-content:center; cursor:pointer; }
+  .pg.active{ background:var(--primary); color:#fff; border-color:var(--primary); }
+
+  /* detail panel (slide-in) */
+  .dt-ovl{ position:fixed; inset:0; background:rgba(22,26,45,.28); z-index:1190; opacity:0; pointer-events:none; transition:opacity .22s; }
+  .dt-ovl.show{ opacity:1; pointer-events:auto; }
+  .detail{ position:fixed; top:50%; left:50%; transform:translate(-50%,-46%); width:560px; max-width:94vw; max-height:94vh; background:var(--surface); border:1px solid var(--line); border-radius:18px; box-shadow:0 24px 64px rgba(22,26,45,.24); z-index:1200; overflow-y:auto; display:flex; flex-direction:column; opacity:0; pointer-events:none; transition:opacity .2s, transform .2s; }
+  .detail.show{ opacity:1; pointer-events:auto; transform:translate(-50%,-50%); }
+  .detail{ width:740px; border-radius:20px; height:850px; max-height:96vh; overflow:hidden; }
+  .dt-head,.tabs,.dt-foot{ flex:0 0 auto; }
+  #paneInfo,#paneVote,#paneMemo{ flex:1 1 auto; min-height:0; overflow-y:auto; }
+  /* 당원구분 세그먼트 버튼 */
+  .tseg{ display:flex; gap:6px; flex-wrap:wrap; }
+  .tseg-opt{ flex:1; min-width:72px; text-align:center; font-size:12.5px; font-weight:700; padding:9px 6px; border-radius:9px; border:1.5px solid var(--line); color:var(--ink-3); cursor:pointer; transition:all .12s; }
+  .tseg-opt:hover{ border-color:var(--primary); }
+  .tseg-opt.on{ border-color:var(--primary); color:var(--primary); background:var(--primary-soft); }
+  .dt-close{ position:absolute; top:18px; right:18px; width:32px; height:32px; border:none; background:rgba(255,255,255,.6); color:var(--ink-2); border-radius:9px; cursor:pointer; z-index:3; display:flex; align-items:center; justify-content:center; transition:background .14s; }
+  .dt-close:hover{ background:#fff; color:var(--ink); }
+  .dt-head{ display:flex; align-items:center; gap:14px; padding:16px 24px 14px; background:linear-gradient(135deg,#eaf1fb 0%,#f6f9fd 60%,#fff 100%); border-bottom:1px solid var(--line-soft); }
+  .dt-ava{ width:48px; height:48px; border-radius:14px; background:linear-gradient(140deg,#2f74c9,#0e3f80); color:#fff; display:flex; align-items:center; justify-content:center; font-size:19px; font-weight:800; box-shadow:0 6px 16px rgba(20,82,160,.28); flex:0 0 auto; }
+  .dt-head h2{ font-size:18px; font-weight:800; letter-spacing:-.02em; }
+  .dt-head .dt-sub{ font-size:12.5px; color:var(--ink-2); margin-top:4px; font-weight:600; }
+  .tabs{ display:flex; gap:4px; padding:11px 24px 0; border-bottom:1px solid var(--line); }
+  .tab{ padding:9px 4px; margin-right:18px; font-size:13.5px; font-weight:700; color:var(--ink-3); cursor:pointer; border-bottom:2.5px solid transparent; margin-bottom:-1px; transition:color .14s; }
+  .tab:hover{ color:var(--ink-2); }
+  .tab.active{ color:var(--primary); border-bottom-color:var(--primary); }
+  .dt-body{ padding:15px 24px 28px; display:grid; grid-template-columns:1fr 1fr; gap:0 20px; align-content:start; }
+  .grp-label{ grid-column:1/-1; font-size:11px; font-weight:800; color:var(--primary); letter-spacing:.04em; text-transform:uppercase; margin:13px 0 8px; padding-left:11px; position:relative; }
+  .grp-label::before{ content:""; position:absolute; left:0; top:1px; bottom:1px; width:3px; border-radius:2px; background:var(--primary); opacity:.8; }
+  .grp-label:first-child{ margin-top:0; }
+  .field{ margin-bottom:10px; }
+  .field label{ display:block; font-size:12px; font-weight:700; color:var(--ink-2); margin-bottom:5px; }
+  .field label .req{ color:#ef4444; }
+  .field input, .field select{ width:100%; border:1px solid var(--line); border-radius:11px; padding:9px 13px; font-family:inherit; font-size:13px; color:var(--ink); background:var(--surface); outline:none; transition:border-color .14s,box-shadow .14s,background .14s; }
+  .field input::placeholder{ color:var(--ink-4); }
+  .field input:focus, .field select:focus{ border-color:var(--primary); box-shadow:0 0 0 3px var(--primary-soft); }
+  .field input[readonly]{ background:var(--line-soft); color:var(--ink-2); cursor:default; }
+  .field.row2{ display:grid; grid-template-columns:1fr auto; gap:8px; align-items:end; grid-column:1/-1; }
+  .field.row2 .btn{ padding:11px 15px; }
+  .field-hint{ font-size:11px; color:var(--ink-4); margin-top:6px; font-weight:500; }
+  .photo-row{ display:flex; gap:18px; align-items:center; }
+  .photo-box{ width:100px; height:124px; flex:0 0 auto; border-radius:14px; border:1.5px dashed var(--line); background:var(--line-soft); display:flex; align-items:center; justify-content:center; color:var(--ink-4); overflow:hidden; cursor:pointer; transition:border-color .14s,color .14s; box-shadow:inset 0 1px 3px rgba(22,26,45,.04); }
+  .photo-box:hover{ border-color:var(--primary); color:var(--primary); background:var(--primary-soft); }
+  .photo-box img{ width:100%; height:100%; object-fit:cover; }
+  .photo-actions{ display:flex; flex-direction:column; gap:9px; align-items:flex-start; }
+  .photo-hint{ font-size:11px; color:var(--ink-4); margin-top:2px; }
+  .photo-dot{ display:inline-block; width:7px; height:7px; border-radius:50%; background:var(--primary); margin-right:7px; vertical-align:middle; box-shadow:0 0 0 2px var(--primary-soft); }
+  .id-row{ grid-column:1/-1; display:flex; gap:20px; align-items:flex-start; margin-bottom:4px; }
+  .id-photo{ flex:0 0 auto; width:130px; display:flex; flex-direction:column; gap:7px; align-items:stretch; }
+  .id-photo .photo-box{ width:130px; height:164px; }
+  .id-photo .pbtn{ justify-content:center; padding:7px 0; font-size:11.5px; }
+  .id-fields{ flex:1; display:grid; grid-template-columns:1fr 1fr; gap:14px 28px; align-content:start; }
+  .id-fields .field{ margin-bottom:0; }
+
+  /* 투표 이력 + 메모 패널 */
+  .dt-pane{ padding:18px 24px 20px; }
+  .dt-memo{ width:100%; min-height:220px; border:1px solid var(--line); border-radius:11px; padding:11px 13px; font-family:inherit; font-size:13px; color:var(--ink); resize:vertical; outline:none; }
+  .dt-memo:focus{ border-color:var(--primary); box-shadow:0 0 0 3px var(--primary-soft); }
+  .vfield label{ font-size:12px; font-weight:700; color:var(--ink-2); display:block; margin-bottom:6px; }
+  .vote-head{ display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; }
+  .vote-title{ font-size:14px; font-weight:800; display:flex; align-items:center; gap:8px; }
+  .vote-cnt{ font-size:11px; font-weight:700; color:var(--primary); background:var(--primary-soft); padding:2px 9px; border-radius:999px; }
+  .vote-add{ display:inline-flex; align-items:center; gap:5px; font-size:12px; font-weight:700; color:var(--primary); background:var(--primary-soft); border:none; padding:8px 13px; border-radius:9px; cursor:pointer; }
+  .vote-add:hover{ background:#d8e7f8; }
+  .vote-add svg{ width:13px; height:13px; }
+  .vote-log{ position:relative; padding-left:22px; }
+  .vote-log::before{ content:""; position:absolute; left:6px; top:6px; bottom:6px; width:2px; background:var(--line); }
+  .ventry{ position:relative; padding:0 0 18px; }
+  .ventry:last-child{ padding-bottom:2px; }
+  .ventry .vdot{ position:absolute; left:-22px; top:3px; width:13px; height:13px; border-radius:50%; border:2.5px solid #fff; }
+  .ventry.vote .vdot{ background:#1a7f4b; box-shadow:0 0 0 1.5px #1a7f4b; }
+  .ventry.out .vdot{ background:#c2410c; box-shadow:0 0 0 1.5px #c2410c; }
+  .ventry.err .vdot{ background:#9298a8; box-shadow:0 0 0 1.5px #9298a8; }
+  .ventry-top{ display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+  .ventry-el{ font-size:13.5px; font-weight:700; }
+  .vbadge2{ font-size:11px; font-weight:700; padding:2px 9px; border-radius:999px; }
+  .vbadge2.vote{ color:#1a7f4b; background:#e6f5ec; }
+  .vbadge2.out{ color:#c2410c; background:#fdeee5; }
+  .vbadge2.err{ color:#9298a8; background:#f1f3f7; }
+  .vsup{ font-size:11px; font-weight:600; padding:2px 9px; border-radius:999px; }
+  .vsup b{ font-weight:800; }
+  .vsup.ours{ color:#1a5fb4; background:#e6eefb; }
+  .vsup.rival{ color:#b42318; background:#fdeceb; }
+  .vsup.float{ color:var(--ink-2); background:#f1f3f7; }
+  .ventry-date{ font-size:12px; color:var(--ink-3); margin-top:4px; }
+  .ventry-note{ font-size:12.5px; color:var(--ink-2); margin-top:7px; line-height:1.55; background:var(--line-soft); padding:8px 11px; border-radius:9px; }
+  .vote-empty{ text-align:center; color:var(--ink-4); font-size:13px; padding:44px 0; }
+  /* 투표 기록 추가 모달 */
+  .vote-modal{ width:440px; }
+  .vote-form{ padding:18px 22px; display:flex; flex-direction:column; gap:14px; }
+  .vfield input, .vfield textarea{ width:100%; border:1px solid var(--line); border-radius:10px; padding:10px 12px; font-family:inherit; font-size:13px; color:var(--ink); outline:none; }
+  .vfield input:focus, .vfield textarea:focus{ border-color:var(--primary); box-shadow:0 0 0 3px var(--primary-soft); }
+  .vfield textarea{ resize:vertical; min-height:60px; }
+  .vgrid2{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  .vseg{ display:flex; gap:6px; }
+  .vseg-opt{ flex:1; text-align:center; font-size:12.5px; font-weight:700; padding:9px 0; border-radius:9px; border:1.5px solid var(--line); color:var(--ink-3); cursor:pointer; }
+  .vseg-opt.vote.on{ border-color:#1a7f4b; color:#1a7f4b; background:#e6f5ec; }
+  .vseg-opt.out.on{ border-color:#c2410c; color:#c2410c; background:#fdeee5; }
+  .vseg-opt.err.on{ border-color:#9298a8; color:var(--ink-2); background:#f1f3f7; }
+  .vseg-opt.ours.on{ border-color:#1a5fb4; color:#1a5fb4; background:#e6eefb; }
+  .vseg-opt.rival.on{ border-color:#b42318; color:#b42318; background:#fdeceb; }
+  .vseg-opt.float.on{ border-color:#9298a8; color:var(--ink-2); background:#f1f3f7; }
+  .vote-foot{ display:flex; gap:9px; padding:0 22px 20px; }
+  .mbtn2{ flex:1; padding:11px 0; border-radius:11px; font-size:13.5px; font-weight:700; cursor:pointer; border:1px solid var(--line); background:#fff; color:var(--ink-2); }
+  .mbtn2.primary{ background:var(--primary); border-color:var(--primary); color:#fff; }
+  .dt-foot{ display:flex; gap:9px; padding:13px 22px; border-top:1px solid var(--line); background:#fafbfd; }
+  .dt-foot .btn{ flex:1; justify-content:center; }
+  .ico-btn{ width:40px; height:40px; flex:0 0 auto !important; border-radius:11px; }
+  .btn.save{ background:var(--primary); border-color:var(--primary); color:#fff; }
+  .btn.save:hover{ background:var(--primary-600); }
+  .btn.add{ background:#0f9d63; border-color:#0f9d63; color:#fff; }
+  .btn.add:hover{ background:#0c8a56; }
+  .btn.del{ background:#fff; border-color:#f3d2d2; color:#dc2626; }
+  .btn.del:hover{ background:#fdf0f0; }
+
+  @media (max-width:1280px){ .detail{ position:fixed; } }
+  @media (max-width:1080px){ .app, .app.collapsed{ grid-template-columns:1fr; } .sidebar{ display:none; } .page-head,.chips,.toolbar,.work{ padding-left:16px; padding-right:16px; } }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+</head>
+<body>
+<div class="app">
+
+  <!-- ===== Sidebar ===== -->
+  <aside class="sidebar">
+    <div class="side-top">
+    <div class="logo">
+      <div class="logo-mark"><svg width="21" height="21" viewBox="0 0 24 24" fill="none"><path d="M7 8.5 12 14.5 17 8.5" stroke="#fff" stroke-opacity=".55" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="7" cy="8" r="2.6" fill="#fff"/><circle cx="17" cy="8" r="2.6" fill="#fff"/><circle cx="12" cy="15.5" r="3.1" fill="#fff"/></svg></div>
+      <div class="logo-name">MO<b>IDA</b></div>
+    </div>
+    <button class="collapse-btn" data-collapse aria-label="사이드바 접기"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></button>
+    </div>
+    <button class="new-btn" style="display:none"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>빠른 작성</button>
+    <nav>
+      <a class="nav-item" href="dashboard.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg><span class="nm">대시보드</span></a>
+      <a class="nav-item" href="notices.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 14-6v14L3 13z"/><path d="M3 11v2a2 2 0 0 0 2 2h2"/></svg><span class="nm">공지사항</span><span class="badge">1</span></a>
+      <a class="nav-item active"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0"/><circle cx="17" cy="7" r="2.3"/><path d="M16.5 13.5a5 5 0 0 1 4.5 5"/></svg><span class="nm">조직관리</span></a>
+      <a class="nav-item" href="schedule.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="4.5" width="17" height="16" rx="3"/><path d="M3.5 9h17M8 3v3M16 3v3"/></svg><span class="nm">일정관리</span></a>
+    </nav>
+    <div class="side-foot">
+      <a class="foot-item" href="admin.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-2.7 1.1V21a2 2 0 1 1-4 0v-.1A1.6 1.6 0 0 0 7 19.4a1.6 1.6 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.6 1.6 0 0 0-1.1-2.7H1a2 2 0 1 1 0-4h.1A1.6 1.6 0 0 0 2.6 7a1.6 1.6 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1A1.6 1.6 0 0 0 7 2.6h.1A1.6 1.6 0 0 0 9 1.1V1a2 2 0 1 1 4 0v.1A1.6 1.6 0 0 0 17 2.6a1.6 1.6 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0 1.1 2.7H23a2 2 0 1 1 0 4h-.1a1.6 1.6 0 0 0-1.5 1z"/></svg><span>관리자 페이지</span></a>
+      <div class="foot-mail"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1d7f7c737879747e6925295d7a707c7471337e7270">[email&#160;protected]</a></div>
+      <a class="foot-item" href="index.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 4h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-3"/><path d="M10 17l5-5-5-5M15 12H3"/></svg><span>로그아웃</span></a>
+    </div>
+  </aside>
+
+  <!-- ===== Main ===== -->
+  <main class="main">
+    <div class="page-head">
+      <div class="ph-mark">M</div>
+      <div class="ph-info">
+        <div style="display:flex;align-items:center;gap:12px"><h1>조직관리</h1></div>
+        <div class="ph-sub">경기도의원 장윤정 · 안산시 상록구 이동·일동·성포동</div>
+      </div>
+      <div class="ph-right"></div>
+    </div>
+
+    <div class="chips">
+      <div class="chip pill-all active" data-k="all" id="resetAll"><span class="cdot" style="background:#fff"></span>전체 조회</div>
+      <div class="selbox pill" id="dongSel"><span class="cdot" style="background:#3b82f6"></span><span class="f-lbl">행정동</span> <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></div>
+      <div class="selbox pill" id="typeSel"><span class="cdot" style="background:#8b5cf6"></span><span class="f-lbl">당원구분</span> <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></div>
+      <div class="selbox pill" id="agebSel"><span class="cdot" style="background:#10b981"></span><span class="f-lbl">연령구분</span> <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></div>
+      <div class="selbox pill" id="sexSel"><span class="cdot" style="background:#f59e0b"></span><span class="f-lbl">성별구분</span> <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></div>
+      <div class="search" style="width: 400px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4-4"/></svg><input placeholder="이름·전화·주소·추천인 검색"></div>
+      <div class="tb-spacer"></div>
+      <button class="btn primary" id="addTopBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>신규추가</button>
+      <button class="btn" id="csvExportBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 11l5 4 5-4"/><path d="M5 21h14"/></svg>CSV저장</button>
+      <button class="btn" id="csvImportBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3M7 7l5-4 5 4"/><path d="M5 21h14"/></svg>CSV가져오기</button>
+      <button class="btn" id="csvTplBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>양식</button>
+      <input type="file" id="csvFile" accept=".csv,.xlsx,.xls" style="display:none">
+    </div>
+
+    <div class="work">
+      <!-- table -->
+      <div class="table-card">
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>No</th><th data-sort="score">점수<span class="sarr">↕</span></th><th data-sort="name">성명<span class="sarr">↕</span></th><th data-sort="phone">휴대전화<span class="sarr">↕</span></th><th data-sort="rrn">주민번호<span class="sarr">↕</span></th><th data-filter="dong" style="cursor:pointer;white-space:nowrap">행정동 <span class="dfilt-caret" style="opacity:.4">▾</span></th><th data-sort="type">당원구분<span class="sarr">↕</span></th><th data-sort="org">소속<span class="sarr">↕</span></th><th data-sort="lean">성향<span class="sarr">↕</span></th><th data-sort="age">나이<span class="sarr">↕</span></th><th data-sort="ageb">연령대<span class="sarr">↕</span></th><th data-sort="sex">성별<span class="sarr">↕</span></th><th data-sort="rec">추천인<span class="sarr">↕</span></th><th data-sort="katalk">카톡관리<span class="sarr">↕</span></th><th data-sort="krGrade">카톡답장<span class="sarr">↕</span></th><th data-sort="smGrade">문자관리<span class="sarr">↕</span></th><th data-sort="family">가족수<span class="sarr">↕</span></th><th data-sort="addr">주소<span class="sarr">↕</span></th>
+              </tr>
+            </thead>
+            <tbody id="tbody"></tbody>
+          </table>
+        </div>
+        <div class="table-foot">
+          <div class="tf-left">조회 <b>11</b>명 · 당원을 클릭하면 상세정보가 표시됩니다</div>
+          <div class="pager">
+            <div class="pg">‹</div><div class="pg active">1</div><div class="pg">›</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- detail panel -->
+      <aside class="detail" id="detailPanel">
+        <button class="dt-close" id="dtClose" aria-label="닫기"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+        <div class="dt-head">
+          <div class="dt-ava" id="dtAva">홍</div>
+          <div>
+            <h2 id="dtName">당원 정보</h2>
+            <div class="dt-sub" id="dtSub">기본정보를 입력하거나 수정하세요</div>
+          </div>
+        </div>
+        <div class="tabs">
+          <div class="tab active" data-pane="info">기본정보</div>
+          <div class="tab" data-pane="vote">투표활동</div>
+          <div class="tab" data-pane="memo">메모</div>
+        </div>
+        <div class="dt-body" id="paneInfo">
+          <div class="grp-label" style="grid-column:1/-1">기본 정보</div>
+          <div class="id-row">
+            <div class="id-photo">
+              <div class="photo-box" id="dtPhotoBox">
+                <img id="dtPhotoImg" alt="" style="display:none">
+                <div class="photo-ph" id="dtPhotoPh">
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+                </div>
+              </div>
+              <button type="button" class="btn pbtn" id="dtPhotoBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 8l5-5 5 5"/><path d="M5 21h14"/></svg>사진 업로드</button>
+              <button type="button" class="btn del pbtn" id="dtPhotoDel" style="display:none"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14"/></svg>삭제</button>
+              <input type="file" id="dtPhotoInput" accept="image/*" style="display:none">
+            </div>
+            <div class="id-fields">
+              <div class="field"><label>성명 <span class="req">*</span></label><input id="dtfName" value="홍길동"></div>
+              <div class="field"><label>연락처 <span class="req">*</span></label><input id="dtfPhone" value="010-2345-6789"></div>
+              <div class="field"><label style="font-weight: 700; margin: 10px 0px 5px">주민번호</label><input id="dtfRrn" placeholder="000000-0000000"><div class="field-hint" id="dtfRrnHint">입력 시 나이·연령대·성별이 자동 계산됩니다</div></div>
+              <div class="field" style="grid-column:1/-1"><label style="margin: 10px 0px 5px">소속·직함</label>
+                <div class="orged-add">
+                  <select id="orgCat">
+                    <option value="직장">직장</option>
+                    <option value="단체" selected>단체</option>
+                    <option value="정치">정치</option>
+                    <option value="봉사">봉사</option>
+                    <option value="기타">기타</option>
+                  </select>
+                  <input id="orgName" placeholder="단체·기관명">
+                  <input id="orgTitle" placeholder="직함(선택)">
+                  <button type="button" class="orged-plus" id="orgAddBtn">+ 추가</button>
+                </div>
+                <div class="orged-list" id="orgList"></div>
+              </div>
+            </div>
+          </div>
+          <div class="grp-label">주소</div>
+          <div class="field row2"><div><label>주소</label><input id="dtAddr" readonly placeholder="주소 검색 버튼을 눌러주세요" style="cursor:pointer"></div><button class="btn" id="addrSearchBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4-4"/></svg>검색</button></div>
+          <div class="field" style="grid-column:1/-1"><label>상세주소</label><input id="dtAddrDetail" placeholder="동·호수 등 상세주소 입력 (예: 101동 1203호)"></div>
+          <div class="field"><label>행정동 <span style="color:var(--ink-4);font-weight:500">(자동)</span></label><input id="dtDong" readonly placeholder="주소 선택 시 자동" style="background:var(--line-soft)"></div>
+          <div class="field"><label>가족수 <span style="color:var(--ink-4);font-weight:500">(자동)</span></label><input id="dtFamily" readonly placeholder="주소 기준 자동 집계" style="background:var(--line-soft)"></div>
+
+          <div class="grp-label">당원정보</div>
+          <div class="field" style="grid-column:1/-1"><label>당원구분</label><div class="tseg" id="dtfType"><div class="tseg-opt" data-v="권리당원">권리당원</div><div class="tseg-opt" data-v="일반당원">일반당원</div><div class="tseg-opt" data-v="탈당자">탈당자</div><div class="tseg-opt" data-v="일반시민">일반시민</div><div class="tseg-opt" data-v="기타">기타</div></div></div>
+          <div class="field" style="grid-column:1/-1"><label>추천인 <span style="color:var(--ink-4);font-weight:500">(1차 · 2차 · 3차)</span></label><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px"><input id="dtfRec1" placeholder="추천인"><input id="dtfRec2" placeholder="서브추천인"><input id="dtfRec3" placeholder="서드추천인"></div></div>
+        </div>
+        <div class="dt-pane" id="paneVote" style="display:none">
+          <div class="vote-head">
+            <div class="vote-title">투표 이력 <span class="vote-cnt" id="voteCnt">0회</span></div>
+            <button type="button" class="vote-add" id="voteAddBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>기록 추가</button>
+          </div>
+          <div class="vote-log" id="voteLog"></div>
+          <div class="vote-empty" id="voteEmpty" style="display:none">아직 투표 기록이 없습니다.</div>
+        </div>
+        <div class="dt-pane" id="paneMemo" style="display:none">
+          <div class="vfield"><label>메모</label><textarea id="dtMemo" class="dt-memo" placeholder="이 당원에 대한 메모를 입력하세요"></textarea></div>
+        </div>
+        <div class="dt-foot">
+          <button class="btn save" id="dtSave"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>저장</button>
+          <button class="btn add"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>신규</button>
+          <button class="btn del"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14"/></svg>삭제</button>
+          <button class="btn ico-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg></button>
+        </div>
+      </aside>
+    </div>
+  </main>
+</div>
+
+<!-- 주소 검색 모달 -->
+<div class="addr-ovl" id="addrOvl"></div>
+<div class="addr-modal" id="addrModal">
+  <div class="addr-head">
+    <h3>주소 검색</h3>
+    <button class="addr-x" id="addrX" aria-label="닫기">✕</button>
+  </div>
+  <div class="addr-search">
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4-4"/></svg>
+    <input id="addrInput" placeholder="도로명·지번·건물명으로 검색 (예: 성포동, 안산시청)">
+  </div>
+  <div class="addr-hint" id="addrHint">검색어를 입력하면 주소 후보가 표시됩니다.</div>
+  <div class="addr-results" id="addrResults"></div>
+</div>
+
+<!-- 투표 기록 추가 모달 -->
+<div class="addr-ovl" id="voteOvl"></div>
+<div class="addr-modal vote-modal" id="voteModal">
+  <div class="addr-head">
+    <h3>투표 기록 추가</h3>
+    <button class="addr-x" id="voteX" aria-label="닫기">✕</button>
+  </div>
+  <div class="vote-form">
+    <div class="vfield"><label>선거 · 회차</label><input id="vfElection" placeholder="예: 2026 지방선거 경선"></div>
+    <div class="vgrid2">
+      <div class="vfield"><label>날짜</label><input id="vfDate" type="date"></div>
+      <div class="vfield"><label>투표 여부</label><div class="vseg" id="vsegVoted"><div class="vseg-opt vote on" data-v="vote">투표</div><div class="vseg-opt out" data-v="out">불참</div><div class="vseg-opt err" data-v="err">미확인</div></div></div>
+    </div>
+    <div class="vgrid2">
+      <div class="vfield"><label>지지 후보</label><input id="vfCand" placeholder="지지한 후보명"></div>
+      <div class="vfield"><label>지지 성향</label><div class="vseg" id="vsegSup"><div class="vseg-opt ours on" data-v="ours">우리편</div><div class="vseg-opt rival" data-v="rival">상대편</div><div class="vseg-opt float" data-v="float">부동층</div></div></div>
+    </div>
+    <div class="vfield"><label>메모 <span style="color:var(--ink-4);font-weight:500">(선택)</span></label><textarea id="vfNote" placeholder="사전투표 안내 완료, 가족 동반 등"></textarea></div>
+  </div>
+  <div class="vote-foot">
+    <button class="mbtn2" id="voteCancel">취소</button>
+    <button class="mbtn2 primary" id="voteSave">기록 저장</button>
+  </div>
+</div>
+<style>
+  .addr-ovl{ position:fixed; inset:0; background:rgba(22,26,45,.36); z-index:1300; opacity:0; pointer-events:none; transition:opacity .18s; }
+  .addr-ovl.show{ opacity:1; pointer-events:auto; }
+  .cf-modal{ position:fixed; top:50%; left:50%; transform:translate(-50%,-46%); width:330px; max-width:92vw; background:#fff; border-radius:16px; box-shadow:0 24px 64px rgba(22,26,45,.26); z-index:1410; padding:22px 22px 18px; opacity:0; pointer-events:none; transition:opacity .16s, transform .16s; }
+  .cf-modal.show{ opacity:1; pointer-events:auto; transform:translate(-50%,-50%); }
+  .cf-title{ font-size:16px; font-weight:800; color:var(--ink); }
+  .cf-sub{ font-size:13px; color:var(--ink-3); margin-top:7px; line-height:1.5; }
+  .cf-foot{ display:flex; gap:9px; margin-top:18px; }
+  .cf-foot .mbtn{ flex:1; padding:10px 0; border-radius:11px; font-size:13.5px; font-weight:700; cursor:pointer; border:1px solid var(--line); background:#fff; color:var(--ink-2); }
+  .cf-foot .mbtn.primary{ background:var(--primary); border-color:var(--primary); color:#fff; }
+  .addr-modal{ position:fixed; top:50%; left:50%; transform:translate(-50%,-46%); width:480px; max-width:94vw; max-height:80vh; background:#fff; border-radius:18px; box-shadow:0 24px 64px rgba(22,26,45,.26); z-index:1310; display:flex; flex-direction:column; opacity:0; pointer-events:none; transition:opacity .18s, transform .18s; overflow:hidden; }
+  .addr-modal.show{ opacity:1; pointer-events:auto; transform:translate(-50%,-50%); }
+  .addr-head{ display:flex; align-items:center; justify-content:space-between; padding:17px 20px; border-bottom:1px solid var(--line-soft); }
+  .addr-head h3{ font-size:15px; font-weight:700; }
+  .addr-x{ width:30px; height:30px; border-radius:8px; border:1px solid var(--line); background:#fff; color:var(--ink-3); cursor:pointer; font-size:14px; }
+  .addr-search{ display:flex; align-items:center; gap:9px; margin:16px 20px 0; padding:11px 14px; background:var(--line-soft); border:1px solid var(--line); border-radius:12px; color:var(--ink-3); }
+  .addr-search input{ flex:1; border:none; background:transparent; outline:none; font-family:inherit; font-size:13.5px; color:var(--ink); }
+  .addr-hint{ font-size:12px; color:var(--ink-4); padding:10px 22px 0; }
+  .addr-results{ overflow-y:auto; padding:8px 12px 16px; }
+  .addr-item{ padding:11px 12px; border-radius:11px; cursor:pointer; }
+  .addr-item:hover{ background:var(--primary-soft); }
+  .addr-item .road{ font-size:13.5px; font-weight:600; color:var(--ink); }
+  .addr-item .jibun{ font-size:12px; color:var(--ink-3); margin-top:3px; }
+  .addr-item .zip{ display:inline-block; font-size:10.5px; font-weight:700; color:var(--ink-2); background:var(--line-soft); border:1px solid var(--line); border-radius:6px; padding:1px 6px; margin-bottom:5px; }
+</style>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  (function(){
+    var DB=[
+      {road:"경기 안산시 상록구 성포로 12", jibun:"성포동 532-1", dong:"성포동", zip:"15370", fam:3},
+      {road:"경기 안산시 상록구 성포로 45", jibun:"성포동 610", dong:"성포동", zip:"15371", fam:2},
+      {road:"경기 안산시 단원구 화랑로 387 (안산시청)", jibun:"고잔동 516", dong:"고잔동", zip:"15247", fam:1},
+      {road:"경기 안산시 상록구 충장로 432", jibun:"이동 727", dong:"이동", zip:"15588", fam:4},
+      {road:"경기 안산시 상록구 한양대학로 55", jibun:"일동 425", dong:"일동", zip:"15434", fam:2},
+      {road:"경기 안산시 단원구 광덕대로 220", jibun:"고잔동 720", dong:"고잔동", zip:"15236", fam:3},
+      {road:"경기 안산시 상록구 예술광장로 69", jibun:"성포동 489", dong:"성포동", zip:"15369", fam:5}
+    ];
+    var ovl=document.getElementById('addrOvl'), modal=document.getElementById('addrModal');
+    var inp=document.getElementById('addrInput'), res=document.getElementById('addrResults'), hint=document.getElementById('addrHint');
+    function open(){ ovl.classList.add('show'); modal.classList.add('show'); inp.value=''; render(''); setTimeout(function(){ inp.focus(); },80); }
+    function close(){ ovl.classList.remove('show'); modal.classList.remove('show'); }
+    function render(q){
+      q=(q||'').trim();
+      hint.style.display = q ? 'none':'block';
+      var list = !q ? [] : DB.filter(function(a){ return (a.road+a.jibun+a.dong).toLowerCase().indexOf(q.toLowerCase())>=0; });
+      res.innerHTML = list.map(function(a){ return '<div class="addr-item" data-road="'+a.road+'" data-dong="'+a.dong+'" data-fam="'+a.fam+'"><div class="zip">'+a.zip+'</div><div class="road">'+a.road+'</div><div class="jibun">지번 · '+a.jibun+'</div></div>'; }).join('') || (q?'<div class="addr-hint" style="padding:14px 10px">검색 결과가 없습니다.</div>':'');
+    }
+    inp&&inp.addEventListener('input', function(){ render(this.value); });
+    res&&res.addEventListener('click', function(e){
+      var it=e.target.closest('.addr-item'); if(!it) return;
+      var addr=document.getElementById('dtAddr'); if(addr) addr.value=it.getAttribute('data-road');
+      var dongInp=document.getElementById('dtDong'); if(dongInp) dongInp.value=it.getAttribute('data-dong');
+      var famInp=document.getElementById('dtFamily'); if(famInp) famInp.value=it.getAttribute('data-fam')+'명';
+      close();
+    });
+    var btn=document.getElementById('addrSearchBtn'); btn&&btn.addEventListener('click', open);
+    var addrField=document.getElementById('dtAddr'); addrField&&addrField.addEventListener('click', open);
+    document.getElementById('addrX').addEventListener('click', close);
+    ovl.addEventListener('click', close);
+    document.addEventListener('keydown', function(e){ if(e.key==='Escape' && modal.classList.contains('show')) close(); });
+  })();
+</script>
+
+<script>
+  const members = [
+    { no:1,  score:92, name:"김민재", phone:"010-2211-3344", rrn:"850302-1******", dong:"성포동", type:"기존당원", typeK:"old", org:"성포번영회", vote:"투표완료", voteK:"vote", age:39, ageb:"30대", sex:"남", rec:"이상훈", sub:"—", third:"이아하", katalk:"수신", katalkReply:"완료", sms:"발송", family:4, addr:"안산시 상록구 성포동" },
+    { no:2,  score:88, name:"이서연", phone:"010-7788-1020", rrn:"910715-2******", dong:"일동", type:"신규당원", typeK:"new", org:"—", vote:"투표완료", voteK:"vote", age:34, ageb:"30대", sex:"여", rec:"박정희", sub:"김도현", third:"—", katalk:"수신", katalkReply:"미답", sms:"발송", family:2, addr:"안산시 상록구 일동" },
+    { no:3,  score:75, name:"박준호", phone:"010-3344-9090", rrn:"780119-1******", dong:"와동", type:"권리당원", typeK:"old", org:"와동상가번영회", vote:"미확인", voteK:"err", age:46, ageb:"40대", sex:"남", rec:"—", sub:"—", third:"—", katalk:"거부", katalkReply:"—", sms:"수신거부", family:3, addr:"안산시 상록구 와동" },
+    { no:4,  score:81, name:"최은정", phone:"010-5050-2323", rrn:"880920-2******", dong:"성포동", type:"기존당원", typeK:"old", org:"학부모회", vote:"투표완료", voteK:"vote", age:37, ageb:"30대", sex:"여", rec:"김민재", sub:"—", third:"김민재", katalk:"수신", katalkReply:"완료", sms:"발송", family:5, addr:"안산시 상록구 성포동" },
+    { no:5,  score:64, name:"정우성", phone:"010-1212-7878", rrn:"700405-1******", dong:"이동", type:"신규당원", typeK:"new", org:"—", vote:"미확인", voteK:"err", age:54, ageb:"50대", sex:"남", rec:"홍길동", sub:"이서연", third:"—", katalk:"미수신", katalkReply:"—", sms:"발송", family:1, addr:"안산시 상록구 이동" },
+    { no:6,  score:90, name:"한지민", phone:"010-9090-1234", rrn:"950612-2******", dong:"일동", type:"기존당원", typeK:"old", org:"청년회", vote:"투표완료", voteK:"vote", age:30, ageb:"30대", sex:"여", rec:"최은정", sub:"—", third:"—", katalk:"수신", katalkReply:"완료", sms:"발송", family:3, addr:"안산시 상록구 일동" },
+    { no:7,  score:48, name:"오세훈", phone:"010-4455-6677", rrn:"650208-1******", dong:"성포동", type:"탈당", typeK:"out", org:"—", vote:"불참", voteK:"out", age:59, ageb:"50대", sex:"남", rec:"—", sub:"—", third:"—", katalk:"거부", katalkReply:"—", sms:"—", family:2, addr:"안산시 상록구 성포동" },
+    { no:8,  score:79, name:"강하늘", phone:"010-6677-8899", rrn:"930411-1******", dong:"와동", type:"신규당원", typeK:"new", org:"체육회", vote:"투표완료", voteK:"vote", age:32, ageb:"30대", sex:"남", rec:"박준호", sub:"—", third:"—", katalk:"수신", katalkReply:"완료", sms:"발송", family:4, addr:"안산시 상록구 와동" },
+    { no:9,  score:85, name:"문소리", phone:"010-2020-4040", rrn:"820707-2******", dong:"이동", type:"기존당원", typeK:"old", org:"부녀회", vote:"투표완료", voteK:"vote", age:43, ageb:"40대", sex:"여", rec:"한지민", sub:"강하늘", third:"강하늘", katalk:"수신", katalkReply:"미답", sms:"발송", family:6, addr:"안산시 상록구 이동" },
+    { no:10, score:55, name:"류승범", phone:"010-3131-5252", rrn:"760923-1******", dong:"일동", type:"기존당원", typeK:"old", org:"—", vote:"미확인", voteK:"err", age:48, ageb:"40대", sex:"남", rec:"정우성", sub:"—", third:"—", katalk:"미수신", katalkReply:"—", sms:"발송", family:2, addr:"안산시 상록구 일동" },
+    { no:11, score:71, name:"배수지", phone:"010-8080-9191", rrn:"940225-2******", dong:"성포동", type:"신규당원", typeK:"new", org:"문화센터", vote:"투표완료", voteK:"vote", age:31, ageb:"30대", sex:"여", rec:"문소리", sub:"—", third:"—", katalk:"수신", katalkReply:"완료", sms:"발송", family:3, addr:"안산시 상록구 성포동" },
+  ];
+  const avaColors = ["#3b82f6","#10b981","#f59e0b","#8b5cf6","#ec4899","#06b6d4","#ef4444","#6366f1","#14b8a6","#f97316","#a855f7"];
+  const scoreCls = s => s>=18?"sc-hi":s>=11?"sc-mid":"sc-lo";
+  function addrKey(m){ var a=(m.addr||'').trim(); if(!a||a==='—') return ''; return a+'|'+((m.addrDetail||'').trim()); }
+  function famCount(m){ var k=addrKey(m); if(!k) return null; return members.filter(function(x){ return addrKey(x)===k; }).length; }
+  function famDisplay(m){ var n=famCount(m); return n!=null?n+'명':'—'; }
+  function calcScore(m){
+    var s=0;
+    if(m.type==='권리당원') s+=5; else if(m.type==='일반당원') s+=2;
+    var ageMap={'70대':3,'60대':4,'50대':5,'40대':4,'30대':3,'20대':2};
+    var av=ageMap[m.ageb]; if(av==null && m.ageb){ var an=parseInt(m.ageb,10); if(an>=70) av=3; }
+    s+=av||0;
+    if([m.rec,m.rec2,m.rec3,m.sub,m.third].indexOf('장윤정')>=0) s+=3;
+    if(m.katalk==='관리중') s+=3;
+    s+=(m.krGrade||0)+(m.smGrade||0);
+    var fam=famCount(m);
+    if(fam!=null){ if(fam>=4) s+=5; else if(fam>=3) s+=4; else if(fam>=2) s+=3; }
+    var lm={ours:5,rival:-5,float:3,none:0}; s+=lm[leanOf(m)]||0;
+    return s;
+  }
+  function recalcScores(){ members.forEach(function(m){ m.score=calcScore(m); }); }
+  // ── 성향 신호등 (투표활동 기반) ──
+  var leanMeta={ ours:{c:'#16a34a',label:'우리편'}, rival:{c:'#e0322c',label:'상대편'}, float:{c:'#eab308',label:'중도'}, none:{c:'#aab0bd',label:'무관심'} };
+  var defaultLean={ '이서연':'ours','박준호':'rival','최은정':'ours','정우성':'float','한지민':'ours','오세훈':'rival','강하늘':'float','문소리':'ours','류승범':'none','배수지':'float' };
+  function leanOf(m){
+    var v=(typeof voteStore!=='undefined' && voteStore[m.name])||[];
+    if(v.length){
+      var o=0,r=0,f=0,act=0;
+      v.forEach(function(x){ if(x.support==='ours')o++; else if(x.support==='rival')r++; else if(x.support==='float')f++; if(x.voted==='vote')act++; });
+      if(act===0 && o+r+f===0) return 'none';
+      if(o>r && o>=f) return 'ours';
+      if(r>o && r>=f) return 'rival';
+      if(o>0||r>0||f>0) return 'float';
+    }
+    return m.lean || defaultLean[m.name] || 'none';
+  }
+  function signalCell(m){ var L=leanMeta[leanOf(m)]||leanMeta.none; var ln=leanOf(m); return '<span class="sig" title="'+L.label+'"><span class="sig-dot'+(ln==='none'?'':' pulse')+'" style="--c:'+L.c+'"></span></span>'; }
+  // ── 소속·직함 (다중) ──
+  var catMeta={ '직장':{bg:'#e8f1fe',fg:'#2563eb'}, '단체':{bg:'#e7f6ee',fg:'#0f9d63'}, '정치':{bg:'#f1ebfd',fg:'#7c3aed'}, '봉사':{bg:'#fff1e6',fg:'#d9730d'}, '기타':{bg:'#f1f3f7',fg:'#697089'} };
+  function catColor(c){ return catMeta[c]||catMeta['기타']; }
+  // 기존 단일 m.org 문자열을 orgs 배열로 정규화 (+ 저장된 소속 불러오기)
+  var _orgStore=JSON.parse(localStorage.getItem('moida_orgs')||'{}');
+  members.forEach(function(m){
+    if(Array.isArray(_orgStore[m.name])){ m.orgs=_orgStore[m.name]; }
+    if(!Array.isArray(m.orgs)){
+      m.orgs = (m.org && m.org!=='—') ? [{cat:'단체',name:m.org,title:'',rep:true}] : [];
+    }
+    var _r=orgRep(m); m.org=_r?orgRepText(_r):'—';
+  });
+  function orgRep(m){ if(!m.orgs||!m.orgs.length) return null; return m.orgs[0]; }
+  function orgRepText(o){ return o ? (o.name + (o.title?(' '+o.title):'')) : ''; }
+  function orgCellHtml(m){
+    var list=m.orgs||[]; if(!list.length) return '<span class="muted-cell">—</span>';
+    var rep=list[0], i=members.indexOf(m);
+    var label=esc(rep.name)+(rep.title?' <span class="oc-title">'+esc(rep.title)+'</span>':'');
+    if(list.length>1) return '<span class="org-link" data-orgi="'+i+'">'+label+' <span style="color:var(--primary);font-weight:700;font-size:11px">+'+(list.length-1)+'</span></span>';
+    return '<span>'+label+'</span>';
+  }
+  function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+  function recCell(m){
+    var extra=[]; if(m.sub&&m.sub!=='—') extra.push(m.sub); if(m.third&&m.third!=='—') extra.push(m.third);
+    if(m.rec==='—'||!m.rec) return '—';
+    return '<span class="rec-link" data-rec="'+encodeURIComponent(JSON.stringify([m.rec].concat(extra)))+'">'+m.rec + (extra.length?' <span style="color:var(--primary);font-weight:700;font-size:11px">+'+extra.length+'</span>':'')+'</span>';
+  }
+  function ktCell(v){
+    if(v==="수신"||v==="발송"){ return '<span style="display:inline-flex;align-items:center;gap:4px;font-size:11.5px;font-weight:700;color:#3C1E1E;background:#FEE500;padding:3px 9px 3px 7px;border-radius:999px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="#3C1E1E"><path d="M12 3C6.9 3 3 6.3 3 10.3c0 2.6 1.7 4.9 4.3 6.2-.2.7-.7 2.4-.8 2.8 0 .2.1.4.4.2.2-.1 2.6-1.8 3.6-2.5.5.1 1 .1 1.5.1 5.1 0 9-3.3 9-7.3S17.1 3 12 3z"/></svg>관리중</span>'; }
+    if(v==="거부"||v==="수신거부"||v==="미수신"){ return '<span style="display:inline-flex;align-items:center;gap:4px;font-size:11.5px;font-weight:700;color:#b42318;background:#fdeceb;padding:3px 9px 3px 7px;border-radius:999px;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#b42318" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M8 8l8 8"/></svg>수신거부</span>'; }
+    return '<span style="color:var(--ink-4)">—</span>';
+  }
+
+  const tbody = document.getElementById("tbody");
+  const dtAva=document.getElementById("dtAva"), dtName=document.getElementById("dtName"), dtSub=document.getElementById("dtSub");
+  var detailPanel=document.getElementById('detailPanel');
+  var curEditIdx=null;
+  var dtOvl=document.createElement('div'); dtOvl.className='dt-ovl'; document.body.appendChild(dtOvl);
+  var recPop=document.createElement('div'); recPop.className='rec-pop'; document.body.appendChild(recPop);
+  var PARTY_PALETTES={ 'democratic':['#1452a0','#2f74c9','#7fb0e6'], 'ppp':['#c0181f','#e61e2b','#f3737b'], 'basic':['#0a8c81','#10b3a5','#5fd6cb'], 'reform':['#e25600','#ff6b00','#ff9a3d'] };
+  var PARTY_RANK=PARTY_PALETTES[localStorage.getItem('moida_party')||'democratic'];
+  function renderRecPop(){
+    var chain=recPop._chain||[]; var labs=['1차','2차','3차','4차','5차'];
+    var grip='<svg class="rp-grip" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 6h.01M9 12h.01M9 18h.01M15 6h.01M15 12h.01M15 18h.01"/></svg>';
+    recPop.innerHTML='<div class="rp-t">추천 경로 · 드래그로 순위 변경</div>'+chain.map(function(n,i){ return '<div class="rp-row" draggable="true" data-ri="'+i+'">'+grip+'<span class="rp-n" style="background:'+(PARTY_RANK[i]||PARTY_RANK[PARTY_RANK.length-1])+'">'+(i+1)+'</span><span class="rp-name">'+n+'</span><span class="rp-lab">'+(labs[i]||'')+'</span></div>'; }).join('')+'<div class="rp-foot">순서를 바꾸면 자동 저장됩니다</div>';
+  }
+  function saveRecChain(){
+    var m=recPop._mem, c=recPop._chain; if(!m) return;
+    m.rec=c[0]||'—'; m.sub=c[1]||'—'; m.third=c[2]||'—';
+    var rk='moida_rec_chains'; var store=JSON.parse(localStorage.getItem(rk)||'{}'); store[m.name]=c; localStorage.setItem(rk, JSON.stringify(store));
+    renderRows();
+  }
+  (function(){
+    var dragIdx=null;
+    recPop.addEventListener('dragstart',function(e){ var row=e.target.closest('.rp-row'); if(!row) return; dragIdx=+row.dataset.ri; row.classList.add('drag'); });
+    recPop.addEventListener('dragend',function(e){ var row=e.target.closest('.rp-row'); if(row) row.classList.remove('drag'); recPop.querySelectorAll('.rp-row').forEach(function(r){r.classList.remove('over');}); });
+    recPop.addEventListener('dragover',function(e){ e.preventDefault(); var row=e.target.closest('.rp-row'); recPop.querySelectorAll('.rp-row').forEach(function(r){r.classList.remove('over');}); if(row) row.classList.add('over'); });
+    recPop.addEventListener('drop',function(e){ e.preventDefault(); var row=e.target.closest('.rp-row'); if(row==null||dragIdx==null) return; var to=+row.dataset.ri; var c=recPop._chain; var it=c.splice(dragIdx,1)[0]; c.splice(to,0,it); dragIdx=null; renderRecPop(); saveRecChain(); });
+  })();
+  document.addEventListener('mousedown',function(e){ if(!recPop.contains(e.target) && !(e.target.closest&&e.target.closest('.rec-link'))) recPop.classList.remove('show'); });
+  // ── 소속 팝업 (표에서 +N 클릭 → 드래그 정렬) ──
+  var orgPop=document.createElement('div'); orgPop.className='rec-pop'; document.body.appendChild(orgPop);
+  function renderOrgPop(){
+    var m=orgPop._mem; if(!m) return; var list=m.orgs||[];
+    var grip='<svg class="rp-grip" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 6h.01M9 12h.01M9 18h.01M15 6h.01M15 12h.01M15 18h.01"/></svg>';
+    orgPop.innerHTML='<div class="rp-t">소속 · 드래그로 순서 변경</div>'+list.map(function(o,i){ var cc=catColor(o.cat); return '<div class="rp-row" draggable="true" data-oi="'+i+'">'+grip+'<span class="rp-n" style="background:'+(PARTY_RANK[i]||PARTY_RANK[PARTY_RANK.length-1])+'">'+(i+1)+'</span><span class="rp-name">'+esc(o.name)+(o.title?'<span class="rp-ttl">'+esc(o.title)+'</span>':'')+'</span><span class="rp-lab" style="color:'+cc.fg+'">'+(i===0?'대표':esc(o.cat))+'</span></div>'; }).join('')+'<div class="rp-foot">순서를 바꾸면 자동 저장됩니다</div>';
+  }
+  (function(){
+    var di=null;
+    orgPop.addEventListener('dragstart',function(e){ var r=e.target.closest('.rp-row'); if(!r) return; di=+r.dataset.oi; r.classList.add('drag'); });
+    orgPop.addEventListener('dragend',function(e){ var r=e.target.closest('.rp-row'); if(r) r.classList.remove('drag'); orgPop.querySelectorAll('.rp-row').forEach(function(x){x.classList.remove('over');}); });
+    orgPop.addEventListener('dragover',function(e){ e.preventDefault(); orgPop.querySelectorAll('.rp-row').forEach(function(x){x.classList.remove('over');}); var r=e.target.closest('.rp-row'); if(r) r.classList.add('over'); });
+    orgPop.addEventListener('drop',function(e){ e.preventDefault(); var r=e.target.closest('.rp-row'); if(r==null||di==null) return; var to=+r.dataset.oi; var m=orgPop._mem; var it=m.orgs.splice(di,1)[0]; m.orgs.splice(to,0,it); di=null; syncOrgStr(m); saveOrgs(m); renderOrgPop(); renderRows(); });
+  })();
+  document.addEventListener('mousedown',function(e){ if(!orgPop.contains(e.target) && !(e.target.closest&&e.target.closest('.org-link'))) orgPop.classList.remove('show'); });
+  function saveOrgs(m){ var k='moida_orgs'; var store=JSON.parse(localStorage.getItem(k)||'{}'); store[m.name]=m.orgs; localStorage.setItem(k, JSON.stringify(store)); }
+  function showDetail(){ detailPanel.classList.add('show'); dtOvl.classList.add('show'); }
+  function closeDetail(){ detailPanel.classList.remove('show'); dtOvl.classList.remove('show'); tbody.querySelectorAll('tr').forEach(t=>t.classList.remove('sel')); }
+  document.getElementById('dtClose').addEventListener('click', closeDetail);
+  dtOvl.addEventListener('click', closeDetail);
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeDetail(); });
+
+  // ---- 투표 이력 ----
+  var voteStore = { '김민재':[
+    {election:'2026 지방선거 경선', date:'2026.05.18 · 사전투표', voted:'vote', support:'ours', cand:'장윤정', note:'사전투표소 안내 문자 발송 후 투표 확인. 가족 2명 동반.'},
+    {election:'2024 제22대 국회의원선거', date:'2024.04.10', voted:'vote', support:'ours', cand:'더불어민주당', note:''},
+    {election:'2022 지방선거', date:'2022.06.01', voted:'err', support:'float', cand:'', note:'투표 여부·지지 후보 확인 불가 — 연락 두절 시기.'},
+    {election:'2022 대선', date:'2022.03.09', voted:'out', support:'rival', cand:'', note:''}
+  ]};
+  var memoStore = {};
+  members.forEach(function(m){ m.lean=leanOf(m); });
+  document.querySelectorAll('#dtfType .tseg-opt').forEach(function(o){ o.addEventListener('click', function(){ document.querySelectorAll('#dtfType .tseg-opt').forEach(function(x){x.classList.remove('on');}); o.classList.add('on'); }); });
+  var curVoteName = null;
+  var supLabel={ours:'우리편',rival:'상대편',float:'부동층'}, votedLabel={vote:'투표',out:'불참',err:'미확인'};
+  function getVotes(n){ if(!voteStore[n]) voteStore[n]=[]; return voteStore[n]; }
+  function renderVotes(name){
+    curVoteName=name;
+    var list=getVotes(name);
+    var log=document.getElementById('voteLog'), cnt=document.getElementById('voteCnt'), empty=document.getElementById('voteEmpty');
+    if(!log) return;
+    cnt.textContent=list.length+'회';
+    empty.style.display=list.length?'none':'block';
+    log.style.display=list.length?'block':'none';
+    log.innerHTML=list.map(function(e){
+      var sup=e.support?('<span class="vsup '+e.support+'"><b>'+supLabel[e.support]+'</b>'+(e.cand?(' · '+e.cand):'')+'</span>'):'';
+      var note=e.note?('<div class="ventry-note">'+e.note+'</div>'):'';
+      return '<div class="ventry '+e.voted+'"><span class="vdot"></span>'+
+        '<div class="ventry-top"><span class="ventry-el">'+(e.election||'(선거 미입력)')+'</span>'+
+        '<span class="vbadge2 '+e.voted+'">'+votedLabel[e.voted]+'</span>'+sup+'</div>'+
+        (e.date?('<div class="ventry-date">'+e.date+'</div>'):'')+note+'</div>';
+    }).join('');
+  }
+  (function(){
+    var dm=document.getElementById('dtMemo');
+    if(dm) dm.addEventListener('input', function(){ if(curVoteName) memoStore[curVoteName]=this.value; });
+    var ovl=document.getElementById('voteOvl'), modal=document.getElementById('voteModal');
+    function setSeg(id,val){ document.querySelectorAll('#'+id+' .vseg-opt').forEach(function(o){ o.classList.toggle('on', o.dataset.v===val); }); }
+    function open(){
+      ['vfElection','vfCand','vfNote','vfDate'].forEach(function(id){ var el=document.getElementById(id); if(el) el.value=''; });
+      setSeg('vsegVoted','vote'); setSeg('vsegSup','ours');
+      ovl.classList.add('show'); modal.classList.add('show');
+    }
+    function close(){ ovl.classList.remove('show'); modal.classList.remove('show'); }
+    document.querySelectorAll('.vseg').forEach(function(seg){ seg.addEventListener('click', function(e){ var o=e.target.closest('.vseg-opt'); if(!o)return; seg.querySelectorAll('.vseg-opt').forEach(function(x){x.classList.remove('on');}); o.classList.add('on'); }); });
+    document.getElementById('voteAddBtn').addEventListener('click', open);
+    document.getElementById('voteX').addEventListener('click', close);
+    document.getElementById('voteCancel').addEventListener('click', close);
+    ovl.addEventListener('click', close);
+    document.getElementById('voteSave').addEventListener('click', function(){
+      if(!curVoteName) return;
+      var vEl=document.querySelector('#vsegVoted .vseg-opt.on'), sEl=document.querySelector('#vsegSup .vseg-opt.on');
+      var d=document.getElementById('vfDate').value;
+      getVotes(curVoteName).unshift({
+        election:document.getElementById('vfElection').value.trim(),
+        date:d?d.replace(/-/g,'.'):'',
+        voted:vEl?vEl.dataset.v:'vote',
+        support:sEl?sEl.dataset.v:'',
+        cand:document.getElementById('vfCand').value.trim(),
+        note:document.getElementById('vfNote').value.trim()
+      });
+      renderVotes(curVoteName); close();
+    });
+  })();
+  // 게이지 등급 기본값 + 저장
+  const GRADE_KEY='moida_member_grades';
+  var savedGrades=JSON.parse(localStorage.getItem(GRADE_KEY)||'{}');
+  members.forEach(function(m){
+    var g=savedGrades[m.name]||{};
+    m.krGrade = g.kr!=null ? g.kr : (m.katalkReply==='완료'?5:m.katalkReply==='미답'?2:m.katalkReply==='—'?0:3);
+    m.smGrade = g.sm!=null ? g.sm : (m.sms==='발송'?4:m.sms==='수신거부'?1:m.sms==='—'?0:3);
+  });
+  function saveGrades(){ var o={}; members.forEach(function(m){ o[m.name]={kr:m.krGrade, sm:m.smGrade}; }); localStorage.setItem(GRADE_KEY, JSON.stringify(o)); }
+  (function(){ var saved=JSON.parse(localStorage.getItem('moida_rec_chains')||'{}'); members.forEach(function(m){ var c=saved[m.name]; if(c){ m.rec=c[0]||'—'; m.sub=c[1]||'—'; m.third=c[2]||'—'; } }); })();
+  recalcScores();
+  function gauge(field, val){
+    var b=''; for(var k=1;k<=5;k++){ b+='<span class="gb '+(k<=val?'on'+val:'')+'" data-g="'+field+'" data-v="'+k+'"></span>'; }
+    return '<span class="gauge">'+b+'<span class="gv">'+(val||'-')+'</span></span>';
+  }
+
+  var sortField=null, sortDir=1;
+  var filters={ dong:[], type:[], ageb:[], sex:[] };
+  var searchKw='';
+  var dispMembers = members.slice();
+  function renderRows(){
+    var rows = dispMembers.filter(function(m){
+      return (!filters.dong.length || filters.dong.indexOf(m.dong)>=0)
+        && (!filters.type.length || filters.type.indexOf(m.type)>=0)
+        && (!filters.ageb.length || filters.ageb.indexOf(m.ageb)>=0)
+        && (!filters.sex.length || filters.sex.indexOf(m.sex)>=0)
+        && (!searchKw || [m.name,m.phone,m.addr,m.rec,m.rec2,m.rec3,m.sub,m.third,m.dong,(m.orgs||[]).map(orgRepText).join(' ')].some(function(v){ return v!=null && String(v).toLowerCase().replace(/-/g,'').indexOf(searchKw)>=0; }));
+    });
+    tbody.innerHTML = rows.map(function(m,ri){ var i=members.indexOf(m); return `
+    <tr data-i="${i}">
+      <td class="muted-cell">${ri+1}</td>
+      <td><span class="score ${scoreCls(m.score)}">${m.score}</span></td>
+      <td class="nm-cell">${m.photo?'<span class="photo-dot" title="사진 등록됨"></span>':''}${m.name}</td>
+      <td>${m.phone}</td>
+      <td class="muted-cell">${m.rrn}</td>
+      <td>${m.dong}</td>
+      <td><span class="tag tg-${m.typeK}"><span class="d" style="background:currentColor"></span>${m.type}</span></td>
+      <td>${orgCellHtml(m)}</td>
+      <td>${signalCell(m)}</td>
+      <td>${m.age}</td>
+      <td>${m.ageb}</td>
+      <td>${m.sex}</td>
+      <td class="${m.rec==="—"?"muted-cell":""}">${recCell(m)}</td>
+      <td class="kt-cell">${ktCell(m.katalk)}</td>
+      <td>${gauge('kr', m.krGrade)}</td>
+      <td>${gauge('sm', m.smGrade)}</td>
+      <td>${famDisplay(m)}</td>
+      <td class="${(m.addr||"—")==="—"?"muted-cell":""}">${m.addr||"—"}</td>
+    </tr>`; }).join("");
+  }
+  renderRows();
+
+  // 다중선택 필터 (행정동·당원구분·연령대·성별)
+  (function(){
+    function makeFilter(selId, field, label){
+      var sel=document.getElementById(selId); if(!sel) return;
+      var lbl=sel.querySelector('.f-lbl');
+      var dd=document.createElement('div');
+      dd.style.cssText='position:fixed;z-index:1300;display:none;background:#fff;border:1px solid var(--line);border-radius:11px;box-shadow:0 14px 38px rgba(22,26,45,.2);padding:6px;min-width:150px;max-height:320px;overflow:auto';
+      document.body.appendChild(dd);
+      var opts=[]; members.forEach(function(m){ if(m[field]!=null && m[field]!=='—' && opts.indexOf(m[field])<0) opts.push(m[field]); });
+      opts.sort(function(a,b){ return String(a).localeCompare(String(b),'ko'); });
+      var arr=filters[field];
+      function render(){ dd.innerHTML=['전체'].concat(opts).map(function(d){ var on=(d==='전체'&&!arr.length)||arr.indexOf(d)>=0; return '<div class="f-opt" data-d="'+d+'" style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;cursor:pointer;font-size:13px;font-weight:600;color:'+(on?'var(--primary)':'var(--ink-2)')+';background:'+(on?'var(--primary-soft)':'transparent')+'"><span style="width:14px;text-align:center">'+(on?'✓':'')+'</span>'+d+'</div>'; }).join(''); }
+      sel.addEventListener('click',function(){ render(); var r=sel.getBoundingClientRect(); dd.style.left=r.left+'px'; dd.style.top=(r.bottom+5)+'px'; dd.style.display=dd.style.display==='block'?'none':'block'; });
+      dd.addEventListener('click',function(e){ var o=e.target.closest('.f-opt'); if(!o) return; var d=o.dataset.d; if(d==='전체'){ arr.length=0; } else { var i=arr.indexOf(d); if(i>=0) arr.splice(i,1); else arr.push(d); } lbl.textContent=arr.length?(arr.length===1?arr[0]:arr[0]+' 외 '+(arr.length-1)):label; sel.style.color=arr.length?'var(--primary)':''; sel.style.borderColor=arr.length?'var(--primary)':''; render(); renderRows(); });
+      document.addEventListener('mousedown',function(e){ if(!dd.contains(e.target)&&!sel.contains(e.target)) dd.style.display='none'; });
+    }
+    makeFilter('dongSel','dong','행정동');
+    makeFilter('typeSel','type','당원구분');
+    makeFilter('agebSel','ageb','연령대');
+    makeFilter('sexSel','sex','성별');
+  })();
+
+  // 정렬
+  document.querySelectorAll('th[data-sort]').forEach(function(th){
+    th.addEventListener('click',function(){
+      var f=th.dataset.sort;
+      if(sortField===f){ sortDir*=-1; } else { sortField=f; sortDir=1; }
+      document.querySelectorAll('th[data-sort]').forEach(function(x){ x.classList.remove('asc','desc'); var a=x.querySelector('.sarr'); if(a) a.textContent='↕'; });
+      th.classList.add(sortDir>0?'asc':'desc'); var ar=th.querySelector('.sarr'); if(ar) ar.textContent=sortDir>0?'↑':'↓';
+      dispMembers.sort(function(a,b){
+        var x=a[f], y=b[f];
+        if(typeof x==='number'&&typeof y==='number') return (x-y)*sortDir;
+        return String(x).localeCompare(String(y),'ko')*sortDir;
+      });
+      renderRows();
+    });
+  });
+
+  // 게이지 클릭(등급 저장) + 행 클릭(상세)
+  tbody.addEventListener('click',function(e){
+    var ol=e.target.closest('.org-link');
+    if(ol){
+      e.stopPropagation();
+      var omem=members[+ol.dataset.orgi];
+      orgPop._mem=omem; renderOrgPop();
+      var orr=ol.getBoundingClientRect();
+      orgPop.style.left=Math.min(orr.left, window.innerWidth-260)+'px';
+      orgPop.style.top=(orr.bottom+6)+'px';
+      orgPop.classList.add('show'); recPop.classList.remove('show');
+      return;
+    }
+    var rl=e.target.closest('.rec-link');
+    if(rl){
+      e.stopPropagation();
+      var tr=rl.closest('tr'); var mem=members[+tr.dataset.i];
+      var chain=JSON.parse(decodeURIComponent(rl.dataset.rec));
+      recPop._mem=mem; recPop._chain=chain;
+      renderRecPop();
+      var r=rl.getBoundingClientRect();
+      recPop.style.left=Math.min(r.left, window.innerWidth-230)+'px';
+      recPop.style.top=(r.bottom+6)+'px';
+      recPop.classList.add('show');
+      return;
+    }
+    var gb=e.target.closest('.gb');
+    if(gb){
+      var tr=gb.closest('tr'); var m=members[+tr.dataset.i];
+      var f=gb.dataset.g, v=+gb.dataset.v;
+      if(f==='kr') m.krGrade=(m.krGrade===v?0:v); else m.smGrade=(m.smGrade===v?0:v);
+      saveGrades(); recalcScores(); renderRows();
+      return;
+    }
+    var tr=e.target.closest('tr'); if(!tr) return;
+    tbody.querySelectorAll('tr').forEach(t=>t.classList.remove('sel'));
+    tr.classList.add('sel');
+    var m=members[+tr.dataset.i], i=+tr.dataset.i;
+    curEditIdx=i;
+    dtAva.textContent=m.name[0];
+    dtAva.style.background='linear-gradient(140deg, '+avaColors[i%avaColors.length]+', #2f74c9)';
+    dtName.textContent=m.name;
+    dtSub.textContent=m.dong+' · '+m.type+' · '+m.sex+' '+m.age+'세';
+    var V=function(id,val){ var el=document.getElementById(id); if(el) el.value=(val==null||val==='—')?'':val; };
+    V('dtfName',m.name); V('dtfPhone',m.phone); V('dtfRrn',m.rrn);
+    V('dtAddr',m.addr); V('dtAddrDetail',m.addrDetail); V('dtDong',m.dong);
+    V('dtFamily',famCount(m)!=null?famCount(m)+'명':''); loadOrgEditor(m.orgs);
+    V('dtfRec1',m.rec); V('dtfRec2',m.rec2); V('dtfRec3',m.rec3);
+    document.querySelectorAll('#dtfType .tseg-opt').forEach(function(o){ o.classList.toggle('on', o.dataset.v===m.type); });
+    if(window._setMemberPhoto) window._setMemberPhoto(m.photo||'');
+    renderVotes(m.name);
+    var memoEl=document.getElementById('dtMemo'); if(memoEl) memoEl.value=memoStore[m.name]||'';
+    document.querySelector('.tab[data-pane="info"]').click();
+    showDetail();
+  });
+
+  // 당원구분 → 색상키
+  function typeToK(t){ return (t==='권리당원')?'old':(t==='탈당자'||t==='탈당')?'out':'new'; }
+  // 연락처 하이픈 포맷
+  function formatPhone(v){
+    var d=(v||'').replace(/[^0-9]/g,'');
+    if(d.length===11) return d.slice(0,3)+'-'+d.slice(3,7)+'-'+d.slice(7);
+    if(d.length===10){ if(d.slice(0,2)==='02') return d.slice(0,2)+'-'+d.slice(2,6)+'-'+d.slice(6); return d.slice(0,3)+'-'+d.slice(3,6)+'-'+d.slice(6); }
+    return v;
+  }
+  // 경고 모달 (캐릭터 일러스트)
+  var _alertOvl, _alertM;
+  function showAlert(title, sub){
+    if(!_alertM){
+      if(!document.getElementById('alStyle')){
+        var st=document.createElement('style'); st.id='alStyle';
+        st.textContent='.al-modal{position:fixed;top:50%;left:50%;transform:translate(-50%,-44%) scale(.96);width:340px;max-width:92vw;background:#fff;border-radius:22px;box-shadow:0 30px 80px rgba(22,26,45,.34);z-index:1420;opacity:0;pointer-events:none;transition:opacity .22s,transform .22s;overflow:hidden;text-align:center;}'+
+          '.al-modal.show{opacity:1;pointer-events:auto;transform:translate(-50%,-50%) scale(1);}'+
+          '.al-art{padding:30px 0 8px;background:linear-gradient(165deg,#eef0ff,#f6f4ff);}'+
+          '.al-art svg{display:block;margin:0 auto;animation:alPop .42s cubic-bezier(.34,1.56,.64,1);}'+
+          '@keyframes alPop{0%{transform:scale(.5);opacity:0}100%{transform:scale(1);opacity:1}}'+
+          '.al-body{padding:18px 26px 24px;}'+
+          '.al-title{font-size:18px;font-weight:800;color:var(--ink);}'+
+          '.al-sub{font-size:13.5px;color:var(--ink-3);margin-top:9px;line-height:1.55;}'+
+          '.al-ok{margin-top:20px;width:100%;padding:13px 0;border:none;border-radius:13px;background:var(--primary);color:#fff;font-size:14.5px;font-weight:700;cursor:pointer;font-family:inherit;box-shadow:0 8px 20px rgba(79,70,229,.32);transition:filter .15s;}'+
+          '.al-ok:hover{filter:brightness(1.08);}';
+        document.head.appendChild(st);
+      }
+      _alertOvl=document.createElement('div'); _alertOvl.className='addr-ovl'; document.body.appendChild(_alertOvl);
+      _alertM=document.createElement('div'); _alertM.className='al-modal';
+      _alertM.innerHTML='<div class="al-art"><svg width="156" height="124" viewBox="0 0 156 124" fill="none" xmlns="http://www.w3.org/2000/svg">'+
+        '<rect x="44" y="30" width="74" height="80" rx="15" fill="#c8ccfa"/>'+
+        '<rect x="33" y="22" width="74" height="80" rx="15" fill="#4f46e5"/>'+
+        '<circle cx="70" cy="49" r="15.5" fill="#fff"/>'+
+        '<circle cx="64.5" cy="48" r="2.3" fill="#4f46e5"/>'+
+        '<circle cx="75.5" cy="48" r="2.3" fill="#4f46e5"/>'+
+        '<ellipse cx="70" cy="55.5" rx="2.6" ry="3.2" fill="#4f46e5"/>'+
+        '<rect x="48" y="74" width="44" height="6.5" rx="3.25" fill="#fff" opacity=".92"/>'+
+        '<rect x="55" y="87" width="30" height="5.5" rx="2.75" fill="#fff" opacity=".55"/>'+
+        '<circle cx="112" cy="32" r="17" fill="#f59e0b" stroke="#fff" stroke-width="3.4"/>'+
+        '<rect x="109.8" y="23" width="4.4" height="10" rx="2.2" fill="#fff"/>'+
+        '<circle cx="112" cy="38.5" r="2.6" fill="#fff"/>'+
+        '</svg></div>'+
+        '<div class="al-body"><div class="al-title" id="alT"></div><div class="al-sub" id="alS"></div>'+
+        '<button class="al-ok" id="alOk">확인</button></div>';
+      document.body.appendChild(_alertM);
+      var close=function(){ _alertOvl.classList.remove('show'); _alertM.classList.remove('show'); };
+      _alertM.querySelector('#alOk').addEventListener('click', close);
+      _alertOvl.addEventListener('click', close);
+    }
+    _alertM.querySelector('#alT').textContent=title;
+    _alertM.querySelector('#alS').textContent=sub||'';
+    _alertOvl.classList.add('show'); _alertM.classList.add('show');
+  }
+  // 주민번호에서 나이·연령대·성별 계산
+  function deriveFromRrn(rrnStr){
+    var raw=(rrnStr||'').replace(/[^0-9]/g,'').slice(0,7);
+    if(raw.length<7) return null;
+    var yy=+raw.slice(0,2), g=+raw.slice(6,7);
+    var cMap={1:1900,2:1900,3:2000,4:2000,5:1900,6:1900,7:2000,8:2000,9:1800,0:1800};
+    var birth=(cMap[g]||1900)+yy;
+    var age=(new Date().getFullYear())-birth+1;
+    var ageb=(Math.floor(age/10)*10)+'대';
+    var sex=(g%2===1)?'남':'여';
+    return {age:age, ageb:ageb, sex:sex};
+  }
+
+  // 저장 (신규 추가 / 기존 수정)
+  var _save=document.getElementById('dtSave');
+  // ── 소속 편집기 상태/렌더 ──
+  var editOrgs=[];
+  function syncOrgStr(m){ var r=orgRep(m); m.org = r?orgRepText(r):'—'; }
+  function loadOrgEditor(orgs){ editOrgs=(orgs||[]).map(function(o){ return {cat:o.cat||'단체',name:o.name||'',title:o.title||''}; }); renderOrgEditor(); }
+  function renderOrgEditor(){
+    var box=document.getElementById('orgList'); if(!box) return;
+    if(!editOrgs.length){ box.innerHTML='<div class="orged-empty">등록된 소속이 없습니다. 위에서 추가하세요.</div>'; return; }
+    var grip='<svg class="oe-grip" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 6h.01M9 12h.01M9 18h.01M15 6h.01M15 12h.01M15 18h.01"/></svg>';
+    box.innerHTML=editOrgs.map(function(o,i){ var cc=catColor(o.cat); return ''+
+      '<div class="orged-row'+(i===0?' is-rep':'')+'" draggable="true" data-i="'+i+'">'+
+        grip+
+        '<span class="orged-cat" style="background:'+cc.bg+';color:'+cc.fg+'">'+esc(o.cat)+'</span>'+
+        '<span class="orged-name">'+esc(o.name)+'</span>'+
+        (o.title?'<span class="orged-ttl">'+esc(o.title)+'</span>':'')+
+        (i===0?'<span class="orged-repbadge">대표</span>':'')+
+        '<span class="orged-sp"></span>'+
+        '<button type="button" class="orged-del" data-i="'+i+'" title="삭제">✕</button>'+
+      '</div>'; }).join('');
+  }
+  (function(){
+    var addBtn=document.getElementById('orgAddBtn'), nameInp=document.getElementById('orgName'), ttlInp=document.getElementById('orgTitle'), catSel=document.getElementById('orgCat'), box=document.getElementById('orgList');
+    function add(){ var nm=(nameInp.value||'').trim(); if(!nm) return; editOrgs.push({cat:catSel.value,name:nm,title:(ttlInp.value||'').trim()}); nameInp.value=''; ttlInp.value=''; renderOrgEditor(); nameInp.focus(); }
+    if(addBtn) addBtn.addEventListener('click',add);
+    [nameInp,ttlInp].forEach(function(el){ if(el) el.addEventListener('keydown',function(e){ if(e.key==='Enter'){ e.preventDefault(); add(); } }); });
+    if(box) box.addEventListener('click',function(e){
+      var del=e.target.closest('.orged-del');
+      if(del){ var di=+del.dataset.i; editOrgs.splice(di,1); renderOrgEditor(); }
+    });
+    // 편집기 드래그 정렬
+    var oeDrag=null;
+    if(box){
+      box.addEventListener('dragstart',function(e){ var r=e.target.closest('.orged-row'); if(!r) return; oeDrag=+r.dataset.i; r.classList.add('oe-dragging'); });
+      box.addEventListener('dragend',function(e){ var r=e.target.closest('.orged-row'); if(r) r.classList.remove('oe-dragging'); box.querySelectorAll('.orged-row').forEach(function(x){x.classList.remove('oe-over');}); });
+      box.addEventListener('dragover',function(e){ e.preventDefault(); box.querySelectorAll('.orged-row').forEach(function(x){x.classList.remove('oe-over');}); var r=e.target.closest('.orged-row'); if(r) r.classList.add('oe-over'); });
+      box.addEventListener('drop',function(e){ e.preventDefault(); var r=e.target.closest('.orged-row'); if(r==null||oeDrag==null) return; var to=+r.dataset.i; var it=editOrgs.splice(oeDrag,1)[0]; editOrgs.splice(to,0,it); oeDrag=null; renderOrgEditor(); });
+    }
+  })();
+  function doSave(){
+    var isNew=(curEditIdx==null);
+    var m=isNew ? {no:0,score:0,rrn:'—',dong:'—',org:'—',rec:'—',rec2:'—',rec3:'—',addr:'—',addrDetail:'',family:null,age:'',ageb:'—',sex:'—',vote:'미확인',voteK:'err',katalk:'관리중',type:'권리당원',typeK:'old',krGrade:0,smGrade:0,photo:''} : members[curEditIdx];
+    var g=function(id){ var el=document.getElementById(id); return el?el.value.trim():''; };
+    m.name=g('dtfName')||m.name||'(이름없음)'; m.phone=formatPhone(g('dtfPhone'))||m.phone||'—'; if(g('dtfRrn')) m.rrn=g('dtfRrn');
+    if(g('dtAddr')) m.addr=g('dtAddr'); m.addrDetail=g('dtAddrDetail');
+    if(g('dtDong')) m.dong=g('dtDong');
+    var fam=g('dtFamily').replace(/[^0-9]/g,''); if(fam) m.family=+fam;
+    var tsel=document.querySelector('#dtfType .tseg-opt.on'); if(tsel){ m.type=tsel.dataset.v; m.typeK=typeToK(m.type); }
+    m.orgs=editOrgs.map(function(o){ return {cat:o.cat,name:o.name,title:o.title}; }); syncOrgStr(m); saveOrgs(m); m.rec=g('dtfRec1')||'—'; m.rec2=g('dtfRec2')||'—'; m.rec3=g('dtfRec3')||'—';
+    var d=deriveFromRrn(g('dtfRrn')); if(d){ m.age=d.age; m.ageb=d.ageb; m.sex=d.sex; }
+    if(window._getMemberPhoto) m.photo=window._getMemberPhoto();
+    if(isNew){ m.no=members.length+1; members.push(m); dispMembers.push(m); }
+    recalcScores(); renderRows(); closeDetail();
+  }
+  if(_save) _save.addEventListener('click', function(){
+    var nm=(document.getElementById('dtfName').value||'').trim();
+    var ph=(document.getElementById('dtfPhone').value||'').replace(/[^0-9]/g,'');
+    var dup=members.some(function(mm,idx){ if(idx===curEditIdx) return false; return mm.name===nm && String(mm.phone||'').replace(/[^0-9]/g,'')===ph && !!ph; });
+    if(dup){ showAlert('이미 등록된 인물입니다.','이름과 연락처가 모두 일치하는 당원이 이미 목록에 있습니다.'); return; }
+    openConfirm();
+  });
+
+  // 신규 당원 추가 포림 열기
+  function openNew(){
+    curEditIdx=null;
+    dtAva.textContent='+';
+    dtAva.style.background='linear-gradient(140deg,#94a3b8,#64748b)';
+    dtName.textContent='신규 당원';
+    dtSub.textContent='새 당원 정보를 입력하세요';
+    ['dtfName','dtfPhone','dtfRrn','dtAddr','dtAddrDetail','dtDong','dtFamily','dtfRec1','dtfRec2','dtfRec3'].forEach(function(id){ var el=document.getElementById(id); if(el) el.value=''; });
+    loadOrgEditor([]);
+    document.querySelectorAll('#dtfType .tseg-opt').forEach(function(o){ o.classList.toggle('on', o.dataset.v==='권리당원'); });
+    if(window._setMemberPhoto) window._setMemberPhoto('');
+    curVoteName=null; renderVotes('__new__');
+    var memoEl=document.getElementById('dtMemo'); if(memoEl) memoEl.value='';
+    var rh=document.getElementById('dtfRrnHint'); if(rh){ rh.textContent='입력 시 나이·연령대·성별이 자동 계산됩니다'; rh.style.color=''; rh.style.fontWeight=''; }
+    document.querySelector('.tab[data-pane="info"]').click();
+    tbody.querySelectorAll('tr').forEach(function(t){t.classList.remove('sel');});
+    showDetail();
+  }
+  var _addTop=document.getElementById('addTopBtn'); if(_addTop) _addTop.addEventListener('click', openNew);
+  var _addFoot=document.querySelector('.dt-foot .btn.add'); if(_addFoot) _addFoot.addEventListener('click', openNew);
+
+  // 증명사진 업로드
+  (function(){
+    var box=document.getElementById('dtPhotoBox'), inp=document.getElementById('dtPhotoInput');
+    var img=document.getElementById('dtPhotoImg'), ph=document.getElementById('dtPhotoPh');
+    var btn=document.getElementById('dtPhotoBtn'), del=document.getElementById('dtPhotoDel');
+    if(!box) return;
+    function show(src){ if(src){ img.src=src; img.style.display='block'; ph.style.display='none'; del.style.display=''; } else { img.removeAttribute('src'); img.style.display='none'; ph.style.display=''; del.style.display='none'; } }
+    function pick(){ inp.click(); }
+    box.addEventListener('click', pick); btn.addEventListener('click', pick);
+    inp.addEventListener('change', function(){ var f=this.files&&this.files[0]; if(!f) return; var rd=new FileReader(); rd.onload=function(e){ show(e.target.result); }; rd.readAsDataURL(f); });
+    del.addEventListener('click', function(e){ e.stopPropagation(); show(''); inp.value=''; });
+    window._setMemberPhoto=show;
+    window._getMemberPhoto=function(){ return img.style.display==='none'?'':(img.getAttribute('src')||''); };
+  })();
+
+  // 주민번호 입력 포맷: 앞 6자리 + 뒤 입력분 표시, 나머지는 * 패딩
+  var _rrn=document.getElementById('dtfRrn');
+  if(_rrn){
+    _rrn.addEventListener('focus', function(){ this.dataset.raw=this.value.replace(/[^0-9]/g,''); });
+    _rrn.addEventListener('input', function(e){
+      var prev=this.dataset.raw||'';
+      var raw=this.value.replace(/[^0-9]/g,'').slice(0,13);
+      // 별표(*)를 지운 경우 raw가 안 줄어드니, 삭제 시 실제 자릿수를 하나 줄임
+      var isDel=e.inputType && e.inputType.indexOf('delete')===0;
+      if(isDel && raw.length>=prev.length) raw=raw.slice(0, Math.max(0, prev.length-1));
+      this.dataset.raw=raw;
+      var out;
+      if(raw.length<6){ out=raw; }
+      else{ var front=raw.slice(0,6), back=raw.slice(6); out=front+'-'+back+'*'.repeat(7-back.length); }
+      this.value=out;
+      validateRrn(raw);
+    });
+  }
+  function validateRrn(raw){
+    var hint=document.getElementById('dtfRrnHint'); if(!hint) return;
+    hint.style.color=''; hint.style.fontWeight='';
+    if(!raw || raw.length<6){ hint.textContent='입력 시 나이·연령대·성별이 자동 계산됩니다'; return; }
+    var yy=+raw.slice(0,2), mm=+raw.slice(2,4), dd=+raw.slice(4,6);
+    function bad(msg){ hint.textContent='⚠ '+msg; hint.style.color='#d12b2b'; hint.style.fontWeight='700'; }
+    function ok(msg){ hint.textContent='✓ '+msg; hint.style.color='#1a7f4b'; hint.style.fontWeight='700'; }
+    if(mm<1||mm>12){ bad('생월(月)이 올바르지 않습니다 (01~12)'); return; }
+    if(dd<1||dd>31){ bad('생일(日)이 올바르지 않습니다 (01~31)'); return; }
+    if(raw.length<7){ hint.textContent='뒷자리 성별코드를 입력하세요 (1·2 한국인 / 5~8 외국인)'; hint.style.color='var(--ink-4)'; return; }
+    var g=+raw.slice(6,7);
+    var cMap={1:1900,2:1900,3:2000,4:2000,5:1900,6:1900,7:2000,8:2000,9:1800,0:1800};
+    if(!(g in cMap)){ bad('성별코드(뒷자리 첫 숫자)가 올바르지 않습니다'); return; }
+    var year=cMap[g]+yy, now=new Date().getFullYear();
+    if(year>now){ bad('생년('+year+')이 미래입니다 — 성별코드와 생년이 맞지 않습니다'); return; }
+    var foreign=(g>=5&&g<=8);
+    var male=(g%2===1);
+    var age=now-year;
+    ok((foreign?'외국인':'내국인')+' · '+year+'년생 · '+(male?'남':'여')+' · 만 '+age+'세');
+  }
+
+  // 저장 확인 모달
+  var cfOvl=document.createElement('div'); cfOvl.className='addr-ovl'; document.body.appendChild(cfOvl);
+  var cf=document.createElement('div'); cf.className='cf-modal';
+  cf.innerHTML='<div class="cf-title">저장하시겠습니까?</div><div class="cf-sub">수정한 당원 정보를 저장합니다.</div><div class="cf-foot"><button class="mbtn" id="cfNo">취소</button><button class="mbtn primary" id="cfYes">저장</button></div>';
+  document.body.appendChild(cf);
+  function openConfirm(){ cfOvl.classList.add('show'); cf.classList.add('show'); }
+  function closeConfirm(){ cfOvl.classList.remove('show'); cf.classList.remove('show'); }
+  cf.querySelector('#cfNo').addEventListener('click', closeConfirm);
+  cfOvl.addEventListener('click', closeConfirm);
+  cf.querySelector('#cfYes').addEventListener('click', function(){ closeConfirm(); doSave(); });
+
+  function resetAllFilters(){
+    ['dong','type','ageb','sex'].forEach(function(f){ if(filters[f]) filters[f].length=0; });
+    [['dongSel','행정동'],['typeSel','당원구분'],['agebSel','연령구분'],['sexSel','성별구분']].forEach(function(p){
+      var s=document.getElementById(p[0]); if(!s) return;
+      var l=s.querySelector('.f-lbl'); if(l) l.textContent=p[1];
+      s.classList.remove('on'); s.style.color=''; s.style.borderColor='';
+    });
+    var si=document.querySelector('.search input'); if(si) si.value='';
+    searchKw='';
+    renderRows();
+  }
+  var _ra=document.getElementById('resetAll'); if(_ra) _ra.addEventListener('click',resetAllFilters);
+  var _rb=document.getElementById('resetBtn'); if(_rb) _rb.addEventListener('click',resetAllFilters);
+  var _si=document.querySelector('.search input'); if(_si) _si.addEventListener('input',function(){ searchKw=this.value.trim().toLowerCase().replace(/-/g,''); renderRows(); });
+  document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{
+    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active')); t.classList.add('active');
+    var p=t.getAttribute('data-pane');
+    var pi=document.getElementById('paneInfo'), pv=document.getElementById('paneVote'), pm=document.getElementById('paneMemo');
+    if(pi) pi.style.display = p==='info'?'grid':'none';
+    if(pv) pv.style.display = p==='vote'?'block':'none';
+    if(pm) pm.style.display = p==='memo'?'block':'none';
+  }));
+
+  // sidebar collapse
+  (function(){
+    const app=document.querySelector('.app'); const KEY='moida_sidebar_collapsed';
+    if(localStorage.getItem(KEY)==='1') app.classList.add('collapsed');
+    document.querySelectorAll('.nav-item').forEach(n=>{ const t=n.querySelector('.nm'); if(t) n.setAttribute('data-tip', t.textContent.trim()); });
+    document.querySelectorAll('.foot-item').forEach(n=>{ const t=n.querySelector('span'); if(t) n.setAttribute('data-tip', t.textContent.trim()); });
+    document.querySelectorAll('[data-collapse]').forEach(b=>b.addEventListener('click',()=>{
+      app.classList.toggle('collapsed');
+      localStorage.setItem(KEY, app.classList.contains('collapsed')?'1':'0');
+    }));
+  })();
+
+  // 오늘의 한마디 (매일 자동 순환)
+  (function(){
+    var qs=[
+      ['행동하지 않는 양심은 악의 편이다.','김대중'],
+      ['정치는 국민의 눈물을 닦아주는 일이다.','노무현'],
+      ['가장 낮은 곳에서 가장 큰 변화가 시작된다.','MOIDA'],
+      ['주민의 목소리를 듣는 것이 의정의 시작이다.','MOIDA'],
+      ['신뢰는 약속을 지키는 작은 일에서 쌓인다.','MOIDA'],
+      ['국민이 이깁니다.','노무현'],
+      ['작은 일도 끝까지, 큰 일도 처음처럼.','MOIDA'],
+      ['현장에 답이 있다.','MOIDA']
+    ];
+    var d=new Date(); var idx=(Math.floor((Date.UTC(d.getFullYear(),d.getMonth(),d.getDate()))/86400000))%qs.length;
+    var t=document.getElementById('quoteText'), b=document.getElementById('quoteBy');
+    if(t&&b){ t.textContent=qs[idx][0]; b.textContent='— '+qs[idx][1]; }
+  })();
+
+  // ── CSV 저장/가져오기/양식 ──
+  (function(){
+    var COLS=[
+      ['name','이름'],['phone','전화'],['rrn','생년월일'],['dong','동'],['type','당원구분'],
+      ['org','소속'],['age','나이'],['ageb','연령대'],['sex','성별'],['rec','추천인'],
+      ['sub','2차추천'],['third','3차추천'],['katalk','카톡'],['sms','문자'],['family','가족수'],
+      ['addr','주소'],['lean','성향'],['score','점수']
+    ];
+    var LEAN_K={'우리편':'ours','상대편':'rival','중도':'float','부동층':'float','무관심':'none'};
+    function esc(v){ v=(v==null?'':String(v)); return /[",\n]/.test(v) ? '"'+v.replace(/"/g,'""')+'"' : v; }
+    function buildCSV(){
+      var head=COLS.map(function(c){ return c[1]; }).join(',');
+      var rows=members.map(function(m){
+        return COLS.map(function(c){
+          if(c[0]==='lean'){ return esc((leanMeta[leanOf(m)]||{}).label||''); }
+          return esc(m[c[0]]);
+        }).join(',');
+      });
+      return '\uFEFF'+[head].concat(rows).join('\r\n');
+    }
+    function download(name, text){
+      var blob=new Blob([text],{type:'text/csv;charset=utf-8'});
+      var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=name;
+      document.body.appendChild(a); a.click(); setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); },100);
+    }
+    function ymd(){ var d=new Date(),p=function(n){return(n<10?'0':'')+n;}; return d.getFullYear()+p(d.getMonth()+1)+p(d.getDate()); }
+
+    var exBtn=document.getElementById('csvExportBtn');
+    if(exBtn) exBtn.addEventListener('click',function(){ download('조직관리_'+ymd()+'.csv', buildCSV()); });
+
+    var tplBtn=document.getElementById('csvTplBtn');
+    if(tplBtn) tplBtn.addEventListener('click',function(){
+      var head=COLS.map(function(c){ return c[1]; }).join(',');
+      var sample=['홍길동','010-0000-0000','900101-1******','성포동','신규당원','성포번영회','35','30대','남','장윤정','—','—','수신','발송','3','안산시 상록구 성포동','우리편','0'].join(',');
+      download('조직관리_양식.csv', '\uFEFF'+head+'\r\n'+sample);
+    });
+
+    function parseCSV(text){
+      text=text.replace(/^\uFEFF/,'');
+      var first=text.split(/\r?\n/)[0]||'';
+      var counts={',':(first.match(/,/g)||[]).length, ';':(first.match(/;/g)||[]).length, '\t':(first.match(/\t/g)||[]).length};
+      var DELIM=','; if(counts[';']>counts[DELIM]) DELIM=';'; if(counts['\t']>counts[DELIM]) DELIM='\t';
+      var rows=[], row=[], cur='', q=false;
+      for(var i=0;i<text.length;i++){ var ch=text[i];
+        if(q){ if(ch==='"'){ if(text[i+1]==='"'){ cur+='"'; i++; } else q=false; } else cur+=ch; }
+        else { if(ch==='"') q=true; else if(ch===DELIM){ row.push(cur); cur=''; }
+          else if(ch==='\n'){ row.push(cur); rows.push(row); row=[]; cur=''; }
+          else if(ch==='\r'){} else cur+=ch; }
+      }
+      if(cur!==''||row.length){ row.push(cur); rows.push(row); }
+      return rows.filter(function(r){ return r.some(function(c){ return c.trim()!==''; }); });
+    }
+    var TYPE_K={'권리당원':'right','기존당원':'old','신규당원':'new','일반당원':'old'};
+    function applyImport(rows){
+      if(!rows.length) return {added:0,updated:0};
+      var norm=function(s){ return String(s||'').replace(/^\uFEFF/,'').replace(/[\s"']/g,'').toLowerCase(); };
+      var head=rows[0].map(norm);
+      var idx={}; COLS.forEach(function(c){ var i=head.indexOf(norm(c[1])); if(i>=0) idx[c[0]]=i; });
+      var ALIAS={ name:['name','성명','이름'], phone:['phone','전화번호','휴대전화','연락처'], rrn:['주민번호'], dong:['행정동','동'], type:['당원구분'], org:['소속','단체'], age:['나이'], sex:['성별'], rec:['추천인'], addr:['주소'], lean:['성향'], score:['점수'] };
+      Object.keys(ALIAS).forEach(function(k){ if(idx[k]==null){ for(var a=0;a<ALIAS[k].length;a++){ var i=head.indexOf(norm(ALIAS[k][a])); if(i>=0){ idx[k]=i; break; } } } });
+      if(idx.name==null){ alert('CSV에 "이름"(또는 성명) 열을 찾지 못했습니다.\n첫 줄 머리글을 확인해 주세요.'); return {added:0,updated:0}; }
+      var added=0, updated=0, skipped=0;
+      for(var r=1;r<rows.length;r++){
+        var cells=rows[r]; var get=function(k){ return idx[k]!=null ? (cells[idx[k]]||'').trim() : undefined; };
+        var nm=get('name'); var ph=get('phone');
+        if(!nm || !ph){ if((nm||'')!=='' || (ph||'')!=='') skipped++; continue; }
+        var m=members.find(function(x){ return x.name===nm && x.phone===ph; });
+        var isNew=!m;
+        if(isNew){ m={ no:members.length+1, name:nm, score:0 }; }
+        ['phone','rrn','dong','type','org','sex','rec','sub','third','katalk','sms','addr','ageb'].forEach(function(k){
+          var v=get(k); if(v!==undefined && v!=='') m[k]=v;
+        });
+        var ag=get('age'); if(ag) m.age=parseInt(ag,10)||m.age;
+        var fa=get('family'); if(fa) m.family=parseInt(fa,10)||0;
+        if(m.type) m.typeK=TYPE_K[m.type]||m.typeK||'old';
+        var ln=get('lean'); if(ln && LEAN_K[ln]){ defaultLean[nm]=LEAN_K[ln]; }
+        if(isNew){ members.push(m); dispMembers.push(m); added++; } else { updated++; }
+      }
+      recalcScores(); renderRows();
+      return {added:added, updated:updated, skipped:skipped};
+    }
+    var imBtn=document.getElementById('csvImportBtn'), file=document.getElementById('csvFile');
+    if(imBtn&&file){
+      imBtn.addEventListener('click',function(){ file.value=''; file.click(); });
+      file.addEventListener('change',function(){
+        var f=file.files[0]; if(!f) return;
+        var done=function(rows){ try{ var r=applyImport(rows); var tot=r.added+r.updated; var msg='총 '+tot+'명 처리\n· 새로 등록: '+r.added+'명\n· 기존과 겹쳐 갱신: '+r.updated+'명'; if(r.skipped) msg+='\n· 제외(이름/연락처 누락): '+r.skipped+'명'; alert(msg); }catch(err){ alert('파일을 읽지 못했습니다: '+err.message); } };
+        var isXls=/\.xlsx?$/i.test(f.name);
+        if(isXls){
+          if(typeof XLSX==='undefined'){ alert('엑셀 모듈을 불러오지 못했습니다. 인터넷 연결을 확인하거나 CSV로 올려주세요.'); return; }
+          var rb=new FileReader();
+          rb.onload=function(){ try{ var wb=XLSX.read(new Uint8Array(rb.result),{type:'array'}); var ws=wb.Sheets[wb.SheetNames[0]]; var rows=XLSX.utils.sheet_to_json(ws,{header:1,raw:false,defval:''}); done(rows); }catch(err){ alert('엑셀을 읽지 못했습니다: '+err.message); } };
+          rb.readAsArrayBuffer(f);
+        } else {
+          var rd=new FileReader();
+          rd.onload=function(){ done(parseCSV(rd.result)); };
+          rd.readAsText(f,'utf-8');
+        }
+      });
+    }
+  })();
+</script>
+</body>
+</html>
