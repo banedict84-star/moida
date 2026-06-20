@@ -112,6 +112,7 @@ jobs:
                   continue
               soup = BeautifulSoup(html, "lxml")
 
+              # <time> 태그 기준으로 부모 탐색해서 제목/링크 추출
               for time_el in soup.find_all("time"):
                   date_str = time_el.get_text(strip=True).replace("/", "-").strip()
                   if not date_str:
@@ -127,6 +128,7 @@ jobs:
                           if title and len(title) > 2 and href not in ct_seen:
                               cat_el = ancestor.select_one(".cate, .category, .label, span.tag, .type, .board_type")
                               category = cat_el.get_text(strip=True) if cat_el else "일반"
+                              # 공지 타입 감지: 클래스나 텍스트에 "공지"/"notice" 포함 여부
                               anc_class = " ".join(ancestor.get("class", []))
                               if "notice" in anc_class.lower() or "공지" in anc_class:
                                   category = "공지"
@@ -179,6 +181,7 @@ jobs:
               return count
 
           # Playwright로만 가능 (직접 요청/프록시 모두 403)
+          # cp=N URL 파라미터로 각 페이지 직접 이동
           with sync_playwright() as pw:
               browser = pw.chromium.launch(headless=True)
               ctx = browser.new_context(
@@ -187,32 +190,21 @@ jobs:
                   viewport={"width": 1280, "height": 800},
               )
               page_pw = ctx.new_page()
-              print(f"\n[경기도의회] 페이지 1 로딩")
-              try:
-                  page_pw.goto(GC_URL, wait_until="networkidle", timeout=30000)
-                  html = page_pw.content()
-                  cnt = parse_gc_html(html, GC_URL)
-                  print(f"  → {cnt}건 추가")
-                  for pg in range(2, GC_PAGES + 1):
-                      print(f"\n[경기도의회] 페이지 {pg}")
-                      try:
-                          with page_pw.expect_navigation(wait_until="networkidle", timeout=20000):
-                              btn = page_pw.query_selector(f"a[onclick*='goPage({pg})']") 
-                              if btn:
-                                  btn.click()
-                              else:
-                                  page_pw.evaluate(f"goPage({pg})")
-                          html = page_pw.content()
-                          cnt = parse_gc_html(html, GC_URL)
-                          print(f"  → {cnt}건 추가 (누계 {len(gc_notices)}건)")
-                      except Exception as e:
-                          print(f"  페이지{pg} ERROR: {e}")
-                      time.sleep(0.5)
-              except Exception as e:
-                  print(f"  ERROR: {e}")
+              for pg in range(1, GC_PAGES + 1):
+                  page_url = f"{GC_URL}?cp={pg}"
+                  print(f"\n[경기도의회] 페이지 {pg}")
+                  try:
+                      page_pw.goto(page_url, wait_until="networkidle", timeout=30000)
+                      html = page_pw.content()
+                      cnt = parse_gc_html(html, GC_URL)
+                      print(f"  → {cnt}건 추가 (누계 {len(gc_notices)}건)")
+                  except Exception as e:
+                      print(f"  페이지{pg} ERROR: {e}")
+                  time.sleep(1)
               browser.close()
 
           print(f"\n경기도의회 수집: {len(gc_notices)}건")
+          # 0건이면 기존 파일 유지
           if gc_notices:
               with open("council_data.json", "w", encoding="utf-8") as f:
                   json.dump({"updated": now_utc, "items": gc_notices}, f, ensure_ascii=False, indent=2)
