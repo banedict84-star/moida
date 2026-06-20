@@ -124,15 +124,16 @@ jobs:
                   r = requests.get(url, headers=HEAD, timeout=15); soup = BeautifulSoup(r.text, "lxml")
               except Exception as e:
                   print("  daum ERROR", e); return out
-              sels = [".tit-g a", ".item-title a", "a.tit_main", "[class*=tit] a", ".c-item-doc a"]
-              anchors = []
-              for s in sels:
-                  anchors = soup.select(s)
-                  if anchors: break
+              # 실제 검색 결과 기사 링크(v.daum.net/v/... 또는 언론사 원문)만 대상
+              anchors = soup.select(".item-title a, .tit-g a, a.tit_main, .c-item-doc a, [class*=tit] a")
+              tokens = [t for t in q.split() if len(t) >= 2]
               for a in anchors:
                   title = (a.get("title") or a.get_text(strip=True) or "").strip()
                   link = a.get("href", "")
                   if len(title) < 8 or not link.startswith("http") or "daum.net/search" in link or link in seen:
+                      continue
+                  # 검색어 관련성: 제목에 키워드 토큰이 하나라도 포함될 때만 채택(고정 블록 노이즈 제거)
+                  if tokens and not any(tok in title for tok in tokens):
                       continue
                   seen.add(link)
                   out.append({"source": "daum", "press": host(link) or "다음뉴스", "date": "",

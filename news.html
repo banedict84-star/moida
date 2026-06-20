@@ -549,9 +549,13 @@
     ndTitle.textContent='수집 중…'; ndMeta.innerHTML='<span class="news-loading" style="padding:0"><span class="spinner"></span>잠시만 기다려 주세요…</span>'; ndBody.innerHTML='';
     var started=Date.now();
     function done(fn){ var wait=Math.max(0, 650-(Date.now()-started)); setTimeout(fn, wait); } // 최소 로딩 시간으로 "검색 중" 느낌 유지
-    // 서버 크롤링 풀(네이버·다음 포함)에서 키워드 매칭
+    // 서버 크롤링 풀(네이버·다음 포함)에서 키워드 매칭 (하나라도 포함되면 채택, 많이 맞을수록 상위)
     function poolMatch(){
-      return POOL.filter(function(n){ var hay=(n.title+' '+n.press+' '+n.snippet).toLowerCase(); return ks.every(function(k){ return hay.indexOf(k.toLowerCase())>=0; }); });
+      return POOL.map(function(n){
+        var hay=(n.title+' '+n.press+' '+n.snippet).toLowerCase();
+        var hits=ks.reduce(function(c,k){ return c+(hay.indexOf(k.toLowerCase())>=0?1:0); },0);
+        return {n:n, hits:hits};
+      }).filter(function(x){ return x.hits>0; }).sort(function(a,b){ return b.hits-a.hits; }).map(function(x){ return x.n; });
     }
     function finish(liveRows){
       done(function(){
