@@ -22,126 +22,89 @@ jobs:
       - name: 공지사항 크롤링
         run: |
           python3 - <<'EOF'
-          import json, re, time
+          import json, re
           from datetime import datetime
           from playwright.sync_api import sync_playwright
 
           url = "https://www.minjookg.kr/sub01_news/notice.php"
-          captured_responses = []
-
-          def handle_response(response):
-              try:
-                  ct = response.headers.get("content-type", "")
-                  if "json" in ct or "javascript" in ct:
-                      body = response.text()
-                      if "board" in body.lower() or "notice" in body.lower() or "title" in body.lower():
-                          captured_responses.append({
-                              "url": response.url,
-                              "body": body[:5000]
-                          })
-              except Exception:
-                  pass
 
           with sync_playwright() as p:
-              browser = p.chromium.launch(headless=True)
-              ctx = browser.new_context(
-                  user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
+              browser = p.chromium.launch(
+                  headless=True,
+                  args=[
+                      "--disable-blink-features=AutomationControlled",
+                      "--no-sandbox",
+                      "--disable-dev-shm-usage",
+                      "--disable-web-security",
+                      "--disable-features=IsolateOrigins,site-per-process",
+                  ]
               )
+              ctx = browser.new_context(
+                  user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+                  viewport={"width": 1280, "height": 800},
+                  locale="ko-KR",
+                  extra_http_headers={
+                      "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+                      "Accept-Language": "ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7",
+                      "Accept-Encoding": "gzip, deflate, br",
+                      "Connection": "keep-alive",
+                      "Upgrade-Insecure-Requests": "1",
+                      "Sec-Fetch-Dest": "document",
+                      "Sec-Fetch-Mode": "navigate",
+                      "Sec-Fetch-Site": "none",
+                      "Sec-Fetch-User": "?1",
+                  }
+              )
+
+              # Mask automation signals via JS
+              ctx.add_init_script("""
+                  Object.defineProperty(navigator, 'webdriver', { get: () => undefined });
+                  Object.defineProperty(navigator, 'plugins', { get: () => [1, 2, 3, 4, 5] });
+                  Object.defineProperty(navigator, 'languages', { get: () => ['ko-KR', 'ko', 'en'] });
+                  window.chrome = { runtime: {} };
+              """)
+
               page = ctx.new_page()
-              page.on("response", handle_response)
 
               print("페이지 로딩 중...")
               page.goto(url, wait_until="domcontentloaded", timeout=30000)
+              page.wait_for_timeout(5000)
 
-              # Wait for AJAX to finish - try multiple strategies
-              for selector in [".board-item", ".board-list .board-item", "article.board-item", ".notice-list li", ".brd-list tr", "table.board tbody tr"]:
-                  try:
-                      page.wait_for_selector(selector, timeout=8000)
-                      print(f"선택자 발견: {selector}")
-                      break
-                  except Exception:
-                      pass
+              html = page.content()
+              print(f"HTML 길이: {len(html)}")
+              print("=== HTML 앞부분 ===")
+              print(html[:2000])
+              print("=== HTML 중간 ===")
+              print(html[2000:4000])
 
-              # Extra wait for any remaining JS
-              page.wait_for_timeout(3000)
-
-              # Debug: print captured AJAX URLs
-              print(f"캡처된 AJAX 응답: {len(captured_responses)}개")
-              for r in captured_responses[:3]:
-                  print(f"  URL: {r['url']}")
-
-              # Try to get data via JS evaluation (access any global board data)
-              js_data = None
-              try:
-                  js_data = page.evaluate("""() => {
-                      // Try common patterns used by BRL/custom CMSes
-                      if (window.boardData) return JSON.stringify(window.boardData);
-                      if (window.noticeList) return JSON.stringify(window.noticeList);
-                      // Try to extract from rendered DOM
-                      const items = [];
-                      document.querySelectorAll('.board-item, .brd-list tr[onclick], table.notice tbody tr, .notice-item').forEach(el => {
-                          const text = el.innerText.trim();
-                          const link = el.querySelector('a');
-                          if (text) items.push({text, href: link ? link.href : ''});
-                      });
-                      return JSON.stringify(items);
-                  }""")
-              except Exception as e:
-                  print(f"JS 평가 오류: {e}")
-
-              print(f"JS 데이터: {js_data[:500] if js_data else 'None'}")
-
-              # DOM scraping with multiple selector attempts
+              # Try multiple selectors
               notices = []
               selectors_to_try = [
-                  (".board-item", ".title, strong, b, a", None),
-                  (".board-list .board-item", "a", None),
-                  ("article", "h2,h3,h4,a.title", None),
-                  (".notice-item", "a, .title", None),
-                  ("table.board tbody tr, table tbody tr", "td", None),
+                  ".board-item",
+                  ".board-list .board-item",
+                  ".brd-list tr",
+                  "table tbody tr",
+                  "ul.notice li",
+                  ".list-item",
+                  "article",
+                  ".post-item",
+                  "[class*='board'] [class*='item']",
+                  "[class*='notice'] li",
+                  "li[class]",
               ]
 
-              for (row_sel, title_sel, date_sel) in selectors_to_try:
-                  items = page.query_selector_all(row_sel)
-                  if not items:
-                      continue
-                  print(f"  {row_sel}: {len(items)}개")
-                  for item in items:
-                      title_el = item.query_selector(title_sel)
-                      title = title_el.inner_text().strip() if title_el else ""
-                      if not title:
-                          text_lines = [t.strip() for t in item.inner_text().strip().split("\n") if t.strip()]
-                          title = text_lines[1] if len(text_lines) > 1 else (text_lines[0] if text_lines else "")
-                          category = text_lines[0] if len(text_lines) > 1 else ""
-                      else:
-                          text_lines = [t.strip() for t in item.inner_text().strip().split("\n") if t.strip()]
-                          category = text_lines[0] if len(text_lines) > 1 else ""
-
-                      date_m = re.search(r"\d{4}[-./]\d{2}[-./]\d{2}", item.inner_text())
-                      date = date_m.group(0).replace("/", "-").replace(".", "-") if date_m else ""
-
-                      link_el = item.query_selector("a")
-                      link = link_el.get_attribute("href") if link_el else ""
-                      if link and not link.startswith("http"):
-                          link = "https://www.minjookg.kr" + link
-
-                      if title and len(title) > 2:
-                          notices.append({"title": title, "date": date, "link": link, "category": category})
-
-                  if notices:
-                      print(f"수집 완료 ({row_sel}): {len(notices)}건")
-                      break
-
-              if not notices:
-                  # Last resort: dump HTML for debugging
-                  html = page.content()
-                  print("DOM 수집 실패. HTML 일부:")
-                  print(html[2000:5000])
+              for sel in selectors_to_try:
+                  try:
+                      items = page.query_selector_all(sel)
+                      if items:
+                          print(f"선택자 '{sel}': {len(items)}개 발견")
+                  except Exception as e:
+                      pass
 
               browser.close()
 
           result = {
-              "updated": datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC"),
+              "updated": datetime.now().strftime("%Y-%m-%d %H:%M UTC"),
               "items": notices
           }
 
