@@ -122,21 +122,23 @@ jobs:
                   print("  HTML 없음 — 스킵")
                   continue
               soup = BeautifulSoup(html, "lxml")
-              # 구조 탐색 — 다양한 선택자 시도
-              rows = (soup.select("table tbody tr") or
-                      soup.select("ul.list li") or
-                      soup.select(".board-list li") or
-                      soup.select(".news-list li") or
-                      soup.select("li[class]"))
-              print(f"  rows: {len(rows)}")
-              for row in rows:
-                  item = parse_ct(row, CT_BASE)
-                  if item and item["link"] not in ct_seen:
-                      ct_seen.add(item["link"]); ct_notices.append(item)
-              # 디버그: 첫 페이지 HTML 일부 출력
-              if page == 1 and not ct_notices:
-                  print("  [DEBUG] HTML 앞부분:")
-                  print(html[:2000])
+
+              # 1페이지에서 HTML 구조 덤프
+              if page == 1:
+                  import re
+                  print("  [DEBUG] 날짜 패턴(20xx) 포함 요소:")
+                  for tag in soup.find_all(True):
+                      text = tag.get_text(strip=True)
+                      if re.search(r'20\d\d[./\-]\d\d[./\-]\d\d', text) and len(tag.find_all()) < 5 and len(text) < 150:
+                          print(f"    <{tag.name} class='{tag.get('class','')}'>: {text[:100]}")
+                  print("  [DEBUG] 주요 클래스 탐색:")
+                  for sel in ["table tbody tr", "ul.list li", ".board_list tr", ".bbs_list tr",
+                               ".news_list li", ".board-list li", ".list_wrap li", "article",
+                               ".content_area table tbody tr", "#content table tbody tr"]:
+                      found = soup.select(sel)
+                      if found:
+                          print(f"    {sel}: {len(found)}개 -> {found[0].get_text(strip=True)[:80]}")
+
               time.sleep(0.5)
 
           print(f"\n중앙당 수집: {len(ct_notices)}건")
