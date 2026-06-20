@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-20 05:26 UTC",
+  "updated": "2026-06-20 05:34 UTC",
   "items": [
     {
       "source": "google",
@@ -243,19 +243,19 @@
     },
     {
       "source": "google",
-      "press": "더코리아",
-      "date": "2026.06.12",
-      "title": "장윤정 경기도의회 교육기획위원회 부위원장, 경기도교육청 예산유보 운영 점검 > 뉴스",
-      "snippet": "장윤정 경기도의회 교육기획위원회 부위원장, 경기도교육청 예산유보 운영 점검 > 뉴스 더코리아",
-      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFA4aWt5Vl9FYVZmYklkdUd0UU9DNS1qT08tR28zNC1YT0JsU1R3QWk3NmxyenRTTi1NdTFGb2hWenEwbWRjUk5xYmhnTzZsX2hYNVkyY0NnYnMtUkh5bXowU1E2UHNjZ3pvdnBIRXhjWUE?oc=5"
-    },
-    {
-      "source": "google",
       "press": "더리포트",
       "date": "2026.06.12",
       "title": "장윤정 의원 \"교육예산 유보, 절감보다 적기 집행이 우선돼야\"",
       "snippet": "장윤정 의원 \"교육예산 유보, 절감보다 적기 집행이 우선돼야\" 더리포트",
       "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBJOGpycmdwcjBJQkhkSDl0SEhVU0daV2dzRl91U09sZzBtbUxWbk1nTm1fTVFobHJEMEdvU3ZzRmJhVFJYWGxLQWlBVnpLWjllQnNGNGxjMHNYM2lncTdndGtNdzlKZlBnbVZBaHBR?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "더코리아",
+      "date": "2026.06.12",
+      "title": "장윤정 경기도의회 교육기획위원회 부위원장, 경기도교육청 예산유보 운영 점검 > 뉴스",
+      "snippet": "장윤정 경기도의회 교육기획위원회 부위원장, 경기도교육청 예산유보 운영 점검 > 뉴스 더코리아",
+      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFA4aWt5Vl9FYVZmYklkdUd0UU9DNS1qT08tR28zNC1YT0JsU1R3QWk3NmxyenRTTi1NdTFGb2hWenEwbWRjUk5xYmhnTzZsX2hYNVkyY0NnYnMtUkh5bXowU1E2UHNjZ3pvdnBIRXhjWUE?oc=5"
     },
     {
       "source": "google",
@@ -499,11 +499,19 @@
     },
     {
       "source": "google",
-      "press": "경기종합뉴스",
+      "press": "경기시사투데이",
       "date": "2026.04.06",
-      "title": "장윤정 경기도의원, 안산 제3선거구 재선 출마 선언",
-      "snippet": "장윤정 경기도의원, 안산 제3선거구 재선 출마 선언 경기종합뉴스",
-      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTFBkWlpOOHVUNFFBMVRySTRaOU9vVlo5d0o0cG5IbEd1QXc4MGYxNnl2bGpfSzVfbXMzVWZQcHUxckNkT2hHVExjZmJLTXFaRHdZNHhpTkwyZHVLWk9hOFpyVlVDZzlYS1JJR2lMdVg2X3pBYXhJ?oc=5"
+      "title": "장윤정 경기도의원 안산 제3선거구 재선 출마 선언",
+      "snippet": "장윤정 경기도의원 안산 제3선거구 재선 출마 선언 경기시사투데이",
+      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE4zR1VkX09YVU9udnZnck9kQUVZMFp5NjlfNlBGZ255aGphNWs3SjV4a0E5ZmxsZ08yR00tajhmbU1ERUZGNExCM0FnaEJsY0VHRFZ1ejVmajFuNzBwYlVfdkxvOHRPdFBSYUE?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "오토투데이",
+      "date": "2026.04.02",
+      "title": "장윤정·경기의회, 기계설비유지관리자 처우 개선 논의",
+      "snippet": "장윤정·경기의회, 기계설비유지관리자 처우 개선 논의 오토투데이",
+      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE41TnQ0TkpCdXd0Slo5QkI3RWRCZXp4T1lmVWxzSUg5ZzBueXBOa0FuclNydU5CZmF4bnNqektrZzE1a2xuOHBRTWJYNHhZaTlneXFBa3hGajVtdEp3eHVaVDhRRHMtT0xvZ0lPMnpB?oc=5"
     },
     {
       "source": "google",
@@ -528,14 +536,6 @@
       "title": "장윤정 도의원, 학교 급식실 소음·환기 개선 나선다",
       "snippet": "장윤정 도의원, 학교 급식실 소음·환기 개선 나선다 안산뉴스",
       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE8wMlZVRFNmNlNFR0E3T3BIVElKOVp2RHNDN1k1Mml4Z2dVX0xTT0RvUnJPc3gtMWpMUUhxaHc1Uk94eHpmeU9HamZQUmQtd1VJV1Fkdm5iOWFwbHhaYV95aE9Ra0pscDk3Q0ZISA?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "인천일보",
-      "date": "2026.03.22",
-      "title": "[경기의정 25시] 장윤정 도의원 “아이 키우기 좋은 도시로 교육·돌봄, 현실과 연결을”",
-      "snippet": "[경기의정 25시] 장윤정 도의원 “아이 키우기 좋은 도시로 교육·돌봄, 현실과 연결을” 인천일보",
-      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5kTFE3MXhaTXgtd0Nlc3luOVUycmNMdzhqVjJjZE9mUnRXeDdCdW81MVNTaVZLWVA2RmlHYlh0TEhqRWhsYWR1UkdTTDEtUTczZ1VUYmJseWp3Ul9yTVhtNkdLdm85dDdCWEw4cUJXaWE?oc=5"
     },
     {
       "source": "google",
@@ -613,137 +613,9 @@
       "source": "daum",
       "press": "v.daum.net",
       "date": "",
-      "title": "안광률 “제12대 도의회 민주당 원내대표 도전… 성과로 증명하겠다”",
-      "snippet": "안광률 “제12대 도의회 민주당 원내대표 도전… 성과로 증명하겠다”",
-      "url": "http://v.daum.net/v/20260611105313818"
-    },
-    {
-      "source": "daum",
-      "press": "v.daum.net",
-      "date": "",
-      "title": "경기도의회 의정홍보위원회, 제11대 후반기 활동 마무리…도민 소통 강화 기여",
-      "snippet": "경기도의회 의정홍보위원회, 제11대 후반기 활동 마무리…도민 소통 강화 기여",
-      "url": "http://v.daum.net/v/20260609165803103"
-    },
-    {
-      "source": "daum",
-      "press": "v.daum.net",
-      "date": "",
-      "title": "경기도의회 의정홍보위, 2년 활동 마무리…\"도민-의회 가교 역할 수행\"",
-      "snippet": "경기도의회 의정홍보위, 2년 활동 마무리…\"도민-의회 가교 역할 수행\"",
-      "url": "http://v.daum.net/v/20260609161935140"
-    },
-    {
-      "source": "daum",
-      "press": "v.daum.net",
-      "date": "",
-      "title": "경기도의회 의정홍보위원회, 제11대 후반기 활동 마무리",
-      "snippet": "경기도의회 의정홍보위원회, 제11대 후반기 활동 마무리",
-      "url": "http://v.daum.net/v/20260609160136215"
-    },
-    {
-      "source": "daum",
-      "press": "v.daum.net",
-      "date": "",
-      "title": "민선 9기 새 시대 새 일꾼... 6·3 지방선거 경기·인천 당선자 명단",
-      "snippet": "민선 9기 새 시대 새 일꾼... 6·3 지방선거 경기·인천 당선자 명단",
-      "url": "http://v.daum.net/v/20260604213606978"
-    },
-    {
-      "source": "daum",
-      "press": "v.daum.net",
-      "date": "",
-      "title": "‘동수’에서 ‘파란 물결’로 기울어진경기도의회…대격변 예고",
-      "snippet": "‘동수’에서 ‘파란 물결’로 기울어진경기도의회…대격변 예고",
-      "url": "http://v.daum.net/v/20260604111835885"
-    },
-    {
-      "source": "daum",
-      "press": "v.daum.net",
-      "date": "",
-      "title": "[표]경기 광역의원당선인 명단",
-      "snippet": "[표]경기 광역의원당선인 명단",
-      "url": "http://v.daum.net/v/20260604111402638"
-    },
-    {
-      "source": "daum",
-      "press": "v.daum.net",
-      "date": "",
-      "title": "경기도광역의원당선인 명단",
-      "snippet": "경기도광역의원당선인 명단",
-      "url": "http://v.daum.net/v/20260604101500243"
-    },
-    {
-      "source": "daum",
-      "press": "v.daum.net",
-      "date": "",
-      "title": "시장부터 시·도의원 민주당이 휩쓴 고양시 “원팀 완성”",
-      "snippet": "시장부터 시·도의원 민주당이 휩쓴 고양시 “원팀 완성”",
-      "url": "http://v.daum.net/v/20260604095828286"
-    },
-    {
-      "source": "daum",
-      "press": "v.daum.net",
-      "date": "",
-      "title": "[6·3지선-표] 경기 기초의원 당선인 명단",
-      "snippet": "[6·3지선-표] 경기 기초의원 당선인 명단",
-      "url": "http://v.daum.net/v/20260604132802025"
-    },
-    {
-      "source": "daum",
-      "press": "v.daum.net",
-      "date": "",
-      "title": "[6·3지선-표] 경기 광역의원 당선자 명단",
-      "snippet": "[6·3지선-표] 경기 광역의원 당선자 명단",
-      "url": "http://v.daum.net/v/20260604090852816"
-    },
-    {
-      "source": "daum",
-      "press": "v.daum.net",
-      "date": "",
-      "title": "[광역의원 당선인 명단] 경기",
-      "snippet": "[광역의원 당선인 명단] 경기",
-      "url": "http://v.daum.net/v/20260604082706428"
-    },
-    {
-      "source": "daum",
-      "press": "v.daum.net",
-      "date": "",
-      "title": "성포광장 재정비 사업 예산삭감 주민공청회 개최…“사업 예산 확보해야”",
-      "snippet": "성포광장 재정비 사업 예산삭감 주민공청회 개최…“사업 예산 확보해야”",
-      "url": "http://v.daum.net/v/20260619164310354"
-    },
-    {
-      "source": "daum",
-      "press": "v.daum.net",
-      "date": "",
-      "title": "㈜옵토전자 ‘비전 2035’ 발표… 차세대 광모듈 양산 체계 구축 계획 수립",
-      "snippet": "㈜옵토전자 ‘비전 2035’ 발표… 차세대 광모듈 양산 체계 구축 계획 수립",
-      "url": "http://v.daum.net/v/20260618132146127"
-    },
-    {
-      "source": "daum",
-      "press": "v.daum.net",
-      "date": "",
-      "title": "[오늘의 주요일정]경기남부(6월18일 목요일)",
-      "snippet": "[오늘의 주요일정]경기남부(6월18일 목요일)",
-      "url": "http://v.daum.net/v/20260618050211835"
-    },
-    {
-      "source": "daum",
-      "press": "v.daum.net",
-      "date": "",
       "title": "내년도 '안산해양중-화성 송린중 공동학구' 무산…현행 그대로 유지",
       "snippet": "내년도 '안산해양중-화성 송린중 공동학구' 무산…현행 그대로 유지",
       "url": "http://v.daum.net/v/20260617135922631"
-    },
-    {
-      "source": "daum",
-      "press": "v.daum.net",
-      "date": "",
-      "title": "강남구 '현대6차' 48평, 9.8억 떨어진 79.2억원에 거래 [일일 하락가]",
-      "snippet": "강남구 '현대6차' 48평, 9.8억 떨어진 79.2억원에 거래 [일일 하락가]",
-      "url": "http://v.daum.net/v/20260617085018406"
     },
     {
       "source": "daum",
@@ -765,14 +637,6 @@
       "source": "daum",
       "press": "v.daum.net",
       "date": "",
-      "title": "[오늘의 주요일정]경기남부(6월15일 월요일)",
-      "snippet": "[오늘의 주요일정]경기남부(6월15일 월요일)",
-      "url": "http://v.daum.net/v/20260615050151282"
-    },
-    {
-      "source": "daum",
-      "press": "v.daum.net",
-      "date": "",
       "title": "[2026 경기도 박물관·미술관 다시보기]안산김홍도미술관",
       "snippet": "[2026 경기도 박물관·미술관 다시보기]안산김홍도미술관",
       "url": "http://v.daum.net/v/20260611142040537"
@@ -781,17 +645,33 @@
       "source": "daum",
       "press": "v.daum.net",
       "date": "",
-      "title": "경기 오피스텔 계갱권 사용 증가세…수원 장안 ‘급증’",
-      "snippet": "경기 오피스텔 계갱권 사용 증가세…수원 장안 ‘급증’",
-      "url": "http://v.daum.net/v/20260611090646127"
+      "title": "경기도의회의정홍보위원회, 제11대 후반기 활동 마무리…도민 소통 강화 기여",
+      "snippet": "경기도의회의정홍보위원회, 제11대 후반기 활동 마무리…도민 소통 강화 기여",
+      "url": "http://v.daum.net/v/20260609165803103"
     },
     {
       "source": "daum",
       "press": "v.daum.net",
       "date": "",
-      "title": "[기초의원 당선인 명단] 경기",
-      "snippet": "[기초의원 당선인 명단] 경기",
-      "url": "http://v.daum.net/v/20260604075202613"
+      "title": "경기도의회의정홍보위, 2년 활동 마무리…\"도민-의회가교 역할 수행\"",
+      "snippet": "경기도의회의정홍보위, 2년 활동 마무리…\"도민-의회가교 역할 수행\"",
+      "url": "http://v.daum.net/v/20260609161935140"
+    },
+    {
+      "source": "daum",
+      "press": "v.daum.net",
+      "date": "",
+      "title": "경기도의회의정홍보위원회, 제11대 후반기 활동 마무리",
+      "snippet": "경기도의회의정홍보위원회, 제11대 후반기 활동 마무리",
+      "url": "http://v.daum.net/v/20260609160136215"
+    },
+    {
+      "source": "daum",
+      "press": "v.daum.net",
+      "date": "",
+      "title": "‘동수’에서 ‘파란 물결’로 기울어진경기도의회…대격변 예고",
+      "snippet": "‘동수’에서 ‘파란 물결’로 기울어진경기도의회…대격변 예고",
+      "url": "http://v.daum.net/v/20260604111835885"
     },
     {
       "source": "daum",
@@ -805,49 +685,9 @@
       "source": "daum",
       "press": "v.daum.net",
       "date": "",
-      "title": "한의약으로 난임 극복부터 건강돌봄까지…전국 우수사례 한자리에",
-      "snippet": "한의약으로 난임 극복부터 건강돌봄까지…전국 우수사례 한자리에",
-      "url": "http://v.daum.net/v/20260619180600883"
-    },
-    {
-      "source": "daum",
-      "press": "v.daum.net",
-      "date": "",
-      "title": "\"난임부터 건강 돌봄까지\"…한의학 우수성과 격려",
-      "snippet": "\"난임부터 건강 돌봄까지\"…한의학 우수성과 격려",
-      "url": "http://v.daum.net/v/20260619170153946"
-    },
-    {
-      "source": "daum",
-      "press": "v.daum.net",
-      "date": "",
-      "title": "[경기 24시] 경기도, 농산물 부산물 활용 업사이클링 사업 본격 추진",
-      "snippet": "[경기 24시] 경기도, 농산물 부산물 활용 업사이클링 사업 본격 추진",
-      "url": "http://v.daum.net/v/20260619152616600"
-    },
-    {
-      "source": "daum",
-      "press": "v.daum.net",
-      "date": "",
       "title": "[금주의안산시] 시민동행위원회 475일 활동 마무리… 성과보고회·해단식 개최 外",
       "snippet": "[금주의안산시] 시민동행위원회 475일 활동 마무리… 성과보고회·해단식 개최 外",
       "url": "http://v.daum.net/v/20260619151004962"
-    },
-    {
-      "source": "daum",
-      "press": "v.daum.net",
-      "date": "",
-      "title": "[단독] 멸종위기 1급 흰꼬리수리, 시화호서 아기새 두 마리 부화",
-      "snippet": "[단독] 멸종위기 1급 흰꼬리수리, 시화호서 아기새 두 마리 부화",
-      "url": "http://v.daum.net/v/20260619141636019"
-    },
-    {
-      "source": "daum",
-      "press": "v.daum.net",
-      "date": "",
-      "title": "전국 난민 35% 몰린 경기도, 광역지자체 최초 실태조사 착수",
-      "snippet": "전국 난민 35% 몰린 경기도, 광역지자체 최초 실태조사 착수",
-      "url": "http://v.daum.net/v/20260619132427047"
     },
     {
       "source": "daum",
