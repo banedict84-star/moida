@@ -15,7 +15,9 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: 패키지 설치
-        run: pip install requests beautifulsoup4 lxml
+        run: |
+          pip install requests beautifulsoup4 lxml playwright
+          python3 -m playwright install chromium --with-deps
 
       - name: 공지사항 크롤링
         run: |
@@ -142,107 +144,70 @@ jobs:
           with open("central_data.json", "w", encoding="utf-8") as f:
               json.dump({"updated": now_utc, "items": ct_notices}, f, ensure_ascii=False, indent=2)
 
-          # ── 경기도의회 (ggc.go.kr) ─────────────────────────────────────
+          # ── 경기도의회 (ggc.go.kr) — Playwright 헤드리스 브라우저 ──────
+          import re as _re
+          from playwright.sync_api import sync_playwright
+
           GC_BASE  = "https://www.ggc.go.kr"
           GC_URL   = f"{GC_BASE}/site/main/board/pblcntc/list"
           GC_PAGES = 4
 
-          def fetch_gc(url):
-              headers = {
-                  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36",
-                  "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-                  "Accept-Language": "ko-KR,ko;q=0.9",
-                  "Referer": GC_BASE + "/",
-              }
-              # 직접 요청 먼저 시도
-              try:
-                  r = requests.get(url, timeout=20, headers=headers)
-                  if r.status_code == 200 and len(r.content) > 500:
-                      print(f"  OK (direct) [{r.status_code}]")
-                      r.encoding = "utf-8"
-                      return r.text
-                  print(f"  direct FAIL [{r.status_code}]")
-              except Exception as e:
-                  print(f"  direct ERROR {e}")
-              # 프록시 시도
-              for tmpl in PROXIES:
-                  proxy_url = tmpl.format(url=url)
-                  try:
-                      r = requests.get(proxy_url, timeout=20, headers=headers)
-                      if r.status_code == 200 and len(r.content) > 500:
-                          print(f"  OK (proxy) via {proxy_url[:50]}")
-                          r.encoding = "utf-8"
-                          return r.text
-                      print(f"  proxy FAIL [{r.status_code}]")
-                  except Exception as e:
-                      print(f"  proxy ERROR {e}")
-              return None
-
           gc_notices, gc_seen = [], set()
-          gc_page2_url = None
-          for page in range(1, GC_PAGES + 1):
-              print(f"\n[경기도의회] 페이지 {page}")
-              if page == 1:
-                  page_url = GC_URL
-              elif gc_page2_url:
-                  # 1페이지에서 발견한 패턴으로 URL 조성
-                  page_url = gc_page2_url.replace("pageIndex=2", f"pageIndex={page}")
-              else:
-                  page_url = f"{GC_URL}?pageIndex={page}"
-              html = fetch_gc(page_url)
-              # 1페이지에서 페이지네이션 링크 패턴 파악
-              if page == 1 and html:
-                  import re as _re2
-                  psoup2 = BeautifulSoup(html, "lxml")
-                  print(f"  [DEBUG] 행 수: {len(psoup2.select('tbody tr'))}")
-                  for a in psoup2.find_all("a", href=True):
-                      h = a.get("href","")
-                      if _re2.search(r'[Pp]age|pageIndex|curPage|paging', h):
-                          print(f"  [페이지링크] {h[:100]}")
-                          if "2" in h and not gc_page2_url:
-                              gc_page2_url = urljoin(GC_URL, h)
-              if not html:
-                  print("  HTML 없음 — 스킵")
-                  continue
-              soup = BeautifulSoup(html, "lxml")
 
-              for row in soup.select("table tbody tr, .board_list tbody tr, tbody tr"):
-                  # 제목 링크
-                  a = row.select_one("td.subject a, td.title a, td a[href*='view'], td a[href*='detail']")
-                  if not a:
-                      tds = row.select("td")
-                      a = next((td.find("a", href=True) for td in tds if td.find("a", href=True) and len(td.get_text(strip=True)) > 5), None)
+          def parse_gc_html(html, page_url):
+              soup = BeautifulSoup(html, "lxml")
+              count = 0
+              for row in soup.select("tbody tr"):
+                  a = row.select_one("td a[href]")
                   if not a:
                       continue
                   title = a.get_text(strip=True)
                   href = urljoin(page_url, a.get("href", ""))
                   if not title or len(title) < 3 or href in gc_seen:
                       continue
-                  # 날짜
-                  date_el = row.select_one("td.date, td:last-child, td.regdate")
-                  date_str = date_el.get_text(strip=True).replace("/", "-").strip() if date_el else ""
-                  import re as _re
-                  if not _re.search(r'20\d\d', date_str):
-                      # 날짜 아닌 경우 다른 td에서 탐색
-                      for td in row.select("td"):
-                          t = td.get_text(strip=True)
-                          if _re.search(r'20\d\d[.\-]\d\d[.\-]\d\d', t):
-                              date_str = t
-                              break
-                  # 중요공지 감지
+                  date_str = ""
+                  for td in row.select("td"):
+                      t = td.get_text(strip=True)
+                      if _re.search(r'20\d\d[.\-]\d\d[.\-]\d\d', t):
+                          date_str = t
+                          break
                   row_class = " ".join(row.get("class", []))
-                  imp_el = row.select_one(".notice, .noti, .important, td.notice")
-                  is_notice = "notice" in row_class or imp_el is not None
+                  is_notice = "notice" in row_class or row.select_one(".notice,.noti,.important") is not None
                   category = "공지" if is_notice else "일반"
                   gc_seen.add(href)
                   gc_notices.append({"title": title, "date": date_str, "link": href, "category": category})
-                  print(f"  [{page}] {date_str} [{category}] {title[:40]}")
+                  print(f"  {date_str} [{category}] {title[:40]}")
+                  count += 1
+              return count
 
-              time.sleep(0.5)
+          with sync_playwright() as pw:
+              browser = pw.chromium.launch(headless=True)
+              page_pw = browser.new_page()
+              page_pw.set_extra_http_headers({"Accept-Language": "ko-KR,ko;q=0.9"})
+              for pg in range(1, GC_PAGES + 1):
+                  print(f"\n[경기도의회] 페이지 {pg}")
+                  try:
+                      if pg == 1:
+                          page_pw.goto(GC_URL, wait_until="networkidle", timeout=30000)
+                      else:
+                          # 페이지네이션 링크 클릭
+                          page_pw.evaluate(f"goPage({pg})" )
+                          page_pw.wait_for_load_state("networkidle", timeout=15000)
+                      html = page_pw.content()
+                      cnt = parse_gc_html(html, GC_URL)
+                      print(f"  → {cnt}건 추가")
+                  except Exception as e:
+                      print(f"  ERROR: {e}")
+                  time.sleep(1)
+              browser.close()
 
           print(f"\n경기도의회 수집: {len(gc_notices)}건")
-          with open("council_data.json", "w", encoding="utf-8") as f:
-              json.dump({"updated": now_utc, "items": gc_notices}, f, ensure_ascii=False, indent=2)
+          # 0건이면 기존 파일 유지
+          if gc_notices:
+              with open("council_data.json", "w", encoding="utf-8") as f:
+                  json.dump({"updated": now_utc, "items": gc_notices}, f, ensure_ascii=False, indent=2)
+          else:
+              print("  수집 실패 — 기존 council_data.json 유지")
 
           EOF
 
