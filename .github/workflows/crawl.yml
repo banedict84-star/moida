@@ -142,12 +142,96 @@ jobs:
           with open("central_data.json", "w", encoding="utf-8") as f:
               json.dump({"updated": now_utc, "items": ct_notices}, f, ensure_ascii=False, indent=2)
 
+          # ── 경기도의회 (ggc.go.kr) ─────────────────────────────────────
+          GC_BASE  = "https://www.ggc.go.kr"
+          GC_URL   = f"{GC_BASE}/site/main/board/pblcntc/list"
+          GC_PAGES = 4
+
+          def fetch_gc(url):
+              headers = {
+                  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36",
+                  "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+                  "Accept-Language": "ko-KR,ko;q=0.9",
+                  "Referer": GC_BASE + "/",
+              }
+              # 직접 요청 먼저 시도
+              try:
+                  r = requests.get(url, timeout=20, headers=headers)
+                  if r.status_code == 200 and len(r.content) > 500:
+                      print(f"  OK (direct) [{r.status_code}]")
+                      r.encoding = "utf-8"
+                      return r.text
+                  print(f"  direct FAIL [{r.status_code}]")
+              except Exception as e:
+                  print(f"  direct ERROR {e}")
+              # 프록시 시도
+              for tmpl in PROXIES:
+                  proxy_url = tmpl.format(url=url)
+                  try:
+                      r = requests.get(proxy_url, timeout=20, headers=headers)
+                      if r.status_code == 200 and len(r.content) > 500:
+                          print(f"  OK (proxy) via {proxy_url[:50]}")
+                          r.encoding = "utf-8"
+                          return r.text
+                      print(f"  proxy FAIL [{r.status_code}]")
+                  except Exception as e:
+                      print(f"  proxy ERROR {e}")
+              return None
+
+          gc_notices, gc_seen = [], set()
+          for page in range(1, GC_PAGES + 1):
+              print(f"\n[경기도의회] 페이지 {page}")
+              page_url = f"{GC_URL}?pageIndex={page}" if page > 1 else GC_URL
+              html = fetch_gc(page_url)
+              if not html:
+                  print("  HTML 없음 — 스킵")
+                  continue
+              soup = BeautifulSoup(html, "lxml")
+
+              for row in soup.select("table tbody tr, .board_list tbody tr, tbody tr"):
+                  # 제목 링크
+                  a = row.select_one("td.subject a, td.title a, td a[href*='view'], td a[href*='detail']")
+                  if not a:
+                      tds = row.select("td")
+                      a = next((td.find("a", href=True) for td in tds if td.find("a", href=True) and len(td.get_text(strip=True)) > 5), None)
+                  if not a:
+                      continue
+                  title = a.get_text(strip=True)
+                  href = urljoin(page_url, a.get("href", ""))
+                  if not title or len(title) < 3 or href in gc_seen:
+                      continue
+                  # 날짜
+                  date_el = row.select_one("td.date, td:last-child, td.regdate")
+                  date_str = date_el.get_text(strip=True).replace("/", "-").strip() if date_el else ""
+                  import re as _re
+                  if not _re.search(r'20\d\d', date_str):
+                      # 날짜 아닌 경우 다른 td에서 탐색
+                      for td in row.select("td"):
+                          t = td.get_text(strip=True)
+                          if _re.search(r'20\d\d[.\-]\d\d[.\-]\d\d', t):
+                              date_str = t
+                              break
+                  # 중요공지 감지
+                  row_class = " ".join(row.get("class", []))
+                  imp_el = row.select_one(".notice, .noti, .important, td.notice")
+                  is_notice = "notice" in row_class or imp_el is not None
+                  category = "공지" if is_notice else "일반"
+                  gc_seen.add(href)
+                  gc_notices.append({"title": title, "date": date_str, "link": href, "category": category})
+                  print(f"  [{page}] {date_str} [{category}] {title[:40]}")
+
+              time.sleep(0.5)
+
+          print(f"\n경기도의회 수집: {len(gc_notices)}건")
+          with open("council_data.json", "w", encoding="utf-8") as f:
+              json.dump({"updated": now_utc, "items": gc_notices}, f, ensure_ascii=False, indent=2)
+
           EOF
 
       - name: 변경사항 커밋
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add notices_data.json central_data.json
+          git add notices_data.json central_data.json council_data.json
           git diff --cached --quiet || git commit -m "chore: 공지사항 데이터 업데이트 $(date +'%Y-%m-%d %H:%M')"
           git push

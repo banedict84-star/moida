@@ -558,11 +558,12 @@ c1|2026.03.10|2,051|경기도의회 의정모니터단 모집 공고`;
     curFilter = this.dataset.src;
     renderList();
   }));
-  // 경기도당 + 중앙당 공지를 JSON 파일(자동 수집)로 교체
+  // 경기도당 + 중앙당 + 경기도의회 공지를 JSON 파일(자동 수집)로 교체
   var t = Date.now();
   Promise.allSettled([
     fetch('notices_data.json?t=' + t).then(function(r){ return r.json(); }),
-    fetch('central_data.json?t=' + t).then(function(r){ return r.json(); })
+    fetch('central_data.json?t=' + t).then(function(r){ return r.json(); }),
+    fetch('council_data.json?t=' + t).then(function(r){ return r.json(); })
   ]).then(function(results){
     // 경기도당
     var gyData = results[0].status === 'fulfilled' ? results[0].value : null;
@@ -597,6 +598,24 @@ c1|2026.03.10|2,051|경기도의회 의정모니터단 모집 공고`;
           link: item.link || "https://theminjoo.kr/main/sub/news/list.php?brd=1",
           bodyHtml: null, atts: null,
           body: "더불어민주당 중앙당 공지사항입니다.\n\n" + item.title + "\n\n자세한 내용과 첨부 파일은 아래 '중앙당 원문 보기'에서 확인해 주세요."
+        });
+      });
+    }
+    // 경기도의회
+    var gcData = results[2].status === 'fulfilled' ? results[2].value : null;
+    if(gcData && gcData.items && gcData.items.length){
+      councilNotices.length = 0;
+      gcData.items.forEach(function(item, i){
+        var m = item.link ? item.link.match(/[?&](?:id|seq|no)=([^&]+)/) : null;
+        var id = m ? ('gc' + m[1]) : ('gc' + i);
+        councilNotices.push({
+          id: id, src: "council",
+          cat: item.category || "일반",
+          imp: item.category === "공지",
+          title: item.title, date: item.date, views: "",
+          link: item.link || "https://www.ggc.go.kr/site/main/board/pblcntc/list",
+          bodyHtml: null, atts: null,
+          body: "경기도의회 공지사항입니다.\n\n" + item.title + "\n\n자세한 내용과 첨부 파일은 아래 '경기도의회 원문 보기'에서 확인해 주세요."
         });
       });
     }
