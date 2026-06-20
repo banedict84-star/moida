@@ -14,104 +14,134 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Playwright 설치
-        run: |
-          pip install playwright requests
-          playwright install chromium --with-deps
+      - name: 패키지 설치
+        run: pip install requests beautifulsoup4 lxml
 
       - name: 공지사항 크롤링
         run: |
           python3 - <<'EOF'
-          import json, re
-          from datetime import datetime
-          from playwright.sync_api import sync_playwright
+          import json, re, time
+          from datetime import datetime, timezone
+          import requests
+          from bs4 import BeautifulSoup
 
-          url = "https://www.minjookg.kr/sub01_news/notice.php"
+          BASE_URL = "https://www.minjookg.kr"
+          NOTICE_URL = f"{BASE_URL}/sub01_news/notice.php"
 
-          with sync_playwright() as p:
-              browser = p.chromium.launch(
-                  headless=True,
-                  args=[
-                      "--disable-blink-features=AutomationControlled",
-                      "--no-sandbox",
-                      "--disable-dev-shm-usage",
-                      "--disable-web-security",
-                      "--disable-features=IsolateOrigins,site-per-process",
-                  ]
-              )
-              ctx = browser.new_context(
-                  user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
-                  viewport={"width": 1280, "height": 800},
-                  locale="ko-KR",
-                  extra_http_headers={
-                      "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
-                      "Accept-Language": "ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7",
-                      "Accept-Encoding": "gzip, deflate, br",
-                      "Connection": "keep-alive",
-                      "Upgrade-Insecure-Requests": "1",
-                      "Sec-Fetch-Dest": "document",
-                      "Sec-Fetch-Mode": "navigate",
-                      "Sec-Fetch-Site": "none",
-                      "Sec-Fetch-User": "?1",
-                  }
-              )
+          HEADERS = {
+              "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+              "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+              "Accept-Language": "ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7",
+              "Accept-Encoding": "gzip, deflate, br",
+              "Connection": "keep-alive",
+              "Upgrade-Insecure-Requests": "1",
+              "Sec-Fetch-Dest": "document",
+              "Sec-Fetch-Mode": "navigate",
+              "Sec-Fetch-Site": "same-origin",
+              "Sec-Fetch-User": "?1",
+              "Cache-Control": "max-age=0",
+              "Referer": "https://www.minjookg.kr/",
+          }
 
-              # Mask automation signals via JS
-              ctx.add_init_script("""
-                  Object.defineProperty(navigator, 'webdriver', { get: () => undefined });
-                  Object.defineProperty(navigator, 'plugins', { get: () => [1, 2, 3, 4, 5] });
-                  Object.defineProperty(navigator, 'languages', { get: () => ['ko-KR', 'ko', 'en'] });
-                  window.chrome = { runtime: {} };
-              """)
+          session = requests.Session()
+          session.headers.update(HEADERS)
 
-              page = ctx.new_page()
+          notices = []
 
-              print("페이지 로딩 중...")
-              page.goto(url, wait_until="domcontentloaded", timeout=30000)
-              page.wait_for_timeout(5000)
-
-              html = page.content()
-              print(f"HTML 길이: {len(html)}")
-              print("=== HTML 앞부분 ===")
-              print(html[:2000])
-              print("=== HTML 중간 ===")
-              print(html[2000:4000])
-
-              # Try multiple selectors
-              notices = []
-              selectors_to_try = [
-                  ".board-item",
-                  ".board-list .board-item",
-                  ".brd-list tr",
-                  "table tbody tr",
-                  "ul.notice li",
-                  ".list-item",
-                  "article",
-                  ".post-item",
-                  "[class*='board'] [class*='item']",
-                  "[class*='notice'] li",
-                  "li[class]",
-              ]
-
-              for sel in selectors_to_try:
-                  try:
-                      items = page.query_selector_all(sel)
+          # Strategy 1: Try requests directly (in case it's not IP-blocked for plain HTTP)
+          print("=== 전략 1: requests 직접 요청 ===")
+          try:
+              resp = session.get(NOTICE_URL, timeout=15)
+              print(f"Status: {resp.status_code}, 길이: {len(resp.text)}")
+              print(resp.text[:500])
+              if resp.status_code == 200 and len(resp.text) > 2000:
+                  soup = BeautifulSoup(resp.text, "lxml")
+                  # Try multiple selectors
+                  for sel in [".board-item", ".brd-list tr", "table tbody tr", "li.item", ".post-item", "article"]:
+                      items = soup.select(sel)
                       if items:
-                          print(f"선택자 '{sel}': {len(items)}개 발견")
+                          print(f"선택자 '{sel}': {len(items)}개")
+          except Exception as e:
+              print(f"전략 1 실패: {e}")
+
+          # Strategy 2: Try via allorigins.win (public CORS proxy)
+          print("\n=== 전략 2: allorigins.win 프록시 ===")
+          try:
+              proxy_url = f"https://api.allorigins.win/get?url={NOTICE_URL}"
+              resp = requests.get(proxy_url, timeout=20)
+              print(f"Status: {resp.status_code}")
+              if resp.status_code == 200:
+                  data = resp.json()
+                  html = data.get("contents", "")
+                  print(f"HTML 길이: {len(html)}")
+                  print(html[:500])
+                  if len(html) > 2000:
+                      soup = BeautifulSoup(html, "lxml")
+                      items = soup.select(".board-item") or soup.select("table tbody tr") or soup.select("li[class]")
+                      print(f"아이템 수: {len(items)}")
+                      if items:
+                          for item in items:
+                              a = item.find("a", href=True)
+                              if a:
+                                  title = a.get_text(strip=True)
+                                  href = a["href"]
+                                  if not href.startswith("http"):
+                                      href = BASE_URL + "/" + href.lstrip("/")
+                                  date_el = item.select_one(".date, .brd-date, td.date, [class*='date']")
+                                  date_str = date_el.get_text(strip=True) if date_el else ""
+                                  cat_el = item.select_one(".category, .cate, [class*='cate']")
+                                  cat = cat_el.get_text(strip=True) if cat_el else "일반"
+                                  if title and len(title) > 2:
+                                      notices.append({"title": title, "date": date_str, "link": href, "category": cat})
+          except Exception as e:
+              print(f"전략 2 실패: {e}")
+
+          # Strategy 3: Try corsproxy.io
+          print("\n=== 전략 3: corsproxy.io ===")
+          if not notices:
+              try:
+                  proxy_url = f"https://corsproxy.io/?{NOTICE_URL}"
+                  resp = requests.get(proxy_url, timeout=20, headers={"Origin": "https://corsproxy.io"})
+                  print(f"Status: {resp.status_code}, 길이: {len(resp.text)}")
+                  print(resp.text[:500])
+              except Exception as e:
+                  print(f"전략 3 실패: {e}")
+
+          # Strategy 4: Try htmlpreview or similar
+          print("\n=== 전략 4: thingproxy ===")
+          if not notices:
+              try:
+                  proxy_url = f"https://thingproxy.freeboard.io/fetch/{NOTICE_URL}"
+                  resp = requests.get(proxy_url, timeout=20)
+                  print(f"Status: {resp.status_code}, 길이: {len(resp.text)}")
+                  print(resp.text[:500])
+              except Exception as e:
+                  print(f"전략 4 실패: {e}")
+
+          # Strategy 5: Check for RSS feed
+          print("\n=== 전략 5: RSS 피드 확인 ===")
+          if not notices:
+              for rss_path in ["/rss.php", "/rss", "/feed", "/sub01_news/rss.php", "/sub01_news/notice.php?type=rss"]:
+                  try:
+                      resp = session.get(f"{BASE_URL}{rss_path}", timeout=10)
+                      print(f"{rss_path}: {resp.status_code}, 길이: {len(resp.text)}")
+                      if resp.status_code == 200 and len(resp.text) > 200:
+                          print(resp.text[:300])
                   except Exception as e:
-                      pass
+                      print(f"{rss_path} 실패: {e}")
 
-              browser.close()
+          print(f"\n최종 수집: {len(notices)}건")
 
+          now_utc = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
           result = {
-              "updated": datetime.now().strftime("%Y-%m-%d %H:%M UTC"),
+              "updated": now_utc,
               "items": notices
           }
 
           with open("notices_data.json", "w", encoding="utf-8") as f:
               json.dump(result, f, ensure_ascii=False, indent=2)
 
-          print(f"최종 저장: {len(notices)}건")
+          print(f"저장 완료: {len(notices)}건")
           EOF
 
       - name: 변경사항 커밋
