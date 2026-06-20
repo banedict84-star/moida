@@ -94,14 +94,16 @@ jobs:
           # ── 중앙당 (theminjoo.kr) ───────────────────────────────────────
           from urllib.parse import urljoin
 
-          CT_BASE  = "https://theminjoo.kr"
-          CT_URL   = f"{CT_BASE}/main/sub/news/list.php?brd=1"
-          CT_PAGES = 4
+          CT_BASE     = "https://theminjoo.kr"
+          CT_URL      = f"{CT_BASE}/main/sub/news/list.php?brd=1"
+          CT_PER_PAGE = 20   # 페이지당 항목 수
+          CT_PAGES    = 2    # 2페이지 = 40건
 
           ct_notices, ct_seen = [], set()
           for page in range(1, CT_PAGES + 1):
-              print(f"\n[중앙당] 페이지 {page}")
-              page_url = f"{CT_URL}&page={page}"
+              sno = (page - 1) * CT_PER_PAGE
+              print(f"\n[중앙당] 페이지 {page} (sno={sno})")
+              page_url = f"{CT_URL}&sno={sno}"
               html = fetch(page_url, extra_headers={"Referer": CT_BASE + "/"})
               if not html:
                   print("  HTML 없음 — 스킵")
