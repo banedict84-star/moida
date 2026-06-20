@@ -348,6 +348,12 @@
       .kw-btn.solid{ background:var(--primary); color:#fff; }
       .kw-btn.solid:hover{ filter:brightness(1.05); }
       .press-pill{ display:inline-flex; align-items:center; padding:2px 9px; border-radius:20px; background:var(--primary-soft); color:var(--primary); font-size:11px; font-weight:700; }
+      /* 출처 로고 배지 (구글 / 네이버 / 다음) */
+      .src-badge{ display:inline-flex; align-items:center; justify-content:center; width:18px; height:18px; border-radius:5px; font-size:11px; font-weight:800; line-height:1; flex-shrink:0; }
+      .src-badge.src-naver{ background:#03c75a; color:#fff; }
+      .src-badge.src-daum{ background:#326cf9; color:#fff; }
+      .src-badge.src-google{ background:#fff; border:1px solid var(--line); }
+      .src-badge.src-google svg{ display:block; }
     </style>
 
     <div class="news-search">
@@ -402,8 +408,8 @@
   function renderList(){
     var items = visible();
     nlist.innerHTML = items.map(function(n){
-      return '<div class="ncard'+(n.id===curId?' sel':'')+'" data-id="'+n.id+'"><div class="nt">'+esc(n.title)+'</div><div class="nmeta"><span class="press-pill">'+n.press+'</span><span>'+n.date+'</span></div><div class="nprev">'+esc(n.snippet)+'</div></div>';
-    }).join('') || '<div style="padding:40px 4px;color:var(--ink-4);font-size:14px;">검색 결과가 없습니다. 위 버튼으로 네이버 뉴스에서 검색해 보세요.</div>';
+      return '<div class="ncard'+(n.id===curId?' sel':'')+'" data-id="'+n.id+'"><div class="nt">'+srcBadge(n.source)+esc(n.title)+'</div><div class="nmeta"><span class="press-pill">'+n.press+'</span>'+(n.date?'<span>'+n.date+'</span>':'')+'</div><div class="nprev">'+esc(n.snippet)+'</div></div>';
+    }).join('') || '<div style="padding:40px 4px;color:var(--ink-4);font-size:14px;">검색 결과가 없습니다. 위에서 키워드를 입력해 구글·네이버·다음에서 검색해 보세요.</div>';
     if(items.length){ var still=items.some(function(n){return n.id===curId;}); selectNews(still?curId:items[0].id); }
     else { ndTitle.textContent='기사를 선택하세요'; ndMeta.innerHTML='<span>검색 결과가 없습니다.</span>'; ndBody.innerHTML=''; }
   }
@@ -411,46 +417,112 @@
     var n = NEWS.find(function(x){return x.id===id;}); if(!n) return; curId=id;
     nlist.querySelectorAll('.ncard').forEach(function(c){ c.classList.toggle('sel', +c.dataset.id===id); });
     ndTitle.textContent = n.title;
-    ndMeta.innerHTML = '<span class="press-pill">'+n.press+'</span><span>'+n.date+'</span>';
+    ndMeta.innerHTML = srcBadge(n.source)+'<span class="press-pill">'+n.press+'</span>'+(n.date?'<span>'+n.date+'</span>':'');
     ndBody.innerHTML = '<p style="font-size:14.5px;line-height:1.7;color:var(--ink-2)">'+esc(n.snippet)+'</p>'+
       '<a class="src-link" href="'+n.url+'" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>'+n.press+' 원문 보기</a>';
   }
   nlist.addEventListener('click', function(e){ var c=e.target.closest('.ncard'); if(c) selectNews(+c.dataset.id); });
 
-  // ===== 현재 페이지에서 직접 뉴스 수집 (구글 뉴스 RSS + CORS 프록시) =====
-  // 우선순위: window.MOIDA_fetchNews(서버 수집기) > 구글뉴스 RSS 직접 수집
+  // ===== 현재 페이지에서 직접 뉴스 수집 (구글 + 네이버 + 다음, CORS 프록시) =====
+  // 우선순위: window.MOIDA_fetchNews(서버 수집기) > 구글/네이버/다음 직접 수집
   var PROXIES = [
     function(u){ return 'https://api.allorigins.win/raw?url='+encodeURIComponent(u); },
     function(u){ return 'https://corsproxy.io/?url='+encodeURIComponent(u); }
   ];
   function fmtDate(s){ var d=s?new Date(s):null; if(!d||isNaN(d)) return ''; return d.getFullYear()+'.'+String(d.getMonth()+1).padStart(2,'0')+'.'+String(d.getDate()).padStart(2,'0'); }
-  function parseRSS(xml){
+  // 프록시를 순서대로 시도하며 원본 텍스트(HTML/XML)를 가져온다.
+  function fetchText(url){
+    return (function tryIdx(i){
+      if(i>=PROXIES.length) return Promise.reject(new Error('all proxies failed'));
+      return fetch(PROXIES[i](url)).then(function(r){ if(!r.ok) throw new Error('http '+r.status); return r.text(); })
+        .catch(function(){ return tryIdx(i+1); });
+    })(0);
+  }
+  // ── 구글 뉴스 RSS 파싱 ──
+  function parseGoogle(xml){
     var doc=new DOMParser().parseFromString(xml,'text/xml');
-    var items=[].slice.call(doc.querySelectorAll('item')).slice(0,20);
-    return items.map(function(it,i){
+    return [].slice.call(doc.querySelectorAll('item')).slice(0,20).map(function(it){
       function g(t){ var e=it.querySelector(t); return e?e.textContent:''; }
       var title=g('title'), link=g('link'), press=g('source');
       var desc=g('description').replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim();
       if(!press && title.indexOf(' - ')>=0){ var p=title.split(' - '); press=p.pop(); title=p.join(' - '); }
-      return { id:i+1, press:press||'뉴스', date:fmtDate(g('pubDate')), title:title, snippet:(desc||title).slice(0,160), url:link };
-    });
+      return { source:'google', press:press||'뉴스', date:fmtDate(g('pubDate')), title:title.trim(), snippet:(desc||title).slice(0,160), url:link };
+    }).filter(function(n){ return n.title; });
   }
-  function fetchVia(idx, rss){
-    if(idx>=PROXIES.length) return Promise.reject(new Error('all proxies failed'));
-    return fetch(PROXIES[idx](rss)).then(function(r){ if(!r.ok) throw new Error('http '+r.status); return r.text(); })
-      .then(function(t){ var rows=parseRSS(t); if(!rows.length) throw new Error('empty'); return rows; })
-      .catch(function(){ return fetchVia(idx+1, rss); });
+  // ── 네이버 뉴스 검색 HTML 파싱 ──
+  function parseNaver(html){
+    var doc=new DOMParser().parseFromString(html,'text/html');
+    var out=[];
+    [].slice.call(doc.querySelectorAll('a.news_tit')).forEach(function(a){
+      var title=(a.getAttribute('title')||a.textContent||'').replace(/\s+/g,' ').trim();
+      var url=a.getAttribute('href')||'';
+      if(!title||!/^https?:/.test(url)) return;
+      var box=a.closest('.news_area')||a.closest('li')||a.parentElement;
+      var press='네이버뉴스', snippet='';
+      if(box){
+        var pe=box.querySelector('.info.press, a.info.press, .press'); if(pe) press=(pe.textContent.replace(/언론사\s*선정|선정/g,'').trim())||press;
+        var de=box.querySelector('.news_dsc, .dsc_wrap, .api_txt_lines'); if(de) snippet=de.textContent.replace(/\s+/g,' ').trim();
+      }
+      out.push({ source:'naver', press:press, date:'', title:title, snippet:(snippet||title).slice(0,160), url:url });
+    });
+    return out.slice(0,20);
+  }
+  // ── 다음 뉴스 검색 HTML 파싱 (마크업이 자주 바뀌므로 여러 선택자 시도) ──
+  function parseDaum(html){
+    var doc=new DOMParser().parseFromString(html,'text/html');
+    var nodes=[], sels=['.c-item-doc','.c-list-basic > li','ul[class*="list"] > li','[class*="item-title"]'];
+    for(var i=0;i<sels.length && !nodes.length;i++){ nodes=[].slice.call(doc.querySelectorAll(sels[i])); }
+    var out=[], seen={};
+    nodes.forEach(function(box){
+      var titA=box.querySelector('.tit-g a, .item-title a, a.tit_main, strong a, [class*="tit"] a')||box.querySelector('a[href]');
+      if(!titA) return;
+      var title=(titA.getAttribute('title')||titA.textContent||'').replace(/\s+/g,' ').trim();
+      var url=titA.getAttribute('href')||'';
+      if(!title||title.length<5||!/^https?:/.test(url)||seen[url]) return;
+      seen[url]=1;
+      var press='다음뉴스', snippet='';
+      var pe=box.querySelector('.txt_info, .cont_info, [class*="info"]'); if(pe) press=(pe.textContent.replace(/\s+/g,' ').trim().slice(0,20))||press;
+      var de=box.querySelector('.desc, .c-item-content, [class*="desc"], p'); if(de) snippet=de.textContent.replace(/\s+/g,' ').trim();
+      out.push({ source:'daum', press:press, date:'', title:title, snippet:(snippet||title).slice(0,160), url:url });
+    });
+    return out.slice(0,20);
   }
   function crawlNews(ks){
     var q=ks.join(' ');
-    var rss='https://news.google.com/rss/search?q='+encodeURIComponent(q)+'&hl=ko&gl=KR&ceid=KR:ko';
     if(typeof window.MOIDA_fetchNews==='function') return Promise.resolve(window.MOIDA_fetchNews(ks));
-    return fetchVia(0, rss);
+    var gURL='https://news.google.com/rss/search?q='+encodeURIComponent(q)+'&hl=ko&gl=KR&ceid=KR:ko';
+    var nURL='https://search.naver.com/search.naver?where=news&query='+encodeURIComponent(q);
+    var dURL='https://search.daum.net/search?w=news&q='+encodeURIComponent(q);
+    var jobs=[
+      fetchText(gURL).then(parseGoogle).catch(function(){ return []; }),
+      fetchText(nURL).then(parseNaver).catch(function(){ return []; }),
+      fetchText(dURL).then(parseDaum).catch(function(){ return []; })
+    ];
+    return Promise.all(jobs).then(function(res){
+      // 세 출처가 골고루 노출되도록 라운드로빈으로 병합 + 제목 기준 중복 제거
+      var merged=[], seen={};
+      var max=Math.max.apply(null, res.map(function(a){ return a.length; }).concat([0]));
+      for(var i=0;i<max;i++){
+        res.forEach(function(arr){
+          var n=arr[i]; if(!n) return;
+          var key=(n.title||'').replace(/[^0-9a-z가-힣]/gi,'').slice(0,40);
+          if(!key||seen[key]) return; seen[key]=1; merged.push(n);
+        });
+      }
+      return merged;
+    });
+  }
+  // 출처 로고 배지 HTML
+  function srcBadge(src){
+    if(src==='naver') return '<span class="src-badge src-naver" title="네이버 뉴스">N</span>';
+    if(src==='daum')  return '<span class="src-badge src-daum" title="다음 뉴스">D</span>';
+    if(src==='google') return '<span class="src-badge src-google" title="구글 뉴스"><svg viewBox="0 0 48 48" width="12" height="12"><path fill="#FFC107" d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 12.955 4 4 12.955 4 24s8.955 20 20 20 20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z"/><path fill="#FF3D00" d="M6.306 14.691l6.571 4.819C14.655 15.108 18.961 12 24 12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 16.318 4 9.656 8.337 6.306 14.691z"/><path fill="#4CAF50" d="M24 44c5.166 0 9.86-1.977 13.409-5.192l-6.19-5.238C29.211 35.091 26.715 36 24 36c-5.202 0-9.619-3.317-11.283-7.946l-6.522 5.025C9.505 39.556 16.227 44 24 44z"/><path fill="#1976D2" d="M43.611 20.083H42V20H24v8h11.303c-.792 2.237-2.231 4.166-4.087 5.571l6.19 5.238C36.971 39.205 44 34 44 24c0-1.341-.138-2.65-.389-3.917z"/></svg></span>';
+    return '';
   }
   function runSearch(){
     var ks=keywords(); if(!ks.length){ ks=['장윤정','경기도의원']; input.value='장윤정 경기도의원'; }
     var btn=document.getElementById('newsGo'); btn.disabled=true; var old=btn.textContent; btn.textContent='수집 중…';
-    nlist.innerHTML='<div style="padding:40px 4px;color:var(--ink-4);font-size:14px;">'+ks.join(' · ')+' 키워드로 뉴스를 수집하고 있습니다…</div>';
+    nlist.innerHTML='<div style="padding:40px 4px;color:var(--ink-4);font-size:14px;">'+ks.join(' · ')+' 키워드로 구글·네이버·다음에서 뉴스를 수집하고 있습니다…</div>';
     ndTitle.textContent='수집 중…'; ndMeta.innerHTML='<span>잠시만 기다려 주세요.</span>'; ndBody.innerHTML='';
     crawlNews(ks).then(function(rows){
       btn.disabled=false; btn.textContent=old;
