@@ -43,6 +43,9 @@ jobs:
               a = li.select_one("a[href]")
               if not a:
                   return None
+              # Remove label spans (e.g., "공지") before getting text
+              for label in a.select("span.label, span.no"):
+                  label.decompose()
               title = a.get_text(strip=True)
               href = a.get("href", "")
               if not href.startswith("http"):
