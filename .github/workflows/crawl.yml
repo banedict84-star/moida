@@ -28,78 +28,48 @@ jobs:
           BASE_URL = "https://www.minjookg.kr"
           NOTICE_URL = f"{BASE_URL}/sub01_news/notice.php"
 
-          # corsproxy.io works - fetch with proper encoding handling
           proxy_url = f"https://corsproxy.io/?{NOTICE_URL}"
           print(f"Fetching: {proxy_url}")
 
           resp = requests.get(proxy_url, timeout=30, headers={"Origin": "https://corsproxy.io"})
-          print(f"Status: {resp.status_code}, bytes: {len(resp.content)}")
-          print(f"Detected encoding: {resp.encoding}")
-
-          # Force UTF-8 since the site is Korean and charset=utf-8 is standard
           resp.encoding = "utf-8"
           html = resp.text
-
-          print("=== HTML 앞 300자 ===")
-          print(html[:300])
+          print(f"Status: {resp.status_code}, bytes: {len(resp.content)}")
 
           soup = BeautifulSoup(html, "lxml")
-
-          # Print relevant sections
-          print("\n=== .notice 섹션 ===")
-          notice_sec = soup.select(".notice")
-          print(f".notice 개수: {len(notice_sec)}")
-          for sec in notice_sec[:3]:
-              print(str(sec)[:500])
-
-          print("\n=== .list_A 섹션 ===")
-          lista = soup.select(".list_A")
-          print(f".list_A 개수: {len(lista)}")
-          for sec in lista[:2]:
-              print(str(sec)[:500])
-
-          print("\n=== .date 요소들 ===")
-          dates = soup.select(".date")
-          print(f".date 개수: {len(dates)}")
-          for d in dates[:5]:
-              print(repr(d.get_text(strip=True)), str(d)[:100])
-
-          print("\n=== .no 요소들 ===")
-          nos = soup.select(".no")
-          for n in nos[:5]:
-              print(repr(n.get_text(strip=True)), str(n)[:80])
-
-          print("\n=== .label 요소들 ===")
-          labels = soup.select(".label")
-          for lbl in labels[:10]:
-              print(repr(lbl.get_text(strip=True)), str(lbl)[:100])
-
           notices = []
 
-          # Try selectors based on known classes
-          selectors = [
-              ".notice li",
-              ".list_A li",
-              "ul.notice > li",
-              ".board-list li",
-              "li.no",
-              "ul li.no",
-          ]
+          def parse_item(li, category="일반"):
+              a = li.select_one("a[href]")
+              if not a:
+                  return None
+              title = a.get_text(strip=True)
+              href = a.get("href", "")
+              if not href.startswith("http"):
+                  href = BASE_URL + href if href.startswith("/") else BASE_URL + "/" + href
+              date_el = li.select_one("span.date")
+              date_str = date_el.get_text(strip=True).replace("\t", "").replace("\n", "").strip() if date_el else ""
+              # Normalize date format YYYY/MM/DD -> YYYY-MM-DD
+              date_str = date_str.replace("/", "-")
+              if title and len(title) > 2:
+                  return {"title": title, "date": date_str, "link": href, "category": category}
+              return None
 
-          for sel in selectors:
-              items = soup.select(sel)
-              if items:
-                  print(f"\n선택자 '{sel}': {len(items)}개")
-                  print(f"첫 아이템: {str(items[0])[:300]}")
+          # Pinned notices (div.notice ul li)
+          for li in soup.select(".notice ul li"):
+              item = parse_item(li, category="공지")
+              if item:
+                  notices.append(item)
 
-          # Try table approach too
-          print("\n=== 테이블들 ===")
-          tables = soup.select("table")
-          print(f"테이블 수: {len(tables)}")
-          for t in tables[:2]:
-              print(str(t)[:500])
+          # Regular list (div.list_A ul li)
+          for li in soup.select(".list_A ul li"):
+              item = parse_item(li, category="일반")
+              if item:
+                  notices.append(item)
 
           print(f"\n최종 수집: {len(notices)}건")
+          for n in notices[:5]:
+              print(n)
 
           now_utc = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
           result = {
@@ -109,6 +79,8 @@ jobs:
 
           with open("notices_data.json", "w", encoding="utf-8") as f:
               json.dump(result, f, ensure_ascii=False, indent=2)
+
+          print(f"저장 완료: {len(notices)}건")
           EOF
 
       - name: 변경사항 커밋
