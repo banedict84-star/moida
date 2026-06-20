@@ -150,7 +150,7 @@ jobs:
 
           GC_BASE  = "https://www.ggc.go.kr"
           GC_URL   = f"{GC_BASE}/site/main/board/pblcntc/list"
-          GC_PAGES = 4
+          GC_PAGES = 5
 
           gc_notices, gc_seen = [], set()
 
