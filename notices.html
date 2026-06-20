@@ -211,6 +211,7 @@
   .nlist{ display:flex; flex-direction:column; gap:11px; }
   .ncard{ background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:18px 20px; cursor:pointer; box-shadow:var(--shadow-sm); transition:box-shadow .15s,border-color .15s,transform .12s; }
   .ncard.imp{ background:#fffaf0; border-color:#f1e2c0; }
+  .recent-pill{ display:inline-block; background:#ecfdf5; color:#059669; font-size:11px; font-weight:700; padding:1px 6px; border-radius:6px; margin-left:4px; vertical-align:middle; }
   .ncard:hover{ box-shadow:var(--shadow-md); transform:translateY(-1px); }
   .ncard.sel{ border-color:var(--primary); box-shadow:0 0 0 3px var(--primary-soft); }
   .ncard .nt{ font-size:15.5px; font-weight:700; color:var(--ink); display:flex; align-items:center; gap:8px; }
@@ -510,12 +511,22 @@ c1|2026.03.10|2,051|경기도의회 의정모니터단 모집 공고`;
   const ndBody = document.getElementById('ndBody');
   let curFilter = 'all';
 
+  function isRecent(d){ if(!d) return false; var s=d.replace(/\./g,'-').replace(/[^0-9\-]/g,''); var dt=new Date(s); return !isNaN(dt)&&(Date.now()-dt.getTime()<30*24*60*60*1000); }
   function renderList(){
-    const items = notices.filter(n=> curFilter==='all' || n.src===curFilter);
+    var filtered = notices.filter(n=> curFilter==='all' || n.src===curFilter);
+    // 전체 탭은 날짜순만, 나머지 탭은 중요공지 상단 + 날짜순
+    var items;
+    if(curFilter==='all'){
+      items = filtered.slice().sort(function(a,b){ return dnum(b.date)-dnum(a.date); });
+    } else {
+      var imp = filtered.filter(function(n){ return n.imp; }).sort(function(a,b){ return dnum(b.date)-dnum(a.date); });
+      var rest = filtered.filter(function(n){ return !n.imp; }).sort(function(a,b){ return dnum(b.date)-dnum(a.date); });
+      items = imp.concat(rest);
+    }
     nlist.innerHTML = items.map((n)=>`
       <div class="ncard${n.imp?' imp':''}" data-id="${n.id}">
         <div class="nt">${n.isNew?'<span class="new-dot"></span>':''}${esc(n.title)}</div>
-        <div class="nmeta">${srcPill(n)}<span>${n.date}</span>${n.views?'<span class="nviews">'+n.views+'회</span>':''}</div>
+        <div class="nmeta">${srcPill(n)}<span>${n.date}</span>${isRecent(n.date)?'<span class="recent-pill">최근</span>':''}${n.views?'<span class="nviews">'+n.views+'회</span>':''}</div>
         <div class="nprev">${esc(n.body.replace(/\s+/g,' ').trim())}</div>
       </div>`).join('') || '<div style="padding:40px 4px;color:var(--ink-4);font-size:14px;">해당 출처의 공지가 없습니다.</div>';
     nlist.querySelectorAll('.ncard').forEach(c=>c.addEventListener('click',()=>selectNotice(+c.dataset.id)));
