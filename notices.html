@@ -488,7 +488,7 @@ c1|2026.03.10|2,051|경기도의회 의정모니터단 모집 공고`;
 
   // 날짜 내림차순 정렬 후 합치기
   function dnum(d){ return +d.replace(/\D/g,""); }
-  const notices = adminNotices.concat(centralNotices).concat(gyeonggiNotices).concat(councilNotices).sort(function(a,b){ return dnum(b.date)-dnum(a.date); });
+  let notices = adminNotices.concat(centralNotices).concat(gyeonggiNotices).concat(councilNotices).sort(function(a,b){ return dnum(b.date)-dnum(a.date); });
 
   const SRC = {
     admin:    { label:"총관리자", cls:"" },
@@ -554,7 +554,32 @@ c1|2026.03.10|2,051|경기도의회 의정모니터단 모집 공고`;
     curFilter = this.dataset.src;
     renderList();
   }));
-  renderList();
+  // 경기도당 공지를 notices_data.json (자동 수집)으로 교체
+  fetch('notices_data.json?t=' + Date.now())
+    .then(function(r){ return r.json(); })
+    .then(function(data){
+      if(data.items && data.items.length){
+        gyeonggiNotices.length = 0;
+        data.items.forEach(function(item, i){
+          var m = item.link ? item.link.match(/board_no=(\d+)/) : null;
+          var id = m ? +m[1] : (2000000 + i);
+          gyeonggiNotices.push({
+            id: id, src: "gyeonggi",
+            cat: item.category || "일반",
+            imp: item.category === "공지",
+            title: item.title,
+            date: item.date,
+            views: "",
+            link: item.link || "https://www.minjookg.kr/sub01_news/notice.php",
+            bodyHtml: null, atts: null,
+            body: "더불어민주당 경기도당 공지사항입니다.\n\n" + item.title + "\n\n자세한 내용과 첨부 파일은 아래 '경기도당 원문 보기'에서 확인해 주세요."
+          });
+        });
+        notices = adminNotices.concat(centralNotices).concat(gyeonggiNotices).concat(councilNotices).sort(function(a,b){ return dnum(b.date)-dnum(a.date); });
+      }
+      renderList();
+    })
+    .catch(function(){ renderList(); });
 
   // sidebar collapse
   (function(){
