@@ -5,6 +5,9 @@ on:
     - cron: '0 0 * * *'  # 매일 오전 9시 KST (UTC 0시)
   workflow_dispatch:      # 수동 실행 가능
 
+permissions:
+  contents: write
+
 jobs:
   crawl:
     runs-on: ubuntu-latest
@@ -13,47 +16,127 @@ jobs:
 
       - name: Playwright 설치
         run: |
-          pip install playwright
+          pip install playwright requests
           playwright install chromium --with-deps
 
       - name: 공지사항 크롤링
         run: |
           python3 - <<'EOF'
-          import json, re
+          import json, re, time
           from datetime import datetime
           from playwright.sync_api import sync_playwright
 
           url = "https://www.minjookg.kr/sub01_news/notice.php"
+          captured_responses = []
+
+          def handle_response(response):
+              try:
+                  ct = response.headers.get("content-type", "")
+                  if "json" in ct or "javascript" in ct:
+                      body = response.text()
+                      if "board" in body.lower() or "notice" in body.lower() or "title" in body.lower():
+                          captured_responses.append({
+                              "url": response.url,
+                              "body": body[:5000]
+                          })
+              except Exception:
+                  pass
 
           with sync_playwright() as p:
               browser = p.chromium.launch(headless=True)
-              page = browser.new_page(
-                  user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/124.0 Safari/537.36"
+              ctx = browser.new_context(
+                  user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
               )
-              page.goto(url, wait_until="networkidle", timeout=30000)
+              page = ctx.new_page()
+              page.on("response", handle_response)
 
-              items = page.query_selector_all(".board-item")
+              print("페이지 로딩 중...")
+              page.goto(url, wait_until="domcontentloaded", timeout=30000)
+
+              # Wait for AJAX to finish - try multiple strategies
+              for selector in [".board-item", ".board-list .board-item", "article.board-item", ".notice-list li", ".brd-list tr", "table.board tbody tr"]:
+                  try:
+                      page.wait_for_selector(selector, timeout=8000)
+                      print(f"선택자 발견: {selector}")
+                      break
+                  except Exception:
+                      pass
+
+              # Extra wait for any remaining JS
+              page.wait_for_timeout(3000)
+
+              # Debug: print captured AJAX URLs
+              print(f"캡처된 AJAX 응답: {len(captured_responses)}개")
+              for r in captured_responses[:3]:
+                  print(f"  URL: {r['url']}")
+
+              # Try to get data via JS evaluation (access any global board data)
+              js_data = None
+              try:
+                  js_data = page.evaluate("""() => {
+                      // Try common patterns used by BRL/custom CMSes
+                      if (window.boardData) return JSON.stringify(window.boardData);
+                      if (window.noticeList) return JSON.stringify(window.noticeList);
+                      // Try to extract from rendered DOM
+                      const items = [];
+                      document.querySelectorAll('.board-item, .brd-list tr[onclick], table.notice tbody tr, .notice-item').forEach(el => {
+                          const text = el.innerText.trim();
+                          const link = el.querySelector('a');
+                          if (text) items.push({text, href: link ? link.href : ''});
+                      });
+                      return JSON.stringify(items);
+                  }""")
+              except Exception as e:
+                  print(f"JS 평가 오류: {e}")
+
+              print(f"JS 데이터: {js_data[:500] if js_data else 'None'}")
+
+              # DOM scraping with multiple selector attempts
               notices = []
-              for item in items:
-                  title_el = item.query_selector(".title, a")
-                  title = title_el.inner_text().strip() if title_el else ""
+              selectors_to_try = [
+                  (".board-item", ".title, strong, b, a", None),
+                  (".board-list .board-item", "a", None),
+                  ("article", "h2,h3,h4,a.title", None),
+                  (".notice-item", "a, .title", None),
+                  ("table.board tbody tr, table tbody tr", "td", None),
+              ]
 
-                  text = item.inner_text().strip().split("\n")
-                  text = [t.strip() for t in text if t.strip()]
+              for (row_sel, title_sel, date_sel) in selectors_to_try:
+                  items = page.query_selector_all(row_sel)
+                  if not items:
+                      continue
+                  print(f"  {row_sel}: {len(items)}개")
+                  for item in items:
+                      title_el = item.query_selector(title_sel)
+                      title = title_el.inner_text().strip() if title_el else ""
+                      if not title:
+                          text_lines = [t.strip() for t in item.inner_text().strip().split("\n") if t.strip()]
+                          title = text_lines[1] if len(text_lines) > 1 else (text_lines[0] if text_lines else "")
+                          category = text_lines[0] if len(text_lines) > 1 else ""
+                      else:
+                          text_lines = [t.strip() for t in item.inner_text().strip().split("\n") if t.strip()]
+                          category = text_lines[0] if len(text_lines) > 1 else ""
 
-                  date_m = re.search(r"\d{4}[-./]\d{2}[-./]\d{2}", item.inner_text())
-                  date = date_m.group(0) if date_m else ""
+                      date_m = re.search(r"\d{4}[-./]\d{2}[-./]\d{2}", item.inner_text())
+                      date = date_m.group(0).replace("/", "-").replace(".", "-") if date_m else ""
 
-                  link_el = item.query_selector("a")
-                  link = link_el.get_attribute("href") if link_el else ""
-                  if link and not link.startswith("http"):
-                      link = "https://www.minjookg.kr" + link
+                      link_el = item.query_selector("a")
+                      link = link_el.get_attribute("href") if link_el else ""
+                      if link and not link.startswith("http"):
+                          link = "https://www.minjookg.kr" + link
 
-                  category = text[0] if len(text) > 1 else ""
-                  title = text[1] if len(text) > 1 else text[0] if text else ""
+                      if title and len(title) > 2:
+                          notices.append({"title": title, "date": date, "link": link, "category": category})
 
-                  if title:
-                      notices.append({"title": title, "date": date, "link": link, "category": category})
+                  if notices:
+                      print(f"수집 완료 ({row_sel}): {len(notices)}건")
+                      break
+
+              if not notices:
+                  # Last resort: dump HTML for debugging
+                  html = page.content()
+                  print("DOM 수집 실패. HTML 일부:")
+                  print(html[2000:5000])
 
               browser.close()
 
@@ -65,7 +148,7 @@ jobs:
           with open("notices_data.json", "w", encoding="utf-8") as f:
               json.dump(result, f, ensure_ascii=False, indent=2)
 
-          print(f"수집 완료: {len(notices)}건")
+          print(f"최종 저장: {len(notices)}건")
           EOF
 
       - name: 변경사항 커밋
