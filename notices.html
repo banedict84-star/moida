@@ -1,1 +1,748 @@
-PLACEHOLDER
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MOIDA · 공지사항</title>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<style>
+  :root{
+    --bg:#f3f5f8; --surface:#ffffff; --line:#e8eaf0; --line-soft:#f1f3f7;
+    --ink:#1c2030; --ink-2:#5a6072; --ink-3:#9298a8; --ink-4:#b6bcca;
+    --primary:#1452a0; --primary-600:#0e3f80; --primary-soft:#e7f0fb;
+    --shadow-sm:0 1px 2px rgba(22,26,45,.04),0 1px 3px rgba(22,26,45,.03);
+    --shadow-md:0 4px 16px rgba(22,26,45,.06),0 1px 3px rgba(22,26,45,.04);
+    --shadow-panel:0 2px 6px rgba(22,26,45,.05),0 12px 32px rgba(22,26,45,.10);
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html,body{ height:100%; }
+  body{ font-family:"Pretendard Variable",Pretendard,-apple-system,system-ui,sans-serif; background:var(--bg); color:var(--ink); -webkit-font-smoothing:antialiased; letter-spacing:-.01em; }
+  .app{ display:grid; grid-template-columns:236px 1fr; min-height:100vh; transition:grid-template-columns .22s ease; }
+  a{ color:inherit; text-decoration:none; }
+
+  /* ===== Sidebar (shared) ===== */
+  .sidebar{ background:var(--surface); border-right:1px solid var(--line); display:flex; flex-direction:column; padding:18px 16px; position:sticky; top:0; height:100vh; overflow-y:auto; }
+  .logo{ display:flex; align-items:center; gap:11px; padding:8px 8px 18px; }
+  .logo-mark{ width:36px; height:36px; border-radius:11px; flex-shrink:0; background:linear-gradient(140deg,#2f74c9 0%,#1452a0 60%,#0e3f80 100%); display:flex; align-items:center; justify-content:center; box-shadow:0 5px 14px rgba(79,70,229,.34); position:relative; overflow:hidden; }
+  .logo-mark::after{ content:""; position:absolute; inset:0; background:radial-gradient(65% 55% at 28% 20%, rgba(255,255,255,.42), rgba(255,255,255,0) 70%); }
+  .logo-name{ font-size:20px; font-weight:800; letter-spacing:-.04em; color:#1c2030; line-height:1; }
+  .logo-name b{ color:var(--primary); font-weight:800; }
+
+  /* collapse toggle */
+  .side-top{ display:flex; align-items:center; justify-content:space-between; gap:8px; }
+  .collapse-btn{ position:absolute; top:29px; right:16px; z-index:5; width:30px; height:30px; border-radius:9px; border:1px solid var(--line); background:var(--surface); color:var(--ink-3); display:flex; align-items:center; justify-content:center; cursor:pointer; flex-shrink:0; transition:background .14s,color .14s; }
+  .collapse-btn:hover{ background:var(--line-soft); color:var(--ink-2); }
+  .collapse-btn svg{ transition:transform .22s ease; }
+  /* collapsed state */
+  .app.collapsed{ grid-template-columns:72px 1fr; }
+  .app.collapsed .sidebar{ padding:18px 12px; align-items:stretch; }
+  .app.collapsed .side-top{ flex-direction:column; gap:12px; }
+  .app.collapsed .logo{ justify-content:center; }
+  .app.collapsed .logo-name{ display:none; }
+  .logo-expand{ display:none; }
+  .app.collapsed .logo-dots{ display:none; }
+  .app.collapsed .logo-expand{ display:block; }
+  .app.collapsed .logo{ cursor:pointer; }
+  .app.collapsed .collapse-btn{ display:none !important; }
+  .app.collapsed .new-btn{ display:none; }
+  .app.collapsed nav{ align-items:stretch; }
+  .app.collapsed .nav-item{ justify-content:center; padding:11px 0; gap:0; }
+  .app.collapsed .nav-item .nm,
+  .app.collapsed .nav-item .badge{ display:none; }
+  .app.collapsed .sec{ display:none; }
+  .app.collapsed .upd-item{ display:none; }
+  .app.collapsed .foot-item{ justify-content:center; gap:0; padding:9px 0; }
+  .app.collapsed .foot-item span{ display:none; }
+  .app.collapsed .foot-mail{ display:none; }
+
+  /* hover tooltips when collapsed */
+  .app.collapsed .sidebar{ overflow:visible; z-index:40; }
+  .app.collapsed .nav-item, .app.collapsed .foot-item, .app.collapsed .sc-item{ position:relative; }
+  .app.collapsed .nav-item[data-tip]:hover::after,
+  .app.collapsed .foot-item[data-tip]:hover::after,
+  .app.collapsed .sc-item[data-tip]:hover::after{
+    content:attr(data-tip); position:absolute; left:calc(100% + 14px); top:50%; transform:translateY(-50%);
+    background:#15182a; color:#fff; font-size:12.5px; font-weight:600; padding:7px 11px; border-radius:9px;
+    white-space:nowrap; z-index:60; box-shadow:0 8px 20px rgba(22,26,45,.24); pointer-events:none;
+  }
+  .app.collapsed .nav-item[data-tip]:hover::before,
+  .app.collapsed .foot-item[data-tip]:hover::before,
+  .app.collapsed .sc-item[data-tip]:hover::before{
+    content:""; position:absolute; left:calc(100% + 8px); top:50%; transform:translateY(-50%) rotate(45deg);
+    width:9px; height:9px; background:#15182a; z-index:60; pointer-events:none; border-radius:1px;
+  }
+  .new-btn{ display:flex; align-items:center; justify-content:center; gap:8px; background:#15182a; color:#fff; border:none; border-radius:12px; padding:13px; font-size:14.5px; font-weight:700; cursor:pointer; font-family:inherit; transition:transform .12s,box-shadow .15s; box-shadow:0 6px 16px rgba(21,24,42,.22); }
+  .new-btn:hover{ transform:translateY(-1px); box-shadow:0 10px 22px rgba(21,24,42,.3); }
+  nav{ display:flex; flex-direction:column; gap:2px; margin-top:14px; }
+  .nav-item{ display:flex; align-items:center; gap:11px; padding:10px 10px; border-radius:11px; cursor:pointer; color:var(--ink-2); font-size:14px; font-weight:600; transition:background .14s,color .14s; }
+  .nav-item:hover{ background:var(--line-soft); color:var(--ink); }
+  .nav-item.active{ background:var(--primary-soft); color:var(--primary); }
+  .nav-item.active svg{ color:var(--primary); }
+  .nav-item svg{ color:var(--ink-3); }
+  .nav-item .nm{ flex:1; }
+  .badge{ min-width:19px; height:19px; padding:0 6px; border-radius:20px; background:var(--primary); color:#fff; font-size:11px; font-weight:700; display:flex; align-items:center; justify-content:center; }
+  .badge.muted{ background:#eef0f5; color:var(--ink-3); font-size:10.5px; font-weight:600; }
+  .nav-item.dim{ color:var(--ink-3); cursor:default; }
+  .nav-item.dim:hover{ background:transparent; }
+  .sec{ display:flex; align-items:center; justify-content:space-between; padding:18px 10px 8px; }
+  .sec-t{ font-size:11.5px; font-weight:700; color:var(--ink-3); letter-spacing:.04em; }
+  .swatch{ width:14px; height:14px; border-radius:5px; flex-shrink:0; }
+  .s-blue{ background:#3b82f6;} .s-orange{ background:#f59e0b;} .s-red{ background:#ef4444;} .s-yellow{ background:#eab308;} .s-sky{ background:#38bdf8;} .s-green{background:#22c55e;} .s-violet{background:#8b5cf6;} .s-slate{background:#64748b;}
+  .upd-item{ display:flex; align-items:center; gap:11px; padding:8px 10px; border-radius:10px; cursor:pointer; color:var(--ink-2); font-size:13.5px; font-weight:600; transition:background .14s; }
+  .upd-item:hover{ background:var(--line-soft); }
+  .side-foot{ margin-top:auto; padding-top:14px; border-top:1px solid var(--line); display:flex; flex-direction:column; gap:1px; }
+  .foot-item{ display:flex; align-items:center; gap:10px; padding:9px 10px; border-radius:10px; color:var(--ink-2); font-size:13.5px; font-weight:600; cursor:pointer; transition:background .14s; }
+  .foot-item:hover{ background:var(--line-soft); }
+  .foot-item svg{ color:var(--ink-3); }
+  .foot-mail{ font-size:11.5px; color:var(--ink-3); padding:4px 10px 2px; font-weight:500; }
+
+  /* ===== Main / page ===== */
+  .main{ display:flex; flex-direction:column; min-width:0; }
+  .page-head{ display:flex; align-items:flex-start; gap:16px; padding:22px 28px 0; }
+  .ph-mark{ width:46px; height:46px; border-radius:13px; background:linear-gradient(140deg,#2f74c9,#0e3f80); color:#fff; display:flex; align-items:center; justify-content:center; font-size:21px; font-weight:800; flex-shrink:0; box-shadow:0 6px 16px rgba(79,70,229,.3); }
+  .ph-info h1{ font-size:21px; font-weight:800; letter-spacing:-.025em; }
+  .ph-sub{ margin-top:5px; font-size:13px; color:var(--ink-2); font-weight:500; }
+  .ph-conn{ display:inline-flex; align-items:center; gap:5px; margin-top:7px; font-size:12px; font-weight:600; color:#10936a; }
+  .ph-conn .led{ width:7px; height:7px; border-radius:50%; background:#10b981; box-shadow:0 0 0 3px rgba(16,185,129,.16); }
+  .ph-right{ margin-left:auto; display:flex; align-items:center; gap:10px; }
+  .count-pill{ display:inline-flex; align-items:center; gap:6px; background:var(--primary-soft); color:var(--primary-600); font-size:13px; font-weight:700; padding:8px 14px; border-radius:999px; }
+  .logout-btn{ font-size:12.5px; font-weight:600; color:var(--ink-2); border:1px solid var(--line); background:var(--surface); padding:8px 13px; border-radius:10px; cursor:pointer; font-family:inherit; transition:background .14s; }
+  .logout-btn:hover{ background:var(--line-soft); }
+
+  /* status chips */
+  .chips{ display:flex; flex-wrap:wrap; gap:8px; padding:18px 28px 0; }
+  .chip{ display:inline-flex; align-items:center; gap:7px; padding:8px 14px; border-radius:999px; border:1px solid var(--line); background:var(--surface); font-size:13px; font-weight:600; color:var(--ink-2); cursor:pointer; transition:border-color .14s,box-shadow .14s,color .14s; }
+  .chip:hover{ box-shadow:var(--shadow-sm); }
+  .chip.active{ border-color:transparent; color:#fff; }
+  .chip .cdot{ width:8px; height:8px; border-radius:50%; }
+  .chip[data-k="all"].active{ background:#15182a; }
+  .chip[data-k="vote"].active{ background:#10b981; }
+  .chip[data-k="old"].active{ background:#3b82f6; }
+  .chip[data-k="new"].active{ background:#8b5cf6; }
+  .chip[data-k="out"].active{ background:#ef4444; }
+  .chip[data-k="err"].active{ background:#f59e0b; }
+
+  /* toolbar */
+  .toolbar{ display:flex; flex-wrap:wrap; align-items:center; gap:9px; padding:16px 28px 0; }
+  .search{ display:flex; align-items:center; gap:9px; background:var(--surface); border:1px solid var(--line); border-radius:11px; padding:9px 14px; min-width:280px; flex:1 1 280px; max-width:380px; }
+  .search input{ flex:1; border:none; background:transparent; font-family:inherit; font-size:13.5px; color:var(--ink); outline:none; }
+  .search input::placeholder{ color:var(--ink-3); }
+  .search svg{ color:var(--ink-3); }
+  .selbox{ display:inline-flex; align-items:center; gap:7px; background:var(--surface); border:1px solid var(--line); border-radius:11px; padding:9px 13px; font-size:13px; font-weight:600; color:var(--ink-2); cursor:pointer; transition:background .14s; }
+  .selbox:hover{ background:var(--line-soft); }
+  .selbox svg{ color:var(--ink-3); }
+  .tb-spacer{ flex:1; }
+  .btn{ display:inline-flex; align-items:center; gap:7px; padding:9px 14px; border-radius:11px; font-size:13px; font-weight:700; cursor:pointer; border:1px solid var(--line); background:var(--surface); color:var(--ink-2); font-family:inherit; transition:background .14s,box-shadow .14s,transform .12s; }
+  .btn:hover{ background:var(--line-soft); }
+  .btn svg{ width:15px; height:15px; }
+  .btn.ghost-red{ color:#dc2626; border-color:#f3d2d2; }
+  .btn.ghost-red:hover{ background:#fdf0f0; }
+  .btn.primary{ background:var(--primary); border-color:var(--primary); color:#fff; box-shadow:0 4px 12px rgba(79,70,229,.28); }
+  .btn.primary:hover{ background:var(--primary-600); transform:translateY(-1px); }
+  .btn.warn{ background:#fff8ec; border-color:#f6e3bf; color:#b97e10; }
+  .btn.warn:hover{ background:#fdf0d8; }
+
+  /* layout: table + detail */
+  .work{ display:grid; grid-template-columns:1fr 480px; gap:18px; padding:2px 28px 24px; align-items:start; min-width:0; }
+  .table-card{ background:var(--surface); border:1px solid var(--line); border-radius:16px; box-shadow:var(--shadow-md); overflow:hidden; min-width:0; }
+  .table-scroll{ overflow-x:auto; }
+  table{ border-collapse:collapse; width:100%; min-width:1180px; font-size:13px; }
+  thead th{ position:sticky; top:0; background:#fafbfd; text-align:left; padding:13px 14px; font-size:12px; font-weight:700; color:var(--ink-3); white-space:nowrap; border-bottom:1px solid var(--line); }
+  tbody td{ padding:13px 14px; border-bottom:1px solid var(--line-soft); white-space:nowrap; color:var(--ink-2); }
+  tbody tr{ cursor:pointer; transition:background .12s; }
+  tbody tr:hover{ background:#fafbff; }
+  tbody tr.sel{ background:var(--primary-soft); }
+  tbody tr:last-child td{ border-bottom:none; }
+  .nm-cell{ font-weight:700; color:var(--ink); }
+  .score{ display:inline-flex; align-items:center; justify-content:center; min-width:30px; height:24px; padding:0 8px; border-radius:7px; font-weight:800; font-size:12.5px; }
+  .sc-hi{ background:#e7f6ee; color:#0f9d63; } .sc-mid{ background:#e7f0fb; color:#1452a0; } .sc-lo{ background:#f1f3f7; color:#9298a8; }
+  .tag{ display:inline-flex; align-items:center; gap:6px; padding:3px 9px; border-radius:7px; font-size:12px; font-weight:600; }
+  .tag .d{ width:7px; height:7px; border-radius:50%; }
+  .tg-vote{ background:#e7f6ee; color:#0f9d63;} .tg-old{ background:#e8f1fe; color:#2563eb;} .tg-new{ background:#f1ebfd; color:#7c3aed;} .tg-out{ background:#fdeaea; color:#dc2626;} .tg-err{ background:#fdf0e0; color:#cd7d18;}
+  .muted-cell{ color:var(--ink-4); }
+  .ico-cell{ display:inline-flex; gap:6px; }
+  .mini-ico{ width:28px; height:28px; border-radius:8px; display:flex; align-items:center; justify-content:center; background:var(--line-soft); color:var(--ink-3); transition:background .14s,color .14s; }
+  .mini-ico:hover{ background:var(--primary-soft); color:var(--primary); }
+
+  .table-foot{ display:flex; align-items:center; justify-content:space-between; padding:13px 18px; border-top:1px solid var(--line); background:#fafbfd; font-size:13px; }
+  .tf-left{ color:var(--ink-2); font-weight:600; }
+  .tf-left b{ color:var(--primary); }
+  .pager{ display:flex; gap:4px; }
+  .pg{ min-width:30px; height:30px; border-radius:8px; border:1px solid var(--line); background:var(--surface); font-size:12.5px; font-weight:600; color:var(--ink-2); display:flex; align-items:center; justify-content:center; cursor:pointer; }
+  .pg.active{ background:var(--primary); color:#fff; border-color:var(--primary); }
+
+  /* detail panel */
+  .detail{ background:var(--surface); border:1px solid var(--line); border-radius:16px; box-shadow:var(--shadow-panel); position:sticky; top:18px; overflow:hidden; }
+  .dt-head{ display:flex; align-items:center; gap:11px; padding:18px 20px 0; }
+  .dt-ava{ width:42px; height:42px; border-radius:12px; background:linear-gradient(140deg,#2f74c9,#0e3f80); color:#fff; display:flex; align-items:center; justify-content:center; font-size:17px; font-weight:700; }
+  .dt-head h2{ font-size:16px; font-weight:800; }
+  .dt-head .dt-sub{ font-size:12px; color:var(--ink-3); margin-top:3px; font-weight:500; }
+  .tabs{ display:flex; gap:4px; padding:16px 20px 0; border-bottom:1px solid var(--line); }
+  .tab{ padding:9px 4px; margin-right:14px; font-size:13.5px; font-weight:700; color:var(--ink-3); cursor:pointer; border-bottom:2px solid transparent; margin-bottom:-1px; transition:color .14s; }
+  .tab.active{ color:var(--primary); border-bottom-color:var(--primary); }
+  .dt-body{ padding:18px 20px 14px; max-height:calc(100vh - 290px); overflow-y:auto; }
+  .grp-label{ font-size:11.5px; font-weight:700; color:var(--ink-3); letter-spacing:.02em; margin:18px 0 10px; }
+  .grp-label:first-child{ margin-top:0; }
+  .field{ margin-bottom:11px; }
+  .field label{ display:block; font-size:12px; font-weight:600; color:var(--ink-2); margin-bottom:5px; }
+  .field label .req{ color:#ef4444; }
+  .field input, .field select{ width:100%; border:1px solid var(--line); border-radius:10px; padding:10px 12px; font-family:inherit; font-size:13px; color:var(--ink); background:var(--surface); outline:none; transition:border-color .14s,box-shadow .14s; }
+  .field input::placeholder{ color:var(--ink-4); }
+  .field input:focus, .field select:focus{ border-color:var(--primary); box-shadow:0 0 0 3px var(--primary-soft); }
+  .field.row2{ display:grid; grid-template-columns:1fr auto; gap:8px; align-items:end; }
+  .field.row2 .btn{ padding:10px 14px; }
+  .field-hint{ font-size:11px; color:var(--ink-4); margin-top:5px; font-weight:500; }
+
+  .dt-foot{ display:flex; gap:8px; padding:13px 18px; border-top:1px solid var(--line); background:#fafbfd; }
+  .dt-foot .btn{ flex:1; justify-content:center; }
+  .ico-btn{ width:40px; height:40px; flex:0 0 auto !important; border-radius:11px; }
+  .btn.save{ background:var(--primary); border-color:var(--primary); color:#fff; }
+  .btn.save:hover{ background:var(--primary-600); }
+  .btn.add{ background:#0f9d63; border-color:#0f9d63; color:#fff; }
+  .btn.add:hover{ background:#0c8a56; }
+  .btn.del{ background:#fff; border-color:#f3d2d2; color:#dc2626; }
+  .btn.del:hover{ background:#fdf0f0; }
+
+  @media (max-width:1280px){ .work{ grid-template-columns:1fr; } .detail{ position:static; } }
+  @media (max-width:1080px){ .app, .app.collapsed{ grid-template-columns:1fr; } .sidebar{ display:none; } .page-head,.chips,.toolbar,.work{ padding-left:16px; padding-right:16px; } }
+  /* notices */
+  .ro-banner{ display:flex; align-items:center; gap:9px; margin:16px 28px 0; padding:12px 16px; background:#fff8ec; border:1px solid #f6e3bf; border-radius:12px; color:#9a6a12; font-size:13px; font-weight:600; }
+  .ro-banner svg{ color:#cd7d18; flex-shrink:0; }
+  .nlist{ display:flex; flex-direction:column; gap:11px; }
+  .ncard{ background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:18px 20px; cursor:pointer; box-shadow:var(--shadow-sm); transition:box-shadow .15s,border-color .15s,transform .12s; }
+  .ncard.imp{ background:#fffaf0; border-color:#f1e2c0; }
+  .recent-pill{ display:inline-block; background:#ecfdf5; color:#059669; font-size:11px; font-weight:700; padding:1px 6px; border-radius:6px; margin-left:4px; vertical-align:middle; }
+  .ncard:hover{ box-shadow:var(--shadow-md); transform:translateY(-1px); }
+  .ncard.sel{ border-color:var(--primary); box-shadow:0 0 0 3px var(--primary-soft); }
+  .ncard .nt{ font-size:15.5px; font-weight:700; color:var(--ink); display:flex; align-items:center; gap:8px; }
+  .ncard .new-dot{ width:7px; height:7px; border-radius:50%; background:#ef4444; flex-shrink:0; }
+  .ncard .nmeta{ font-size:12.5px; color:var(--ink-2); font-weight:600; margin-top:9px; display:flex; align-items:center; gap:8px; }
+  .ncard .nprev{ font-size:13px; color:var(--ink-3); margin-top:9px; line-height:1.55; display:-webkit-box; -webkit-line-clamp:1; -webkit-box-orient:vertical; overflow:hidden; }
+  .author-pill{ display:inline-flex; align-items:center; gap:5px; padding:2px 9px; border-radius:20px; background:#15182a; color:#fff; font-size:11px; font-weight:700; white-space:nowrap; }
+  .author-pill.central{ background:var(--primary); }
+  .author-pill.gyeonggi{ background:#0d9488; }
+  .author-pill.council{ background:#b45309; }
+  .cat-pill{ display:inline-flex; align-items:center; padding:2px 8px; border-radius:20px; background:var(--primary-soft); color:var(--primary); font-size:11px; font-weight:700; }
+  .imp-pill{ display:inline-flex; align-items:center; padding:2px 8px; border-radius:20px; background:#fdecec; color:#dc2626; font-size:11px; font-weight:700; }
+  .nviews{ margin-left:auto; color:var(--ink-4); font-size:12px; }
+  .nfilter{ display:flex; gap:8px; margin:18px 28px 6px; }
+  .ncol{ min-width:0; }
+  .nftab{ display:inline-flex; align-items:center; gap:6px; padding:8px 15px; border-radius:30px; border:1px solid var(--line); background:var(--surface); color:var(--ink-2); font-family:inherit; font-size:13px; font-weight:700; cursor:pointer; transition:.15s; white-space:nowrap; }
+  .nftab .ct{ font-size:11px; color:var(--ink-4); font-weight:700; }
+  .party-dot{ width:15px; height:15px; border-radius:3px; flex-shrink:0; background:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAJbklEQVR4AYyYa3MUxxWG39OzF7Er7QoEuuAgAQYEcsAmZRw7XIRjV+VayYeEOClXPqQq9i/AUAX5FjugX5E45SpS5BdABYMkV8rgBGwCksDiFt2QBOiyq9vuznTe0zOzSEQue3afed9zumf6bPf0rsDMlSp2vuzbpUpgS/43gP3K35CSb20p+HqWOK7WoLUYEcHs4hKuj02i9+5IyD3qs2jb/VH0jjxE98MJXJqYxKVJorqcyUfQtm72670zhN7rd/HJ1S/Re20QvZ8P4hOi6tAc+c/gKGaLCxARGI+n4ekCznw+gFMXL+NP5PTFK+i6+JnjNPX0xxpfRlfPv3Dqyhf44IubeP9mP/7YNxCi/kYfPXO3buH9G/34gP1Onf8UXWcuoOvP59D1IfnreZwmXR+eZ3wep/5yDqeZP3PuMwxPTMMzLIj1YGapxBl6hO67w+i+Q1SVe8PoidH8/RF0D3OGxsbRPT6JHs5Mz8QEesaJ88xx1roZu36DQ+i5fgc9/76NHs5SD2ej5+ogeq59iW7GMdcHRzATzxBWHFKNbNXRxIFVozCHSCOJwxX6bJteRuI0qp2ZjN4mUhhOlcOI8/H0Gc2bMGeMcW2GOREW/xWIsD/vbAzVearhtRoTz8Q+UvbhG3rwMoC3hh6qwkhENKQD1IYIBICIQKBHeFa3GtrKrggRCDsJz0LVt0RelVZTDleQc3oSnpRYIo/qFeKcCFWYdSrMEQljaA5SfTGLZw+pJmIXK+AKcmvKG4G3qbIiBg+BS0FVYBiIhF4kUoB5gGEI/v8QCJMKJX67AsLAFeSsDfiMrY5EbTYIYOmDwIfvBwh8P4RxoDHbqxpYBOxr+eA+CwdakdXY1cATCxKI7h7rA0EFUsWnDwEHFFsBiPUrCCo+LWMqqsRxxbX52o8FWgSwYkNAZRwQKwEcYE7bWYy+WRATxgMSGdh0HYJUHTUXqnpHDj41mc6hIZvD5ro67Mrn0EF2kvYI9R31eahura1DUzqDjEkjgRRSkkaahJoCI2iclhSSfBkYrYdnrp/10vCzjfBzbfDzrfBzm+DnlVYEjCuMl2pbka5vxc7GVryxqQ1HtrTht8+34TdbW/HWFoWeubef34xfUX+w8Tm8tLYRjYm1yNgc6pBD3uSRU2SZ0mckC0+8sCDhlMFLIahZx6KaSPMyNFaaEWSbUVPbhLZ1Tdi7oQmHmpvwZovSjO+3NOMNeuXN5kZ0Nm7AvnXrsT27FvVeLdJBBhlkq68Maqux+hrUwOOLzwRniHVZLlmQysLW1IPTgCCdR5Ai6XoWShiDcaomj4ZMHpu4bFuzddjOZdmZq0NHLoddCpeyPVuLbWuy2Eya0hmsEQ4WpJEkKZuGkrSpSDVOIWGTECusBFoQ14xiJcEoBZ0tyxlzmCSs4iWZT8Jjfk0iibpkEvWpFPLUddR16RQaiPq8l8Ba9smRDH0CHgczHMEjqgq9jdB2tsB9HUCdQKcKllueO4xbCOCucnDnCXE+yum2t9yVCi9EQK/4kWpOPyK3CriPCM8ShMrHIyCWUUygXsIr9FqjJ/Bm0IJWg1tXorylOtxN3ZUsiPW775xwCM1a3i/QPlSrugzQuz7U5W2aU8KC1K2GFq55VUX9V6HtStxe9VyB6PmIm1aqtj/NhAW573pa/gpjFWyUE6qIgYiQ8CZGAMNY/9BT1ayIuBx7wgCur0Bf9FWl135AlIE7tD/ABni0fAjh8ACPJDzYSEGvOWE/MQJ9gYfhtcYIHPTgIQpPmhMRGOJpTDVU4dVGPeDajIAZ9wUEVgFAn5Myv/pLJcBRhpTIEqEiwudflgsLJRTmypieK2FmvozH9I+LJTg0t1DB1EIZM9S5pQrKvLc+8BU+TzE+n8XY898L0E2hzxPrigri75EU54CpGYeZmoYi0zPUENCXpmbxaGIW/x2fxZ2HBdweK2BgdBb9pG+0gH7Gt8aLGJycx73H8xibXUKh5GOJRS1wly7wx3iBYy3wh9h5jQn/1cGiODF8G84VpFyGecKBH07CEI9/Lxvi0TulN/ybeXF0Ag/uT+Lqbf7t3D+Jf9wMuUC90DeBC32MyaWBR7hibwq3xgt4sljCPIspspBZjjNbqaCglH0UFPp5FlXhDLIeGMu1FC6Fx3++JIdHkRgahTc0Rh2Dx9gwTgyPIT0yhsUHoxgYGMXH10bw9ysj+OjTYfyNnL0yjLOXR5z/6J9DOMu2czcmcG14BuNzi5hjQTN8JKZKFUxz+ZUZFqdMU7VYXUawFqNVCSs0C4uQQhGmSJzOwRTmmKNqjviMp54UMTRZdMvVN1rEwMMibo0R6gC1n0t3m/7Bo3lMFJYwz5kp85kpcdl0aRyRL3PpHGzn1zKqz5DOUribEtxVJEG4u6zuLGK58yxzIMmkh5qUh0zaQy3JPkNtTQKaW8M+Ke5Iw08tHEr4yfXTa2w0Zp4CUAWC+DChYcIoDHkT7mEgVsNc1Cb0HgtNJgxSStIgTU2z6LTTME4xTnKfJ4jhYMJBRNUN7gJG1GVn0ZAYwjS/VvlWD/dwMVANcWmXZ6w/CxS3K3S78leD3hJ+e/Ayrga9jbuH10ZnNvMHIwzUh27l2RUUNvKsI2n7Mquh3l2bmFYbDRgPGitWtnFoV7wqb6LX0tKF/ZyJTtqmaOgKUuMG5MndhPo0xxtowLu5NqdhTm8SwqI074ja2MC3K1Kv06zr5e5Np+rQFjeAOy0ryPKTAwHXQG8QLofmCLfA05h9OBK7weVonPLmVXW5uB87s80y59CQPqoUqjoeP8vKggwfXMPyjFOB4QPoGaoDLjbMGQF9BJ++MBaIhMRxqGBfARv5Fu4Vov3YKISNYAPf2gfuMCwe+WwKe7Y0oHP3Rhzes9Fp5+4WHGKsOVXHt1twsKMJB3duwMH29aSBhHqovQHKwR2aIx2N6NzTgsMvb8Lrr7Q5Du9rhfL6vjYqYf7wK63Y296I+to0dHUM//MK31pfi193bsPxI3sdx375Eo4dIarkOP1xth37xYt472cdOPrTdhz98XYc/dG2SHfQK8z9UHM78N7Pd+HYWy/ixO++i5Pvfg8n3nkVJ37/Gk68o7yKk4xPvvsa/kDe/kkHNjXnoLVwhixymRR2b+an0hkgB5QXWnDgheYIepdrxv5djdi/Yz32b294CmdlvxLn1O/agAO7m3HwO8+hkzPT+XIrOjlbIeo5Wy7Xij07GpHjDOmz9D8AAAD//4Km1b8AAAAGSURBVAMAN6QC/IPSgn8AAAAASUVORK5CYII=') center/cover no-repeat; }
+  .council-dot{ width:16px; height:16px; border-radius:3px; flex-shrink:0; background:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHJlY3Qgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiByeD0iNCIgZmlsbD0iIzE0NTJhMCIvPjxwYXRoIGZpbGw9IiNmZmYiIGQ9Ik0xMiA0TDQgOHYxaDF2OUg0djJoMTZ2LTJoLTFWOWgxVjhMMTIgNHptLTMgMTBoLTJ2LTRoMnY0em0zIDBoLTJ2LTRoMnY0em0zIDBoLTJ2LTRoMnY0eiIvPjwvc3ZnPg==') center/cover no-repeat; }
+  .nftab:hover{ border-color:#c9d4e6; }
+  .nftab.on{ background:var(--primary); border-color:var(--primary); color:#fff; }
+  .nftab.on .ct{ color:rgba(255,255,255,.7); }
+  .src-link{ display:inline-flex; align-items:center; gap:6px; margin-top:18px; padding:9px 15px; border-radius:10px; border:1px solid var(--line); background:#f6f8fc; color:var(--primary); font-size:13px; font-weight:700; text-decoration:none; }
+  .src-link:hover{ background:var(--primary-soft); border-color:var(--primary); }
+  .src-link svg{ width:14px; height:14px; }
+  .ndetail{ background:var(--surface); border:1px solid var(--line); border-radius:16px; box-shadow:var(--shadow-panel); position:sticky; top:18px; padding:18px 26px 24px; }
+  .ndetail .dh{ font-size:19px; font-weight:800; letter-spacing:-.02em; line-height:1.4; color:var(--ink); }
+  .ndetail .dm{ font-size:12.5px; color:var(--ink-3); font-weight:500; margin-top:12px; display:flex; align-items:center; gap:8px; padding-bottom:16px; border-bottom:1px solid var(--line); }
+  .ndetail .db{ font-size:14px; color:var(--ink-2); line-height:1.85; margin-top:16px; }
+  .ndetail .db.plain{ white-space:pre-wrap; }
+  .db h4{ font-size:14.5px; font-weight:800; color:var(--ink); margin:18px 0 7px; letter-spacing:-.01em; }
+  .db h4:first-child{ margin-top:0; }
+  .db p{ margin:0 0 10px; }
+  .db ul{ margin:0 0 12px; padding-left:18px; }
+  .db li{ margin:3px 0; }
+  .db .em{ color:var(--primary); font-weight:700; }
+  .db .note{ font-size:12.5px; color:var(--ink-3); background:var(--primary-soft); border-radius:8px; padding:8px 11px; margin:0 0 12px; }
+  .db table{ width:100%; border-collapse:collapse; margin:4px 0 14px; font-size:12.5px; }
+  .db th, .db td{ border:1px solid var(--line); padding:7px 9px; text-align:left; vertical-align:top; }
+  .db th{ background:var(--bg); font-weight:700; color:var(--ink); }
+  .db .atts{ margin-top:16px; padding-top:14px; border-top:1px solid var(--line); display:flex; flex-direction:column; gap:8px; }
+  .db .att{ display:inline-flex; align-items:center; gap:8px; padding:9px 12px; border:1px solid var(--line); border-radius:10px; background:var(--bg); color:var(--ink-2); font-size:12.5px; font-weight:600; text-decoration:none; }
+  .db .att:hover{ border-color:var(--primary); color:var(--primary); }
+  .db .att svg{ width:15px; height:15px; flex-shrink:0; color:var(--primary); }
+
+  /* ===== MOBILE RESPONSIVE ===== */
+  @media (max-width:768px){
+    .app, .app.collapsed{ grid-template-columns:1fr !important; }
+    .sidebar{ display:none !important; }
+    .page-head{ padding:14px 16px 0; gap:10px; }
+    .ph-mark{ width:38px; height:38px; font-size:17px; }
+    .ph-info h1{ font-size:17px; }
+    .ph-sub{ display:none; }
+    .ph-right{ display:none; }
+    .ro-banner{ margin:12px 14px 0; }
+    .nfilter{ margin:12px 14px 4px; overflow-x:auto; -webkit-overflow-scrolling:touch; padding-bottom:4px; flex-wrap:nowrap; }
+    .nfilter::-webkit-scrollbar{ display:none; }
+    .work{ grid-template-columns:1fr !important; gap:0; padding:0 14px 20px; }
+    .ncol{ display:block; }
+    .ndetail{ display:none; position:fixed; inset:0; z-index:200; border-radius:0; box-shadow:none; overflow-y:auto; padding:0; }
+    .ndetail.mobile-open{ display:block; }
+    .mobile-back{ display:flex !important; }
+    .ndetail .dh{ font-size:17px; padding:16px 18px 0; }
+    .ndetail .dm{ padding:10px 18px 14px; margin:0; }
+    .ndetail .db{ padding:0 18px 80px; }
+    .src-link{ margin:14px 0 0; }
+    .ncard .nprev{ -webkit-line-clamp:2; }
+  }
+  .mobile-back{
+    display:none;
+    align-items:center;
+    gap:10px;
+    padding:14px 18px;
+    background:var(--surface);
+    border-bottom:1px solid var(--line);
+    font-size:14px;
+    font-weight:700;
+    color:var(--ink-2);
+    cursor:pointer;
+    position:sticky;
+    top:0;
+    z-index:10;
+  }
+  .mobile-back svg{ color:var(--primary); }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <!-- ===== Sidebar ===== -->
+  <aside class="sidebar">
+    <div class="side-top">
+    <div class="logo" style="cursor:pointer">
+      <div class="logo-mark"><svg class="logo-dots" width="21" height="21" viewBox="0 0 24 24" fill="none"><path d="M7 8.5 12 14.5 17 8.5" stroke="#fff" stroke-opacity=".55" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="7" cy="8" r="2.6" fill="#fff"/><circle cx="17" cy="8" r="2.6" fill="#fff"/><circle cx="12" cy="15.5" r="3.1" fill="#fff"/></svg><svg class="logo-expand" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></div>
+      <div class="logo-name">MO<b>IDA</b></div>
+    </div>
+    <button class="collapse-btn" data-collapse aria-label="사이드바 접기"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></button>
+    </div>
+    <button class="new-btn" style="display:none"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>빠른 작성</button>
+    <nav>
+      <a class="nav-item" href="dashboard.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg><span class="nm">대시보드</span></a>
+      <a class="nav-item active"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 14-6v14L3 13z"/><path d="M3 11v2a2 2 0 0 0 2 2h2"/></svg><span class="nm">공지사항</span><span class="badge">1</span></a>
+      <a class="nav-item" href="members.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0"/><circle cx="17" cy="7" r="2.3"/><path d="M16.5 13.5a5 5 0 0 1 4.5 5"/></svg><span class="nm">조직관리</span></a>
+      <a class="nav-item" href="schedule.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="4.5" width="17" height="16" rx="3"/><path d="M3.5 9h17M8 3v3M16 3v3"/></svg><span class="nm">일정관리</span></a>
+      <a class="nav-item" href="news.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h12a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/><path d="M18 8h1a1 1 0 0 1 1 1v8a2 2 0 0 1-2 2"/><path d="M8 8h6M8 12h6M8 16h3"/></svg><span class="nm">뉴스검색</span></a>
+    </nav>
+    <div class="side-foot">
+      <a class="foot-item" href="admin.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-2.7 1.1V21a2 2 0 1 1-4 0v-.1A1.6 1.6 0 0 0 7 19.4a1.6 1.6 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.6 1.6 0 0 0-1.1-2.7H1a2 2 0 1 1 0-4h.1A1.6 1.6 0 0 0 2.6 7a1.6 1.6 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1A1.6 1.6 0 0 0 7 2.6h.1A1.6 1.6 0 0 0 9 1.1V1a2 2 0 1 1 4 0v.1A1.6 1.6 0 0 0 17 2.6a1.6 1.6 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0 1.1 2.7H23a2 2 0 1 1 0 4h-.1a1.6 1.6 0 0 0-1.5 1z"/></svg><span>관리자 페이지</span></a>
+      <div class="foot-mail">banedict84@gmail.com</div>
+      <a class="foot-item" href="index.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 4h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-3"/><path d="M10 17l5-5-5-5M15 12H3"/></svg><span>로그아웃</span></a>
+    </div>
+  </aside>
+
+  <!-- ===== Main ===== -->
+  <main class="main">
+    <div class="page-head">
+      <div class="ph-mark"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M7 8.5 12 14.5 17 8.5" stroke="#fff" stroke-opacity=".55" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="7" cy="8" r="2.6" fill="#fff"/><circle cx="17" cy="8" r="2.6" fill="#fff"/><circle cx="12" cy="15.5" r="3.1" fill="#fff"/></svg></div>
+      <div class="ph-info">
+        <h1>공지사항</h1>
+        <div class="ph-sub">경기도의원 장윤정 · 안산시 상록구 이동·일동·성포동</div>
+      </div>
+      <div class="ph-right">
+      </div>
+    </div>
+
+    <div class="ro-banner"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>공지사항은 총관리자가 작성하며, 의원 페이지에서는 열람만 가능합니다.</div>
+
+
+
+    <div class="nfilter" id="nfilter">
+      <button class="nftab on" data-src="all">전체 <span class="ct" data-c="all"></span></button>
+      <button class="nftab" data-src="admin">MOIDA 공지 <span class="ct" data-c="admin"></span></button>
+      <button class="nftab" data-src="central"><span class="party-dot"></span>중앙당 <span class="ct" data-c="central"></span></button>
+      <button class="nftab" data-src="gyeonggi"><span class="party-dot"></span>경기도당 <span class="ct" data-c="gyeonggi"></span></button>
+      <button class="nftab" data-src="council"><span class="council-dot"></span>경기도의회 <span class="ct" data-c="council"></span></button>
+    </div>
+
+    <div class="work">
+      <div class="ncol">
+        <div class="nlist" id="nlist"></div>
+      </div>
+
+      <aside class="ndetail" id="ndetail">
+        <button class="mobile-back" id="mobileBack">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>
+          공지 목록으로
+        </button>
+        <div class="dh" id="ndTitle">공지를 선택하세요</div>
+        <div class="dm" id="ndMeta"><span class="author-pill">총관리자</span><span>왼쪽에서 공지를 클릭하면 전문이 표시됩니다.</span></div>
+        <div class="db" id="ndBody"></div>
+      </aside>
+    </div>
+  </main>
+</div>
+
+<script>
+  // src: 'admin' = 총관리자(MOIDA) 입력 / 'central' = 민주당 중앙당 (theminjoo.kr 공지사항 brd=1)
+  const LIST = "https://theminjoo.kr/main/sub/news/list.php?brd=1";
+  function pv(post){ return post ? "https://theminjoo.kr/main/sub/news/view.php?sno=0&brd=1&post="+post : LIST; }
+  function esc(s){ return String(s).replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];}); }
+
+  const adminNotices = [
+    { id:1, src:"admin", title:"후원회 관련 내용입니다.", date:"2026.06.19", isNew:true, body:"안녕하세요, 의원님.\n\n이번 분기 후원회 운영 및 회계 보고 관련 안내드립니다. 후원금 영수증 발급과 회계 마감 일정은 첨부된 지침을 참고해 주시고, 문의 사항은 사무국으로 연락 바랍니다.\n\n감사합니다." },
+    { id:2, src:"admin", title:"6월 정기 운영위원회 일정 안내", date:"2026.06.12", isNew:false, body:"6월 정기 운영위원회를 아래와 같이 개최합니다.\n\n· 일시: 2026년 6월 24일(화) 오후 7시\n· 장소: 당협 사무실 회의실\n· 안건: 하반기 조직 운영 계획, 지역 현안 보고\n\n위원님들의 참석을 부탁드립니다." },
+    { id:3, src:"admin", title:"개인정보 보호 및 명부 관리 지침 업데이트", date:"2026.06.03", isNew:false, body:"구성원 명부 및 개인정보 관리 지침이 일부 개정되었습니다.\n\n주민번호·연락처 등 민감 정보는 권한이 있는 담당자만 열람·수정할 수 있으며, 외부 반출은 금지됩니다. 자세한 내용은 사무국 공지를 확인해 주세요." }
+  ];
+
+  // 민주당 중앙당 실제 목록(2026.06 기준, 1~3페이지). 형식: post|cat(g=일반,e=당내선거)|date|views|title  (앞 * = 중요)
+  const CENTRAL_RAW = `
+*1218984|g|2026.06.11|17,576|지역위원장 후보자 공모 안내
+*1218976|g|2026.06.10|1,786|제6차 중앙위원회의 소집 공고 및 당헌 개정안 안내
+*1218939|g|2026.06.05|2,757|공영방송 이사 공모 공고
+1213551|g|2025.09.18|13,557|'을과 더불어 언제나 을지로' <을지로위원회 민원 접수 안내>
+*1218603|g|2026.05.19|4,347|[안내]광역단체장 및 국회의원재보궐 후보자 선거사무소 연락망
+1218351|e|2026.05.04|12,912|제22대 국회 더불어민주당 후반기 국회의장단 후보 선출 선거 후보자 등록 공고
+1218269|g|2026.04.29|3,553|더불어민주당 2026년 1분기 수입·지출 총괄표 등 공개
+1218252|e|2026.04.27|6,668|제22대 국회 더불어민주당 제3기 원내대표 선거 후보자 등록 공고
+1218201|e|2026.04.23|5,961|제22대 국회 더불어민주당 후반기 국회의장 및 부의장 후보 선출을 위한 선거 공고
+1218200|e|2026.04.23|2,895|제22대 국회 더불어민주당 제3기 원내대표 선거 공고
+1218116|e|2026.04.18|4,689|제9회 전국동시지방선거 제주특별자치도 광역단체장 결선 결과 발표
+1218067|e|2026.04.18|1,368|더불어민주당 제주특별자치도지사 후보자 선출을 위한 권리당원 자발적 ARS투표 안내
+1218088|e|2026.04.16|3,175|제9회 전국동시지방선거 세종특별자치시 광역단체장 결선 결과 발표
+1218083|e|2026.04.16|2,509|제9회 전국동시지방선거 충청북도 기초단체장 결선(청주시, 충주시, 괴산군, 보은군, 증평군, 진천군) 결과 발표
+1218025|e|2026.04.16|1,133|더불어민주당 세종특별자치시장 후보자 선출을 위한 권리당원 자발적 ARS투표 안내
+1218026|e|2026.04.16|1,749|더불어민주당 충청북도 기초단체장 후보자 선출을 위한 권리당원 자발적 ARS투표 안내
+1218065|e|2026.04.15|2,092|제9회 전국동시지방선거 충청남도 광역단체장 결선 결과 발표
+1218022|e|2026.04.15|1,030|더불어민주당 충청남도지사 후보자 선출을 위한 권리당원 자발적 ARS투표 안내
+1218047|e|2026.04.14|2,074|제9회 전국동시지방선거 전남광주통합특별시 광역단체장 결선 결과 발표
+1218020|e|2026.04.14|801|더불어민주당 전남광주통합특별시장 후보자 선출을 위한 권리당원 자발적 ARS투표 안내
+1217603|e|2026.03.23|3,154|제9회 전국동시지방선거 광역단체장 후보 선출을 위한 경선일정(대전, 충남)
+1217518|e|2026.03.18|6,540|제9회 전국동시지방선거 광역단체장 경선 권리당원선거인단 온라인 투표율 공고
+1217468|e|2026.03.16|1,748|제9회 전국동시지방선거 광역단체장 후보 선출을 위한 경선일정 (충청북도)
+1217376|e|2026.03.10|2,995|제9회 전국동시지방선거 광역단체장 후보 선출을 위한 경선일정 (전북, 제주)
+1217305|e|2026.03.06|6,886|제9회 전국동시지방선거 광역단체장 후보 선출을 위한 경선일정 (서울, 경기, 전남광주, 울산)
+1217087|e|2026.02.20|5,939|제9회 전국동시지방선거 공천신문고 신청 안내
+1217086|e|2026.02.20|6,338|제9회 전국동시지방선거 공직선거후보자추천재심위원회 재심 신청 접수 안내
+1214507|g|2025.10.20|16,734|광역·기초단체장 및 광역·기초의원 평가 시행세칙
+1217736|e|2026.03.30|757|제9회 전국동시지방선거 광역단체장 본경선 지역(부산광역시) 후보자 등록 공고
+1217721|e|2026.03.29|1,393|제9회 전국동시지방선거 광역단체장 결선지역(충청북도) 후보자 등록 공고
+1217703|e|2026.03.27|3,219|제9회 전국동시지방선거 광역단체장 본경선 지역(서울) 후보자 등록 공고
+1217702|e|2026.03.27|1,755|제9회 전국동시지방선거 충청북도 광역단체장 본경선 결과 발표
+1217693|e|2026.03.27|2,270|제9회 전국동시지방선거 광역단체장 후보자 신청 공모(추가)
+1217692|e|2026.03.27|2,946|제9회 지방선거 광역단체장 심사(9차) 결과 발표
+1217664|e|2026.03.27|668|더불어민주당 충청북도지사 후보자 선출을 위한 권리당원 자발적 ARS투표 안내
+1217683|e|2026.03.27|1,319|제9회 지방선거 충청북도 기초단체장 본경선지역(청주시, 충주시, 제천시) 후보자 등록 공고
+1217682|e|2026.03.27|536|제9회 지방선거 광역단체장 본경선지역(세종특별자치시) 후보자 등록 공고
+1217672|e|2026.03.26|895|제9회 지방선거 광역단체장 본경선 지역(대전광역시, 충청남도) 후보자 등록 공고(수정)
+1217671|e|2026.03.26|873|제9회 전국동시지방선거 광역단체장 본경선 지역(경기도) 후보자 등록 공고
+1217936|e|2026.04.08|2,306|제9회 전국동시지방선거 충청북도 기초단체장 본경선(청주시, 충주시, 제천시) 결과 발표
+1217920|e|2026.04.08|4,233|더불어민주당 충청북도 기초단체장 후보자 선출을 위한 권리당원 자발적 ARS투표 안내
+1217919|e|2026.04.07|4,956|제9회 전국동시지방선거 광역단체장 결선 지역(전남광주통합특별시) 후보자 등록 공고
+1217918|e|2026.04.07|2,473|제9회 전국동시지방선거 광역단체장 결선 지역(대전광역시) 후보자 등록 현황 공고
+1217917|e|2026.04.07|4,615|제9회 전국동시지방선거 경기도 광역단체장 본경선 결과 발표
+1217898|e|2026.04.07|4,944|더불어민주당 경기도지사 후보자 선출을 위한 권리당원 자발적 ARS투표 안내
+1217892|e|2026.04.06|2,493|제9회 전국동시지방선거 충청북도 기초단체장 본경선 권리당원선거인단 온라인 투표율 공고
+1217891|e|2026.04.06|2,505|제9회 전국동시지방선거 광역단체장 결선지역 대전광역시 후보자 등록 공고
+1217890|e|2026.04.06|2,299|제9회 전국동시지방선거 세종특별자치시 광역단체장 본경선 결과 발표
+1217888|e|2026.04.06|2,237|제9회 전국동시지방선거 충청남도 광역단체장 본경선 결과 발표
+1217828|e|2026.04.06|1,183|더불어민주당 세종특별자치시장 후보자 선출을 위한 권리당원 자발적 ARS투표 안내
+1217829|e|2026.04.06|1,104|더불어민주당 충청남도지사 후보자 선출을 위한 권리당원 자발적 ARS투표 안내
+1217866|e|2026.04.05|3,798|제9회 전국동시지방선거 전남광주통합특별시 광역단체장 본경선 결과 발표
+1217826|e|2026.04.05|2,968|더불어민주당 전남광주통합특별시장 후보자 선출을 위한 권리당원 자발적 ARS투표 안내
+1217854|e|2026.04.04|5,798|제9회 전국동시지방선거 광역단체장 본경선 지역(전북특별자치도, 제주특별자치도) 후보자 등록 공고(수정)
+1217853|e|2026.04.04|2,791|제9회 전국동시지방선거 대전광역시 광역단체장 본경선 결과 발표
+1217851|e|2026.04.04|2,242|제9회 전국동시지방선거 충청북도 광역단체장 결선 결과 발표
+1217815|e|2026.04.04|1,181|더불어민주당 충청북도지사 후보자 선출을 위한 권리당원 자발적 ARS투표 안내
+1217816|e|2026.04.04|973|더불어민주당 대전광역시장 후보자 선출을 위한 권리당원 자발적 ARS투표 안내
+1217814|e|2026.04.03|6,307|제9회 지방선거 광역단체장 심사(10차) 결과 발표
+*1217810|e|2026.04.03|5,702|제9회 전국동시지방선거 기초단체장 전략선거구 후보자 신청 공모`;
+
+  const CATMAP = { g:"일반", e:"당내선거" };
+
+  // 실제 본문이 수집된 공지 (post id 기준). 서버 수집기가 채우는 자리.
+  // prev = 목록 미리보기 한 줄, html = 상세 패널 본문, atts = 첨부파일
+  const BODIES = {
+    "1217810": {
+      prev: "당규 제10호 제28조(공모)에 따라 기초단체장 전략선거구 후보자를 공모합니다. (서울 영등포구·강동구 구청장)",
+      html: `<p>당규 제10호 공직선거후보자추천및선출직공직자평가위원회규정 제28조(공모)에 따라, 아래와 같이 공직선거 후보자를 공모합니다.</p>
+        <h4>1. 공모대상지역</h4>
+        <p>서울시 영등포구청장 · 서울시 강동구청장 선거구</p>
+        <p class="note">※ 기존 접수자(부적격자 제외)는 심사 대상에 포함되며 별도 접수 절차가 필요 없습니다.</p>
+        <h4>2. 신청자격</h4>
+        <ul>
+          <li>신청일 현재 당적을 보유하고 당비를 6회 이상 납부한 권리당원(당규 제2호 제5조제1항)</li>
+          <li>성평등 교육 포함 당내 교육연수 16시간 이수자 ('22.6.1 ~ 현재 기간 중)</li>
+          <li>당규 제10호 제30조제1항 해당 시 신청 무효 처리</li>
+          <li>중앙당 예비후보자자격심사위원회 부적격 판정자 신청 불가 (정밀심사자는 신청 가능)</li>
+        </ul>
+        <h4>3. 접수기간</h4>
+        <p><span class="em">26.04.06(월) 09:00 ~ 26.04.07(화) 18:00</span></p>
+        <ul>
+          <li>메일 접수: 4.7(화) 18시까지 완료해야 정상 접수</li>
+          <li>원본 서류: 4.8(수) 11:00까지 방문 제출 (국회의원회관 307호, 신분증 지참)</li>
+        </ul>
+        <h4>4. 신청방법</h4>
+        <p>메일 접수 — <span class="em">idp.strategy@gmail.com</span></p>
+        <h4>5. 심사비</h4>
+        <p>500만 원 (자격심사비 포함) · 접수계좌 농협 036-01-131970 (더불어민주당, 본인 명의 입금)</p>
+        <p class="note">※ 접수비는 특별당비로 귀속되어 반환하지 않으며, 경선비용은 별도입니다.</p>
+        <table>
+          <thead><tr><th>구분</th><th>내역</th><th>비고</th></tr></thead>
+          <tbody>
+            <tr><td>만 20대 청년 · 중증장애인</td><td>면제</td><td>현역은 감면·면제 대상 제외</td></tr>
+            <tr><td>만 30~45세 · 만 65세 이상</td><td>50% 감액</td><td></td></tr>
+          </tbody>
+        </table>
+        <h4>6. 유의사항</h4>
+        <ul>
+          <li>공직선거법·당헌·윤리규범에 위반되지 않아야 하며, 신청일 현재 권리당원으로서 당적 보유</li>
+          <li>접수 전자문서 및 원본 증빙서류는 반환하지 않음</li>
+          <li>기재 내용 고의 누락·허위 기재 시 신청 무효</li>
+          <li>심사 결과 발표 이후 탈당 후 출마 시 영구 복당 불허 대상(당헌 제4조제3항제2호)</li>
+        </ul>
+        <p>※ 문의: 중앙당 전략기획국 (02-6788-3721, 3722)</p>
+        <p style="color:var(--ink-3)">2026.04.03. 더불어민주당 중앙당 전략공천관리위원회 위원장</p>`,
+      atts: [
+        { name: "별첨1_전략공관위_공직선거후보자_제출서류_서식.hwp", url: "https://theminjoo.kr/main/sub/download.php?code=8100&brd=1" },
+        { name: "별첨2_제출서류서식별작성요령안내.hwp", url: "https://theminjoo.kr/main/sub/download.php?code=8101&brd=1" }
+      ]
+    }
+  };
+
+  const centralNotices = CENTRAL_RAW.trim().split("\n").map(function(line){
+    var imp = line.charAt(0)==="*"; if(imp) line=line.slice(1);
+    var p = line.split("|");
+    var post = p[0];
+    var b = BODIES[post];
+    return { id:+post, src:"central", cat:CATMAP[p[1]]||"일반", imp:imp, title:p[4], date:p[2], views:p[3], link:pv(post),
+      bodyHtml: b ? b.html : null, atts: b ? b.atts : null,
+      body: b ? b.prev : ("더불어민주당 중앙당 공지사항입니다.\n\n"+p[4]+"\n\n자세한 내용과 첨부 파일은 아래 '중앙당 원문 보기'에서 확인해 주세요.") };
+  });
+
+  // 민주당 경기도당 공지 (minjookg.kr) — 형식: board_no|cat(g=일반,e=당내선거)|date|views|title  (앞 * = 중요)
+  // ※ 목록 페이지가 외부 수집 차단되어 자동 갱신은 서버 수집기가 src:"gyeonggi" 로 채워야 함. 아래는 실제 게시글 시드.
+  const GYEONGGI_RAW = `
+111240|g|2024.10.24|2,498|[공지] 경기도당 특별위원회 모집공고
+9575|e|2022.03.21|5,928|[제8회 동시지방선거] 경기도당 공직선거 예비후보자 검증신청자 적격 통보 안내
+8334|g|2020.07.22|1,042|시흥시을 지역위원회 개편을 위한 상무위원회 소집 공고
+3267|g|2017.08.11|3,004|[채용공고] 더불어민주당 경기도당 당직자 채용 공고`;
+  function gv(no){ return no ? "https://www.minjookg.kr/sub01_news/notice.php?board_mode=view&board_no="+no : "https://www.minjookg.kr/sub01_news/notice.php"; }
+  const gyeonggiNotices = GYEONGGI_RAW.trim().split("\n").map(function(line){
+    var imp = line.charAt(0)==="*"; if(imp) line=line.slice(1);
+    var p = line.split("|"); var no = p[0];
+    return { id:+no, src:"gyeonggi", cat:CATMAP[p[1]]||"일반", imp:imp, title:p[4], date:p[2], views:p[3], link:gv(no),
+      bodyHtml:null, atts:null,
+      body:("더불어민주당 경기도당 공지사항입니다.\n\n"+p[4]+"\n\n자세한 내용과 첨부 파일은 아래 '경기도당 원문 보기'에서 확인해 주세요.") };
+  });
+
+  // 경기도의회 공지사항 (ggc.go.kr) — 형식: id|date|views|title  (앞 * = 중요)
+  // ※ 외부 수집 차단 — 자동 갱신은 서버 수집기가 src:"council" 로 채워야 함. 아래는 실제 공지 시드.
+  const COUNCIL_RAW = `
+*c5|2026.06.04|1,210|2026년 상반기 의정발전기여상 후보자 공개검증 실시
+c4|2026.06.05|842|경기도의회 광고 및 홍보 운영에 관한 조례안 입법예고
+c3|2026.05.20|1,036|경기도의회 사무처 공무원(전문경력관) 경력경쟁 임용시험 공고
+c2|2026.04.16|1,489|제389회 경기도의회 임시회 회기 및 의사일정 안내
+c1|2026.03.10|2,051|경기도의회 의정모니터단 모집 공고`;
+  function cv(){ return "https://www.ggc.go.kr/site/main/board/pblcntc/list"; }
+  const councilNotices = COUNCIL_RAW.trim().split("\n").map(function(line){
+    var imp = line.charAt(0)==="*"; if(imp) line=line.slice(1);
+    var p = line.split("|");
+    return { id:p[0], src:"council", cat:null, imp:imp, title:p[3], date:p[1], views:p[2], link:cv(),
+      bodyHtml:null, atts:null,
+      body:("경기도의회 공지사항입니다.\n\n"+p[3]+"\n\n자세한 내용과 첨부 파일은 아래 '경기도의회 원문 보기'에서 확인해 주세요.") };
+  });
+
+  // 날짜 내림차순 정렬 후 합치기
+  function dnum(d){ return +d.replace(/\D/g,""); }
+  let notices = adminNotices.concat(centralNotices).concat(gyeonggiNotices).concat(councilNotices).sort(function(a,b){ return dnum(b.date)-dnum(a.date); });
+
+  const SRC = {
+    admin:    { label:"총관리자", cls:"" },
+    central:  { label:"민주당 중앙당", cls:"central" },
+    gyeonggi: { label:"경기도당", cls:"gyeonggi" },
+    council:  { label:"경기도의회", cls:"council" }
+  };
+  function srcPill(n){ const m=SRC[n.src]||SRC.admin; return '<span class="author-pill '+m.cls+'">'+m.label+'</span>'+(n.imp?'<span class="imp-pill">중요</span>':'')+(n.cat?'<span class="cat-pill">'+n.cat+'</span>':''); }
+
+  const nlist = document.getElementById('nlist');
+  const ndTitle = document.getElementById('ndTitle');
+  const ndMeta = document.getElementById('ndMeta');
+  const ndBody = document.getElementById('ndBody');
+  let curFilter = 'all';
+
+  function isRecent(d){ if(!d) return false; var s=d.replace(/\./g,'-').replace(/[^0-9\-]/g,''); var dt=new Date(s); return !isNaN(dt)&&(Date.now()-dt.getTime()<30*24*60*60*1000); }
+  function renderList(){
+    var filtered = notices.filter(n=> curFilter==='all' || n.src===curFilter);
+    // 전체 탭은 날짜순만, 나머지 탭은 중요공지 상단 + 날짜순
+    var items;
+    if(curFilter==='all'){
+      items = filtered.slice().sort(function(a,b){ return dnum(b.date)-dnum(a.date); });
+    } else {
+      var imp = filtered.filter(function(n){ return n.imp; }).sort(function(a,b){ return dnum(b.date)-dnum(a.date); });
+      var rest = filtered.filter(function(n){ return !n.imp; }).sort(function(a,b){ return dnum(b.date)-dnum(a.date); });
+      items = imp.concat(rest);
+    }
+    nlist.innerHTML = items.map((n)=>`
+      <div class="ncard${n.imp?' imp':''}" data-id="${n.id}">
+        <div class="nt">${n.isNew?'<span class="new-dot"></span>':''}${esc(n.title)}</div>
+        <div class="nmeta">${srcPill(n)}<span>${n.date}</span>${isRecent(n.date)?'<span class="recent-pill">최근</span>':''}${n.views?'<span class="nviews">'+n.views+'회</span>':''}</div>
+        <div class="nprev">${esc(n.body.replace(/\s+/g,' ').trim())}</div>
+      </div>`).join('') || '<div style="padding:40px 4px;color:var(--ink-4);font-size:14px;">해당 출처의 공지가 없습니다.</div>';
+    nlist.querySelectorAll('.ncard').forEach(c=>c.addEventListener('click',()=>selectNotice(c.dataset.id)));
+    // counts
+    document.querySelector('[data-c="all"]').textContent = notices.length;
+    document.querySelector('[data-c="admin"]').textContent = notices.filter(n=>n.src==='admin').length;
+    document.querySelector('[data-c="central"]').textContent = notices.filter(n=>n.src==='central').length;
+    document.querySelector('[data-c="gyeonggi"]').textContent = notices.filter(n=>n.src==='gyeonggi').length;
+    document.querySelector('[data-c="council"]').textContent = notices.filter(n=>n.src==='council').length;
+    const first = items[0]; if(first) selectNotice(first.id);
+  }
+
+  function selectNotice(id){
+    const n = notices.find(x=>String(x.id)===String(id)); if(!n) return;
+    // Mobile: show detail panel
+    if(window.innerWidth<=768){
+      document.getElementById('ndetail').classList.add('mobile-open');
+      document.body.style.overflow='hidden';
+    }
+    nlist.querySelectorAll('.ncard').forEach(c=>c.classList.remove('sel'));
+    const card = nlist.querySelector('.ncard[data-id="'+id+'"]');
+    if(card) card.classList.add('sel');
+    ndTitle.textContent = n.title;
+    ndMeta.innerHTML = srcPill(n)+'<span>'+n.date+'</span>'+(n.views?'<span class="nviews">'+n.views+'회</span>':'');
+    var extLabel = n.src==='gyeonggi' ? '경기도당 원문 보기' : (n.src==='council' ? '경기도의회 원문 보기' : '중앙당 원문 보기');
+    var srcLink = ((n.src==='central'||n.src==='gyeonggi'||n.src==='council') && n.link)
+      ? '<a class="src-link" href="'+n.link+'" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg>'+extLabel+'</a>'
+      : '';
+    if(n.bodyHtml){
+      var atts = (n.atts && n.atts.length)
+        ? '<div class="atts">'+n.atts.map(function(a){ return '<a class="att" href="'+a.url+'" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2v6h6"/><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>'+a.name+'</a>'; }).join('')+'</div>'
+        : '';
+      ndBody.className = 'db';
+      ndBody.innerHTML = n.bodyHtml + atts + (srcLink? '<div class="atts">'+srcLink+'</div>' : '');
+    } else if((n.src==='central'||n.src==='gyeonggi'||n.src==='council') && n.link){
+      ndBody.className = 'db plain';
+      ndBody.innerHTML = n.body.replace(/</g,'&lt;').replace(/\n/g,'<br>') + '<br><br>' + srcLink;
+    } else {
+      ndBody.className = 'db plain';
+      ndBody.textContent = n.body;
+    }
+  }
+
+  document.querySelectorAll('.nftab').forEach(t=>t.addEventListener('click',function(){
+    document.querySelectorAll('.nftab').forEach(x=>x.classList.remove('on'));
+    this.classList.add('on');
+    curFilter = this.dataset.src;
+    renderList();
+  }));
+  (function(){
+    var sp=new URLSearchParams(location.search).get('src');
+    var valid=['all','admin','central','gyeonggi','council'];
+    if(sp && valid.indexOf(sp)>=0){
+      curFilter=sp;
+      document.querySelectorAll('.nftab').forEach(function(x){ x.classList.toggle('on', x.dataset.src===sp); });
+    }
+  })();
+  renderList();
+
+  // JSON 파일에서 경기도당/중앙당/경기도의회 공지 자동 로딩
+  (function(){
+    function mapItem(item, src, idPrefix){
+      var imp = item.category==='공지';
+      var cat = (item.category && item.category!=='공지') ? item.category : null;
+      var d = (item.date||'').replace(/\//g,'.').replace(/-/g,'.');
+      return { id: idPrefix+(item.link||item.title||Math.random()).toString().replace(/\W/g,'').slice(-8),
+        src:src, cat:cat, imp:imp, title:item.title||'', date:d, views:'', link:item.link||'',
+        bodyHtml:null, atts:null,
+        body:(src==='gyeonggi'?'더불어민주당 경기도당':src==='central'?'더불어민주당 중앙당':'경기도의회')+' 공지사항입니다.\n\n'+(item.title||'')+"\n\n자세한 내용은 아래 원문 보기에서 확인해 주세요." };
+    }
+    Promise.allSettled([
+      fetch('notices_data.json').then(function(r){ return r.json(); }),
+      fetch('central_data.json').then(function(r){ return r.json(); }),
+      fetch('council_data.json').then(function(r){ return r.json(); })
+    ]).then(function(results){
+      var changed = false;
+      var gy = results[0]; var ct = results[1]; var co = results[2];
+      if(gy.status==='fulfilled' && gy.value && gy.value.items && gy.value.items.length){
+        var fetched = gy.value.items.map(function(it){ return mapItem(it,'gyeonggi','gy'); });
+        notices = notices.filter(function(n){ return n.src!=='gyeonggi'; }).concat(fetched);
+        changed = true;
+      }
+      if(ct.status==='fulfilled' && ct.value && ct.value.items && ct.value.items.length){
+        var fetched = ct.value.items.map(function(it){ return mapItem(it,'central','ct'); });
+        notices = notices.filter(function(n){ return n.src!=='central'; }).concat(fetched);
+        changed = true;
+      }
+      if(co.status==='fulfilled' && co.value && co.value.items && co.value.items.length){
+        var fetched = co.value.items.map(function(it){ return mapItem(it,'council','co'); });
+        notices = notices.filter(function(n){ return n.src!=='council'; }).concat(fetched);
+        changed = true;
+      }
+      if(changed){
+        notices.sort(function(a,b){ return dnum(b.date)-dnum(a.date); });
+        renderList();
+      }
+    });
+  })();
+
+  // mobile back button
+  (function(){
+    var btn = document.getElementById('mobileBack');
+    if(btn) btn.addEventListener('click', function(){
+      document.getElementById('ndetail').classList.remove('mobile-open');
+      document.body.style.overflow='';
+    });
+  })();
+
+  // sidebar collapse
+  (function(){
+    const app=document.querySelector('.app'); const KEY='moida_sidebar_collapsed';
+    if(localStorage.getItem(KEY)==='1') app.classList.add('collapsed');
+    document.querySelectorAll('.nav-item').forEach(n=>{ const t=n.querySelector('.nm'); if(t) n.setAttribute('data-tip', t.textContent.trim()); });
+    document.querySelectorAll('.foot-item').forEach(n=>{ const t=n.querySelector('span'); if(t) n.setAttribute('data-tip', t.textContent.trim()); });
+    document.querySelectorAll('[data-collapse]').forEach(b=>b.addEventListener('click',()=>{
+      app.classList.toggle('collapsed');
+      localStorage.setItem(KEY, app.classList.contains('collapsed')?'1':'0');
+    }));
+    (function(){ var lg=document.querySelector('.logo'); if(!lg) return;
+      lg.addEventListener('click',function(e){
+        if(app.classList.contains('collapsed')){ e.preventDefault(); e.stopPropagation(); app.classList.remove('collapsed'); localStorage.setItem(KEY,'0'); }
+        else { location.href='dashboard.html'; }
+      });
+    })();
+  })();
+</script>
+<script>
+/* ===== 바로가기 (공유) ===== */
+(function(){
+  var OPTS=[
+    { key:'all',      label:'전체 공지',      color:'#64748b', href:'notices.html' },
+    { key:'admin',    label:'MOIDA 공지',     color:'#15182a', href:'notices.html?src=admin' },
+    { key:'central',  label:'민주당 중앙당',   color:'#1452a0', href:'notices.html?src=central' },
+    { key:'gyeonggi', label:'민주당 경기도당', color:'#0d9488', href:'notices.html?src=gyeonggi' },
+    { key:'council',  label:'경기도의회',      color:'#b45309', href:'notices.html?src=council' }
+  ];
+  var KEY='moida_shortcuts';
+  function get(){ try{ return JSON.parse(localStorage.getItem(KEY)||'[]'); }catch(e){ return []; } }
+  function save(a){ localStorage.setItem(KEY, JSON.stringify(a)); }
+  var nav=document.querySelector('.sidebar nav'); if(!nav) return;
+  if(!document.getElementById('scSharedStyle')){
+    var st=document.createElement('style'); st.id='scSharedStyle';
+    st.textContent='.sc-sec{margin-top:10px;padding-top:10px;border-top:1px solid var(--line-soft);}'+
+      '.sc-head{display:flex;align-items:center;padding:6px 10px;font-size:11px;font-weight:700;letter-spacing:.04em;color:var(--ink-3);}'+
+      '.sc-item{display:flex;align-items:center;gap:11px;padding:9px 10px;border-radius:11px;cursor:pointer;color:var(--ink-2);font-size:13.5px;font-weight:600;text-decoration:none;}'+
+      '.sc-item:hover{background:var(--line-soft);color:var(--ink);}'+
+      '.sc-dot{width:9px;height:9px;border-radius:3px;flex-shrink:0;}'+
+      '.sc-item .nm{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}'+
+      '.sc-del{width:20px;height:20px;border:none;background:none;color:var(--ink-3);display:none;align-items:center;justify-content:center;cursor:pointer;border-radius:6px;flex-shrink:0;}'+
+      '.sc-item:hover .sc-del{display:flex;} .sc-del:hover{background:#fde8e8;color:#dc2626;}'+
+      '.app.collapsed .sc-head{display:none;} .app.collapsed .sc-item{justify-content:center;gap:0;padding:10px 0;}'+
+      '.app.collapsed .sc-item .nm,.app.collapsed .sc-del{display:none;}';
+    document.head.appendChild(st);
+  }
+  var sec=document.createElement('div'); sec.className='sc-sec'; sec.id='scSec'; sec.style.display='none';
+  sec.innerHTML='<div class="sc-head"><span>바로가기</span></div><div id="scList"></div>';
+  nav.appendChild(sec);
+  var list=sec.querySelector('#scList');
+  function render(){
+    var keys=get(); var items=OPTS.filter(function(o){ return keys.indexOf(o.key)>=0; });
+    if(!items.length){ sec.style.display='none'; list.innerHTML=''; return; }
+    sec.style.display='block';
+    list.innerHTML=items.map(function(o){
+      return '<a class="sc-item" href="'+o.href+'" data-tip="'+o.label+'"><span class="sc-dot" style="background:'+o.color+'"></span><span class="nm">'+o.label+'</span><button class="sc-del" data-key="'+o.key+'" title="삭제"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button></a>';
+    }).join('');
+    list.querySelectorAll('.sc-del').forEach(function(b){
+      b.addEventListener('click', function(e){ e.preventDefault(); e.stopPropagation(); var k=b.dataset.key; save(get().filter(function(x){return x!==k;})); render(); });
+    });
+  }
+  render();
+  window.addEventListener('storage', function(e){ if(e.key===KEY) render(); });
+})();
+</script>
+</body>
+</html>
