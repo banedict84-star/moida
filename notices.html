@@ -213,6 +213,7 @@
   .ncard .nmeta{ font-size:12.5px; color:var(--ink-2); font-weight:600; margin-top:9px; display:flex; align-items:center; gap:8px; }
   .ncard .nprev{ font-size:13px; color:var(--ink-3); margin-top:9px; line-height:1.55; display:-webkit-box; -webkit-line-clamp:1; -webkit-box-orient:vertical; overflow:hidden; }
   .author-pill{ display:inline-flex; align-items:center; gap:5px; padding:2px 9px; border-radius:20px; background:#15182a; color:#fff; font-size:11px; font-weight:700; white-space:nowrap; }
+  .author-pill img,.nftab img{ height:14px; width:auto; display:inline-block; vertical-align:middle; }
   .author-pill.central{ background:var(--primary); }
   .author-pill.gyeonggi{ background:#0d9488; }
   .author-pill.council{ background:#b45309; }
@@ -297,9 +298,9 @@
     <div class="nfilter" id="nfilter">
       <button class="nftab on" data-src="all">전체 <span class="ct" data-c="all"></span></button>
       <button class="nftab" data-src="admin">MOIDA 공지 <span class="ct" data-c="admin"></span></button>
-      <button class="nftab" data-src="central"><span class="party-dot"></span>중앙당 <span class="ct" data-c="central"></span></button>
-      <button class="nftab" data-src="gyeonggi"><span class="party-dot"></span>경기도당 <span class="ct" data-c="gyeonggi"></span></button>
-      <button class="nftab" data-src="council"><span class="council-dot"></span>경기도의회 <span class="ct" data-c="council"></span></button>
+      <button class="nftab" data-src="central"><img src="logo-export/party-logo.png" alt="">중앙당 <span class="ct" data-c="central"></span></button>
+      <button class="nftab" data-src="gyeonggi"><img src="logo-export/party-logo.png" alt="">경기도당 <span class="ct" data-c="gyeonggi"></span></button>
+      <button class="nftab" data-src="council"><img src="logo-export/council-logo.png" alt="">경기도의회 <span class="ct" data-c="council"></span></button>
     </div>
 
     <div class="work">
@@ -491,12 +492,12 @@ c1|2026.03.10|2,051|경기도의회 의정모니터단 모집 공고`;
   let notices = adminNotices.concat(centralNotices).concat(gyeonggiNotices).concat(councilNotices).sort(function(a,b){ return dnum(b.date)-dnum(a.date); });
 
   const SRC = {
-    admin:    { label:"총관리자", cls:"" },
-    central:  { label:"민주당 중앙당", cls:"central" },
-    gyeonggi: { label:"경기도당", cls:"gyeonggi" },
-    council:  { label:"경기도의회", cls:"council" }
+    admin:    { label:"총관리자", cls:"", logo:null },
+    central:  { label:"민주당 중앙당", cls:"central", logo:"logo-export/party-logo.png" },
+    gyeonggi: { label:"경기도당", cls:"gyeonggi", logo:"logo-export/party-logo.png" },
+    council:  { label:"경기도의회", cls:"council", logo:"logo-export/council-logo.png" }
   };
-  function srcPill(n){ const m=SRC[n.src]||SRC.admin; return '<span class="author-pill '+m.cls+'">'+m.label+'</span>'+(n.imp?'<span class="imp-pill">중요</span>':'')+(n.cat?'<span class="cat-pill">'+n.cat+'</span>':''); }
+  function srcPill(n){ const m=SRC[n.src]||SRC.admin; const li=m.logo?'<img src="'+m.logo+'" alt="" style="height:13px;width:auto;vertical-align:middle;">':''; return '<span class="author-pill '+m.cls+'">'+li+m.label+'</span>'+(n.imp?'<span class="imp-pill">중요</span>':'')+(n.cat?'<span class="cat-pill">'+n.cat+'</span>':''); }
 
   const nlist = document.getElementById('nlist');
   const ndTitle = document.getElementById('ndTitle');
