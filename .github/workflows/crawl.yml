@@ -122,11 +122,15 @@ jobs:
                           title = a.get_text(strip=True)
                           href = urljoin(page_url, a.get("href", ""))
                           if title and len(title) > 2 and href not in ct_seen:
-                              cat_el = ancestor.select_one(".cate, .category, .label, span.tag")
+                              cat_el = ancestor.select_one(".cate, .category, .label, span.tag, .type, .board_type")
                               category = cat_el.get_text(strip=True) if cat_el else "일반"
+                              # 공지 타입 감지: 클래스나 텍스트에 "공지"/"notice" 포함 여부
+                              anc_class = " ".join(ancestor.get("class", []))
+                              if "notice" in anc_class.lower() or "공지" in anc_class:
+                                  category = "공지"
                               ct_seen.add(href)
                               ct_notices.append({"title": title, "date": date_str, "link": href, "category": category})
-                              print(f"  [{page}] {date_str} {title[:40]}")
+                              print(f"  [{page}] {date_str} [{category}] {title[:40]}")
                           break
                       ancestor = ancestor.parent
 
