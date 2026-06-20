@@ -20,82 +20,135 @@ jobs:
       - name: 공지사항 크롤링
         run: |
           python3 - <<'EOF'
-          import json, re
+          import json, time
           from datetime import datetime, timezone
           import requests
           from bs4 import BeautifulSoup
 
-          import time
+          now_utc = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
 
-          BASE_URL = "https://www.minjookg.kr"
-          NOTICE_URL = f"{BASE_URL}/sub01_news/notice.php"
-          PAGES = 4
+          PROXIES = [
+              "https://corsproxy.io/?{url}",
+              "https://api.codetabs.com/v1/proxy?quest={url}",
+              "https://api.allorigins.win/raw?url={url}",
+          ]
 
-          def parse_item(li, category="일반"):
+          def fetch(url, extra_headers=None):
+              headers = {"Origin": "https://corsproxy.io", "User-Agent": "Mozilla/5.0"}
+              if extra_headers:
+                  headers.update(extra_headers)
+              for tmpl in PROXIES:
+                  proxy_url = tmpl.format(url=url)
+                  try:
+                      r = requests.get(proxy_url, timeout=20, headers=headers)
+                      if r.status_code == 200 and len(r.content) > 500:
+                          print(f"  OK [{r.status_code}] via {proxy_url[:50]}")
+                          r.encoding = "utf-8"
+                          return r.text
+                      print(f"  FAIL [{r.status_code}] via {proxy_url[:50]}")
+                  except Exception as e:
+                      print(f"  ERROR {e}")
+              return None
+
+          # ── 경기도당 (minjookg.kr) ──────────────────────────────────────
+          GY_BASE = "https://www.minjookg.kr"
+          GY_URL  = f"{GY_BASE}/sub01_news/notice.php"
+          GY_PAGES = 4
+
+          def parse_gy(li, category="일반"):
               a = li.select_one("a[href]")
               if not a:
                   return None
-              for label in a.select("span.label, span.no"):
-                  label.decompose()
+              for s in a.select("span.label, span.no"):
+                  s.decompose()
               title = a.get_text(strip=True)
-              href = a.get("href", "")
+              href  = a.get("href", "")
               if not href.startswith("http"):
-                  href = BASE_URL + href if href.startswith("/") else BASE_URL + "/" + href
-              date_el = li.select_one("span.date")
-              date_str = date_el.get_text(strip=True).replace("\t", "").replace("\n", "").strip() if date_el else ""
-              date_str = date_str.replace("/", "-")
-              if title and len(title) > 2:
-                  return {"title": title, "date": date_str, "link": href, "category": category}
-              return None
+                  href = GY_BASE + (href if href.startswith("/") else "/" + href)
+              date_el  = li.select_one("span.date")
+              date_str = date_el.get_text(strip=True).replace("/", "-").strip() if date_el else ""
+              return {"title": title, "date": date_str, "link": href, "category": category} if title and len(title) > 2 else None
 
-          notices = []
-          seen_links = set()
-
-          for page in range(1, PAGES + 1):
-              page_url = f"{NOTICE_URL}?board_page={page}"
-              proxy_url = f"https://corsproxy.io/?{page_url}"
-              print(f"Fetching page {page}: {proxy_url}")
-              resp = requests.get(proxy_url, timeout=30, headers={"Origin": "https://corsproxy.io"})
-              resp.encoding = "utf-8"
-              print(f"  Status: {resp.status_code}, bytes: {len(resp.content)}")
-              soup = BeautifulSoup(resp.text, "lxml")
-
-              # 고정 공지 (1페이지에만 존재)
+          gy_notices, gy_seen = [], set()
+          for page in range(1, GY_PAGES + 1):
+              print(f"\n[경기도당] 페이지 {page}")
+              html = fetch(f"{GY_URL}?board_page={page}")
+              if not html:
+                  continue
+              soup = BeautifulSoup(html, "lxml")
               if page == 1:
                   for li in soup.select(".notice ul li"):
-                      item = parse_item(li, category="공지")
-                      if item and item["link"] not in seen_links:
-                          seen_links.add(item["link"])
-                          notices.append(item)
-
+                      item = parse_gy(li, "공지")
+                      if item and item["link"] not in gy_seen:
+                          gy_seen.add(item["link"]); gy_notices.append(item)
               for li in soup.select(".list_A ul li"):
-                  item = parse_item(li, category="일반")
-                  if item and item["link"] not in seen_links:
-                      seen_links.add(item["link"])
-                      notices.append(item)
-
+                  item = parse_gy(li, "일반")
+                  if item and item["link"] not in gy_seen:
+                      gy_seen.add(item["link"]); gy_notices.append(item)
               time.sleep(0.5)
 
-          print(f"\n최종 수집: {len(notices)}건")
-          for n in notices[:5]:
-              print(n)
-
-          now_utc = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
-          result = {
-              "updated": now_utc,
-              "items": notices
-          }
-
+          print(f"\n경기도당 수집: {len(gy_notices)}건")
           with open("notices_data.json", "w", encoding="utf-8") as f:
-              json.dump(result, f, ensure_ascii=False, indent=2)
+              json.dump({"updated": now_utc, "items": gy_notices}, f, ensure_ascii=False, indent=2)
 
-          print(f"저장 완료: {len(notices)}건")
+          # ── 중앙당 (theminjoo.kr) ───────────────────────────────────────
+          CT_BASE  = "https://theminjoo.kr"
+          CT_URL   = f"{CT_BASE}/main/sub/news/list.php?brd=1"
+          CT_PAGES = 4
+
+          def parse_ct(item, base):
+              # 제목 링크
+              a = item.select_one("a[href]")
+              if not a:
+                  return None
+              title = a.get_text(strip=True)
+              href  = a.get("href", "")
+              if not href.startswith("http"):
+                  href = base + (href if href.startswith("/") else "/" + href)
+              # 날짜
+              date_el  = item.select_one(".date, td.date, span.date, .info .date")
+              date_str = date_el.get_text(strip=True).replace("/", "-").strip() if date_el else ""
+              # 카테고리
+              cat_el   = item.select_one(".cate, .category, td.cate, span.cate")
+              category = cat_el.get_text(strip=True) if cat_el else "일반"
+              return {"title": title, "date": date_str, "link": href, "category": category} if title and len(title) > 2 else None
+
+          ct_notices, ct_seen = [], set()
+          for page in range(1, CT_PAGES + 1):
+              print(f"\n[중앙당] 페이지 {page}")
+              page_url = f"{CT_URL}&page={page}" if page > 1 else CT_URL
+              html = fetch(page_url, extra_headers={"Referer": CT_BASE + "/"})
+              if not html:
+                  print("  HTML 없음 — 스킵")
+                  continue
+              soup = BeautifulSoup(html, "lxml")
+              # 구조 탐색 — 다양한 선택자 시도
+              rows = (soup.select("table tbody tr") or
+                      soup.select("ul.list li") or
+                      soup.select(".board-list li") or
+                      soup.select(".news-list li") or
+                      soup.select("li[class]"))
+              print(f"  rows: {len(rows)}")
+              for row in rows:
+                  item = parse_ct(row, CT_BASE)
+                  if item and item["link"] not in ct_seen:
+                      ct_seen.add(item["link"]); ct_notices.append(item)
+              # 디버그: 첫 페이지 HTML 일부 출력
+              if page == 1 and not ct_notices:
+                  print("  [DEBUG] HTML 앞부분:")
+                  print(html[:2000])
+              time.sleep(0.5)
+
+          print(f"\n중앙당 수집: {len(ct_notices)}건")
+          with open("central_data.json", "w", encoding="utf-8") as f:
+              json.dump({"updated": now_utc, "items": ct_notices}, f, ensure_ascii=False, indent=2)
+
           EOF
 
       - name: 변경사항 커밋
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add notices_data.json
-          git diff --cached --quiet || git commit -m "chore: 공지사항 데이터 업데이트 $(date +'%Y-%m-%d')"
+          git add notices_data.json central_data.json
+          git diff --cached --quiet || git commit -m "chore: 공지사항 데이터 업데이트 $(date +'%Y-%m-%d %H:%M')"
           git push
