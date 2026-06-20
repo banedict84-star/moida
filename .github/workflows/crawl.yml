@@ -128,7 +128,6 @@ jobs:
                           if title and len(title) > 2 and href not in ct_seen:
                               cat_el = ancestor.select_one(".cate, .category, .label, span.tag, .type, .board_type")
                               category = cat_el.get_text(strip=True) if cat_el else "일반"
-                              # 공지 타입 감지: 클래스나 텍스트에 "공지"/"notice" 포함 여부
                               anc_class = " ".join(ancestor.get("class", []))
                               if "notice" in anc_class.lower() or "공지" in anc_class:
                                   category = "공지"
@@ -180,61 +179,41 @@ jobs:
                   count += 1
               return count
 
-          # 전략 1: requests + CORS 프록시 (pageIndex 파라미터)
-          gc_proxy_ok = False
-          for pg in range(1, GC_PAGES + 1):
-              page_url = f"{GC_URL}?pageIndex={pg}"
-              print(f"\n[경기도의회] 프록시 페이지 {pg}")
-              html = fetch(page_url, extra_headers={"Referer": GC_BASE + "/"})
-              if html:
+          # Playwright로만 가능 (직접 요청/프록시 모두 403)
+          with sync_playwright() as pw:
+              browser = pw.chromium.launch(headless=True)
+              ctx = browser.new_context(
+                  user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120.0.0.0 Safari/537.36",
+                  locale="ko-KR",
+                  viewport={"width": 1280, "height": 800},
+              )
+              page_pw = ctx.new_page()
+              print(f"\n[경기도의회] 페이지 1 로딩")
+              try:
+                  page_pw.goto(GC_URL, wait_until="networkidle", timeout=30000)
+                  html = page_pw.content()
                   cnt = parse_gc_html(html, GC_URL)
                   print(f"  → {cnt}건 추가")
-                  if cnt > 0:
-                      gc_proxy_ok = True
-              time.sleep(0.5)
-
-          # 전략 2: Playwright (프록시 실패 또는 0건 시 폴백)
-          if not gc_proxy_ok or len(gc_notices) < 5:
-              print(f"\n[경기도의회] Playwright 폴백 (현재 {len(gc_notices)}건)")
-              gc_notices_bak = gc_notices[:]
-              gc_seen_bak = gc_seen.copy()
-              gc_notices.clear(); gc_seen.clear()
-              with sync_playwright() as pw:
-                  browser = pw.chromium.launch(headless=True)
-                  page_pw = browser.new_page()
-                  page_pw.set_extra_http_headers({"Accept-Language": "ko-KR,ko;q=0.9",
-                                                   "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36"})
-                  print(f"\n[경기도의회 PW] 페이지 1 로딩")
-                  try:
-                      page_pw.goto(GC_URL, wait_until="domcontentloaded", timeout=25000)
-                      page_pw.wait_for_timeout(3000)
-                      html = page_pw.content()
-                      cnt = parse_gc_html(html, GC_URL)
-                      print(f"  → {cnt}건 추가")
-                      for pg in range(2, GC_PAGES + 1):
-                          print(f"\n[경기도의회 PW] 페이지 {pg}")
-                          try:
-                              # 페이지 버튼 클릭 시도 (goPage 보다 안정적)
-                              btn = page_pw.query_selector(f"a[onclick*='goPage({pg})'], button[onclick*='goPage({pg})'], .paging a:nth-child({pg})")
+                  for pg in range(2, GC_PAGES + 1):
+                      print(f"\n[경기도의회] 페이지 {pg}")
+                      try:
+                          # goPage()는 form submit → 실제 네비게이션 발생
+                          # expect_navigation으로 완료까지 대기
+                          with page_pw.expect_navigation(wait_until="networkidle", timeout=20000):
+                              btn = page_pw.query_selector(f"a[onclick*='goPage({pg})']") 
                               if btn:
                                   btn.click()
                               else:
                                   page_pw.evaluate(f"goPage({pg})")
-                              page_pw.wait_for_timeout(4000)
-                              html = page_pw.content()
-                              cnt = parse_gc_html(html, GC_URL)
-                              print(f"  → {cnt}건 추가 (누계 {len(gc_notices)}건)")
-                          except Exception as e:
-                              print(f"  페이지{pg} ERROR: {e}")
-                          time.sleep(1)
-                  except Exception as e:
-                      print(f"  PW ERROR: {e}")
-                  browser.close()
-              # Playwright도 실패하면 프록시 결과 복원
-              if len(gc_notices) < len(gc_notices_bak):
-                  gc_notices[:] = gc_notices_bak
-                  gc_seen.update(gc_seen_bak)
-                  print(f"  PW 결과 부족 — 프록시 결과({len(gc_notices)}건) 사용")
+                          html = page_pw.content()
+                          cnt = parse_gc_html(html, GC_URL)
+                          print(f"  → {cnt}건 추가 (누계 {len(gc_notices)}건)")
+                      except Exception as e:
+                          print(f"  페이지{pg} ERROR: {e}")
+                      time.sleep(0.5)
+              except Exception as e:
+                  print(f"  ERROR: {e}")
+              browser.close()
 
           print(f"\n경기도의회 수집: {len(gc_notices)}건")
           # 0건이면 기존 파일 유지
