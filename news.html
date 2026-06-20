@@ -354,6 +354,15 @@
       .src-badge.src-daum{ background:#326cf9; color:#fff; }
       .src-badge.src-google{ background:#fff; border:1px solid var(--line); }
       .src-badge.src-google svg{ display:block; }
+      /* 검색 중 로딩 표시 */
+      .news-loading{ display:flex; align-items:center; gap:11px; padding:18px 4px 14px; color:var(--ink-3); font-size:14px; font-weight:600; }
+      .spinner{ width:20px; height:20px; border:2.5px solid var(--line); border-top-color:var(--primary); border-radius:50%; animation:nspin .7s linear infinite; flex-shrink:0; }
+      @keyframes nspin{ to{ transform:rotate(360deg); } }
+      .skel-card{ background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:18px 20px; box-shadow:var(--shadow-sm); margin-bottom:11px; }
+      .skel-line{ height:13px; border-radius:6px; background:linear-gradient(90deg,#eef1f6 25%,#f6f8fb 37%,#eef1f6 63%); background-size:400% 100%; animation:nshimmer 1.3s ease infinite; }
+      @keyframes nshimmer{ 0%{ background-position:100% 0; } 100%{ background-position:0 0; } }
+      .news-go.loading{ position:relative; color:transparent !important; pointer-events:none; }
+      .news-go.loading::after{ content:""; position:absolute; left:50%; top:50%; width:15px; height:15px; margin:-7.5px 0 0 -7.5px; border:2px solid rgba(255,255,255,.45); border-top-color:#fff; border-radius:50%; animation:nspin .7s linear infinite; }
     </style>
 
     <div class="news-search">
@@ -520,18 +529,36 @@
     if(src==='google') return '<span class="src-badge src-google" title="구글 뉴스"><svg viewBox="0 0 48 48" width="12" height="12"><path fill="#FFC107" d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 12.955 4 4 12.955 4 24s8.955 20 20 20 20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z"/><path fill="#FF3D00" d="M6.306 14.691l6.571 4.819C14.655 15.108 18.961 12 24 12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 16.318 4 9.656 8.337 6.306 14.691z"/><path fill="#4CAF50" d="M24 44c5.166 0 9.86-1.977 13.409-5.192l-6.19-5.238C29.211 35.091 26.715 36 24 36c-5.202 0-9.619-3.317-11.283-7.946l-6.522 5.025C9.505 39.556 16.227 44 24 44z"/><path fill="#1976D2" d="M43.611 20.083H42V20H24v8h11.303c-.792 2.237-2.231 4.166-4.087 5.571l6.19 5.238C36.971 39.205 44 34 44 24c0-1.341-.138-2.65-.389-3.917z"/></svg></span>';
     return '';
   }
+  // 검색 중 로딩 화면(스피너 + 스켈레톤 카드)
+  function loadingHTML(ks){
+    var skel='';
+    for(var i=0;i<4;i++){
+      skel+='<div class="skel-card">'+
+        '<div class="skel-line" style="width:'+(82-i*6)+'%;height:15px;"></div>'+
+        '<div class="skel-line" style="width:38%;margin-top:13px;"></div>'+
+        '<div class="skel-line" style="width:'+(70-i*5)+'%;margin-top:11px;height:11px;"></div>'+
+      '</div>';
+    }
+    return '<div class="news-loading"><span class="spinner"></span>'+esc(ks.join(' · '))+' 키워드로 구글·네이버·다음에서 뉴스를 수집하고 있습니다…</div>'+skel;
+  }
   function runSearch(){
     var ks=keywords(); if(!ks.length){ ks=['장윤정','경기도의원']; input.value='장윤정 경기도의원'; }
-    var btn=document.getElementById('newsGo'); btn.disabled=true; var old=btn.textContent; btn.textContent='수집 중…';
-    nlist.innerHTML='<div style="padding:40px 4px;color:var(--ink-4);font-size:14px;">'+ks.join(' · ')+' 키워드로 구글·네이버·다음에서 뉴스를 수집하고 있습니다…</div>';
-    ndTitle.textContent='수집 중…'; ndMeta.innerHTML='<span>잠시만 기다려 주세요.</span>'; ndBody.innerHTML='';
+    var btn=document.getElementById('newsGo'); btn.disabled=true; btn.classList.add('loading');
+    nlist.innerHTML=loadingHTML(ks);
+    ndTitle.textContent='수집 중…'; ndMeta.innerHTML='<span class="news-loading" style="padding:0"><span class="spinner"></span>잠시만 기다려 주세요…</span>'; ndBody.innerHTML='';
+    var started=Date.now();
+    function done(fn){ var wait=Math.max(0, 650-(Date.now()-started)); setTimeout(fn, wait); } // 최소 로딩 시간으로 "검색 중" 느낌 유지
     crawlNews(ks).then(function(rows){
-      btn.disabled=false; btn.textContent=old;
-      if(Array.isArray(rows)&&rows.length){ NEWS.length=0; rows.sort(function(a,b){ return (new Date(b.date||0))-(new Date(a.date||0)); }).slice(0,20).forEach(function(r,i){ NEWS.push(Object.assign({id:i+1},r)); }); curId=null; liveMode=true; renderList(); }
-      else { renderList(); }
+      done(function(){
+        btn.disabled=false; btn.classList.remove('loading');
+        if(Array.isArray(rows)&&rows.length){ NEWS.length=0; rows.sort(function(a,b){ return (new Date(b.date||0))-(new Date(a.date||0)); }).slice(0,20).forEach(function(r,i){ NEWS.push(Object.assign({id:i+1},r)); }); curId=null; liveMode=true; renderList(); }
+        else { renderList(); }
+      });
     }).catch(function(){
-      btn.disabled=false; btn.textContent=old;
-      nlist.innerHTML='<div style="padding:32px 4px;color:var(--ink-4);font-size:14px;line-height:1.6;">수집에 실패했습니다. 네트워크 차단(프록시) 때문일 수 있어요.<br>서버 수집기 연결 시 안정적으로 동작합니다.</div>';
+      done(function(){
+        btn.disabled=false; btn.classList.remove('loading');
+        nlist.innerHTML='<div style="padding:32px 4px;color:var(--ink-4);font-size:14px;line-height:1.6;">수집에 실패했습니다. 네트워크 차단(프록시) 때문일 수 있어요.<br>서버 수집기 연결 시 안정적으로 동작합니다.</div>';
+      });
     });
   }
   document.getElementById('newsGo').addEventListener('click', runSearch);
