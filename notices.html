@@ -583,7 +583,7 @@ c1|2026.03.10|2,051|경기도의회 의정모니터단 모집 공고`;
     if(ctData && ctData.items && ctData.items.length){
       centralNotices.length = 0;
       ctData.items.forEach(function(item, i){
-        var m = item.link ? item.link.match(/[?&](?:post|sno|no)=(\d+)/) : null;
+        var m = item.link ? (item.link.match(/[?&]post=(\d+)/) || item.link.match(/[?&]no=(\d+)/)) : null;
         var id = m ? +m[1] : (3000000 + i);
         centralNotices.push({
           id: id, src: "central",

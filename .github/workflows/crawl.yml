@@ -92,31 +92,16 @@ jobs:
               json.dump({"updated": now_utc, "items": gy_notices}, f, ensure_ascii=False, indent=2)
 
           # ── 중앙당 (theminjoo.kr) ───────────────────────────────────────
+          from urllib.parse import urljoin
+
           CT_BASE  = "https://theminjoo.kr"
           CT_URL   = f"{CT_BASE}/main/sub/news/list.php?brd=1"
           CT_PAGES = 4
 
-          def parse_ct(item, base):
-              # 제목 링크
-              a = item.select_one("a[href]")
-              if not a:
-                  return None
-              title = a.get_text(strip=True)
-              href  = a.get("href", "")
-              if not href.startswith("http"):
-                  href = base + (href if href.startswith("/") else "/" + href)
-              # 날짜
-              date_el  = item.select_one(".date, td.date, span.date, .info .date")
-              date_str = date_el.get_text(strip=True).replace("/", "-").strip() if date_el else ""
-              # 카테고리
-              cat_el   = item.select_one(".cate, .category, td.cate, span.cate")
-              category = cat_el.get_text(strip=True) if cat_el else "일반"
-              return {"title": title, "date": date_str, "link": href, "category": category} if title and len(title) > 2 else None
-
           ct_notices, ct_seen = [], set()
           for page in range(1, CT_PAGES + 1):
               print(f"\n[중앙당] 페이지 {page}")
-              page_url = f"{CT_URL}&page={page}" if page > 1 else CT_URL
+              page_url = f"{CT_URL}&page={page}"
               html = fetch(page_url, extra_headers={"Referer": CT_BASE + "/"})
               if not html:
                   print("  HTML 없음 — 스킵")
@@ -128,7 +113,6 @@ jobs:
                   date_str = time_el.get_text(strip=True).replace("/", "-").strip()
                   if not date_str:
                       continue
-                  # 가장 가까운 조상 중 <a> 태그 포함하는 요소 찾기
                   ancestor = time_el.parent
                   for _ in range(6):
                       if ancestor is None:
@@ -136,15 +120,13 @@ jobs:
                       a = ancestor.find("a", href=True)
                       if a:
                           title = a.get_text(strip=True)
-                          href = a.get("href", "")
-                          if not href.startswith("http"):
-                              href = CT_BASE + (href if href.startswith("/") else "/" + href)
+                          href = urljoin(page_url, a.get("href", ""))
                           if title and len(title) > 2 and href not in ct_seen:
-                              # 카테고리 추출 시도
                               cat_el = ancestor.select_one(".cate, .category, .label, span.tag")
                               category = cat_el.get_text(strip=True) if cat_el else "일반"
                               ct_seen.add(href)
                               ct_notices.append({"title": title, "date": date_str, "link": href, "category": category})
+                              print(f"  [{page}] {date_str} {title[:40]}")
                           break
                       ancestor = ancestor.parent
 
