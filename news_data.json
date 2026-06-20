@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-20 05:34 UTC",
+  "updated": "2026-06-20 05:36 UTC",
   "items": [
     {
       "source": "google",
@@ -227,6 +227,14 @@
     },
     {
       "source": "google",
+      "press": "광교신문",
+      "date": "2026.06.14",
+      "title": "안산시 상록구, 사회복지직 공무원‘고민타파 힐링데이’ 운영",
+      "snippet": "안산시 상록구, 사회복지직 공무원‘고민타파 힐링데이’ 운영 광교신문",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1MRlpWWnowRklubWJDVC1lTkJRVk1TemgzVk5IcDFrbG9UZkMtQzdPRGRXRlFtcjRNYkdGYmtYYzJRUXVpRmNvZEZrQUJieFpEZEFsa3JOMGtTdFAyaERnOThnY1ptOHQ10gFsQVVfeXFMTmFTSE56NlJfS0V1NWxITFhRc0RoTzlaVzlqZWVrSTRJR3FjYm9vQ3FrN0wtaGVtRURrbVREZGkyeks1TWk2WUU4cUpXUVZnU242aXUtc1RJX3FzaU4zRGQ2c1FGVGFvZENqUi00?oc=5"
+    },
+    {
+      "source": "google",
       "press": "선데이뉴스신문",
       "date": "2026.06.13",
       "title": "장윤정 경기도의원 “교육예산 묶어두기 관행 재검토해야”…경기도교육청 예산유보 운영 도마 위",
@@ -336,14 +344,6 @@
       "title": "천영미 안산시장 후보, “상록구 청년센터로 균형 있는 청년 정책 실현”",
       "snippet": "천영미 안산시장 후보, “상록구 청년센터로 균형 있는 청년 정책 실현” v.daum.net",
       "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE5yZ1p5dHBqT21WLUtkNkQ2ckNfN3g2cFhQNWQ4NVpad0JlS2dVZ19HTlZXaDlycDZIclZ1cGQ1OWVFSEJfREJucnl4Rkp2T2M?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "v.daum.net",
-      "date": "2026.05.25",
-      "title": "[6·3 지방선거] 천영미 민주당 안산시장 후보 “상록구 청년센터 조성할 것”",
-      "snippet": "[6·3 지방선거] 천영미 민주당 안산시장 후보 “상록구 청년센터 조성할 것” v.daum.net",
-      "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTFBtUTBNOFpLQXVuTHZuQ3p6RzhrWG55T3c5bUtodU4yb3pBd0VpY1ZDRnJRaVRzd0NZRDhNaS1ab05YcXZLWUYyUm11RDhCdGc?oc=5"
     },
     {
       "source": "google",
@@ -459,11 +459,11 @@
     },
     {
       "source": "google",
-      "press": "동아일보",
-      "date": "2026.04.25",
+      "press": "뉴스1",
+      "date": "2026.04.24",
       "title": "안산 상록구 금속 구조물 제작 공장서 불…35분 만에 완진",
-      "snippet": "안산 상록구 금속 구조물 제작 공장서 불…35분 만에 완진 동아일보",
-      "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE9aNk9telFyd253d0xfZ0IxWTgwa3VvaDc3b3ZzZEtCZnZwOVQxbTN3V201dWZNZllWTWVNT2RscWhFM3dMcWdtRm1CZE5Ca3ZmWHBGRGQxV2JfRVQ2UHZtTGVkMS1vSWJaLXdMSUp1TXNhem9PN2fSAWZBVV95cUxNekI3eFlqQTY1bURXeWpzdy1veXhkXzBVN0lIUTQxNGtsbTNZZTFYZzFXNFhDTzZFYnFkS25VSU1fRnd6MUxHTFlRRFhpSEFDY29lRjdRdUdCS0h4SlJxMUhGQk5hQkE?oc=5"
+      "snippet": "안산 상록구 금속 구조물 제작 공장서 불…35분 만에 완진 뉴스1",
+      "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5fbUJrVW92ZEZDLTZ0RjJBSkJwWF93amgyWHhlRDNkc0tIU3o0TFhPX21Pa0NhT1JFbzNCejJyckVJNGM5SmdRZWs0bTEzbzMxSGZsckRB?oc=5"
     },
     {
       "source": "google",
@@ -515,14 +515,6 @@
     },
     {
       "source": "google",
-      "press": "화성저널",
-      "date": "2026.04.01",
-      "title": "장윤정 의원, 기계설비유지관리자 처우개선 논의",
-      "snippet": "장윤정 의원, 기계설비유지관리자 처우개선 논의 화성저널",
-      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE9HMDgyMldIY0JXYXpFM25ZOEp6NDB2N1JpbGJwTm91Y25QdFNOaDRRVDdrRjluTDdJejVUMkk5cURMN2tjSFhFME5tMEtvRm5oeGpDRm5BOEgxSm9HLWVUNUVDYzhCQQ?oc=5"
-    },
-    {
-      "source": "google",
       "press": "경기인저널",
       "date": "2026.03.23",
       "title": "장윤정 경기도의원, 학교 급식실 환기설비 개선 TF 가동",
@@ -536,14 +528,6 @@
       "title": "장윤정 도의원, 학교 급식실 소음·환기 개선 나선다",
       "snippet": "장윤정 도의원, 학교 급식실 소음·환기 개선 나선다 안산뉴스",
       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE8wMlZVRFNmNlNFR0E3T3BIVElKOVp2RHNDN1k1Mml4Z2dVX0xTT0RvUnJPc3gtMWpMUUhxaHc1Uk94eHpmeU9HamZQUmQtd1VJV1Fkdm5iOWFwbHhaYV95aE9Ra0pscDk3Q0ZISA?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "KBS 뉴스",
-      "date": "2026.03.17",
-      "title": "안산시, 상록구 90블록 개발계획 전면 개편…오피스텔 대신 아파트 공급",
-      "snippet": "안산시, 상록구 90블록 개발계획 전면 개편…오피스텔 대신 아파트 공급 KBS 뉴스",
-      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBrQVZXN0hNQ1E2RXgya3FiQmN3YVV6NFFMSUVlWklBT1h2ZG5xRnZCX1RzN1cwWjh2ZmxDekViejlHSDExdTN5RkI5V1oyYUo3N1VaeFZibktHQ2M?oc=5"
     },
     {
       "source": "google",
