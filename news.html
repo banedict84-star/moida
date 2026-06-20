@@ -411,6 +411,7 @@
   const ndBody = document.getElementById('ndBody');
   let curId = null;
   let liveMode = false; // true = 크롤링 결과(전체 표시), false = 시드 목록(키워드 필터)
+  let POOL = []; // 서버 크롤러(news_data.json)가 모아둔 구글·네이버·다음 기사 풀
 
   function keywords(){ return (input.value||'').trim().toLowerCase().split(/\s+/).filter(Boolean); }
   function dnum(d){ if(!d) return 0; return +(d.replace(/\./g,'').replace(/[^0-9]/g,'')); }
@@ -548,18 +549,24 @@
     ndTitle.textContent='수집 중…'; ndMeta.innerHTML='<span class="news-loading" style="padding:0"><span class="spinner"></span>잠시만 기다려 주세요…</span>'; ndBody.innerHTML='';
     var started=Date.now();
     function done(fn){ var wait=Math.max(0, 650-(Date.now()-started)); setTimeout(fn, wait); } // 최소 로딩 시간으로 "검색 중" 느낌 유지
-    crawlNews(ks).then(function(rows){
+    // 서버 크롤링 풀(네이버·다음 포함)에서 키워드 매칭
+    function poolMatch(){
+      return POOL.filter(function(n){ var hay=(n.title+' '+n.press+' '+n.snippet).toLowerCase(); return ks.every(function(k){ return hay.indexOf(k.toLowerCase())>=0; }); });
+    }
+    function finish(liveRows){
       done(function(){
         btn.disabled=false; btn.classList.remove('loading');
-        if(Array.isArray(rows)&&rows.length){ NEWS.length=0; rows.sort(function(a,b){ return (new Date(b.date||0))-(new Date(a.date||0)); }).slice(0,20).forEach(function(r,i){ NEWS.push(Object.assign({id:i+1},r)); }); curId=null; liveMode=true; renderList(); }
-        else { renderList(); }
+        var merged=[], seen={};
+        [].concat(Array.isArray(liveRows)?liveRows:[], poolMatch()).forEach(function(n){
+          var key=(n.title||'').replace(/[^0-9a-z가-힣]/gi,'').slice(0,40); if(!key||seen[key]) return; seen[key]=1; merged.push(n);
+        });
+        merged.sort(function(a,b){ return dnum(b.date)-dnum(a.date); });
+        if(merged.length){ NEWS.length=0; merged.slice(0,30).forEach(function(r,i){ NEWS.push(Object.assign({id:i+1},r)); }); curId=null; liveMode=true; renderList(); }
+        else { liveMode=false; renderList(); }
       });
-    }).catch(function(){
-      done(function(){
-        btn.disabled=false; btn.classList.remove('loading');
-        nlist.innerHTML='<div style="padding:32px 4px;color:var(--ink-4);font-size:14px;line-height:1.6;">수집에 실패했습니다. 네트워크 차단(프록시) 때문일 수 있어요.<br>서버 수집기 연결 시 안정적으로 동작합니다.</div>';
-      });
-    });
+    }
+    // 구글은 브라우저에서 실시간 수집, 네이버·다음은 서버 크롤링 풀에서 가져와 합친다.
+    crawlNews(ks).then(finish).catch(function(){ finish([]); });
   }
   document.getElementById('newsGo').addEventListener('click', runSearch);
   input.addEventListener('input', function(){ if(!liveMode) renderList(); });
@@ -620,6 +627,16 @@
   kovl.addEventListener('click', function(e){ if(e.target===kovl) closeKw(); });
   renderChips();
   renderList();
+
+  // 서버 크롤러가 생성한 news_data.json(구글·네이버·다음)을 풀로 적재
+  fetch('news_data.json?t='+Date.now()).then(function(r){ return r.ok?r.json():null; }).then(function(d){
+    if(d && Array.isArray(d.items) && d.items.length){
+      POOL = d.items.slice();
+      // 초기 화면도 크롤링 풀(3개 출처)로 교체
+      NEWS.length=0; POOL.slice().sort(function(a,b){ return dnum(b.date)-dnum(a.date); }).forEach(function(r,i){ NEWS.push(Object.assign({id:i+1}, r)); });
+      curId=null; renderList();
+    }
+  }).catch(function(){});
 
     // sidebar collapse
   (function(){
