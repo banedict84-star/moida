@@ -20,7 +20,7 @@ jobs:
       - name: 공지사항 크롤링
         run: |
           python3 - <<'EOF'
-          import json, re, time
+          import json, re
           from datetime import datetime, timezone
           import requests
           from bs4 import BeautifulSoup
@@ -28,109 +28,93 @@ jobs:
           BASE_URL = "https://www.minjookg.kr"
           NOTICE_URL = f"{BASE_URL}/sub01_news/notice.php"
 
-          HEADERS = {
-              "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
-              "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
-              "Accept-Language": "ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7",
-              "Accept-Encoding": "gzip, deflate, br",
-              "Connection": "keep-alive",
-              "Upgrade-Insecure-Requests": "1",
-              "Sec-Fetch-Dest": "document",
-              "Sec-Fetch-Mode": "navigate",
-              "Sec-Fetch-Site": "same-origin",
-              "Sec-Fetch-User": "?1",
-              "Cache-Control": "max-age=0",
-              "Referer": "https://www.minjookg.kr/",
-          }
+          # corsproxy.io worked in previous test - use it
+          proxy_url = f"https://corsproxy.io/?{NOTICE_URL}"
+          print(f"Fetching via corsproxy.io: {proxy_url}")
 
-          session = requests.Session()
-          session.headers.update(HEADERS)
+          resp = requests.get(proxy_url, timeout=30, headers={"Origin": "https://corsproxy.io"})
+          print(f"Status: {resp.status_code}, 길이: {len(resp.text)}")
+
+          if resp.status_code != 200 or len(resp.text) < 2000:
+              print("corsproxy.io 실패, 직접 요청 시도...")
+              resp = requests.get(NOTICE_URL, timeout=15, headers={
+                  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+                  "Accept-Language": "ko-KR,ko;q=0.9",
+              })
+              print(f"직접: Status={resp.status_code}, 길이={len(resp.text)}")
+
+          html = resp.text
+          print("=== HTML 앞 500자 ===")
+          print(html[:500])
+
+          soup = BeautifulSoup(html, "lxml")
+
+          # Debug: print all classes found
+          print("\n=== 발견된 클래스들 ===")
+          all_classes = set()
+          for tag in soup.find_all(class_=True):
+              for c in tag.get("class", []):
+                  all_classes.add(c)
+          print(sorted(all_classes)[:50])
+
+          # Debug: print all links
+          print("\n=== 링크들 ===")
+          for a in soup.find_all("a", href=True)[:30]:
+              href = a.get("href", "")
+              txt = a.get_text(strip=True)
+              if txt and len(txt) > 3:
+                  print(f"  {href} -> {txt[:60]}")
 
           notices = []
 
-          # Strategy 1: Try requests directly (in case it's not IP-blocked for plain HTTP)
-          print("=== 전략 1: requests 직접 요청 ===")
-          try:
-              resp = session.get(NOTICE_URL, timeout=15)
-              print(f"Status: {resp.status_code}, 길이: {len(resp.text)}")
-              print(resp.text[:500])
-              if resp.status_code == 200 and len(resp.text) > 2000:
-                  soup = BeautifulSoup(resp.text, "lxml")
-                  # Try multiple selectors
-                  for sel in [".board-item", ".brd-list tr", "table tbody tr", "li.item", ".post-item", "article"]:
-                      items = soup.select(sel)
-                      if items:
-                          print(f"선택자 '{sel}': {len(items)}개")
-          except Exception as e:
-              print(f"전략 1 실패: {e}")
+          # Try various selectors to find notice items
+          selectors = [
+              ".board-item",
+              ".brd-list tr",
+              "table.board tbody tr",
+              "table tbody tr",
+              ".notice-list li",
+              ".post-list li",
+              "ul li[class]",
+              ".list-wrap li",
+              "[class*='board'] li",
+              "[class*='notice'] li",
+          ]
 
-          # Strategy 2: Try via allorigins.win (public CORS proxy)
-          print("\n=== 전략 2: allorigins.win 프록시 ===")
-          try:
-              proxy_url = f"https://api.allorigins.win/get?url={NOTICE_URL}"
-              resp = requests.get(proxy_url, timeout=20)
-              print(f"Status: {resp.status_code}")
-              if resp.status_code == 200:
-                  data = resp.json()
-                  html = data.get("contents", "")
-                  print(f"HTML 길이: {len(html)}")
-                  print(html[:500])
-                  if len(html) > 2000:
-                      soup = BeautifulSoup(html, "lxml")
-                      items = soup.select(".board-item") or soup.select("table tbody tr") or soup.select("li[class]")
-                      print(f"아이템 수: {len(items)}")
-                      if items:
-                          for item in items:
-                              a = item.find("a", href=True)
-                              if a:
-                                  title = a.get_text(strip=True)
-                                  href = a["href"]
-                                  if not href.startswith("http"):
-                                      href = BASE_URL + "/" + href.lstrip("/")
-                                  date_el = item.select_one(".date, .brd-date, td.date, [class*='date']")
-                                  date_str = date_el.get_text(strip=True) if date_el else ""
-                                  cat_el = item.select_one(".category, .cate, [class*='cate']")
-                                  cat = cat_el.get_text(strip=True) if cat_el else "일반"
-                                  if title and len(title) > 2:
-                                      notices.append({"title": title, "date": date_str, "link": href, "category": cat})
-          except Exception as e:
-              print(f"전략 2 실패: {e}")
+          found_sel = None
+          for sel in selectors:
+              items = soup.select(sel)
+              if items and len(items) > 1:
+                  print(f"\n선택자 '{sel}': {len(items)}개 발견")
+                  print(f"첫 아이템: {str(items[0])[:200]}")
+                  found_sel = sel
+                  break
 
-          # Strategy 3: Try corsproxy.io
-          print("\n=== 전략 3: corsproxy.io ===")
-          if not notices:
-              try:
-                  proxy_url = f"https://corsproxy.io/?{NOTICE_URL}"
-                  resp = requests.get(proxy_url, timeout=20, headers={"Origin": "https://corsproxy.io"})
-                  print(f"Status: {resp.status_code}, 길이: {len(resp.text)}")
-                  print(resp.text[:500])
-              except Exception as e:
-                  print(f"전략 3 실패: {e}")
-
-          # Strategy 4: Try htmlpreview or similar
-          print("\n=== 전략 4: thingproxy ===")
-          if not notices:
-              try:
-                  proxy_url = f"https://thingproxy.freeboard.io/fetch/{NOTICE_URL}"
-                  resp = requests.get(proxy_url, timeout=20)
-                  print(f"Status: {resp.status_code}, 길이: {len(resp.text)}")
-                  print(resp.text[:500])
-              except Exception as e:
-                  print(f"전략 4 실패: {e}")
-
-          # Strategy 5: Check for RSS feed
-          print("\n=== 전략 5: RSS 피드 확인 ===")
-          if not notices:
-              for rss_path in ["/rss.php", "/rss", "/feed", "/sub01_news/rss.php", "/sub01_news/notice.php?type=rss"]:
-                  try:
-                      resp = session.get(f"{BASE_URL}{rss_path}", timeout=10)
-                      print(f"{rss_path}: {resp.status_code}, 길이: {len(resp.text)}")
-                      if resp.status_code == 200 and len(resp.text) > 200:
-                          print(resp.text[:300])
-                  except Exception as e:
-                      print(f"{rss_path} 실패: {e}")
+          if found_sel:
+              items = soup.select(found_sel)
+              for item in items:
+                  a = item.find("a", href=True)
+                  if not a:
+                      continue
+                  title = a.get_text(strip=True)
+                  href = a["href"]
+                  if not href.startswith("http"):
+                      href = BASE_URL + "/" + href.lstrip("/")
+                  # Find date
+                  date_el = item.select_one(".date, .brd-date, td:last-child, [class*='date']")
+                  date_str = date_el.get_text(strip=True) if date_el else ""
+                  # Find category
+                  cat_el = item.select_one(".category, .cate, [class*='cate'], [class*='category']")
+                  cat = cat_el.get_text(strip=True) if cat_el else "일반"
+                  if title and len(title) > 2:
+                      notices.append({"title": title, "date": date_str, "link": href, "category": cat})
+          else:
+              print("\n알려진 선택자로 찾지 못함. 전체 HTML 구조 출력:")
+              print(html[500:3000])
 
           print(f"\n최종 수집: {len(notices)}건")
+          for n in notices[:5]:
+              print(n)
 
           now_utc = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
           result = {
