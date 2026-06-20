@@ -219,6 +219,7 @@
   .author-pill.council{ background:#b45309; }
   .cat-pill{ display:inline-flex; align-items:center; padding:2px 8px; border-radius:20px; background:var(--primary-soft); color:var(--primary); font-size:11px; font-weight:700; }
   .imp-pill{ display:inline-flex; align-items:center; padding:2px 8px; border-radius:20px; background:#fdecec; color:#dc2626; font-size:11px; font-weight:700; }
+  .recent-pill{ display:inline-flex; align-items:center; padding:2px 8px; border-radius:20px; background:#ecfdf5; color:#059669; font-size:11px; font-weight:700; }
   .nviews{ margin-left:auto; color:var(--ink-4); font-size:12px; }
   .nfilter{ display:flex; gap:8px; margin:18px 28px 6px; }
   .ncol{ min-width:0; }
@@ -497,7 +498,8 @@ c1|2026.03.10|2,051|경기도의회 의정모니터단 모집 공고`;
     gyeonggi: { label:"경기도당", cls:"gyeonggi", logo:"logo-export/party-logo.png" },
     council:  { label:"경기도의회", cls:"council", logo:"logo-export/council-logo.png" }
   };
-  function srcPill(n){ const m=SRC[n.src]||SRC.admin; const li=m.logo?'<img src="'+m.logo+'" alt="" style="height:13px;width:auto;vertical-align:middle;">':''; return '<span class="author-pill '+m.cls+'">'+li+m.label+'</span>'+(n.imp?'<span class="imp-pill">중요</span>':'')+(n.cat?'<span class="cat-pill">'+n.cat+'</span>':''); }
+  function isRecent(d){ if(!d) return false; var s=d.replace(/\./g,'-').replace(/[^0-9\-]/g,''); var dt=new Date(s); return !isNaN(dt)&&(Date.now()-dt.getTime()<30*24*60*60*1000); }
+  function srcPill(n){ const m=SRC[n.src]||SRC.admin; const li=m.logo?'<img src="'+m.logo+'" alt="" style="height:13px;width:auto;vertical-align:middle;">':''; return '<span class="author-pill '+m.cls+'">'+li+m.label+'</span>'+(n.imp?'<span class="imp-pill">중요</span>':'')+(isRecent(n.date)?'<span class="recent-pill">최근</span>':'')+(n.cat?'<span class="cat-pill">'+n.cat+'</span>':''); }
 
   const nlist = document.getElementById('nlist');
   const ndTitle = document.getElementById('ndTitle');
