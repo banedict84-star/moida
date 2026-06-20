@@ -494,7 +494,7 @@ c1|2026.03.10|2,051|경기도의회 의정모니터단 모집 공고`;
 
   // 날짜 내림차순 정렬 후 합치기
   function dnum(d){ return +d.replace(/\D/g,""); }
-  const notices = adminNotices.concat(centralNotices).concat(gyeonggiNotices).concat(councilNotices).sort(function(a,b){ return dnum(b.date)-dnum(a.date); });
+  let notices = adminNotices.concat(centralNotices).concat(gyeonggiNotices).concat(councilNotices).sort(function(a,b){ return dnum(b.date)-dnum(a.date); });
 
   const SRC = {
     admin:    { label:"총관리자", cls:"" },
@@ -569,6 +569,46 @@ c1|2026.03.10|2,051|경기도의회 의정모니터단 모집 공고`;
     }
   })();
   renderList();
+
+  // JSON 파일에서 경기도당/중앙당/경기도의회 공지 자동 로딩
+  (function(){
+    function mapItem(item, src, idPrefix){
+      var imp = item.category==='공지';
+      var cat = (item.category && item.category!=='공지') ? item.category : null;
+      var d = (item.date||'').replace(/\//g,'.').replace(/-/g,'.');
+      return { id: idPrefix+(item.link||item.title||Math.random()).toString().replace(/\W/g,'').slice(-8),
+        src:src, cat:cat, imp:imp, title:item.title||'', date:d, views:'', link:item.link||'',
+        bodyHtml:null, atts:null,
+        body:(src==='gyeonggi'?'더불어민주당 경기도당':src==='central'?'더불어민주당 중앙당':'경기도의회')+' 공지사항입니다.\n\n'+(item.title||'')+'\n\n자세한 내용은 아래 원문 보기에서 확인해 주세요.' };
+    }
+    Promise.allSettled([
+      fetch('notices_data.json').then(function(r){ return r.json(); }),
+      fetch('central_data.json').then(function(r){ return r.json(); }),
+      fetch('council_data.json').then(function(r){ return r.json(); })
+    ]).then(function(results){
+      var changed = false;
+      var gy = results[0]; var ct = results[1]; var co = results[2];
+      if(gy.status==='fulfilled' && gy.value && gy.value.items && gy.value.items.length){
+        var fetched = gy.value.items.map(function(it){ return mapItem(it,'gyeonggi','gy'); });
+        notices = notices.filter(function(n){ return n.src!=='gyeonggi'; }).concat(fetched);
+        changed = true;
+      }
+      if(ct.status==='fulfilled' && ct.value && ct.value.items && ct.value.items.length){
+        var fetched = ct.value.items.map(function(it){ return mapItem(it,'central','ct'); });
+        notices = notices.filter(function(n){ return n.src!=='central'; }).concat(fetched);
+        changed = true;
+      }
+      if(co.status==='fulfilled' && co.value && co.value.items && co.value.items.length){
+        var fetched = co.value.items.map(function(it){ return mapItem(it,'council','co'); });
+        notices = notices.filter(function(n){ return n.src!=='council'; }).concat(fetched);
+        changed = true;
+      }
+      if(changed){
+        notices.sort(function(a,b){ return dnum(b.date)-dnum(a.date); });
+        renderList();
+      }
+    });
+  })();
 
   // sidebar collapse
   (function(){
