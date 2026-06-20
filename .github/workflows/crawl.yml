@@ -123,21 +123,30 @@ jobs:
                   continue
               soup = BeautifulSoup(html, "lxml")
 
-              # 1페이지에서 HTML 구조 덤프
-              if page == 1:
-                  import re
-                  print("  [DEBUG] 날짜 패턴(20xx) 포함 요소:")
-                  for tag in soup.find_all(True):
-                      text = tag.get_text(strip=True)
-                      if re.search(r'20\d\d[./\-]\d\d[./\-]\d\d', text) and len(tag.find_all()) < 5 and len(text) < 150:
-                          print(f"    <{tag.name} class='{tag.get('class','')}'>: {text[:100]}")
-                  print("  [DEBUG] 주요 클래스 탐색:")
-                  for sel in ["table tbody tr", "ul.list li", ".board_list tr", ".bbs_list tr",
-                               ".news_list li", ".board-list li", ".list_wrap li", "article",
-                               ".content_area table tbody tr", "#content table tbody tr"]:
-                      found = soup.select(sel)
-                      if found:
-                          print(f"    {sel}: {len(found)}개 -> {found[0].get_text(strip=True)[:80]}")
+              # <time> 태그 기준으로 부모 탐색해서 제목/링크 추출
+              for time_el in soup.find_all("time"):
+                  date_str = time_el.get_text(strip=True).replace("/", "-").strip()
+                  if not date_str:
+                      continue
+                  # 가장 가까운 조상 중 <a> 태그 포함하는 요소 찾기
+                  ancestor = time_el.parent
+                  for _ in range(6):
+                      if ancestor is None:
+                          break
+                      a = ancestor.find("a", href=True)
+                      if a:
+                          title = a.get_text(strip=True)
+                          href = a.get("href", "")
+                          if not href.startswith("http"):
+                              href = CT_BASE + (href if href.startswith("/") else "/" + href)
+                          if title and len(title) > 2 and href not in ct_seen:
+                              # 카테고리 추출 시도
+                              cat_el = ancestor.select_one(".cate, .category, .label, span.tag")
+                              category = cat_el.get_text(strip=True) if cat_el else "일반"
+                              ct_seen.add(href)
+                              ct_notices.append({"title": title, "date": date_str, "link": href, "category": category})
+                          break
+                      ancestor = ancestor.parent
 
               time.sleep(0.5)
 
