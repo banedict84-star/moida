@@ -398,7 +398,8 @@
   let liveMode = false; // true = 크롤링 결과(전체 표시), false = 시드 목록(키워드 필터)
 
   function keywords(){ return (input.value||'').trim().toLowerCase().split(/\s+/).filter(Boolean); }
-  function visible(){ if(liveMode) return NEWS.slice(); var ks=keywords(); return NEWS.filter(function(n){ var hay=(n.title+' '+n.press+' '+n.snippet).toLowerCase(); return ks.every(function(k){ return hay.indexOf(k)>=0; }); }); }
+  function dnum(d){ if(!d) return 0; return +(d.replace(/\./g,'').replace(/[^0-9]/g,'')); }
+  function visible(){ var list; if(liveMode) list=NEWS.slice(); else{ var ks=keywords(); list=NEWS.filter(function(n){ var hay=(n.title+' '+n.press+' '+n.snippet).toLowerCase(); return ks.every(function(k){ return hay.indexOf(k)>=0; }); }); } return list.sort(function(a,b){ return dnum(b.date)-dnum(a.date); }); }
   function renderList(){
     var items = visible();
     nlist.innerHTML = items.map(function(n){
@@ -454,7 +455,7 @@
     ndTitle.textContent='수집 중…'; ndMeta.innerHTML='<span>잠시만 기다려 주세요.</span>'; ndBody.innerHTML='';
     crawlNews(ks).then(function(rows){
       btn.disabled=false; btn.textContent=old;
-      if(Array.isArray(rows)&&rows.length){ NEWS.length=0; rows.slice(0,20).forEach(function(r,i){ NEWS.push(Object.assign({id:i+1},r)); }); curId=null; liveMode=true; renderList(); }
+      if(Array.isArray(rows)&&rows.length){ NEWS.length=0; rows.sort(function(a,b){ return (new Date(b.date||0))-(new Date(a.date||0)); }).slice(0,20).forEach(function(r,i){ NEWS.push(Object.assign({id:i+1},r)); }); curId=null; liveMode=true; renderList(); }
       else { renderList(); }
     }).catch(function(){
       btn.disabled=false; btn.textContent=old;
