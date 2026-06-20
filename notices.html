@@ -505,7 +505,7 @@ c1|2026.03.10|2,051|경기도의회 의정모니터단 모집 공고`;
   let curFilter = 'all';
 
   function renderList(){
-    const items = notices.filter(n=> curFilter==='all' || n.src===curFilter).sort(function(a,b){ if(b.imp!==a.imp) return b.imp?1:-1; return dnum(b.date)-dnum(a.date); });
+    const items = notices.filter(n=> curFilter==='all' || n.src===curFilter);
     nlist.innerHTML = items.map((n)=>`
       <div class="ncard${n.imp?' imp':''}" data-id="${n.id}">
         <div class="nt">${n.isNew?'<span class="new-dot"></span>':''}${esc(n.title)}</div>
@@ -596,7 +596,7 @@ c1|2026.03.10|2,051|경기도의회 의정모니터단 모집 공고`;
         });
       });
     }
-    notices = adminNotices.concat(centralNotices).concat(gyeonggiNotices).concat(councilNotices).sort(function(a,b){ if(b.imp!==a.imp) return b.imp?1:-1; return dnum(b.date)-dnum(a.date); });
+    notices = adminNotices.concat(centralNotices).concat(gyeonggiNotices).concat(councilNotices).sort(function(a,b){ return dnum(b.date)-dnum(a.date); });
     renderList();
   });
 
