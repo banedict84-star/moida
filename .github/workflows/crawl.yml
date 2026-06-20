@@ -2,7 +2,7 @@ name: 공지사항 크롤링
 
 on:
   schedule:
-    - cron: '0 0 * * *'  # 매일 오전 9시 KST (UTC 0시)
+    - cron: '0 * * * *'  # 매 시간마다 (하루 24회)
   workflow_dispatch:      # 수동 실행 가능
 
 permissions:
