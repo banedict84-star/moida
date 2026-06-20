@@ -112,7 +112,6 @@ jobs:
                   continue
               soup = BeautifulSoup(html, "lxml")
 
-              # <time> 태그 기준으로 부모 탐색해서 제목/링크 추출
               for time_el in soup.find_all("time"):
                   date_str = time_el.get_text(strip=True).replace("/", "-").strip()
                   if not date_str:
@@ -149,7 +148,7 @@ jobs:
 
           GC_BASE  = "https://www.ggc.go.kr"
           GC_URL   = f"{GC_BASE}/site/main/board/pblcntc/list"
-          GC_PAGES = 4
+          GC_PAGES = 5
 
           gc_notices, gc_seen = [], set()
 
@@ -197,8 +196,6 @@ jobs:
                   for pg in range(2, GC_PAGES + 1):
                       print(f"\n[경기도의회] 페이지 {pg}")
                       try:
-                          # goPage()는 form submit → 실제 네비게이션 발생
-                          # expect_navigation으로 완료까지 대기
                           with page_pw.expect_navigation(wait_until="networkidle", timeout=20000):
                               btn = page_pw.query_selector(f"a[onclick*='goPage({pg})']") 
                               if btn:
@@ -216,7 +213,6 @@ jobs:
               browser.close()
 
           print(f"\n경기도의회 수집: {len(gc_notices)}건")
-          # 0건이면 기존 파일 유지
           if gc_notices:
               with open("council_data.json", "w", encoding="utf-8") as f:
                   json.dump({"updated": now_utc, "items": gc_notices}, f, ensure_ascii=False, indent=2)
