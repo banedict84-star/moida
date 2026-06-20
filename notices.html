@@ -275,36 +275,48 @@
   </main>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  const notices = [
-    { id:1, title:"후원회 관련 내용입니다.", date:"2026.06.19", isNew:true, body:"안녕하세요, 의원님.\n\n이번 분기 후원회 운영 및 회계 보고 관련 안내드립니다. 후원금 영수증 발급과 회계 마감 일정은 첨부된 지침을 참고해 주시고, 문의 사항은 사무국으로 연락 바랍니다.\n\n감사합니다." },
-    { id:2, title:"6월 정기 운영위원회 일정 안내", date:"2026.06.12", isNew:false, body:"6월 정기 운영위원회를 아래와 같이 개최합니다.\n\n· 일시: 2026년 6월 24일(화) 오후 7시\n· 장소: 당협 사무실 회의실\n· 안건: 하반기 조직 운영 계획, 지역 현안 보고\n\n위원님들의 참석을 부탁드립니다." },
-    { id:3, title:"개인정보 보호 및 명부 관리 지침 업데이트", date:"2026.06.03", isNew:false, body:"구성원 명부 및 개인정보 관리 지침이 일부 개정되었습니다.\n\n주민번호·연락처 등 민감 정보는 권한이 있는 담당자만 열람·수정할 수 있으며, 외부 반출은 금지됩니다. 자세한 내용은 사무국 공지를 확인해 주세요." },
-  ];
-
+<script>
   const nlist = document.getElementById('nlist');
   const ndTitle = document.getElementById('ndTitle');
   const ndMeta = document.getElementById('ndMeta');
   const ndBody = document.getElementById('ndBody');
 
-  nlist.innerHTML = notices.map((n,i)=>`
-    <div class="ncard" data-i="${i}">
-      <div class="nt">${n.isNew?'<span class="new-dot"></span>':''}${n.title}</div>
-      <div class="nmeta"><span class="author-pill">총관리자</span><span>${n.date}</span></div>
-      <div class="nprev">${n.body.replace(/\s+/g,' ').trim()}</div>
-    </div>`).join('');
+  function renderNotices(notices) {
+    const countPill = document.querySelector('.count-pill');
+    if (countPill) countPill.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0"/><circle cx="17" cy="7" r="2.3"/></svg>총 ${notices.length}건`;
 
-  function selectNotice(i){
-    const n = notices[i];
-    nlist.querySelectorAll('.ncard').forEach(c=>c.classList.remove('sel'));
-    const card = nlist.querySelector('.ncard[data-i="'+i+'"]');
-    if(card) card.classList.add('sel');
-    ndTitle.textContent = n.title;
-    ndMeta.innerHTML = '<span class="author-pill">총관리자</span><span>'+n.date+'</span>';
-    ndBody.textContent = n.body;
+    nlist.innerHTML = notices.map((n, i) => `
+      <div class="ncard" data-i="${i}">
+        <div class="nt">${i === 0 ? '<span class="new-dot"></span>' : ''}${n.title}</div>
+        <div class="nmeta"><span class="author-pill">${n.category || '공지'}</span><span>${n.date}</span></div>
+        <div class="nprev"><a href="${n.link}" target="_blank" style="color:var(--primary);font-size:12px;font-weight:600;">원문 보기 →</a></div>
+      </div>`).join('');
+
+    function selectNotice(i) {
+      const n = notices[i];
+      nlist.querySelectorAll('.ncard').forEach(c => c.classList.remove('sel'));
+      const card = nlist.querySelector('.ncard[data-i="' + i + '"]');
+      if (card) card.classList.add('sel');
+      ndTitle.textContent = n.title;
+      ndMeta.innerHTML = `<span class="author-pill">${n.category || '공지'}</span><span>${n.date}</span>`;
+      ndBody.innerHTML = `<a href="${n.link}" target="_blank" style="display:inline-flex;align-items:center;gap:6px;margin-top:8px;padding:10px 16px;background:var(--primary);color:#fff;border-radius:10px;font-size:13.5px;font-weight:700;text-decoration:none;">원문 페이지에서 보기 →</a>`;
+    }
+
+    nlist.querySelectorAll('.ncard').forEach(c => c.addEventListener('click', () => selectNotice(+c.dataset.i)));
+    if (notices.length > 0) selectNotice(0);
   }
-  nlist.querySelectorAll('.ncard').forEach(c=>c.addEventListener('click',()=>selectNotice(+c.dataset.i)));
-  selectNotice(0);
+
+  fetch('notices_data.json?t=' + Date.now())
+    .then(r => r.json())
+    .then(data => {
+      const updated = data.updated || '';
+      const conn = document.querySelector('.ph-conn');
+      if (conn) conn.innerHTML = `<span class="led"></span>최종 업데이트: ${updated}`;
+      renderNotices(data.items || []);
+    })
+    .catch(() => {
+      nlist.innerHTML = '<div style="padding:24px;color:var(--ink-3);font-size:14px;text-align:center;">데이터를 불러오는 중입니다.<br>잠시 후 다시 시도해주세요.</div>';
+    });
 
   // sidebar collapse
   (function(){
