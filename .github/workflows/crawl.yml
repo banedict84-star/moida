@@ -33,9 +33,18 @@ jobs:
               page = browser.new_page(
                   user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/124.0 Safari/537.36"
               )
-              page.goto(url, wait_until="networkidle", timeout=30000)
+              page.goto(url, wait_until="domcontentloaded", timeout=30000)
+
+              # JS 로딩 대기
+              try:
+                  page.wait_for_selector(".board-item", timeout=15000)
+              except:
+                  print("board-item 못 찾음, 페이지 HTML 일부 출력:")
+                  print(page.content()[:3000])
 
               items = page.query_selector_all(".board-item")
+              print(f"발견된 항목 수: {len(items)}")
+
               notices = []
               for item in items:
                   text = item.inner_text().strip().split("\n")
