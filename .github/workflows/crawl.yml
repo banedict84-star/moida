@@ -194,16 +194,13 @@ jobs:
                   for pg in range(2, GC_PAGES + 1):
                       print(f"\n[경기도의회] 페이지 {pg}")
                       try:
-                          # 페이지 번호 링크 클릭 시도
-                          sel = f"a[onclick*='goPage({pg})'], a[href*='page={pg}'], .pagination a:has-text('{pg}')"
-                          if page_pw.locator(sel).count() > 0:
-                              page_pw.click(sel, timeout=5000)
-                          else:
-                              page_pw.evaluate(f"typeof goPage==='function' && goPage({pg})")
-                          page_pw.wait_for_timeout(3000)
+                          prev_count = len(gc_notices)
+                          # goPage() JS 함수 직접 호출
+                          page_pw.evaluate(f"goPage({pg})")
+                          page_pw.wait_for_timeout(4000)
                           html = page_pw.content()
                           cnt = parse_gc_html(html, GC_URL)
-                          print(f"  → {cnt}건 추가")
+                          print(f"  → {cnt}건 추가 (누계 {len(gc_notices)}건)")
                       except Exception as e:
                           print(f"  페이지{pg} ERROR: {e}")
                       time.sleep(1)
