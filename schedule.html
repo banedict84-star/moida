@@ -951,10 +951,10 @@ onAuthStateChanged(_auth, async function(user){
     });
   })();
 
-  document.querySelectorAll('.vbtn').forEach(function(b){ b.addEventListener('click',function(){
-    document.querySelectorAll('.vbtn').forEach(function(x){ x.classList.remove('active'); }); b.classList.add('active');
-    const v=b.dataset.view;
+  function switchView(v){
     var isCal = v==='cal';
+    document.querySelectorAll('.vbtn').forEach(function(x){ x.classList.remove('active'); });
+    var ab=document.querySelector('.vbtn[data-view="'+v+'"]'); if(ab) ab.classList.add('active');
     document.getElementById('feedView').style.display = isCal?'none':'flex';
     document.querySelector('.feed-bar').style.display = isCal?'none':'flex';
     document.getElementById('calView').style.display = isCal?'block':'none';
@@ -962,7 +962,11 @@ onAuthStateChanged(_auth, async function(user){
     var stats=document.querySelector('.ev-stats'); if(stats) stats.style.display = isCal?'none':'grid';
     var parts=document.querySelector('.parts'); if(parts) parts.style.display = isCal?'none':'';
     var wrap=document.querySelector('.sched-wrap'); if(wrap) wrap.classList.toggle('calmode', isCal);
-  }); });
+    try{ localStorage.setItem('moida_sched_view_'+_uid, v); }catch(e){}
+  }
+  document.querySelectorAll('.vbtn').forEach(function(b){ b.addEventListener('click',function(){ switchView(b.dataset.view); }); });
+  // restore last view on load
+  (function(){ try{ var sv=localStorage.getItem('moida_sched_view_'+_uid); if(sv==='cal') switchView('cal'); }catch(e){} })();
   document.querySelectorAll('.ctab').forEach(function(t){ t.addEventListener('click',function(){
     document.querySelectorAll('.ctab').forEach(function(x){ x.classList.remove('active'); }); t.classList.add('active');
   }); });
@@ -1085,7 +1089,7 @@ onAuthStateChanged(_auth, async function(user){
       var endDate=mte?mte[1]:''; var endTime=mte?mte[2]:'';
       events.unshift({ title:title, author:_myName, created:created, date:datePart, time:timePart, endDate:endDate, endTime:endTime, d:dayNum, star:false, _body:bodyTxt, _files:files, _location:locVal });
       saveEvents(); renderFeed(); renderStats(); renderImp(); if(window.renderCal) window.renderCal();
-      const fb=document.querySelector('.vbtn[data-view="feed"]'); if(fb) fb.click();
+      switchView('feed');
       ti.value=''; if(ct) ct.value=''; if(modal&&modal._resetFiles) modal._resetFiles();
       var _li=document.querySelector('.evm-input.grow[placeholder="장소를 입력하세요"]'); if(_li) _li.value='';
       var _mb=document.getElementById('evmMap'); if(_mb) _mb.classList.remove('show');
