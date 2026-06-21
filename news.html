@@ -415,7 +415,7 @@
 
   function keywords(){ return (input.value||'').trim().toLowerCase().split(/\s+/).filter(Boolean); }
   function dnum(d){ if(!d) return 0; return +(d.replace(/\./g,'').replace(/[^0-9]/g,'')); }
-  function visible(){ var list; if(liveMode) list=NEWS.slice(); else{ var ks=keywords(); list=NEWS.filter(function(n){ var hay=(n.title+' '+n.press+' '+n.snippet).toLowerCase(); return ks.every(function(k){ return hay.indexOf(k)>=0; }); }); } return list.sort(function(a,b){ return dnum(b.date)-dnum(a.date); }); }
+  function visible(){ var list; if(liveMode) list=NEWS.slice(); else{ var ks=keywords().map(function(k){ return k.replace(/\s+/g,''); }).filter(Boolean); list=NEWS.filter(function(n){ var hay=(n.title+' '+n.press+' '+n.snippet).toLowerCase().replace(/\s+/g,''); return ks.every(function(k){ return hay.indexOf(k)>=0; }); }); } return list.sort(function(a,b){ return dnum(b.date)-dnum(a.date); }); }
   function renderList(){
     var items = visible();
     nlist.innerHTML = items.map(function(n){
@@ -551,9 +551,11 @@
     function done(fn){ var wait=Math.max(0, 650-(Date.now()-started)); setTimeout(fn, wait); } // 최소 로딩 시간으로 "검색 중" 느낌 유지
     // 서버 크롤링 풀(네이버·다음 포함)에서 키워드 매칭 (하나라도 포함되면 채택, 많이 맞을수록 상위)
     function poolMatch(){
+      // 띄어쓰기 무시 매칭: "장윤정의원" ↔ "장윤정 의원" 모두 잡히도록 공백 제거 후 비교
+      var ksn=ks.map(function(k){ return k.toLowerCase().replace(/\s+/g,''); }).filter(Boolean);
       return POOL.map(function(n){
-        var hay=(n.title+' '+n.press+' '+n.snippet).toLowerCase();
-        var hits=ks.reduce(function(c,k){ return c+(hay.indexOf(k.toLowerCase())>=0?1:0); },0);
+        var hay=(n.title+' '+n.press+' '+n.snippet).toLowerCase().replace(/\s+/g,'');
+        var hits=ksn.reduce(function(c,k){ return c+(hay.indexOf(k)>=0?1:0); },0);
         return {n:n, hits:hits};
       }).filter(function(x){ return x.hits>0; }).sort(function(a,b){ return b.hits-a.hits; }).map(function(x){ return x.n; });
     }
