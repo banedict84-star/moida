@@ -929,7 +929,7 @@ onAuthStateChanged(_auth, function(user){
       <td>${m.phone}</td>
       <td class="muted-cell">${m.rrn}</td>
       <td>${m.dong}</td>
-      <td><span class="tag tg-${m.typeK}"><span class="d" style="background:currentColor"></span>${m.type}</span></td>
+      <td>${(!m.type||m.type==='—')?'<span class="muted-cell">—</span>':'<span class="tag tg-'+m.typeK+'"><span class="d" style="background:currentColor"></span>'+m.type+'</span>'}</td>
       <td>${orgCellHtml(m)}</td>
       <td>${signalCell(m)}</td>
       <td>${m.age}</td>
@@ -1447,7 +1447,7 @@ onAuthStateChanged(_auth, function(user){
         var _pkey=function(p){ return String(p||'').replace(/[^0-9]/g,'').replace(/^0+/,''); };
         var m=members.find(function(x){ return x.name===nm && _pkey(x.phone)===_pkey(phFmt); });
         var isNew=!m;
-        if(isNew){ m={ no:members.length+1, name:nm, score:0, rrn:'—', dong:'—', org:'—', rec:'—', rec2:'—', rec3:'—', sub:'—', third:'—', addr:'—', addrDetail:'', family:null, age:'', ageb:'—', sex:'—', vote:'미확인', voteK:'err', katalk:'—', type:'일반당원', typeK:'old', krGrade:0, smGrade:0, photo:'' }; }
+        if(isNew){ m={ no:members.length+1, name:nm, score:0, rrn:'—', dong:'—', org:'—', rec:'—', rec2:'—', rec3:'—', sub:'—', third:'—', addr:'—', addrDetail:'', family:null, age:'', ageb:'—', sex:'—', vote:'미확인', voteK:'err', katalk:'—', type:'—', typeK:'', krGrade:0, smGrade:0, photo:'' }; }
         ['phone','rrn','dong','type','org','sex','rec','sub','third','katalk','sms','addr','ageb'].forEach(function(k){
           var v=get(k); if(v===undefined||v==='') return;
           if(k==='phone'){ v=formatPhone(v)||v; }
