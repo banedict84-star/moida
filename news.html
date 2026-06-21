@@ -583,41 +583,56 @@
     }
     return '<div class="news-loading"><span class="spinner"></span>'+esc(ks.join(' · '))+' 키워드로 구글·네이버에서 뉴스를 수집하고 있습니다…</div>'+skel;
   }
+  // 서버 크롤링 풀에서 키워드 매칭 (띄어쓰기 무시, 많이 맞을수록 상위)
+  function poolMatchFor(ks){
+    var ksn=ks.map(function(k){ return k.toLowerCase().replace(/\s+/g,''); }).filter(Boolean);
+    return POOL.map(function(n){
+      var hay=(n.title+' '+n.press+' '+n.snippet).toLowerCase().replace(/\s+/g,'');
+      var hits=ksn.reduce(function(c,k){ return c+(hay.indexOf(k)>=0?1:0); },0);
+      return {n:n, hits:hits};
+    }).filter(function(x){ return x.hits>0; }).sort(function(a,b){ return b.hits-a.hits; }).map(function(x){ return x.n; });
+  }
+  function clearLoading(){ var b=document.getElementById('newsGo'); if(b){ b.disabled=false; b.classList.remove('loading'); } }
+  // 풀 + 실시간 결과 병합/표시 (인페이지·백그라운드 공통)
+  function applyResults(q, liveRows){
+    var ks=(q||'').trim().toLowerCase().split(/\s+/).filter(Boolean);
+    var merged=[], seen={};
+    [].concat(poolMatchFor(ks), Array.isArray(liveRows)?liveRows:[]).forEach(function(n){
+      var key=(n.title||'').replace(/[^0-9a-z가-힣]/gi,'').slice(0,40); if(!key||seen[key]) return; seen[key]=1; merged.push(n);
+    });
+    merged.sort(function(a,b){ return dnum(b.date)-dnum(a.date); });
+    if(merged.length){ NEWS.length=0; merged.slice(0,40).forEach(function(r,i){ NEWS.push(Object.assign({id:i+1},r)); }); curId=null; liveMode=true; renderList(); }
+    else { liveMode=false; renderList(); }
+    clearLoading(); addRecent(q);
+    saveState({ q:q, items:NEWS.slice(0,40), status:'done', ts:Date.now() });
+  }
+  var pendingQ=null, swTimer=null;
   function runSearch(){
     var ks=keywords(); if(!ks.length){ ks=['장윤정','경기도의원']; input.value='장윤정 경기도의원'; }
-    saveState({ q:input.value, status:'pending', ts:Date.now() }); // 검색 시작 표시(도중 이탈 시 복귀하면 자동 재검색)
+    var q=input.value.trim()||ks.join(' ');
+    saveState({ q:q, status:'pending', ts:Date.now() }); // 검색 시작(도중 이탈해도 백그라운드/복귀 재검색)
     var btn=document.getElementById('newsGo'); btn.disabled=true; btn.classList.add('loading');
     nlist.innerHTML=loadingHTML(ks);
     ndTitle.textContent='수집 중…'; ndMeta.innerHTML='<span class="news-loading" style="padding:0"><span class="spinner"></span>잠시만 기다려 주세요…</span>'; ndBody.innerHTML='';
-    var started=Date.now();
-    function done(fn){ var wait=Math.max(0, 650-(Date.now()-started)); setTimeout(fn, wait); } // 최소 로딩 시간으로 "검색 중" 느낌 유지
-    // 서버 크롤링 풀(네이버·다음 포함)에서 키워드 매칭 (하나라도 포함되면 채택, 많이 맞을수록 상위)
-    function poolMatch(){
-      // 띄어쓰기 무시 매칭: "장윤정의원" ↔ "장윤정 의원" 모두 잡히도록 공백 제거 후 비교
-      var ksn=ks.map(function(k){ return k.toLowerCase().replace(/\s+/g,''); }).filter(Boolean);
-      return POOL.map(function(n){
-        var hay=(n.title+' '+n.press+' '+n.snippet).toLowerCase().replace(/\s+/g,'');
-        var hits=ksn.reduce(function(c,k){ return c+(hay.indexOf(k)>=0?1:0); },0);
-        return {n:n, hits:hits};
-      }).filter(function(x){ return x.hits>0; }).sort(function(a,b){ return b.hits-a.hits; }).map(function(x){ return x.n; });
+    pendingQ=q;
+    var sw=(navigator.serviceWorker && navigator.serviceWorker.controller) ? navigator.serviceWorker.controller : null;
+    if(sw){
+      // 백그라운드 수집(페이지 떠나도 계속) — 결과는 message/캐시로 받음
+      sw.postMessage({ type:'search', q:q });
+      clearTimeout(swTimer);
+      swTimer=setTimeout(function(){ if(pendingQ===q) inPageSearch(ks,q); }, 9000); // 무응답 폴백
+    } else {
+      inPageSearch(ks,q);
     }
-    function finish(liveRows){
-      done(function(){
-        btn.disabled=false; btn.classList.remove('loading');
-        var merged=[], seen={};
-        // 풀(네이버·다음)을 먼저 합쳐 중복 시 네이버·다음이 우선되게 함(구글은 뒤에서 보충)
-        [].concat(poolMatch(), Array.isArray(liveRows)?liveRows:[]).forEach(function(n){
-          var key=(n.title||'').replace(/[^0-9a-z가-힣]/gi,'').slice(0,40); if(!key||seen[key]) return; seen[key]=1; merged.push(n);
-        });
-        merged.sort(function(a,b){ return dnum(b.date)-dnum(a.date); });
-        if(merged.length){ NEWS.length=0; merged.slice(0,30).forEach(function(r,i){ NEWS.push(Object.assign({id:i+1},r)); }); curId=null; liveMode=true; renderList(); }
-        else { liveMode=false; renderList(); }
-        addRecent(input.value); // 최근 검색어에 추가
-        saveState({ q:input.value, items:NEWS.slice(0,30), status:'done', ts:Date.now() }); // 완료 결과 저장(다른 메뉴 갔다 와도 유지)
-      });
-    }
-    // 구글은 브라우저에서 실시간 수집, 네이버·다음은 서버 크롤링 풀에서 가져와 합친다.
-    crawlNews(ks).then(finish).catch(function(){ finish([]); });
+  }
+  function inPageSearch(ks,q){
+    crawlNews(ks).then(function(rows){ if(pendingQ===q){ pendingQ=null; applyResults(q,rows); } })
+                 .catch(function(){ if(pendingQ===q){ pendingQ=null; applyResults(q,[]); } });
+  }
+  function onSWResult(payload){
+    if(!payload) return;
+    if(pendingQ && payload.q===pendingQ){ clearTimeout(swTimer); pendingQ=null; applyResults(payload.q, payload.items); }
+    else { saveState({ q:payload.q, items:(payload.items||[]).slice(0,40), status:'done', ts:payload.ts||Date.now() }); }
   }
   document.getElementById('newsGo').addEventListener('click', runSearch);
   input.addEventListener('input', function(){ if(!liveMode) renderList(); });
@@ -714,17 +729,36 @@
        if(ne&&ne.type) navType=ne.type;
        else if(performance.navigation) navType=(performance.navigation.type===1?'reload':'navigate'); }catch(e){}
 
+  // 서비스워커(백그라운드 수집) 등록 + 결과 수신
+  if('serviceWorker' in navigator){
+    navigator.serviceWorker.register('sw.js').catch(function(){});
+    navigator.serviceWorker.addEventListener('message', function(e){ var d=e.data||{}; if(d.type==='news-result') onSWResult(d.payload); });
+  }
+  function swCache(q){ // 백그라운드가 저장해 둔 결과 확인
+    if(!('caches' in window)) return Promise.resolve(null);
+    return caches.open('moida-news-v1').then(function(c){ return c.match('news-result'); })
+      .then(function(r){ return r?r.json():null; })
+      .then(function(p){ return (p && (!q || p.q===q)) ? p : null; }).catch(function(){ return null; });
+  }
+  function restoreItems(st){
+    input.value=st.q||''; NEWS.length=0; (st.items||[]).forEach(function(r,i){ NEWS.push(Object.assign({id:i+1}, r)); });
+    curId=null; liveMode=true; renderList();
+  }
   function bootNews(){
     var st=loadState();
     if(navType==='reload'){ showIntro(); return; }              // 새로고침이면 빈 화면
     if(!st){ showIntro(); return; }
     var age=Date.now()-(st.ts||0);
     if(st.status==='done' && st.items && st.items.length && age<30*60*1000){
-      input.value=st.q||''; NEWS.length=0; st.items.forEach(function(r,i){ NEWS.push(Object.assign({id:i+1}, r)); });
-      curId=null; liveMode=true; renderList(); return;          // 다른 메뉴 갔다 옴 → 결과 복원
+      restoreItems(st); return;                                 // 다른 메뉴 갔다 옴 → 결과 복원
     }
-    if(st.status==='pending' && (st.q||'').trim() && age<5*60*1000){
-      input.value=st.q; showIntro(); runSearch(); return;       // 검색 도중 이탈 → 자동 재검색
+    if(st.status==='pending' && (st.q||'').trim() && age<10*60*1000){
+      // 백그라운드(SW)가 떠난 사이 끝냈는지 캐시 확인 → 있으면 표시, 없으면 이어서 검색
+      swCache(st.q).then(function(p){
+        if(p && p.items && p.items.length){ input.value=st.q; applyResults(p.q, p.items); }
+        else { input.value=st.q; showIntro(); runSearch(); }
+      });
+      return;
     }
     showIntro();
   }
