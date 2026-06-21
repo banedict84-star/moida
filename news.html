@@ -665,7 +665,7 @@ onAuthStateChanged(_auth, function(user){
 
   // ===== 추천 키워드 (사용자 편집 가능) =====
   var CHIP_KEY='moida_news_chips_' + _uid;
-  var CHIP_DEFAULT=['장윤정 경기도의원','안산 상록구','경기도의회','안산 교육'];
+  var CHIP_DEFAULT=['장윤정의원','경기도의회'];
   function getChips(){ try{ var v=JSON.parse(localStorage.getItem(CHIP_KEY)); return Array.isArray(v)?v:CHIP_DEFAULT.slice(); }catch(e){ return CHIP_DEFAULT.slice(); } }
   function saveChips(a){ localStorage.setItem(CHIP_KEY, JSON.stringify(a)); }
   function renderChips(){
