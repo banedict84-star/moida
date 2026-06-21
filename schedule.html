@@ -749,7 +749,7 @@
 
   function renderFeed(){
     var cur='방민성';
-    var list=events.filter(function(e){ return _authorFilter==='all' || e.author===cur; });
+    var list=events.filter(function(e){ return _authorFilter==='all' || e.author===cur; }).slice().sort(function(a,b){ return (a.date+' '+(a.time||''))>(b.date+' '+(b.time||''))?1:-1; });
     document.getElementById('feedView').innerHTML = list.map(function(e){ var i=events.indexOf(e); return '<div class="ev'+(e.star?' imp':'')+'"><div class="ev-ico">'+calIco+'</div><div class="ev-main"><div class="ev-t">'+e.title+'</div><div class="ev-meta">'+e.author+' · '+e.created+'</div></div><div class="ev-date">'+e.date+' '+e.time+'</div><button class="ev-star'+(e.star?' on':'')+'" data-si="'+i+'" title="중요 일정" onclick="toggleStar(event,'+i+')">'+starSvg(e.star)+'</button></div>'; }).join('');
     var fb=document.querySelector('.fb-all b'); if(fb) fb.textContent=list.length;
   }
@@ -776,7 +776,7 @@
 
   function renderStats(){
     var now=new Date(); var today=new Date(now.getFullYear(),now.getMonth(),now.getDate());
-    function ymd(s){ var p=(s||'').split('-'); return p.length===3?new Date(+p[0],+p[1]-1,+p[2]):null; }
+    function ymd(s){ var p=(s||'').split(' ')[0].split('-'); return p.length===3?new Date(+p[0],+p[1]-1,+p[2]):null; }
     var startWeek=new Date(today); startWeek.setDate(today.getDate()-today.getDay());
     var endWeek=new Date(startWeek); endWeek.setDate(startWeek.getDate()+7);
     var ym=now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0');
@@ -792,7 +792,7 @@
   /* stat popup (오늘 → 이번주 → 이번달 순서) */
   (function(){
     var today=new Date(2026,5,19);
-    function ymd(s){ var p=(s||'').split('-'); return p.length===3?new Date(+p[0],+p[1]-1,+p[2]):null; }
+    function ymd(s){ var p=(s||'').split(' ')[0].split('-'); return p.length===3?new Date(+p[0],+p[1]-1,+p[2]):null; }
     var sw=new Date(today); sw.setDate(today.getDate()-today.getDay());
     var ew=new Date(sw); ew.setDate(sw.getDate()+7);
     var dows=['일','월','화','수','목','금','토'];
@@ -935,7 +935,7 @@
       dtp.innerHTML=h;
     }
     function fmt(){ const dn=dows[new Date(yr,mo,sel).getDay()]; return yr+'-'+String(mo+1).padStart(2,'0')+'-'+String(sel).padStart(2,'0')+' ('+dn+'), '+hh+':'+mm; }
-    function open(inp){ target=inp; render(); const r=inp.getBoundingClientRect(); dtp.style.left=Math.min(r.left, window.innerWidth-282)+'px'; dtp.style.top=(r.bottom+6)+'px'; dtp.classList.add('show'); }
+    function open(inp){ target=inp; var _mt=(inp.value||'').match(/(\d{4})-(\d{2})-(\d{2}).*?(\d{2}):(\d{2})/); if(_mt){ yr=+_mt[1]; mo=+_mt[2]-1; sel=+_mt[3]; hh=_mt[4]; mm=_mt[5]; } render(); const r=inp.getBoundingClientRect(); dtp.style.left=Math.min(r.left, window.innerWidth-282)+'px'; dtp.style.top=(r.bottom+6)+'px'; dtp.classList.add('show'); }
     dtp.addEventListener('click',function(e){
       const nav=e.target.closest('.dtp-nav');
       if(nav){ mo+=+nav.dataset.m; if(mo<0){mo=11;yr--;} if(mo>11){mo=0;yr++;} render(); return; }
