@@ -982,7 +982,9 @@
       const now=new Date();
       const p=function(n){ return String(n).padStart(2,'0'); };
       const created=now.getFullYear()+'-'+p(now.getMonth()+1)+'-'+p(now.getDate())+' '+p(now.getHours())+':'+p(now.getMinutes());
+      const end=document.querySelectorAll('.evm-input.date')[1]?document.querySelectorAll('.evm-input.date')[1].value:'';
       const mt=start.match(/(\d{4}-\d{2}-\d{2}).*?(\d{2}:\d{2})/);
+      const mte=end.match(/(\d{4}-\d{2}-\d{2}).*?(\d{2}:\d{2})/);
       const evdate=mt?(mt[1]+' '+mt[2]):start;
       const ct=document.querySelector('.evm-content');
       const bodyTxt=ct?(ct.value||'').trim():'';
@@ -1002,7 +1004,8 @@
         return;
       }
       var datePart=mt?mt[1]:''; var timePart=mt?mt[2]:''; var dayNum=datePart?parseInt(datePart.split('-')[2],10):null;
-      events.unshift({ title:title, author:'방민성', created:created, date:datePart, time:timePart, d:dayNum, star:false, _body:bodyTxt, _files:files, _location:locVal });
+      var endDate=mte?mte[1]:''; var endTime=mte?mte[2]:'';
+      events.unshift({ title:title, author:'방민성', created:created, date:datePart, time:timePart, endDate:endDate, endTime:endTime, d:dayNum, star:false, _body:bodyTxt, _files:files, _location:locVal });
       saveEvents(); renderFeed(); renderStats(); renderImp();
       const fb=document.querySelector('.vbtn[data-view="feed"]'); if(fb) fb.click();
       ti.value=''; if(ct) ct.value=''; if(modal&&modal._resetFiles) modal._resetFiles();
@@ -1068,13 +1071,15 @@
       p.querySelector('#evdAva').textContent=author.charAt(0);
       p.querySelector('#evdCreated').textContent=created;
       p.querySelector('#evdTitle').textContent=title;
+      var _evArr=events.find(function(e){ return e.title===title && e.created===created; });
       if(mm){
         const dObj=new Date(+mm[1],+mm[2]-1,+mm[3]);
         p.querySelector('#evdMon').textContent=mm[1]+'-'+mm[2];
         p.querySelector('#evdDay').textContent=+mm[3];
-        p.querySelector('#evdTime').textContent=mm[1]+'-'+mm[2]+'-'+mm[3]+' ('+dows[dObj.getDay()]+')'+(mm[4]?', '+mm[4]:'');
+        var _timeStr=mm[1]+'-'+mm[2]+'-'+mm[3]+' ('+dows[dObj.getDay()]+')'+(mm[4]?', '+mm[4]:'');
+        if(_evArr&&_evArr.endTime){ _timeStr+=' ~ '+(_evArr.endDate&&_evArr.endDate!==mm[1]+'-'+mm[2]+'-'+mm[3]?_evArr.endDate+' ':'')+_evArr.endTime; }
+        p.querySelector('#evdTime').textContent=_timeStr;
       } else { p.querySelector('#evdTime').textContent=dt; }
-      var _evArr=events.find(function(e){ return e.title===title && e.created===created; });
       var data=ev._evData||(_evArr?{ body:_evArr._body, files:_evArr._files, location:_evArr._location }:{}); var ch='';
       if(data.location){ var enc=encodeURIComponent(data.location); ch+='<div class="evd-map"><div class="evd-maploc"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-5.6-7-11a7 7 0 0 1 14 0c0 5.4-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>'+data.location+'</div><iframe loading="lazy" src="https://maps.google.com/maps?q='+enc+'&z=15&output=embed"></iframe></div>'; }
       if(data.body){ ch+='<div class="evd-text">'+data.body.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/\n/g,'<br>')+'</div>'; }
