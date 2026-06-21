@@ -998,11 +998,10 @@ onAuthStateChanged(_auth, async function(user){
     var stats=document.querySelector('.ev-stats'); if(stats) stats.style.display = isCal?'none':'grid';
     var parts=document.querySelector('.parts'); if(parts) parts.style.display = isCal?'none':'';
     var wrap=document.querySelector('.sched-wrap'); if(wrap) wrap.classList.toggle('calmode', isCal);
-    try{ localStorage.setItem('moida_sched_view_'+_uid, v); }catch(e){}
+    // view preference는 저장하지 않음 — 항상 목록으로 시작
   }
   document.querySelectorAll('.vbtn').forEach(function(b){ b.addEventListener('click',function(){ switchView(b.dataset.view); }); });
-  // restore last view on load
-  (function(){ try{ var sv=localStorage.getItem('moida_sched_view_'+_uid); if(sv==='cal') switchView('cal'); }catch(e){} })();
+  // 항상 목록(feed) 뷰로 시작
   document.querySelectorAll('.ctab').forEach(function(t){ t.addEventListener('click',function(){
     document.querySelectorAll('.ctab').forEach(function(x){ x.classList.remove('active'); }); t.classList.add('active');
   }); });
