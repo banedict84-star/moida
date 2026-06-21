@@ -347,6 +347,10 @@
   .cal-ev{ font-size:11px; color:var(--ink-2); background:#e7f0fb; border-radius:5px; padding:2px 5px; margin-bottom:3px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; cursor:pointer; }
   .cal-ev:hover{ background:#d6e6fb; }
   .cal-ev .t{ color:var(--primary); font-weight:700; }
+  .cal-ev.multi-s{ border-radius:5px 0 0 5px; margin-right:-8px; background:#c7dbf7; color:var(--primary-600); font-weight:700; }
+  .cal-ev.multi-m{ border-radius:0; margin-left:-8px; margin-right:-8px; background:#c7dbf7; padding-left:2px; }
+  .cal-ev.multi-e{ border-radius:0 5px 5px 0; margin-left:-8px; background:#c7dbf7; padding-left:2px; }
+  .cal-ev.multi-s:hover,.cal-ev.multi-m:hover,.cal-ev.multi-e:hover{ background:#aecbf2; }
   .parts{ background:var(--surface); border:1px solid var(--line); border-radius:14px; box-shadow:var(--shadow-sm); position:sticky; top:18px; overflow:hidden; }
   .parts-h{ font-size:14px; font-weight:700; padding:16px 18px 4px; }
   .parts-h span{ color:var(--ink-3); margin-left:4px; }
@@ -886,22 +890,49 @@ onAuthStateChanged(_auth, async function(user){
       for(var i=startDow-1;i>=0;i--) cells.push({off:true,n:prevDays-i});
       for(var d=1;d<=dim;d++) cells.push({off:false,n:d});
       var nx=1; while(cells.length%7!==0) cells.push({off:true,n:nx++});
+      // Build byDay: for multi-day events store span type (s/m/e), single-day store ''
       var byDay={};
       events.forEach(function(e){
         var dt=evDate(e.date); if(!dt) return;
         var endDt=e.endDate?evDate(e.endDate):null;
-        var cur=new Date(dt.y,dt.m,dt.d);
-        var endD=endDt?new Date(endDt.y,endDt.m,endDt.d):cur;
+        var startD=new Date(dt.y,dt.m,dt.d);
+        var endD=endDt?new Date(endDt.y,endDt.m,endDt.d):startD;
+        var isMulti=endD>startD;
+        var cur=new Date(startD);
         while(cur<=endD){
           var cy=cur.getFullYear(),cm=cur.getMonth(),cd=cur.getDate();
-          if(cy===calY&&cm===calM){ (byDay[cd]=byDay[cd]||[]).push(e); }
+          if(cy===calY&&cm===calM){
+            var dow2=cur.getDay(); // 0=Sun,6=Sat
+            // span type: consider actual start/end AND week row boundaries
+            var isActualStart=cur.getTime()===startD.getTime();
+            var isActualEnd=cur.getTime()===endD.getTime();
+            var isRowStart=dow2===0; // Sunday = new row
+            var isRowEnd=dow2===6;   // Saturday = row end
+            var span='';
+            if(isMulti){
+              if(isActualEnd||(isRowEnd&&!isActualStart)) span='e';
+              else if(isActualStart||isRowStart) span='s';
+              else span='m';
+            }
+            (byDay[cd]=byDay[cd]||[]).push({e:e,span:span});
+          }
           cur.setDate(cur.getDate()+1);
         }
       });
       var _td=new Date(); var today=new Date(_td.getFullYear(),_td.getMonth(),_td.getDate());
       html += cells.map(function(c,i){
         var dow=i%7;
-        var evs=(!c.off && byDay[c.n]) ? byDay[c.n].map(function(e){ return '<div class="cal-ev" data-title="'+e.title.replace(/"/g,'&quot;')+'"><span class="t">'+e.time+'</span> '+e.title+'</div>'; }).join('') : '';
+        var evs='';
+        if(!c.off && byDay[c.n]){
+          // render multi-day events first (sorted: s before m/e, then single)
+          var items=byDay[c.n].slice().sort(function(a,b){ return (a.span?0:1)-(b.span?0:1); });
+          evs=items.map(function(item){
+            var e=item.e, span=item.span;
+            var cls='cal-ev'+(span?' multi-'+span:'');
+            var inner=span==='m'?'&nbsp;':span==='e'?e.title:('<span class="t">'+e.time+'</span> '+e.title);
+            return '<div class="'+cls+'" data-title="'+e.title.replace(/"/g,'&quot;')+'">'+inner+'</div>';
+          }).join('');
+        }
         var isToday=(!c.off && calY===today.getFullYear() && calM===today.getMonth() && c.n===today.getDate());
         return '<div class="cal-cell '+(c.off?'off ':'')+(dow===0?'sun ':dow===6?'sat ':'')+(isToday?'today':'')+'"><div class="cal-dnum">'+c.n+'</div>'+evs+'</div>';
       }).join('');
