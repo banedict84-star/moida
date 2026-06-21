@@ -830,8 +830,8 @@ onAuthStateChanged(_auth, function(user){
   var savedGrades=JSON.parse(localStorage.getItem(GRADE_KEY)||'{}');
   members.forEach(function(m){
     var g=savedGrades[m.name]||{};
-    m.krGrade = g.kr!=null ? g.kr : (m.katalkReply==='완료'?5:m.katalkReply==='미답'?2:m.katalkReply==='—'?0:3);
-    m.smGrade = g.sm!=null ? g.sm : (m.sms==='발송'?4:m.sms==='수신거부'?1:m.sms==='—'?0:3);
+    m.krGrade = g.kr!=null ? g.kr : (m.katalkReply==='완료'?5:m.katalkReply==='미답'?2:0);
+    m.smGrade = g.sm!=null ? g.sm : (m.sms==='발송'?4:m.sms==='수신거부'?1:0);
   });
   function saveGrades(){ var o={}; members.forEach(function(m){ o[m.name]={kr:m.krGrade, sm:m.smGrade}; }); localStorage.setItem(GRADE_KEY, JSON.stringify(o)); }
   (function(){ var saved=JSON.parse(localStorage.getItem('moida_rec_chains_' + _uid)||'{}'); members.forEach(function(m){ var c=saved[m.name]; if(c){ m.rec=c[0]||'—'; m.sub=c[1]||'—'; m.third=c[2]||'—'; } }); })();
