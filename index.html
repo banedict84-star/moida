@@ -65,8 +65,13 @@
   .login-btn svg{ width:17px; height:17px; }
 
   .signup{ text-align:center; font-size:13.5px; color:var(--ink-3); font-weight:500; margin-top:22px; }
-  .signup a{ color:var(--primary); font-weight:700; text-decoration:none; }
+  .signup a{ color:var(--primary); font-weight:700; text-decoration:none; cursor:pointer; }
   .signup a:hover{ text-decoration:underline; }
+  .tab-row{ display:flex; background:var(--line-soft); border-radius:12px; padding:3px; gap:2px; margin-bottom:22px; }
+  .tab-row button{ flex:1; padding:9px; border:none; background:transparent; border-radius:9px; font-family:inherit; font-size:13.5px; font-weight:700; color:var(--ink-3); cursor:pointer; transition:all .15s; }
+  .tab-row button.on{ background:#fff; color:var(--primary); box-shadow:0 2px 8px rgba(16,40,80,.08); }
+  .err-msg{ font-size:12.5px; color:#dc2626; font-weight:600; margin-top:10px; text-align:center; min-height:18px; }
+  .ok-msg{ font-size:12.5px; color:#059669; font-weight:600; margin-top:10px; text-align:center; min-height:18px; }
 
   .foot{ position:relative; z-index:1; margin-top:26px; text-align:center; font-size:12px; color:var(--ink-3); font-weight:500; }
   .foot b{ color:var(--ink-2); font-weight:700; }
@@ -97,57 +102,152 @@
       </div>
 
       <div class="welcome">
-        <h1>다시 오신 것을 환영합니다</h1>
+        <h1 id="welcomeTitle">다시 오신 것을 환영합니다</h1>
         <p>경기도의원 장윤정 의정활동 관리 시스템</p>
       </div>
 
-      <button class="gbtn" onclick="location.href='dashboard.html'">
-        <svg viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.27-4.74 3.27-8.1z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.84 14.1a6.6 6.6 0 0 1 0-4.2V7.06H2.18a11 11 0 0 0 0 9.88l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1A11 11 0 0 0 2.18 7.06l3.66 2.84C6.71 7.31 9.14 5.38 12 5.38z"/></svg>
-        Google 계정으로 로그인
-      </button>
+      <div class="tab-row">
+        <button class="on" id="tabLogin" onclick="switchTab('login')">로그인</button>
+        <button id="tabSignup" onclick="switchTab('signup')">가입하기</button>
+      </div>
 
-      <div class="divider">또는 이메일로 로그인</div>
-
-      <div class="field">
-        <label>이메일</label>
-        <div class="input-wrap">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m4 7 8 6 8-6"/></svg>
-          <input type="email" placeholder="name@example.com" autocomplete="email">
+      <!-- 로그인 영역 -->
+      <div id="loginArea">
+        <button class="gbtn" id="gLoginBtn">
+          <svg viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.27-4.74 3.27-8.1z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.84 14.1a6.6 6.6 0 0 1 0-4.2V7.06H2.18a11 11 0 0 0 0 9.88l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1A11 11 0 0 0 2.18 7.06l3.66 2.84C6.71 7.31 9.14 5.38 12 5.38z"/></svg>
+          Google 계정으로 로그인
+        </button>
+        <div class="divider">또는 이메일로 로그인</div>
+        <div class="field">
+          <label>이메일</label>
+          <div class="input-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m4 7 8 6 8-6"/></svg>
+            <input type="email" id="loginEmail" placeholder="name@example.com" autocomplete="email">
+          </div>
         </div>
-      </div>
-
-      <div class="field">
-        <label>비밀번호</label>
-        <div class="input-wrap">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10.5" width="16" height="10" rx="2.5"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/></svg>
-          <input type="password" id="pw" placeholder="비밀번호 입력" autocomplete="current-password">
-          <button class="eye" id="eye" type="button" aria-label="비밀번호 표시">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="17" height="17"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
-          </button>
+        <div class="field">
+          <label>비밀번호</label>
+          <div class="input-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10.5" width="16" height="10" rx="2.5"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/></svg>
+            <input type="password" id="pw" placeholder="비밀번호 입력" autocomplete="current-password">
+            <button class="eye" id="eye" type="button" aria-label="비밀번호 표시">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="17" height="17"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+          </div>
         </div>
+        <div class="row">
+          <label class="remember"><input type="checkbox"> 로그인 상태 유지</label>
+          <span class="forgot">비밀번호 찾기</span>
+        </div>
+        <button class="login-btn" id="loginBtn">로그인
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </button>
+        <div class="err-msg" id="loginErr"></div>
+        <div class="signup" style="margin-top:14px">아직 계정이 없으신가요? <a onclick="switchTab('signup')">가입하기</a></div>
       </div>
 
-      <div class="row">
-        <label class="remember"><input type="checkbox"> 로그인 상태 유지</label>
-        <span class="forgot">비밀번호 찾기</span>
+      <!-- 가입 영역 -->
+      <div id="signupArea" style="display:none">
+        <div class="field">
+          <label>이름</label>
+          <div class="input-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20a8 8 0 0 1 16 0"/></svg>
+            <input type="text" id="signupName" placeholder="홍길동" autocomplete="name">
+          </div>
+        </div>
+        <div class="field">
+          <label>이메일</label>
+          <div class="input-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m4 7 8 6 8-6"/></svg>
+            <input type="email" id="signupEmail" placeholder="name@example.com" autocomplete="email">
+          </div>
+        </div>
+        <div class="field">
+          <label>비밀번호</label>
+          <div class="input-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10.5" width="16" height="10" rx="2.5"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/></svg>
+            <input type="password" id="signupPw" placeholder="6자 이상" autocomplete="new-password">
+          </div>
+        </div>
+        <button class="login-btn" id="signupBtn" style="margin-top:6px">가입하기
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </button>
+        <div class="err-msg" id="signupErr"></div>
+        <div class="signup" style="margin-top:14px">이미 계정이 있으신가요? <a onclick="switchTab('login')">로그인</a></div>
       </div>
-
-      <button class="login-btn" onclick="location.href='dashboard.html'">로그인
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </button>
-
-      <div class="signup">아직 계정이 없으신가요? <a href="#">총관리자에게 문의</a></div>
     </div>
 
     <div class="foot">© 2026 <b>MOIDA</b> · 경기도의원 장윤정 의정활동 관리 시스템</div>
   </div>
 </div>
 
-<script>
-  (function(){
-    var eye=document.getElementById('eye'), pw=document.getElementById('pw');
-    eye.addEventListener('click',function(){ pw.type = pw.type==='password'?'text':'password'; eye.style.color = pw.type==='text' ? 'var(--primary)' : ''; });
-  })();
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, updateProfile } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAIjhvbCztHoF7YwP2IYIk2C6jCI64uFhs",
+    authDomain: "jjj2195-1bd15.firebaseapp.com",
+    projectId: "jjj2195-1bd15",
+    storageBucket: "jjj2195-1bd15.firebasestorage.app",
+    messagingSenderId: "370852437825",
+    appId: "1:370852437825:web:b0a891d6a99b426d230bc0"
+  };
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const provider = new GoogleAuthProvider();
+
+  // 탭 전환
+  window.switchTab = function(tab) {
+    var isLogin = tab==='login';
+    document.getElementById('loginArea').style.display = isLogin?'':'none';
+    document.getElementById('signupArea').style.display = isLogin?'none':'';
+    document.getElementById('tabLogin').classList.toggle('on', isLogin);
+    document.getElementById('tabSignup').classList.toggle('on', !isLogin);
+    document.getElementById('welcomeTitle').textContent = isLogin?'다시 오신 것을 환영합니다':'새 계정 만들기';
+    document.getElementById('loginErr').textContent='';
+    document.getElementById('signupErr').textContent='';
+  };
+
+  // 비밀번호 토글
+  var eye=document.getElementById('eye'), pw=document.getElementById('pw');
+  eye.addEventListener('click',function(){ pw.type=pw.type==='password'?'text':'password'; eye.style.color=pw.type==='text'?'var(--primary)':''; });
+
+  // Google 로그인
+  document.getElementById('gLoginBtn').addEventListener('click', async function(){
+    try { await signInWithPopup(auth, provider); location.href='admin.html'; }
+    catch(e){ document.getElementById('loginErr').textContent=e.message; }
+  });
+
+  // 이메일 로그인
+  document.getElementById('loginBtn').addEventListener('click', async function(){
+    var email=document.getElementById('loginEmail').value.trim();
+    var password=pw.value;
+    var err=document.getElementById('loginErr');
+    err.textContent='';
+    if(!email||!password){ err.textContent='이메일과 비밀번호를 입력하세요.'; return; }
+    try { await signInWithEmailAndPassword(auth, email, password); location.href='admin.html'; }
+    catch(e){ err.textContent = e.code==='auth/invalid-credential'?'이메일 또는 비밀번호가 올바르지 않습니다.':e.message; }
+  });
+
+  // 회원가입
+  document.getElementById('signupBtn').addEventListener('click', async function(){
+    var name=document.getElementById('signupName').value.trim();
+    var email=document.getElementById('signupEmail').value.trim();
+    var password=document.getElementById('signupPw').value;
+    var err=document.getElementById('signupErr');
+    err.textContent='';
+    if(!name){ err.textContent='이름을 입력하세요.'; return; }
+    if(!email){ err.textContent='이메일을 입력하세요.'; return; }
+    if(password.length<6){ err.textContent='비밀번호는 6자 이상이어야 합니다.'; return; }
+    try {
+      var cred = await createUserWithEmailAndPassword(auth, email, password);
+      await updateProfile(cred.user, { displayName: name });
+      location.href='admin.html';
+    } catch(e){
+      err.textContent = e.code==='auth/email-already-in-use'?'이미 사용 중인 이메일입니다.':e.message;
+    }
+  });
 </script>
 </body>
 </html>

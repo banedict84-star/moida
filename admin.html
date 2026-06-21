@@ -698,6 +698,10 @@ async function loadTenants() {
       tenants[i]._st = tenantStatus(tenants[i].subscriptionEnd);
     }
     _tenants = tenants;
+    // schedule.html 등 다른 페이지에서 읽을 수 있도록 localStorage에 캐시
+    localStorage.setItem('moida_tenants_cache', JSON.stringify(tenants.map(function(t){
+      return { name:t.name, position:t.position||'', email:t.email||'', district:t.district||'' };
+    })));
     renderTenantList();
   } catch(e) { el.innerHTML = '<div class="empty">로드 실패</div>'; }
 }
