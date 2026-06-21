@@ -672,9 +672,9 @@ onAuthStateChanged(_auth, function(user){
   function recalcScores(){ members.forEach(function(m){ m.score=calcScore(m); }); }
   // ── 성향 신호등 (투표활동 기반) ──
   var leanMeta={ ours:{c:'#16a34a',label:'우리편'}, rival:{c:'#e0322c',label:'상대편'}, float:{c:'#eab308',label:'중도'}, none:{c:'#aab0bd',label:'무관심'} };
-  var defaultLean={ '이서연':'ours','박준호':'rival','최은정':'ours','정우성':'float','한지민':'ours','오세훈':'rival','강하늘':'float','문소리':'ours','류승범':'none','배수지':'float' };
+  var defaultLean={};
   function leanOf(m){
-    var v=(typeof voteStore!=='undefined' && (voteStore[m.mid]||voteStore[m.name]))||[];
+    var v=(typeof voteStore!=='undefined' && (m.mid ? voteStore[m.mid] : voteStore[m.name]))||[];
     if(v.length){
       var o=0,r=0,f=0,act=0;
       v.forEach(function(x){ if(x.support==='ours')o++; else if(x.support==='rival')r++; else if(x.support==='float')f++; if(x.voted==='vote')act++; });
