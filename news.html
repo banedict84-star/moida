@@ -563,7 +563,8 @@
       done(function(){
         btn.disabled=false; btn.classList.remove('loading');
         var merged=[], seen={};
-        [].concat(Array.isArray(liveRows)?liveRows:[], poolMatch()).forEach(function(n){
+        // 풀(네이버·다음)을 먼저 합쳐 중복 시 네이버·다음이 우선되게 함(구글은 뒤에서 보충)
+        [].concat(poolMatch(), Array.isArray(liveRows)?liveRows:[]).forEach(function(n){
           var key=(n.title||'').replace(/[^0-9a-z가-힣]/gi,'').slice(0,40); if(!key||seen[key]) return; seen[key]=1; merged.push(n);
         });
         merged.sort(function(a,b){ return dnum(b.date)-dnum(a.date); });
