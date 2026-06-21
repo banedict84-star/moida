@@ -656,9 +656,17 @@ onAuthStateChanged(_auth, function(user){
       Object.keys(D).forEach(function(k){ if(m[k]===undefined||m[k]===null&&k!=='family') m[k]=D[k]; });
       if(!m.mid){ m.mid='m'+Date.now()+Math.random().toString(36).slice(2,7); }
       if(!m.type||m.type==='undefined') m.type=D.type;
-      if(!m.dong||m.dong==='undefined') m.dong=D.dong;
       if(!m.ageb||m.ageb==='undefined') m.ageb=D.ageb;
       if(!m.sex||m.sex==='undefined') m.sex=D.sex;
+      // 행정동 자동 추출
+      if(!m.dong||m.dong==='—'||m.dong==='undefined'){
+        if(m.addr&&m.addr!=='—'){
+          var _dm=m.addr.match(/([가-힣]+[동읍면리])\s*\d/); if(!_dm) _dm=m.addr.match(/([가-힣]+[동읍면리])(?:\s|$)/);
+          m.dong=_dm?_dm[1]:'—';
+        } else { m.dong='—'; }
+      }
+      // 주민번호에서 나이·연령대·성별 자동 파생
+      if(m.rrn&&m.rrn!=='—'){ var _d=deriveFromRrn(m.rrn); if(_d){ if(!m.age||m.age==='') m.age=_d.age; if(!m.ageb||m.ageb==='—') m.ageb=_d.ageb; if(!m.sex||m.sex==='—') m.sex=_d.sex; } }
     });
     saveMembers();
   })();
