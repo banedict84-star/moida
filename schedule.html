@@ -749,7 +749,7 @@
 
   function renderFeed(){
     var cur='방민성';
-    var list=events.filter(function(e){ return _authorFilter==='all' || e.author===cur; }).slice();
+    var list=events.filter(function(e){ return _authorFilter==='all' || e.author===cur; }).slice().sort(function(a,b){ return (a.created||'')<(b.created||'')?1:-1; });
     document.getElementById('feedView').innerHTML = list.map(function(e){ var i=events.indexOf(e); return '<div class="ev'+(e.star?' imp':'')+'"><div class="ev-ico">'+calIco+'</div><div class="ev-main"><div class="ev-t">'+e.title+'</div><div class="ev-meta">'+e.author+' · '+e.created+'</div></div><div class="ev-date">'+e.date+' '+e.time+'</div><button class="ev-star'+(e.star?' on':'')+'" data-si="'+i+'" title="중요 일정" onclick="toggleStar(event,'+i+')">'+starSvg(e.star)+'</button></div>'; }).join('');
     var fb=document.querySelector('.fb-all b'); if(fb) fb.textContent=list.length;
   }
@@ -1077,7 +1077,8 @@
         p.querySelector('#evdMon').textContent=mm[1]+'-'+mm[2];
         p.querySelector('#evdDay').textContent=+mm[3];
         var _timeStr=mm[1]+'-'+mm[2]+'-'+mm[3]+' ('+dows[dObj.getDay()]+')'+(mm[4]?', '+mm[4]:'');
-        if(_evArr&&_evArr.endTime){ _timeStr+=' ~ '+(_evArr.endDate&&_evArr.endDate!==mm[1]+'-'+mm[2]+'-'+mm[3]?_evArr.endDate+' ':'')+_evArr.endTime; }
+        var _startDate=mm[1]+'-'+mm[2]+'-'+mm[3];
+        if(_evArr&&_evArr.endTime){ _timeStr+=' ~ '+(_evArr.endDate&&_evArr.endDate!==_startDate?_evArr.endDate+' ':'')+_evArr.endTime; }
         p.querySelector('#evdTime').textContent=_timeStr;
       } else { p.querySelector('#evdTime').textContent=dt; }
       var data=ev._evData||(_evArr?{ body:_evArr._body, files:_evArr._files, location:_evArr._location }:{}); var ch='';
