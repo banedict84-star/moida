@@ -1122,7 +1122,7 @@ onAuthStateChanged(_auth, function(user){
     dtSub.textContent='새 당원 정보를 입력하세요';
     ['dtfName','dtfPhone','dtfRrn','dtAddr','dtAddrDetail','dtDong','dtFamily','dtfRec1','dtfRec2','dtfRec3'].forEach(function(id){ var el=document.getElementById(id); if(el) el.value=''; });
     loadOrgEditor([]);
-    document.querySelectorAll('#dtfType .tseg-opt').forEach(function(o){ o.classList.toggle('on', o.dataset.v==='권리당원'); });
+    document.querySelectorAll('#dtfType .tseg-opt').forEach(function(o){ o.classList.remove('on'); });
     if(window._setMemberPhoto) window._setMemberPhoto('');
     voteStore['__new__']=[]; curVoteName=null; renderVotes('__new__');
     var memoEl=document.getElementById('dtMemo'); if(memoEl) memoEl.value='';
