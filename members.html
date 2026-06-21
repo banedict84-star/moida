@@ -1426,10 +1426,18 @@ onAuthStateChanged(_auth, function(user){
       if(idx.name==null){ alert('CSV에 "이름"(또는 성명) 열을 찾지 못했습니다.\n첫 줄 머리글을 확인해 주세요.'); return {added:0,updated:0}; }
       var added=0, updated=0, skipped=0;
       for(var r=1;r<rows.length;r++){
-        var cells=rows[r]; var get=function(k){ return idx[k]!=null ? (cells[idx[k]]||'').trim() : undefined; };
+        var cells=rows[r];
+        var get=function(k){
+          if(idx[k]==null) return undefined;
+          var v=(cells[idx[k]]||'').trim();
+          // 엑셀 숫자형 → 문자: 소수점 제거 (.0), 지수 표기 처리
+          v=v.replace(/\.0+$/, '').replace(/^(\d+)e\+?(\d+)$/i, function(_,b,e){ return b.padEnd(+e+1,'0'); });
+          return v;
+        };
         var nm=get('name'); var ph=get('phone');
         if(!nm || !ph){ if((nm||'')!=='' || (ph||'')!=='') skipped++; continue; }
-        var m=members.find(function(x){ return x.name===nm && x.phone===ph; });
+        var phFmt=formatPhone(ph)||ph; // 포맷된 번호로 중복 검사
+        var m=members.find(function(x){ return x.name===nm && (x.phone===phFmt||x.phone===ph||String(x.phone||'').replace(/[^0-9]/g,'')===String(phFmt||'').replace(/[^0-9]/g,'')); });
         var isNew=!m;
         if(isNew){ m={ no:members.length+1, name:nm, score:0, rrn:'—', dong:'—', org:'—', rec:'—', rec2:'—', rec3:'—', sub:'—', third:'—', addr:'—', addrDetail:'', family:null, age:'', ageb:'—', sex:'—', vote:'미확인', voteK:'err', katalk:'—', type:'일반당원', typeK:'old', krGrade:0, smGrade:0, photo:'' }; }
         ['phone','rrn','dong','type','org','sex','rec','sub','third','katalk','sms','addr','ageb'].forEach(function(k){
