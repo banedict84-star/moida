@@ -661,7 +661,7 @@ onAuthStateChanged(_auth, function(user){
       // 행정동 자동 추출
       if(!m.dong||m.dong==='—'||m.dong==='undefined'){
         if(m.addr&&m.addr!=='—'){
-          var _dm=m.addr.match(/([가-힣]+[동읍면리])\s*\d/); if(!_dm) _dm=m.addr.match(/([가-힣]+[동읍면리])(?:\s|$)/);
+          var _dm=m.addr.match(/\(([가-힣]+[동읍면리])[,)]/); if(!_dm) _dm=m.addr.match(/([가-힣]+[동읍면리])\s*\d/); if(!_dm) _dm=m.addr.match(/([가-힣]+[동읍면리])[\s,)$]/);
           m.dong=_dm?_dm[1]:'—';
         } else { m.dong='—'; }
       }
@@ -1472,7 +1472,7 @@ onAuthStateChanged(_auth, function(user){
         if(m.rrn && m.rrn!=='—'){ var _d=deriveFromRrn(m.rrn); if(_d){ if(!m.age||m.age==='') m.age=_d.age; if(!m.ageb||m.ageb==='—') m.ageb=_d.ageb; if(!m.sex||m.sex==='—') m.sex=_d.sex; } }
         // 주소에서 행정동 자동 추출 (예: "경기 안산시 상록구 성포동 ..." → "성포동")
         if((!m.dong||m.dong==='—') && m.addr && m.addr!=='—'){
-          var _dm=m.addr.match(/([가-힣]+[동읍면리])\s*\d/); if(!_dm) _dm=m.addr.match(/([가-힣]+[동읍면리])(?:\s|$)/);
+          var _dm=m.addr.match(/\(([가-힣]+[동읍면리])[,)]/); if(!_dm) _dm=m.addr.match(/([가-힣]+[동읍면리])\s*\d/); if(!_dm) _dm=m.addr.match(/([가-힣]+[동읍면리])[\s,)$]/);
           if(_dm) m.dong=_dm[1];
         }
         // rec2/rec3 sync
