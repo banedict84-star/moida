@@ -375,6 +375,11 @@
       <span id="chipList" style="display:contents"></span>
       <button class="nchip-add" id="chipAdd">＋ 추가</button>
     </div>
+    <div class="news-chips" id="recentChips" style="display:none">
+      <span class="ncl">최근</span>
+      <span id="recentList" style="display:contents"></span>
+      <button class="nchip-add" id="recentClear">전체삭제</button>
+    </div>
 
     <div class="work">
       <div class="ncol">
@@ -606,7 +611,7 @@
         merged.sort(function(a,b){ return dnum(b.date)-dnum(a.date); });
         if(merged.length){ NEWS.length=0; merged.slice(0,30).forEach(function(r,i){ NEWS.push(Object.assign({id:i+1},r)); }); curId=null; liveMode=true; renderList(); }
         else { liveMode=false; renderList(); }
-        saveSearch(); // 다른 탭 다녀와도 복원되도록 마지막 검색 저장
+        addRecent(input.value); // 최근 검색어에 추가
       });
     }
     // 구글은 브라우저에서 실시간 수집, 네이버·다음은 서버 크롤링 풀에서 가져와 합친다.
@@ -671,37 +676,36 @@
   kovl.addEventListener('click', function(e){ if(e.target===kovl) closeKw(); });
   renderChips();
 
-  // ===== 마지막 검색 결과 저장/복원 (다른 탭 다녀와도 유지) =====
-  var LAST_KEY='moida_news_lastsearch';
-  var LAST_TTL=12*60*60*1000; // 12시간 동안 유지
-  function saveSearch(){
-    try{ localStorage.setItem(LAST_KEY, JSON.stringify({ q:input.value, items:NEWS.slice(0,30), liveMode:liveMode, ts:Date.now() })); }catch(e){}
+  // ===== 최근 검색어 =====
+  var RECENT_KEY='moida_news_recent';
+  function getRecent(){ try{ var v=JSON.parse(localStorage.getItem(RECENT_KEY)); return Array.isArray(v)?v:[]; }catch(e){ return []; } }
+  function addRecent(q){ q=(q||'').trim(); if(!q) return; var arr=getRecent().filter(function(x){ return x!==q; }); arr.unshift(q); arr=arr.slice(0,10); localStorage.setItem(RECENT_KEY, JSON.stringify(arr)); renderRecent(); }
+  function removeRecent(q){ localStorage.setItem(RECENT_KEY, JSON.stringify(getRecent().filter(function(x){ return x!==q; }))); renderRecent(); }
+  function renderRecent(){
+    var arr=getRecent(); var box=document.getElementById('recentChips'); var list=document.getElementById('recentList');
+    if(!arr.length){ box.style.display='none'; return; }
+    box.style.display='flex';
+    list.innerHTML=arr.map(function(q){ return '<button class="nchip" data-q="'+esc(q)+'"><span class="chip-q">'+esc(q)+'</span><span class="chip-x" title="삭제">✕</span></button>'; }).join('');
   }
-  function restoreSearch(){
-    try{
-      var s=JSON.parse(localStorage.getItem(LAST_KEY));
-      if(!s || !Array.isArray(s.items) || !s.items.length) return false;
-      if(Date.now()-(s.ts||0) > LAST_TTL) return false; // 너무 오래되면 무시
-      input.value = s.q||'';
-      NEWS.length=0; s.items.forEach(function(r,i){ NEWS.push(Object.assign({id:i+1}, r)); });
-      curId=null; liveMode=!!s.liveMode; renderList();
-      return true;
-    }catch(e){ return false; }
+  document.getElementById('recentList').addEventListener('click', function(e){
+    var chip=e.target.closest('.nchip'); if(!chip) return; var q=chip.dataset.q;
+    if(e.target.closest('.chip-x')){ removeRecent(q); return; }
+    input.value=q; runSearch();
+  });
+  document.getElementById('recentClear').addEventListener('click', function(){ localStorage.removeItem(RECENT_KEY); renderRecent(); });
+  renderRecent();
+
+  // 새로고침/재방문 시 결과를 보여주지 않고 안내만 표시 (검색해야 결과가 나옴)
+  function showIntro(){
+    NEWS.length=0; curId=null; liveMode=false;
+    nlist.innerHTML='<div style="padding:48px 8px;color:var(--ink-4);font-size:14px;line-height:1.7;text-align:center;">검색어를 입력하고 <b style="color:var(--ink-3)">뉴스 수집</b>을 눌러주세요.<br>구글·네이버에서 실시간으로 기사를 모아옵니다.</div>';
+    ndTitle.textContent='기사를 선택하세요'; ndMeta.innerHTML='<span>검색 후 기사를 클릭하면 요약과 원문 링크가 표시됩니다.</span>'; ndBody.innerHTML='';
   }
+  showIntro();
 
-  var restored = restoreSearch();
-  if(!restored) renderList();
-
-  // 서버 크롤러가 생성한 news_data.json(구글·네이버·다음)을 풀로 적재
+  // 서버 크롤러가 만든 news_data.json은 검색 매칭용 풀로만 적재(화면엔 표시 안 함)
   fetch('news_data.json?t='+Date.now()).then(function(r){ return r.ok?r.json():null; }).then(function(d){
-    if(d && Array.isArray(d.items) && d.items.length){
-      POOL = d.items.slice();
-      // 복원된 검색이 없을 때만 초기 화면을 크롤링 풀(3개 출처)로 교체
-      if(!restored){
-        NEWS.length=0; POOL.slice().sort(function(a,b){ return dnum(b.date)-dnum(a.date); }).forEach(function(r,i){ NEWS.push(Object.assign({id:i+1}, r)); });
-        curId=null; renderList();
-      }
-    }
+    if(d && Array.isArray(d.items) && d.items.length){ POOL = d.items.slice(); }
   }).catch(function(){});
 
     // sidebar collapse
