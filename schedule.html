@@ -895,6 +895,7 @@ onAuthStateChanged(_auth, async function(user){
       }).join('');
       grid.innerHTML = html;
     }
+    window.renderCal = renderCal;
     renderCal();
     var navs=document.querySelectorAll('.cal-nav');
     if(navs[0]) navs[0].addEventListener('click',function(){ calM--; if(calM<0){calM=11;calY--;} renderCal(); });
@@ -1038,7 +1039,7 @@ onAuthStateChanged(_auth, async function(user){
       var datePart=mt?mt[1]:''; var timePart=mt?mt[2]:''; var dayNum=datePart?parseInt(datePart.split('-')[2],10):null;
       var endDate=mte?mte[1]:''; var endTime=mte?mte[2]:'';
       events.unshift({ title:title, author:'방민성', created:created, date:datePart, time:timePart, endDate:endDate, endTime:endTime, d:dayNum, star:false, _body:bodyTxt, _files:files, _location:locVal });
-      saveEvents(); renderFeed(); renderStats(); renderImp();
+      saveEvents(); renderFeed(); renderStats(); renderImp(); if(window.renderCal) window.renderCal();
       const fb=document.querySelector('.vbtn[data-view="feed"]'); if(fb) fb.click();
       ti.value=''; if(ct) ct.value=''; if(modal&&modal._resetFiles) modal._resetFiles();
     });
@@ -1171,7 +1172,7 @@ onAuthStateChanged(_auth, async function(user){
           var _title2=_t2.textContent.trim();
           var _created2=(_m2.textContent.split(' · ')[1]||'').trim();
           var _idx=events.findIndex(function(e){ return e.title===_title2 && e.created===_created2; });
-          if(_idx>=0){ events.splice(_idx,1); saveEvents(); renderStats(); renderImp(); }
+          if(_idx>=0){ events.splice(_idx,1); saveEvents(); renderStats(); renderImp(); if(window.renderCal) window.renderCal(); }
         }
         ev.remove();
         var cnt=document.getElementById('evCount'); if(cnt) cnt.textContent=Math.max(0,(+cnt.textContent-1));
