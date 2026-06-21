@@ -1477,7 +1477,9 @@ onAuthStateChanged(_auth, function(user){
     }
     var imBtn=document.getElementById('csvImportBtn'), file=document.getElementById('csvFile');
     if(imBtn&&file){
-      imBtn.addEventListener('click',function(){ file.value=''; file.click(); });
+      imBtn.addEventListener('click',function(){
+        moidaConfirm({ title:'파일 가져오기', desc:'엑셀·CSV 파일을 첨부해서<br>구성원 데이터를 가져옵니다.<br>파일을 첨부하시겠습니까?', ok:'첨부하기' }, function(){ file.value=''; file.click(); });
+      });
       file.addEventListener('change',function(){
         var f=file.files[0]; if(!f) return;
         var done=function(rows){ try{ var r=applyImport(rows); var tot=r.added+r.updated; var msg='총 '+tot+'명 처리\n· 새로 등록: '+r.added+'명\n· 기존과 겹쳐 갱신: '+r.updated+'명'; if(r.skipped) msg+='\n· 제외(이름/연락처 누락): '+r.skipped+'명'; alert(msg); }catch(err){ alert('파일을 읽지 못했습니다: '+err.message); } };
