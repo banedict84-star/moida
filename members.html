@@ -719,8 +719,11 @@ onAuthStateChanged(_auth, function(user){
   function catColor(c){ return catMeta[c]||catMeta['기타']; }
   // 기존 단일 m.org 문자열을 orgs 배열로 정규화 (+ 저장된 소속 불러오기)
   var _orgStore=JSON.parse(localStorage.getItem('moida_orgs_' + _uid)||'{}');
+  // migrate orgs: name → mid
+  (function(){ var changed=false; members.forEach(function(m){ if(m.mid&&_orgStore[m.name]&&!_orgStore[m.mid]){ _orgStore[m.mid]=_orgStore[m.name]; delete _orgStore[m.name]; changed=true; } }); if(changed) localStorage.setItem('moida_orgs_'+_uid, JSON.stringify(_orgStore)); })();
   members.forEach(function(m){
-    if(Array.isArray(_orgStore[m.name])){ m.orgs=_orgStore[m.name]; }
+    if(Array.isArray(_orgStore[m.mid])){ m.orgs=_orgStore[m.mid]; }
+    else if(Array.isArray(_orgStore[m.name])){ m.orgs=_orgStore[m.name]; }
     if(!Array.isArray(m.orgs)){
       m.orgs = (m.org && m.org!=='—') ? [{cat:'단체',name:m.org,title:'',rep:true}] : [];
     }
@@ -765,7 +768,7 @@ onAuthStateChanged(_auth, function(user){
   function saveRecChain(){
     var m=recPop._mem, c=recPop._chain; if(!m) return;
     m.rec=c[0]||'—'; m.sub=c[1]||'—'; m.third=c[2]||'—';
-    var rk='moida_rec_chains_' + _uid; var store=JSON.parse(localStorage.getItem(rk)||'{}'); store[m.name]=c; localStorage.setItem(rk, JSON.stringify(store));
+    var rk='moida_rec_chains_' + _uid; var store=JSON.parse(localStorage.getItem(rk)||'{}'); store[m.mid||m.name]=c; localStorage.setItem(rk, JSON.stringify(store));
     renderRows();
   }
   (function(){
@@ -791,7 +794,7 @@ onAuthStateChanged(_auth, function(user){
     orgPop.addEventListener('drop',function(e){ e.preventDefault(); var r=e.target.closest('.rp-row'); if(r==null||di==null) return; var to=+r.dataset.oi; var m=orgPop._mem; var it=m.orgs.splice(di,1)[0]; m.orgs.splice(to,0,it); di=null; syncOrgStr(m); saveOrgs(m); renderOrgPop(); renderRows(); });
   })();
   document.addEventListener('mousedown',function(e){ if(!orgPop.contains(e.target) && !(e.target.closest&&e.target.closest('.org-link'))) orgPop.classList.remove('show'); });
-  function saveOrgs(m){ var k='moida_orgs_' + _uid; var store=JSON.parse(localStorage.getItem(k)||'{}'); store[m.name]=m.orgs; localStorage.setItem(k, JSON.stringify(store)); }
+  function saveOrgs(m){ var k='moida_orgs_' + _uid; var store=JSON.parse(localStorage.getItem(k)||'{}'); store[m.mid||m.name]=m.orgs; localStorage.setItem(k, JSON.stringify(store)); }
   function showDetail(){ detailPanel.classList.add('show'); dtOvl.classList.add('show'); }
   function closeDetail(){ detailPanel.classList.remove('show'); dtOvl.classList.remove('show'); tbody.querySelectorAll('tr').forEach(t=>t.classList.remove('sel')); }
   document.getElementById('dtClose').addEventListener('click', closeDetail);
@@ -911,13 +914,20 @@ onAuthStateChanged(_auth, function(user){
   // 게이지 등급 기본값 + 저장
   const GRADE_KEY='moida_member_grades_' + _uid;
   var savedGrades=JSON.parse(localStorage.getItem(GRADE_KEY)||'{}');
+  // migrate grades: name → mid
+  (function(){ var changed=false; members.forEach(function(m){ if(m.mid&&savedGrades[m.name]&&!savedGrades[m.mid]){ savedGrades[m.mid]=savedGrades[m.name]; delete savedGrades[m.name]; changed=true; } }); if(changed) localStorage.setItem(GRADE_KEY, JSON.stringify(savedGrades)); })();
   members.forEach(function(m){
-    var g=savedGrades[m.name]||{};
+    var g=savedGrades[m.mid]||savedGrades[m.name]||{};
     m.krGrade = g.kr!=null ? g.kr : (m.katalkReply==='완료'?5:m.katalkReply==='미답'?2:0);
     m.smGrade = g.sm!=null ? g.sm : (m.sms==='발송'?4:m.sms==='수신거부'?1:0);
   });
-  function saveGrades(){ var o={}; members.forEach(function(m){ o[m.name]={kr:m.krGrade, sm:m.smGrade}; }); localStorage.setItem(GRADE_KEY, JSON.stringify(o)); }
-  (function(){ var saved=JSON.parse(localStorage.getItem('moida_rec_chains_' + _uid)||'{}'); members.forEach(function(m){ var c=saved[m.name]; if(c){ m.rec=c[0]||'—'; m.sub=c[1]||'—'; m.third=c[2]||'—'; } }); })();
+  function saveGrades(){ var o={}; members.forEach(function(m){ o[m.mid||m.name]={kr:m.krGrade, sm:m.smGrade}; }); localStorage.setItem(GRADE_KEY, JSON.stringify(o)); }
+  (function(){
+    var saved=JSON.parse(localStorage.getItem('moida_rec_chains_' + _uid)||'{}');
+    // migrate rec_chains: name → mid
+    var changed=false; members.forEach(function(m){ if(m.mid&&saved[m.name]&&!saved[m.mid]){ saved[m.mid]=saved[m.name]; delete saved[m.name]; changed=true; } }); if(changed) localStorage.setItem('moida_rec_chains_'+_uid, JSON.stringify(saved));
+    members.forEach(function(m){ var c=saved[m.mid]||saved[m.name]; if(c){ m.rec=c[0]||'—'; m.sub=c[1]||'—'; m.third=c[2]||'—'; m.rec2=m.sub; m.rec3=m.third; } });
+  })();
   recalcScores();
   function gauge(field, val){
     var b=''; for(var k=1;k<=5;k++){ b+='<span class="gb '+(k<=val?'on'+val:'')+'" data-g="'+field+'" data-v="'+k+'"></span>'; }
