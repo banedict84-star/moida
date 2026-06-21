@@ -978,11 +978,7 @@ onAuthStateChanged(_auth, async function(user){
     });
     document.querySelectorAll('.evm-input.date').forEach(function(inp){ inp.readOnly=true; inp.style.cursor='pointer'; inp.addEventListener('click',function(){ open(inp); }); });
 
-    const loc=document.createElement('div'); loc.className='loc-drop'; document.body.appendChild(loc);
-    const pin='<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-5.6-7-11a7 7 0 0 1 14 0c0 5.4-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>';
-    const sugg=[{b:'안산시',s:'대한민국 경기도'},{b:'안산 시',s:'중국 랴오닝 성'},{b:'안산시청',s:'대한민국 경기도 안산시 단원구 화랑로'},{b:'안산시',s:'프랑스'},{b:'단원구 골안길',s:'대한민국 경기도 안산시'}];
     const locInput=document.querySelector('.evm-input.grow[placeholder="장소를 입력하세요"]');
-    function showLoc(){ loc.innerHTML=sugg.map(function(x){ return '<div class="loc-item">'+pin+'<div><b>'+x.b+'</b> <span>'+x.s+'</span></div></div>'; }).join('')+'<div class="loc-foot">powered by Google</div>'; const r=locInput.getBoundingClientRect(); loc.style.left=Math.min(r.left, window.innerWidth-346)+'px'; loc.style.top=(r.bottom+6)+'px'; loc.classList.add('show'); }
     if(locInput){
       function showMap(q){
         var mapBox=document.getElementById('evmMap'); if(!mapBox) return;
@@ -993,10 +989,14 @@ onAuthStateChanged(_auth, async function(user){
         document.getElementById('evmMapLink').href='https://www.google.com/maps/search/?api=1&query='+enc;
         mapBox.classList.add('show');
       }
-      locInput.addEventListener('input',function(){ if(locInput.value.trim()) showLoc(); else loc.classList.remove('show'); });
-      loc.addEventListener('click',function(e){ const it=e.target.closest('.loc-item'); if(it){ locInput.value=it.querySelector('b').textContent; loc.classList.remove('show'); showMap(locInput.value.trim()); } });
-      locInput.addEventListener('change',function(){ showMap(locInput.value.trim()); });
-      locInput.addEventListener('keydown',function(e){ if(e.key==='Enter'){ loc.classList.remove('show'); showMap(locInput.value.trim()); } });
+      var _locTimer=null;
+      locInput.addEventListener('input',function(){
+        clearTimeout(_locTimer);
+        var q=locInput.value.trim();
+        if(!q){ document.getElementById('evmMap')&&document.getElementById('evmMap').classList.remove('show'); return; }
+        _locTimer=setTimeout(function(){ showMap(q); }, 600);
+      });
+      locInput.addEventListener('keydown',function(e){ if(e.key==='Enter'){ e.preventDefault(); clearTimeout(_locTimer); showMap(locInput.value.trim()); } });
     }
     document.addEventListener('mousedown',function(e){
       if(!dtp.contains(e.target) && !(e.target.classList&&e.target.classList.contains('date'))) dtp.classList.remove('show');
