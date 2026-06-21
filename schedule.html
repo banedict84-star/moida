@@ -474,7 +474,8 @@
   .dtp-day.off{ color:var(--ink-4); pointer-events:none; }
   .dtp-day.sel{ background:var(--primary); color:#fff; font-weight:700; }
   .dtp-time{ display:flex; align-items:center; justify-content:center; gap:8px; margin:12px 0 10px; }
-  .dtp-time input{ width:100px; height:30px; text-align:center; border:1px solid var(--line); border-radius:8px; padding:0 7px; font-family:inherit; font-size:14px; outline:none; }
+  .dtp-time input{ width:100px; height:30px; text-align:center; border:1px solid var(--line); border-radius:8px; padding:0 7px; font-family:inherit; font-size:14px; outline:none; -moz-appearance:textfield; }
+  .dtp-time input::-webkit-outer-spin-button,.dtp-time input::-webkit-inner-spin-button{ -webkit-appearance:none; margin:0; }
   .dtp-time input:focus{ border-color:var(--primary); }
   .dtp-time span{ font-weight:700; color:var(--ink-3); }
   .dtp-ok{ width:100%; padding:10px; border:none; background:var(--primary); color:#fff; border-radius:9px; font-family:inherit; font-size:13.5px; font-weight:700; cursor:pointer; }
@@ -791,7 +792,7 @@ onAuthStateChanged(_auth, async function(user){
     var strip=document.getElementById('impStrip');
     if(!imp.length){ strip.classList.add('empty'); strip.innerHTML=''; return; }
     strip.classList.remove('empty');
-    var todayStr='2026-06-19', tmrStr='2026-06-20';
+    var _tn=new Date(); var _tp=function(n){return String(n).padStart(2,'0');}; var todayStr=_tn.getFullYear()+'-'+_tp(_tn.getMonth()+1)+'-'+_tp(_tn.getDate()); var _tmr=new Date(_tn); _tmr.setDate(_tn.getDate()+1); var tmrStr=_tmr.getFullYear()+'-'+_tp(_tmr.getMonth()+1)+'-'+_tp(_tmr.getDate());
     strip.innerHTML='<div class="imp-head"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 17.8 6.8 19.2l1-5.8L3.5 9.2l5.9-.9z"/></svg>중요 일정 '+imp.length+'</div><div class="imp-list">'+imp.map(function(e){ var md=e.date.slice(5).replace('-','.'); var lab=(e.date===todayStr?'오늘 ':e.date===tmrStr?'내일 ':'')+md; return '<div class="imp-chip" data-title="'+e.title.replace(/"/g,'&quot;')+'"><span class="ic-d">'+lab+'</span><span class="ic-t">'+e.title+'</span><span class="ic-time">'+e.time+'</span></div>'; }).join('')+'</div>';
   }
   document.getElementById('impStrip').addEventListener('click',function(e){
@@ -823,7 +824,7 @@ onAuthStateChanged(_auth, async function(user){
 
   /* stat popup (오늘 → 이번주 → 이번달 순서) */
   (function(){
-    var today=new Date(2026,5,19);
+    var _tnow=new Date(); var today=new Date(_tnow.getFullYear(),_tnow.getMonth(),_tnow.getDate());
     function ymd(s){ var p=(s||'').split(' ')[0].split('-'); return p.length===3?new Date(+p[0],+p[1]-1,+p[2]):null; }
     var sw=new Date(today); sw.setDate(today.getDate()-today.getDay());
     var ew=new Date(sw); ew.setDate(sw.getDate()+7);
@@ -831,7 +832,7 @@ onAuthStateChanged(_auth, async function(user){
     var ranges=[
       { key:'today', title:'오늘 일정', cls:'es-today', test:function(d){ return d&&d.getTime()===today.getTime(); } },
       { key:'week', title:'이번주 일정', cls:'es-week', test:function(d){ return d&&d>=sw&&d<ew; } },
-      { key:'month', title:'이번달 일정', cls:'es-all', test:function(d){ return d&&d.getFullYear()===2026&&d.getMonth()===5; } }
+      { key:'month', title:'이번달 일정', cls:'es-all', test:function(d){ return d&&d.getFullYear()===today.getFullYear()&&d.getMonth()===today.getMonth(); } }
     ];
     var icons={
       'es-today':'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
@@ -885,8 +886,19 @@ onAuthStateChanged(_auth, async function(user){
       for(var i=startDow-1;i>=0;i--) cells.push({off:true,n:prevDays-i});
       for(var d=1;d<=dim;d++) cells.push({off:false,n:d});
       var nx=1; while(cells.length%7!==0) cells.push({off:true,n:nx++});
-      var byDay={}; events.forEach(function(e){ var dt=evDate(e.date); if(dt && dt.y===calY && dt.m===calM){ (byDay[dt.d]=byDay[dt.d]||[]).push(e); } });
-      var today=new Date(2026,5,20);
+      var byDay={};
+      events.forEach(function(e){
+        var dt=evDate(e.date); if(!dt) return;
+        var endDt=e.endDate?evDate(e.endDate):null;
+        var cur=new Date(dt.y,dt.m,dt.d);
+        var endD=endDt?new Date(endDt.y,endDt.m,endDt.d):cur;
+        while(cur<=endD){
+          var cy=cur.getFullYear(),cm=cur.getMonth(),cd=cur.getDate();
+          if(cy===calY&&cm===calM){ (byDay[cd]=byDay[cd]||[]).push(e); }
+          cur.setDate(cur.getDate()+1);
+        }
+      });
+      var _td=new Date(); var today=new Date(_td.getFullYear(),_td.getMonth(),_td.getDate());
       html += cells.map(function(c,i){
         var dow=i%7;
         var evs=(!c.off && byDay[c.n]) ? byDay[c.n].map(function(e){ return '<div class="cal-ev" data-title="'+e.title.replace(/"/g,'&quot;')+'"><span class="t">'+e.time+'</span> '+e.title+'</div>'; }).join('') : '';
@@ -964,7 +976,7 @@ onAuthStateChanged(_auth, async function(user){
       const start=new Date(yr,mo,1).getDay(), dim=new Date(yr,mo+1,0).getDate(), prev=new Date(yr,mo,0).getDate();
       for(let i=start-1;i>=0;i--) h+='<div class="dtp-day off">'+(prev-i)+'</div>';
       for(let d=1;d<=dim;d++) h+='<div class="dtp-day '+(d===sel?'sel':'')+'" data-d="'+d+'">'+d+'</div>';
-      h+='</div><div class="dtp-time"><input id="dtpH" value="'+hh+'" maxlength="2"><span>:</span><input id="dtpM" value="'+mm+'" maxlength="2"></div><button class="dtp-ok">선택</button>';
+      h+='</div><div class="dtp-time"><input id="dtpH" type="number" min="0" max="23" value="'+hh+'" maxlength="2"><span>:</span><input id="dtpM" type="number" min="0" max="59" value="'+mm+'" maxlength="2"></div><button class="dtp-ok">선택</button>';
       dtp.innerHTML=h;
     }
     function fmt(){ const dn=dows[new Date(yr,mo,sel).getDay()]; return yr+'-'+String(mo+1).padStart(2,'0')+'-'+String(sel).padStart(2,'0')+' ('+dn+'), '+hh+':'+mm; }
@@ -973,7 +985,7 @@ onAuthStateChanged(_auth, async function(user){
       const nav=e.target.closest('.dtp-nav');
       if(nav){ mo+=+nav.dataset.m; if(mo<0){mo=11;yr--;} if(mo>11){mo=0;yr++;} render(); return; }
       const day=e.target.closest('.dtp-day[data-d]'); if(day){ sel=+day.dataset.d; render(); return; }
-      if(e.target.closest('.dtp-ok')){ hh=(document.getElementById('dtpH').value||'00').padStart(2,'0'); mm=(document.getElementById('dtpM').value||'00').padStart(2,'0'); if(target) target.value=fmt(); dtp.classList.remove('show'); var _inputs=document.querySelectorAll('.evm-input.date'); if(target===_inputs[0]&&_inputs[1]){ var _dn=dows[new Date(yr,mo,sel).getDay()]; var _dateStr=yr+'-'+String(mo+1).padStart(2,'0')+'-'+String(sel).padStart(2,'0')+' ('+_dn+'), '; var _eh=parseInt(hh,10)+1; var _eday=sel; var _emo=mo; var _eyr=yr; if(_eh>=24){_eh=0;var _nd=new Date(yr,mo,sel+1);_eyr=_nd.getFullYear();_emo=_nd.getMonth();_eday=_nd.getDate();var _edn=dows[_nd.getDay()];_dateStr=_eyr+'-'+String(_emo+1).padStart(2,'0')+'-'+String(_eday).padStart(2,'0')+' ('+_edn+'), ';} _inputs[1].value=_dateStr+String(_eh).padStart(2,'0')+':'+mm; } }
+      if(e.target.closest('.dtp-ok')){ var _rh=parseInt(document.getElementById('dtpH').value||'0',10); var _rm=parseInt(document.getElementById('dtpM').value||'0',10); if(isNaN(_rh)||_rh<0)_rh=0; if(_rh>23)_rh=23; if(isNaN(_rm)||_rm<0)_rm=0; if(_rm>59)_rm=59; hh=String(_rh).padStart(2,'0'); mm=String(_rm).padStart(2,'0'); if(target) target.value=fmt(); dtp.classList.remove('show'); var _inputs=document.querySelectorAll('.evm-input.date'); if(target===_inputs[0]&&_inputs[1]){ var _dn=dows[new Date(yr,mo,sel).getDay()]; var _dateStr=yr+'-'+String(mo+1).padStart(2,'0')+'-'+String(sel).padStart(2,'0')+' ('+_dn+'), '; var _eh=parseInt(hh,10)+1; var _eday=sel; var _emo=mo; var _eyr=yr; if(_eh>=24){_eh=0;var _nd=new Date(yr,mo,sel+1);_eyr=_nd.getFullYear();_emo=_nd.getMonth();_eday=_nd.getDate();var _edn=dows[_nd.getDay()];_dateStr=_eyr+'-'+String(_emo+1).padStart(2,'0')+'-'+String(_eday).padStart(2,'0')+' ('+_edn+'), ';} _inputs[1].value=_dateStr+String(_eh).padStart(2,'0')+':'+mm; } }
     });
     document.querySelectorAll('.evm-input.date').forEach(function(inp){ inp.readOnly=true; inp.style.cursor='pointer'; inp.addEventListener('click',function(){ open(inp); }); });
 
