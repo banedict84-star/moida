@@ -566,11 +566,26 @@
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import { getFirestore, doc, getDoc, setDoc, deleteDoc, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 const _app = initializeApp({apiKey:"AIzaSyAIjhvbCztHoF7YwP2IYIk2C6jCI64uFhs",authDomain:"jjj2195-1bd15.firebaseapp.com",projectId:"jjj2195-1bd15",storageBucket:"jjj2195-1bd15.firebasestorage.app",messagingSenderId:"370852437825",appId:"1:370852437825:web:b0a891d6a99b426d230bc0"});
 const _auth = getAuth(_app);
-onAuthStateChanged(_auth, function(user){
+const _db = getFirestore(_app);
+window._db = _db;
+onAuthStateChanged(_auth, async function(user){
   if(!user){ location.href='index.html'; return; }
-  sessionStorage.setItem('moida_auth_user', JSON.stringify({uid:user.uid, email:user.email, displayName:user.displayName||''}));
+  // 초대 확인: 내 이메일로 초대가 있으면 ownerUid 사용
+  var effectiveUid = user.uid;
+  var ownerInfo = null;
+  try {
+    var emailKey = user.email.replace(/\./g,'_').replace(/@/g,'__');
+    var invSnap = await getDoc(doc(_db, 'invitations', emailKey));
+    if(invSnap.exists()){
+      var inv = invSnap.data();
+      effectiveUid = inv.ownerUid;
+      ownerInfo = inv;
+    }
+  } catch(e){}
+  sessionStorage.setItem('moida_auth_user', JSON.stringify({uid:user.uid, email:user.email, displayName:user.displayName||'', effectiveUid:effectiveUid, ownerInfo:ownerInfo}));
 });
 </script>
 </head>
@@ -727,13 +742,13 @@ onAuthStateChanged(_auth, function(user){
   <div class="iv">
     <div class="iv-head"><h3>멤버 초대</h3><button class="iv-x" id="ivX"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
     <div class="iv-body">
-      <div class="iv-desc">보좌진을 구글 이메일로 초대합니다. 초대받은 멤버는 본인 계정으로 로그인해 의원실 일정·당원을 함께 관리할 수 있어요.</div>
-      <div class="iv-field"><label>이메일</label><input type="email" id="ivEmail" placeholder="name@gmail.com"></div>
-      <div class="iv-field"><label>이름 / 직책</label><input type="text" id="ivName" placeholder="예: 김보좌 · 보좌관"></div>
+      <div class="iv-desc">초대할 보좌진의 이메일과 이름을 입력하세요. 해당 이메일로 가입하면 이 의원실 데이터를 함께 사용할 수 있습니다.</div>
+      <div class="iv-field"><label>이메일 <span style="color:#dc2626">*</span></label><input type="email" id="ivEmail" placeholder="name@gmail.com"></div>
+      <div class="iv-field"><label>이름 <span style="color:#dc2626">*</span></label><input type="text" id="ivName" placeholder="예: 김보좌"></div>
       <div class="iv-field"><label>권한</label><select id="ivRole"><option value="편집">편집 — 일정·당원 작성/수정</option><option value="열람">열람 — 보기 전용</option></select></div>
     </div>
     <div class="iv-ok" id="ivOk"></div>
-    <div class="iv-foot"><button class="iv-cancel" id="ivCancel">취소</button><button class="iv-send" id="ivSend">초대 보내기</button></div>
+    <div class="iv-foot"><button class="iv-cancel" id="ivCancel">취소</button><button class="iv-send" id="ivSend">초대 등록</button></div>
   </div>
 </div>
 
@@ -755,7 +770,7 @@ onAuthStateChanged(_auth, function(user){
 
 <script>
   var _authUser = JSON.parse(sessionStorage.getItem('moida_auth_user')||'{}');
-  var _uid = _authUser.uid || 'default';
+  var _uid = _authUser.effectiveUid || _authUser.uid || 'default';
   const EV_KEY='moida_events_' + _uid;
   var events = JSON.parse(localStorage.getItem(EV_KEY)||'[]');
   function saveEvents(){ localStorage.setItem(EV_KEY, JSON.stringify(events)); }
@@ -1290,20 +1305,34 @@ onAuthStateChanged(_auth, function(user){
     document.getElementById('ivX').addEventListener('click', close);
     document.getElementById('ivCancel').addEventListener('click', close);
     ovl.addEventListener('click', function(e){ if(e.target===ovl) close(); });
-    document.getElementById('ivSend').addEventListener('click', function(){
+    document.getElementById('ivSend').addEventListener('click', async function(){
       var email=document.getElementById('ivEmail').value.trim();
-      var rawName=document.getElementById('ivName').value.trim();
+      var nm=document.getElementById('ivName').value.trim();
       var role=document.getElementById('ivRole').value;
-      if(!rawName){ document.getElementById('ivOk').style.color='#dc2626'; document.getElementById('ivOk').textContent='이름을 입력하세요'; return; }
-      // parse "이름 · 직책" format
-      var parts=rawName.split(/[·\·\/]/); var nm=parts[0].trim(); var title=parts[1]?parts[1].trim():'보좌진';
-      var arr2=load();
-      var color=COLORS[arr2.length % COLORS.length];
-      arr2.push({ name:nm, title:title, role:role, color:color });
-      save(arr2); renderMembers();
-      document.getElementById('ivOk').style.color='#0f9d63';
-      document.getElementById('ivOk').textContent=(email?email+' — ':'')+nm+' 님이 추가되었습니다';
-      setTimeout(close, 1400);
+      var okEl=document.getElementById('ivOk');
+      if(!email){ okEl.style.color='#dc2626'; okEl.textContent='이메일을 입력하세요'; return; }
+      if(!nm){ okEl.style.color='#dc2626'; okEl.textContent='이름을 입력하세요'; return; }
+      okEl.style.color=''; okEl.textContent='저장 중...';
+      try {
+        // Firestore에 초대 저장 (ownerUid = 현재 사용자의 유효 UID)
+        var emailKey = email.replace(/\./g,'_').replace(/@/g,'__');
+        var ownerUid = _authUser.effectiveUid || _authUser.uid;
+        var ownerName = _authUser.displayName || _authUser.email || '';
+        await window._db && (await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js")).setDoc(
+          (await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js")).doc(window._db, 'invitations', emailKey),
+          { ownerUid:ownerUid, ownerName:ownerName, inviteeName:nm, role:role, email:email, created:Date.now() }
+        );
+        // 로컬 멤버 목록에도 추가 (pending 상태)
+        var arr2=load();
+        var color=COLORS[arr2.length % COLORS.length];
+        arr2.push({ name:nm, title:'보좌진', role:role, color:color, email:email, pending:true });
+        save(arr2); renderMembers();
+        okEl.style.color='#0f9d63';
+        okEl.textContent=nm+' 님 초대 완료! ('+email+')';
+        setTimeout(close, 1800);
+      } catch(e){
+        okEl.style.color='#dc2626'; okEl.textContent='저장 실패: '+e.message;
+      }
     });
   })();
 
