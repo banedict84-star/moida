@@ -655,7 +655,7 @@ onAuthStateChanged(_auth, async function(user){
         <div class="parts-h">의원실 멤버 <span id="memCount">0</span></div>
         <div class="pgroup">
           <div class="pg-t">의원 <span>1</span></div>
-          <div class="prow"><span class="pava" style="background:#ec4899">장</span><div class="pinfo"><div class="pname">장윤정 <span class="pme">나</span> <span class="role-pill">경기도의원</span></div><div class="porg">계정 소유자 · 관리자</div></div></div>
+          <div class="prow" id="ownerRow"><span class="pava" id="ownerAva" style="background:#ec4899">?</span><div class="pinfo"><div class="pname" id="ownerName">— <span class="pme">나</span></div><div class="porg">계정 소유자 · 관리자</div></div></div>
         </div>
         <div class="pgroup" id="staffGroup">
           <div class="pg-t">보좌진 <span id="staffCount">0</span></div>
@@ -1336,7 +1336,7 @@ onAuthStateChanged(_auth, async function(user){
     });
   })();
 
-  // 로그인 계정 표시
+  // 로그인 계정 표시 + 오너 패널 업데이트
   (function(){
     try {
       var u = JSON.parse(sessionStorage.getItem('moida_auth_user') || localStorage.getItem('moida_auth_user') || '{}');
@@ -1345,6 +1345,11 @@ onAuthStateChanged(_auth, async function(user){
         el.innerHTML = '<div style="font-weight:700;color:var(--ink-2);font-size:13px;padding:2px 10px 1px">' + (u.displayName||'') + '</div>'
           + '<div style="font-size:11.5px;color:var(--ink-3);padding:0 10px 6px;word-break:break-all">' + (u.email||'') + '</div>';
       }
+      var nm = u.displayName || u.email || '?';
+      var ava = document.getElementById('ownerAva');
+      var nameEl = document.getElementById('ownerName');
+      if(ava) ava.textContent = nm.charAt(0);
+      if(nameEl) nameEl.innerHTML = nm + ' <span class="pme">나</span>';
     } catch(e){}
   })();
 
