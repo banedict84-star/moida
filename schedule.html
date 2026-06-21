@@ -774,17 +774,20 @@
   document.querySelectorAll('.at-btn').forEach(function(b){ b.addEventListener('click',function(){ document.querySelectorAll('.at-btn').forEach(function(x){x.classList.remove('on');}); b.classList.add('on'); _authorFilter=b.dataset.author; renderFeed(); }); });
   document.getElementById('evCount').textContent = events.length;
 
-  (function(){
-    var today=new Date(2026,5,19);
+  function renderStats(){
+    var now=new Date(); var today=new Date(now.getFullYear(),now.getMonth(),now.getDate());
     function ymd(s){ var p=(s||'').split('-'); return p.length===3?new Date(+p[0],+p[1]-1,+p[2]):null; }
     var startWeek=new Date(today); startWeek.setDate(today.getDate()-today.getDay());
     var endWeek=new Date(startWeek); endWeek.setDate(startWeek.getDate()+7);
+    var ym=now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0');
     var cToday=0,cWeek=0;
     events.forEach(function(e){ var d=ymd(e.date); if(!d) return; if(d.getTime()===today.getTime()) cToday++; if(d>=startWeek && d<endWeek) cWeek++; });
     var a=document.getElementById('st-today'); if(a) a.textContent=cToday;
     var b=document.getElementById('st-week'); if(b) b.textContent=cWeek;
-    var c=document.getElementById('st-all'); if(c) c.textContent=events.filter(function(e){return (e.date||'').slice(0,7)==='2026-06';}).length;
-  })();
+    var c=document.getElementById('st-all'); if(c) c.textContent=events.filter(function(e){return (e.date||'').slice(0,7)===ym;}).length;
+    var cnt=document.getElementById('evCount'); if(cnt) cnt.textContent=events.length;
+  }
+  renderStats();
 
   /* stat popup (오늘 → 이번주 → 이번달 순서) */
   (function(){
@@ -1005,7 +1008,7 @@
       const cnt=document.getElementById('evCount'); if(cnt) cnt.textContent=(+cnt.textContent+1);
       var datePart=mt?mt[1]:''; var timePart=mt?mt[2]:''; var dayNum=datePart?parseInt(datePart.split('-')[2],10):null;
       events.unshift({ title:title, author:'방민성', created:created, date:datePart, time:timePart, d:dayNum, star:false });
-      saveEvents();
+      saveEvents(); renderStats(); renderImp();
       const fb=document.querySelector('.vbtn[data-view="feed"]'); if(fb) fb.click();
       ti.value=''; if(ct) ct.value=''; if(modal&&modal._resetFiles) modal._resetFiles();
     });
@@ -1120,7 +1123,7 @@
           var _title2=_t2.textContent.trim();
           var _created2=(_m2.textContent.split(' · ')[1]||'').trim();
           var _idx=events.findIndex(function(e){ return e.title===_title2 && e.created===_created2; });
-          if(_idx>=0){ events.splice(_idx,1); saveEvents(); }
+          if(_idx>=0){ events.splice(_idx,1); saveEvents(); renderStats(); renderImp(); }
         }
         ev.remove();
         var cnt=document.getElementById('evCount'); if(cnt) cnt.textContent=Math.max(0,(+cnt.textContent-1));
