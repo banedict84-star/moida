@@ -73,6 +73,7 @@ jobs:
 
           # ── 네이버: 공식 검색 API (키 있을 때) ───────────────────────────
           NID = os.environ.get("NAVER_CLIENT_ID"); NSEC = os.environ.get("NAVER_CLIENT_SECRET")
+          print("KEYCHECK: NAVER_CLIENT_ID len=%d / NAVER_CLIENT_SECRET len=%d" % (len(NID or ""), len(NSEC or "")))
           # 동명이인·노이즈 제외 (가수/트로트 장윤정, TV조선 아나운서·기상캐스터 장윤정 등)
           NOISE = ["가수", "트로트", "미스트롯", "미스터트롯", "콘서트", "신곡", "음반", "앨범",
                    "어머나", "도경완", "예능", "기상캐스터", "아나운서", "tv조선", "축가", "방송인"]
