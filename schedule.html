@@ -922,7 +922,7 @@
       const nav=e.target.closest('.dtp-nav');
       if(nav){ mo+=+nav.dataset.m; if(mo<0){mo=11;yr--;} if(mo>11){mo=0;yr++;} render(); return; }
       const day=e.target.closest('.dtp-day[data-d]'); if(day){ sel=+day.dataset.d; render(); return; }
-      if(e.target.closest('.dtp-ok')){ hh=(document.getElementById('dtpH').value||'00').padStart(2,'0'); mm=(document.getElementById('dtpM').value||'00').padStart(2,'0'); if(target) target.value=fmt(); dtp.classList.remove('show'); var _inputs=document.querySelectorAll('.evm-input.date'); if(target===_inputs[0]&&_inputs[1]){ var _ev=_inputs[1].value; var _tm=_ev.match(/,\s*(\d{2}:\d{2})$/); var _dn=dows[new Date(yr,mo,sel).getDay()]; _inputs[1].value=yr+'-'+String(mo+1).padStart(2,'0')+'-'+String(sel).padStart(2,'0')+' ('+_dn+'), '+(_tm?_tm[1]:hh+':'+mm); } }
+      if(e.target.closest('.dtp-ok')){ hh=(document.getElementById('dtpH').value||'00').padStart(2,'0'); mm=(document.getElementById('dtpM').value||'00').padStart(2,'0'); if(target) target.value=fmt(); dtp.classList.remove('show'); }
     });
     document.querySelectorAll('.evm-input.date').forEach(function(inp){ inp.readOnly=true; inp.style.cursor='pointer'; inp.addEventListener('click',function(){ open(inp); }); });
 
