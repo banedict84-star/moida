@@ -576,6 +576,12 @@ const _app = initializeApp({apiKey:"AIzaSyAIjhvbCztHoF7YwP2IYIk2C6jCI64uFhs",aut
 const _auth = getAuth(_app);
 const _db = getFirestore(_app);
 window._db = _db;
+window._fsSave = async function(uid, key, data){
+  try{ await setDoc(doc(_db,'moida_users',uid), {[key]: JSON.stringify(data)}, {merge:true}); }catch(e){ console.warn('fs save err',e); }
+};
+window._fsLoad = async function(uid, key){
+  try{ var snap=await getDoc(doc(_db,'moida_users',uid)); if(snap.exists()&&snap.data()[key]) return JSON.parse(snap.data()[key]); }catch(e){ console.warn('fs load err',e); } return null;
+};
 onAuthStateChanged(_auth, async function(user){
   if(!user){ location.href='index.html'; return; }
   // 초대 확인: 내 이메일로 초대가 있으면 ownerUid 사용
@@ -591,6 +597,14 @@ onAuthStateChanged(_auth, async function(user){
     }
   } catch(e){}
   sessionStorage.setItem('moida_auth_user', JSON.stringify({uid:user.uid, email:user.email, displayName:user.displayName||'', effectiveUid:effectiveUid, ownerInfo:ownerInfo}));
+  // Firestore에서 일정 데이터 로드
+  var fsUid = effectiveUid || user.uid;
+  var fsEvents = await window._fsLoad(fsUid, 'events');
+  if(fsEvents && Array.isArray(fsEvents) && fsEvents.length > 0){
+    var KEY='moida_events_'+fsUid;
+    try{ localStorage.setItem(KEY, JSON.stringify(fsEvents)); }catch(e){}
+    if(window._reloadEventsFromFS) window._reloadEventsFromFS(fsEvents);
+  }
 });
 </script>
 </head>
@@ -778,7 +792,15 @@ onAuthStateChanged(_auth, async function(user){
   var _myName = _authUser.displayName || _authUser.email || '나';
   const EV_KEY='moida_events_' + _uid;
   var events = JSON.parse(localStorage.getItem(EV_KEY)||'[]');
-  function saveEvents(){ localStorage.setItem(EV_KEY, JSON.stringify(events)); }
+  function saveEvents(){
+    localStorage.setItem(EV_KEY, JSON.stringify(events));
+    if(window._fsSave && _uid && _uid!=='default') window._fsSave(_uid, 'events', events);
+  }
+  window._reloadEventsFromFS = function(fsEvents){
+    events = fsEvents;
+    localStorage.setItem(EV_KEY, JSON.stringify(events));
+    renderFeed(); renderStats(); renderImp(); if(window.renderCal) window.renderCal();
+  };
 
   const calIco = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="4.5" width="17" height="16" rx="3"/><path d="M3.5 9h17M8 3v3M16 3v3"/></svg>';
   function saveStars(){ saveEvents(); }
@@ -1329,7 +1351,7 @@ onAuthStateChanged(_auth, async function(user){
       list.innerHTML=arr.map(function(m,i){
         var me=m.isMe?'<span class="pme">나</span>':'';
         var btns=m.isMe?'':'<button class="pedit" title="권한 설정" data-mi="'+i+'">'+editSvg+'</button><button class="pdel" title="멤버 삭제" data-mi="'+i+'">'+delSvg+'</button>';
-        return '<div class="prow"><span class="pava" style="background:'+m.color+'">'+m.name.charAt(0)+'</span><div class="pinfo"><div class="pname">'+m.name+' '+me+'</div><div class="porg">'+m.title+' · '+m.role+' 권한</div></div>'+btns+'</div>';
+        return '<div class="prow"><span class="pava" style="background:'+(m.color||'#1452a0')+'">'+m.name.charAt(0)+'</span><div class="pinfo"><div class="pname">'+m.name+' '+me+'</div><div class="porg">'+(m.title||'보좌진')+' · '+(m.role||'열람')+' 권한</div></div>'+btns+'</div>';
       }).join('');
       if(sc) sc.textContent=arr.length;
       if(mc) mc.textContent=arr.length+1;

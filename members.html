@@ -319,6 +319,8 @@
   .ventry-top{ display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
   .type-pick{ cursor:pointer; }
   .type-pick:hover{ opacity:.75; }
+  .kt-pick{ cursor:pointer; }
+  .kt-pick:hover{ opacity:.75; }
   .type-pop{ position:fixed; background:#fff; border:1px solid var(--line); border-radius:12px; box-shadow:0 8px 28px rgba(0,0,0,.13); padding:6px; z-index:9999; display:none; flex-direction:column; gap:2px; min-width:110px; }
   .type-pop.show{ display:flex; }
   .type-pop-opt{ padding:7px 12px; border-radius:8px; font-size:13px; font-weight:600; cursor:pointer; display:flex; align-items:center; gap:7px; }
@@ -391,15 +393,32 @@
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-const _app = initializeApp({apiKey:"AIzaSyAIjhvbCztHoF7YwP2IYIk2C6jCI64uFhs",authDomain:"jjj2195-1bd15.firebaseapp.com",projectId:"jjj2195-1bd15",storageBucket:"jjj2195-1bd15.firebasestorage.app",messagingSenderId:"370852437825",appId:"1:370852437825:web:b0a891d6a99b426d230bc0"});
+import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+const _fbCfg = {apiKey:"AIzaSyAIjhvbCztHoF7YwP2IYIk2C6jCI64uFhs",authDomain:"jjj2195-1bd15.firebaseapp.com",projectId:"jjj2195-1bd15",storageBucket:"jjj2195-1bd15.firebasestorage.app",messagingSenderId:"370852437825",appId:"1:370852437825:web:b0a891d6a99b426d230bc0"};
+const _app = initializeApp(_fbCfg);
 const _auth = getAuth(_app);
-onAuthStateChanged(_auth, function(user){
+const _db = getFirestore(_app);
+
+window._fsSave = async function(uid, key, data){
+  try{ await setDoc(doc(_db,'moida_users',uid), {[key]: JSON.stringify(data)}, {merge:true}); }catch(e){ console.warn('fs save err',e); }
+};
+window._fsLoad = async function(uid, key){
+  try{ var snap=await getDoc(doc(_db,'moida_users',uid)); if(snap.exists()&&snap.data()[key]) return JSON.parse(snap.data()[key]); }catch(e){ console.warn('fs load err',e); } return null;
+};
+
+onAuthStateChanged(_auth, async function(user){
   if(!user){ location.href='index.html'; return; }
   sessionStorage.setItem('moida_auth_user', JSON.stringify({uid:user.uid, email:user.email, displayName:user.displayName||''}));
   var el=document.getElementById('sideFootUser');
   if(el){
     el.innerHTML='<div style="font-weight:700;color:var(--ink-2);font-size:13px;padding:2px 10px 1px">'+(user.displayName||'')+'</div>'
       +'<div style="font-size:11.5px;color:var(--ink-3);padding:0 10px 6px;word-break:break-all">'+(user.email||'')+'</div>';
+  }
+  // Firestore에서 구성원 데이터 로드 후 화면 갱신
+  var fsData = await window._fsLoad(user.uid, 'members');
+  if(fsData && Array.isArray(fsData) && fsData.length > 0){
+    try{ localStorage.setItem('moida_members_'+user.uid, JSON.stringify(fsData)); }catch(e){}
+    if(window._reloadMembersFromFS) window._reloadMembersFromFS(fsData);
   }
 });
 </script>
@@ -580,6 +599,8 @@ onAuthStateChanged(_auth, function(user){
 
 <!-- 당원구분 인라인 선택 팝업 -->
 <div class="type-pop" id="typePop"></div>
+<!-- 카톡관리 인라인 선택 팝업 -->
+<div class="type-pop" id="ktPop"></div>
 
 <!-- 투표 기록 추가 모달 -->
 <div class="addr-ovl" id="voteOvl"></div>
@@ -652,7 +673,30 @@ onAuthStateChanged(_auth, function(user){
   var _uid = _authUser.uid || 'default';
   var _MEM_KEY = 'moida_members_' + _uid;
   function loadMembers(){ try{ var d=JSON.parse(localStorage.getItem(_MEM_KEY)); return Array.isArray(d)?d:[]; }catch(e){ return []; } }
-  function saveMembers(){ localStorage.setItem(_MEM_KEY, JSON.stringify(members)); }
+  function saveMembers(){
+    localStorage.setItem(_MEM_KEY, JSON.stringify(members));
+    if(window._fsSave && _uid && _uid!=='default') window._fsSave(_uid, 'members', members);
+  }
+  window._reloadMembersFromFS = function(fsData){
+    members = fsData;
+    var D={rrn:'—',dong:'—',org:'—',rec:'—',rec2:'—',rec3:'—',sub:'—',third:'—',addr:'—',addrDetail:'',family:null,age:'',ageb:'—',sex:'—',vote:'미확인',voteK:'err',katalk:'—',type:'일반당원',typeK:'old',krGrade:0,smGrade:0,photo:'',orgs:[]};
+    members.forEach(function(m){
+      Object.keys(D).forEach(function(k){ if(m[k]===undefined||m[k]===null&&k!=='family') m[k]=D[k]; });
+      if(!m.mid){ m.mid='m'+Date.now()+Math.random().toString(36).slice(2,7); }
+      if(!m.type||m.type==='undefined') m.type=D.type;
+      if(!m.ageb||m.ageb==='undefined') m.ageb=D.ageb;
+      if(!m.sex||m.sex==='undefined') m.sex=D.sex;
+      if(m.addr&&m.addr!=='—'){
+        var _dm=m.addr.match(/\(([가-힣]+[동읍면리])[,)]/); if(!_dm) _dm=m.addr.match(/([가-힣]+[동읍면리])\s*\d/); if(!_dm) _dm=m.addr.match(/([가-힣]+[동읍면리])[\s,)]/);
+        if(_dm) m.dong=_dm[1];
+      }
+      if(m.rrn&&m.rrn!=='—'){ var _d=deriveFromRrn(m.rrn); if(_d){ if(!m.age||m.age==='') m.age=_d.age; if(!m.ageb||m.ageb==='—') m.ageb=_d.ageb; if(!m.sex||m.sex==='—') m.sex=_d.sex; } }
+    });
+    localStorage.setItem(_MEM_KEY, JSON.stringify(members));
+    dispMembers = members.slice();
+    if(window._orgStore) members.forEach(function(m){ if(Array.isArray(window._orgStore[m.mid])) m.orgs=window._orgStore[m.mid]; if(!Array.isArray(m.orgs)) m.orgs=(m.org&&m.org!=='—')?[{cat:'단체',name:m.org,title:'',rep:true}]:[]; var _r=orgRep(m); m.org=_r?orgRepText(_r):'—'; });
+    recalcScores(); renderRows();
+  };
   var members = loadMembers();
   // normalize members: fill missing fields with defaults, assign mid
   (function(){
@@ -713,7 +757,7 @@ onAuthStateChanged(_auth, function(user){
   var catMeta={ '직장':{bg:'#e8f1fe',fg:'#2563eb'}, '단체':{bg:'#e7f6ee',fg:'#0f9d63'}, '정치':{bg:'#f1ebfd',fg:'#7c3aed'}, '봉사':{bg:'#fff1e6',fg:'#d9730d'}, '기타':{bg:'#f1f3f7',fg:'#697089'} };
   function catColor(c){ return catMeta[c]||catMeta['기타']; }
   // 기존 단일 m.org 문자열을 orgs 배열로 정규화 (+ 저장된 소속 불러오기)
-  var _orgStore=JSON.parse(localStorage.getItem('moida_orgs_' + _uid)||'{}');
+  var _orgStore=JSON.parse(localStorage.getItem('moida_orgs_' + _uid)||'{}'); window._orgStore=_orgStore;
   // migrate orgs: name → mid
   (function(){ var changed=false; members.forEach(function(m){ if(m.mid&&_orgStore[m.name]&&!_orgStore[m.mid]){ _orgStore[m.mid]=_orgStore[m.name]; delete _orgStore[m.name]; changed=true; } }); if(changed) localStorage.setItem('moida_orgs_'+_uid, JSON.stringify(_orgStore)); })();
   members.forEach(function(m){
@@ -957,7 +1001,7 @@ onAuthStateChanged(_auth, function(user){
       <td>${m.ageb}</td>
       <td>${m.sex}</td>
       <td class="${m.rec==="—"?"muted-cell":""}">${recCell(m)}</td>
-      <td class="kt-cell">${ktCell(m.katalk)}</td>
+      <td class="kt-cell kt-pick-cell" data-i="${i}"><span class="kt-pick">${ktCell(m.katalk)}</span></td>
       <td>${gauge('kr', m.krGrade)}</td>
       <td>${gauge('sm', m.smGrade)}</td>
       <td>${famDisplay(m)}</td>
@@ -991,6 +1035,38 @@ onAuthStateChanged(_auth, function(user){
       if(!pick){ pop.classList.remove('show'); return; }
       e.stopPropagation();
       var td=pick.closest('.type-cell'); if(!td) return;
+      curI=+td.dataset.i;
+      var rect=pick.getBoundingClientRect();
+      pop.style.top=(rect.bottom+4)+'px'; pop.style.left=rect.left+'px';
+      pop.classList.add('show');
+    });
+    document.addEventListener('click', function(){ pop.classList.remove('show'); });
+  })();
+
+  // 카톡관리 인라인 변경 팝업
+  (function(){
+    var KT_VALS=[
+      {v:'관리중', label:'관리중', color:'#3C1E1E', bg:'#FEE500'},
+      {v:'수신거부', label:'수신거부', color:'#b42318', bg:'#fdeceb'},
+      {v:'—', label:'—', color:'#9298a8', bg:'#f1f3f7'}
+    ];
+    var pop=document.getElementById('ktPop');
+    var curI=null;
+    pop.innerHTML=KT_VALS.map(function(o){ return '<div class="type-pop-opt" data-kt="'+o.v+'"><span class="d" style="background:'+o.bg+';border:1px solid '+o.color+'20"></span><span style="color:'+o.color+'">'+o.label+'</span></div>'; }).join('');
+    pop.querySelectorAll('.type-pop-opt').forEach(function(opt){
+      opt.addEventListener('click', function(e){ e.stopPropagation();
+        if(curI==null) return;
+        var m=members[curI]; if(!m) return;
+        m.katalk=opt.dataset.kt;
+        saveMembers(); recalcScores(); renderRows();
+        pop.classList.remove('show');
+      });
+    });
+    tbody.addEventListener('click', function(e){
+      var pick=e.target.closest('.kt-pick');
+      if(!pick){ pop.classList.remove('show'); return; }
+      e.stopPropagation();
+      var td=pick.closest('.kt-pick-cell'); if(!td) return;
       curI=+td.dataset.i;
       var rect=pick.getBoundingClientRect();
       pop.style.top=(rect.bottom+4)+'px'; pop.style.left=rect.left+'px';
