@@ -739,7 +739,7 @@
 </div>
 
 <script>
-  const events = [
+  var events = [
     { title:"안산학교", author:"장윤정", created:"2026-06-17 13:43", date:"2026-06-25", time:"18:00", d:25, star:true },
     { title:"보험미팅", author:"장윤정", created:"2026-06-17 11:32", date:"2026-06-23", time:"14:00", d:23 },
     { title:"임종성의원", author:"장윤정", created:"2026-06-16 20:52", date:"2026-06-18", time:"19:00", d:18 },
@@ -755,6 +755,9 @@
   const STAR_KEY='moida_sched_stars';
   var savedStars=JSON.parse(localStorage.getItem(STAR_KEY)||'null');
   if(savedStars){ events.forEach(function(e){ e.star = savedStars.indexOf(e.title)>=0; }); }
+  const DEL_KEY='moida_sched_deleted';
+  var _deleted=JSON.parse(localStorage.getItem(DEL_KEY)||'[]');
+  events=events.filter(function(e){ return _deleted.indexOf(e.title+'|'+e.created)<0; });
   function saveStars(){ localStorage.setItem(STAR_KEY, JSON.stringify(events.filter(function(e){return e.star;}).map(function(e){return e.title;}))); }
   function starSvg(on){ return '<svg viewBox="0 0 24 24" fill="'+(on?'currentColor':'none')+'" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 17.8 6.8 19.2l1-5.8L3.5 9.2l5.9-.9z"/></svg>'; }
 
@@ -1108,6 +1111,8 @@
     p.querySelector('[data-del]').addEventListener('click',function(){
       var ev=p._curEv; if(!ev) return;
       moidaConfirm({ title:'일정 삭제', desc:'이 일정을 삭제합니다.<br>삭제한 일정은 복구할 수 없어요.', ok:'삭제' }, function(){
+        var _t=ev.querySelector('.ev-t'); var _m=ev.querySelector('.ev-meta');
+        if(_t && _m){ var _key=_t.textContent.trim()+'|'+(_m.textContent.split(' · ')[1]||''); var _dl=JSON.parse(localStorage.getItem(DEL_KEY)||'[]'); _dl.push(_key); localStorage.setItem(DEL_KEY,JSON.stringify(_dl)); }
         ev.remove();
         var cnt=document.getElementById('evCount'); if(cnt) cnt.textContent=Math.max(0,(+cnt.textContent-1));
         close();
