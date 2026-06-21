@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-21 13:37 UTC",
+  "updated": "2026-06-21 13:45 UTC",
   "items": [
     {
       "source": "naver",
@@ -37,17 +37,17 @@
       "source": "naver",
       "press": "siminilbo.co.kr",
       "date": "2026.06.21",
-      "title": "안산시, 여름철 식중독 예방 총력… 일반음식점 영업자 위생교육 실시",
-      "snippet": "이민근 안산시장은 “이번 교육이 영업자들의 위생의식을 높이고 안전한 먹거리 제공의 중요성을 되새기는 계기가 되길 바란다”며 “앞으로도 시민들이 안심하고 외식할 수 있도록 현장 중심의 위생교육을 확대하고...",
-      "url": "https://www.siminilbo.co.kr/news/newsview.php?ncode=1160264426206715"
+      "title": "안산시, 자살예방위원회 개최… 생명존중 문화 확산 위한 협력체계 강화",
+      "snippet": "위원회는 ‘안산시 자살예방 및 생명존중문화 조성을 위한 조례’에 따라 운영되며, 부시장을 위원장으로 보건소장과 복지국장 등 당연직 위원, 시의원, 의약단체장, 교육·소방·경찰 관계자 및 정신건강 분야 전문가 등...",
+      "url": "https://www.siminilbo.co.kr/news/newsview.php?ncode=1160264940733004"
     },
     {
       "source": "naver",
       "press": "siminilbo.co.kr",
       "date": "2026.06.21",
-      "title": "안산시, 자살예방위원회 개최… 생명존중 문화 확산 위한 협력체계 강화",
-      "snippet": "위원회는 ‘안산시 자살예방 및 생명존중문화 조성을 위한 조례’에 따라 운영되며, 부시장을 위원장으로 보건소장과 복지국장 등 당연직 위원, 시의원, 의약단체장, 교육·소방·경찰 관계자 및 정신건강 분야 전문가 등...",
-      "url": "https://www.siminilbo.co.kr/news/newsview.php?ncode=1160264940733004"
+      "title": "안산시, 여름철 식중독 예방 총력… 일반음식점 영업자 위생교육 실시",
+      "snippet": "이민근 안산시장은 “이번 교육이 영업자들의 위생의식을 높이고 안전한 먹거리 제공의 중요성을 되새기는 계기가 되길 바란다”며 “앞으로도 시민들이 안심하고 외식할 수 있도록 현장 중심의 위생교육을 확대하고...",
+      "url": "https://www.siminilbo.co.kr/news/newsview.php?ncode=1160264426206715"
     },
     {
       "source": "naver",
@@ -122,12 +122,68 @@
       "url": "https://www.kyeonggi.com/article/20260620580117"
     },
     {
-      "source": "google",
-      "press": "경인일보",
+      "source": "naver",
+      "press": "newsroad.co.kr",
+      "date": "2026.06.20",
+      "title": "이민근 안산시장, 민선 9기 첫발…\"주민 목소리 시정에 담겠다\"",
+      "snippet": "이민근 안산시장이 민선 9기 출범과 함께 주민 의견을 시정에 반영하기 위한 첫 행보에 나섰다. 이 시장은... 주민자치회가 의견 수렴을 거쳐 수립한 자치계획을 승인하고, 교육·환경·안전·문화·복지 등 다양한 분야의...",
+      "url": "http://www.newsroad.co.kr/news/articleView.html?idxno=60692"
+    },
+    {
+      "source": "naver",
+      "press": "joongangenews.com",
+      "date": "2026.06.20",
+      "title": "안산시, 25개 동 주민총회 '공감' 본격 시동",
+      "snippet": "|중앙이코노미뉴스 고영규 기자|안산시는 20일 감골시민홀에서 200여 명의 주민이 참석한 가운데, '2026년... 특히 주민자치회가 의견 수렴 과정을 거쳐 수립한 자치계획을 승인하고, 교육·환경·안전·문화·복지 등...",
+      "url": "https://www.joongangenews.com/news/articleView.html?idxno=527095"
+    },
+    {
+      "source": "naver",
+      "press": "newspim.com",
+      "date": "2026.06.20",
+      "title": "\"마을의 미래, 주민이 그린다\"...안산시 '현장 중심' 주민총회 대장정 돌...",
+      "snippet": "시민들의 목소리를 시정의 최우선 가치로 삼고 '현장 중심 행정'을 펼쳐온 안산시가 주민들이 직접 지역... 특히 그동안 설문조사와 마을 분과 활동 등을 통해 주민들이 생활 속에서 직접 발굴한 교육·환경·안전·문화...",
+      "url": "https://www.newspim.com/news/view/20260620000079"
+    },
+    {
+      "source": "naver",
+      "press": "ajunews.com",
+      "date": "2026.06.20",
+      "title": "이민근 안산시장 \"주민총회, 지역발전 이끄는 주민자치 핵심 과정\"",
+      "snippet": "안산시 25개 동 주민총회 본격 추진 교육·환경·복지사업 주민 손으로 결정 주민이 직접 결정하는 마을자치 확대 아주경제=안산=박재천 기자 pjc0203@ajunews.com [사진=안산시] 이민근 경기 안산시장이 20일 “주민총회는...",
+      "url": "https://www.ajunews.com/view/20260620165025690"
+    },
+    {
+      "source": "naver",
+      "press": "kyeonggi.com",
+      "date": "2026.06.20",
+      "title": "최찬규 안산시의원, “안산에 체육 특성화 학교 유치해야”",
+      "snippet": "최 의원은 “교육도시 안산을 위해서는 체육 분야 역시 학생들이 지역에서 꿈을 키우고 성장할 수 있는 교육 인프라를 갖춰야 한다”며 “안산에서 성장한 학생들이 진학 때문에 지역을 떠나지 않고 자신의 꿈을 이어갈 수...",
+      "url": "https://www.kyeonggi.com/article/20260620580062"
+    },
+    {
+      "source": "naver",
+      "press": "kyeongin.com",
       "date": "2026.06.20",
       "title": "안산교육지원청, 중학교 학교군 조정 의견 공개… 일부만 반영",
-      "snippet": "안산교육지원청, 중학교 학교군 조정 의견 공개… 일부만 반영 경인일보",
-      "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE1iZU1tdldUZDY0MDNPblVrLXB1U0o4czRxWk9qYXNyUjJnNmsxODJ4OFhhYlRBQmJNOGZ2cG5QVW1qQTVrVWUwNDdXWGxoemhFZ0E?oc=5"
+      "snippet": "가운데 안산교육지원청이 주민 의견 검토 결과를 공개했다. 20일 안산교육지원청에 따르면 지원청은 최근 2027학년도 중학교 학교군·중학구(안)에 대한 주민 의견 검토 결과를 공개했다. 검토 결과 일부 의견은 반영됐지만...",
+      "url": "https://www.kyeongin.com/article/1765866"
+    },
+    {
+      "source": "naver",
+      "press": "slist.kr",
+      "date": "2026.06.20",
+      "title": "[나눔] 한세예스24, 헌혈증 및 치료비 기부·BKR, 환경미화원 제품 후원...",
+      "snippet": "안전교육 등을 진행하고 있다. 에이블씨엔씨는 앞으로도 뷰티 기업으로서 사회적 취약계층을 위한 나눔... 지난 6일 경기도 안산 화랑유원지에서 열린 활동에는 노사 임직원과 임직원 자녀 등 총 33명이 참여했다. 이번...",
+      "url": "https://www.slist.kr/news/articleView.html?idxno=746492"
+    },
+    {
+      "source": "naver",
+      "press": "gukjenews.com",
+      "date": "2026.06.20",
+      "title": "최찬규 안산시의원, \"체육특성화학교 유치로 학생 진로 지원해야\"",
+      "snippet": "최 의원은 \"교육도시 안산을 위해서는 체육 분야 역시 학생들이 지역에서 꿈을 키우고 성장할 수 있는 교육 인프라를 갖춰야 한다\"며, \"안산에서 성장한 학생들이 진학 때문에 지역을 떠나지 않고 자신의 꿈을 이어갈 수...",
+      "url": "https://www.gukjenews.com/news/articleView.html?idxno=3613237"
     },
     {
       "source": "google",
@@ -157,17 +213,17 @@
       "source": "naver",
       "press": "m-i.kr",
       "date": "2026.06.19",
-      "title": "안산시 반월동 지사협, 복지사각지대 선제 발굴 캠페인",
-      "snippet": "안산시 상록구 반월동 지역사회보장협의체는 지난 17일 복지 사각지대 발굴을 위한 거리 홍보 캠페인을 전개했다고 19일 밝혔다. 사진=안산시 매일일보 = 송훈희 기자 | 안산시 상록구 반월동 지역사회보장협의체는 지난...",
-      "url": "https://www.m-i.kr/news/articleView.html?idxno=1383195"
+      "title": "안산 월피동, 고독사 예방 캠페인 전개…복지사각지대 발굴 나서",
+      "snippet": "안산시 상록구 월피동 지역사회보장협의체가 고독사 예방 및 복지사각지대 발굴을 위한 홍보 캠페인을 진행하고 있다. 사진=안산시 매일일보 = 송훈희 기자 | 안산시 상록구 월피동 지역사회보장협의체는 18일 고독사...",
+      "url": "https://www.m-i.kr/news/articleView.html?idxno=1383197"
     },
     {
       "source": "naver",
       "press": "m-i.kr",
       "date": "2026.06.19",
-      "title": "안산 월피동, 고독사 예방 캠페인 전개…복지사각지대 발굴 나서",
-      "snippet": "안산시 상록구 월피동 지역사회보장협의체가 고독사 예방 및 복지사각지대 발굴을 위한 홍보 캠페인을 진행하고 있다. 사진=안산시 매일일보 = 송훈희 기자 | 안산시 상록구 월피동 지역사회보장협의체는 18일 고독사...",
-      "url": "https://www.m-i.kr/news/articleView.html?idxno=1383197"
+      "title": "안산시 반월동 지사협, 복지사각지대 선제 발굴 캠페인",
+      "snippet": "안산시 상록구 반월동 지역사회보장협의체는 지난 17일 복지 사각지대 발굴을 위한 거리 홍보 캠페인을 전개했다고 19일 밝혔다. 사진=안산시 매일일보 = 송훈희 기자 | 안산시 상록구 반월동 지역사회보장협의체는 지난...",
+      "url": "https://www.m-i.kr/news/articleView.html?idxno=1383195"
     },
     {
       "source": "naver",
@@ -178,12 +234,228 @@
       "url": "https://www.thereport.co.kr/news/articleView.html?idxno=88893"
     },
     {
-      "source": "google",
-      "press": "v.daum.net",
+      "source": "naver",
+      "press": "ekn.kr",
+      "date": "2026.06.19",
+      "title": "[패트롤] 경기도-경기도농수산진흥원-경기경제자유구역청-경기도교육청",
+      "snippet": "재난대응 교육·훈련을 실시했다. 이번 훈련은 경기평택항만공사를 비롯해 시흥시청, 시흥소방서, 평택해양경찰서 안산파출소 등 해양 안전 관련 유관기관들이 대거 동참하여 재난 발생 시 초기 대응 능력을 기르고 기관...",
+      "url": "https://www.ekn.kr/web/view.php?key=20260619024154960"
+    },
+    {
+      "source": "naver",
+      "press": "cnbizm.com",
+      "date": "2026.06.19",
+      "title": "\"큐레이터와 함께 걸어요\" 경기문화재단 경기도미술관, 참여형 전시 '눈...",
+      "snippet": "경기도 안산에 있는 경기도미술관은 국내외 작가의 전시, 미술품 수집을 비롯해 연구, 교육, 홍보사업 등 프로그램을 운영하면서 다양한 문화 서비스를 제공한다. 특히 전문성과 예술성, 지역성과 세계성이 조화를 이루는...",
+      "url": "https://www.cnbizm.com/news/articleView.html?idxno=306105"
+    },
+    {
+      "source": "naver",
+      "press": "newsclaim.co.kr",
+      "date": "2026.06.19",
+      "title": "안산시 여성자치대학 제38기 수료식",
+      "snippet": "신안산대학교 평생교육원이 위탁 운영한 제38기 교육과정은 지난 4월 2일부터 12주 동안 진행됐으며, 총 29명이 수료했습니다. 19일 안산시는 전날 신안산대학교 국제교육관 국제홀에서 진행된 이번 교육은 양성평등...",
+      "url": "https://www.newsclaim.co.kr/news/articleView.html?idxno=3067107"
+    },
+    {
+      "source": "naver",
+      "press": "view.asiae.co.kr",
+      "date": "2026.06.19",
+      "title": "한의약으로 난임 극복부터 건강돌봄까지…전국 우수사례 한자리에",
+      "snippet": "표준화와 교육, 데이터 관리체계를 강화한 점도 우수사례로 꼽혔다. 참여자의 감동적인 성공 사례도... 최우수상은 경기도 안산시와 충남 천안시가, 우수상은 광주 북구와 경남 거제시가 각각 수상했다. 건강돌봄 기고...",
+      "url": "https://view.asiae.co.kr/article/2026061917575472617"
+    },
+    {
+      "source": "naver",
+      "press": "m-i.kr",
+      "date": "2026.06.19",
+      "title": "안산문화재단, 공공기관 경영평가 2년 연속 1위",
+      "snippet": "사진=안산문화재단 매일일보 = 송훈희 기자 | 안산문화재단이 '2026년(2025년 실적) 안산시 공공기관 경영평가... 또 공연·축제·교육 사업등을 운영하며 사업 성과를 높이는 데 주력했다. 이와 함께 시민과 예술인이...",
+      "url": "https://www.m-i.kr/news/articleView.html?idxno=1383293"
+    },
+    {
+      "source": "naver",
+      "press": "newsis.com",
+      "date": "2026.06.19",
+      "title": "\"난임부터 건강 돌봄까지\"…한의학 우수성과 격려",
+      "snippet": "경기도한의사회, 동국대학교 한의과대학이 참여하는 민·관·학 협력체계를 구축해 사업 표준화와 교육... 사업 부문에서는 경기도 부천시가 대상을 수상했으며, 경기도 안산시와 충남 천안시가 최우수상을, 광주 북구와...",
+      "url": "https://www.newsis.com/view/NISX20260619_0003676355"
+    },
+    {
+      "source": "naver",
+      "press": "nc.press",
+      "date": "2026.06.19",
+      "title": "안산 첫 공립국제학교, 하반기 착공 전망 '솔솔'… 안민석 새 경기교육...",
+      "snippet": "최근 '경기안산1교'(가칭) 의 구체적인 실무 착수 기대는 최근 안민석 경기교육감 당선인의 '경기교육대전환 간담회' 안산 일정과 함께 대두되고 있다. 간담회 당시 안 당선인은 \"학생의 미래와 실제 진로로 이어지려면...",
+      "url": "https://www.nc.press/news/articleView.html?idxno=618522"
+    },
+    {
+      "source": "naver",
+      "press": "shinailbo.co.kr",
+      "date": "2026.06.19",
+      "title": "안산대, 외국인 유학생 조기적응프로그램 운영",
+      "snippet": "안산대학교는 이번 교육이 유학생들의 법적 권리와 의무에 대한 이해를 높이고 안전한 유학 생활을 지원하는 데 도움이 될 것으로 기대하고 있다고 밝혔다. 교육국제화역량 인증대학인 안산대학교는 현재 법무부...",
+      "url": "https://www.shinailbo.co.kr/news/articleView.html?idxno=5032379"
+    },
+    {
+      "source": "naver",
+      "press": "kyeonggi.com",
       "date": "2026.06.19",
       "title": "안산동산고 학생들, 라오스 학교 개교 지원 봉사활동",
-      "snippet": "안산동산고 학생들, 라오스 학교 개교 지원 봉사활동 v.daum.net",
-      "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE5TeUdIb1A4RE5IN1BVTXRseVIwVFJvbEZYYm53U1FCMGctbnBhRlpqVVd3V1h4MExILTY5YlFPelZrUG5WOGw2YWJMSQ?oc=5"
+      "snippet": "안산교육지원청 등에 따르면 안산동산고등학교 국제교류지원단 학생들이 최근 라오스 에즈라학교 개교를 지원하기 위한 교육 기자재 선적 봉사활동에 참여했다고 19일 밝혔다. 이번 사업은 교육 환경이 열악한 라오스 지역...",
+      "url": "https://www.kyeonggi.com/article/20260619580230"
+    },
+    {
+      "source": "naver",
+      "press": "shinailbo.co.kr",
+      "date": "2026.06.19",
+      "title": "안산문화재단, 공공기관 경영평가 2년 연속 1위…문화행정 성과 인정",
+      "snippet": "안산문화재단이 안산시 공공기관 경영평가에서 2년 연속 최고 성적을 거두며 지역 대표 문화기관으로서의... 또한 공연·축제·문화예술교육 사업의 완성도를 높여 공공성과 효율성을 함께 강화하는 성과를 거둔 것으로...",
+      "url": "https://www.shinailbo.co.kr/news/articleView.html?idxno=5032363"
+    },
+    {
+      "source": "naver",
+      "press": "iminju.net",
+      "date": "2026.06.19",
+      "title": "[경기도 소식] 광역지자체 첫 난민 실태조사 착수 등",
+      "snippet": "재난대응 교육‧훈련을 진행했다. 지난 18일 시흥시 거북섬마리나 해상계류장에서 실시된 이번 훈련은 공사를 비롯해 시흥시, 시흥소방서, 평택해양경찰서 안산파출소 등 관계기관이 참여했다. 훈련은 실제 발생할 수...",
+      "url": "http://www.iminju.net/news/articleView.html?idxno=165573"
+    },
+    {
+      "source": "naver",
+      "press": "weeklytoday.com",
+      "date": "2026.06.19",
+      "title": "[위클리오늘] 경기평택항만공사, 시흥 거북섬마리나에서 해양재난 대응...",
+      "snippet": "재난대응 교육·훈련을 실시했다. 이번 훈련은 공사를 비롯해 시흥시, 시흥소방서, 평택해양경찰서 안산파출소 등 관계기관이 참여해 해양재난 발생 시 신속한 초기대응 능력과 기관 간 협업체계를 점검하기 위해...",
+      "url": "http://www.weeklytoday.com/news/articleView.html?idxno=780932"
+    },
+    {
+      "source": "naver",
+      "press": "sisajournal.com",
+      "date": "2026.06.19",
+      "title": "[경기 24시] 경기도, 농산물 부산물 활용 업사이클링 사업 본격 추진",
+      "snippet": "평택해양경찰서 안산파출소 등과 함께 대형 화재, 기름유출, 익수사고 등 복합 해양재난에 대비한 합동 재난대응 교육·훈련을 실시했다. 이번 훈련은 해상계류장 선박 화재 발생, 화재 확산에 따른 기름유출, 초기 진화...",
+      "url": "https://www.sisajournal.com/news/articleView.html?idxno=377102"
+    },
+    {
+      "source": "naver",
+      "press": "nc.press",
+      "date": "2026.06.19",
+      "title": "[N포커스] '머무는 관광'으로 진화하는 대부도...더헤븐리조트와 시너지...",
+      "snippet": "안산시가 대부도를 수도권 대표 해양관광도시로 육성하기 위한 대규모 개발 구상을 본격화하면서, 해양치유... 생태 교육·관찰 시설도 들어선다. 이 같은 지역 개발 구상은 스포츠 이벤트와 결합되며 시너지 효과도...",
+      "url": "https://www.nc.press/news/articleView.html?idxno=618426"
+    },
+    {
+      "source": "naver",
+      "press": "joongboo.com",
+      "date": "2026.06.19",
+      "title": "[금주의 안산시] 시민동행위원회 475일 활동 마무리… 성과보고회·해단...",
+      "snippet": "▶안산시, 드림스타트 양육자 부모교육 운영…심리 회복·공감 소통 지원 사진=안산시 안산시는 오는 30일까지 매주 화요일과 목요일 드림스타트 양육자를 대상으로 부모교육 프로그램 '마음 토닥, 달콤 무지개'를...",
+      "url": "https://www.joongboo.com/news/articleView.html?idxno=363729125"
+    },
+    {
+      "source": "naver",
+      "press": "m-i.kr",
+      "date": "2026.06.19",
+      "title": "경기평택항만공사, 해양재난 대응 유관기관 합동훈련 실시",
+      "snippet": "재난대응 교육·훈련을 실시했다. 이번 훈련은 공사를 비롯해 시흥시, 시흥소방서, 평택해양경찰서 안산파출소 등 관계기관이 참여해 해양재난 발생 시 신속한 초기대응 능력과 기관 간 협업체계를 점검하기 위해...",
+      "url": "https://www.m-i.kr/news/articleView.html?idxno=1383322"
+    },
+    {
+      "source": "naver",
+      "press": "news.ifm.kr",
+      "date": "2026.06.19",
+      "title": "전국 난민 35% 몰린 경기도, 광역지자체 최초 실태조사 착수",
+      "snippet": "시·군별로는 안산시가 2천889명으로 가장 많았고, 평택시(2천93명), 포천시(1천679명), 화성시(1천666명)가... 이에 따라 이번 조사는 주거, 교육, 의료, 고용, 법률지원 등 조례에 규정된 핵심 영역을 중심으로 진행된다....",
+      "url": "https://news.ifm.kr/news/articleView.html?idxno=473344"
+    },
+    {
+      "source": "naver",
+      "press": "news.unn.net",
+      "date": "2026.06.19",
+      "title": "안산대, 외국인 유학생 대상 법무부 주관 '조기적응프로그램' 운영",
+      "snippet": "안산대는 이번 실무 중심 교육이 유학생들의 법적 권리와 의무에 대한 이해를 돕고 안전의식을 고취하여, 성공적인 유학 생활과 실질적인 역량 강화에 크게 기여했다고 평가했다. 교육부 교육국제화역량 인증대학인...",
+      "url": "https://news.unn.net/news/articleView.html?idxno=593703"
+    },
+    {
+      "source": "naver",
+      "press": "bizwnews.com",
+      "date": "2026.06.19",
+      "title": "경기평택항만공사, 해양레저 중심지 거북섬…복합재난 대응훈련 실시",
+      "snippet": "경기평택항만공사(이하 공사)는 지난 18일 시흥시 거북섬마리나 해상계류장에서 시흥시, 시흥소방서, 평택해양경찰서 안산파출소 등 관계기관과 합동으로 재난대응 교육·훈련을 진행했다고 19일 밝혔다. 이번 훈련은...",
+      "url": "http://www.bizwnews.com/news/articleView.html?idxno=139023"
+    },
+    {
+      "source": "naver",
+      "press": "view.asiae.co.kr",
+      "date": "2026.06.19",
+      "title": "평택항만공사, 거북섬마리나서 '합동 재난대응 교육훈련'",
+      "snippet": "재난대응 교육·훈련을 실시했다. 이날 훈련은 시흥시, 시흥소방서, 평택해양경찰서 안산파출소 등 관계기관이 참여해 해양재난 발생 시 신속한 초기대응 능력과 기관 간 협업체계를 점검하기 위해 마련됐다. 훈련은 실제...",
+      "url": "https://view.asiae.co.kr/article/2026061912375042343"
+    },
+    {
+      "source": "naver",
+      "press": "fieldnews.kr",
+      "date": "2026.06.19",
+      "title": "이민근 안산시장, 청년과 여성 성장 돕는다…지역 인재 육성 확대",
+      "snippet": "시는 같은 날 신안산대학교 국제교육관에서 '제38기 여성자치대학 수료식'을 개최했다. 여성자치대학은 지난 2003년 개설 이후 1200여 명의 수료생을 배출하며 지역 여성의 사회 참여와 역량 강화를 지원해 온 대표 교육...",
+      "url": "http://www.fieldnews.kr/news/articleView.html?idxno=29395"
+    },
+    {
+      "source": "naver",
+      "press": "viva100.com",
+      "date": "2026.06.19",
+      "title": "경기테크노파크, ‘AI가 바꾸는 일상과 제조현장 교육' 개최",
+      "snippet": "필두로 도내 제조기업의 스마트공장 구축과 디지털 전환을 전방위로 지원하고 있으며, 앞으로도 디지털 제조혁신을 주도할 전문인력 양성을 위해 고품질의 교육 프로그램을 지속해서 확대 운영할 방침이다. 안산=",
+      "url": "https://www.viva100.com/article/20260619500208"
+    },
+    {
+      "source": "naver",
+      "press": "viva100.com",
+      "date": "2026.06.19",
+      "title": "안산문화재단, 2년 연속 경영평가 1위… 재정자립도 41.85% 달성",
+      "snippet": "경기안산문화재단이 ‘2026년(2025년 실적) 안산시 공공기관 경영평가’에서 2년 연속 1위를 달성하며, 지역... 85%에 달했으며, 공연·축제·교육 사업의 완성도를 끌어올려 가시적인 성과를 창출해 왔다. 이러한 노력은...",
+      "url": "https://www.viva100.com/article/20260619500181"
+    },
+    {
+      "source": "naver",
+      "press": "ppss.kr",
+      "date": "2026.06.19",
+      "title": "정부, 청년 일자리·민생 서비스 개선 대응책 추진",
+      "snippet": "에이젠틱 AI 등 첨단 분야 교육을 통해 구직역량을 높이고, 교육과 일자리를 연계하는 과제도 적극 추진한다.... 정부는 울진, 해운대, 창원, 여수, 안산 등 6개 거점형 마리나항만과 비즈센터를 조성하고, 마리나 선박...",
+      "url": "https://www.ppss.kr/news/articleView.html?idxno=299248"
+    },
+    {
+      "source": "naver",
+      "press": "metroseoul.co.kr",
+      "date": "2026.06.19",
+      "title": "경기평택항만공사, 거북섬마리나서 해양재난 대응 훈련",
+      "snippet": "/ 경기평택항만공사 제공 경기평택항만공사가 해양재난 발생에 대비한 유관기관 합동 재난대응 교육·훈련을... 이번 훈련에는 공사를 비롯해 시흥시, 시흥소방서, 평택해양경찰서 안산파출소 등 관계기관이 참여해 재난...",
+      "url": "http://www.metroseoul.co.kr/article/20260619500040"
+    },
+    {
+      "source": "naver",
+      "press": "enetnews.co.kr",
+      "date": "2026.06.19",
+      "title": "입시요리학원 코리아요리아트아카데미 부산점, 초콜릿 마스터스 국가대...",
+      "snippet": "최상의 교육 환경을 지원하겠다\"고 밝혔다. 한편 코리아요리아트아카데미는 서울 강남, 홍대(신촌), 부산(김해), 대구(경산), 대전(세종), 인천(부천), 안산(시흥), 수원(동탄), 광주(전남) 전국 9개 지점은 지점을 운영...",
+      "url": "https://www.enetnews.co.kr/news/articleView.html?idxno=51396"
+    },
+    {
+      "source": "naver",
+      "press": "ajunews.com",
+      "date": "2026.06.19",
+      "title": "안산문화재단, \"공공기관 경영평가 2년 연속 최상위\"",
+      "snippet": "국·도비 47억 원 확보…재정자립도 41.85% 기록 지역 문화예술 생태계 활성화 기반 강화 아주경제=안산... 공연과 축제, 문화예술 교육사업에서도 사업 규모와 프로그램 다양성을 확대하며 운영 성과를 높였다는 평가다....",
+      "url": "https://www.ajunews.com/view/20260619100011608"
+    },
+    {
+      "source": "naver",
+      "press": "viva100.com",
+      "date": "2026.06.19",
+      "title": "중동전쟁 여파에 고용시장 회복 총력…정부, 청년일자리 대책 마련",
+      "snippet": "에이전틱(Agentic) AI 등 신기술 분야 교육을 확대하고 기업 수요에 맞는 인력 양성도 추진한다. 이날... 정부는 울진·해운대·창원·여수·안산 등 거점형 마리나항만과 비즈센터 조성을 통해 인프라를 확충하고 민간 투자를...",
+      "url": "https://www.viva100.com/article/20260619500151"
     },
     {
       "source": "naver",
@@ -250,6 +522,14 @@
       "url": "http://www.fntimes.com/html/view.php?ud=202606170845446408048b718333_18"
     },
     {
+      "source": "naver",
+      "press": "topstarnews.net",
+      "date": "2026.06.17",
+      "title": "'내가 많이 먹을 상인가' 안산 이동 우거지감자탕·왕갈비탕 맛집 \"든든...",
+      "snippet": "안산 상록구 이동, 한대앞역 인근 약 300m 거리에 위치한 우거지감자탕 맛집은 든든한 한끼를 내놓는 인기 식당이다. 이날 방송을 통해서는 우거지감자탕과 왕갈비탕 등을 집중 조명해 시청자의 침샘을 자극했다. 코미디TV...",
+      "url": "https://www.topstarnews.net/news/articleView.html?idxno=16097347"
+    },
+    {
       "source": "google",
       "press": "반월신문",
       "date": "2026.06.17",
@@ -272,6 +552,14 @@
       "title": "안산시, 기존 학군 유지한 안산교육청 환영…“시민 목소리 반영”",
       "snippet": "안산시, 기존 학군 유지한 안산교육청 환영…“시민 목소리 반영” v.daum.net",
       "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE9hWjRuVW9mZHBBTTJwc2NKMHdzRUprNlBpR1UxeExVRUpLSnZXdkhUM1ZzdF82MFBWZHJlSEtzUDV6eTdvNFdJcHdBaVBXdXM?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "브릿지경제",
+      "date": "2026.06.17",
+      "title": "안산교육지원청, 현 학군 체제 유지… 새솔동 학생 해양중학교 입학 불가할 듯",
+      "snippet": "안산교육지원청, 현 학군 체제 유지… 새솔동 학생 해양중학교 입학 불가할 듯 브릿지경제",
+      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5CSGRscUh0dzB0aVdTS1lVUjczblpuc3NoVlZFdWtCY0lMRWo0NWtnYkVmbFFpV0tnT3pJUDNLZTQ4dHhJWm1TOEFhdVVwempBTzJWdW93cXZndw?oc=5"
     },
     {
       "source": "google",
@@ -330,20 +618,20 @@
       "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE9wUDd1cl8wc1BkQVlpOXcxbi0tMTZ2SzQ5NHJUUWhtNmhObkw0ei1FbDFSWDJNWmFWV3Jibm1tbGV2YktPbFBYM050WFd4TFctTEZudy1QYnVtQmphN0t2VFRKYUVrQXlkTjNJ?oc=5"
     },
     {
-      "source": "google",
-      "press": "경기매일",
-      "date": "2026.06.17",
-      "title": "안산교육지원청, 한양대 ERICA SW·AI융합교육원과 AI·디지털 교육 MOU 체결",
-      "snippet": "안산교육지원청, 한양대 ERICA SW·AI융합교육원과 AI·디지털 교육 MOU 체결 경기매일",
-      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBDbG4zb1dVTk1nYzJQUWU2TkZKdGptMldWeGk2MzZfVGUxaHRJYWF2VEFXTllMU3Z3VFotQk9PMFl0OTJ3Uy1PRWdVeVlJUlZmYzF0RG1ZeTVmbU82bG1xZ201c1g3OE0?oc=5"
-    },
-    {
       "source": "naver",
       "press": "ekn.kr",
       "date": "2026.06.16",
       "title": "[브리프] 경기도의회 6월 15일 주요 의정 소식",
       "snippet": "송기우 기자 kwsong@ekn.kr 경기도의회 더불어민주당, 제12대 전반기 대표의원 및 의장단 선출 예고 경기도의회, 11일 보건건강국 2025회계연도 결산 심사 장윤정 도의원, 경기도교육청 예산유보 지적하며 적기 집행 당부...",
       "url": "https://www.ekn.kr/web/view.php?key=20260616020173465"
+    },
+    {
+      "source": "naver",
+      "press": "cbci.co.kr",
+      "date": "2026.06.16",
+      "title": "대부도의 낭만을 품은 안산, 특별한 추억을 만드는 가볼 만한 곳",
+      "snippet": "경기 안산시 상록구 사동에 위치한 안산갈대습지는 국내 최초 대규모 인공습지로 조성되었다. 시화호로 유입되는 하천의 수질 개선을 위해 만들어진 이곳은 갈대와 수생식물을 통해 자연적인 수질 정화 기능을 수행한다....",
+      "url": "https://www.cbci.co.kr/news/articleView.html?idxno=582428"
     },
     {
       "source": "google",
@@ -394,6 +682,70 @@
       "url": "https://www.asiatime.co.kr/article/20260615500148"
     },
     {
+      "source": "naver",
+      "press": "newsfreezone.co.kr",
+      "date": "2026.06.15",
+      "title": "김동규 도의원, 안산교육지원청과 간담회 가져",
+      "snippet": "등 상록구 주요 교육 현안을 집중 점검했다. 먼저 화성오산교육지원청이 요청한 제한적 공동학구 지정과 관련해 안산교육지원청은 공동학구를 지정하지 않기로 한 입장을 공식 확인했다. 해당 학구에 포함되는 호수중학군...",
+      "url": "https://www.newsfreezone.co.kr/news/articleView.html?idxno=694560"
+    },
+    {
+      "source": "naver",
+      "press": "safetynews.co.kr",
+      "date": "2026.06.15",
+      "title": "김동규 의원 \"안산 학생도 배치 어려운데 화성 학생 수용 못해\"…공동학...",
+      "snippet": "김동규 경기도의원(더불어민주당·안산1)은 최근 안산교육지원청과 간담회를 갖고 상록구 교육 현안을 논의한 가운데, 화성오산교육지원청이 요청한 제한적 공동학구 지정에 대해 안산교육지원청이 수용하지 않기로 한...",
+      "url": "https://www.safetynews.co.kr/news/articleView.html?idxno=248982"
+    },
+    {
+      "source": "naver",
+      "press": "jeonmae.co.kr",
+      "date": "2026.06.15",
+      "title": "김동규 경기도의원, 안산교육지원청과 교육현안 간담회",
+      "snippet": "경기도의회 김동규 의원은 지난 12일 경기도의회 예담채에서 안산교육지원청과 간담회를 열고 안산 상록구 지역 교육 현안을 논의했다. 이번 간담회에서는 화성오산교육지원청이 요청한 제한적 공동학구 지정 문제와...",
+      "url": "https://www.jeonmae.co.kr/news/articleView.html?idxno=1265411"
+    },
+    {
+      "source": "naver",
+      "press": "kgnews.co.kr",
+      "date": "2026.06.15",
+      "title": "안산시 상록수치매안심센터, 본오3동서 ‘찾아가는 치매 조기검진’ 실...",
+      "snippet": "이번 행사는 안산시 상록구 제1호 치매안심마을인 본오3동 장수마을을 중심으로 지역사회 치매 안전망을 강화하고 치매 친화적 환경을 조성하기 위해 마련됐다. 특히 본오3동 44통부터 48통 일대는 ‘우수...",
+      "url": "https://www.kgnews.co.kr/news/article.html?no=899877"
+    },
+    {
+      "source": "naver",
+      "press": "m-i.kr",
+      "date": "2026.06.15",
+      "title": "안산시, 6월 정기분 자동차세 부과",
+      "snippet": "사진=안산시 매일일보 = 송훈희 기자 | 안산시는 2026년 6월 정기분 자동차세 약 24만건, 290억원을 부과하고 납부 홍보에 나선다고 밝혔다. 구별 부과 규모는 상록구 약 11만건·140억원, 단원구 약 13만건·150억원이다....",
+      "url": "https://www.m-i.kr/news/articleView.html?idxno=1381521"
+    },
+    {
+      "source": "naver",
+      "press": "viva100.com",
+      "date": "2026.06.15",
+      "title": "안산시, 6월 정기분 자동차세 290억 원 부과",
+      "snippet": "경기 안산시는 6월 정기분 자동차세 약 24만 건에 대해 290억 원(상록구 약 11만 건·140억 원, 단원구 약 13만 건·150억 원)을 부과하고 납부 홍보에 나선다고 15일 밝혔다. 자동차세는 차량의 배기량과 종류, 용도 등에...",
+      "url": "https://www.viva100.com/article/20260615500336"
+    },
+    {
+      "source": "naver",
+      "press": "newsis.com",
+      "date": "2026.06.15",
+      "title": "[안산소식]'2026 e스포츠 페스티벌' 참가자 모집 등",
+      "snippet": "◇6월 정기분 자동차세 290억원 부과 경기 안산시는 2026년 6월 정기분 자동차세 약 24만 건에 대해 290억원(상록구 약 11만 건·140억원, 단원구 약 13만 건·150억원)을 부과했다고 15일 밝혔다. 이번 정기분은 올해 1...",
+      "url": "https://www.newsis.com/view/NISX20260615_0003668944"
+    },
+    {
+      "source": "naver",
+      "press": "newsis.com",
+      "date": "2026.06.15",
+      "title": "[오늘의 주요일정]경기남부(6월15일 월요일)",
+      "snippet": "외식업 상록구·단원구지부 간담회, 시장실 ▲오전 10시30분, 안산시 소상공인연합회 임원간담회, 시장실 ◇안양시 ▲오후 3시, 2026년 상반기 장애인인식개선 교육, 3층 상황실 ◇시흥시 ▲오후 2시, 시흥시 기본사회...",
+      "url": "https://www.newsis.com/view/NISX20260614_0003668484"
+    },
+    {
       "source": "google",
       "press": "열린뉴스통신",
       "date": "2026.06.15",
@@ -416,6 +768,22 @@
       "title": "해양·해솔 학군 갈등 해법 모색…김남국 의원, 안산교육지원청과 간담회",
       "snippet": "해양·해솔 학군 갈등 해법 모색…김남국 의원, 안산교육지원청과 간담회 신아일보",
       "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1Vbzc0NnExRjFmNlg5UjNySUlxNEFwU3N0MVplTHNDdW8xX09ncDVCdl9IaVZuM0xTa2NtRFhvV0J4dkt2eklNUm9NZ1Y2M2ZOM0JmbkJ1SmNSaHQ2cEk5c3NwOTJVcXBVX2N5VmZQaTc?oc=5"
+    },
+    {
+      "source": "naver",
+      "press": "shinailbo.co.kr",
+      "date": "2026.06.14",
+      "title": "안산시학교밖청소년지원센터, 맞춤형 대학입시 설명회 개최",
+      "snippet": "안산시가 위탁 운영하는 안산시학교밖청소년지원센터는 지난 11일 상록구청 대회의실에서 대학 진학을 희망하는 학교 밖 청소년과 학부모를 대상으로 '2027학년도 대비 맞춤형 대학입시 설명회'를 개최했다고 14일...",
+      "url": "https://www.shinailbo.co.kr/news/articleView.html?idxno=5030188"
+    },
+    {
+      "source": "google",
+      "press": "광교신문",
+      "date": "2026.06.14",
+      "title": "안산시 상록구, 사회복지직 공무원‘고민타파 힐링데이’ 운영",
+      "snippet": "안산시 상록구, 사회복지직 공무원‘고민타파 힐링데이’ 운영 광교신문",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1MRlpWWnowRklubWJDVC1lTkJRVk1TemgzVk5IcDFrbG9UZkMtQzdPRGRXRlFtcjRNYkdGYmtYYzJRUXVpRmNvZEZrQUJieFpEZEFsa3JOMGtTdFAyaERnOThnY1ptOHQ10gFsQVVfeXFMTmFTSE56NlJfS0V1NWxITFhRc0RoTzlaVzlqZWVrSTRJR3FjYm9vQ3FrN0wtaGVtRURrbVREZGkyeks1TWk2WUU4cUpXUVZnU242aXUtc1RJX3FzaU4zRGQ2c1FGVGFvZENqUi00?oc=5"
     },
     {
       "source": "naver",
@@ -484,10 +852,122 @@
     {
       "source": "naver",
       "press": "joongboo.com",
+      "date": "2026.06.12",
+      "title": "[금주의 안산시] 여름철 폭염 대응 종합대책 점검회의 개최 外",
+      "snippet": "▶안산시, 주민대피체계 운영교육 실시 사진=안산시 안산시는 상록구청 상록시민홀에서 동 행정복지센터 동장과 재난담당자, 자율방재단 관계자 등을 대상으로 '2026년 현장 대응력 강화를 위한 주민대피체계 운영교육'을...",
+      "url": "https://www.joongboo.com/news/articleView.html?idxno=363728537"
+    },
+    {
+      "source": "naver",
+      "press": "siminilbo.co.kr",
+      "date": "2026.06.12",
+      "title": "안산시 꿈드림,‘2027학년도 맞춤형 대학입시 설명회’개최",
+      "snippet": "안산시(시장 이민근)는 지난 11일 상록구청 대회의실에서 학교 밖 청소년과 학부모를 대상으로 ‘2027학년도 대비 맞춤형 대학입시 설명회’를 개최했다고 12일 밝혔다. 이번 설명회는 학교 밖 청소년들이 변화하는 대학...",
+      "url": "https://www.siminilbo.co.kr/news/newsview.php?ncode=1160265857512882"
+    },
+    {
+      "source": "naver",
+      "press": "weekly.hankooki.com",
+      "date": "2026.06.12",
+      "title": "안산시, '2027학년도 대학 진학 설명회' 개최",
+      "snippet": "안산시는 지난 11일 상록구청 대회의실에서 학교 밖 청소년과 학부모를 대상으로 '2027학년도 대학 진학 설명회'를 개최했다고 12일 밝혔다. 이번 행사는 검정고시를 준비하거나 대학 진학을 계획 중인 청소년들이 변화하는...",
+      "url": "https://weekly.hankooki.com/news/articleView.html?idxno=7169086"
+    },
+    {
+      "source": "naver",
+      "press": "sisajournal.com",
+      "date": "2026.06.12",
+      "title": "[안산 24시] 안산시, 민간 급식소 '잔반 ZERO' 캠페인 확대…감량 문화 ...",
+      "snippet": "◇안산시학교밖청소년지원센터, 2027학년도 대학입시 설명회 개최 안산시가 위탁운영하는 안산시학교밖청소년지원센터(꿈드림)는 지난 11일 상록구청 대회의실에서 학교 밖 청소년과 학부모를 대상으로 '2027학년도 대비...",
+      "url": "https://www.sisajournal.com/news/articleView.html?idxno=376316"
+    },
+    {
+      "source": "naver",
+      "press": "nspna.com",
+      "date": "2026.06.12",
+      "title": "[현장 1분 브리핑]안산시 꿈드림, 학교 밖 청소년 맞춤 ‘2027 대입 설명...",
+      "snippet": "안산시가 위탁운영하는 안산시학교밖청소년지원센터(꿈드림)는 11일 상록구청 대회의실에서 2027학년도 대학 입학전형에 체계적으로 대비하고 자신에게 맞는 진학 전략을 수립할 수 있도록 지원하는 맞춤형 대학입시...",
+      "url": "https://www.nspna.com/news/?mode=view&newsid=816451"
+    },
+    {
+      "source": "naver",
+      "press": "newsclaim.co.kr",
+      "date": "2026.06.12",
+      "title": "안산시 꿈드림 학교 밖 청소년 대상 2027학년도 대학입시 설명회",
+      "snippet": "안산시 제공 안산시가 위탁 운영하는 안산시학교밖청소년지원센터(꿈드림)는 지난 11일 상록구청 대회의실에서 대학 진학을 희망하는 학교 밖 청소년과 학부모를 대상으로 '2027학년도 대비 맞춤형 대학입시 설명회'를...",
+      "url": "https://www.newsclaim.co.kr/news/articleView.html?idxno=3066259"
+    },
+    {
+      "source": "naver",
+      "press": "m-i.kr",
+      "date": "2026.06.12",
+      "title": "안산시 꿈드림, 학교 밖 청소년 대상 '2027 대입 설명회' 개최",
+      "snippet": "사진=안산시 매일일보 = 송훈희 기자 | 안산시가 위탁운영하고 있는 안산시학교밖청소년지원센터(이하 꿈드림)는 11일 상록구청 대회의실에서 대학 진학을 희망하는 학교 밖 청소년과 학부모를 대상으로 '2027학년도 대비...",
+      "url": "https://www.m-i.kr/news/articleView.html?idxno=1380939"
+    },
+    {
+      "source": "naver",
+      "press": "enewstoday.co.kr",
+      "date": "2026.06.12",
+      "title": "안산시학교밖청소년지원센터,'2027학년도 맞춤형 대학입시 설명회'개최",
+      "snippet": "시가 위탁운영하고 있는 안산꿈드림은 지난 11일 상록구청에서 대학 진학을 희망하는 학교 밖 청소년과 학부모를 대상으로 '2027학년도 대비 맞춤형 대학입시 설명회'를 열었다. 이번 설명회는 입시 정보 접근에...",
+      "url": "http://www.enewstoday.co.kr/news/articleView.html?idxno=2438349"
+    },
+    {
+      "source": "naver",
+      "press": "viva100.com",
+      "date": "2026.06.12",
+      "title": "안산시학교밖청소년센터 “대학입시 설명회” 개최",
+      "snippet": "경기 안산시학교밖청소년지원센터(이하 꿈드림)는 지난 11일 상록구청 대회의실에서 대학 진학을 희망하는 학교 밖 청소년과 학부모를 대상으로 ‘2027학년도 대비 맞춤형 대학입시 설명회’를 개최했다고 12일 밝혔다....",
+      "url": "https://www.viva100.com/article/20260612500122"
+    },
+    {
+      "source": "naver",
+      "press": "joongboo.com",
       "date": "2026.06.11",
       "title": "안광률 \"제12대 도의회 민주당 원내대표 도전… 성과로 증명하겠다\"",
       "snippet": "안광률 경기도의원이 11일 오전 10시 도의회 브리핑룸에서 기자회견을 열고 제12대 도의회 더불어민주당... 이영봉·유경현·박상현·이병숙·이채명·이홍근·장윤정 의원과 백승기 당선인을 포함한 일부 당선인들이 참석했다.",
       "url": "https://www.joongboo.com/news/articleView.html?idxno=363728461"
+    },
+    {
+      "source": "naver",
+      "press": "siminilbo.co.kr",
+      "date": "2026.06.11",
+      "title": "안산시, 청문당 유아 체험프로그램 ‘꼬마사랑방’ 성료",
+      "snippet": "안산시에 따르면 지난 9일부터 10일까지 이틀간 상록구 부곡동에 위치한 경기도 문화유산자료 청문당에서 유치원 및 어린이집 유아단체를 대상으로 체험프로그램 ‘청문당 꼬마사랑방’을 운영했다고 11일 밝혔다. 참가...",
+      "url": "https://www.siminilbo.co.kr/news/newsview.php?ncode=1160266020045801"
+    },
+    {
+      "source": "naver",
+      "press": "kyeonggi.com",
+      "date": "2026.06.11",
+      "title": "[2026 경기도 박물관·미술관 다시보기] 안산 김홍도미술관",
+      "snippet": "안산시 상록구 충장로 143m의 아담한 노적봉에 안긴 김홍도미술관(관장 한은현)에서 만난 단원 김홍도는 젊고 유쾌하다. 단원이 그림을 배우며 20대 초반까지 살았던 안산은 ‘단원의 도시’로 불린다. 매년 10월이면...",
+      "url": "https://www.kyeonggi.com/article/20260611580185"
+    },
+    {
+      "source": "naver",
+      "press": "newsclaim.co.kr",
+      "date": "2026.06.11",
+      "title": "안산 상록구 야간 이륜차 소음 특별단속",
+      "snippet": "이륜차 소음 특별단속 실시,배달대행 이륜차,안산시 상록구 지난 10일 야간 상록구 관내에서 관계기관과 함께 이륜차 소음 특별단속을 실시하고 있다. 안산시 제공 안산시 상록구가 야간 시간대 이륜차 소음 민원 해소를...",
+      "url": "https://www.newsclaim.co.kr/news/articleView.html?idxno=3066158"
+    },
+    {
+      "source": "naver",
+      "press": "edaily.co.kr",
+      "date": "2026.06.11",
+      "title": "경기 오피스텔 계갱권 사용 증가세…수원 장안 ‘급증’",
+      "snippet": "표본이 큰 지역 중에서는 수원 장안구가 75.3%(갱신 73건)로 가장 높았고, 안산 상록구 60.5%, 안양 동안구 53.9%, 성남 수정구·중원구 각 49.0%, 고양 일산서구 47.2% 순으로 뒤를 이었다. 중위권에서는 남양주시 44.0...",
+      "url": "https://www.edaily.co.kr/news/newspath.asp?newsid=02978246645480736"
+    },
+    {
+      "source": "naver",
+      "press": "newstown.co.kr",
+      "date": "2026.06.11",
+      "title": "안산시 주민대피지원단 운영 본격화…재난 대응 현장역량 높인다",
+      "snippet": "안산시는 지난 9일 상록구청 상록시민홀에서 각 동 행정복지센터 동장과 재난담당자, 자율방재단 관계자 등을 대상으로 '2026년 현장 대응력 강화를 위한 주민대피체계 운영교육'을 실시했다고 10일 밝혔다. 이번 교육은...",
+      "url": "http://www.newstown.co.kr/news/articleView.html?idxno=705836"
     },
     {
       "source": "naver",
@@ -496,6 +976,62 @@
       "title": "[병원계 소식] 6월 10일",
       "snippet": "■고려대 안산병원, 연구 성과 자문단 'Networking Day' 개최 고려대학교 안산병원(원장 서동훈)이 연구 성과... 국립암센터 중앙암생존자통합지지센터(센터장 장윤정)는 이번 캠페인의 일환으로 '권역센터와 함께 만든 변화의...",
       "url": "http://www.doctorstimes.com/news/articleView.html?idxno=238466"
+    },
+    {
+      "source": "naver",
+      "press": "kihoilbo.co.kr",
+      "date": "2026.06.10",
+      "title": "봉지 씌워도 속수무책 '평화의 소녀상' 수난사 끝난다",
+      "snippet": "지난해 8월 15일 오후 11시께 50대 남성이 안산시 상록구 본오동 상록수역 1번 출구 앞에 있는 평화의 소녀상 머리에 우산 비닐을 씌우다 경찰에 적발됐다. 당시 광복절 당일에 발생된 사건으로 시민들로부터 \"모독행위...",
+      "url": "https://www.kihoilbo.co.kr/news/articleView.html?idxno=3025663"
+    },
+    {
+      "source": "naver",
+      "press": "safetynews.co.kr",
+      "date": "2026.06.10",
+      "title": "안산시, 침수 대비 지하차도·취약시설 집중관리…\"예측 불가 재난 선제...",
+      "snippet": "9일 상록구청 시민홀에서 동 행정복지센터 재난업무 담당자 및 관계자 대상 '주민대피체계 운영교육'이 진행중이다./ 사진=안산시 안산시가 여름철 집중호우에 대비해 상습 침수지역 지정보다는 지하차도 등 인명피해 우려...",
+      "url": "https://www.safetynews.co.kr/news/articleView.html?idxno=248893"
+    },
+    {
+      "source": "naver",
+      "press": "siminilbo.co.kr",
+      "date": "2026.06.10",
+      "title": "안산시 상록수보건소, 구강보건의 날 맞아 시민 참여 행사 운영",
+      "snippet": "배부 ▲안산대학교 연계 구강건강 캠페인 ▲금연클리닉 신규 등록자 무료 스케일링 이벤트 등이다. 상록수보건소는 앞서 지난 5일 상록구 노인복지관 일동분관을 찾아 어르신 대상 구강보건교육과 구강검진·상담을...",
+      "url": "https://www.siminilbo.co.kr/news/newsview.php?ncode=1160264915391627"
+    },
+    {
+      "source": "naver",
+      "press": "news.tf.co.kr",
+      "date": "2026.06.10",
+      "title": "[인터뷰] 김현, 李 대통령이 정조준 한 '가짜 뉴스'와 외로운 싸움",
+      "snippet": "지난 9일 안산시 상록구 지역사무소에서 <더팩트>와 만난 김 의원은 \"이 대통령과 정부·여당을 겨냥한 허위사실유포, 악의적 음해에 대해서는 끝까지 그 책임을 물을 것\"이라고 말했다. 김 의원이 민주당에서 가짜 뉴스...",
+      "url": "https://news.tf.co.kr/read/national/2331232.htm"
+    },
+    {
+      "source": "naver",
+      "press": "siminilbo.co.kr",
+      "date": "2026.06.10",
+      "title": "안산시, 주민대피체계 운영교육 실시…여름철 자연재난 대응력 강화",
+      "snippet": "안산시에 따르면 지난 9일 상록구청 상록시민홀에서 각 동 행정복지센터 동장과 재난담당자, 자율방재단 관계자 등을 대상으로 ‘2026년 현장 대응력 강화를 위한 주민대피체계 운영교육’을 실시했다고 10일 밝혔다....",
+      "url": "https://www.siminilbo.co.kr/news/newsview.php?ncode=1160262923745519"
+    },
+    {
+      "source": "naver",
+      "press": "newsclaim.co.kr",
+      "date": "2026.06.10",
+      "title": "안산시 주민대피체계 운영교육... 자연재난 대응력 강화",
+      "snippet": "안산시는 지난 9일 상록구청 상록시민홀에서 각 동 행정복지센터 동장과 재난담당자, 자율방재단 관계자 등을 대상으로 '2026년 현장 대응력 강화를 위한 주민대피체계 운영교육'을 실시했다고 10일 밝혔습니다. 이번 교육은...",
+      "url": "https://www.newsclaim.co.kr/news/articleView.html?idxno=3065974"
+    },
+    {
+      "source": "naver",
+      "press": "newsis.com",
+      "date": "2026.06.10",
+      "title": "[오늘의 주요일정]경기남부(6월10일 수요일)",
+      "snippet": "상황실 ◇안산시 ▲오후 2시, 직원 힐링 프로그램 '마음 새로고침' 손 끝에 담는 휴식, 상록구청 4층 대회의실 ◇안양시 ▲오후 4시, 2026년 2분기 사회복무요원 표창 및 소양교육, 시청 강당 ◇군포시 ▲오전 9시...",
+      "url": "https://www.newsis.com/view/NISX20260609_0003662880"
     },
     {
       "source": "google",
@@ -531,6 +1067,54 @@
     },
     {
       "source": "naver",
+      "press": "donga.com",
+      "date": "2026.06.09",
+      "title": "촉법소년 재범률 성인의 3배…“전담시설 만들어 교육 병행”",
+      "snippet": "9일 오후 경기 안산시 상록구 안산소년분류심사원. 93명의 여성 위탁소년이 머무는 이곳 생활관에는 상아색 창살이 달린 3평 남짓한 방이 복도를 따라 늘어서 있었지만 모두 빈 방이었다. 위탁소년들은 이날 방에...",
+      "url": "https://www.donga.com/news/Society/article/all/20260609/134080690/1"
+    },
+    {
+      "source": "naver",
+      "press": "100ssd.co.kr",
+      "date": "2026.06.09",
+      "title": "대한노인회 경기연합회, 제10회 경로당 노래경연대회 성료",
+      "snippet": "안산시 상록구지회 박양훈 어르신은 '물레방아 도는데'를, 용인시 수지구지회 박선용 어르신은 '네박자'를 불러 흥을 더했다. '도련님'을 부른 시흥시지회 이순례 어르신은 김연규 시흥시지회장과 함께 무대에 올랐다....",
+      "url": "https://www.100ssd.co.kr/news/articleView.html?idxno=210000"
+    },
+    {
+      "source": "naver",
+      "press": "kihoilbo.co.kr",
+      "date": "2026.06.09",
+      "title": "경기소방, \"애기 나올 것 같아요\" 119 구급요원 전화로 산모 분만 도와",
+      "snippet": "구급대원들은 지난 달 28일께 안산시 상록구 신생아 부모를 찾아 축하 선물을 전달했다. 최용철 경기도소방재난본부장 전담 직무대리는 \"응급상황에서는 구급차보다 먼저 구급상황요원의 목소리가 현장에 도착한다\"며...",
+      "url": "https://www.kihoilbo.co.kr/news/articleView.html?idxno=3025517"
+    },
+    {
+      "source": "naver",
+      "press": "areyou.co.kr",
+      "date": "2026.06.08",
+      "title": "[아유경제_가로주택정비] 건건동 660-14 일원 가로주택정비, 사업시행계...",
+      "snippet": "공고에 따르면 이 사업은 안산 상록구 창말1길 15-1(건건동) 일원 6718.99㎡를 대상으로 조합 등이 이곳에 지하 2층에서 지상 15층에 이르는 공동주택 4개동 191가구 및 부대복리시설 등을 짓는 내용을 골자로 한다....",
+      "url": "http://www.areyou.co.kr/news/articleView.html?idxno=94024"
+    },
+    {
+      "source": "naver",
+      "press": "kgnews.co.kr",
+      "date": "2026.06.08",
+      "title": "안산시 단원보건소, 청년 1인가구 건강요리 나눔 행사",
+      "snippet": "청년들이 직접 재배한 작물로 취약계층 위한 건강 반찬 마련… 세대 통합 기여 안산시 단원보건소는 지난 6일 상록구 사랑나눔 무료급식소에서 청년 1인 가구 20명이 참여한 가운데 취약계층을 위한 ‘세대 간 건강요리...",
+      "url": "https://www.kgnews.co.kr/news/article.html?no=899067"
+    },
+    {
+      "source": "naver",
+      "press": "siminilbo.co.kr",
+      "date": "2026.06.08",
+      "title": "안산시 단원보건소, 청년 1인가구 건강요리 나눔행사 개최",
+      "snippet": "▲ 청년 1인가구 20명이 참여한 가운데 취약계층을 위한 ‘세대 간 건강요리 나눔행사’ 참석자들이 기념 촬영을 하고 있다 /사진제공=안산시 경기 안산시(시장 이민근) 단원보건소는 지난 6일 상록구에 위치한 사랑나눔...",
+      "url": "https://www.siminilbo.co.kr/news/newsview.php?ncode=1160265924333720"
+    },
+    {
+      "source": "naver",
       "press": "kgnews.co.kr",
       "date": "2026.06.07",
       "title": "다시 선택받은 도의원 55명…연임 성공한 의원 지난 의정활동 성적표는",
@@ -562,12 +1146,68 @@
       "url": "https://www.joongboo.com/news/articleView.html?idxno=363728022"
     },
     {
-      "source": "google",
-      "press": "뉴스프리존",
+      "source": "naver",
+      "press": "the-biz.co.kr",
       "date": "2026.06.04",
-      "title": "[인터뷰] 장윤정 경기도의원 \"초심 잃지 않고 더 공부하는 의원 되겠다\"",
-      "snippet": "[인터뷰] 장윤정 경기도의원 \"초심 잃지 않고 더 공부하는 의원 되겠다\" 뉴스프리존",
-      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE81Ri1vZ2RXMDdzcHV1eVpUZjhpcnlRVXNhMy15M1FMandJRlBQZV9Rc0d4cnRYVHlhZnRVNkNOVmpJcHoxTlhyM1JmY3NNWXFOTFNyY0NramFNRHdLYWtZRDQ4ZDJpWFdXb3ZJazlTS2Y2Qmc?oc=5"
+      "title": "민주당 경기도 권력 석권,추미애 도지사·안민석 교육감·도의회 87% 확보",
+      "snippet": "안산 장윤정, 부천 유경현, 시흥 안광률·김종배 의원 등이다. 국민의힘은 수원 이오수, 용인 김선희, 성남... ◆ 경기도 국회의원 보궐선거…민주당 2석·국민의힘 1석 경기도에서 실시된 국회의원 보궐선거는...",
+      "url": "http://www.the-biz.co.kr/news/articleView.html?idxno=721930"
+    },
+    {
+      "source": "naver",
+      "press": "newsfreezone.co.kr",
+      "date": "2026.06.04",
+      "title": "[인터뷰] 장윤정 경기도의원 \"초심 잃지 않고 더 공부하는 의원 되겠다...",
+      "snippet": "앞으로도 배우는 자세로 지역 발전을 위해 최선을 다하겠습니다.\" 6·3 제9회 전국동시지방선거에서 60.16%의 득표율로 재선에 성공한 장윤정 경기도의원은 당선 직후 감사와 함께 더욱 무거운 책임감을 강조했다. 장 의원은...",
+      "url": "https://www.newsfreezone.co.kr/news/articleView.html?idxno=693071"
+    },
+    {
+      "source": "naver",
+      "press": "asiatime.co.kr",
+      "date": "2026.06.04",
+      "title": "경기도의회 '여야동수' 넘어 민주당 압도 구도로 재편",
+      "snippet": "또 전직 도의원들의 재입성도 적지 않아 초선 중심의 변화 속에서도 의회 운영의 연속성은 일정 부분 유지될 것으로 보인다. 이번 선거 결과의 정치적 의미는 분명하다. 경기도민은 도지사와 도의회 모두에서 민주당에...",
+      "url": "https://www.asiatime.co.kr/article/20260604500193"
+    },
+    {
+      "source": "naver",
+      "press": "kyeonggi.com",
+      "date": "2026.06.04",
+      "title": "‘동수’에서 ‘파란 물결’로 기울어진 경기도의회…대격변 예고",
+      "snippet": "※ 다음은 경기도의원 당선인 명단(더불어민주당: 민주, 국민의힘: 국힘, 조국혁신당: 혁신) ◇수원... (민주) ▲안산3 = 장윤정(민주) ▲안산4 = 유재수(민주) ▲안산5 = 이은미(민주) ▲안산6 = 박은경(민주) 안산7...",
+      "url": "https://www.kyeonggi.com/article/20260604580318"
+    },
+    {
+      "source": "naver",
+      "press": "newsis.com",
+      "date": "2026.06.04",
+      "title": "[표]경기 광역의원 당선인 명단",
+      "snippet": "(민·49·경기도의원) ◇안산시제3선거구 ▲장윤정(민·33·정당인) ◇안산시제4선거구 ▲유재수(민·57·안산시의회의원) ◇안산시제5선거구 ▲이은미(민·44·경기도의회의원) ◇안산시제6선거구 ▲박은경(민·60...",
+      "url": "https://www.newsis.com/view/NISX20260604_0003655534"
+    },
+    {
+      "source": "naver",
+      "press": "kyeongin.com",
+      "date": "2026.06.04",
+      "title": "시장부터 시·도의원 민주당이 휩쓴 고양시 “원팀 완성”",
+      "snippet": "경기도의원 선거에서는 12개 선거구 모두에서 민주당 후보가 당선됐다. ▲제1선거구 임유진 ▲제2선거구... (국) ▲아선거구 장윤정(민)·김보래(국)·손동숙(국) ▲자선거구 신인선(민)·이홍규(국) ▲차선거구 김미수...",
+      "url": "https://www.kyeongin.com/article/1765000"
+    },
+    {
+      "source": "naver",
+      "press": "jeonmae.co.kr",
+      "date": "2026.06.04",
+      "title": "[광역의원 당선인 명단] 경기",
+      "snippet": "(민·49·경기도의원) ▲ 안산시3 = 장윤정(민·33·정당인) ▲ 안산시4 = 유재수(민·57·안산시의원) ▲ 안산시5 = 이은미(민·44·경기도의원) ▲ 안산시6 = 박은경(민·60·안산시의원) ▲ 안산시7 = 황은화(민·53...",
+      "url": "https://www.jeonmae.co.kr/news/articleView.html?idxno=1262054"
+    },
+    {
+      "source": "naver",
+      "press": "jeonmae.co.kr",
+      "date": "2026.06.04",
+      "title": "[기초의원 당선인 명단] 경기",
+      "snippet": "(국·23·경기도의회 의원 김도훈 후원회 사무국장) <아선거구> ▲ 사정희(민·58·수원시의원) ▲ 배지환(국... (민·61·고양시의회 의원) ▲ 고덕희(국·66·고양시의회 의원) <아선거구> ▲ 장윤정(민·56·정당인)...",
+      "url": "https://www.jeonmae.co.kr/news/articleView.html?idxno=1262012"
     },
     {
       "source": "google",
@@ -594,20 +1234,36 @@
       "url": "https://www.kyeongin.com/article/1765060"
     },
     {
-      "source": "google",
-      "press": "안전신문",
-      "date": "2026.06.02",
-      "title": "장윤정 \"교육·주거·문화가 함께 성장하는 안산 만들겠다\"",
-      "snippet": "장윤정 \"교육·주거·문화가 함께 성장하는 안산 만들겠다\" 안전신문",
-      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5wMWVvSGdEVVhfX0hHRE1fZURKYi1OUjVPd3I5SjR1STAydy1DMHZIbEQ1QVFLYUszUkcteHR1VjFTcjMwNmZNc3B0Y3FVWF82SG5fcWctQi1oTThHUWtVTndNRkJQd1VSdVZVZlBUaHY?oc=5"
+      "source": "naver",
+      "press": "news1.kr",
+      "date": "2026.06.04",
+      "title": "[6·3지선-표] 경기 기초의원 당선인 명단",
+      "snippet": "(56·국힘) ◇안산시 ▷가선거구 ▲최찬규(39·민주) ▲한명훈(59·민주) ▲염정우(35·국힘) ▷나선거구... (66·국힘) ▷아선거구 ▲장윤정(56·민주) ▲김보래(31·국힘) ▲손동숙(54·국힘) ▷자선거구 ▲신인선(59...",
+      "url": "https://www.news1.kr/local/gyeonggi/6187653"
     },
     {
-      "source": "google",
-      "press": "뉴스프리존",
+      "source": "naver",
+      "press": "news1.kr",
+      "date": "2026.06.04",
+      "title": "[6·3지선-표] 경기 광역의원 당선자 명단",
+      "snippet": "(49·민주) ◇안산시 ▷1선거구 ▲김동규(58·민주) ▷2선거구 ▲김태희(49·민주) ▷3선거구 ▲장윤정(33·민주) ▷4선거구 ▲유재수(57·민주) ▷5선거구 ▲이은미(44·민주) ▷6선거구 ▲박은경(60·민주)...",
+      "url": "https://www.news1.kr/local/gyeonggi/6187213"
+    },
+    {
+      "source": "naver",
+      "press": "safetynews.co.kr",
+      "date": "2026.06.02",
+      "title": "장윤정 \"교육·주거·문화가 함께 성장하는 안산 만들겠다\"",
+      "snippet": "장윤정 경기도의원 후보(안산3) 장윤정 더불어민주당 경기도의회 안산3선거구 후보가 최근 더불어민주당 경기도당으로부터 2026년 지방선거 안산3선거구 광역의원 후보로 재공천을 받고 재선 도전에 나섰다. 현재...",
+      "url": "https://www.safetynews.co.kr/news/articleView.html?idxno=248741"
+    },
+    {
+      "source": "naver",
+      "press": "newsfreezone.co.kr",
       "date": "2026.05.28",
-      "title": "장윤정 경기도의원 후보 “교육·지역경제 함께 성장하는 안산 만들 것”",
-      "snippet": "장윤정 경기도의원 후보 “교육·지역경제 함께 성장하는 안산 만들 것” 뉴스프리존",
-      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE45OHNIeUxramRDR1dsYnVpb1VrXzRjbGdCQXFoXzV4Q1ZCTzN6d3lzbDlfdDBaSDIyeXFOZlhWZUd6dWxQUEliaGxVR1hDeFZDdGhnakxPZGxrLU5sVzg0QlBCMVpQeWVaTEhfb01KMmt1RG_SAXdBVV95cUxQRWRkWGpqeWRPZVJvdXdITXh0ZmVxWFJPanVncTBDc1VrRXc5OS1OOFFwcHIzR1JHZmo0UWZIT3BMMXNiVDJuQXhENllHMzVTVE94WGFJMHhDRzd3QW03REVoTnBraXh1OGlZYWJob2c4amNXdmZNRQ?oc=5"
+      "title": "장윤정 경기도의원 후보 \"교육·지역경제 함께 성장하는 안산 만들 것\"",
+      "snippet": "장윤정 더불어민주당 경기도의회 안산3 선거구 후보는 \"정치는 주민 한 사람 한 사람의 삶을 더 나아지게... 최근에는 더불어민주당 경기도당으로부터 2026 지방선거 안산3 광역의원 후보로 재공천을 받았다. 장 후보는 4년...",
+      "url": "https://www.newsfreezone.co.kr/news/articleView.html?idxno=692039"
     },
     {
       "source": "google",
@@ -618,12 +1274,148 @@
       "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE42WEotQmM5ZHRNeVZacjByMV9yTGNsaDdvZUVnZWhUckZBSzhiMU1ycFZXQjlSSGRMdW1aYXZtQTFMLTd6T01VV0pESExhYlVUakhXNFhHOFFfNFFxNUlMRlFJN3F6RTA?oc=5"
     },
     {
+      "source": "naver",
+      "press": "newscj.com",
+      "date": "2026.05.26",
+      "title": "[6.3지선 후보 인터뷰] 더불어민주당 장윤정 후보 \"통학로·학교부터 바...",
+      "snippet": "아이들이 매일 지나가는 통학로와 골목길, 공원 환경까지 모두 교육과 연결돼 있다는 걸 느끼게 됩니다.\" 더불어민주당 장윤정 경기도의원 후보는 본지와의 인터뷰에서 '생활 가까이의 교육정치'를 강조했다. 안산에서 현재...",
+      "url": "https://www.newscj.com/news/articleView.html?idxno=3403436"
+    },
+    {
       "source": "google",
       "press": "KBS 뉴스",
       "date": "2026.05.26",
       "title": "경기 안산 상록구 카센터서 불…인명 피해 없어",
       "snippet": "경기 안산 상록구 카센터서 불…인명 피해 없어 KBS 뉴스",
       "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9BZ0ZQQk1lYXVtWXJsTk1jYU5GbTJTMWk0TXh1VG1aTEVmaVhsRUZXM2lhZzNoQzJMNWU0MVk0OFlBcUlzZkFfSFpHbEVDOTlHMGp4cGFWT2JGdXM?oc=5"
+    },
+    {
+      "source": "naver",
+      "press": "mygoyang.com",
+      "date": "2026.05.22",
+      "title": "고양빛의연대, 6·3 지방선거 '시민정책동행후보' 16명 출정식",
+      "snippet": "(진보당) 경기도의원 후보(4명) : 김해련(민주당), 이성한(민주당), 이기대(민주당), 고은정(민주당) 고양시의원 후보(10명) : 임홍열(민주당), 장영학(진보당), 박기병(민주당), 전민선(진보당), 공소자(민주당), 장윤정(민주당)...",
+      "url": "http://www.mygoyang.com/news/articleView.html?idxno=88798"
+    },
+    {
+      "source": "naver",
+      "press": "ohmynews.com",
+      "date": "2026.05.22",
+      "title": "시민정책동행후보 16인 출정식... 정책 이행 서약",
+      "snippet": "(진보당) - 경기도의원 후보(4명) : 김해련(민주당), 이성한(민주당), 이기대(민주당), 고은정(민주당) - 고양시의원 후보(10명) : 임홍열(민주당), 장영학(진보당), 박기병(민주당), 전민선(진보당), 공소자(민주당), 장윤정...",
+      "url": "https://www.ohmynews.com/NWS_Web/View/at_pg.aspx?CNTN_CD=A0003236762&CMPT_CD=P0010&utm_source=naver&utm_medium=newsearch&utm_campaign=naver_news"
+    },
+    {
+      "source": "naver",
+      "press": "joongboo.com",
+      "date": "2026.05.22",
+      "title": "[6.3지방선거] 고양빛의연대, 시민정책동행후보 공동 출정…\"시민주권 ...",
+      "snippet": "이날 자리에는 고양빛의연대가 추천한 고양시장 후보와 경기도의원 후보, 고양시의원 후보, 고양지역... 더불어민주당 장윤정 후보, 더불어민주당 이종미 후보, 더불어민주당 신인선 후보, 더불어민주당 김미수 후보...",
+      "url": "https://www.joongboo.com/news/articleView.html?idxno=363726574"
+    },
+    {
+      "source": "naver",
+      "press": "ohmynews.com",
+      "date": "2026.05.22",
+      "title": "3석 쟁탈전, 고양시 최대 격전지 '아선거구' 민심을 듣다",
+      "snippet": "그녀는 \"현장에서 답을 찾는 시의원이 되겠다\"며 출마 의지를 다졌다. ⓒ 장윤정 후보 제공 ▲ 기호 1-나... 기호 2-가 김보래(31) 후보는 국민의힘 경기도당 저출산고령사회위원회 사무국장으로 이번 선거구 보수 진영의...",
+      "url": "https://www.ohmynews.com/NWS_Web/View/at_pg.aspx?CNTN_CD=A0003236505&CMPT_CD=P0010&utm_source=naver&utm_medium=newsearch&utm_campaign=naver_news"
+    },
+    {
+      "source": "naver",
+      "press": "mygoyang.com",
+      "date": "2026.05.21",
+      "title": "'최다 후보' 고양시의원 아선거구, 3석 두고 6명 경쟁",
+      "snippet": "그는 \"현장에서 답을 찾는 시의원이 되겠다\"며 출마 의지를 다졌다. 장윤정 후보 제공.기호 1-나 이종미 후보... 기호 2-가번 김보래(31세) 후보는 현 이승만건국대통령기념사업회 자문위원이자 국민의힘 경기도당...",
+      "url": "http://www.mygoyang.com/news/articleView.html?idxno=88781"
+    },
+    {
+      "source": "naver",
+      "press": "m-i.kr",
+      "date": "2026.05.21",
+      "title": "공식 선거운동 첫날 아침부터 '눈살'…안산시 민주당 후보들, 역 광장·...",
+      "snippet": "더불어민주당 소속으로 경기도의원에 출마하는 장윤정 후보와 안산시의원에 도전하는 방운제 후보의 유세 차량들은 첫날 이른 아침부터 해당 구역에 불법 주정차를 한 채 선거운동을 강행했다. 이 지역은 지형상 공간이...",
+      "url": "https://www.m-i.kr/news/articleView.html?idxno=1374996"
+    },
+    {
+      "source": "naver",
+      "press": "news.tf.co.kr",
+      "date": "2026.05.20",
+      "title": "박태순 안산시의회 의장 '기부행위 의혹' 확산…선관위 조사 당일 식사...",
+      "snippet": "박 의장은 앞서 지난 6일 식사 비용 18만 원을 결제했으며, 이 가운데 장윤정 경기도의원 후보 부부의 식사 비용 2만 2000원을 뺀 15만 8000원만 이날 법인카드로 다시 결제했다. 해당 식당 관계자는 \"박 의장이 비서를 보내...",
+      "url": "https://news.tf.co.kr/read/national/2324683.htm"
+    },
+    {
+      "source": "naver",
+      "press": "mygoyang.com",
+      "date": "2026.05.19",
+      "title": "[6·3 지방선거 출마자] 고양시의원",
+      "snippet": "고양시의원이 '나' 공천을 받았고 ▲국민의힘에서는 황선경 현 경기도 야구소프트볼협회 부회장이 출마했다.... ▲더불어민주당은 장윤정 고양시병 풍산동협의회장이 '가', 이종미 고양시병 여성위원장이 '나'번을 받았다....",
+      "url": "http://www.mygoyang.com/news/articleView.html?idxno=88747"
+    },
+    {
+      "source": "naver",
+      "press": "kihoilbo.co.kr",
+      "date": "2026.05.18",
+      "title": "6·3 전국동시지방선거 경기도 기초의원 후보자 명단",
+      "snippet": "(국·66) <아선거구> ▶장윤정(민·56) ▶이종미(민·59) ▶김보래(국·31) ▶손동숙(국·54) ▶김승갑(혁·55) ▶정민재(신·26) <자선거구> ▶신인선(민·59) ▶이홍규(국·59) <차선거구> ▶김미수(민·62) ▶배영민...",
+      "url": "https://www.kihoilbo.co.kr/news/articleView.html?idxno=3023198"
+    },
+    {
+      "source": "naver",
+      "press": "newsis.com",
+      "date": "2026.05.17",
+      "title": "[6·3지선]후보등록 명단-경기도 광역의원",
+      "snippet": "(민·남·49·11억280만원·군필·0·0) ◇안산시제3선거구 ▲장윤정(민·여·33·-8030만원·해당없음·0·0) ▲구미숙(국·여·59·4억8976만원·해당없음·0·1) ◇안산시제4선거구 ▲유재수(민·남·57...",
+      "url": "https://www.newsis.com/view/NISX20260516_0003632512"
+    },
+    {
+      "source": "naver",
+      "press": "yna.co.kr",
+      "date": "2026.05.16",
+      "title": "[기초의원 후보 명단] 경기-1",
+      "snippet": "(국·23·경기도의회 의원 김도훈 후원회 사무국장) = 2천891만원, 병역필, 0원, 전과 1건 ▲ 김동광(신... 고양시의회 의원) = 15억496만원, 해당없음, 6천871만원(20만7천원), 전과 1건 <아선거구> ▲ 장윤정(민...",
+      "url": "https://www.yna.co.kr/view/AKR20260515203300061?input=1195m"
+    },
+    {
+      "source": "naver",
+      "press": "yna.co.kr",
+      "date": "2026.05.15",
+      "title": "[광역의원 후보 명단] 경기-1",
+      "snippet": "(민·49·경기도의원) = 11억280만원, 병역필, 1천867만원, 전과없음 <제3선거구> ▲ 장윤정(민·33·정당인) = -8천30만원, 해당없음, 861만원, 전과없음 ▲ 구미숙(국·59·안산시 환경교육위원회 위원)...",
+      "url": "https://www.yna.co.kr/view/AKR20260515193700060?input=1195m"
+    },
+    {
+      "source": "naver",
+      "press": "news.tf.co.kr",
+      "date": "2026.05.15",
+      "title": "지지 도의원에 식사 접대 의혹…선관위, 안산시의회 의장 조사 착수",
+      "snippet": "박 의장은 지난 3일 자신의 페이스북을 통해 경선을 앞둔 장윤정 경기도의회 의원을 공개 지지했다. 이를 놓고 지역구 국회의원이 경선 개입 등 공정성을 문제 삼자, 지난 6일 국회의원에 항의하는 기자회견을 열었다....",
+      "url": "https://news.tf.co.kr/read/national/2323078.htm"
+    },
+    {
+      "source": "naver",
+      "press": "naeil.com",
+      "date": "2026.05.15",
+      "title": "“시민의 힘으로, 지역정치 바꾸겠다”",
+      "snippet": "(진보당) 경기도의원(군포1선거구) 후보 성복임(더불어민주당) 경기도의원(고양시 7선거구) 후보 김혜련... 고양시의원(사선거구) 후보 공소자(더불어민주당) 고양시의원(아선거구) 후보 장윤정(더불어민주당) 고양시의원...",
+      "url": "https://www.naeil.com/news/read/588787?ref=naver"
+    },
+    {
+      "source": "naver",
+      "press": "mygoyang.com",
+      "date": "2026.05.14",
+      "title": "\"지역정치 바꾸자\"... 고양시 '광장시민후보' 11명으로 전국 최다",
+      "snippet": "고은정 경기도의원(고양시 10선거구) 후보와 김미수 고양시의원(차선거구) 후보는 주최 측으로부터... 사선거구) , 장윤정(더불어민주당, 아선거구) , 김미수(더불어민주당, 차선거구) , 최성원(더불어민주당, 카선거구)",
+      "url": "http://www.mygoyang.com/news/articleView.html?idxno=88681"
+    },
+    {
+      "source": "naver",
+      "press": "joongboo.com",
+      "date": "2026.05.14",
+      "title": "[6·3 지선 광역·기초의원 대진표] 안산, '현역 수성 vs 세대교체' 격돌",
+      "snippet": "경기도의원 선거에서는 민주당이 8개 전 선거구 공천을 마무리했다. ▲제1선거구는 민주당 김동규 후보가... ▲제3선거구는 민주당 장윤정 후보가 재선 도전에 나선 가운데 국힘 후보는 아직 확정되지 않았다. ▲제4선거구...",
+      "url": "https://www.joongboo.com/news/articleView.html?idxno=363725661"
     },
     {
       "source": "google",
@@ -666,12 +1458,84 @@
       "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9RU2dkakIwbl9yY3JnSlZIRTV0LVBTdWpOejh4eEd5Rm9yUEE1TXQ0R25zX0l3ZDlSNmtLTi12MmtqUWVISThZR3ZaNE5NcGV4cVRmd0FIaDJwcDTSAWBBVV95cUxQNldVQmI2OEdEejFPM2N5eUhZRHN3MjJxUU9PR0FYLVVqWEhjRnBlRXIzRWZuQnRkcURjLWxvbHJydzJCM3ZVRTNlamhGQnJIZktIYkQzcjk5Rk9iR0pNX0M?oc=5"
     },
     {
+      "source": "naver",
+      "press": "hansbiz.co.kr",
+      "date": "2026.05.12",
+      "title": "[6.3 지선] 민주당 경기 기초·광역의원 경선…용인 김성태·안산 장윤정...",
+      "snippet": "민주당 경기도당 선관위는 10일 공고를 통해 기초의원 및 일부 광역의원 선거구 경선 결과를 공개했다. 이번... 광역의원 부문에서는 용인시 제2선거구 김성태 후보와 안산시 제3선거구 장윤정 후보가 경선 결과 명단에...",
+      "url": "http://www.hansbiz.co.kr/news/articleView.html?idxno=838024"
+    },
+    {
+      "source": "naver",
+      "press": "hansbiz.co.kr",
+      "date": "2026.05.12",
+      "title": "[6.3 지선] 민주당 경기 기초의원…성남·용인·화성 등 후보 윤곽",
+      "snippet": "더불어민주당 경기도당 선거관리위원회가 6.3 지방선거 기초의원 후보 선출을 위한 제21차 경선 결과를... 고양 지역에서는 가선거구 김보경 후보와 나선거구 이종덕 후보, 사선거구 공소자 후보, 아선거구 장윤정 후보...",
+      "url": "http://www.hansbiz.co.kr/news/articleView.html?idxno=838026"
+    },
+    {
+      "source": "naver",
+      "press": "joongboo.com",
+      "date": "2026.05.11",
+      "title": "[6.3지선 광역·기초의원 대진표] 고양시 본선 체제 돌입…도의원 12곳·...",
+      "snippet": "임채운기자 고양특례시 경기도의원 12개 선거구와 고양시의원 13개 선거구의 여야 대진표가 대부분... 고양아(정발산·풍산·장항1·장항2동)는 민주당 장윤정이 1순위로 가번, 이종미가 2순위로 나번을 받았다....",
+      "url": "https://www.joongboo.com/news/articleView.html?idxno=363725281"
+    },
+    {
+      "source": "naver",
+      "press": "mygoyang.com",
+      "date": "2026.05.11",
+      "title": "민주당 고양시 갑·병·정 기초의원 공천 완료",
+      "snippet": "더불어민주당 경기도당이 10일 밤, 고양시 갑·병 지역구 기초의원 경선 결과와 공천 명단을 발표했다. 이로써... 아선거구(3인 선거구)는 장윤정 예비후보(가번)와 이종미 예비후보(나번)가 본선에 진출한다. 자선거구에서는...",
+      "url": "http://www.mygoyang.com/news/articleView.html?idxno=88622"
+    },
+    {
       "source": "google",
       "press": "경인신문",
       "date": "2026.05.11",
       "title": "장윤정 경기도의원, 안산 제3선거구 공천 확정... \"무도한 권력에 대한 당원들의 엄중한 심판\"",
       "snippet": "장윤정 경기도의원, 안산 제3선거구 공천 확정... \"무도한 권력에 대한 당원들의 엄중한 심판\" 경인신문",
       "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE1lUTd5aEhXbmtjLTVva3RfUC1DOGdJSkRnVWt4RWlJRThQRm1PR3N1SFpJYXZhclpic0Jsc2xBWHF5UHNQS2pxMl9RU2pzTVpfVWx3aDdZSkhKaFcyNEVUUlRJU1I1WjA?oc=5"
+    },
+    {
+      "source": "naver",
+      "press": "kyeonggi.com",
+      "date": "2026.05.10",
+      "title": "민주 경기도당, 21차 경선 결과 발표…고양·성남 등 기초의원 후보 확...",
+      "snippet": "민주당 경기도당은 도내 기초의원 선거구별 후보자를 확정 지었다고 10일 밝혔다. 다음은 민주당 기초의원... (2순위:나)·아선거구 장윤정(1순위:가), 이종미(2순위:나)·자선거구 신인선(1순위:가), 박천조(2순위:나)...",
+      "url": "https://www.kyeonggi.com/article/20260510580396"
+    },
+    {
+      "source": "naver",
+      "press": "newsis.com",
+      "date": "2026.05.09",
+      "title": "[표]민주당 경기도당, 안산3 장윤정 등 광역의원 경선 결과 발표",
+      "snippet": "더불어민주당 경기도당이 9일 제9회 전국동시지방선거 경기도의회 의원(광역의원) 경선 결과를 발표했다. 다음은 민주당 경기도의회 의원 후보자 명단. ◇광역의원 ▲안산시 제3선거구 장윤정 ▲용인시 제2선거구 김성태",
+      "url": "https://www.newsis.com/view/NISX20260509_0003622951"
+    },
+    {
+      "source": "naver",
+      "press": "kgnews.co.kr",
+      "date": "2026.05.09",
+      "title": "민주당 경기도당, 제20차 경선 결과 발표… 광역·기초의원 포함",
+      "snippet": "광역의원, 용인 제2선거구 김성태·안산 제3선거구 장윤정 확정 12개 지역, 총 25개 선거구 기초의원 경선 결과 발표 더불어민주당 경기도당이 제9회 전국동시지방선거 제20차 경선 결과를 9일 발표했다. 이번 경선은 지난...",
+      "url": "https://www.kgnews.co.kr/news/article.html?no=894892"
+    },
+    {
+      "source": "naver",
+      "press": "kyeonggi.com",
+      "date": "2026.05.09",
+      "title": "'공천 개입' 논란 속 다시 공천받은 장윤정 경기도의원…민주, 20차 경선...",
+      "snippet": "안산지역 공천 개입 논란 속 현역 의원인 장윤정 경기도의원이 재공천을 받았다. 더불어민주당 경기도당은 이 같은 내용을 담은 광역의원 및 기초의원 공천 결과를 발표했다. 아래는 공천자 명단. <광역의원> ▲용인 2...",
+      "url": "https://www.kyeonggi.com/article/20260509580187"
+    },
+    {
+      "source": "naver",
+      "press": "mygoyang.com",
+      "date": "2026.05.09",
+      "title": "현역 대폭 물갈이…정치 신인들 바람 일으킬까",
+      "snippet": "시의원을 비롯해 김선아 중앙당 4050특별위원회 부위원장, 이종미 고양시병 지역위원회 여성위원장, 장윤정... 먼저 3선에 도전하는 김미수 현 시의원을 비롯해 류도경 경기도당 교육연수위 부위원장, 배영민 전 일산1동...",
+      "url": "http://www.mygoyang.com/news/articleView.html?idxno=88608"
     },
     {
       "source": "google",
@@ -690,12 +1554,28 @@
       "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE9PNjdvWkxMWnZ6SFlOczZKSW40VnhSd3dXMzFPYnFPckp3b3A0V2taR1lPcnJTc01XR1l6VkJIY3JieHRxYm15ZFdYN25aOEttQmtwbGFlYTJGYmt0REItTzBJVlBETmZvcU5J?oc=5"
     },
     {
-      "source": "google",
-      "press": "뉴시스",
+      "source": "naver",
+      "press": "joongboo.com",
       "date": "2026.05.09",
-      "title": "[표]민주당 경기도당, 안산3 장윤정 등 광역의원 경선 결과 발표",
-      "snippet": "[표]민주당 경기도당, 안산3 장윤정 등 광역의원 경선 결과 발표 뉴시스",
-      "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE1IS3FFSzg3eHVIQzdjdVFWNjhwa2w2ZEg0TTFPWkhNUE5PQl94ZGl3bmxDc2ItUDhVQ2JPd1E0TXFlQ3NrQVFSUjdCbnNEai05UTJ3UC1TOG1meThtSVUyTnJB?oc=5"
+      "title": "[속보] 민주당, 용인2·안산3 광역의원 확정",
+      "snippet": "◇후보 확정 ▶용인2 김성태 ▶안산3 장윤정",
+      "url": "https://www.joongboo.com/news/articleView.html?idxno=363725048"
+    },
+    {
+      "source": "naver",
+      "press": "shinailbo.co.kr",
+      "date": "2026.05.08",
+      "title": "유명식, 안산 변화 이끌 '준비된 도의원' 부상",
+      "snippet": "한편 더불어민주당 경기도의원 안산시 제3선거구 경선은 유명식 예비후보와 장윤정 예비후보 간 맞대결로 치러지며, 경선은 8일과 9일 양일간 진행된다. [신아일보] 안산",
+      "url": "https://www.shinailbo.co.kr/news/articleView.html?idxno=5018652"
+    },
+    {
+      "source": "naver",
+      "press": "kihoilbo.co.kr",
+      "date": "2026.05.06",
+      "title": "지선판 흐리는 '국회의원 입김'… 당 경고도 흐지부지",
+      "snippet": "박태순 안산시의회 의장과 전화로 설전을 벌였다. 김 의원 보좌관 출신인 유명식 예비후보의 경선 상대인 장윤정 예비후보를 박 의장이 SNS에 공개 지지한 게 발단이었다. 김 의원은 박 의장에게 장 예비후보가 하위 20%로...",
+      "url": "https://www.kihoilbo.co.kr/news/articleView.html?idxno=3021926"
     },
     {
       "source": "google",
@@ -704,6 +1584,22 @@
       "title": "안산 상록 상가에 차량 돌진…70대 운전자 등 4명 부상",
       "snippet": "안산 상록 상가에 차량 돌진…70대 운전자 등 4명 부상 경기일보",
       "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFB2cC1QVExwd1pxbGlKZFh2V1RLVHdndlZuMk5adUpqaUV3Z2g1eC1oa2N3VzdrMG8zVDczQ0kzSEZkV0N1ekhkNUVFMGQzYTF0WUhtV293Q0ZLOGs?oc=5"
+    },
+    {
+      "source": "naver",
+      "press": "thereport.co.kr",
+      "date": "2026.05.05",
+      "title": "[6·3 지선] 장윤정 의원 \"안산 정치권 경선 개입 의혹 녹취 제보\"… 파...",
+      "snippet": "경기도의회 장윤정(더불어민주당·안산3) 의원은 최근 안산지역 정치권과 관련된 녹취파일을 제보받았다며 \"정치적 압박과 특정 정치인의 영향력 행사 정황이 담겨 있다\"고 주장했다. 장 의원은 \"최근 지역 정치권...",
+      "url": "https://www.thereport.co.kr/news/articleView.html?idxno=87489"
+    },
+    {
+      "source": "naver",
+      "press": "joongboo.com",
+      "date": "2026.05.05",
+      "title": "[6·3 지방선거 이모저모] 경선 승복했지만… 장윤정 도의원 \"국회의원...",
+      "snippet": "사진=본인제공 장윤정 경기도의원(더불어민주당·안산3)이 최근 제보받은 녹취파일을 근거로 지역 정치권의 경선개입 의혹을 제기하고 나서 파문이 일고 있다. 장 의원은 지난 4일 배포한 자료에서 \"국회의원과 지방의회...",
+      "url": "https://www.joongboo.com/news/articleView.html?idxno=363724655"
     },
     {
       "source": "google",
@@ -722,12 +1618,100 @@
       "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE5DVk9BYkxiVjktNUhmY2hfTnRuSmFmS2JLbUlVWGoteHZGZmozamtJOG1MZ0FtWURkcmVQbmFBMFJRZDBPRmc?oc=5"
     },
     {
+      "source": "naver",
+      "press": "incheonilbo.com",
+      "date": "2026.05.03",
+      "title": "[경기의정 25시] 장윤정 도의원 \"교육, 미래 위한 투자\"…입법부터 현장...",
+      "snippet": "▲ 지난해 경기도교육청 행정사무감사에서 집행부를 상대로 질의 중인 장윤정 의원./사진제공=경기도의회 장윤정(더불어민주당·안산3) 경기도의원이 제11대 의정활동 동안 안산 지역 발전을 위한 실질적인 성과를 내고...",
+      "url": "https://www.incheonilbo.com/news/articleView.html?idxno=1322100"
+    },
+    {
+      "source": "naver",
+      "press": "hansbiz.co.kr",
+      "date": "2026.05.02",
+      "title": "[6.3 지선] 민주당 경기, 광역의원 14차 공천 심사 발표",
+      "snippet": "양주시 제1선거구는 채정선 후보가 단수 추천을 받았으며, 안산시 제3선거구는 유명식·장윤정 간 2인 경선이 치러진다. 안산시 제4·5선거구는 각각 유제수, 이은미 후보가 단수 추천됐다. 오산시에서는 제1선거구 김영희...",
+      "url": "http://www.hansbiz.co.kr/news/articleView.html?idxno=836595"
+    },
+    {
+      "source": "naver",
+      "press": "kgnews.co.kr",
+      "date": "2026.05.01",
+      "title": "민주 경기도당, 14차 심사 결과 발표… 광역의원 19곳·기초의원 53곳",
+      "snippet": "안산시 제3선거구는 유명식·장윤정 예비후보가 2인 경선을 치른다. 제4선거구는 유재수, 제5선거구는 이은미 예비후보가 각각 단수 추천됐다. 오산시 제1선거구는 김영희·임완식 예비후보가 경선을 치르며...",
+      "url": "https://www.kgnews.co.kr/news/article.html?no=894050"
+    },
+    {
+      "source": "naver",
+      "press": "kyeongin.com",
+      "date": "2026.05.01",
+      "title": "민주당 경기도당, 광역의원 공천 마무리…이은미·이홍근 도의원 단수 ...",
+      "snippet": "김동희(부천6)·장윤정(안산3)·김영희(오산1) 등 현역 도의원들은 경선을 치르게 됐다. 김동희 도의원은 정선화 예비후보와 2인 경선, 장윤정 도의원은 유명식 예비후보와 2인 경선, 김영희 도의원은 임완식 예비후보와...",
+      "url": "https://www.kyeongin.com/article/1762890"
+    },
+    {
+      "source": "naver",
+      "press": "kyeonggi.com",
+      "date": "2026.05.01",
+      "title": "민주 경기도당, 평택·화성·안산 등 광역·기초의원 14차 공천 발표",
+      "snippet": "(단수) ▲안산3 - 유명식·장윤정 (2인 경선) ▲안산4 - 유재수 (단수) ▲안산5 - 이은미 (단수) ▲오산1 - 김영희·임완식 (2인 경선) ▲오산2 - 전예슬 (단수) ▲화성1 - 이홍근 (단수) ▲화성2 - 오현정 (단수) ▲화성8 - 김영수...",
+      "url": "https://www.kyeonggi.com/article/20260501580157"
+    },
+    {
+      "source": "naver",
+      "press": "kihoilbo.co.kr",
+      "date": "2026.05.01",
+      "title": "민주당 경기도당, 의정부·부천 등 광역의원 19개 선거구 공천",
+      "snippet": "경선 지역은 ▶의정부3(권재형, 김지호, 최영수) ▶의정부4(남석찬, 조병진) ▶부천6(김동희, 정선화) ▶평택1(양경석, 정문호) ▶평택3(김경옥, 김우석) ▶평택6(양선모, 한승훈) ▶안산3(유명식, 장윤정) ▶오산1...",
+      "url": "https://www.kihoilbo.co.kr/news/articleView.html?idxno=3021484"
+    },
+    {
+      "source": "naver",
+      "press": "newsis.com",
+      "date": "2026.05.01",
+      "title": "[표]민주당 경기도당, 광역의원 19개 지역구 경선·공천 결과 발표",
+      "snippet": "유명식, 장윤정(경선) ▲안산시 제4선거구 유재수 ▲안산시 제5선거구 이은미 ▲오산시 제1선거구 김영희, 임완식(경선) ▲오산시 제2선거구 전예슬 ▲화성시 제1선거구 이홍근 ▲화성시 제2선거구 오현정 ▲화성시...",
+      "url": "https://www.newsis.com/view/NISX20260501_0003614640"
+    },
+    {
+      "source": "naver",
+      "press": "fsnews.co.kr",
+      "date": "2026.04.29",
+      "title": "경기도형 환기설비, 성능은 '적합' 체감은 '숙제'",
+      "snippet": "장윤정 경기도의원은 지난 22일 열린 제389회 임시회 제1차 교육기획위원회 회의에서 '학교급식실 환기설비... 경기도의회가 환기설비 공사를 진행한 123개교 급식실에 대한 전수 점검 결과를 발표했다. 해당 TF는 지난 2월...",
+      "url": "http://www.fsnews.co.kr/news/articleView.html?idxno=60761"
+    },
+    {
+      "source": "naver",
+      "press": "kgnews.co.kr",
+      "date": "2026.04.28",
+      "title": "경기 124교 점검한 환기시설 점검 TF… 당사자인 노조 '빠졌다'",
+      "snippet": "경기도의회 의결을 거쳐 구성됐다. 경기도의원 4명, 외부 전문가 4명, 경기도교육청 관계자 4명 등 총 12명으로 꾸려졌으며 위원장은 장윤정 의원이 맡았다. TF는 지난 3월부터 이달까지 두 달간 운영되며, 경기도형...",
+      "url": "https://www.kgnews.co.kr/news/article.html?no=893695"
+    },
+    {
       "source": "google",
       "press": "안산뉴스",
       "date": "2026.04.27",
       "title": "장윤정 도의원 교육기획위 부위원장 선임",
       "snippet": "장윤정 도의원 교육기획위 부위원장 선임 안산뉴스",
       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE1OR3g0WmZLbHVpZXJqRVVPblJuUU8tNWZ6eEpkMUZvVTFBTUlXbHBvN25wQVpaUlRieGpXSU5yNmRRVEdPeVlsS3pBZmlweV9IRktMUUIteU03Z203R0FmX3UtVVpWWFFzWWJHdw?oc=5"
+    },
+    {
+      "source": "naver",
+      "press": "newscj.com",
+      "date": "2026.04.27",
+      "title": "경기도의회, 추경 심사서 '재정·협치 동시 압박'",
+      "snippet": "경기도의회가 제389회 임시회에서 2026년도 제1회 추가경정예산안을 심사하는 과정에서 재정 운용의 적정성과... 장윤정 의원은 학교 급식실 환기설비 개선 사업의 실효성을 점검하며 설비 기준 충족 여부와 별개로 현장 체감...",
+      "url": "https://www.newscj.com/news/articleView.html?idxno=3396825"
+    },
+    {
+      "source": "naver",
+      "press": "seoul.co.kr",
+      "date": "2026.04.27",
+      "title": "장윤정 경기도의원, 학교 급식실 환기설비 개선 TF 후속 정담회 개최…...",
+      "snippet": "경기도의회 교육기획위원회 장윤정 부위원장(더불어민주당, 안산3)이 지난 24일 「학교 급식실 환기설비 개선 TF」 결과 보고 후속 정담회를 열고, 학교 급식실 종사자 대표들과 함께 현장 개선 과제를 논의했다. 이번...",
+      "url": "https://www.seoul.co.kr/news/publicnews/local_govern/kyungki_do/2026/04/27/20260427500177?wlog_tag3=naver"
     },
     {
       "source": "google",
@@ -746,12 +1730,44 @@
       "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE9aNk9telFyd253d0xfZ0IxWTgwa3VvaDc3b3ZzZEtCZnZwOVQxbTN3V201dWZNZllWTWVNT2RscWhFM3dMcWdtRm1CZE5Ca3ZmWHBGRGQxV2JfRVQ2UHZtTGVkMS1vSWJaLXdMSUp1TXNhem9PN2fSAWZBVV95cUxNekI3eFlqQTY1bURXeWpzdy1veXhkXzBVN0lIUTQxNGtsbTNZZTFYZzFXNFhDTzZFYnFkS25VSU1fRnd6MUxHTFlRRFhpSEFDY29lRjdRdUdCS0h4SlJxMUhGQk5hQkE?oc=5"
     },
     {
+      "source": "naver",
+      "press": "seoul.co.kr",
+      "date": "2026.04.23",
+      "title": "장윤정 경기도의원, 학교 급식실 환기설비 개선 TF 결과 보고…냉난방 ...",
+      "snippet": "경기도의회 교육기획위원회 장윤정 의원(더불어민주당, 안산3)은 지난 4월 22일 열린 제389회 임시회 제1차 교육기획위원회 회의에서 위원장으로 활동해 온 ‘학교 급식실 환기설비 개선 TF’ 점검 결과를 보고했다. TF는...",
+      "url": "https://www.seoul.co.kr/news/publicnews/local_govern/kyungki_do/2026/04/23/20260423500242?wlog_tag3=naver"
+    },
+    {
       "source": "google",
       "press": "세계환경신문",
       "date": "2026.04.22",
       "title": "장윤정 의원, 경기도의회 교육기획위원회 부위원장 선임… “책임 있는 마무리 이끌 것”",
       "snippet": "장윤정 의원, 경기도의회 교육기획위원회 부위원장 선임… “책임 있는 마무리 이끌 것” 세계환경신문",
       "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5FWXFoQ2xDUEprd1ZHSXQ3eVNDenBnTkJvMmxRVDdTU0E4QmJtR2tFVDJ1MGJNOTFMTEREckFSMVFJM1ZBT3pjc0hQbC1zTlF6VERobHd2bXZhdw?oc=5"
+    },
+    {
+      "source": "naver",
+      "press": "seoul.co.kr",
+      "date": "2026.04.22",
+      "title": "장윤정 경기도의원, 교육기획위원회 부위원장 선임…책임 있는 마무리 ...",
+      "snippet": "경기도의회 장윤정 의원(더불어민주당, 안산3)이 4월 22일(수) 열린 제389회 임시회 제1차 교육기획위원회 회의에서 부위원장으로 선임됐다. 제11대 경기도의회 임기 종료를 앞둔 시점에서 이뤄진 이번 선임은 남은 기간...",
+      "url": "https://www.seoul.co.kr/news/publicnews/local_govern/kyungki_do/2026/04/22/20260422500272?wlog_tag3=naver"
+    },
+    {
+      "source": "naver",
+      "press": "newsfreezone.co.kr",
+      "date": "2026.04.22",
+      "title": "장윤정 경기도의원, 교육기획위 부위원장 선임",
+      "snippet": "장윤정(더불어민주당, 안산3)이 제389회 경기도의회 임시회 교육기획위원회에서 부위원장으로 선임됐다. 이번 선임은 제11대 경기도의회 임기 종료를 앞두고 이뤄진 것으로, 위원회 안정성과 교육정책 마무리 과정에서...",
+      "url": "https://www.newsfreezone.co.kr/news/articleView.html?idxno=686441"
+    },
+    {
+      "source": "naver",
+      "press": "mygoyang.com",
+      "date": "2026.04.17",
+      "title": "고양시병, 식사동 이별·백석1·2동 편입에 '대진표 요동'",
+      "snippet": "이에 맞서 장윤정 민주당 고양병 풍산동 협의회장이 도전장을 내밀며 대항마로 떠올랐다. 권 의원은 자신의... 정개특위에서 선거구를 획정하더라도, 당선 인원수(2인 혹은 3인)를 결정하는 것은 경기도의회의 권한이기...",
+      "url": "http://www.mygoyang.com/news/articleView.html?idxno=88363"
     },
     {
       "source": "google",
@@ -786,6 +1802,30 @@
       "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE4zR1VkX09YVU9udnZnck9kQUVZMFp5NjlfNlBGZ255aGphNWs3SjV4a0E5ZmxsZ08yR00tajhmbU1ERUZGNExCM0FnaEJsY0VHRFZ1ejVmajFuNzBwYlVfdkxvOHRPdFBSYUE?oc=5"
     },
     {
+      "source": "naver",
+      "press": "newscj.com",
+      "date": "2026.04.06",
+      "title": "장윤정 경기도의원, 재선 도전 선언… \"성과로 증명하는 정치\"",
+      "snippet": "더불어민주당 장윤정 경기도의원이 6일 경기도의회 브리핑룸에서 재선 도전을 선언하며 \"말이 아닌 실력과 성과로 안산의 변화를 완성하겠다\"고 밝혔다. 장 의원은 이날 출마 기자회견에서 \"정치는 결과로 증명해야 한다\"며...",
+      "url": "https://www.newscj.com/news/articleView.html?idxno=3391793"
+    },
+    {
+      "source": "naver",
+      "press": "jeonmae.co.kr",
+      "date": "2026.04.06",
+      "title": "장윤정 경기도의원, 재선 도전 선언···안산 지역 변화 강조",
+      "snippet": "장윤정 경기도의원 장윤정 경기도의원이 재선 도전을 공식 선언하며 안산 지역 발전 비전을 제시했다. 장 의원은 6일 경기도의회 브리핑룸에서 기자회견을 열고 지역 변화를 이끌겠다는 의지를 밝혔다. 그는 일동과 이동...",
+      "url": "https://www.jeonmae.co.kr/news/articleView.html?idxno=1245705"
+    },
+    {
+      "source": "naver",
+      "press": "fsnews.co.kr",
+      "date": "2026.04.03",
+      "title": "기술적 문제 드러난 안산 학교 환기설비",
+      "snippet": "경기도의회 교육기획위원회 '학교 급식실 환기설비 개선 TF'는 지난 1일 안산 지역 학교를 방문해 경기도형 환기설비 운영 실태를 집중 점검했다. 이날 점검에는 TF 위원장인 장윤정 경기도의원을 비롯한 관계자들이...",
+      "url": "http://www.fsnews.co.kr/news/articleView.html?idxno=60518"
+    },
+    {
       "source": "google",
       "press": "오토투데이",
       "date": "2026.04.02",
@@ -794,12 +1834,76 @@
       "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE41TnQ0TkpCdXd0Slo5QkI3RWRCZXp4T1lmVWxzSUg5ZzBueXBOa0FuclNydU5CZmF4bnNqektrZzE1a2xuOHBRTWJYNHhZaTlneXFBa3hGajVtdEp3eHVaVDhRRHMtT0xvZ0lPMnpB?oc=5"
     },
     {
+      "source": "naver",
+      "press": "jeonmae.co.kr",
+      "date": "2026.04.01",
+      "title": "장윤정 경기도의원, 기계설비유지관리자 처우개선 논의",
+      "snippet": "경기도의회 장윤정 의원이 지난달 31일 도교육청 관계부서와 공무원노조와 함께 기계설비유지관리자 처우개선 방안을 논의하는 정담회를 개최했다. 이날 정담회에는 도교육청 시설과와 지방공무원인사과, 의회협력과...",
+      "url": "https://www.jeonmae.co.kr/news/articleView.html?idxno=1244407"
+    },
+    {
+      "source": "naver",
+      "press": "lawissue.co.kr",
+      "date": "2026.04.01",
+      "title": "경기도의회 장윤정 의원 “학교 기계설비관리자 처우 개선 시급”",
+      "snippet": "경기도의회 장윤정 의원이 학교 기계설비유지관리자의 처우 개선 필요성을 강조하며 제도 보완을 촉구했다. 장 의원은 지난 3월 31일 경기도교육청 관계 부서와 공무원노동조합 관계자들과 정담회를 열고 현장 애로사항과...",
+      "url": "http://www.lawissue.co.kr/view.php?ud=202604011511502056d94aa4ada6_12"
+    },
+    {
       "source": "google",
       "press": "중앙신문",
       "date": "2026.04.01",
       "title": "장윤정 경기도의원, 경기도교육청 기계설비유지관리자 처우 개선 논의",
       "snippet": "장윤정 경기도의원, 경기도교육청 기계설비유지관리자 처우 개선 논의 중앙신문",
       "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1SRXg0cnJNS0tmZ3F4cDFQLVp1N0xUTGw5cFpMektUTGJibnFsTU0wcXVKLTdFXy1WajdiTTJUNUROVzhoa3JkQTZHb1UxQklWWEVnWHRQeXBWZnJjZDdjMi1HYWx2MWdKVFE?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "화성저널",
+      "date": "2026.04.01",
+      "title": "장윤정 의원, 기계설비유지관리자 처우개선 논의",
+      "snippet": "장윤정 의원, 기계설비유지관리자 처우개선 논의 화성저널",
+      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE9HMDgyMldIY0JXYXpFM25ZOEp6NDB2N1JpbGJwTm91Y25QdFNOaDRRVDdrRjluTDdJejVUMkk5cURMN2tjSFhFME5tMEtvRm5oeGpDRm5BOEgxSm9HLWVUNUVDYzhCQQ?oc=5"
+    },
+    {
+      "source": "naver",
+      "press": "newsis.com",
+      "date": "2026.03.26",
+      "title": "경기도의회 최고 자산가 4년 연속 김성수 의원[재산공개]",
+      "snippet": "경기도의회 김성수(국민의힘·하남2) 의원이 324억원 상당의 재산을 보유해 4년 연속 도내 공직자... 반면 장윤정(민주당·안산3) 의원은 -2400만원으로 가장 적은 재산을 신고했으며, 정동혁(민주당·고양3)...",
+      "url": "https://www.newsis.com/view/NISX20260325_0003564001"
+    },
+    {
+      "source": "naver",
+      "press": "kihoilbo.co.kr",
+      "date": "2026.03.26",
+      "title": "경기도의원 152명 중 112명 재산 늘어",
+      "snippet": "기호일보, KIHOILBO 경기도의회 전경.<경기도의회 제공> 올해 경기도 광역의원의 평균 재산은 12억6천383만... 가장 적은 재산을 보유한 도의원은 장윤정(민주·안산3) 의원으로 마이너스 2천490만 원을 신고했다....",
+      "url": "https://www.kihoilbo.co.kr/news/articleView.html?idxno=3017496"
+    },
+    {
+      "source": "naver",
+      "press": "news1.kr",
+      "date": "2026.03.26",
+      "title": "[재산공개]김성수 경기도의원 324억 신고…4년 연속 도내 최고 자산가",
+      "snippet": "김성수 경기도의회 의원(국민의힘·하남2)이 324억여 원의 재산을 보유해 4년 연속 도내 재산공개 대상... 반면, 장윤정 의원(민주·안산3)은 -2490만 원을 신고해 도의원 중 재산이 가장 적었다. 이어 정동혁(민주...",
+      "url": "https://www.news1.kr/local/gyeonggi/6114090"
+    },
+    {
+      "source": "naver",
+      "press": "kgnews.co.kr",
+      "date": "2026.03.26",
+      "title": "[재산공개]경기도의원 74% 재산 증가…평균 12억6000만원",
+      "snippet": "반면 장윤정(민주·안산3) 의원은 마이너스 2400만 원을 신고해 재산이 가장 적었다. 장 의원은 예금이... 등의 순으로 재산 신고액이 적었다. [ 경기신문 = 장진우 기자 ] 경기도의회 전경 (사진=경기도의회 제공)",
+      "url": "https://www.kgnews.co.kr/news/article.html?no=888958"
+    },
+    {
+      "source": "naver",
+      "press": "thereport.co.kr",
+      "date": "2026.03.24",
+      "title": "김철민, 청년 문화예술인과 정책 소통… \"안산, 청년 기회의 땅 만들겠...",
+      "snippet": "이날 간담회에는 장윤정 경기도의회 의원, 박보성 정책본부장, 안휘인·이환희 공동청년본부장 등 20여 명이 참석했다. 간담회에서는 청년 예술가들이 겪는 창작 및 연습 공간 부족, 불규칙한 수입 구조, 지역 내 문화...",
+      "url": "https://www.thereport.co.kr/news/articleView.html?idxno=85656"
     },
     {
       "source": "google",
@@ -816,14 +1920,6 @@
       "title": "장윤정 도의원, 학교 급식실 소음·환기 개선 나선다",
       "snippet": "장윤정 도의원, 학교 급식실 소음·환기 개선 나선다 안산뉴스",
       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE8wMlZVRFNmNlNFR0E3T3BIVElKOVp2RHNDN1k1Mml4Z2dVX0xTT0RvUnJPc3gtMWpMUUhxaHc1Uk94eHpmeU9HamZQUmQtd1VJV1Fkdm5iOWFwbHhaYV95aE9Ra0pscDk3Q0ZISA?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "KBS 뉴스",
-      "date": "2026.03.17",
-      "title": "안산시, 상록구 90블록 개발계획 전면 개편…오피스텔 대신 아파트 공급",
-      "snippet": "안산시, 상록구 90블록 개발계획 전면 개편…오피스텔 대신 아파트 공급 KBS 뉴스",
-      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBrQVZXN0hNQ1E2RXgya3FiQmN3YVV6NFFMSUVlWklBT1h2ZG5xRnZCX1RzN1cwWjh2ZmxDekViejlHSDExdTN5RkI5V1oyYUo3N1VaeFZibktHQ2M?oc=5"
     },
     {
       "source": "google",
@@ -893,30 +1989,6 @@
       "source": "daum",
       "press": "v.daum.net",
       "date": "",
-      "title": "안산시, 6월 정기분 자동차세 290억 원 부과",
-      "snippet": "안산시, 6월 정기분 자동차세 290억 원 부과",
-      "url": "http://v.daum.net/v/20260615102820925"
-    },
-    {
-      "source": "daum",
-      "press": "v.daum.net",
-      "date": "",
-      "title": "[안산소식]'2026 e스포츠 페스티벌' 참가자 모집 등",
-      "snippet": "[안산소식]'2026 e스포츠 페스티벌' 참가자 모집 등",
-      "url": "http://v.daum.net/v/20260615093448832"
-    },
-    {
-      "source": "daum",
-      "press": "v.daum.net",
-      "date": "",
-      "title": "[2026 경기도 박물관·미술관 다시보기]안산김홍도미술관",
-      "snippet": "[2026 경기도 박물관·미술관 다시보기]안산김홍도미술관",
-      "url": "http://v.daum.net/v/20260611142040537"
-    },
-    {
-      "source": "daum",
-      "press": "v.daum.net",
-      "date": "",
       "title": "경기도의회의정홍보위원회, 제11대 후반기 활동 마무리…도민 소통 강화 기여",
       "snippet": "경기도의회의정홍보위원회, 제11대 후반기 활동 마무리…도민 소통 강화 기여",
       "url": "http://v.daum.net/v/20260609165803103"
@@ -928,30 +2000,6 @@
       "title": "경기도의회의정홍보위, 2년 활동 마무리…\"도민-의회가교 역할 수행\"",
       "snippet": "경기도의회의정홍보위, 2년 활동 마무리…\"도민-의회가교 역할 수행\"",
       "url": "http://v.daum.net/v/20260609161935140"
-    },
-    {
-      "source": "daum",
-      "press": "v.daum.net",
-      "date": "",
-      "title": "‘동수’에서 ‘파란 물결’로 기울어진경기도의회…대격변 예고",
-      "snippet": "‘동수’에서 ‘파란 물결’로 기울어진경기도의회…대격변 예고",
-      "url": "http://v.daum.net/v/20260604111835885"
-    },
-    {
-      "source": "daum",
-      "press": "v.daum.net",
-      "date": "",
-      "title": "안산시, 주민이 결정하는 ‘주민총회’ 본격 시작…25개 동 순차 개최",
-      "snippet": "안산시, 주민이 결정하는 ‘주민총회’ 본격 시작…25개 동 순차 개최",
-      "url": "http://v.daum.net/v/20260620191000280"
-    },
-    {
-      "source": "daum",
-      "press": "v.daum.net",
-      "date": "",
-      "title": "최찬규안산시의원, “안산에 체육 특성화 학교 유치해야”",
-      "snippet": "최찬규안산시의원, “안산에 체육 특성화 학교 유치해야”",
-      "url": "http://v.daum.net/v/20260620135656031"
     }
   ]
 }
