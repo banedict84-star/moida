@@ -460,13 +460,16 @@
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 const _app = initializeApp({apiKey:"AIzaSyAIjhvbCztHoF7YwP2IYIk2C6jCI64uFhs",authDomain:"jjj2195-1bd15.firebaseapp.com",projectId:"jjj2195-1bd15",storageBucket:"jjj2195-1bd15.firebasestorage.app",messagingSenderId:"370852437825",appId:"1:370852437825:web:b0a891d6a99b426d230bc0"});
 const _auth = getAuth(_app);
-onAuthStateChanged(_auth, function(user){
+const _db2 = getFirestore(_app);
+onAuthStateChanged(_auth, async function(user){
   if(!user){ sessionStorage.removeItem('moida_auth_user'); location.href='index.html'; return; }
   var _prev=JSON.parse(sessionStorage.getItem('moida_auth_user')||'{}');
   if(_prev.uid && _prev.uid!==user.uid){ sessionStorage.setItem('moida_auth_user', JSON.stringify({uid:user.uid, email:user.email, displayName:user.displayName||''})); location.reload(); return; }
   sessionStorage.setItem('moida_auth_user', JSON.stringify({uid:user.uid, email:user.email, displayName:user.displayName||''}));
+  try{ await setDoc(doc(_db2,'moida_auth_users',user.uid),{uid:user.uid,email:user.email||'',displayName:user.displayName||'',lastLogin:Date.now(),provider:(user.providerData&&user.providerData[0]?user.providerData[0].providerId:'')},{merge:true}); }catch(e){}
   var nm=user.displayName||user.email||'';
   var el=document.getElementById('sideFootUser');
   if(el){
@@ -505,7 +508,7 @@ onAuthStateChanged(_auth, function(user){
   })();
 
   (function(){
-    const app=document.querySelector('.app'); const KEY='moida_sidebar_collapsed';
+    const app=document.querySelector('.app'); const _su=(function(){ try{ return JSON.parse(sessionStorage.getItem('moida_auth_user')||'{}').uid||'default'; }catch(e){ return 'default'; } })(); const KEY='moida_sidebar_collapsed_'+_su;
     if(localStorage.getItem(KEY)==='1') app.classList.add('collapsed');
     document.querySelectorAll('.nav-item').forEach(n=>{ const t=n.querySelector('.nm'); if(t) n.setAttribute('data-tip', t.textContent.trim()); });
     document.querySelectorAll('.foot-item').forEach(n=>{ const t=n.querySelector('span'); if(t) n.setAttribute('data-tip', t.textContent.trim()); });
@@ -538,7 +541,8 @@ onAuthStateChanged(_auth, function(user){
       {k:'schedule', t:'다가오는 일정', d:'예정된 일정', cls:'c-violet'},
       {k:'member', t:'구성원 현황', d:'등록된 구성원', cls:'c-emerald'}
     ];
-    var BG_KEY='moida_dash_bg', W_KEY='moida_dash_widgets';
+    var _wu=(function(){ try{ return JSON.parse(sessionStorage.getItem('moida_auth_user')||'{}').uid||'default'; }catch(e){ return 'default'; } })();
+    var BG_KEY='moida_dash_bg_'+_wu, W_KEY='moida_dash_widgets_'+_wu;
     var state={ bg:JSON.parse(localStorage.getItem(BG_KEY)||'null'), hidden:JSON.parse(localStorage.getItem(W_KEY)||'[]') };
 
     function applyBg(){
@@ -591,7 +595,7 @@ onAuthStateChanged(_auth, function(user){
       var el=document.getElementById('noticeList'); if(!el) return;
       var SRC={admin:'총관리자',central:'민주당 중앙당',gyeonggi:'경기도당',council:'경기도의회'};
       var list=[];
-      try{ var c=localStorage.getItem('moida_notices_cache'); if(c) list=JSON.parse(c); }catch(e){}
+      try{ var _ncu=(function(){ try{ return JSON.parse(sessionStorage.getItem('moida_auth_user')||'{}').uid||'default'; }catch(e){ return 'default'; } })(); var c=localStorage.getItem('moida_notices_cache_'+_ncu); if(c) list=JSON.parse(c); }catch(e){}
       if(!list.length) list=[
         {title:'후원회 관련 내용입니다.',date:'2026.06.19',src:'admin',isNew:true,body:'이번 분기 후원회 운영 및 회계 보고 관련 안내드립니다.'},
         {title:'6월 정기 운영위원회 일정 안내',date:'2026.06.12',src:'admin',isNew:false,body:'6월 정기 운영위원회를 6월 24일(화) 오후 7시 당협 사무실 회의실에서 개최합니다.'},
@@ -690,7 +694,8 @@ onAuthStateChanged(_auth, function(user){
     var ICO={ notice:'<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 0 1-5.8 1"/></svg>',
       sched:'<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>',
       member:'<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0"/><circle cx="17" cy="7" r="2.3"/><path d="M16.5 13.5a5 5 0 0 1 4.5 5"/></svg>' };
-    var RK='moida_noti_read';
+    var _nu=(function(){ try{ return JSON.parse(sessionStorage.getItem('moida_auth_user')||'{}').uid||'default'; }catch(e){ return 'default'; } })();
+    var RK='moida_noti_read_'+_nu;
     function readSet(){ try{ return JSON.parse(localStorage.getItem(RK)||'[]'); }catch(e){ return []; } }
     function saveRead(arr){ localStorage.setItem(RK, JSON.stringify(arr)); }
     function unreadCount(){ var r=readSet(); return FEED.filter(function(f){ return r.indexOf(f.id)<0; }).length; }
