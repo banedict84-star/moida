@@ -1431,7 +1431,13 @@ onAuthStateChanged(_auth, function(user){
         var isNew=!m;
         if(isNew){ m={ no:members.length+1, name:nm, score:0, rrn:'—', dong:'—', org:'—', rec:'—', rec2:'—', rec3:'—', sub:'—', third:'—', addr:'—', addrDetail:'', family:null, age:'', ageb:'—', sex:'—', vote:'미확인', voteK:'err', katalk:'—', type:'일반당원', typeK:'old', krGrade:0, smGrade:0, photo:'' }; }
         ['phone','rrn','dong','type','org','sex','rec','sub','third','katalk','sms','addr','ageb'].forEach(function(k){
-          var v=get(k); if(v!==undefined && v!=='') m[k]=v;
+          var v=get(k); if(v===undefined||v==='') return;
+          if(k==='phone'){ v=formatPhone(v)||v; }
+          if(k==='rrn'){
+            var rd=v.replace(/[^0-9*]/g,'');
+            if(rd.length>=6&&!v.includes('-')){ v=rd.slice(0,6)+'-'+rd.slice(6); }
+          }
+          m[k]=v;
         });
         var ag=get('age'); if(ag) m.age=parseInt(ag,10)||m.age;
         var fa=get('family'); if(fa) m.family=parseInt(fa,10)||0;
