@@ -317,6 +317,8 @@
   .ventry.out .vdot{ background:#c2410c; box-shadow:0 0 0 1.5px #c2410c; }
   .ventry.err .vdot{ background:#9298a8; box-shadow:0 0 0 1.5px #9298a8; }
   .ventry-top{ display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+  .vdel-btn{ margin-left:auto; background:none; border:none; color:#cbd5e1; font-size:12px; cursor:pointer; padding:2px 4px; border-radius:4px; line-height:1; }
+  .vdel-btn:hover{ color:#ef4444; background:#fef2f2; }
   .ventry-el{ font-size:13.5px; font-weight:700; }
   .vbadge2{ font-size:11px; font-weight:700; padding:2px 9px; border-radius:999px; }
   .vbadge2.vote{ color:#1a7f4b; background:#e6f5ec; }
@@ -784,14 +786,23 @@ onAuthStateChanged(_auth, function(user){
     cnt.textContent=list.length+'회';
     empty.style.display=list.length?'none':'block';
     log.style.display=list.length?'block':'none';
-    log.innerHTML=list.map(function(e){
+    log.innerHTML=list.map(function(e,i){
       var sup=e.support?('<span class="vsup '+e.support+'"><b>'+supLabel[e.support]+'</b>'+(e.cand?(' · '+e.cand):'')+'</span>'):'';
       var note=e.note?('<div class="ventry-note">'+e.note+'</div>'):'';
       return '<div class="ventry '+e.voted+'"><span class="vdot"></span>'+
         '<div class="ventry-top"><span class="ventry-el">'+(e.election||'(선거 미입력)')+'</span>'+
-        '<span class="vbadge2 '+e.voted+'">'+votedLabel[e.voted]+'</span>'+sup+'</div>'+
+        '<span class="vbadge2 '+e.voted+'">'+votedLabel[e.voted]+'</span>'+sup+
+        '<button class="vdel-btn" data-i="'+i+'" title="삭제">✕</button></div>'+
         (e.date?('<div class="ventry-date">'+e.date+'</div>'):'')+note+'</div>';
     }).join('');
+    log.querySelectorAll('.vdel-btn').forEach(function(btn){
+      btn.addEventListener('click', function(e){ e.stopPropagation();
+        var idx=+btn.dataset.i;
+        moidaConfirm({title:'투표 기록 삭제', desc:'이 투표 기록을 삭제합니다.<br>삭제한 기록은 복구할 수 없어요.', ok:'삭제', confirmWord:'삭제'}, function(){
+          getVotes(curVoteName).splice(idx,1); saveVoteStore(); renderVotes(curVoteName);
+        });
+      });
+    });
   }
   (function(){
     var dm=document.getElementById('dtMemo');
