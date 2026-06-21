@@ -498,19 +498,23 @@
     });
     return out.slice(0,20);
   }
+  // 네이버 실시간 검색용 중계 서버(Cloudflare Worker) 주소
+  var NEWS_PROXY='https://moida-news.banedict84.workers.dev';
   function crawlNews(ks){
     var q=ks.join(' ');
     if(typeof window.MOIDA_fetchNews==='function') return Promise.resolve(window.MOIDA_fetchNews(ks));
     var gURL='https://news.google.com/rss/search?q='+encodeURIComponent(q)+'&hl=ko&gl=KR&ceid=KR:ko';
-    var nURL='https://search.naver.com/search.naver?where=news&query='+encodeURIComponent(q);
-    var dURL='https://search.daum.net/search?w=news&q='+encodeURIComponent(q);
     var jobs=[
-      fetchText(gURL).then(parseGoogle).catch(function(){ return []; }),
-      fetchText(nURL).then(parseNaver).catch(function(){ return []; }),
-      fetchText(dURL).then(parseDaum).catch(function(){ return []; })
+      fetchText(gURL).then(parseGoogle).catch(function(){ return []; })            // 구글 실시간
     ];
+    if(NEWS_PROXY){                                                                 // 네이버 실시간(중계 서버)
+      jobs.push(
+        fetch(NEWS_PROXY+'/?q='+encodeURIComponent(q)).then(function(r){ return r.ok?r.json():{items:[]}; })
+          .then(function(d){ return (d&&d.items)||[]; }).catch(function(){ return []; })
+      );
+    }
     return Promise.all(jobs).then(function(res){
-      // 세 출처가 골고루 노출되도록 라운드로빈으로 병합 + 제목 기준 중복 제거
+      // 라운드로빈으로 병합 + 제목 기준 중복 제거
       var merged=[], seen={};
       var max=Math.max.apply(null, res.map(function(a){ return a.length; }).concat([0]));
       for(var i=0;i<max;i++){
