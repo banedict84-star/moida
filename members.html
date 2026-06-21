@@ -709,7 +709,9 @@ onAuthStateChanged(_auth, function(user){
   }
   function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
   function recCell(m){
-    var extra=[]; if(m.sub&&m.sub!=='—') extra.push(m.sub); if(m.third&&m.third!=='—') extra.push(m.third);
+    var r2=(m.sub&&m.sub!=='—')?m.sub:((m.rec2&&m.rec2!=='—')?m.rec2:null);
+    var r3=(m.third&&m.third!=='—')?m.third:((m.rec3&&m.rec3!=='—')?m.rec3:null);
+    var extra=[]; if(r2) extra.push(r2); if(r3) extra.push(r3);
     if(m.rec==='—'||!m.rec) return '—';
     return '<span class="rec-link" data-rec="'+encodeURIComponent(JSON.stringify([m.rec].concat(extra)))+'">'+m.rec + (extra.length?' <span style="color:var(--primary);font-weight:700;font-size:11px">+'+extra.length+'</span>':'')+'</span>';
   }
