@@ -256,6 +256,8 @@
   /* cards grid */
   .grid{ display:grid; grid-template-columns:1.32fr 1fr; grid-template-rows:auto 1fr; gap:16px; margin-top:52px; align-items:stretch; }
   [data-widget="notice"]{ grid-column:1; grid-row:1 / span 2; display:flex; flex-direction:column; }
+  #noticeList{ display:flex; flex-direction:column; flex:1; }
+  #noticeList .row{ flex:1; min-height:0; }
   [data-widget="schedule"]{ grid-column:2; grid-row:1; }
   [data-widget="member"]{ grid-column:2; grid-row:2; display:flex; flex-direction:column; }
   .card{ background:var(--surface); border:1px solid var(--line); border-radius:18px; box-shadow:var(--shadow-float); padding:16px 20px; }
