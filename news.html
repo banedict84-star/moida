@@ -824,7 +824,8 @@ onAuthStateChanged(_auth, function(user){
     { key:'gyeonggi', label:'민주당 경기도당', color:'#0d9488', href:'notices.html?src=gyeonggi' },
     { key:'council',  label:'경기도의회',      color:'#b45309', href:'notices.html?src=council' }
   ];
-  var KEY='moida_shortcuts';
+  var _scUid=(function(){ try{ return JSON.parse(sessionStorage.getItem('moida_auth_user')||'{}').uid||'default'; }catch(e){ return 'default'; } })();
+  var KEY='moida_shortcuts_'+_scUid;
   function get(){ try{ return JSON.parse(localStorage.getItem(KEY)||'[]'); }catch(e){ return []; } }
   function save(a){ localStorage.setItem(KEY, JSON.stringify(a)); }
   var nav=document.querySelector('.sidebar nav'); if(!nav) return;
