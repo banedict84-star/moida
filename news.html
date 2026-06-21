@@ -569,6 +569,7 @@
         merged.sort(function(a,b){ return dnum(b.date)-dnum(a.date); });
         if(merged.length){ NEWS.length=0; merged.slice(0,30).forEach(function(r,i){ NEWS.push(Object.assign({id:i+1},r)); }); curId=null; liveMode=true; renderList(); }
         else { liveMode=false; renderList(); }
+        saveSearch(); // 다른 탭 다녀와도 복원되도록 마지막 검색 저장
       });
     }
     // 구글은 브라우저에서 실시간 수집, 네이버·다음은 서버 크롤링 풀에서 가져와 합친다.
@@ -632,15 +633,37 @@
   kwInput.addEventListener('keydown', function(e){ if(e.key==='Enter') addKw(); else if(e.key==='Escape') closeKw(); });
   kovl.addEventListener('click', function(e){ if(e.target===kovl) closeKw(); });
   renderChips();
-  renderList();
+
+  // ===== 마지막 검색 결과 저장/복원 (다른 탭 다녀와도 유지) =====
+  var LAST_KEY='moida_news_lastsearch';
+  var LAST_TTL=12*60*60*1000; // 12시간 동안 유지
+  function saveSearch(){
+    try{ localStorage.setItem(LAST_KEY, JSON.stringify({ q:input.value, items:NEWS.slice(0,30), liveMode:liveMode, ts:Date.now() })); }catch(e){}
+  }
+  function restoreSearch(){
+    try{
+      var s=JSON.parse(localStorage.getItem(LAST_KEY));
+      if(!s || !Array.isArray(s.items) || !s.items.length) return false;
+      if(Date.now()-(s.ts||0) > LAST_TTL) return false; // 너무 오래되면 무시
+      input.value = s.q||'';
+      NEWS.length=0; s.items.forEach(function(r,i){ NEWS.push(Object.assign({id:i+1}, r)); });
+      curId=null; liveMode=!!s.liveMode; renderList();
+      return true;
+    }catch(e){ return false; }
+  }
+
+  var restored = restoreSearch();
+  if(!restored) renderList();
 
   // 서버 크롤러가 생성한 news_data.json(구글·네이버·다음)을 풀로 적재
   fetch('news_data.json?t='+Date.now()).then(function(r){ return r.ok?r.json():null; }).then(function(d){
     if(d && Array.isArray(d.items) && d.items.length){
       POOL = d.items.slice();
-      // 초기 화면도 크롤링 풀(3개 출처)로 교체
-      NEWS.length=0; POOL.slice().sort(function(a,b){ return dnum(b.date)-dnum(a.date); }).forEach(function(r,i){ NEWS.push(Object.assign({id:i+1}, r)); });
-      curId=null; renderList();
+      // 복원된 검색이 없을 때만 초기 화면을 크롤링 풀(3개 출처)로 교체
+      if(!restored){
+        NEWS.length=0; POOL.slice().sort(function(a,b){ return dnum(b.date)-dnum(a.date); }).forEach(function(r,i){ NEWS.push(Object.assign({id:i+1}, r)); });
+        curId=null; renderList();
+      }
     }
   }).catch(function(){});
 
