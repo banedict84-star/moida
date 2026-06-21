@@ -360,6 +360,19 @@
 
   @media (max-width:1280px){ .detail{ position:fixed; } }
   @media (max-width:1080px){ .app, .app.collapsed{ grid-template-columns:1fr; } .sidebar{ display:none; } .page-head,.chips,.toolbar,.work{ padding-left:16px; padding-right:16px; } }
+  /* 커스텀 확인 모달 */
+  .cf-ovl{ display:none; position:fixed; inset:0; background:rgba(16,28,52,.42); z-index:3000; align-items:center; justify-content:center; padding:30px; backdrop-filter:blur(3px); }
+  .cf-ovl.show{ display:flex; }
+  .cf{ background:#fff; border-radius:18px; width:340px; max-width:100%; box-shadow:0 24px 64px rgba(16,28,52,.32); overflow:hidden; text-align:center; }
+  .cf-ic{ width:54px; height:54px; border-radius:50%; margin:26px auto 0; display:flex; align-items:center; justify-content:center; background:#fdecec; color:#dc2626; }
+  .cf-ic svg{ width:26px; height:26px; }
+  .cf-t{ font-size:17px; font-weight:800; letter-spacing:-.02em; color:var(--ink); margin:16px 26px 0; }
+  .cf-d{ font-size:13.5px; color:var(--ink-3); font-weight:500; line-height:1.6; margin:9px 26px 0; }
+  .cf-foot{ display:flex; gap:9px; padding:22px; }
+  .cf-cancel{ flex:1; padding:12px; border:1px solid var(--line); background:#fff; border-radius:11px; font-family:inherit; font-size:14px; font-weight:700; color:var(--ink-2); cursor:pointer; }
+  .cf-cancel:hover{ background:var(--line-soft); }
+  .cf-ok{ flex:1; padding:12px; border:none; background:#dc2626; color:#fff; border-radius:11px; font-family:inherit; font-size:14px; font-weight:700; cursor:pointer; box-shadow:0 4px 12px rgba(220,38,38,.26); }
+  .cf-ok:hover{ background:#c01f1f; }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 <script type="module">
@@ -546,6 +559,19 @@ onAuthStateChanged(_auth, function(user){
   </div>
   <div class="addr-hint" id="addrHint">검색어를 입력하면 주소 후보가 표시됩니다.</div>
   <div class="addr-results" id="addrResults"></div>
+</div>
+
+<!-- 커스텀 확인 모달 -->
+<div class="cf-ovl" id="cfOvl">
+  <div class="cf">
+    <div class="cf-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14"/></svg></div>
+    <div class="cf-t" id="cfTitle"></div>
+    <div class="cf-d" id="cfDesc"></div>
+    <div class="cf-foot">
+      <button class="cf-cancel" id="cfCancel">취소</button>
+      <button class="cf-ok" id="cfOk">삭제</button>
+    </div>
+  </div>
 </div>
 
 <!-- 투표 기록 추가 모달 -->
@@ -1128,14 +1154,29 @@ onAuthStateChanged(_auth, function(user){
   }
   var _addTop=document.getElementById('addTopBtn'); if(_addTop) _addTop.addEventListener('click', openNew);
   var _addFoot=document.querySelector('.dt-foot .btn.add'); if(_addFoot) _addFoot.addEventListener('click', openNew);
+  // 커스텀 확인 모달
+  function moidaConfirm(opts, onOk){
+    var ovl=document.getElementById('cfOvl');
+    document.getElementById('cfTitle').textContent=opts.title||'확인';
+    document.getElementById('cfDesc').innerHTML=opts.desc||'';
+    document.getElementById('cfOk').textContent=opts.ok||'확인';
+    var _cb=null;
+    function close(){ ovl.classList.remove('show'); }
+    document.getElementById('cfCancel').onclick=function(){ close(); };
+    ovl.onclick=function(e){ if(e.target===ovl) close(); };
+    document.getElementById('cfOk').onclick=function(){ close(); if(onOk) onOk(); };
+    ovl.classList.add('show');
+  }
+
   var _delBtn=document.querySelector('.dt-foot .btn.del');
   if(_delBtn) _delBtn.addEventListener('click', function(){
     if(curEditIdx==null) return;
     var nm=members[curEditIdx]&&members[curEditIdx].name||'이 당원';
-    if(!confirm(nm+' 을(를) 삭제하시겠습니까?')) return;
-    members.splice(curEditIdx,1);
-    dispMembers=members.slice();
-    saveMembers(); recalcScores(); renderRows(); closeDetail();
+    moidaConfirm({ title:'구성원 삭제', desc:'<b>'+nm+'</b> 을(를) 삭제합니다.<br>삭제한 구성원은 복구할 수 없어요.', ok:'삭제' }, function(){
+      members.splice(curEditIdx,1);
+      dispMembers=members.slice();
+      saveMembers(); recalcScores(); renderRows(); closeDetail();
+    });
   });
 
   // 증명사진 업로드
