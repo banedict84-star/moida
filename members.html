@@ -760,13 +760,18 @@ onAuthStateChanged(_auth, function(user){
   document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeDetail(); });
 
   // ---- 투표 이력 ----
-  var voteStore = { '김민재':[
+  var VOTE_KEY = 'moida_votes_' + _uid;
+  var MEMO_KEY = 'moida_memos_' + _uid;
+  var _savedVotes = {}; try{ var _sv=localStorage.getItem(VOTE_KEY); if(_sv) _savedVotes=JSON.parse(_sv); }catch(e){}
+  var voteStore = Object.assign({ '김민재':[
     {election:'2026 지방선거 경선', date:'2026.05.18 · 사전투표', voted:'vote', support:'ours', cand:'장윤정', note:'사전투표소 안내 문자 발송 후 투표 확인. 가족 2명 동반.'},
     {election:'2024 제22대 국회의원선거', date:'2024.04.10', voted:'vote', support:'ours', cand:'더불어민주당', note:''},
     {election:'2022 지방선거', date:'2022.06.01', voted:'err', support:'float', cand:'', note:'투표 여부·지지 후보 확인 불가 — 연락 두절 시기.'},
     {election:'2022 대선', date:'2022.03.09', voted:'out', support:'rival', cand:'', note:''}
-  ]};
-  var memoStore = {};
+  ]}, _savedVotes); // localStorage 데이터가 기본값을 덮어씀
+  function saveVoteStore(){ try{ localStorage.setItem(VOTE_KEY, JSON.stringify(voteStore)); }catch(e){} }
+  var memoStore = {}; try{ var _sm=localStorage.getItem(MEMO_KEY); if(_sm) memoStore=JSON.parse(_sm); }catch(e){}
+  function saveMemoStore(){ try{ localStorage.setItem(MEMO_KEY, JSON.stringify(memoStore)); }catch(e){} }
   members.forEach(function(m){ m.lean=leanOf(m); });
   document.querySelectorAll('#dtfType .tseg-opt').forEach(function(o){ o.addEventListener('click', function(){ document.querySelectorAll('#dtfType .tseg-opt').forEach(function(x){x.classList.remove('on');}); o.classList.add('on'); }); });
   var curVoteName = null;
@@ -791,7 +796,7 @@ onAuthStateChanged(_auth, function(user){
   }
   (function(){
     var dm=document.getElementById('dtMemo');
-    if(dm) dm.addEventListener('input', function(){ if(curVoteName) memoStore[curVoteName]=this.value; });
+    if(dm) dm.addEventListener('input', function(){ if(curVoteName){ memoStore[curVoteName]=this.value; saveMemoStore(); } });
     var ovl=document.getElementById('voteOvl'), modal=document.getElementById('voteModal');
     function setSeg(id,val){ document.querySelectorAll('#'+id+' .vseg-opt').forEach(function(o){ o.classList.toggle('on', o.dataset.v===val); }); }
     function open(){
@@ -817,6 +822,7 @@ onAuthStateChanged(_auth, function(user){
         cand:document.getElementById('vfCand').value.trim(),
         note:document.getElementById('vfNote').value.trim()
       });
+      saveVoteStore();
       renderVotes(curVoteName); close();
     });
   })();
