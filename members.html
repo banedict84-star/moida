@@ -407,7 +407,9 @@ window._fsLoad = async function(uid, key){
 };
 
 onAuthStateChanged(_auth, async function(user){
-  if(!user){ location.href='index.html'; return; }
+  if(!user){ sessionStorage.removeItem('moida_auth_user'); location.href='index.html'; return; }
+  var _prev=JSON.parse(sessionStorage.getItem('moida_auth_user')||'{}');
+  if(_prev.uid && _prev.uid!==user.uid){ sessionStorage.setItem('moida_auth_user', JSON.stringify({uid:user.uid, email:user.email, displayName:user.displayName||''})); location.reload(); return; }
   sessionStorage.setItem('moida_auth_user', JSON.stringify({uid:user.uid, email:user.email, displayName:user.displayName||''}));
   var el=document.getElementById('sideFootUser');
   if(el){

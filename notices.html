@@ -328,7 +328,9 @@ import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/
 const _app = initializeApp({apiKey:"AIzaSyAIjhvbCztHoF7YwP2IYIk2C6jCI64uFhs",authDomain:"jjj2195-1bd15.firebaseapp.com",projectId:"jjj2195-1bd15",storageBucket:"jjj2195-1bd15.firebasestorage.app",messagingSenderId:"370852437825",appId:"1:370852437825:web:b0a891d6a99b426d230bc0"});
 const _auth = getAuth(_app);
 onAuthStateChanged(_auth, function(user){
-  if(!user){ location.href='index.html'; return; }
+  if(!user){ sessionStorage.removeItem('moida_auth_user'); location.href='index.html'; return; }
+  var _prev=JSON.parse(sessionStorage.getItem('moida_auth_user')||'{}');
+  if(_prev.uid && _prev.uid!==user.uid){ sessionStorage.setItem('moida_auth_user', JSON.stringify({uid:user.uid, email:user.email, displayName:user.displayName||''})); location.reload(); return; }
   sessionStorage.setItem('moida_auth_user', JSON.stringify({uid:user.uid, email:user.email, displayName:user.displayName||''}));
   var el=document.getElementById('sideFootUser');
   if(el){
