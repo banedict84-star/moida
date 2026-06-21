@@ -1420,13 +1420,24 @@ onAuthStateChanged(_auth, function(user){
         if(!nm || !ph){ if((nm||'')!=='' || (ph||'')!=='') skipped++; continue; }
         var m=members.find(function(x){ return x.name===nm && x.phone===ph; });
         var isNew=!m;
-        if(isNew){ m={ no:members.length+1, name:nm, score:0 }; }
+        if(isNew){ m={ no:members.length+1, name:nm, score:0, rrn:'—', dong:'—', org:'—', rec:'—', rec2:'—', rec3:'—', sub:'—', third:'—', addr:'—', addrDetail:'', family:null, age:'', ageb:'—', sex:'—', vote:'미확인', voteK:'err', katalk:'—', type:'일반당원', typeK:'old', krGrade:0, smGrade:0, photo:'' }; }
         ['phone','rrn','dong','type','org','sex','rec','sub','third','katalk','sms','addr','ageb'].forEach(function(k){
           var v=get(k); if(v!==undefined && v!=='') m[k]=v;
         });
         var ag=get('age'); if(ag) m.age=parseInt(ag,10)||m.age;
         var fa=get('family'); if(fa) m.family=parseInt(fa,10)||0;
         if(m.type) m.typeK=TYPE_K[m.type]||m.typeK||'old';
+        // 주민번호에서 나이·연령대·성별 자동 파생
+        if(m.rrn && m.rrn!=='—'){ var _d=deriveFromRrn(m.rrn); if(_d){ if(!m.age||m.age==='') m.age=_d.age; if(!m.ageb||m.ageb==='—') m.ageb=_d.ageb; if(!m.sex||m.sex==='—') m.sex=_d.sex; } }
+        // 주소에서 행정동 자동 추출 (예: "경기 안산시 상록구 성포동 ..." → "성포동")
+        if((!m.dong||m.dong==='—') && m.addr && m.addr!=='—'){
+          var _dm=m.addr.match(/([가-힣]+[동읍면리])\s*\d/); if(!_dm) _dm=m.addr.match(/([가-힣]+[동읍면리])(?:\s|$)/);
+          if(_dm) m.dong=_dm[1];
+        }
+        // rec2/rec3 sync
+        if(m.sub&&m.sub!=='—') m.rec2=m.sub; if(m.third&&m.third!=='—') m.rec3=m.third;
+        // mid 부여
+        if(!m.mid) m.mid='m'+Date.now()+Math.random().toString(36).slice(2,7);
         var ln=get('lean'); if(ln && LEAN_K[ln]){ defaultLean[nm]=LEAN_K[ln]; }
         if(isNew){ members.push(m); dispMembers.push(m); added++; } else { updated++; }
       }
