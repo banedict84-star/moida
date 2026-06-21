@@ -215,7 +215,7 @@
 
   // Google 로그인
   document.getElementById('gLoginBtn').addEventListener('click', async function(){
-    try { await signInWithPopup(auth, provider); location.href='admin.html'; }
+    try { await signInWithPopup(auth, provider); location.href='dashboard.html'; }
     catch(e){ document.getElementById('loginErr').textContent=e.message; }
   });
 
@@ -226,7 +226,7 @@
     var err=document.getElementById('loginErr');
     err.textContent='';
     if(!email||!password){ err.textContent='이메일과 비밀번호를 입력하세요.'; return; }
-    try { await signInWithEmailAndPassword(auth, email, password); location.href='admin.html'; }
+    try { await signInWithEmailAndPassword(auth, email, password); location.href='dashboard.html'; }
     catch(e){ err.textContent = e.code==='auth/invalid-credential'?'이메일 또는 비밀번호가 올바르지 않습니다.':e.message; }
   });
 
@@ -243,7 +243,9 @@
     try {
       var cred = await createUserWithEmailAndPassword(auth, email, password);
       await updateProfile(cred.user, { displayName: name });
-      location.href='admin.html';
+      var okEl=document.getElementById('signupErr');
+      okEl.style.color='#059669'; okEl.textContent='가입 완료! 로그인 해주세요.';
+      setTimeout(function(){ switchTab('login'); okEl.textContent=''; okEl.style.color=''; }, 1500);
     } catch(e){
       err.textContent = e.code==='auth/email-already-in-use'?'이미 사용 중인 이메일입니다.':e.message;
     }
