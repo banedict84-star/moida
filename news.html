@@ -269,6 +269,8 @@ onAuthStateChanged(_auth, function(user){
     el.innerHTML='<div style="font-weight:700;color:var(--ink-2);font-size:13px;padding:2px 10px 1px">'+(user.displayName||'')+'</div>'
       +'<div style="font-size:11.5px;color:var(--ink-3);padding:0 10px 6px;word-break:break-all">'+(user.email||'')+'</div>';
   }
+  window._newsUid = user.uid;
+  if(window._initNewsKeys) window._initNewsKeys(user.uid);
 });
 </script>
 </head>
@@ -651,8 +653,18 @@ onAuthStateChanged(_auth, function(user){
   document.getElementById('newsGo').addEventListener('click', runSearch);
   input.addEventListener('input', function(){ if(!liveMode) renderList(); });
   input.addEventListener('keydown', function(e){ if(e.key==='Enter') runSearch(); });
+  // ===== UID 기반 키 초기화 =====
+  var _uid = (JSON.parse(sessionStorage.getItem('moida_auth_user')||'{}').uid) || 'default';
+  window._initNewsKeys = function(uid){
+    _uid = uid;
+    CHIP_KEY = 'moida_news_chips_' + uid;
+    RECENT_KEY = 'moida_news_recent_' + uid;
+    STATE_KEY = 'moida_news_state_' + uid;
+    renderChips(); renderRecent();
+  };
+
   // ===== 추천 키워드 (사용자 편집 가능) =====
-  var CHIP_KEY='moida_news_chips';
+  var CHIP_KEY='moida_news_chips_' + _uid;
   var CHIP_DEFAULT=['장윤정 경기도의원','안산 상록구','경기도의회','안산 교육'];
   function getChips(){ try{ var v=JSON.parse(localStorage.getItem(CHIP_KEY)); return Array.isArray(v)?v:CHIP_DEFAULT.slice(); }catch(e){ return CHIP_DEFAULT.slice(); } }
   function saveChips(a){ localStorage.setItem(CHIP_KEY, JSON.stringify(a)); }
@@ -708,7 +720,7 @@ onAuthStateChanged(_auth, function(user){
   renderChips();
 
   // ===== 최근 검색어 =====
-  var RECENT_KEY='moida_news_recent';
+  var RECENT_KEY='moida_news_recent_' + _uid;
   function getRecent(){ try{ var v=JSON.parse(localStorage.getItem(RECENT_KEY)); return Array.isArray(v)?v:[]; }catch(e){ return []; } }
   function addRecent(q){ q=(q||'').trim(); if(!q) return; var arr=getRecent().filter(function(x){ return x!==q; }); arr.unshift(q); arr=arr.slice(0,10); localStorage.setItem(RECENT_KEY, JSON.stringify(arr)); renderRecent(); }
   function removeRecent(q){ localStorage.setItem(RECENT_KEY, JSON.stringify(getRecent().filter(function(x){ return x!==q; }))); renderRecent(); }
@@ -733,7 +745,7 @@ onAuthStateChanged(_auth, function(user){
   }
 
   // 검색 상태 저장(완료 결과 복원 / 도중 이탈 시 자동 재검색용)
-  var STATE_KEY='moida_news_state';
+  var STATE_KEY='moida_news_state_' + _uid;
   function saveState(o){ try{ localStorage.setItem(STATE_KEY, JSON.stringify(o)); }catch(e){} }
   function loadState(){ try{ return JSON.parse(localStorage.getItem(STATE_KEY)); }catch(e){ return null; } }
 
