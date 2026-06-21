@@ -644,11 +644,18 @@ onAuthStateChanged(_auth, function(user){
   function loadMembers(){ try{ var d=JSON.parse(localStorage.getItem(_MEM_KEY)); return Array.isArray(d)?d:[]; }catch(e){ return []; } }
   function saveMembers(){ localStorage.setItem(_MEM_KEY, JSON.stringify(members)); }
   var members = loadMembers();
-  // ensure every member has a unique mid
+  // normalize members: fill missing fields with defaults, assign mid
   (function(){
-    var changed=false;
-    members.forEach(function(m){ if(!m.mid){ m.mid='m'+Date.now()+Math.random().toString(36).slice(2,7); changed=true; } });
-    if(changed) saveMembers();
+    var D={rrn:'—',dong:'—',org:'—',rec:'—',rec2:'—',rec3:'—',sub:'—',third:'—',addr:'—',addrDetail:'',family:null,age:'',ageb:'—',sex:'—',vote:'미확인',voteK:'err',katalk:'—',type:'일반당원',typeK:'old',krGrade:0,smGrade:0,photo:'',orgs:[]};
+    members.forEach(function(m){
+      Object.keys(D).forEach(function(k){ if(m[k]===undefined||m[k]===null&&k!=='family') m[k]=D[k]; });
+      if(!m.mid){ m.mid='m'+Date.now()+Math.random().toString(36).slice(2,7); }
+      if(!m.type||m.type==='undefined') m.type=D.type;
+      if(!m.dong||m.dong==='undefined') m.dong=D.dong;
+      if(!m.ageb||m.ageb==='undefined') m.ageb=D.ageb;
+      if(!m.sex||m.sex==='undefined') m.sex=D.sex;
+    });
+    saveMembers();
   })();
   const avaColors = ["#3b82f6","#10b981","#f59e0b","#8b5cf6","#ec4899","#06b6d4","#ef4444","#6366f1","#14b8a6","#f97316","#a855f7"];
   const scoreCls = s => s>=18?"sc-hi":s>=11?"sc-mid":"sc-lo";
@@ -909,7 +916,7 @@ onAuthStateChanged(_auth, function(user){
         && (!searchKw || [m.name,m.phone,m.addr,m.rec,m.rec2,m.rec3,m.sub,m.third,m.dong,(m.orgs||[]).map(orgRepText).join(' ')].some(function(v){ return v!=null && String(v).toLowerCase().replace(/-/g,'').indexOf(searchKw)>=0; }));
     });
     var tfLeft=document.getElementById('tfLeft'); if(tfLeft) tfLeft.innerHTML='조회 <b>'+rows.length+'</b>명 · 당원을 클릭하면 상세정보가 표시됩니다';
-    tbody.innerHTML = rows.map(function(m,ri){ var i=members.indexOf(m); return `
+    tbody.innerHTML = rows.map(function(m,ri){ var i=members.indexOf(m); if(i<0) i=members.findIndex(function(x){ return x.mid&&x.mid===m.mid; }); return `
     <tr data-i="${i}">
       <td class="muted-cell">${ri+1}</td>
       <td><span class="score ${scoreCls(m.score)}">${m.score}</span></td>
@@ -1020,7 +1027,9 @@ onAuthStateChanged(_auth, function(user){
     dtAva.textContent=m.name[0];
     dtAva.style.background='linear-gradient(140deg, '+avaColors[i%avaColors.length]+', #2f74c9)';
     dtName.textContent=m.name;
-    dtSub.textContent=m.dong+' · '+m.type+' · '+m.sex+' '+m.age+'세';
+    var _sub=[m.dong,m.type,m.sex].map(function(v){ return (!v||v==='—'||v==='undefined')?'':v; }).filter(Boolean).join(' · ');
+    if(m.age&&m.age!=='—'&&m.age!=='undefined') _sub+=(_sub?' · ':'')+m.age+'세';
+    dtSub.textContent=_sub||'정보 없음';
     var V=function(id,val){ var el=document.getElementById(id); if(el) el.value=(val==null||val==='—')?'':val; };
     V('dtfName',m.name); V('dtfPhone',m.phone); V('dtfRrn',m.rrn);
     V('dtAddr',m.addr); V('dtAddrDetail',m.addrDetail); V('dtDong',m.dong);
