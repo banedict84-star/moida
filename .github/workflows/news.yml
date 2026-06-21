@@ -73,6 +73,12 @@ jobs:
 
           # ── 네이버: 공식 검색 API (키 있을 때) ───────────────────────────
           NID = os.environ.get("NAVER_CLIENT_ID"); NSEC = os.environ.get("NAVER_CLIENT_SECRET")
+          # 동명이인·노이즈 제외 (가수/트로트 장윤정, TV조선 아나운서·기상캐스터 장윤정 등)
+          NOISE = ["가수", "트로트", "미스트롯", "미스터트롯", "콘서트", "신곡", "음반", "앨범",
+                   "어머나", "도경완", "예능", "기상캐스터", "아나운서", "tv조선", "축가", "방송인"]
+          # 장윤정 '경기도의원'을 가리키는 소속·지역 힌트(이게 있어야 진짜 그분)
+          HINTS = ["경기도의원", "도의원", "경기도의회", "의원", "안산", "상록", "성포동", "이동", "일동",
+                   "더불어민주당", "민주당", "선거구", "도정", "의정"]
           def naver_api(q):
               if not (NID and NSEC): return None
               url = "https://openapi.naver.com/v1/search/news.json?query=%s&display=30&sort=date" % urllib.parse.quote(q)
@@ -86,11 +92,17 @@ jobs:
               for it in r.json().get("items", []):
                   link = it.get("originallink") or it.get("link", "")
                   title = clean(it.get("title", "")); desc = clean(it.get("description", ""))
+                  low = (title + " " + desc).lower()
+                  if any(n in low for n in NOISE):                          # 노이즈(동명이인) 제외
+                      continue
+                  if "장윤정" in q and not any(h in low for h in HINTS):     # 경기도의원 장윤정 외 동명이인 제외
+                      continue
                   try: d = parsedate_to_datetime(it.get("pubDate", "")).strftime("%Y.%m.%d")
                   except Exception: d = ""
                   if title and link:
                       out.append({"source": "naver", "press": host(link) or "네이버뉴스", "date": d,
                                   "title": title, "snippet": desc[:160], "url": link})
+                  if len(out) >= 12: break
               return out
 
           # ── 네이버: API 키 없을 때 HTML 스크래핑(베스트 에포트) ──────────
