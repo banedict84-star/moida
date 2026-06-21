@@ -375,18 +375,18 @@
             <div class="noti-list" id="notiList"></div>
           </div>
         </div>
-        <div class="avatar">장</div>
+        <div class="avatar" id="topAvatar"></div>
       </div>
     </div>
 
     <div class="content">
       <div class="greet-row">
         <div class="greet">
-          <h1>장윤정님, 좋은 오후입니다.</h1>
+          <h1 id="greetMsg">좋은 오후입니다.</h1>
           <div class="status"><span class="pin"></span>오늘도 의정활동 화이팅입니다 — 상태 메시지를 입력해보세요.</div>
         </div>
         <div class="gr-right">
-          <div class="gr-date">2026년 6월 19일 금요일</div>
+          <div class="gr-date" id="grDate"></div>
           <div class="widget-set" id="widgetSetBtn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h10M18 6h2M4 12h2M10 12h10M4 18h7M15 18h5"/><circle cx="16" cy="6" r="2"/><circle cx="8" cy="12" r="2"/><circle cx="13" cy="18" r="2"/></svg>위젯 설정</div>
         </div>
       </div>
@@ -467,11 +467,22 @@ onAuthStateChanged(_auth, function(user){
   var _prev=JSON.parse(sessionStorage.getItem('moida_auth_user')||'{}');
   if(_prev.uid && _prev.uid!==user.uid){ sessionStorage.setItem('moida_auth_user', JSON.stringify({uid:user.uid, email:user.email, displayName:user.displayName||''})); location.reload(); return; }
   sessionStorage.setItem('moida_auth_user', JSON.stringify({uid:user.uid, email:user.email, displayName:user.displayName||''}));
+  var nm=user.displayName||user.email||'';
   var el=document.getElementById('sideFootUser');
   if(el){
-    el.innerHTML='<div style="font-weight:700;color:var(--ink-2);font-size:13px;padding:2px 10px 1px">'+(user.displayName||'')+'</div>'
+    el.innerHTML='<div style="font-weight:700;color:var(--ink-2);font-size:13px;padding:2px 10px 1px">'+nm+'</div>'
       +'<div style="font-size:11.5px;color:var(--ink-3);padding:0 10px 6px;word-break:break-all">'+(user.email||'')+'</div>';
   }
+  // 인사말 업데이트
+  var grMsg=document.getElementById('greetMsg');
+  if(grMsg){
+    var h=new Date().getHours();
+    var timeStr=h<5?'좋은 새벽입니다':h<12?'좋은 아침입니다':h<18?'좋은 오후입니다':'좋은 저녁입니다';
+    grMsg.textContent=(nm?nm+'님, ':'')+timeStr+'.';
+  }
+  // 아바타
+  var ava=document.getElementById('topAvatar');
+  if(ava) ava.textContent=nm.charAt(0)||'?';
 });
 </script>
 <script>
@@ -730,16 +741,17 @@ onAuthStateChanged(_auth, function(user){
     renderSidebar();
   })();
 
-  // 로그인 계정 표시
+  // 실시간 날짜 표시
   (function(){
-    try{
-      var u=JSON.parse(sessionStorage.getItem('moida_auth_user')||localStorage.getItem('moida_auth_user')||'{}');
-      var el=document.getElementById('sideFootUser');
-      if(el&&(u.displayName||u.email)){
-        el.innerHTML='<div style="font-weight:700;color:var(--ink-2);font-size:13px;padding:2px 10px 1px">'+(u.displayName||'')+'</div>'
-          +'<div style="font-size:11.5px;color:var(--ink-3);padding:0 10px 6px;word-break:break-all">'+(u.email||'')+'</div>';
-      }
-    }catch(e){}
+    var DAYS=['일요일','월요일','화요일','수요일','목요일','금요일','토요일'];
+    function updateDate(){
+      var el=document.getElementById('grDate'); if(!el) return;
+      var d=new Date();
+      el.textContent=d.getFullYear()+'년 '+(d.getMonth()+1)+'월 '+d.getDate()+'일 '+DAYS[d.getDay()];
+    }
+    updateDate();
+    // 자정에 날짜 바뀌도록 매분 갱신
+    setInterval(updateDate, 60000);
   })();
 </script>
 </body>
