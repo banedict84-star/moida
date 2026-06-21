@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-20 22:43 UTC",
+  "updated": "2026-06-21 01:59 UTC",
   "items": [
     {
       "source": "google",
@@ -91,11 +91,11 @@
     },
     {
       "source": "google",
-      "press": "안산타임스",
+      "press": "누리일보",
       "date": "2026.06.17",
-      "title": "경기도안산교육지원청, ‘2026 로봇 국제교류 공유학교’ 첫 개강",
-      "snippet": "경기도안산교육지원청, ‘2026 로봇 국제교류 공유학교’ 첫 개강 안산타임스",
-      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE15UDM1VFdkNFl1azl2UWpKN2hVbk44aURyS1ZTQlp2Q21QcmtCU25Rdkd0S1ltRVdqc1ZKamZpa3NUc3dGdG9xamFsamVkNWYzTVJwN21URmYxRGM4NEQ3aGFWaUVPV0hLemlKUHU4U0pQUHPSAXNBVV95cUxNeVAzNVRXZDRZdWs5dlFqSjdoVW5OOGlEcktWU0JadkNtUHJrQlNuUXZHdEtZbUVXanNWSmpmaWtzVHN3RnRvcWphbGplZDVmM01ScDdtVEZmMURjODREN2hhVmlFT1dIS3ppSlB1OFNKUFBz?oc=5"
+      "title": "경기도안산교육지원청, '2026 로봇 국제교류 공유학교' 첫 개강",
+      "snippet": "경기도안산교육지원청, '2026 로봇 국제교류 공유학교' 첫 개강 누리일보",
+      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE80dVNKMEM0c2xkTjR3Z3prZS15Rkw2emN0WWxrUkhuSzN2WXhqeDJhb3d0cndIN2NPdkplUXF6ekNCdExMbloxbHM5emd2aFBDVmJhOHMtaDlKLXhE?oc=5"
     },
     {
       "source": "google",
@@ -227,14 +227,6 @@
     },
     {
       "source": "google",
-      "press": "경인종합일보",
-      "date": "2026.06.14",
-      "title": "경기도의회 장윤정 의원, 경기도교육청 예산유보 운영 점검…“절감보다 적기 집행이 중요”",
-      "snippet": "경기도의회 장윤정 의원, 경기도교육청 예산유보 운영 점검…“절감보다 적기 집행이 중요” 경인종합일보",
-      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5VMjhnQU5TMklhcldjRTN0NXo2RUxIZ0RsSlBKYmYzSGxqR1BQMy1Vd3BjSmxmWkIyeDdTLVlyT29IZUlnaDQ2Q2UzRHlTR0FydGxMWFA2ZDlYVGZVbUZnUWtDNnpyNDVUZzVpOW1n0gFyQVVfeXFMT1ZDZDFsTGZ5QUlXVFhnWWxReUtQOGctQzN0TUhSRjUtODhSbldxT2ppMXhPSTNPYXdWSTBLM0tsRUllYkJodXVpM2tDRXVHNEFnbFNKanhPWDY4OXRXeHlnSDl6ZUZGNlp2QmVyYmFzSXdn?oc=5"
-    },
-    {
-      "source": "google",
       "press": "선데이뉴스신문",
       "date": "2026.06.13",
       "title": "장윤정 경기도의원 “교육예산 묶어두기 관행 재검토해야”…경기도교육청 예산유보 운영 도마 위",
@@ -248,6 +240,14 @@
       "title": "장윤정 경기도의원, 경기도교육청 예산유보 운영 점검…“절감보다 적기 집행이 중요”",
       "snippet": "장윤정 경기도의원, 경기도교육청 예산유보 운영 점검…“절감보다 적기 집행이 중요” 서울Pn",
       "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1tei1QZ1pQX195SGtMZUFoOFNacGtzRktNTHlJcHRCQjFHbklFVzdMYmhxQTRXTnFwMGNlXzZTM1FVaS1EMzNMQUxraThLSWFQV2JXUGlrbzZHWHFoM2JrangtZHNSdDRFbFE?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "투데이경제",
+      "date": "2026.06.12",
+      "title": "경기도의회 장윤정 의원, 경기도교육청 예산유보 운영 점검…“절감보다 적기 집행이 중요”",
+      "snippet": "경기도의회 장윤정 의원, 경기도교육청 예산유보 운영 점검…“절감보다 적기 집행이 중요” 투데이경제",
+      "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE9zb2RFaWl5akFnellzdnVNQzlBajFsS0dhQm1RdlZaSXhpWVZCYVpvSU9SVEpwREJPanBFSU9RUUxHQmJwSi1sbGxvWVRvNXdmUFkxU1ltaUNhaHBPNkhyNWg3R2ZiRG5rd09n?oc=5"
     },
     {
       "source": "google",
@@ -515,6 +515,14 @@
     },
     {
       "source": "google",
+      "press": "화성저널",
+      "date": "2026.04.01",
+      "title": "장윤정 의원, 기계설비유지관리자 처우개선 논의",
+      "snippet": "장윤정 의원, 기계설비유지관리자 처우개선 논의 화성저널",
+      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE9HMDgyMldIY0JXYXpFM25ZOEp6NDB2N1JpbGJwTm91Y25QdFNOaDRRVDdrRjluTDdJejVUMkk5cURMN2tjSFhFME5tMEtvRm5oeGpDRm5BOEgxSm9HLWVUNUVDYzhCQQ?oc=5"
+    },
+    {
+      "source": "google",
       "press": "경기인저널",
       "date": "2026.03.23",
       "title": "장윤정 경기도의원, 학교 급식실 환기설비 개선 TF 가동",
@@ -688,14 +696,6 @@
       "title": "최찬규안산시의원, “안산에 체육 특성화 학교 유치해야”",
       "snippet": "최찬규안산시의원, “안산에 체육 특성화 학교 유치해야”",
       "url": "http://v.daum.net/v/20260620135656031"
-    },
-    {
-      "source": "daum",
-      "press": "v.daum.net",
-      "date": "",
-      "title": "[금주의안산시] 시민동행위원회 475일 활동 마무리… 성과보고회·해단식 개최 外",
-      "snippet": "[금주의안산시] 시민동행위원회 475일 활동 마무리… 성과보고회·해단식 개최 外",
-      "url": "http://v.daum.net/v/20260619151004962"
     }
   ]
 }
