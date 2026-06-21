@@ -1035,6 +1035,8 @@ onAuthStateChanged(_auth, async function(user){
         window._editEv=null;
         var sb2=document.querySelector('.evm-submit'); if(sb2) sb2.textContent='등록';
         ti.value=''; if(ct) ct.value=''; if(modal&&modal._resetFiles) modal._resetFiles();
+        var _li=document.querySelector('.evm-input.grow[placeholder="장소를 입력하세요"]'); if(_li) _li.value='';
+        var _mb=document.getElementById('evmMap'); if(_mb) _mb.classList.remove('show');
         return;
       }
       var datePart=mt?mt[1]:''; var timePart=mt?mt[2]:''; var dayNum=datePart?parseInt(datePart.split('-')[2],10):null;
@@ -1043,6 +1045,8 @@ onAuthStateChanged(_auth, async function(user){
       saveEvents(); renderFeed(); renderStats(); renderImp(); if(window.renderCal) window.renderCal();
       const fb=document.querySelector('.vbtn[data-view="feed"]'); if(fb) fb.click();
       ti.value=''; if(ct) ct.value=''; if(modal&&modal._resetFiles) modal._resetFiles();
+      var _li=document.querySelector('.evm-input.grow[placeholder="장소를 입력하세요"]'); if(_li) _li.value='';
+      var _mb=document.getElementById('evmMap'); if(_mb) _mb.classList.remove('show');
     });
   })();
 
