@@ -1096,7 +1096,13 @@ onAuthStateChanged(_auth, function(user){
     m.orgs=editOrgs.map(function(o){ return {cat:o.cat,name:o.name,title:o.title}; }); syncOrgStr(m); saveOrgs(m); m.rec=g('dtfRec1')||'—'; m.rec2=g('dtfRec2')||'—'; m.rec3=g('dtfRec3')||'—';
     var d=deriveFromRrn(g('dtfRrn')); if(d){ m.age=d.age; m.ageb=d.ageb; m.sex=d.sex; }
     if(window._getMemberPhoto) m.photo=window._getMemberPhoto();
-    if(isNew){ m.no=members.length+1; members.push(m); dispMembers.push(m); }
+    if(isNew){
+      m.no=members.length+1; members.push(m); dispMembers.push(m);
+      if(voteStore['__new__']&&voteStore['__new__'].length){
+        voteStore[m.name]=(voteStore[m.name]||[]).concat(voteStore['__new__']);
+        voteStore['__new__']=[]; saveVoteStore();
+      }
+    }
     saveMembers(); recalcScores(); renderRows(); closeDetail();
   }
   if(_save) _save.addEventListener('click', function(){
@@ -1118,7 +1124,7 @@ onAuthStateChanged(_auth, function(user){
     loadOrgEditor([]);
     document.querySelectorAll('#dtfType .tseg-opt').forEach(function(o){ o.classList.toggle('on', o.dataset.v==='권리당원'); });
     if(window._setMemberPhoto) window._setMemberPhoto('');
-    curVoteName=null; renderVotes('__new__');
+    voteStore['__new__']=[]; curVoteName=null; renderVotes('__new__');
     var memoEl=document.getElementById('dtMemo'); if(memoEl) memoEl.value='';
     var rh=document.getElementById('dtfRrnHint'); if(rh){ rh.textContent='입력 시 나이·연령대·성별이 자동 계산됩니다'; rh.style.color=''; rh.style.fontWeight=''; }
     document.querySelector('.tab[data-pane="info"]').click();
