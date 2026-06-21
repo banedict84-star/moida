@@ -657,11 +657,6 @@ onAuthStateChanged(_auth, function(user){
   // normalize members: fill missing fields with defaults, assign mid
   (function(){
     var D={rrn:'—',dong:'—',org:'—',rec:'—',rec2:'—',rec3:'—',sub:'—',third:'—',addr:'—',addrDetail:'',family:null,age:'',ageb:'—',sex:'—',vote:'미확인',voteK:'err',katalk:'—',type:'일반당원',typeK:'old',krGrade:0,smGrade:0,photo:'',orgs:[]};
-    var pkey=function(p){ return String(p||'').replace(/[^0-9]/g,'').replace(/^0+/,''); };
-    var seen={};
-    members=members.filter(function(m){
-      var k=m.name+'|'+pkey(m.phone); if(seen[k]) return false; seen[k]=true; return true;
-    });
     members.forEach(function(m){
       Object.keys(D).forEach(function(k){ if(m[k]===undefined||m[k]===null&&k!=='family') m[k]=D[k]; });
       if(!m.mid){ m.mid='m'+Date.now()+Math.random().toString(36).slice(2,7); }
