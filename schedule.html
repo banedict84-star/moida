@@ -1001,14 +1001,9 @@
         ti.value=''; if(ct) ct.value=''; if(modal&&modal._resetFiles) modal._resetFiles();
         return;
       }
-      const el=document.createElement('div'); el.className='ev'; el.style.animation='evpop .35s ease';
-      el.innerHTML='<div class="ev-ico">'+ico+'</div><div class="ev-main"><div class="ev-t">'+title+'</div><div class="ev-meta">방민성 · '+created+'</div></div><div class="ev-date">'+evdate+'</div>';
-      el._evData={ body:bodyTxt, files:files, location:locVal };
-      feed.insertBefore(el, feed.firstChild);
-      const cnt=document.getElementById('evCount'); if(cnt) cnt.textContent=(+cnt.textContent+1);
       var datePart=mt?mt[1]:''; var timePart=mt?mt[2]:''; var dayNum=datePart?parseInt(datePart.split('-')[2],10):null;
-      events.unshift({ title:title, author:'방민성', created:created, date:datePart, time:timePart, d:dayNum, star:false });
-      saveEvents(); renderStats(); renderImp();
+      events.unshift({ title:title, author:'방민성', created:created, date:datePart, time:timePart, d:dayNum, star:false, _body:bodyTxt, _files:files, _location:locVal });
+      saveEvents(); renderFeed(); renderStats(); renderImp();
       const fb=document.querySelector('.vbtn[data-view="feed"]'); if(fb) fb.click();
       ti.value=''; if(ct) ct.value=''; if(modal&&modal._resetFiles) modal._resetFiles();
     });
