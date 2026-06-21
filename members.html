@@ -561,7 +561,7 @@ onAuthStateChanged(_auth, function(user){
     <div class="cf-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14"/></svg></div>
     <div class="cf-t" id="cfTitle"></div>
     <div class="cf-d" id="cfDesc"></div>
-    <div class="cf-confirm-wrap" id="cfConfirmWrap" style="display:none;margin:10px 20px 4px;">
+    <div class="cf-confirm-wrap" id="cfConfirmWrap" style="display:none;margin:10px 25px 4px;">
       <input id="cfConfirmInput" class="cf-confirm-inp" placeholder="'삭제' 라고 입력하세요" autocomplete="off">
     </div>
     <div class="cf-foot">
@@ -830,7 +830,7 @@ onAuthStateChanged(_auth, function(user){
     log.querySelectorAll('.vedit-btn').forEach(function(btn){
       btn.addEventListener('click', function(ev){ ev.stopPropagation();
         var idx=+btn.dataset.i;
-        open({idx:idx, entry:getVotes(curVoteName)[idx]});
+        if(window._openVoteModal) window._openVoteModal({idx:idx, entry:getVotes(curVoteName)[idx]});
       });
     });
   }
@@ -855,6 +855,7 @@ onAuthStateChanged(_auth, function(user){
     }
     function close(){ ovl.classList.remove('show'); modal.classList.remove('show'); editVoteIdx=null; }
     document.querySelectorAll('.vseg').forEach(function(seg){ seg.addEventListener('click', function(e){ var o=e.target.closest('.vseg-opt'); if(!o)return; seg.querySelectorAll('.vseg-opt').forEach(function(x){x.classList.remove('on');}); o.classList.add('on'); }); });
+    window._openVoteModal = open;
     document.getElementById('voteAddBtn').addEventListener('click', function(){ open(null); });
     document.getElementById('voteX').addEventListener('click', close);
     document.getElementById('voteCancel').addEventListener('click', close);
