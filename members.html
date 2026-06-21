@@ -317,8 +317,10 @@
   .ventry.out .vdot{ background:#c2410c; box-shadow:0 0 0 1.5px #c2410c; }
   .ventry.err .vdot{ background:#9298a8; box-shadow:0 0 0 1.5px #9298a8; }
   .ventry-top{ display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
-  .vdel-btn{ margin-left:auto; background:none; border:none; color:#cbd5e1; font-size:12px; cursor:pointer; padding:2px 4px; border-radius:4px; line-height:1; }
+  .ventry-actions{ margin-left:auto; display:flex; align-items:center; gap:2px; }
+  .vdel-btn,.vedit-btn{ background:none; border:none; color:#cbd5e1; font-size:12px; cursor:pointer; padding:3px 5px; border-radius:4px; line-height:1; display:flex; align-items:center; }
   .vdel-btn:hover{ color:#ef4444; background:#fef2f2; }
+  .vedit-btn:hover{ color:#3b82f6; background:#eff6ff; }
   .ventry-el{ font-size:13.5px; font-weight:700; }
   .vbadge2{ font-size:11px; font-weight:700; padding:2px 9px; border-radius:999px; }
   .vbadge2.vote{ color:#1a7f4b; background:#e6f5ec; }
@@ -642,6 +644,12 @@ onAuthStateChanged(_auth, function(user){
   function loadMembers(){ try{ var d=JSON.parse(localStorage.getItem(_MEM_KEY)); return Array.isArray(d)?d:[]; }catch(e){ return []; } }
   function saveMembers(){ localStorage.setItem(_MEM_KEY, JSON.stringify(members)); }
   var members = loadMembers();
+  // ensure every member has a unique mid
+  (function(){
+    var changed=false;
+    members.forEach(function(m){ if(!m.mid){ m.mid='m'+Date.now()+Math.random().toString(36).slice(2,7); changed=true; } });
+    if(changed) saveMembers();
+  })();
   const avaColors = ["#3b82f6","#10b981","#f59e0b","#8b5cf6","#ec4899","#06b6d4","#ef4444","#6366f1","#14b8a6","#f97316","#a855f7"];
   const scoreCls = s => s>=18?"sc-hi":s>=11?"sc-mid":"sc-lo";
   function addrKey(m){ var a=(m.addr||'').trim(); if(!a||a==='—') return ''; return a+'|'+((m.addrDetail||'').trim()); }
@@ -666,7 +674,7 @@ onAuthStateChanged(_auth, function(user){
   var leanMeta={ ours:{c:'#16a34a',label:'우리편'}, rival:{c:'#e0322c',label:'상대편'}, float:{c:'#eab308',label:'중도'}, none:{c:'#aab0bd',label:'무관심'} };
   var defaultLean={ '이서연':'ours','박준호':'rival','최은정':'ours','정우성':'float','한지민':'ours','오세훈':'rival','강하늘':'float','문소리':'ours','류승범':'none','배수지':'float' };
   function leanOf(m){
-    var v=(typeof voteStore!=='undefined' && voteStore[m.name])||[];
+    var v=(typeof voteStore!=='undefined' && (voteStore[m.mid]||voteStore[m.name]))||[];
     if(v.length){
       var o=0,r=0,f=0,act=0;
       v.forEach(function(x){ if(x.support==='ours')o++; else if(x.support==='rival')r++; else if(x.support==='float')f++; if(x.voted==='vote')act++; });
@@ -764,14 +772,27 @@ onAuthStateChanged(_auth, function(user){
   var VOTE_KEY = 'moida_votes_' + _uid;
   var MEMO_KEY = 'moida_memos_' + _uid;
   var _savedVotes = {}; try{ var _sv=localStorage.getItem(VOTE_KEY); if(_sv) _savedVotes=JSON.parse(_sv); }catch(e){}
-  var voteStore = Object.assign({ '김민재':[
-    {election:'2026 지방선거 경선', date:'2026.05.18 · 사전투표', voted:'vote', support:'ours', cand:'장윤정', note:'사전투표소 안내 문자 발송 후 투표 확인. 가족 2명 동반.'},
-    {election:'2024 제22대 국회의원선거', date:'2024.04.10', voted:'vote', support:'ours', cand:'더불어민주당', note:''},
-    {election:'2022 지방선거', date:'2022.06.01', voted:'err', support:'float', cand:'', note:'투표 여부·지지 후보 확인 불가 — 연락 두절 시기.'},
-    {election:'2022 대선', date:'2022.03.09', voted:'out', support:'rival', cand:'', note:''}
-  ]}, _savedVotes); // localStorage 데이터가 기본값을 덮어씀
+  var voteStore = Object.assign({}, _savedVotes);
+  // migrate any name-keyed entries to mid-keyed entries
+  (function(){
+    var changed=false;
+    members.forEach(function(m){
+      if(!m.mid) return;
+      if(voteStore[m.name]&&!voteStore[m.mid]){ voteStore[m.mid]=voteStore[m.name]; delete voteStore[m.name]; changed=true; }
+    });
+    if(changed) try{ localStorage.setItem(VOTE_KEY, JSON.stringify(voteStore)); }catch(e){}
+  })();
   function saveVoteStore(){ try{ localStorage.setItem(VOTE_KEY, JSON.stringify(voteStore)); }catch(e){} }
   var memoStore = {}; try{ var _sm=localStorage.getItem(MEMO_KEY); if(_sm) memoStore=JSON.parse(_sm); }catch(e){}
+  // migrate memo name-keys to mid-keys
+  (function(){
+    var changed=false;
+    members.forEach(function(m){
+      if(!m.mid) return;
+      if(memoStore[m.name]!==undefined&&memoStore[m.mid]===undefined){ memoStore[m.mid]=memoStore[m.name]; delete memoStore[m.name]; changed=true; }
+    });
+    if(changed) try{ localStorage.setItem(MEMO_KEY, JSON.stringify(memoStore)); }catch(e){}
+  })();
   function saveMemoStore(){ try{ localStorage.setItem(MEMO_KEY, JSON.stringify(memoStore)); }catch(e){} }
   members.forEach(function(m){ m.lean=leanOf(m); });
   document.querySelectorAll('#dtfType .tseg-opt').forEach(function(o){ o.addEventListener('click', function(){ document.querySelectorAll('#dtfType .tseg-opt').forEach(function(x){x.classList.remove('on');}); o.classList.add('on'); }); });
@@ -792,31 +813,49 @@ onAuthStateChanged(_auth, function(user){
       return '<div class="ventry '+e.voted+'"><span class="vdot"></span>'+
         '<div class="ventry-top"><span class="ventry-el">'+(e.election||'(선거 미입력)')+'</span>'+
         '<span class="vbadge2 '+e.voted+'">'+votedLabel[e.voted]+'</span>'+sup+
-        '<button class="vdel-btn" data-i="'+i+'" title="삭제">✕</button></div>'+
+        '<span class="ventry-actions">'+
+        '<button class="vedit-btn" data-i="'+i+'" title="수정"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>'+
+        '<button class="vdel-btn" data-i="'+i+'" title="삭제">✕</button>'+
+        '</span></div>'+
         (e.date?('<div class="ventry-date">'+e.date+'</div>'):'')+note+'</div>';
     }).join('');
     log.querySelectorAll('.vdel-btn').forEach(function(btn){
-      btn.addEventListener('click', function(e){ e.stopPropagation();
+      btn.addEventListener('click', function(ev){ ev.stopPropagation();
         var idx=+btn.dataset.i;
         moidaConfirm({title:'투표 기록 삭제', desc:'이 투표 기록을 삭제합니다.<br>삭제한 기록은 복구할 수 없어요.', ok:'삭제', confirmWord:'삭제'}, function(){
           getVotes(curVoteName).splice(idx,1); saveVoteStore(); renderVotes(curVoteName);
         });
       });
     });
+    log.querySelectorAll('.vedit-btn').forEach(function(btn){
+      btn.addEventListener('click', function(ev){ ev.stopPropagation();
+        var idx=+btn.dataset.i;
+        open({idx:idx, entry:getVotes(curVoteName)[idx]});
+      });
+    });
   }
   (function(){
     var dm=document.getElementById('dtMemo');
-    if(dm) dm.addEventListener('input', function(){ if(curVoteName){ memoStore[curVoteName]=this.value; saveMemoStore(); } });
+    if(dm) dm.addEventListener('input', function(){ if(curVoteName&&curVoteName!=='__new__'){ memoStore[curVoteName]=this.value; saveMemoStore(); } });
     var ovl=document.getElementById('voteOvl'), modal=document.getElementById('voteModal');
+    var editVoteIdx=null;
     function setSeg(id,val){ document.querySelectorAll('#'+id+' .vseg-opt').forEach(function(o){ o.classList.toggle('on', o.dataset.v===val); }); }
-    function open(){
-      ['vfElection','vfCand','vfNote','vfDate'].forEach(function(id){ var el=document.getElementById(id); if(el) el.value=''; });
-      setSeg('vsegVoted','vote'); setSeg('vsegSup','ours');
+    function open(prefill){
+      editVoteIdx = prefill!=null ? prefill.idx : null;
+      var e = prefill ? prefill.entry : null;
+      document.getElementById('vfElection').value = e?e.election:'';
+      document.getElementById('vfCand').value = e?e.cand:'';
+      document.getElementById('vfNote').value = e?e.note:'';
+      var dateVal='';
+      if(e&&e.date){ var dp=e.date.split('·')[0].trim().replace(/\./g,'-'); if(/^\d{4}-\d{2}-\d{2}$/.test(dp)) dateVal=dp; }
+      document.getElementById('vfDate').value = dateVal;
+      setSeg('vsegVoted', e?e.voted:'vote'); setSeg('vsegSup', e?e.support:'ours');
+      var saveBtn=document.getElementById('voteSave'); if(saveBtn) saveBtn.textContent=e?'수정':'저장';
       ovl.classList.add('show'); modal.classList.add('show');
     }
-    function close(){ ovl.classList.remove('show'); modal.classList.remove('show'); }
+    function close(){ ovl.classList.remove('show'); modal.classList.remove('show'); editVoteIdx=null; }
     document.querySelectorAll('.vseg').forEach(function(seg){ seg.addEventListener('click', function(e){ var o=e.target.closest('.vseg-opt'); if(!o)return; seg.querySelectorAll('.vseg-opt').forEach(function(x){x.classList.remove('on');}); o.classList.add('on'); }); });
-    document.getElementById('voteAddBtn').addEventListener('click', open);
+    document.getElementById('voteAddBtn').addEventListener('click', function(){ open(null); });
     document.getElementById('voteX').addEventListener('click', close);
     document.getElementById('voteCancel').addEventListener('click', close);
     ovl.addEventListener('click', close);
@@ -824,14 +863,16 @@ onAuthStateChanged(_auth, function(user){
       if(!curVoteName) return;
       var vEl=document.querySelector('#vsegVoted .vseg-opt.on'), sEl=document.querySelector('#vsegSup .vseg-opt.on');
       var d=document.getElementById('vfDate').value;
-      getVotes(curVoteName).unshift({
+      var entry={
         election:document.getElementById('vfElection').value.trim(),
         date:d?d.replace(/-/g,'.'):'',
         voted:vEl?vEl.dataset.v:'vote',
         support:sEl?sEl.dataset.v:'',
         cand:document.getElementById('vfCand').value.trim(),
         note:document.getElementById('vfNote').value.trim()
-      });
+      };
+      var list=getVotes(curVoteName);
+      if(editVoteIdx!=null){ list.splice(editVoteIdx,1,entry); } else { list.unshift(entry); }
       saveVoteStore();
       renderVotes(curVoteName); close();
     });
@@ -984,8 +1025,8 @@ onAuthStateChanged(_auth, function(user){
     V('dtfRec1',m.rec); V('dtfRec2',m.rec2); V('dtfRec3',m.rec3);
     document.querySelectorAll('#dtfType .tseg-opt').forEach(function(o){ o.classList.toggle('on', o.dataset.v===m.type); });
     if(window._setMemberPhoto) window._setMemberPhoto(m.photo||'');
-    renderVotes(m.name);
-    var memoEl=document.getElementById('dtMemo'); if(memoEl) memoEl.value=memoStore[m.name]||'';
+    renderVotes(m.mid||m.name);
+    var memoEl=document.getElementById('dtMemo'); if(memoEl) memoEl.value=memoStore[m.mid||m.name]||'';
     document.querySelector('.tab[data-pane="info"]').click();
     showDetail();
   });
@@ -1109,8 +1150,9 @@ onAuthStateChanged(_auth, function(user){
     if(window._getMemberPhoto) m.photo=window._getMemberPhoto();
     if(isNew){
       m.no=members.length+1; members.push(m); dispMembers.push(m);
+      if(!m.mid) m.mid='m'+Date.now()+Math.random().toString(36).slice(2,7);
       if(voteStore['__new__']&&voteStore['__new__'].length){
-        voteStore[m.name]=(voteStore[m.name]||[]).concat(voteStore['__new__']);
+        voteStore[m.mid]=(voteStore[m.mid]||[]).concat(voteStore['__new__']);
         voteStore['__new__']=[]; saveVoteStore();
       }
     }
