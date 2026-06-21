@@ -415,11 +415,35 @@
 
   function keywords(){ return (input.value||'').trim().toLowerCase().split(/\s+/).filter(Boolean); }
   function dnum(d){ if(!d) return 0; return +(d.replace(/\./g,'').replace(/[^0-9]/g,'')); }
+  // 네이버는 API가 언론사명을 안 주므로 도메인→언론사명 변환표로 표시
+  var PRESS_MAP={
+    'yna.co.kr':'연합뉴스','yonhapnews.co.kr':'연합뉴스','news1.kr':'뉴스1','newsis.com':'뉴시스',
+    'chosun.com':'조선일보','joongang.co.kr':'중앙일보','donga.com':'동아일보','hani.co.kr':'한겨레',
+    'khan.co.kr':'경향신문','hankookilbo.com':'한국일보','seoul.co.kr':'서울신문','segye.com':'세계일보',
+    'kmib.co.kr':'국민일보','munhwa.com':'문화일보','hankyung.com':'한국경제','mk.co.kr':'매일경제',
+    'mt.co.kr':'머니투데이','sedaily.com':'서울경제','edaily.co.kr':'이데일리','fnnews.com':'파이낸셜뉴스',
+    'asiae.co.kr':'아시아경제','heraldcorp.com':'헤럴드경제','newspim.com':'뉴스핌','ajunews.com':'아주경제',
+    'nocutnews.co.kr':'노컷뉴스','ohmynews.com':'오마이뉴스','pressian.com':'프레시안','mediatoday.co.kr':'미디어오늘',
+    'ytn.co.kr':'YTN','sbs.co.kr':'SBS','kbs.co.kr':'KBS','imbc.com':'MBC','mbn.co.kr':'MBN','jtbc.co.kr':'JTBC',
+    'newscj.com':'천지일보','asiatime.co.kr':'아시아타임즈','thereport.co.kr':'더리포트','siminilbo.co.kr':'시민일보',
+    'kyeonggi.com':'경기일보','kgnews.co.kr':'경기신문','joongboo.com':'중부일보','kihoilbo.co.kr':'기호일보',
+    'incheonilbo.com':'인천일보','kgdaily.co.kr':'경기데일리','joongangenews.com':'중앙이뉴스','nspna.com':'NSP통신',
+    'newscj.com':'천지일보','dailian.co.kr':'데일리안','newsworks.co.kr':'뉴스웍스','viva100.com':'브릿지경제',
+    'newspost.kr':'뉴스포스트','breaknews.com':'브레이크뉴스','newdaily.co.kr':'뉴데일리','tf.co.kr':'더팩트',
+    'kookje.co.kr':'국제신문','busan.com':'부산일보','idomin.com':'경남도민일보','kado.net':'강원도민일보',
+    'today-ansan.com':'투데이안산','ansansm.co.kr':'안산신문','newswave.kr':'뉴스웨이브'
+  };
+  function prettyPress(n){
+    var p=(n.press||'').trim(); if(!p) return '뉴스';
+    if(p.indexOf('.')<0) return p;                       // 이미 언론사명
+    var d=p.replace(/^www\./,'').toLowerCase();
+    return PRESS_MAP[d] || d.replace(/\.(co\.kr|or\.kr|go\.kr|com|net|kr|news)$/,'');
+  }
   function visible(){ var list; if(liveMode) list=NEWS.slice(); else{ var ks=keywords().map(function(k){ return k.replace(/\s+/g,''); }).filter(Boolean); list=NEWS.filter(function(n){ var hay=(n.title+' '+n.press+' '+n.snippet).toLowerCase().replace(/\s+/g,''); return ks.every(function(k){ return hay.indexOf(k)>=0; }); }); } return list.sort(function(a,b){ return dnum(b.date)-dnum(a.date); }); }
   function renderList(){
     var items = visible();
     nlist.innerHTML = items.map(function(n){
-      return '<div class="ncard'+(n.id===curId?' sel':'')+'" data-id="'+n.id+'"><div class="nt">'+srcBadge(n.source)+esc(n.title)+'</div><div class="nmeta"><span class="press-pill">'+n.press+'</span>'+(n.date?'<span>'+n.date+'</span>':'')+'</div><div class="nprev">'+esc(n.snippet)+'</div></div>';
+      return '<div class="ncard'+(n.id===curId?' sel':'')+'" data-id="'+n.id+'"><div class="nt">'+srcBadge(n.source)+esc(n.title)+'</div><div class="nmeta"><span class="press-pill">'+esc(prettyPress(n))+'</span>'+(n.date?'<span>'+n.date+'</span>':'')+'</div><div class="nprev">'+esc(n.snippet)+'</div></div>';
     }).join('') || '<div style="padding:40px 4px;color:var(--ink-4);font-size:14px;">검색 결과가 없습니다. 위에서 키워드를 입력해 구글·네이버에서 검색해 보세요.</div>';
     if(items.length){ var still=items.some(function(n){return n.id===curId;}); selectNews(still?curId:items[0].id); }
     else { ndTitle.textContent='기사를 선택하세요'; ndMeta.innerHTML='<span>검색 결과가 없습니다.</span>'; ndBody.innerHTML=''; }
@@ -428,9 +452,9 @@
     var n = NEWS.find(function(x){return x.id===id;}); if(!n) return; curId=id;
     nlist.querySelectorAll('.ncard').forEach(function(c){ c.classList.toggle('sel', +c.dataset.id===id); });
     ndTitle.textContent = n.title;
-    ndMeta.innerHTML = srcBadge(n.source)+'<span class="press-pill">'+n.press+'</span>'+(n.date?'<span>'+n.date+'</span>':'');
+    ndMeta.innerHTML = srcBadge(n.source)+'<span class="press-pill">'+esc(prettyPress(n))+'</span>'+(n.date?'<span>'+n.date+'</span>':'');
     ndBody.innerHTML = '<p style="font-size:14.5px;line-height:1.7;color:var(--ink-2)">'+esc(n.snippet)+'</p>'+
-      '<a class="src-link" href="'+n.url+'" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>'+n.press+' 원문 보기</a>';
+      '<a class="src-link" href="'+n.url+'" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>'+esc(prettyPress(n))+' 원문 보기</a>';
   }
   nlist.addEventListener('click', function(e){ var c=e.target.closest('.ncard'); if(c) selectNews(+c.dataset.id); });
 
