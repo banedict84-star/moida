@@ -362,6 +362,16 @@
   @media (max-width:1080px){ .app, .app.collapsed{ grid-template-columns:1fr; } .sidebar{ display:none; } .page-head,.chips,.toolbar,.work{ padding-left:16px; padding-right:16px; } }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+const _app = initializeApp({apiKey:"AIzaSyAIjhvbCztHoF7YwP2IYIk2C6jCI64uFhs",authDomain:"jjj2195-1bd15.firebaseapp.com",projectId:"jjj2195-1bd15",storageBucket:"jjj2195-1bd15.firebasestorage.app",messagingSenderId:"370852437825",appId:"1:370852437825:web:b0a891d6a99b426d230bc0"});
+const _auth = getAuth(_app);
+onAuthStateChanged(_auth, function(user){
+  if(!user){ location.href='index.html'; return; }
+  sessionStorage.setItem('moida_auth_user', JSON.stringify({uid:user.uid, email:user.email, displayName:user.displayName||''}));
+});
+</script>
 </head>
 <body>
 <div class="app">
@@ -621,6 +631,8 @@
 </script>
 
 <script>
+  var _authUser = JSON.parse(sessionStorage.getItem('moida_auth_user')||'{}');
+  var _uid = _authUser.uid || 'default';
   const members = [
     { no:1,  score:92, name:"김민재", phone:"010-2211-3344", rrn:"850302-1******", dong:"성포동", type:"기존당원", typeK:"old", org:"성포번영회", vote:"투표완료", voteK:"vote", age:39, ageb:"30대", sex:"남", rec:"이상훈", sub:"—", third:"이아하", katalk:"수신", katalkReply:"완료", sms:"발송", family:4, addr:"안산시 상록구 성포동" },
     { no:2,  score:88, name:"이서연", phone:"010-7788-1020", rrn:"910715-2******", dong:"일동", type:"신규당원", typeK:"new", org:"—", vote:"투표완료", voteK:"vote", age:34, ageb:"30대", sex:"여", rec:"박정희", sub:"김도현", third:"—", katalk:"수신", katalkReply:"미답", sms:"발송", family:2, addr:"안산시 상록구 일동" },
@@ -674,7 +686,7 @@
   var catMeta={ '직장':{bg:'#e8f1fe',fg:'#2563eb'}, '단체':{bg:'#e7f6ee',fg:'#0f9d63'}, '정치':{bg:'#f1ebfd',fg:'#7c3aed'}, '봉사':{bg:'#fff1e6',fg:'#d9730d'}, '기타':{bg:'#f1f3f7',fg:'#697089'} };
   function catColor(c){ return catMeta[c]||catMeta['기타']; }
   // 기존 단일 m.org 문자열을 orgs 배열로 정규화 (+ 저장된 소속 불러오기)
-  var _orgStore=JSON.parse(localStorage.getItem('moida_orgs')||'{}');
+  var _orgStore=JSON.parse(localStorage.getItem('moida_orgs_' + _uid)||'{}');
   members.forEach(function(m){
     if(Array.isArray(_orgStore[m.name])){ m.orgs=_orgStore[m.name]; }
     if(!Array.isArray(m.orgs)){
@@ -719,7 +731,7 @@
   function saveRecChain(){
     var m=recPop._mem, c=recPop._chain; if(!m) return;
     m.rec=c[0]||'—'; m.sub=c[1]||'—'; m.third=c[2]||'—';
-    var rk='moida_rec_chains'; var store=JSON.parse(localStorage.getItem(rk)||'{}'); store[m.name]=c; localStorage.setItem(rk, JSON.stringify(store));
+    var rk='moida_rec_chains_' + _uid; var store=JSON.parse(localStorage.getItem(rk)||'{}'); store[m.name]=c; localStorage.setItem(rk, JSON.stringify(store));
     renderRows();
   }
   (function(){
@@ -745,7 +757,7 @@
     orgPop.addEventListener('drop',function(e){ e.preventDefault(); var r=e.target.closest('.rp-row'); if(r==null||di==null) return; var to=+r.dataset.oi; var m=orgPop._mem; var it=m.orgs.splice(di,1)[0]; m.orgs.splice(to,0,it); di=null; syncOrgStr(m); saveOrgs(m); renderOrgPop(); renderRows(); });
   })();
   document.addEventListener('mousedown',function(e){ if(!orgPop.contains(e.target) && !(e.target.closest&&e.target.closest('.org-link'))) orgPop.classList.remove('show'); });
-  function saveOrgs(m){ var k='moida_orgs'; var store=JSON.parse(localStorage.getItem(k)||'{}'); store[m.name]=m.orgs; localStorage.setItem(k, JSON.stringify(store)); }
+  function saveOrgs(m){ var k='moida_orgs_' + _uid; var store=JSON.parse(localStorage.getItem(k)||'{}'); store[m.name]=m.orgs; localStorage.setItem(k, JSON.stringify(store)); }
   function showDetail(){ detailPanel.classList.add('show'); dtOvl.classList.add('show'); }
   function closeDetail(){ detailPanel.classList.remove('show'); dtOvl.classList.remove('show'); tbody.querySelectorAll('tr').forEach(t=>t.classList.remove('sel')); }
   document.getElementById('dtClose').addEventListener('click', closeDetail);
@@ -814,7 +826,7 @@
     });
   })();
   // 게이지 등급 기본값 + 저장
-  const GRADE_KEY='moida_member_grades';
+  const GRADE_KEY='moida_member_grades_' + _uid;
   var savedGrades=JSON.parse(localStorage.getItem(GRADE_KEY)||'{}');
   members.forEach(function(m){
     var g=savedGrades[m.name]||{};
@@ -822,7 +834,7 @@
     m.smGrade = g.sm!=null ? g.sm : (m.sms==='발송'?4:m.sms==='수신거부'?1:m.sms==='—'?0:3);
   });
   function saveGrades(){ var o={}; members.forEach(function(m){ o[m.name]={kr:m.krGrade, sm:m.smGrade}; }); localStorage.setItem(GRADE_KEY, JSON.stringify(o)); }
-  (function(){ var saved=JSON.parse(localStorage.getItem('moida_rec_chains')||'{}'); members.forEach(function(m){ var c=saved[m.name]; if(c){ m.rec=c[0]||'—'; m.sub=c[1]||'—'; m.third=c[2]||'—'; } }); })();
+  (function(){ var saved=JSON.parse(localStorage.getItem('moida_rec_chains_' + _uid)||'{}'); members.forEach(function(m){ var c=saved[m.name]; if(c){ m.rec=c[0]||'—'; m.sub=c[1]||'—'; m.third=c[2]||'—'; } }); })();
   recalcScores();
   function gauge(field, val){
     var b=''; for(var k=1;k<=5;k++){ b+='<span class="gb '+(k<=val?'on'+val:'')+'" data-g="'+field+'" data-v="'+k+'"></span>'; }
