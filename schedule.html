@@ -1331,9 +1331,9 @@ onAuthStateChanged(_auth, async function(user){
     document.getElementById('rlSave').onclick=function(){ porg.textContent=title+' · '+sel+' 권한'; close(); };
   };
 
-  // member management
+  // member management (초대된 의원실 멤버만 — 조직관리 구성원과 별도)
   (function(){
-    var MEM_KEY='moida_members_' + _uid;
+    var MEM_KEY='moida_staff_' + _uid;
     var COLORS=['#1452a0','#2f74c9','#f59e0b','#0d9488','#7c3aed','#dc2626','#059669','#d97706'];
     function load(){
       try{ var d=JSON.parse(localStorage.getItem(MEM_KEY)); return Array.isArray(d)?d:[]; }
