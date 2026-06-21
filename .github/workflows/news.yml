@@ -163,7 +163,7 @@ jobs:
 
           for q in KEYWORDS:
               print("\n[키워드]", q)
-              for name, fn in [("네이버", naver), ("구글", google), ("다음", daum)]:
+              for name, fn in [("네이버", naver), ("구글", google)]:
                   try:
                       rows = fn(q); add(rows); print("  %s: %d건" % (name, len(rows)))
                   except Exception as e:
