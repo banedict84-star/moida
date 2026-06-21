@@ -628,16 +628,14 @@
         </div>
       </div>
       <aside class="parts">
-        <div class="parts-h">의원실 멤버 <span id="memCount">4</span></div>
+        <div class="parts-h">의원실 멤버 <span id="memCount">0</span></div>
         <div class="pgroup">
           <div class="pg-t">의원 <span>1</span></div>
           <div class="prow"><span class="pava" style="background:#ec4899">장</span><div class="pinfo"><div class="pname">장윤정 <span class="role-pill">경기도의원</span></div><div class="porg">계정 소유자 · 관리자</div></div></div>
         </div>
-        <div class="pgroup">
-          <div class="pg-t">보좌진 <span>3</span></div>
-          <div class="prow"><span class="pava" style="background:#1452a0">방</span><div class="pinfo"><div class="pname">방민성 <span class="pme">나</span></div><div class="porg">수석보좌관 · 편집 권한</div></div></div>
-          <div class="prow"><span class="pava" style="background:#2f74c9">박</span><div class="pinfo"><div class="pname">박지영</div><div class="porg">보좌관 · 편집 권한</div></div><button class="pedit" title="권한 설정" onclick="editRole(this,'박지영','#2f74c9')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button><button class="pdel" title="멤버 삭제" onclick="removeMember(this,'박지영')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14"/></svg></button></div>
-          <div class="prow"><span class="pava" style="background:#f59e0b">반</span><div class="pinfo"><div class="pname">반수정</div><div class="porg">행정비서 · 열람 권한</div></div><button class="pedit" title="권한 설정" onclick="editRole(this,'반수정','#f59e0b')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button><button class="pdel" title="멤버 삭제" onclick="removeMember(this,'반수정')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14"/></svg></button></div>
+        <div class="pgroup" id="staffGroup">
+          <div class="pg-t">보좌진 <span id="staffCount">0</span></div>
+          <div id="staffList"></div>
         </div>
         <div class="pg-add"><button class="invite-btn" id="inviteBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M19 8v6M22 11h-6"/></svg>멤버 초대</button></div>
       </aside>
@@ -1221,11 +1219,63 @@
     document.getElementById('rlSave').onclick=function(){ porg.textContent=title+' · '+sel+' 권한'; close(); };
   };
 
-  // invite member modal
+  // member management
   (function(){
+    var MEM_KEY='moida_members';
+    var COLORS=['#1452a0','#2f74c9','#f59e0b','#0d9488','#7c3aed','#dc2626','#059669','#d97706'];
+    var DEFAULT=[
+      { name:'방민성', title:'수석보좌관', role:'편집', color:'#1452a0', isMe:true },
+      { name:'박지영', title:'보좌관', role:'편집', color:'#2f74c9' },
+      { name:'반수정', title:'행정비서', role:'열람', color:'#f59e0b' }
+    ];
+    function load(){ try{ var d=JSON.parse(localStorage.getItem(MEM_KEY)); return Array.isArray(d)?d:DEFAULT.slice(); }catch(e){ return DEFAULT.slice(); } }
+    function save(arr){ localStorage.setItem(MEM_KEY,JSON.stringify(arr)); }
+    var editSvg='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>';
+    var delSvg='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14"/></svg>';
+    function renderMembers(){
+      var arr=load();
+      var list=document.getElementById('staffList');
+      var sc=document.getElementById('staffCount');
+      var mc=document.getElementById('memCount');
+      if(!list) return;
+      list.innerHTML=arr.map(function(m,i){
+        var me=m.isMe?'<span class="pme">나</span>':'';
+        var btns=m.isMe?'':'<button class="pedit" title="권한 설정" data-mi="'+i+'">'+editSvg+'</button><button class="pdel" title="멤버 삭제" data-mi="'+i+'">'+delSvg+'</button>';
+        return '<div class="prow"><span class="pava" style="background:'+m.color+'">'+m.name.charAt(0)+'</span><div class="pinfo"><div class="pname">'+m.name+' '+me+'</div><div class="porg">'+m.title+' · '+m.role+' 권한</div></div>'+btns+'</div>';
+      }).join('');
+      if(sc) sc.textContent=arr.length;
+      if(mc) mc.textContent=arr.length+1;
+      // bind buttons
+      list.querySelectorAll('.pdel').forEach(function(b){ b.addEventListener('click',function(){
+        var i=+b.dataset.mi; var arr2=load(); var nm=arr2[i]?arr2[i].name:'멤버';
+        moidaConfirm({ title:'멤버 삭제', desc:'<b>'+nm+'</b>을(를) 의원실에서 내보냅니다.', ok:'삭제' }, function(){
+          arr2.splice(i,1); save(arr2); renderMembers();
+        });
+      }); });
+      list.querySelectorAll('.pedit').forEach(function(b){ b.addEventListener('click',function(){
+        var i=+b.dataset.mi; var arr2=load(); var m=arr2[i]; if(!m) return;
+        var ovl2=document.getElementById('rlOvl');
+        document.getElementById('rlAva').textContent=m.name.charAt(0);
+        document.getElementById('rlAva').style.background=m.color;
+        document.getElementById('rlName').textContent=m.name;
+        var sel=m.role;
+        document.querySelectorAll('.rl-opt').forEach(function(o){ o.classList.toggle('sel', o.dataset.role===sel); o.onclick=function(){ sel=o.dataset.role; document.querySelectorAll('.rl-opt').forEach(function(x){x.classList.remove('sel');}); o.classList.add('sel'); }; });
+        ovl2.classList.add('show');
+        function closeRl(){ ovl2.classList.remove('show'); }
+        document.getElementById('rlCancel').onclick=closeRl;
+        ovl2.onclick=function(e){ if(e.target===ovl2) closeRl(); };
+        document.getElementById('rlSave').onclick=function(){
+          var titleEl=document.querySelector('.rl-opt.sel');
+          arr2[i].role=sel; save(arr2); renderMembers(); closeRl();
+        };
+      }); });
+    }
+    renderMembers();
+
+    // invite member modal
     var ovl=document.getElementById('ivOvl'), btn=document.getElementById('inviteBtn');
     if(!ovl||!btn) return;
-    function open(){ document.getElementById('ivOk').textContent=''; ovl.classList.add('show'); }
+    function open(){ document.getElementById('ivOk').textContent=''; document.getElementById('ivEmail').value=''; document.getElementById('ivName').value=''; ovl.classList.add('show'); }
     function close(){ ovl.classList.remove('show'); }
     btn.addEventListener('click', open);
     document.getElementById('ivX').addEventListener('click', close);
@@ -1233,13 +1283,18 @@
     ovl.addEventListener('click', function(e){ if(e.target===ovl) close(); });
     document.getElementById('ivSend').addEventListener('click', function(){
       var email=document.getElementById('ivEmail').value.trim();
-      var name=document.getElementById('ivName').value.trim();
+      var rawName=document.getElementById('ivName').value.trim();
       var role=document.getElementById('ivRole').value;
-      if(!email){ document.getElementById('ivOk').style.color='#dc2626'; document.getElementById('ivOk').textContent='이메일을 입력하세요'; return; }
+      if(!rawName){ document.getElementById('ivOk').style.color='#dc2626'; document.getElementById('ivOk').textContent='이름을 입력하세요'; return; }
+      // parse "이름 · 직책" format
+      var parts=rawName.split(/[·\·\/]/); var nm=parts[0].trim(); var title=parts[1]?parts[1].trim():'보좌진';
+      var arr2=load();
+      var color=COLORS[arr2.length % COLORS.length];
+      arr2.push({ name:nm, title:title, role:role, color:color });
+      save(arr2); renderMembers();
       document.getElementById('ivOk').style.color='#0f9d63';
-      document.getElementById('ivOk').textContent='초대를 보냈습니다 — '+email+' ('+role+')';
+      document.getElementById('ivOk').textContent=(email?email+' — ':'')+nm+' 님이 추가되었습니다';
       setTimeout(close, 1400);
-      document.getElementById('ivEmail').value=''; document.getElementById('ivName').value='';
     });
   })();
 
