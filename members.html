@@ -1146,7 +1146,7 @@ onAuthStateChanged(_auth, function(user){
     if(g('dtDong')) m.dong=g('dtDong');
     var fam=g('dtFamily').replace(/[^0-9]/g,''); if(fam) m.family=+fam;
     var tsel=document.querySelector('#dtfType .tseg-opt.on'); if(tsel){ m.type=tsel.dataset.v; m.typeK=typeToK(m.type); }
-    m.orgs=editOrgs.map(function(o){ return {cat:o.cat,name:o.name,title:o.title}; }); syncOrgStr(m); saveOrgs(m); m.rec=g('dtfRec1')||'—'; m.rec2=g('dtfRec2')||'—'; m.rec3=g('dtfRec3')||'—';
+    m.orgs=editOrgs.map(function(o){ return {cat:o.cat,name:o.name,title:o.title}; }); syncOrgStr(m); saveOrgs(m); m.rec=g('dtfRec1')||'—'; m.rec2=g('dtfRec2')||'—'; m.rec3=g('dtfRec3')||'—'; m.sub=m.rec2; m.third=m.rec3;
     var d=deriveFromRrn(g('dtfRrn')); if(d){ m.age=d.age; m.ageb=d.ageb; m.sex=d.sex; }
     if(window._getMemberPhoto) m.photo=window._getMemberPhoto();
     if(isNew){
