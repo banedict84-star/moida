@@ -317,6 +317,13 @@
   .ventry.out .vdot{ background:#c2410c; box-shadow:0 0 0 1.5px #c2410c; }
   .ventry.err .vdot{ background:#9298a8; box-shadow:0 0 0 1.5px #9298a8; }
   .ventry-top{ display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+  .type-pick{ cursor:pointer; }
+  .type-pick:hover{ opacity:.75; }
+  .type-pop{ position:fixed; background:#fff; border:1px solid var(--line); border-radius:12px; box-shadow:0 8px 28px rgba(0,0,0,.13); padding:6px; z-index:9999; display:none; flex-direction:column; gap:2px; min-width:110px; }
+  .type-pop.show{ display:flex; }
+  .type-pop-opt{ padding:7px 12px; border-radius:8px; font-size:13px; font-weight:600; cursor:pointer; display:flex; align-items:center; gap:7px; }
+  .type-pop-opt:hover{ background:var(--line-soft); }
+  .type-pop-opt .d{ width:7px; height:7px; border-radius:50%; flex:0 0 auto; }
   .ventry-actions{ margin-left:auto; display:flex; align-items:center; gap:2px; }
   .vdel-btn,.vedit-btn{ background:none; border:none; color:#cbd5e1; font-size:12px; cursor:pointer; padding:3px 5px; border-radius:4px; line-height:1; display:flex; align-items:center; }
   .vdel-btn:hover{ color:#ef4444; background:#fef2f2; }
@@ -570,6 +577,9 @@ onAuthStateChanged(_auth, function(user){
     </div>
   </div>
 </div>
+
+<!-- 당원구분 인라인 선택 팝업 -->
+<div class="type-pop" id="typePop"></div>
 
 <!-- 투표 기록 추가 모달 -->
 <div class="addr-ovl" id="voteOvl"></div>
@@ -935,7 +945,7 @@ onAuthStateChanged(_auth, function(user){
       <td>${m.phone}</td>
       <td class="muted-cell">${m.rrn}</td>
       <td>${m.dong}</td>
-      <td>${(!m.type||m.type==='—')?'<span class="muted-cell">—</span>':'<span class="tag tg-'+m.typeK+'"><span class="d" style="background:currentColor"></span>'+m.type+'</span>'}</td>
+      <td class="type-cell" data-i="${i}">${(!m.type||m.type==='—')?'<span class="muted-cell type-pick">—</span>':'<span class="tag tg-'+m.typeK+' type-pick"><span class="d" style="background:currentColor"></span>'+m.type+'</span>'}</td>
       <td>${orgCellHtml(m)}</td>
       <td>${signalCell(m)}</td>
       <td>${m.age}</td>
@@ -950,6 +960,39 @@ onAuthStateChanged(_auth, function(user){
     </tr>`; }).join("");
   }
   renderRows();
+
+  // 당원구분 인라인 변경 팝업
+  (function(){
+    var TYPES=['권리당원','일반당원','탈당자','일반시민','기타'];
+    var pop=document.getElementById('typePop');
+    var curI=null;
+    pop.innerHTML=TYPES.map(function(t){ var k=typeToK(t); return '<div class="type-pop-opt" data-t="'+t+'"><span class="d" style="background:var(--tg-'+k+'-c,#aab0bd)"></span>'+t+'</div>'; }).join('');
+    // tg 색상 변수 매핑
+    var tgC={'old':'#6b7280','new':'#2563eb','out':'#dc2626','기타':'#8b5cf6','일반시민':'#10b981'};
+    pop.querySelectorAll('.type-pop-opt').forEach(function(opt){
+      var t=opt.dataset.t, k=typeToK(t);
+      var c=k==='old'?'#6b7280':k==='out'?'#dc2626':'#2563eb';
+      opt.querySelector('.d').style.background=c;
+      opt.addEventListener('click', function(e){ e.stopPropagation();
+        if(curI==null) return;
+        var m=members[curI]; if(!m) return;
+        m.type=t; m.typeK=typeToK(t);
+        saveMembers(); recalcScores(); renderRows();
+        pop.classList.remove('show');
+      });
+    });
+    tbody.addEventListener('click', function(e){
+      var pick=e.target.closest('.type-pick');
+      if(!pick){ pop.classList.remove('show'); return; }
+      e.stopPropagation();
+      var td=pick.closest('.type-cell'); if(!td) return;
+      curI=+td.dataset.i;
+      var rect=pick.getBoundingClientRect();
+      pop.style.top=(rect.bottom+4)+'px'; pop.style.left=rect.left+'px';
+      pop.classList.add('show');
+    });
+    document.addEventListener('click', function(){ pop.classList.remove('show'); });
+  })();
 
   // 다중선택 필터 (행정동·당원구분·연령대·성별)
   (function(){
