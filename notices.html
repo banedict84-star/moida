@@ -323,6 +323,16 @@
   </main>
 </div>
 
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+const _app = initializeApp({apiKey:"AIzaSyAIjhvbCztHoF7YwP2IYIk2C6jCI64uFhs",authDomain:"jjj2195-1bd15.firebaseapp.com",projectId:"jjj2195-1bd15",storageBucket:"jjj2195-1bd15.firebasestorage.app",messagingSenderId:"370852437825",appId:"1:370852437825:web:b0a891d6a99b426d230bc0"});
+const _auth = getAuth(_app);
+onAuthStateChanged(_auth, function(user){
+  if(!user){ location.href='index.html'; return; }
+  sessionStorage.setItem('moida_auth_user', JSON.stringify({uid:user.uid, email:user.email, displayName:user.displayName||''}));
+});
+</script>
 <script>
   // src: 'admin' = 총관리자(MOIDA) 입력 / 'central' = 민주당 중앙당 (theminjoo.kr 공지사항 brd=1)
   const LIST = "https://theminjoo.kr/main/sub/news/list.php?brd=1";

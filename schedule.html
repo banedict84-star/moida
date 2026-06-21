@@ -563,6 +563,16 @@
   .prev-ovl .prev-dl{ background:#fff; color:#15182a; border:none; border-radius:8px; padding:8px 18px; font-weight:700; font-size:13px; cursor:pointer; }
   .prev-ovl .prev-cl{ background:rgba(255,255,255,.15); color:#fff; border:none; border-radius:8px; padding:8px 18px; font-weight:700; font-size:13px; cursor:pointer; }
 </style>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+const _app = initializeApp({apiKey:"AIzaSyAIjhvbCztHoF7YwP2IYIk2C6jCI64uFhs",authDomain:"jjj2195-1bd15.firebaseapp.com",projectId:"jjj2195-1bd15",storageBucket:"jjj2195-1bd15.firebasestorage.app",messagingSenderId:"370852437825",appId:"1:370852437825:web:b0a891d6a99b426d230bc0"});
+const _auth = getAuth(_app);
+onAuthStateChanged(_auth, function(user){
+  if(!user){ location.href='index.html'; return; }
+  sessionStorage.setItem('moida_auth_user', JSON.stringify({uid:user.uid, email:user.email, displayName:user.displayName||''}));
+});
+</script>
 </head>
 <body>
 <div class="app">
@@ -745,7 +755,9 @@
 </div>
 
 <script>
-  const EV_KEY='moida_events';
+  var _authUser = JSON.parse(sessionStorage.getItem('moida_auth_user')||'{}');
+  var _uid = _authUser.uid || 'default';
+  const EV_KEY='moida_events_' + _uid;
   var events = JSON.parse(localStorage.getItem(EV_KEY)||'[]');
   function saveEvents(){ localStorage.setItem(EV_KEY, JSON.stringify(events)); }
 
@@ -1221,7 +1233,7 @@
 
   // member management
   (function(){
-    var MEM_KEY='moida_members';
+    var MEM_KEY='moida_members_' + _uid;
     var COLORS=['#1452a0','#2f74c9','#f59e0b','#0d9488','#7c3aed','#dc2626','#059669','#d97706'];
     // admin.html 캐시에서 불러오되, 없으면 moida_members fallback
     function load(){
