@@ -808,6 +808,18 @@ onAuthStateChanged(_auth, async function(user){
   window.toggleStar=function(ev,i){ ev.stopPropagation(); events[i].star=!events[i].star; saveStars(); renderFeed(); renderImp(); };
   renderFeed();
   renderImp();
+  // ?open=제목 파라미터로 특정 일정 자동 오픈
+  (function(){
+    var _q=new URLSearchParams(location.search).get('open');
+    if(!_q) return;
+    history.replaceState(null,'',location.pathname); // URL 정리
+    setTimeout(function(){
+      var rows=document.querySelectorAll('#feedView .ev');
+      for(var i=0;i<rows.length;i++){
+        if(rows[i].querySelector('.ev-t').textContent.trim()===_q){ rows[i].click(); break; }
+      }
+    }, 100);
+  })();
   document.querySelectorAll('.at-btn').forEach(function(b){ b.addEventListener('click',function(){ document.querySelectorAll('.at-btn').forEach(function(x){x.classList.remove('on');}); b.classList.add('on'); _authorFilter=b.dataset.author; renderFeed(); }); });
   document.getElementById('evCount').textContent = events.length;
 

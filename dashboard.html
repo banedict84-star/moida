@@ -594,7 +594,7 @@ onAuthStateChanged(_auth, function(user){
         var p=(e.date||'').split('-'); var d=new Date(+p[0],+p[1]-1,+p[2]);
         var mon=(d.getMonth()+1)+'월', day=d.getDate(), dow=dows[d.getDay()]||'';
         var dateStr=e.date.replace(/-/g,'.')+' ('+dow+') · '+e.time;
-        return '<div class="sched-row" onclick="location.href=\'schedule.html\'" style="cursor:pointer">'
+        return '<div class="sched-row" onclick="location.href=\'schedule.html?open='+encodeURIComponent(e.title)+'\'" style="cursor:pointer">'
           +'<div class="date-chip"><span class="m">'+mon+'</span><span class="d">'+day+'</span></div>'
           +'<div class="r-main"><div class="r-t">'+esc(e.title)+'</div><div class="r-s">'+esc(dateStr)+'</div></div></div>';
       }).join('');
