@@ -371,8 +371,10 @@
   .cf-foot{ display:flex; gap:9px; padding:22px; }
   .cf-cancel{ flex:1; padding:12px; border:1px solid var(--line); background:#fff; border-radius:11px; font-family:inherit; font-size:14px; font-weight:700; color:var(--ink-2); cursor:pointer; }
   .cf-cancel:hover{ background:var(--line-soft); }
-  .cf-ok{ flex:1; padding:12px; border:none; background:#dc2626; color:#fff; border-radius:11px; font-family:inherit; font-size:14px; font-weight:700; cursor:pointer; box-shadow:0 4px 12px rgba(220,38,38,.26); }
-  .cf-ok:hover{ background:#c01f1f; }
+  .cf-ok{ flex:1; padding:12px; border:none; background:#dc2626; color:#fff; border-radius:11px; font-family:inherit; font-size:14px; font-weight:700; cursor:pointer; box-shadow:0 4px 12px rgba(220,38,38,.26); transition:opacity .15s; }
+  .cf-ok:hover:not(:disabled){ background:#c01f1f; }
+  .cf-confirm-inp{ width:100%; box-sizing:border-box; border:1.5px solid #e2e8f0; border-radius:9px; padding:9px 12px; font-size:14px; font-family:inherit; outline:none; transition:border-color .15s; }
+  .cf-confirm-inp:focus{ border-color:#dc2626; }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 <script type="module">
@@ -546,20 +548,8 @@ onAuthStateChanged(_auth, function(user){
   </main>
 </div>
 
-<!-- 주소 검색 모달 -->
-<div class="addr-ovl" id="addrOvl"></div>
-<div class="addr-modal" id="addrModal">
-  <div class="addr-head">
-    <h3>주소 검색</h3>
-    <button class="addr-x" id="addrX" aria-label="닫기">✕</button>
-  </div>
-  <div class="addr-search">
-    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4-4"/></svg>
-    <input id="addrInput" placeholder="도로명·지번·건물명으로 검색 (예: 성포동, 안산시청)">
-  </div>
-  <div class="addr-hint" id="addrHint">검색어를 입력하면 주소 후보가 표시됩니다.</div>
-  <div class="addr-results" id="addrResults"></div>
-</div>
+<!-- 주소 검색: Kakao Postcode API -->
+<script src="//t1.kakaocdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 <!-- 커스텀 확인 모달 -->
 <div class="cf-ovl" id="cfOvl">
@@ -567,6 +557,9 @@ onAuthStateChanged(_auth, function(user){
     <div class="cf-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14"/></svg></div>
     <div class="cf-t" id="cfTitle"></div>
     <div class="cf-d" id="cfDesc"></div>
+    <div class="cf-confirm-wrap" id="cfConfirmWrap" style="display:none;margin:10px 0 4px;">
+      <input id="cfConfirmInput" class="cf-confirm-inp" placeholder="'삭제' 라고 입력하세요" autocomplete="off">
+    </div>
     <div class="cf-foot">
       <button class="cf-cancel" id="cfCancel">취소</button>
       <button class="cf-ok" id="cfOk">삭제</button>
@@ -625,38 +618,18 @@ onAuthStateChanged(_auth, function(user){
 </style>
 <script>
   (function(){
-    var DB=[
-      {road:"경기 안산시 상록구 성포로 12", jibun:"성포동 532-1", dong:"성포동", zip:"15370", fam:3},
-      {road:"경기 안산시 상록구 성포로 45", jibun:"성포동 610", dong:"성포동", zip:"15371", fam:2},
-      {road:"경기 안산시 단원구 화랑로 387 (안산시청)", jibun:"고잔동 516", dong:"고잔동", zip:"15247", fam:1},
-      {road:"경기 안산시 상록구 충장로 432", jibun:"이동 727", dong:"이동", zip:"15588", fam:4},
-      {road:"경기 안산시 상록구 한양대학로 55", jibun:"일동 425", dong:"일동", zip:"15434", fam:2},
-      {road:"경기 안산시 단원구 광덕대로 220", jibun:"고잔동 720", dong:"고잔동", zip:"15236", fam:3},
-      {road:"경기 안산시 상록구 예술광장로 69", jibun:"성포동 489", dong:"성포동", zip:"15369", fam:5}
-    ];
-    var ovl=document.getElementById('addrOvl'), modal=document.getElementById('addrModal');
-    var inp=document.getElementById('addrInput'), res=document.getElementById('addrResults'), hint=document.getElementById('addrHint');
-    function open(){ ovl.classList.add('show'); modal.classList.add('show'); inp.value=''; render(''); setTimeout(function(){ inp.focus(); },80); }
-    function close(){ ovl.classList.remove('show'); modal.classList.remove('show'); }
-    function render(q){
-      q=(q||'').trim();
-      hint.style.display = q ? 'none':'block';
-      var list = !q ? [] : DB.filter(function(a){ return (a.road+a.jibun+a.dong).toLowerCase().indexOf(q.toLowerCase())>=0; });
-      res.innerHTML = list.map(function(a){ return '<div class="addr-item" data-road="'+a.road+'" data-dong="'+a.dong+'" data-fam="'+a.fam+'"><div class="zip">'+a.zip+'</div><div class="road">'+a.road+'</div><div class="jibun">지번 · '+a.jibun+'</div></div>'; }).join('') || (q?'<div class="addr-hint" style="padding:14px 10px">검색 결과가 없습니다.</div>':'');
+    function openKakaoAddr(){
+      new kakao.Postcode({
+        oncomplete: function(data){
+          var addr = data.roadAddress || data.autoRoadAddress || data.jibunAddress || '';
+          var dong = data.bname || data.bname2 || '';
+          var addrField=document.getElementById('dtAddr'); if(addrField) addrField.value=addr;
+          var dongInp=document.getElementById('dtDong'); if(dongInp) dongInp.value=dong;
+        }
+      }).open();
     }
-    inp&&inp.addEventListener('input', function(){ render(this.value); });
-    res&&res.addEventListener('click', function(e){
-      var it=e.target.closest('.addr-item'); if(!it) return;
-      var addr=document.getElementById('dtAddr'); if(addr) addr.value=it.getAttribute('data-road');
-      var dongInp=document.getElementById('dtDong'); if(dongInp) dongInp.value=it.getAttribute('data-dong');
-      var famInp=document.getElementById('dtFamily'); if(famInp) famInp.value=it.getAttribute('data-fam')+'명';
-      close();
-    });
-    var btn=document.getElementById('addrSearchBtn'); btn&&btn.addEventListener('click', open);
-    var addrField=document.getElementById('dtAddr'); addrField&&addrField.addEventListener('click', open);
-    document.getElementById('addrX').addEventListener('click', close);
-    ovl.addEventListener('click', close);
-    document.addEventListener('keydown', function(e){ if(e.key==='Escape' && modal.classList.contains('show')) close(); });
+    var btn=document.getElementById('addrSearchBtn'); btn&&btn.addEventListener('click', openKakaoAddr);
+    var addrField=document.getElementById('dtAddr'); addrField&&addrField.addEventListener('click', openKakaoAddr);
   })();
 </script>
 
@@ -1159,20 +1132,34 @@ onAuthStateChanged(_auth, function(user){
     var ovl=document.getElementById('cfOvl');
     document.getElementById('cfTitle').textContent=opts.title||'확인';
     document.getElementById('cfDesc').innerHTML=opts.desc||'';
-    document.getElementById('cfOk').textContent=opts.ok||'확인';
-    var _cb=null;
+    var okBtn=document.getElementById('cfOk');
+    okBtn.textContent=opts.ok||'확인';
+    var needConfirm=opts.confirmWord||null;
+    var wrap=document.getElementById('cfConfirmWrap');
+    var inp=document.getElementById('cfConfirmInput');
+    if(needConfirm){
+      wrap.style.display='block';
+      inp.value='';
+      okBtn.disabled=true; okBtn.style.opacity='0.45';
+      inp.oninput=function(){ var ok=inp.value===needConfirm; okBtn.disabled=!ok; okBtn.style.opacity=ok?'':'0.45'; };
+    } else {
+      wrap.style.display='none';
+      inp.oninput=null;
+      okBtn.disabled=false; okBtn.style.opacity='';
+    }
     function close(){ ovl.classList.remove('show'); }
     document.getElementById('cfCancel').onclick=function(){ close(); };
     ovl.onclick=function(e){ if(e.target===ovl) close(); };
-    document.getElementById('cfOk').onclick=function(){ close(); if(onOk) onOk(); };
+    okBtn.onclick=function(){ if(okBtn.disabled) return; close(); if(onOk) onOk(); };
     ovl.classList.add('show');
+    if(needConfirm) setTimeout(function(){ inp.focus(); }, 80);
   }
 
   var _delBtn=document.querySelector('.dt-foot .btn.del');
   if(_delBtn) _delBtn.addEventListener('click', function(){
     if(curEditIdx==null) return;
     var nm=members[curEditIdx]&&members[curEditIdx].name||'이 당원';
-    moidaConfirm({ title:'구성원 삭제', desc:'<b>'+nm+'</b> 을(를) 삭제합니다.<br>삭제한 구성원은 복구할 수 없어요.', ok:'삭제' }, function(){
+    moidaConfirm({ title:'구성원 삭제', desc:'<b>'+nm+'</b> 을(를) 삭제합니다.<br>삭제한 구성원은 복구할 수 없어요.', ok:'삭제', confirmWord:'삭제' }, function(){
       members.splice(curEditIdx,1);
       dispMembers=members.slice();
       saveMembers(); recalcScores(); renderRows(); closeDetail();
