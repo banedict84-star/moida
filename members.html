@@ -444,7 +444,7 @@ onAuthStateChanged(_auth, function(user){
           </table>
         </div>
         <div class="table-foot">
-          <div class="tf-left">조회 <b>11</b>명 · 당원을 클릭하면 상세정보가 표시됩니다</div>
+          <div class="tf-left" id="tfLeft">조회 <b>0</b>명 · 당원을 클릭하면 상세정보가 표시됩니다</div>
           <div class="pager">
             <div class="pg">‹</div><div class="pg active">1</div><div class="pg">›</div>
           </div>
@@ -637,19 +637,10 @@ onAuthStateChanged(_auth, function(user){
 <script>
   var _authUser = JSON.parse(sessionStorage.getItem('moida_auth_user')||'{}');
   var _uid = _authUser.uid || 'default';
-  const members = [
-    { no:1,  score:92, name:"김민재", phone:"010-2211-3344", rrn:"850302-1******", dong:"성포동", type:"기존당원", typeK:"old", org:"성포번영회", vote:"투표완료", voteK:"vote", age:39, ageb:"30대", sex:"남", rec:"이상훈", sub:"—", third:"이아하", katalk:"수신", katalkReply:"완료", sms:"발송", family:4, addr:"안산시 상록구 성포동" },
-    { no:2,  score:88, name:"이서연", phone:"010-7788-1020", rrn:"910715-2******", dong:"일동", type:"신규당원", typeK:"new", org:"—", vote:"투표완료", voteK:"vote", age:34, ageb:"30대", sex:"여", rec:"박정희", sub:"김도현", third:"—", katalk:"수신", katalkReply:"미답", sms:"발송", family:2, addr:"안산시 상록구 일동" },
-    { no:3,  score:75, name:"박준호", phone:"010-3344-9090", rrn:"780119-1******", dong:"와동", type:"권리당원", typeK:"old", org:"와동상가번영회", vote:"미확인", voteK:"err", age:46, ageb:"40대", sex:"남", rec:"—", sub:"—", third:"—", katalk:"거부", katalkReply:"—", sms:"수신거부", family:3, addr:"안산시 상록구 와동" },
-    { no:4,  score:81, name:"최은정", phone:"010-5050-2323", rrn:"880920-2******", dong:"성포동", type:"기존당원", typeK:"old", org:"학부모회", vote:"투표완료", voteK:"vote", age:37, ageb:"30대", sex:"여", rec:"김민재", sub:"—", third:"김민재", katalk:"수신", katalkReply:"완료", sms:"발송", family:5, addr:"안산시 상록구 성포동" },
-    { no:5,  score:64, name:"정우성", phone:"010-1212-7878", rrn:"700405-1******", dong:"이동", type:"신규당원", typeK:"new", org:"—", vote:"미확인", voteK:"err", age:54, ageb:"50대", sex:"남", rec:"홍길동", sub:"이서연", third:"—", katalk:"미수신", katalkReply:"—", sms:"발송", family:1, addr:"안산시 상록구 이동" },
-    { no:6,  score:90, name:"한지민", phone:"010-9090-1234", rrn:"950612-2******", dong:"일동", type:"기존당원", typeK:"old", org:"청년회", vote:"투표완료", voteK:"vote", age:30, ageb:"30대", sex:"여", rec:"최은정", sub:"—", third:"—", katalk:"수신", katalkReply:"완료", sms:"발송", family:3, addr:"안산시 상록구 일동" },
-    { no:7,  score:48, name:"오세훈", phone:"010-4455-6677", rrn:"650208-1******", dong:"성포동", type:"탈당", typeK:"out", org:"—", vote:"불참", voteK:"out", age:59, ageb:"50대", sex:"남", rec:"—", sub:"—", third:"—", katalk:"거부", katalkReply:"—", sms:"—", family:2, addr:"안산시 상록구 성포동" },
-    { no:8,  score:79, name:"강하늘", phone:"010-6677-8899", rrn:"930411-1******", dong:"와동", type:"신규당원", typeK:"new", org:"체육회", vote:"투표완료", voteK:"vote", age:32, ageb:"30대", sex:"남", rec:"박준호", sub:"—", third:"—", katalk:"수신", katalkReply:"완료", sms:"발송", family:4, addr:"안산시 상록구 와동" },
-    { no:9,  score:85, name:"문소리", phone:"010-2020-4040", rrn:"820707-2******", dong:"이동", type:"기존당원", typeK:"old", org:"부녀회", vote:"투표완료", voteK:"vote", age:43, ageb:"40대", sex:"여", rec:"한지민", sub:"강하늘", third:"강하늘", katalk:"수신", katalkReply:"미답", sms:"발송", family:6, addr:"안산시 상록구 이동" },
-    { no:10, score:55, name:"류승범", phone:"010-3131-5252", rrn:"760923-1******", dong:"일동", type:"기존당원", typeK:"old", org:"—", vote:"미확인", voteK:"err", age:48, ageb:"40대", sex:"남", rec:"정우성", sub:"—", third:"—", katalk:"미수신", katalkReply:"—", sms:"발송", family:2, addr:"안산시 상록구 일동" },
-    { no:11, score:71, name:"배수지", phone:"010-8080-9191", rrn:"940225-2******", dong:"성포동", type:"신규당원", typeK:"new", org:"문화센터", vote:"투표완료", voteK:"vote", age:31, ageb:"30대", sex:"여", rec:"문소리", sub:"—", third:"—", katalk:"수신", katalkReply:"완료", sms:"발송", family:3, addr:"안산시 상록구 성포동" },
-  ];
+  var _MEM_KEY = 'moida_members_' + _uid;
+  function loadMembers(){ try{ var d=JSON.parse(localStorage.getItem(_MEM_KEY)); return Array.isArray(d)?d:[]; }catch(e){ return []; } }
+  function saveMembers(){ localStorage.setItem(_MEM_KEY, JSON.stringify(members)); }
+  var members = loadMembers();
   const avaColors = ["#3b82f6","#10b981","#f59e0b","#8b5cf6","#ec4899","#06b6d4","#ef4444","#6366f1","#14b8a6","#f97316","#a855f7"];
   const scoreCls = s => s>=18?"sc-hi":s>=11?"sc-mid":"sc-lo";
   function addrKey(m){ var a=(m.addr||'').trim(); if(!a||a==='—') return ''; return a+'|'+((m.addrDetail||'').trim()); }
@@ -857,6 +848,7 @@ onAuthStateChanged(_auth, function(user){
         && (!filters.sex.length || filters.sex.indexOf(m.sex)>=0)
         && (!searchKw || [m.name,m.phone,m.addr,m.rec,m.rec2,m.rec3,m.sub,m.third,m.dong,(m.orgs||[]).map(orgRepText).join(' ')].some(function(v){ return v!=null && String(v).toLowerCase().replace(/-/g,'').indexOf(searchKw)>=0; }));
     });
+    var tfLeft=document.getElementById('tfLeft'); if(tfLeft) tfLeft.innerHTML='조회 <b>'+rows.length+'</b>명 · 당원을 클릭하면 상세정보가 표시됩니다';
     tbody.innerHTML = rows.map(function(m,ri){ var i=members.indexOf(m); return `
     <tr data-i="${i}">
       <td class="muted-cell">${ri+1}</td>
@@ -1100,7 +1092,7 @@ onAuthStateChanged(_auth, function(user){
     var d=deriveFromRrn(g('dtfRrn')); if(d){ m.age=d.age; m.ageb=d.ageb; m.sex=d.sex; }
     if(window._getMemberPhoto) m.photo=window._getMemberPhoto();
     if(isNew){ m.no=members.length+1; members.push(m); dispMembers.push(m); }
-    recalcScores(); renderRows(); closeDetail();
+    saveMembers(); recalcScores(); renderRows(); closeDetail();
   }
   if(_save) _save.addEventListener('click', function(){
     var nm=(document.getElementById('dtfName').value||'').trim();
@@ -1130,6 +1122,15 @@ onAuthStateChanged(_auth, function(user){
   }
   var _addTop=document.getElementById('addTopBtn'); if(_addTop) _addTop.addEventListener('click', openNew);
   var _addFoot=document.querySelector('.dt-foot .btn.add'); if(_addFoot) _addFoot.addEventListener('click', openNew);
+  var _delBtn=document.querySelector('.dt-foot .btn.del');
+  if(_delBtn) _delBtn.addEventListener('click', function(){
+    if(curEditIdx==null) return;
+    var nm=members[curEditIdx]&&members[curEditIdx].name||'이 당원';
+    if(!confirm(nm+' 을(를) 삭제하시겠습니까?')) return;
+    members.splice(curEditIdx,1);
+    dispMembers=members.slice();
+    saveMembers(); recalcScores(); renderRows(); closeDetail();
+  });
 
   // 증명사진 업로드
   (function(){
@@ -1333,7 +1334,7 @@ onAuthStateChanged(_auth, function(user){
         var ln=get('lean'); if(ln && LEAN_K[ln]){ defaultLean[nm]=LEAN_K[ln]; }
         if(isNew){ members.push(m); dispMembers.push(m); added++; } else { updated++; }
       }
-      recalcScores(); renderRows();
+      saveMembers(); recalcScores(); renderRows();
       return {added:added, updated:updated, skipped:skipped};
     }
     var imBtn=document.getElementById('csvImportBtn'), file=document.getElementById('csvFile');
