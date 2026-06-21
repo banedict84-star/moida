@@ -437,8 +437,8 @@
   .evm-input.grow{ flex:1; }
   .evm-dash{ color:var(--ink-4); }
   .evm-allday{ margin-left:auto; display:flex; align-items:center; gap:6px; font-size:13px; color:var(--ink-2); font-weight:600; }
-  .evm-chip{ display:inline-flex; align-items:center; gap:6px; background:var(--line-soft); padding:4px 6px 4px 4px; border-radius:20px; font-size:12.5px; font-weight:600; color:var(--ink); }
-  .evm-chip .pa{ width:22px; height:22px; border-radius:50%; background:#3b82f6; color:#fff; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; }
+  .evm-chip{ display:inline-flex; align-items:center; gap:8px; background:var(--primary-soft); padding:6px 12px 6px 6px; border-radius:999px; font-size:13px; font-weight:700; color:var(--primary-600); border:1px solid #c8daf5; }
+  .evm-chip .pa{ width:26px; height:26px; border-radius:50%; background:linear-gradient(140deg,#2f74c9,#0e3f80); color:#fff; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:800; box-shadow:0 2px 6px rgba(20,82,160,.3); flex-shrink:0; }
   .evm-chip .rm{ color:var(--ink-3); cursor:pointer; }
   .evm-link{ color:var(--primary); font-weight:600; cursor:pointer; }
   .evm-row select{ border:none; font-family:inherit; font-size:13.5px; color:var(--ink); outline:none; background:transparent; cursor:pointer; font-weight:500; }
@@ -685,7 +685,6 @@ onAuthStateChanged(_auth, async function(user){
       <div class="evm-row">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.2"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0"/></svg>
         <span class="evm-chip" id="myChip"><span class="pa" id="myChipAva">?</span><span id="myChipName">나</span></span>
-        <input class="evm-input grow" placeholder="참석자 추가">
       </div>
       <div class="evm-row">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-5.6-7-11a7 7 0 0 1 14 0c0 5.4-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
@@ -984,7 +983,7 @@ onAuthStateChanged(_auth, async function(user){
         var mapBox=document.getElementById('evmMap'); if(!mapBox) return;
         if(!q){ mapBox.classList.remove('show'); return; }
         var enc=encodeURIComponent(q);
-        document.getElementById('evmMapFrame').src='https://maps.google.com/maps?q='+enc+'&z=15&output=embed';
+        document.getElementById('evmMapFrame').src='https://maps.google.com/maps?q='+enc+'&z=15&output=embed&hl=ko&region=KR';
         document.getElementById('evmMapAddr').textContent=q;
         document.getElementById('evmMapLink').href='https://www.google.com/maps/search/?api=1&query='+enc;
         mapBox.classList.add('show');
