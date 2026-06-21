@@ -81,7 +81,7 @@ jobs:
                    "더불어민주당", "민주당", "선거구", "도정", "의정"]
           def naver_api(q):
               if not (NID and NSEC): return None
-              url = "https://openapi.naver.com/v1/search/news.json?query=%s&display=30&sort=date" % urllib.parse.quote(q)
+              url = "https://openapi.naver.com/v1/search/news.json?query=%s&display=100&sort=date" % urllib.parse.quote(q)
               try:
                   r = requests.get(url, headers={"X-Naver-Client-Id": NID, "X-Naver-Client-Secret": NSEC}, timeout=15)
               except Exception as e:
@@ -102,7 +102,7 @@ jobs:
                   if title and link:
                       out.append({"source": "naver", "press": host(link) or "네이버뉴스", "date": d,
                                   "title": title, "snippet": desc[:160], "url": link})
-                  if len(out) >= 12: break
+                  if len(out) >= 50: break
               return out
 
           # ── 네이버: API 키 없을 때 HTML 스크래핑(베스트 에포트) ──────────
@@ -181,7 +181,7 @@ jobs:
           now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
           if pool:
               with open("news_data.json", "w", encoding="utf-8") as f:
-                  json.dump({"updated": now, "items": pool[:120]}, f, ensure_ascii=False, indent=2)
+                  json.dump({"updated": now, "items": pool[:250]}, f, ensure_ascii=False, indent=2)
           else:
               print("수집 0건 — 기존 news_data.json 유지")
           EOF
