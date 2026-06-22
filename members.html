@@ -428,6 +428,9 @@ onAuthStateChanged(_auth, async function(user){
     try{ localStorage.setItem('moida_members_'+user.uid, JSON.stringify(fsData)); }catch(e){}
     if(window._reloadMembersFromFS) window._reloadMembersFromFS(fsData);
   }
+  // 투표활동(성향 근거)도 Firestore에서 불러와 복원
+  var fsVotes = await window._fsLoad(user.uid, 'votes');
+  if(fsVotes && window._mergeVotesFromFS) window._mergeVotesFromFS(fsVotes);
 });
 </script>
 </head>
@@ -869,7 +872,14 @@ onAuthStateChanged(_auth, async function(user){
     });
     if(changed) try{ localStorage.setItem(VOTE_KEY, JSON.stringify(voteStore)); }catch(e){}
   })();
-  function saveVoteStore(){ try{ localStorage.setItem(VOTE_KEY, JSON.stringify(voteStore)); }catch(e){} }
+  function saveVoteStore(){ try{ localStorage.setItem(VOTE_KEY, JSON.stringify(voteStore)); }catch(e){} if(window._fsSave && _uid && _uid!=='default') window._fsSave(_uid, 'votes', voteStore); }
+  // Firestore에서 불러온 투표활동을 병합 후 재렌더(성향 복원)
+  window._mergeVotesFromFS = function(v){
+    if(!v || typeof v!=='object') return;
+    Object.keys(v).forEach(function(k){ voteStore[k]=v[k]; });
+    try{ localStorage.setItem(VOTE_KEY, JSON.stringify(voteStore)); }catch(e){}
+    recalcScores(); renderRows();
+  };
   var memoStore = {}; try{ var _sm=localStorage.getItem(MEMO_KEY); if(_sm) memoStore=JSON.parse(_sm); }catch(e){}
   // migrate memo name-keys to mid-keys
   (function(){
