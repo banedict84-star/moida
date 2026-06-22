@@ -1114,12 +1114,12 @@ onAuthStateChanged(_auth, async function(user){
       var datePart=mt?mt[1]:''; var timePart=mt?mt[2]:''; var dayNum=datePart?parseInt(datePart.split('-')[2],10):null;
       var endDate=mte?mte[1]:''; var endTime=mte?mte[2]:'';
       if(window._editEv){
-        var obj=window._editEv._ev; // 카드에 연결된 실제 이벤트 객체
+        var obj=window._editEvObj||window._editEv._ev; // 수정 열 때 잡아둔 실제 이벤트 객체
         if(obj){
           obj.title=title; obj.date=datePart; obj.time=timePart; obj.endDate=endDate; obj.endTime=endTime; obj.d=dayNum;
           obj._body=bodyTxt; obj._files=(files.length?files:(obj._files||[])); obj._location=locVal||obj._location||'';
         }
-        window._editEv=null;
+        window._editEv=null; window._editEvObj=null;
         saveEvents(); renderFeed(); renderImp(); renderStats(); if(window.renderCal) window.renderCal(); // 저장 + 갱신
         var sb2=document.querySelector('.evm-submit'); if(sb2) sb2.textContent='등록';
         ti.value=''; if(ct) ct.value=''; if(modal&&modal._resetFiles) modal._resetFiles();
@@ -1274,7 +1274,11 @@ onAuthStateChanged(_auth, async function(user){
     // 수정 → 작성 모달을 채워 열기
     p.querySelector('[data-edit]').addEventListener('click',function(){
       var ev=p._curEv; if(!ev) return;
-      var obj=ev._ev||{};
+      // 카드 연결(_ev)이 없으면 제목+작성시각으로 실제 이벤트를 찾아 잡아둠(견고)
+      var obj=ev._ev;
+      if(!obj){ var _t0=ev.querySelector('.ev-t').textContent.trim(); var _c0=(ev.querySelector('.ev-meta').textContent.split('·').slice(1).join('·')).trim(); obj=events.find(function(e){ return e.title===_t0 && e.created===_c0; }); }
+      window._editEvObj=obj||null;
+      obj=obj||{};
       var title=obj.title||ev.querySelector('.ev-t').textContent.trim();
       var dt=(obj.date&&obj.time)?(obj.date+' '+obj.time):ev.querySelector('.ev-date').textContent.trim();
       var ti=document.querySelector('.evm-titleinput'); if(ti) ti.value=title;
