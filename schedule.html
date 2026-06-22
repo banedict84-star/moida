@@ -1031,8 +1031,7 @@ onAuthStateChanged(_auth, async function(user){
     const add = document.querySelector('.add-ev'); if(add) add.addEventListener('click', open);
     const cbar = document.getElementById('composeBar'); if(cbar) cbar.addEventListener('click', open);
     document.querySelectorAll('[data-evclose]').forEach(function(b){ b.addEventListener('click', close); });
-    m.addEventListener('click', function(e){ if(e.target===m) close(); });
-    document.addEventListener('keydown', function(e){ if(e.key==='Escape') close(); });
+    // 일정 작성/수정 중에는 바깥 클릭·ESC로 닫히지 않게(X 또는 등록/수정완료로만 닫힘)
     document.querySelectorAll('.evm-tab').forEach(function(t){ t.addEventListener('click', function(){ document.querySelectorAll('.evm-tab').forEach(function(x){ x.classList.remove('active'); }); t.classList.add('active'); }); });
     // 대시보드 '일정 추가'로 진입하면 일정추가 팝업 자동 열기 (1회만 — URL 정리해 새로고침 시 재오픈 방지)
     try{ if(new URLSearchParams(location.search).get('new')==='1'){ history.replaceState(null,'',location.pathname); setTimeout(function(){ open(); }, 120); } }catch(e){}
