@@ -698,6 +698,9 @@ onAuthStateChanged(_auth, async function(user){
       }
       if(m.rrn&&m.rrn!=='—'){ var _d=deriveFromRrn(m.rrn); if(_d){ if(!m.age||m.age==='') m.age=_d.age; if(!m.ageb||m.ageb==='—') m.ageb=_d.ageb; if(!m.sex||m.sex==='—') m.sex=_d.sex; } }
     });
+    // re-apply grades from localStorage so they survive Firestore reload
+    var _sg=JSON.parse(localStorage.getItem(GRADE_KEY)||'{}');
+    members.forEach(function(m){ var g=_sg[m.mid]||_sg[m.name]||{}; if(g.kr!=null) m.krGrade=g.kr; if(g.sm!=null) m.smGrade=g.sm; });
     localStorage.setItem(_MEM_KEY, JSON.stringify(members));
     dispMembers = members.slice();
     if(window._orgStore) members.forEach(function(m){ if(Array.isArray(window._orgStore[m.mid])) m.orgs=window._orgStore[m.mid]; if(!Array.isArray(m.orgs)) m.orgs=(m.org&&m.org!=='—')?[{cat:'단체',name:m.org,title:'',rep:true}]:[]; var _r=orgRep(m); m.org=_r?orgRepText(_r):'—'; });
@@ -1157,7 +1160,7 @@ onAuthStateChanged(_auth, async function(user){
       var tr=gb.closest('tr'); var m=members[+tr.dataset.i];
       var f=gb.dataset.g, v=+gb.dataset.v;
       if(f==='kr') m.krGrade=(m.krGrade===v?0:v); else m.smGrade=(m.smGrade===v?0:v);
-      saveGrades(); recalcScores(); renderRows();
+      saveGrades(); saveMembers(); recalcScores(); renderRows();
       return;
     }
     var tr=e.target.closest('tr'); if(!tr) return;
