@@ -1320,7 +1320,7 @@ onAuthStateChanged(_auth, async function(user){
   })();
   function doSave(){
     var isNew=(curEditIdx==null);
-    var m=isNew ? {no:0,score:0,rrn:'—',dong:'—',org:'—',rec:'—',rec2:'—',rec3:'—',addr:'—',addrDetail:'',family:null,age:'',ageb:'—',sex:'—',vote:'미확인',voteK:'err',katalk:'관리중',type:'권리당원',typeK:'old',krGrade:0,smGrade:0,photo:''} : members[curEditIdx];
+    var m=isNew ? {no:0,score:0,rrn:'—',dong:'—',org:'—',rec:'—',rec2:'—',rec3:'—',addr:'—',addrDetail:'',family:null,age:'',ageb:'—',sex:'—',vote:'미확인',voteK:'err',katalk:'—',type:'권리당원',typeK:'old',krGrade:0,smGrade:0,photo:''} : members[curEditIdx];
     var g=function(id){ var el=document.getElementById(id); return el?el.value.trim():''; };
     m.name=g('dtfName')||m.name||'(이름없음)'; m.phone=formatPhone(g('dtfPhone'))||m.phone||'—'; if(g('dtfRrn')) m.rrn=g('dtfRrn');
     if(g('dtAddr')) m.addr=g('dtAddr'); m.addrDetail=g('dtAddrDetail');
@@ -1331,7 +1331,7 @@ onAuthStateChanged(_auth, async function(user){
     var d=deriveFromRrn(g('dtfRrn')); if(d){ m.age=d.age; m.ageb=d.ageb; m.sex=d.sex; }
     if(window._getMemberPhoto) m.photo=window._getMemberPhoto();
     if(isNew){
-      m.no=members.length+1; members.push(m); dispMembers.push(m);
+      m.no=members.length+1; members.unshift(m); dispMembers.unshift(m); // 목록 맨 위에 추가
       if(!m.mid) m.mid='m'+Date.now()+Math.random().toString(36).slice(2,7);
       if(voteStore['__new__']&&voteStore['__new__'].length){
         voteStore[m.mid]=(voteStore[m.mid]||[]).concat(voteStore['__new__']);
