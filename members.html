@@ -1196,7 +1196,9 @@ onAuthStateChanged(_auth, async function(user){
     renderVotes(m.mid||m.name);
     var memoEl=document.getElementById('dtMemo'); if(memoEl) memoEl.value=memoStore[m.mid||m.name]||'';
     var lbl=document.getElementById('dtSaveLbl'); if(lbl) lbl.textContent='수정';
-    document.querySelector('.tab[data-pane="info"]').click();
+    // 성향(신호등) 칸을 클릭한 경우 투표활동 탭으로 열기
+    var _toVote=e.target.closest('.sig');
+    document.querySelector('.tab[data-pane="'+(_toVote?'vote':'info')+'"]').click();
     showDetail();
   });
 
