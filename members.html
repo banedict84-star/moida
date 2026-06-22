@@ -1164,8 +1164,8 @@ onAuthStateChanged(_auth, async function(user){
       saveGrades(); saveMembers(); recalcScores(); renderRows();
       return;
     }
-    // 게이지 칸(막대 사이·아래 빈 공간 포함) 클릭은 상세가 열리지 않도록 무시
-    if(e.target.closest('.gcell')) return;
+    // 게이지 칸·카톡관리 칸 클릭은 상세가 열리지 않도록 무시(인라인 변경 팝업만 동작)
+    if(e.target.closest('.gcell') || e.target.closest('.kt-cell')) return;
     var tr=e.target.closest('tr'); if(!tr) return;
     tbody.querySelectorAll('tr').forEach(t=>t.classList.remove('sel'));
     tr.classList.add('sel');
