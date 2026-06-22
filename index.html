@@ -189,7 +189,7 @@
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
   import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, updateProfile } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-  import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+  import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
   const firebaseConfig = {
     apiKey: "AIzaSyAIjhvbCztHoF7YwP2IYIk2C6jCI64uFhs",
@@ -203,6 +203,24 @@
   const auth = getAuth(app);
   const provider = new GoogleAuthProvider();
   provider.setCustomParameters({ prompt: 'select_account' }); // 로그인/가입 시 구글 계정 선택창 표시
+
+  // 신규 가입자에게 7일 무료 체험 기간을 자동 부여 (기존 사용자는 관리자 설정 유지)
+  async function grantTrialIfNew(db, user, name){
+    try{
+      var ref = doc(db, 'tenants', user.uid);
+      var snap = await getDoc(ref);
+      if(snap.exists()) return; // 이미 존재 → 관리자/기존 구독값 유지
+      var s = new Date();
+      var e = new Date(); e.setDate(e.getDate() + 7);
+      await setDoc(ref, {
+        id: user.uid, name: name || user.displayName || '', email: user.email || '',
+        position: '', district: '', phone: '', created: Date.now(),
+        subscriptionStart: s.toISOString().split('T')[0],
+        subscriptionEnd: e.toISOString().split('T')[0],
+        trial: true
+      });
+    }catch(e){ console.warn('trial grant fail', e); }
+  }
 
   // 탭 전환
   window.switchTab = function(tab) {
@@ -222,7 +240,11 @@
 
   // Google 로그인
   document.getElementById('gLoginBtn').addEventListener('click', async function(){
-    try { await signInWithPopup(auth, provider); location.href='dashboard.html'; }
+    try {
+      var cred = await signInWithPopup(auth, provider);
+      await grantTrialIfNew(getFirestore(app), cred.user);
+      location.href='dashboard.html';
+    }
     catch(e){ document.getElementById('loginErr').textContent=e.message; }
   });
 
@@ -232,18 +254,7 @@
     err.textContent=''; err.style.color='';
     try {
       var cred = await signInWithPopup(auth, provider);
-      const db = getFirestore(app);
-      await setDoc(doc(db, 'tenants', cred.user.uid), {
-        id: cred.user.uid,
-        name: cred.user.displayName || '',
-        email: cred.user.email || '',
-        position: '',
-        district: '',
-        phone: '',
-        created: Date.now(),
-        subscriptionStart: '',
-        subscriptionEnd: ''
-      }, { merge: true });
+      await grantTrialIfNew(getFirestore(app), cred.user);
       location.href='dashboard.html';
     } catch(e){ err.textContent=e.message; }
   });
@@ -272,20 +283,9 @@
     try {
       var cred = await createUserWithEmailAndPassword(auth, email, password);
       await updateProfile(cred.user, { displayName: name });
-      const db = getFirestore(app);
-      await setDoc(doc(db, 'tenants', cred.user.uid), {
-        id: cred.user.uid,
-        name: name,
-        email: email,
-        position: '',
-        district: '',
-        phone: '',
-        created: Date.now(),
-        subscriptionStart: '',
-        subscriptionEnd: ''
-      });
+      await grantTrialIfNew(getFirestore(app), cred.user, name);
       var okEl=document.getElementById('signupErr');
-      okEl.style.color='#059669'; okEl.textContent='가입 완료! 로그인 해주세요.';
+      okEl.style.color='#059669'; okEl.textContent='가입 완료! 7일 무료 체험이 시작됩니다. 로그인 해주세요.';
       setTimeout(function(){ switchTab('login'); okEl.textContent=''; okEl.style.color=''; }, 1500);
     } catch(e){
       err.textContent = e.code==='auth/email-already-in-use'?'이미 사용 중인 이메일입니다.':e.message;
