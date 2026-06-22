@@ -228,6 +228,38 @@
 
   window.doLogout = async function() { await signOut(auth); };
 
+  // ── 개발 미리보기 (로그인 우회 + 샘플 데이터) ──
+  window.devPreview = function() {
+    const sampleTenants = [
+      { id:'t1', name:'장윤정', position:'경기도의원', email:'jang@moida.kr', district:'안산시 상록구', phone:'010-1234-5678', subscriptionStart:'2026-01-01', subscriptionEnd:'2026-12-31', created:1735689600000, _members:11 },
+      { id:'t2', name:'김태희', position:'서울시의원', email:'kim@moida.kr', district:'서울 강남구', phone:'010-2222-3333', subscriptionStart:'2026-03-01', subscriptionEnd:'2026-06-24', created:1740787200000, _members:8 },
+      { id:'t3', name:'김동규', position:'구의원', email:'dgkim@moida.kr', district:'인천 부평구', phone:'010-4444-5555', subscriptionStart:'2025-06-01', subscriptionEnd:'2026-06-10', created:1717200000000, _members:24 },
+      { id:'t4', name:'박은경', position:'시의원', email:'park@moida.kr', district:'수원시 영통구', phone:'', subscriptionStart:'2026-02-15', subscriptionEnd:'2027-02-14', created:1739577600000, _members:3 }
+    ];
+    const sampleNotices = [
+      { id:'n1', title:'후원회 관련 안내입니다.', content:'이번 분기 후원회 운영 및 회계 보고 관련 안내드립니다.', created:1750291200000 },
+      { id:'n2', title:'6월 정기 운영위원회 일정', content:'6월 정기 운영위원회를 6월 24일(화) 오후 7시에 개최합니다.', created:1749600000000 }
+    ];
+    window.fbGetDocs = async function(path){ if(path==='tenants') return sampleTenants.map(t=>Object.assign({},t)); if(path==='admin_notices') return sampleNotices.map(n=>Object.assign({},n)); return []; };
+    window.fbGetSubDocs = async function(path){ const m=path.match(/tenants\/(t\d)\//); if(m){ const t=sampleTenants.find(x=>x.id===m[1]); return t?t._members:0; } return 0; };
+    window.fbGetDoc = async function(){ return null; };
+    window.getFcmTokenCount = async function(){ return 46; };
+    // 미리보기: 저장·삭제를 메모리로 처리 (Firebase 권한 우회)
+    window.fbDoc = function(path, id){ return { _path:path, _id:id }; };
+    window.fbSetDoc = async function(ref, data){
+      if(ref._path==='admin_notices'){ sampleNotices.unshift(Object.assign({}, data)); }
+      return true;
+    };
+    window.fbDeleteDoc = async function(path, id){
+      if(path==='admin_notices'){ const i=sampleNotices.findIndex(n=>n.id===id); if(i>=0) sampleNotices.splice(i,1); }
+      return true;
+    };
+    document.getElementById('login-screen').style.display='none';
+    document.getElementById('app').style.display='block';
+    document.getElementById('topbar-email').textContent='개발 미리보기 모드';
+    loadDashboard();
+  };
+
   // Firestore 함수들
   window.fbSetDoc = setDoc;
   window.fbDoc = function(path, id) { return doc(db, path, id); };

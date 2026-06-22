@@ -128,6 +128,31 @@ jobs:
                   return naver_html(q)
               return res
 
+          # ── 다음 뉴스 검색 HTML(베스트 에포트) ──────────────────────────
+          def daum(q):
+              url = "https://search.daum.net/search?w=news&q=%s&sort=recency" % urllib.parse.quote(q)
+              out, seen = [], set()
+              try:
+                  r = requests.get(url, headers=HEAD, timeout=15); soup = BeautifulSoup(r.text, "lxml")
+              except Exception as e:
+                  print("  daum ERROR", e); return out
+              # 실제 검색 결과 기사 링크(v.daum.net/v/... 또는 언론사 원문)만 대상
+              anchors = soup.select(".item-title a, .tit-g a, a.tit_main, .c-item-doc a, [class*=tit] a")
+              tokens = [t for t in q.split() if len(t) >= 2]
+              for a in anchors:
+                  title = (a.get("title") or a.get_text(strip=True) or "").strip()
+                  link = a.get("href", "")
+                  if len(title) < 8 or not link.startswith("http") or "daum.net/search" in link or link in seen:
+                      continue
+                  # 검색어 관련성: 제목에 키워드 토큰이 하나라도 포함될 때만 채택(고정 블록 노이즈 제거)
+                  if tokens and not any(tok in title for tok in tokens):
+                      continue
+                  seen.add(link)
+                  out.append({"source": "daum", "press": host(link) or "다음뉴스", "date": "",
+                              "title": title, "snippet": title[:160], "url": link})
+                  if len(out) >= 15: break
+              return out
+
           # ── 수집 & 병합 ────────────────────────────────────────────────
           pool, seen = [], set()
           def add(items):
