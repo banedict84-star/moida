@@ -703,6 +703,9 @@ onAuthStateChanged(_auth, async function(user){
     // re-apply grades from localStorage so they survive Firestore reload
     var _sg=JSON.parse(localStorage.getItem(GRADE_KEY)||'{}');
     members.forEach(function(m){ var g=_sg[m.mid]||_sg[m.name]||{}; if(g.kr!=null) m.krGrade=g.kr; if(g.sm!=null) m.smGrade=g.sm; });
+    // re-apply 추천인 순서(rec chains)도 Firestore 재로드 후 유지
+    var _rc=JSON.parse(localStorage.getItem('moida_rec_chains_'+_uid)||'{}');
+    members.forEach(function(m){ var c=_rc[m.mid]||_rc[m.name]; if(c){ m.rec=c[0]||'—'; m.sub=c[1]||'—'; m.third=c[2]||'—'; m.rec2=m.sub; m.rec3=m.third; } });
     localStorage.setItem(_MEM_KEY, JSON.stringify(members));
     dispMembers = members.slice();
     if(window._orgStore) members.forEach(function(m){ if(Array.isArray(window._orgStore[m.mid])) m.orgs=window._orgStore[m.mid]; if(!Array.isArray(m.orgs)) m.orgs=(m.org&&m.org!=='—')?[{cat:'단체',name:m.org,title:'',rep:true}]:[]; var _r=orgRep(m); m.org=_r?orgRepText(_r):'—'; });
@@ -817,9 +820,9 @@ onAuthStateChanged(_auth, async function(user){
   }
   function saveRecChain(){
     var m=recPop._mem, c=recPop._chain; if(!m) return;
-    m.rec=c[0]||'—'; m.sub=c[1]||'—'; m.third=c[2]||'—';
+    m.rec=c[0]||'—'; m.sub=c[1]||'—'; m.third=c[2]||'—'; m.rec2=m.sub; m.rec3=m.third;
     var rk='moida_rec_chains_' + _uid; var store=JSON.parse(localStorage.getItem(rk)||'{}'); store[m.mid||m.name]=c; localStorage.setItem(rk, JSON.stringify(store));
-    renderRows();
+    saveMembers(); recalcScores(); renderRows(); // 회원 데이터에도 저장 → Firestore 반영, 새로고침 후 유지
   }
   (function(){
     var dragIdx=null;
