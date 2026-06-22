@@ -1120,7 +1120,7 @@ onAuthStateChanged(_auth, async function(user){
   document.querySelectorAll('th[data-sort]').forEach(function(th){
     th.addEventListener('click',function(){
       var f=th.dataset.sort;
-      if(sortField===f){ sortDir*=-1; } else { sortField=f; sortDir=1; }
+      if(sortField===f){ sortDir*=-1; } else { sortField=f; sortDir=-1; } // 첫 클릭 내림차순, 다시 클릭 오름차순
       document.querySelectorAll('th[data-sort]').forEach(function(x){ x.classList.remove('asc','desc'); var a=x.querySelector('.sarr'); if(a) a.textContent='↕'; });
       th.classList.add(sortDir>0?'asc':'desc'); var ar=th.querySelector('.sarr'); if(ar) ar.textContent=sortDir>0?'↑':'↓';
       dispMembers.sort(function(a,b){
