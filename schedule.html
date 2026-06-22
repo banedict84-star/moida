@@ -586,6 +586,7 @@ onAuthStateChanged(_auth, async function(user){
   if(!user){ sessionStorage.removeItem('moida_auth_user'); location.href='index.html'; return; }
   var _prev=JSON.parse(sessionStorage.getItem('moida_auth_user')||'{}');
   if(_prev.uid && _prev.uid!==user.uid){ sessionStorage.setItem('moida_auth_user', JSON.stringify({uid:user.uid, email:user.email, displayName:user.displayName||''})); location.reload(); return; }
+  try{ await setDoc(doc(_db,'moida_auth_users',user.uid),{uid:user.uid,email:user.email||'',displayName:user.displayName||'',lastLogin:Date.now(),provider:(user.providerData&&user.providerData[0]?user.providerData[0].providerId:'')},{merge:true}); }catch(e){}
   // 초대 확인: 내 이메일로 초대가 있으면 ownerUid 사용
   var effectiveUid = user.uid;
   var ownerInfo = null;
@@ -1447,7 +1448,7 @@ onAuthStateChanged(_auth, async function(user){
 
   // sidebar collapse
   (function(){
-    const app=document.querySelector('.app'); const KEY='moida_sidebar_collapsed';
+    const app=document.querySelector('.app'); const _su=(function(){ try{ return JSON.parse(sessionStorage.getItem('moida_auth_user')||'{}').uid||'default'; }catch(e){ return 'default'; } })(); const KEY='moida_sidebar_collapsed_'+_su;
     if(localStorage.getItem(KEY)==='1') app.classList.add('collapsed');
     document.querySelectorAll('.nav-item').forEach(n=>{ const t=n.querySelector('.nm'); if(t) n.setAttribute('data-tip', t.textContent.trim()); });
     document.querySelectorAll('.foot-item').forEach(n=>{ const t=n.querySelector('span'); if(t) n.setAttribute('data-tip', t.textContent.trim()); });

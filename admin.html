@@ -195,7 +195,7 @@
 
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-  import { getFirestore, doc, setDoc, getDoc, getDocs, collection, deleteDoc, query, orderBy, writeBatch } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+  import { getFirestore, doc, setDoc, getDoc, getDocs, collection, deleteDoc, query, orderBy, writeBatch, where } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
   import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
   const firebaseConfig = {
@@ -301,6 +301,22 @@
     try {
       const snap = await getDocs(collection(db, 'fcm_tokens'));
       return snap.size;
+    } catch(e) { return 0; }
+  };
+
+  // moida_users/{uid}.members JSON → count, looked up by tenant email via moida_auth_users
+  window.fbGetMemberCountByEmail = async function(email) {
+    try {
+      const q = query(collection(db, 'moida_auth_users'), where('email', '==', email));
+      const snap = await getDocs(q);
+      if (snap.empty) return 0;
+      const uid = snap.docs[0].data().uid;
+      const userSnap = await getDoc(doc(db, 'moida_users', uid));
+      if (!userSnap.exists()) return 0;
+      const raw = userSnap.data().members;
+      if (!raw) return 0;
+      const arr = JSON.parse(raw);
+      return Array.isArray(arr) ? arr.length : 0;
     } catch(e) { return 0; }
   };
 
@@ -426,6 +442,7 @@
       <div class="tab active" onclick="switchTab('dashboard',this)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg>대시보드</div>
       <div class="tab" onclick="switchTab('tenants',this)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0"/><circle cx="17" cy="7" r="2.3"/><path d="M16.5 13.5a5 5 0 0 1 4.5 5"/></svg>의원 관리</div>
       <div class="tab" onclick="switchTab('notices',this)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 14-6v14L3 13z"/><path d="M3 11v2a2 2 0 0 0 2 2h2"/></svg>공지 관리</div>
+      <div class="tab" onclick="switchTab('authusers',this)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>가입자 목록</div>
       <div class="tab" onclick="switchTab('settings',this)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-2.7 1.1V21a2 2 0 1 1-4 0v-.1A1.6 1.6 0 0 0 7 19.4a1.6 1.6 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.6 1.6 0 0 0-1.1-2.7H1a2 2 0 1 1 0-4h.1A1.6 1.6 0 0 0 2.6 7a1.6 1.6 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1A1.6 1.6 0 0 0 7 2.6h.1A1.6 1.6 0 0 0 9 1.1V1a2 2 0 1 1 4 0v.1A1.6 1.6 0 0 0 17 2.6a1.6 1.6 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0 1.1 2.7H23a2 2 0 1 1 0 4h-.1a1.6 1.6 0 0 0-1.5 1z"/></svg>설정</div>
     </div>
 
@@ -637,11 +654,10 @@ async function loadDashboard() {
     document.getElementById('stat-tenants').textContent = tenants.length;
     document.getElementById('stat-notices').textContent = notices.length;
 
-    // 총 당원 수 = 관리자 당원 + 모든 테넌트 당원
-    var adminMembers = await window.fbGetDocs('members');
-    var totalMembers = adminMembers.length;
+    // 총 당원 수 = 모든 테넌트별 moida_users 실시간 카운트
+    var totalMembers = 0;
     for (var i = 0; i < tenants.length; i++) {
-      var cnt = await window.fbGetSubDocs('tenants/' + tenants[i].id + '/members');
+      var cnt = await window.fbGetMemberCountByEmail(tenants[i].email);
       totalMembers += cnt;
     }
     document.getElementById('stat-members').textContent = totalMembers;
@@ -657,7 +673,7 @@ async function loadDashboard() {
       var html = '';
       for (var j = 0; j < recent.length; j++) {
         var t = recent[j];
-        var mc = await window.fbGetSubDocs('tenants/' + t.id + '/members');
+        var mc = await window.fbGetMemberCountByEmail(t.email);
         html += '<div class="tenant-item"><div class="tenant-info">'
           + '<div class="tenant-name">' + escapeHtml(t.name) + '<span>' + escapeHtml(t.position||'') + '</span></div>'
           + '<div class="tenant-meta">' + escapeHtml(t.email) + ' · ' + escapeHtml(t.district||'') + '</div>'
@@ -694,7 +710,7 @@ async function loadTenants() {
     var tenants = await window.fbGetDocs('tenants');
     tenants.sort(function(a,b){ return (b.created||0)-(a.created||0); });
     for (var i = 0; i < tenants.length; i++) {
-      tenants[i]._mc = await window.fbGetSubDocs('tenants/' + tenants[i].id + '/members');
+      tenants[i]._mc = await window.fbGetMemberCountByEmail(tenants[i].email);
       tenants[i]._st = tenantStatus(tenants[i].subscriptionEnd);
     }
     _tenants = tenants;

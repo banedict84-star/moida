@@ -798,7 +798,7 @@ onAuthStateChanged(_auth, function(user){
 
     // sidebar collapse
   (function(){
-    const app=document.querySelector('.app'); const KEY='moida_sidebar_collapsed';
+    const app=document.querySelector('.app'); const _su=(function(){ try{ return JSON.parse(sessionStorage.getItem('moida_auth_user')||'{}').uid||'default'; }catch(e){ return 'default'; } })(); const KEY='moida_sidebar_collapsed_'+_su;
     if(localStorage.getItem(KEY)==='1') app.classList.add('collapsed');
     document.querySelectorAll('.nav-item').forEach(n=>{ const t=n.querySelector('.nm'); if(t) n.setAttribute('data-tip', t.textContent.trim()); });
     document.querySelectorAll('.foot-item').forEach(n=>{ const t=n.querySelector('span'); if(t) n.setAttribute('data-tip', t.textContent.trim()); });
