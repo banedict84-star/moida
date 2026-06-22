@@ -198,6 +198,8 @@
   .tag{ display:inline-flex; align-items:center; gap:6px; padding:3px 9px; border-radius:7px; font-size:12px; font-weight:600; }
   .tag .d{ width:7px; height:7px; border-radius:50%; }
   .tg-vote{ background:#e7f6ee; color:#0f9d63;} .tg-old{ background:#e8f1fe; color:#2563eb;} .tg-new{ background:#f1ebfd; color:#7c3aed;} .tg-out{ background:#fdeaea; color:#dc2626;} .tg-err{ background:#fdf0e0; color:#cd7d18;}
+  /* 당원구분 색상: 권리=초록, 일반/기존=파랑, 신규=노랑, 탈당=빨강, 일반시민/기타=회색 */
+  .tg-right{ background:#e7f6ee; color:#0f9d63;} .tg-normal{ background:#e8f1fe; color:#2563eb;} .tg-newm{ background:#fef9c3; color:#ca8a04;} .tg-citizen{ background:#f1f3f7; color:#6b7280;}
   .muted-cell{ color:var(--ink-4); }
   /* 성향 신호등 */
   .sig{ display:inline-flex; align-items:center; gap:8px; font-size:12.5px; font-weight:700; color:var(--ink-2); white-space:nowrap; }
@@ -1004,7 +1006,7 @@ onAuthStateChanged(_auth, async function(user){
       <td>${m.phone}</td>
       <td class="muted-cell">${m.rrn}</td>
       <td>${m.dong}</td>
-      <td class="type-cell" data-i="${i}">${(!m.type||m.type==='—')?'<span class="muted-cell type-pick">—</span>':'<span class="tag tg-'+m.typeK+' type-pick"><span class="d" style="background:currentColor"></span>'+m.type+'</span>'}</td>
+      <td class="type-cell" data-i="${i}">${(!m.type||m.type==='—')?'<span class="muted-cell type-pick">—</span>':'<span class="tag '+typeCls(m.type)+' type-pick"><span class="d" style="background:currentColor"></span>'+m.type+'</span>'}</td>
       <td>${orgCellHtml(m)}</td>
       <td>${signalCell(m)}</td>
       <td>${m.age}</td>
@@ -1022,16 +1024,13 @@ onAuthStateChanged(_auth, async function(user){
 
   // 당원구분 인라인 변경 팝업
   (function(){
-    var TYPES=['권리당원','일반당원','탈당자','일반시민','기타'];
+    var TYPES=['권리당원','일반당원','신규당원','탈당자','일반시민'];
+    var TC={'tg-right':'#0f9d63','tg-normal':'#2563eb','tg-newm':'#ca8a04','tg-out':'#dc2626','tg-citizen':'#6b7280'};
     var pop=document.getElementById('typePop');
     var curI=null;
-    pop.innerHTML=TYPES.map(function(t){ var k=typeToK(t); return '<div class="type-pop-opt" data-t="'+t+'"><span class="d" style="background:var(--tg-'+k+'-c,#aab0bd)"></span>'+t+'</div>'; }).join('');
-    // tg 색상 변수 매핑
-    var tgC={'old':'#6b7280','new':'#2563eb','out':'#dc2626','기타':'#8b5cf6','일반시민':'#10b981'};
+    pop.innerHTML=TYPES.map(function(t){ var c=TC[typeCls(t)]||'#6b7280'; return '<div class="type-pop-opt" data-t="'+t+'"><span class="d" style="background:'+c+'"></span>'+t+'</div>'; }).join('');
     pop.querySelectorAll('.type-pop-opt').forEach(function(opt){
-      var t=opt.dataset.t, k=typeToK(t);
-      var c=k==='old'?'#6b7280':k==='out'?'#dc2626':'#2563eb';
-      opt.querySelector('.d').style.background=c;
+      var t=opt.dataset.t;
       opt.addEventListener('click', function(e){ e.stopPropagation();
         if(curI==null) return;
         var m=members[curI]; if(!m) return;
@@ -1193,6 +1192,14 @@ onAuthStateChanged(_auth, async function(user){
 
   // 당원구분 → 색상키
   function typeToK(t){ return (t==='권리당원')?'old':(t==='탈당자'||t==='탈당')?'out':'new'; }
+  // 당원구분 라벨 → 색상 클래스
+  function typeCls(t){
+    if(t==='권리당원') return 'tg-right';
+    if(t==='탈당자'||t==='탈당'||t==='탈당원') return 'tg-out';
+    if(t==='신규당원') return 'tg-newm';
+    if(t==='일반당원'||t==='기존당원') return 'tg-normal';
+    return 'tg-citizen'; // 일반시민·기타·기타값
+  }
   // 연락처 하이픈 포맷
   function formatPhone(v){
     var d=(v||'').replace(/[^0-9]/g,'');
