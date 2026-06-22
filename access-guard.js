@@ -39,6 +39,21 @@
     });
   }
 
+  // 페이지 헤더 부제(.ph-sub)를 의원 정보로 채움: "이름 직책 · 선거구"
+  function fillHeaderSub(t){
+    if(!t) return;
+    var el=document.querySelector('.ph-sub');
+    if(!el) return;
+    var head=((t.name||'')+' '+(t.position||'')).replace(/\s+/g,' ').trim();
+    var parts=[];
+    if(head) parts.push(head);
+    if(t.district) parts.push(t.district);
+    var txt=parts.join(' · ');
+    if(!txt) return;
+    el.textContent=txt;
+    el.style.display='';
+  }
+
   async function checkAccess(user, auth, authMod, fsMod, db){
     var doc=fsMod.doc, getDoc=fsMod.getDoc;
     var ownerUid = user.uid;
@@ -51,7 +66,11 @@
     var end='';
     try{
       var ts=await getDoc(doc(db,'tenants',ownerUid));
-      if(ts.exists() && ts.data().subscriptionEnd) end=ts.data().subscriptionEnd;
+      if(ts.exists()){
+        var td=ts.data();
+        fillHeaderSub(td);                                   // 페이지 부제(의원 정보) 채움
+        if(td.subscriptionEnd) end=td.subscriptionEnd;
+      }
     }catch(e){ console.warn('access-guard 구독 조회 실패(통과):', e); return; }
     if(!end){ showBlock(auth, authMod); return; }          // 기간 미부여 → 차단
     var today=new Date(); today.setHours(0,0,0,0);
