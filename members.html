@@ -1022,7 +1022,7 @@ onAuthStateChanged(_auth, async function(user){
       <td>${m.dong}</td>
       <td class="type-cell" data-i="${i}">${(!m.type||m.type==='—')?'<span class="muted-cell type-pick">—</span>':'<span class="tag '+typeCls(m.type)+' type-pick"><span class="d" style="background:currentColor"></span>'+m.type+'</span>'}</td>
       <td>${orgCellHtml(m)}</td>
-      <td>${signalCell(m)}</td>
+      <td class="sig-cell">${signalCell(m)}</td>
       <td>${m.age}</td>
       <td>${m.ageb}</td>
       <td>${m.sex}</td>
@@ -1208,7 +1208,7 @@ onAuthStateChanged(_auth, async function(user){
     var memoEl=document.getElementById('dtMemo'); if(memoEl) memoEl.value=memoStore[m.mid||m.name]||'';
     var lbl=document.getElementById('dtSaveLbl'); if(lbl) lbl.textContent='수정';
     // 성향(신호등) 칸을 클릭한 경우 투표활동 탭으로 열기
-    var _toVote=e.target.closest('.sig');
+    var _toVote=e.target.closest('.sig-cell');
     document.querySelector('.tab[data-pane="'+(_toVote?'vote':'info')+'"]').click();
     showDetail();
   });
