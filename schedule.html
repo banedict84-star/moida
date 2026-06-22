@@ -1034,6 +1034,8 @@ onAuthStateChanged(_auth, async function(user){
     m.addEventListener('click', function(e){ if(e.target===m) close(); });
     document.addEventListener('keydown', function(e){ if(e.key==='Escape') close(); });
     document.querySelectorAll('.evm-tab').forEach(function(t){ t.addEventListener('click', function(){ document.querySelectorAll('.evm-tab').forEach(function(x){ x.classList.remove('active'); }); t.classList.add('active'); }); });
+    // 대시보드 '일정 추가'로 진입하면 일정추가 팝업 자동 열기
+    try{ if(new URLSearchParams(location.search).get('new')==='1') open(); }catch(e){}
   })();
 
   // date-time picker + location autocomplete
