@@ -590,29 +590,39 @@ onAuthStateChanged(_auth, async function(user){
     var _uid=_au.effectiveUid||_au.uid||'default';
     function esc(s){ return (s||'').replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
 
-    // ── 최근 공지 (최신 5개) ──
+    // ── 최근 공지 (공지사항 전체 공지에서 최신순 5개) ──
     (function(){
       var el=document.getElementById('noticeList'); if(!el) return;
       var SRC={admin:'총관리자',central:'민주당 중앙당',gyeonggi:'경기도당',council:'경기도의회'};
-      var list=[];
-      try{ var _ncu=(function(){ try{ return JSON.parse(sessionStorage.getItem('moida_auth_user')||'{}').uid||'default'; }catch(e){ return 'default'; } })(); var c=localStorage.getItem('moida_notices_cache_'+_ncu); if(c) list=JSON.parse(c); }catch(e){}
-      if(!list.length) list=[
-        {title:'후원회 관련 내용입니다.',date:'2026.06.19',src:'admin',isNew:true,body:'이번 분기 후원회 운영 및 회계 보고 관련 안내드립니다.'},
-        {title:'6월 정기 운영위원회 일정 안내',date:'2026.06.12',src:'admin',isNew:false,body:'6월 정기 운영위원회를 6월 24일(화) 오후 7시 당협 사무실 회의실에서 개최합니다.'},
-        {title:'개인정보 보호 및 명부 관리 지침 업데이트',date:'2026.06.03',src:'admin',isNew:false,body:'구성원 명부·개인정보 관리 지침이 일부 개정되었습니다.'},
-        {title:'당원 명부 정기 점검 안내',date:'2026.05.28',src:'admin',isNew:false,body:'반기별 당원 명부 정기 점검을 진행합니다. 연락처·주소 변경 사항을 확인해 주세요.'},
-        {title:'정책 간담회 참가 신청 안내',date:'2026.05.20',src:'admin',isNew:false,body:'지역 현안 정책 간담회 참가 신청을 받습니다. 관심 있는 구성원은 신청해 주세요.'}
-      ];
-      list=list.slice(0,5); // 최신 5개만
-      el.innerHTML=list.map(function(n){
-        var body=(n.body||'').replace(/\n/g,' ').trim();
-        return '<div class="row" onclick="location.href=\'notices.html\'" style="cursor:pointer">'
-          +'<span class="dotmark '+(n.isNew?'s-red':'s-blue')+'"></span>'
-          +'<div class="r-main"><div class="r-t">'+esc(n.title)+'</div>'
-          +(body?'<div class="r-body">'+esc(body)+'</div>':'')
-          +'<div class="r-s">'+esc(SRC[n.src]||'공지사항')+'</div></div>'
-          +'<span class="r-meta">'+esc(n.date)+'</span></div>';
-      }).join('');
+      function ndnum(d){ return +String(d||'').replace(/\D/g,''); }
+      function render(list){
+        list=list.slice().sort(function(a,b){ return ndnum(b.date)-ndnum(a.date); }).slice(0,5);
+        if(!list.length){ el.innerHTML='<div class="row" style="color:var(--ink-3);font-size:13px;padding:12px 4px">최근 공지가 없습니다.</div>'; return; }
+        el.innerHTML=list.map(function(n){
+          var body=(n.body||'').replace(/\n/g,' ').trim();
+          return '<div class="row" onclick="location.href=\'notices.html\'" style="cursor:pointer">'
+            +'<span class="dotmark '+(n.isNew?'s-red':'s-blue')+'"></span>'
+            +'<div class="r-main"><div class="r-t">'+esc(n.title)+'</div>'
+            +(body?'<div class="r-body">'+esc(body)+'</div>':'')
+            +'<div class="r-s">'+esc(SRC[n.src]||'공지사항')+'</div></div>'
+            +'<span class="r-meta">'+esc(String(n.date||'').replace(/-/g,'.'))+'</span></div>';
+        }).join('');
+      }
+      // 공지사항 캐시(전체 공지: 관리자+경기도당+중앙당+경기도의회)에서 관리자 공지 확보
+      var cached=[]; try{ var c=localStorage.getItem('moida_notices_cache'); if(c) cached=JSON.parse(c); }catch(e){}
+      if(cached.length) render(cached); else el.innerHTML='<div class="row" style="color:var(--ink-3);font-size:13px;padding:12px 4px">불러오는 중…</div>';
+      // 실제 공지 데이터 파일에서 최신 받아 갱신
+      Promise.allSettled([
+        fetch('notices_data.json').then(function(r){ return r.json(); }),
+        fetch('central_data.json').then(function(r){ return r.json(); }),
+        fetch('council_data.json').then(function(r){ return r.json(); })
+      ]).then(function(res){
+        var keys=['gyeonggi','central','council'], merged=[];
+        res.forEach(function(r,i){ if(r.status==='fulfilled' && r.value && r.value.items){ r.value.items.forEach(function(it){ merged.push({ title:it.title, date:it.date, src:keys[i], isNew:false, body:'' }); }); } });
+        var adminItems=cached.filter(function(n){ return n.src==='admin'; });
+        var all=adminItems.concat(merged);
+        if(all.length) render(all); else if(cached.length) render(cached);
+      });
     })();
 
     // ── 다가오는 일정 (오늘 이후 최대 3개) ──
