@@ -464,7 +464,7 @@
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import { getFirestore, doc, setDoc, getDocs, collection } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 const _app = initializeApp({apiKey:"AIzaSyAIjhvbCztHoF7YwP2IYIk2C6jCI64uFhs",authDomain:"jjj2195-1bd15.firebaseapp.com",projectId:"jjj2195-1bd15",storageBucket:"jjj2195-1bd15.firebasestorage.app",messagingSenderId:"370852437825",appId:"1:370852437825:web:b0a891d6a99b426d230bc0"});
 const _auth = getAuth(_app);
 const _db2 = getFirestore(_app);
@@ -481,6 +481,17 @@ onAuthStateChanged(_auth, async function(user){
       +'<div style="font-size:11.5px;color:var(--ink-3);padding:0 10px 6px;word-break:break-all">'+(user.email||'')+'</div>';
   }
   if(window._applyDashUser) window._applyDashUser(nm);
+  // 총관리자 콘솔 MOIDA 공지(admin_notices)를 최근 공지에 반영 (하드코딩 없이 Firestore에서)
+  try{
+    var _ns = await getDocs(collection(_db2,'admin_notices'));
+    var _adm=[];
+    _ns.forEach(function(d){ var x=d.data(); var ms=+(x.created||0); var dt=new Date(ms);
+      var ds=isNaN(dt.getTime())?'':dt.getFullYear()+'.'+String(dt.getMonth()+1).padStart(2,'0')+'.'+String(dt.getDate()).padStart(2,'0');
+      _adm.push({ title:x.title||'', date:ds, src:'admin', isNew:(Date.now()-ms<7*86400000), body:x.body||'' });
+    });
+    window._dashAdmin=_adm;
+    if(window._dashRenderNotices) window._dashRenderNotices();
+  }catch(e){ console.warn('admin_notices load fail', e); }
 });
 </script>
 <script>
@@ -612,20 +623,19 @@ onAuthStateChanged(_auth, async function(user){
             +'<span class="r-meta">'+esc(String(n.date||'').replace(/-/g,'.'))+'</span></div>';
         }).join('');
       }
-      // 공지사항 캐시(전체 공지: 관리자+경기도당+중앙당+경기도의회)에서 관리자 공지 확보
-      var cached=[]; try{ var c=localStorage.getItem('moida_notices_cache'); if(c) cached=JSON.parse(c); }catch(e){}
-      if(cached.length) render(cached); else el.innerHTML='<div class="row" style="color:var(--ink-3);font-size:13px;padding:12px 4px">불러오는 중…</div>';
-      // 실제 공지 데이터 파일에서 최신 받아 갱신
+      // 관리자(MOIDA) 공지는 Firestore에서, 나머지는 공지 데이터 파일에서 (하드코딩 없음)
+      window._dashAdmin = window._dashAdmin || [];
+      window._dashCrawled = [];
+      window._dashRenderNotices = function(){ render(window._dashAdmin.concat(window._dashCrawled)); };
+      el.innerHTML='<div class="row" style="color:var(--ink-3);font-size:13px;padding:12px 4px">불러오는 중…</div>';
       Promise.allSettled([
         fetch('notices_data.json').then(function(r){ return r.json(); }),
         fetch('central_data.json').then(function(r){ return r.json(); }),
         fetch('council_data.json').then(function(r){ return r.json(); })
       ]).then(function(res){
-        var keys=['gyeonggi','central','council'], merged=[];
-        res.forEach(function(r,i){ if(r.status==='fulfilled' && r.value && r.value.items){ r.value.items.forEach(function(it){ merged.push({ title:it.title, date:it.date, src:keys[i], isNew:false, body:'' }); }); } });
-        var adminItems=cached.filter(function(n){ return n.src==='admin'; });
-        var all=adminItems.concat(merged);
-        if(all.length) render(all); else if(cached.length) render(cached);
+        var keys=['gyeonggi','central','council'];
+        res.forEach(function(r,i){ if(r.status==='fulfilled' && r.value && r.value.items){ r.value.items.forEach(function(it){ window._dashCrawled.push({ title:it.title, date:it.date, src:keys[i], isNew:false, body:'' }); }); } });
+        window._dashRenderNotices();
       });
     })();
 
