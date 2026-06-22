@@ -1077,12 +1077,29 @@ async function loadAuthUsers() {
   var el = document.getElementById('authuser-list');
   el.innerHTML = '<div class="empty">불러오는 중...</div>';
   try {
-    var users = await window.fbGetDocs('moida_auth_users');
-    if (users.length === 0) { el.innerHTML = '<div class="empty">로그인 기록이 없습니다.</div>'; return; }
+    var authUsers = await window.fbGetDocs('moida_auth_users');   // 로그인한 적 있는 사용자
+    var tenants = await window.fbGetDocs('tenants');               // 가입(공간) 문서
     // 구독 정보: tenants 문서를 uid(=문서의 id 필드) 기준으로 매핑
-    var tenants = await window.fbGetDocs('tenants');
     var subByUid = {};
     tenants.forEach(function(t){ if(t && t.id) subByUid[t.id] = t.subscriptionEnd || ''; });
+    // 두 출처를 합쳐 '가입한 모든 사용자'를 표시 (로그인 안 한 가입자도 포함)
+    var byKey = {}, seenEmail = {};
+    authUsers.forEach(function(u){
+      var k = u.uid || ('e_'+(u.email||'').toLowerCase());
+      byKey[k] = { uid:u.uid||'', name:u.displayName||'', email:u.email||'', lastLogin:u.lastLogin||0, provider:u.provider||'' };
+      if(u.email) seenEmail[u.email.toLowerCase()] = true;
+    });
+    tenants.forEach(function(t){
+      if(!t) return;
+      var uid = t.id || '';
+      var emailLc = (t.email||'').toLowerCase();
+      if(uid && byKey[uid]) return;            // 이미 명부에 있음
+      if(emailLc && seenEmail[emailLc]) return; // 이메일로 중복
+      byKey[uid || ('e_'+emailLc)] = { uid:uid, name:t.name||'', email:t.email||'', lastLogin:0, provider:'(미접속)' };
+      if(emailLc) seenEmail[emailLc] = true;
+    });
+    var users = Object.keys(byKey).map(function(k){ return byKey[k]; });
+    if (users.length === 0) { el.innerHTML = '<div class="empty">가입자가 없습니다.</div>'; return; }
     users.sort(function(a,b){ return (b.lastLogin||0)-(a.lastLogin||0); });
     var html = '<table style="width:100%;border-collapse:collapse;font-size:13.5px">'
       + '<thead><tr style="border-bottom:1px solid var(--line);color:var(--ink-3);font-size:12px">'
@@ -1100,15 +1117,19 @@ async function loadAuthUsers() {
       var st = authUserStatus(end);
       var endStr = end ? String(end).replace(/-/g,'.') : '—';
       var btnLabel = st.key==='none' ? '기간 부여' : '기간 수정';
-      var nm = (u.displayName||'').replace(/'/g,'');
+      var nm = (u.name||'').replace(/'/g,'');
       var em = (u.email||'').replace(/'/g,'');
+      var canGrant = !!u.uid; // uid 없는(이메일 prefix) 옛 문서는 가드와 어긋나 부여 불가
+      var actionCell = canGrant
+        ? '<button class="btn btn-sm" onclick="openGrantModal(\''+escapeHtml(u.uid)+'\',\''+escapeHtml(em)+'\',\''+escapeHtml(nm)+'\')">'+btnLabel+'</button>'
+        : '<span style="font-size:12px;color:var(--ink-3)">로그인 후 부여 가능</span>';
       html += '<tr style="border-bottom:1px solid var(--line-soft)">'
-        + '<td style="padding:10px 10px;font-weight:600">' + escapeHtml(u.displayName||'(이름없음)') + '</td>'
+        + '<td style="padding:10px 10px;font-weight:600">' + escapeHtml(u.name||'(이름없음)') + '</td>'
         + '<td style="padding:10px 10px;color:var(--ink-2)">' + escapeHtml(u.email||'—') + '</td>'
         + '<td style="padding:10px 10px"><span style="display:inline-block;padding:3px 9px;border-radius:999px;font-size:12px;font-weight:700;color:'+st.color+';background:'+st.bg+'">'+st.label+'</span></td>'
         + '<td style="padding:10px 10px;color:var(--ink-3)">' + endStr + '</td>'
         + '<td style="padding:10px 10px;color:var(--ink-3)">' + escapeHtml(dateStr) + '</td>'
-        + '<td style="padding:10px 10px;text-align:right"><button class="btn btn-sm" onclick="openGrantModal(\''+escapeHtml(u.uid||'')+'\',\''+escapeHtml(em)+'\',\''+escapeHtml(nm)+'\')">'+btnLabel+'</button></td>'
+        + '<td style="padding:10px 10px;text-align:right">' + actionCell + '</td>'
         + '</tr>';
     });
     html += '</tbody></table>';
