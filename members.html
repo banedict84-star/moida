@@ -851,8 +851,9 @@ onAuthStateChanged(_auth, async function(user){
   function showDetail(){ detailPanel.classList.add('show'); dtOvl.classList.add('show'); }
   function closeDetail(){ detailPanel.classList.remove('show'); dtOvl.classList.remove('show'); tbody.querySelectorAll('tr').forEach(t=>t.classList.remove('sel')); }
   document.getElementById('dtClose').addEventListener('click', closeDetail);
-  dtOvl.addEventListener('click', closeDetail);
-  document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeDetail(); });
+  // 신규 당원 입력 중(curEditIdx==null)에는 바깥 클릭·ESC로 닫히지 않게(X만 닫힘)
+  dtOvl.addEventListener('click', function(){ if(curEditIdx!=null) closeDetail(); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape' && curEditIdx!=null) closeDetail(); });
 
   // ---- 투표 이력 ----
   var VOTE_KEY = 'moida_votes_' + _uid;
