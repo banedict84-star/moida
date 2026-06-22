@@ -1012,8 +1012,8 @@ onAuthStateChanged(_auth, async function(user){
       <td>${m.sex}</td>
       <td class="${m.rec==="—"?"muted-cell":""}">${recCell(m)}</td>
       <td class="kt-cell kt-pick-cell" data-i="${i}"><span class="kt-pick">${ktCell(m.katalk)}</span></td>
-      <td>${gauge('kr', m.krGrade)}</td>
-      <td>${gauge('sm', m.smGrade)}</td>
+      <td class="gcell">${gauge('kr', m.krGrade)}</td>
+      <td class="gcell">${gauge('sm', m.smGrade)}</td>
       <td>${famDisplay(m)}</td>
       <td class="${(m.addr||"—")==="—"?"muted-cell":""}">${m.addr||"—"}</td>
     </tr>`; }).join("");
@@ -1164,8 +1164,8 @@ onAuthStateChanged(_auth, async function(user){
       saveGrades(); saveMembers(); recalcScores(); renderRows();
       return;
     }
-    // 게이지 영역(막대 사이 빈 공간 등) 클릭은 상세가 열리지 않도록 무시
-    if(e.target.closest('.gauge')) return;
+    // 게이지 칸(막대 사이·아래 빈 공간 포함) 클릭은 상세가 열리지 않도록 무시
+    if(e.target.closest('.gcell')) return;
     var tr=e.target.closest('tr'); if(!tr) return;
     tbody.querySelectorAll('tr').forEach(t=>t.classList.remove('sel'));
     tr.classList.add('sel');
