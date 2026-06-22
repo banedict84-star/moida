@@ -625,6 +625,14 @@
         </div>
       </div>
     </div>
+
+      <div class="tab-panel" id="panel-authusers">
+        <div class="card">
+          <h3><span class="hi"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>가입자 목록</h3>
+          <p class="desc">MOIDA에 로그인한 적 있는 사용자 목록입니다. (Google 계정 기준)</p>
+          <div id="authuser-list"><div class="empty">불러오는 중...</div></div>
+        </div>
+      </div>
    </div>
   </main>
  </div>
@@ -643,6 +651,7 @@ function switchTab(tabId, el) {
   if (tabId === 'notices') loadNotices();
   if (tabId === 'dashboard') loadDashboard();
   if (tabId === 'settings') loadSettings();
+  if (tabId === 'authusers') loadAuthUsers();
 }
 
 function formatDate(ts) {
@@ -1017,6 +1026,36 @@ async function saveSettings() {
     });
     showMsg('s-msg');
   } catch(e) { alert('저장 실패: ' + e.message); }
+}
+
+async function loadAuthUsers() {
+  var el = document.getElementById('authuser-list');
+  el.innerHTML = '<div class="empty">불러오는 중...</div>';
+  try {
+    var users = await window.fbGetDocs('moida_auth_users');
+    if (users.length === 0) { el.innerHTML = '<div class="empty">로그인 기록이 없습니다.</div>'; return; }
+    users.sort(function(a,b){ return (b.lastLogin||0)-(a.lastLogin||0); });
+    var html = '<table style="width:100%;border-collapse:collapse;font-size:13.5px">'
+      + '<thead><tr style="border-bottom:1px solid var(--line);color:var(--ink-3);font-size:12px">'
+      + '<th style="text-align:left;padding:8px 10px;font-weight:600">이름</th>'
+      + '<th style="text-align:left;padding:8px 10px;font-weight:600">이메일</th>'
+      + '<th style="text-align:left;padding:8px 10px;font-weight:600">로그인 방법</th>'
+      + '<th style="text-align:left;padding:8px 10px;font-weight:600">마지막 접속</th>'
+      + '</tr></thead><tbody>';
+    users.forEach(function(u) {
+      var d = u.lastLogin ? new Date(u.lastLogin) : null;
+      var dateStr = d ? (d.getFullYear()+'.'+(d.getMonth()+1).toString().padStart(2,'0')+'.'+d.getDate().toString().padStart(2,'0')+' '+d.getHours().toString().padStart(2,'0')+':'+d.getMinutes().toString().padStart(2,'0')) : '—';
+      var provider = (u.provider||'').includes('google') ? 'Google' : (u.provider||u.uid||'—');
+      html += '<tr style="border-bottom:1px solid var(--line-soft)">'
+        + '<td style="padding:10px 10px;font-weight:600">' + escapeHtml(u.displayName||'(이름없음)') + '</td>'
+        + '<td style="padding:10px 10px;color:var(--ink-2)">' + escapeHtml(u.email||'—') + '</td>'
+        + '<td style="padding:10px 10px;color:var(--ink-3)">' + escapeHtml(provider) + '</td>'
+        + '<td style="padding:10px 10px;color:var(--ink-3)">' + escapeHtml(dateStr) + '</td>'
+        + '</tr>';
+    });
+    html += '</tbody></table>';
+    el.innerHTML = html;
+  } catch(e) { el.innerHTML = '<div class="empty">로드 실패: ' + escapeHtml(e.message) + '</div>'; }
 }
 
 async function downloadTenantCSV(tenantId, tenantName, tenantEmail) {
