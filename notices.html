@@ -348,6 +348,7 @@ onAuthStateChanged(_auth, async function(user){
       var ds=isNaN(dt.getTime())?'':dt.getFullYear()+'.'+String(dt.getMonth()+1).padStart(2,'0')+'.'+String(dt.getDate()).padStart(2,'0');
       _arr.push({ id:'admin_'+(x.id||d.id), src:'admin', title:x.title||'', date:ds, isNew:(Date.now()-ms<7*86400000), body:x.body||'', files:Array.isArray(x.files)?x.files:[] });
     });
+    try{ localStorage.setItem('moida_admin_notices', JSON.stringify(_arr)); }catch(e){}
     if(window._applyAdminNotices) window._applyAdminNotices(_arr);
   }catch(e){ console.warn('admin_notices load fail', e); }
 });
@@ -532,6 +533,8 @@ c1|2026.03.10|2,051|경기도의회 의정모니터단 모집 공고`;
     saveNoticesCache();
     renderList();
   };
+  // 캐시된 MOIDA 공지를 즉시 반영(새로고침 깜빡임 방지) → Firestore가 곧 갱신
+  try{ var _adminCache=JSON.parse(localStorage.getItem('moida_admin_notices')||'[]'); if(Array.isArray(_adminCache)&&_adminCache.length) window._applyAdminNotices(_adminCache); }catch(e){}
 
   const SRC = {
     admin:    { label:"총관리자", cls:"" },

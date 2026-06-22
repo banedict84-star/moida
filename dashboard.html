@@ -490,6 +490,7 @@ onAuthStateChanged(_auth, async function(user){
       _adm.push({ title:x.title||'', date:ds, src:'admin', isNew:(Date.now()-ms<7*86400000), body:x.body||'' });
     });
     window._dashAdmin=_adm;
+    try{ localStorage.setItem('moida_admin_notices', JSON.stringify(_adm)); }catch(e){}
     if(window._dashRenderNotices) window._dashRenderNotices();
   }catch(e){ console.warn('admin_notices load fail', e); }
 });
@@ -627,6 +628,8 @@ onAuthStateChanged(_auth, async function(user){
       window._dashAdmin = window._dashAdmin || [];
       window._dashCrawled = [];
       window._dashRenderNotices = function(){ render(window._dashAdmin.concat(window._dashCrawled)); };
+      // 캐시된 MOIDA 공지를 즉시 반영(깜빡임 방지) → Firestore가 곧 갱신
+      try{ var _ac=JSON.parse(localStorage.getItem('moida_admin_notices')||'[]'); if(Array.isArray(_ac)&&_ac.length) window._dashAdmin=_ac; }catch(e){}
       el.innerHTML='<div class="row" style="color:var(--ink-3);font-size:13px;padding:12px 4px">불러오는 중…</div>';
       Promise.allSettled([
         fetch('notices_data.json').then(function(r){ return r.json(); }),
