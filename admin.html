@@ -320,6 +320,22 @@
     } catch(e) { return 0; }
   };
 
+  // moida_users/{uid}.members JSON → 회원 배열 (이메일로 조회)
+  window.fbGetMembersByEmail = async function(email) {
+    try {
+      const q = query(collection(db, 'moida_auth_users'), where('email', '==', email));
+      const snap = await getDocs(q);
+      if (snap.empty) return [];
+      const uid = snap.docs[0].data().uid;
+      const userSnap = await getDoc(doc(db, 'moida_users', uid));
+      if (!userSnap.exists()) return [];
+      const raw = userSnap.data().members;
+      if (!raw) return [];
+      const arr = JSON.parse(raw);
+      return Array.isArray(arr) ? arr : [];
+    } catch(e) { return []; }
+  };
+
   onAuthStateChanged(auth, async (user) => {
     if(window._devMode) return;
     if (user && user.email === SUPER_ADMIN) {
@@ -680,7 +696,7 @@ async function loadDashboard() {
           + '<span class="badge-member">당원 ' + mc + '명</span>'
           + getExpiryBadge(t.subscriptionEnd)
           + '</div></div>'
-          + '<button class="btn-outline" onclick="downloadTenantCSV(\'' + escapeHtml(t.id) + '\',\'' + escapeHtml(t.name) + '\')" title="CSV 다운로드">↓ CSV</button>'
+          + '<button class="btn-outline" onclick="downloadTenantCSV(\'' + escapeHtml(t.id) + '\',\'' + escapeHtml(t.name) + '\',\'' + escapeHtml(t.email||'') + '\')" title="CSV 다운로드">↓ CSV</button>'
           + '</div>';
       }
       el.innerHTML = html;
@@ -773,7 +789,7 @@ function renderTenantList(){
       + getExpiryBadge(t.subscriptionEnd)
       + '</div></div>'
       + '<div class="tenant-actions">'
-      + '<button class="btn-outline" onclick="downloadTenantCSV(\'' + escapeHtml(t.id) + '\',\'' + escapeHtml(t.name) + '\')">↓ CSV</button>'
+      + '<button class="btn-outline" onclick="downloadTenantCSV(\'' + escapeHtml(t.id) + '\',\'' + escapeHtml(t.name) + '\',\'' + escapeHtml(t.email||'') + '\')">↓ CSV</button>'
       + '<button class="btn-outline" onclick="openEditModal(\'' + escapeHtml(t.id) + '\')">수정</button>'
       + '<button class="btn btn-danger btn-sm" onclick="removeTenant(\'' + escapeHtml(t.id) + '\',\'' + escapeHtml(t.email) + '\')">삭제</button>'
       + '</div></div>';
@@ -1003,10 +1019,13 @@ async function saveSettings() {
   } catch(e) { alert('저장 실패: ' + e.message); }
 }
 
-async function downloadTenantCSV(tenantId, tenantName) {
+async function downloadTenantCSV(tenantId, tenantName, tenantEmail) {
   try {
-    var members = await window.fbGetDocs('tenants/' + tenantId + '/members');
-    if (members.length === 0) { alert(tenantName + ' 의원의 당원 데이터가 없습니다.'); return; }
+    // 1순위: moida_users JSON(현재 저장 위치) · 2순위: 옛 서브컬렉션
+    var members = [];
+    if (tenantEmail && window.fbGetMembersByEmail) members = await window.fbGetMembersByEmail(tenantEmail);
+    if (!members || members.length === 0) members = await window.fbGetDocs('tenants/' + tenantId + '/members');
+    if (!members || members.length === 0) { alert(tenantName + ' 의원의 당원 데이터가 없습니다.'); return; }
     var headers = ['성명','휴대전화','생년월일','행정동','당원구분','소속','투표결과','나이','연령대','성별','추천인','2차추천','3차추천','주소','카톡관리','카톡답장','문자관리','가족수','점수','메모'];
     var keys = ['name','phone','rrn','dong','type','org','vote','age','ageb','sex','rec','sub','third','addr','katalk','krGrade','smGrade','family','score','memo'];
     var csv = '﻿' + headers.join(',') + '\n';
