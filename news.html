@@ -417,15 +417,8 @@ onAuthStateChanged(_auth, function(user){
   function esc(s){ return String(s).replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];}); }
   function naver(q){ return 'https://search.naver.com/search.naver?where=news&query='+encodeURIComponent(q); }
 
-  // 실제 보도 기사 (검색으로 수집한 시드 데이터). 자동 갱신은 수집기 연결 시 이 배열만 채우면 됩니다.
-  const NEWS = [
-    { id:1, press:'경인신문', date:'2026.05.11', title:'장윤정 경기도의원, 안산 제3선거구 공천 확정', snippet:'경선 완주 끝 공천 확정. "성포동·일동·이동 당원과 시민께 감사, 안산 발전 위해 전력투구하겠다"고 밝힘.', url:'https://www.asn24.com/news/articleView.html?idxno=526048' },
-    { id:2, press:'서울신문', date:'2025.12.26', title:'장윤정 의원, "정쟁 아닌 민생, 도민 삶에 닿는 정치 끝까지 책임"', snippet:'제387회 정례회 5분 자유발언. 제11대 경기도의회 3년 6개월 의정활동을 돌아보며 현장 중심 의정을 강조.', url:'https://go.seoul.co.kr/news/newsView.php?id=20251226500278' },
-    { id:3, press:'NSP통신', date:'2025.01.17', title:'장윤정 경기도의원, 안산 순회 방문… 교육현안 해결 방안 모색', snippet:'선부초 특수학급 과밀·스마트기기 부족 등 현장 의견 청취. 소규모환경개선사업 등 실질적 지원 방안 검토 요청.', url:'https://www.nspna.com/country/?mode=view&newsid=736542' },
-    { id:4, press:'천지일보', date:'2025.01.13', title:'장윤정 경기도의원, 안산 관내 학교 방문 "현장에서 답을 찾다"', snippet:'1월 13일~2월 6일 안산 지역 학교 순회 점검. 안산디자인문화고 급식실 현대화 사업(특별교부금 36억) 등 확인.', url:'https://www.newscj.com/news/articleView.html?idxno=3222480' },
-    { id:5, press:'반월신문', date:'2024.08.22', title:'장윤정 경기도의원, 안산 공예협회와 소통', snippet:'안산공예협회 회원 20여 명이 경기도의회 방문. 상임위·본회의장 견학과 조례 입법 절차 안내, 소통의 시간.', url:'https://www.banwol.net/news/articleView.html?idxno=63107' },
-    { id:6, press:'경기도의회', date:'2025.10.10', title:'장윤정 의원, 안산 과대·과밀학교 해소 정담회', snippet:'안산교육지원청 정담회. 74개 학급 해솔초 사례 중심으로 늘봄·돌봄, 통학 안전 등 복합 현안 대응 방향 논의.', url:'https://www.ggc.go.kr/site/lwmkr/blog/11017/11' }
-  ];
+  // 검색 결과를 담는 컨테이너. 실시간 검색/크롤러 결과가 이 배열을 채웁니다. (하드코딩 시드 없음)
+  const NEWS = [];
 
   const nlist = document.getElementById('nlist');
   const input = document.getElementById('newsKw');

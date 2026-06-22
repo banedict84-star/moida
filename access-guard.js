@@ -8,6 +8,9 @@
   var SUPER_ADMIN = 'banedict84@gmail.com';
   var B = "https://www.gstatic.com/firebasejs/10.12.0/";
 
+  // 옛 캐시 HTML에 남은 하드코딩 부제가 깜빡이지 않도록 즉시 비움(이후 의원 정보로 채움)
+  try{ var _ph=document.querySelector('.ph-sub'); if(_ph){ _ph.textContent=''; _ph.style.display='none'; } }catch(e){}
+
   Promise.all([
     import(B+"firebase-app.js"),
     import(B+"firebase-auth.js"),
