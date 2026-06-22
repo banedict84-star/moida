@@ -1347,8 +1347,8 @@ onAuthStateChanged(_auth, async function(user){
   }
   var _addTop=document.getElementById('addTopBtn'); if(_addTop) _addTop.addEventListener('click', openNew);
   var _addFoot=document.querySelector('.dt-foot .btn.add'); if(_addFoot) _addFoot.addEventListener('click', openNew);
-  // 대시보드 '구성원 등록'으로 진입하면 신규추가 팝업 자동 열기
-  (function(){ try{ if(new URLSearchParams(location.search).get('new')==='1') openNew(); }catch(e){} })();
+  // 대시보드 '구성원 등록'으로 진입하면 신규추가 팝업 자동 열기 (1회만 — URL 정리해 새로고침 시 재오픈 방지)
+  (function(){ try{ if(new URLSearchParams(location.search).get('new')==='1'){ history.replaceState(null,'',location.pathname); openNew(); } }catch(e){} })();
   // 커스텀 확인 모달
   function moidaConfirm(opts, onOk){
     var ovl=document.getElementById('cfOvl');
