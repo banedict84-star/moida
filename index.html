@@ -202,6 +202,7 @@
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
   const provider = new GoogleAuthProvider();
+  provider.setCustomParameters({ prompt: 'select_account' }); // 로그인/가입 시 구글 계정 선택창 표시
 
   // 탭 전환
   window.switchTab = function(tab) {
