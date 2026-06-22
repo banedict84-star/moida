@@ -490,7 +490,7 @@ onAuthStateChanged(_auth, async function(user){
           <table>
             <thead>
               <tr>
-                <th>No</th><th data-sort="score">점수<span class="sarr">↕</span></th><th data-sort="name">성명<span class="sarr">↕</span></th><th data-sort="phone">휴대전화<span class="sarr">↕</span></th><th data-sort="rrn">주민번호<span class="sarr">↕</span></th><th data-filter="dong" style="cursor:pointer;white-space:nowrap">행정동 <span class="dfilt-caret" style="opacity:.4">▾</span></th><th data-sort="type">당원구분<span class="sarr">↕</span></th><th data-sort="org">소속<span class="sarr">↕</span></th><th data-sort="lean">성향<span class="sarr">↕</span></th><th data-sort="age">나이<span class="sarr">↕</span></th><th data-sort="ageb">연령대<span class="sarr">↕</span></th><th data-sort="sex">성별<span class="sarr">↕</span></th><th data-sort="rec">추천인<span class="sarr">↕</span></th><th data-sort="katalk">카톡관리<span class="sarr">↕</span></th><th data-sort="krGrade">카톡답장<span class="sarr">↕</span></th><th data-sort="smGrade">문자관리<span class="sarr">↕</span></th><th data-sort="family">가족수<span class="sarr">↕</span></th><th data-sort="addr">주소<span class="sarr">↕</span></th>
+                <th>No</th><th data-sort="score">점수<span class="sarr">↕</span></th><th data-sort="name">성명<span class="sarr">↕</span></th><th data-sort="phone">휴대전화<span class="sarr">↕</span></th><th data-sort="rrn">주민번호<span class="sarr">↕</span></th><th data-sort="dong">행정동<span class="sarr">↕</span></th><th data-sort="type">당원구분<span class="sarr">↕</span></th><th data-sort="org">소속<span class="sarr">↕</span></th><th data-sort="lean">성향<span class="sarr">↕</span></th><th data-sort="age">나이<span class="sarr">↕</span></th><th data-sort="ageb">연령대<span class="sarr">↕</span></th><th data-sort="sex">성별<span class="sarr">↕</span></th><th data-sort="rec">추천인<span class="sarr">↕</span></th><th data-sort="katalk">카톡관리<span class="sarr">↕</span></th><th data-sort="krGrade">카톡답장<span class="sarr">↕</span></th><th data-sort="smGrade">문자관리<span class="sarr">↕</span></th><th data-sort="family">가족수<span class="sarr">↕</span></th><th data-sort="addr">주소<span class="sarr">↕</span></th>
               </tr>
             </thead>
             <tbody id="tbody"></tbody>
@@ -1117,6 +1117,13 @@ onAuthStateChanged(_auth, async function(user){
   })();
 
   // 정렬
+  // 표시값 기준 정렬키 (가족수=주소기준 인원, 성향/카톡관리=의미 순서)
+  function sortVal(m,f){
+    if(f==='family'){ var n=famCount(m); return n==null?-1:n; }
+    if(f==='lean'){ return ({ours:4,rival:3,float:2,none:1})[leanOf(m)]||0; }
+    if(f==='katalk'){ return ({'관리중':3,'수신거부':2,'—':1})[m.katalk]||0; }
+    return m[f];
+  }
   document.querySelectorAll('th[data-sort]').forEach(function(th){
     th.addEventListener('click',function(){
       var f=th.dataset.sort;
@@ -1124,9 +1131,9 @@ onAuthStateChanged(_auth, async function(user){
       document.querySelectorAll('th[data-sort]').forEach(function(x){ x.classList.remove('asc','desc'); var a=x.querySelector('.sarr'); if(a) a.textContent='↕'; });
       th.classList.add(sortDir>0?'asc':'desc'); var ar=th.querySelector('.sarr'); if(ar) ar.textContent=sortDir>0?'↑':'↓';
       dispMembers.sort(function(a,b){
-        var x=a[f], y=b[f];
+        var x=sortVal(a,f), y=sortVal(b,f);
         if(typeof x==='number'&&typeof y==='number') return (x-y)*sortDir;
-        return String(x).localeCompare(String(y),'ko')*sortDir;
+        return String(x==null?'':x).localeCompare(String(y==null?'':y),'ko')*sortDir;
       });
       renderRows();
     });
