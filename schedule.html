@@ -812,7 +812,9 @@ onAuthStateChanged(_auth, async function(user){
   function renderFeed(){
     var cur=_myName;
     var list=events.filter(function(e){ return _authorFilter==='all' || e.author===cur; }).slice().sort(function(a,b){ return (a.created||'')<(b.created||'')?1:-1; });
-    document.getElementById('feedView').innerHTML = list.map(function(e){ var i=events.indexOf(e); return '<div class="ev'+(e.star?' imp':'')+'"><div class="ev-ico">'+calIco+'</div><div class="ev-main"><div class="ev-t">'+e.title+'</div><div class="ev-meta">'+e.author+' · '+e.created+'</div></div><div class="ev-date">'+e.date+' '+e.time+'</div><button class="ev-star'+(e.star?' on':'')+'" data-si="'+i+'" title="중요 일정" onclick="toggleStar(event,'+i+')">'+starSvg(e.star)+'</button></div>'; }).join('');
+    var feedEl=document.getElementById('feedView');
+    feedEl.innerHTML = list.map(function(e){ var i=events.indexOf(e); return '<div class="ev'+(e.star?' imp':'')+'"><div class="ev-ico">'+calIco+'</div><div class="ev-main"><div class="ev-t">'+e.title+'</div><div class="ev-meta">'+e.author+' · '+e.created+'</div></div><div class="ev-date">'+e.date+' '+e.time+'</div><button class="ev-star'+(e.star?' on':'')+'" data-si="'+i+'" title="중요 일정" onclick="toggleStar(event,'+i+')">'+starSvg(e.star)+'</button></div>'; }).join('');
+    [].forEach.call(feedEl.querySelectorAll('.ev'), function(node,k){ node._ev=list[k]; }); // 카드 ↔ 이벤트 객체 연결
     var fb=document.querySelector('.fb-all b'); if(fb) fb.textContent=list.length;
   }
   var _authorFilter='all';
@@ -1109,21 +1111,22 @@ onAuthStateChanged(_auth, async function(user){
       var locVal=locEl?(locEl.value||'').trim():'';
       const modal=document.getElementById('evModal');
       const files=(modal&&modal._files)?modal._files.slice():[];
+      var datePart=mt?mt[1]:''; var timePart=mt?mt[2]:''; var dayNum=datePart?parseInt(datePart.split('-')[2],10):null;
+      var endDate=mte?mte[1]:''; var endTime=mte?mte[2]:'';
       if(window._editEv){
-        var ev=window._editEv;
-        ev.querySelector('.ev-t').textContent=title;
-        ev.querySelector('.ev-date').textContent=evdate;
-        var prev=ev._evData||{};
-        ev._evData={ body:bodyTxt, files:(files.length?files:(prev.files||[])), location:locVal||prev.location||'' };
+        var obj=window._editEv._ev; // 카드에 연결된 실제 이벤트 객체
+        if(obj){
+          obj.title=title; obj.date=datePart; obj.time=timePart; obj.endDate=endDate; obj.endTime=endTime; obj.d=dayNum;
+          obj._body=bodyTxt; obj._files=(files.length?files:(obj._files||[])); obj._location=locVal||obj._location||'';
+        }
         window._editEv=null;
+        saveEvents(); renderFeed(); renderImp(); renderStats(); if(window.renderCal) window.renderCal(); // 저장 + 갱신
         var sb2=document.querySelector('.evm-submit'); if(sb2) sb2.textContent='등록';
         ti.value=''; if(ct) ct.value=''; if(modal&&modal._resetFiles) modal._resetFiles();
         var _li=document.querySelector('.evm-input.grow[placeholder="장소를 입력하세요"]'); if(_li) _li.value='';
         var _mb=document.getElementById('evmMap'); if(_mb) _mb.classList.remove('show');
         return;
       }
-      var datePart=mt?mt[1]:''; var timePart=mt?mt[2]:''; var dayNum=datePart?parseInt(datePart.split('-')[2],10):null;
-      var endDate=mte?mte[1]:''; var endTime=mte?mte[2]:'';
       events.unshift({ title:title, author:_myName, created:created, date:datePart, time:timePart, endDate:endDate, endTime:endTime, d:dayNum, star:false, _body:bodyTxt, _files:files, _location:locVal });
       saveEvents(); renderFeed(); renderStats(); renderImp(); if(window.renderCal) window.renderCal();
       switchView('feed');
@@ -1271,12 +1274,14 @@ onAuthStateChanged(_auth, async function(user){
     // 수정 → 작성 모달을 채워 열기
     p.querySelector('[data-edit]').addEventListener('click',function(){
       var ev=p._curEv; if(!ev) return;
-      var title=ev.querySelector('.ev-t').textContent.trim();
-      var dt=ev.querySelector('.ev-date').textContent.trim();
-      var data=ev._evData||{};
+      var obj=ev._ev||{};
+      var title=obj.title||ev.querySelector('.ev-t').textContent.trim();
+      var dt=(obj.date&&obj.time)?(obj.date+' '+obj.time):ev.querySelector('.ev-date').textContent.trim();
       var ti=document.querySelector('.evm-titleinput'); if(ti) ti.value=title;
       var d0=document.querySelectorAll('.evm-input.date')[0]; if(d0) d0.value=dt;
-      var ct=document.querySelector('.evm-content'); if(ct) ct.value=data.body||'';
+      var d1=document.querySelectorAll('.evm-input.date')[1]; if(d1&&obj.endDate&&obj.endTime) d1.value=obj.endDate+' '+obj.endTime;
+      var ct=document.querySelector('.evm-content'); if(ct) ct.value=obj._body||'';
+      var locEl=document.querySelector('.evm-input.grow[placeholder="장소를 입력하세요"]'); if(locEl) locEl.value=obj._location||'';
       window._editEv=ev;
       var sb=document.querySelector('.evm-submit'); if(sb) sb.textContent='수정 완료';
       close();
