@@ -527,11 +527,14 @@ c1|2026.03.10|2,051|경기도의회 의정모니터단 모집 공고`;
   saveNoticesCache();
 
   // 총관리자 콘솔의 MOIDA 공지(admin_notices)로 'admin' 출처 공지를 교체
+  // 공지사항 페이지를 봤으므로 전체 공지를 읽음 처리 + 뱃지 갱신
+  function _syncNoticeBadge(){ if(window.setNoticesAll){ setNoticesAll(notices.map(function(n){ return n.date; })); markNoticesRead(); updateNoticeBadge(); } }
   window._applyAdminNotices = function(list){
     if(!Array.isArray(list)) return;
     notices = notices.filter(function(n){ return n.src!=='admin'; }).concat(list).sort(function(a,b){ return dnum(b.date)-dnum(a.date); });
     saveNoticesCache();
     renderList();
+    _syncNoticeBadge();
   };
   // 캐시된 MOIDA 공지를 즉시 반영(새로고침 깜빡임 방지) → Firestore가 곧 갱신
   try{ var _adminCache=JSON.parse(localStorage.getItem('moida_admin_notices')||'[]'); if(Array.isArray(_adminCache)&&_adminCache.length) window._applyAdminNotices(_adminCache); }catch(e){}
@@ -658,6 +661,7 @@ c1|2026.03.10|2,051|경기도의회 의정모니터단 모집 공고`;
         saveNoticesCache();
         renderList();
       }
+      _syncNoticeBadge();
     });
   })();
 
@@ -738,6 +742,28 @@ c1|2026.03.10|2,051|경기도의회 의정모니터단 모집 공고`;
       }
     }catch(e){}
   })();
+</script>
+<script>
+/* 공지사항 안 읽음 뱃지 (실제 새 공지 수) */
+(function(){
+  function uid(){ try{ return JSON.parse(sessionStorage.getItem('moida_auth_user')||'{}').uid||'default'; }catch(e){ return 'default'; } }
+  function dn(d){ return +String(d||'').replace(/\D/g,''); }
+  window.setNoticesAll=function(dates){ try{ localStorage.setItem('moida_notices_all_'+uid(), JSON.stringify(dates||[])); }catch(e){} };
+  window.markNoticesRead=function(){ try{ var u=uid(); var all=JSON.parse(localStorage.getItem('moida_notices_all_'+u)||'[]'); var mx=all.reduce(function(a,b){ return Math.max(a,dn(b)); },0); localStorage.setItem('moida_notices_read_'+u, String(mx)); }catch(e){} };
+  window.updateNoticeBadge=function(){
+    try{
+      var u=uid();
+      var all=JSON.parse(localStorage.getItem('moida_notices_all_'+u)||'[]');
+      var rk='moida_notices_read_'+u;
+      if(localStorage.getItem(rk)==null){ var seed=all.reduce(function(a,b){ return Math.max(a,dn(b)); },0); localStorage.setItem(rk, String(seed)); }
+      var read=+(localStorage.getItem(rk)||0);
+      var unread=all.filter(function(d){ return dn(d)>read; }).length;
+      var badge=null; document.querySelectorAll('.nav-item').forEach(function(a){ var nm=a.querySelector('.nm'); if(nm&&nm.textContent.trim()==='\uacf5\uc9c0\uc0ac\ud56d') badge=a.querySelector('.badge'); });
+      if(badge){ if(unread>0){ badge.textContent=unread>99?'99+':unread; badge.style.display=''; } else { badge.style.display='none'; } }
+    }catch(e){}
+  };
+  updateNoticeBadge();
+})();
 </script>
 </body>
 </html>
