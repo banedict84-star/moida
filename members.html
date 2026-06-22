@@ -1164,6 +1164,8 @@ onAuthStateChanged(_auth, async function(user){
       saveGrades(); saveMembers(); recalcScores(); renderRows();
       return;
     }
+    // 게이지 영역(막대 사이 빈 공간 등) 클릭은 상세가 열리지 않도록 무시
+    if(e.target.closest('.gauge')) return;
     var tr=e.target.closest('tr'); if(!tr) return;
     tbody.querySelectorAll('tr').forEach(t=>t.classList.remove('sel'));
     tr.classList.add('sel');
