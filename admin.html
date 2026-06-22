@@ -443,6 +443,41 @@
   </div>
 </div>
 
+<!-- 가입자 이용 기간 부여 모달 -->
+<div class="modal-overlay" id="grant-modal">
+  <div class="modal">
+    <h3>이용 기간 부여 / 승인</h3>
+    <input type="hidden" id="g-uid">
+    <input type="hidden" id="g-email">
+    <input type="hidden" id="g-name">
+    <div id="g-who" style="padding:12px 14px;background:#f3f6fc;border-radius:12px;font-size:13.5px;line-height:1.5;margin-bottom:4px"></div>
+    <div class="sub-box">
+      <label>사용 기간</label>
+      <div class="form-row">
+        <div>
+          <label class="sub-lab">시작일</label>
+          <input class="form-input" id="g-sub-start" type="date">
+        </div>
+        <div>
+          <label class="sub-lab">만료일</label>
+          <input class="form-input" id="g-sub-end" type="date">
+        </div>
+      </div>
+      <div class="chip-row">
+        <button class="btn-outline" onclick="grantExtend(1)">+1개월</button>
+        <button class="btn-outline" onclick="grantExtend(3)">+3개월</button>
+        <button class="btn-outline" onclick="grantExtend(6)">+6개월</button>
+        <button class="btn-outline" onclick="grantExtend(12)">+12개월</button>
+      </div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-outline" style="padding:11px 22px" onclick="closeGrantModal()">취소</button>
+      <button class="btn btn-danger" style="padding:11px 18px" onclick="grantRevoke()">승인 취소(차단)</button>
+      <button class="btn" onclick="grantSave()">저장</button>
+    </div>
+  </div>
+</div>
+
 <!-- 앱 -->
 <div class="app" id="app">
  <div class="layout">
@@ -1028,34 +1063,115 @@ async function saveSettings() {
   } catch(e) { alert('저장 실패: ' + e.message); }
 }
 
+// 가입자별 구독 상태 계산 (tenants/{uid}.subscriptionEnd 기준)
+function authUserStatus(end){
+  if(!end) return { key:'none', label:'미승인', color:'#94a3b8', bg:'#f1f5f9' };
+  var today=new Date(); today.setHours(0,0,0,0);
+  var ed=new Date(String(end)+'T23:59:59');
+  if(isNaN(ed.getTime())) return { key:'none', label:'미승인', color:'#94a3b8', bg:'#f1f5f9' };
+  if(ed < today) return { key:'expired', label:'만료됨', color:'#dc2626', bg:'#fef2f2' };
+  return { key:'active', label:'사용중', color:'#059669', bg:'#ecfdf5' };
+}
+
 async function loadAuthUsers() {
   var el = document.getElementById('authuser-list');
   el.innerHTML = '<div class="empty">불러오는 중...</div>';
   try {
     var users = await window.fbGetDocs('moida_auth_users');
     if (users.length === 0) { el.innerHTML = '<div class="empty">로그인 기록이 없습니다.</div>'; return; }
+    // 구독 정보: tenants 문서를 uid(=문서의 id 필드) 기준으로 매핑
+    var tenants = await window.fbGetDocs('tenants');
+    var subByUid = {};
+    tenants.forEach(function(t){ if(t && t.id) subByUid[t.id] = t.subscriptionEnd || ''; });
     users.sort(function(a,b){ return (b.lastLogin||0)-(a.lastLogin||0); });
     var html = '<table style="width:100%;border-collapse:collapse;font-size:13.5px">'
       + '<thead><tr style="border-bottom:1px solid var(--line);color:var(--ink-3);font-size:12px">'
       + '<th style="text-align:left;padding:8px 10px;font-weight:600">이름</th>'
       + '<th style="text-align:left;padding:8px 10px;font-weight:600">이메일</th>'
-      + '<th style="text-align:left;padding:8px 10px;font-weight:600">로그인 방법</th>'
+      + '<th style="text-align:left;padding:8px 10px;font-weight:600">상태</th>'
+      + '<th style="text-align:left;padding:8px 10px;font-weight:600">만료일</th>'
       + '<th style="text-align:left;padding:8px 10px;font-weight:600">마지막 접속</th>'
+      + '<th style="text-align:right;padding:8px 10px;font-weight:600">관리</th>'
       + '</tr></thead><tbody>';
     users.forEach(function(u) {
       var d = u.lastLogin ? new Date(u.lastLogin) : null;
       var dateStr = d ? (d.getFullYear()+'.'+(d.getMonth()+1).toString().padStart(2,'0')+'.'+d.getDate().toString().padStart(2,'0')+' '+d.getHours().toString().padStart(2,'0')+':'+d.getMinutes().toString().padStart(2,'0')) : '—';
-      var provider = (u.provider||'').includes('google') ? 'Google' : (u.provider||u.uid||'—');
+      var end = u.uid ? (subByUid[u.uid] || '') : '';
+      var st = authUserStatus(end);
+      var endStr = end ? String(end).replace(/-/g,'.') : '—';
+      var btnLabel = st.key==='none' ? '기간 부여' : '기간 수정';
+      var nm = (u.displayName||'').replace(/'/g,'');
+      var em = (u.email||'').replace(/'/g,'');
       html += '<tr style="border-bottom:1px solid var(--line-soft)">'
         + '<td style="padding:10px 10px;font-weight:600">' + escapeHtml(u.displayName||'(이름없음)') + '</td>'
         + '<td style="padding:10px 10px;color:var(--ink-2)">' + escapeHtml(u.email||'—') + '</td>'
-        + '<td style="padding:10px 10px;color:var(--ink-3)">' + escapeHtml(provider) + '</td>'
+        + '<td style="padding:10px 10px"><span style="display:inline-block;padding:3px 9px;border-radius:999px;font-size:12px;font-weight:700;color:'+st.color+';background:'+st.bg+'">'+st.label+'</span></td>'
+        + '<td style="padding:10px 10px;color:var(--ink-3)">' + endStr + '</td>'
         + '<td style="padding:10px 10px;color:var(--ink-3)">' + escapeHtml(dateStr) + '</td>'
+        + '<td style="padding:10px 10px;text-align:right"><button class="btn btn-sm" onclick="openGrantModal(\''+escapeHtml(u.uid||'')+'\',\''+escapeHtml(em)+'\',\''+escapeHtml(nm)+'\')">'+btnLabel+'</button></td>'
         + '</tr>';
     });
     html += '</tbody></table>';
     el.innerHTML = html;
   } catch(e) { el.innerHTML = '<div class="empty">로드 실패: ' + escapeHtml(e.message) + '</div>'; }
+}
+
+/* 가입자 이용 기간 부여 */
+function openGrantModal(uid, email, name){
+  if(!uid){ alert('이 가입자는 UID 정보가 없어 기간을 부여할 수 없습니다.'); return; }
+  document.getElementById('g-uid').value = uid;
+  document.getElementById('g-email').value = email || '';
+  document.getElementById('g-name').value = name || '';
+  document.getElementById('g-who').innerHTML = '<b>'+escapeHtml(name||'(이름없음)')+'</b><br><span style="color:var(--ink-3)">'+escapeHtml(email||'')+'</span>';
+  // 기존 구독값 불러오기 (없으면 오늘~+1년 기본값)
+  window.fbGetDoc('tenants', uid).then(function(t){
+    var today = new Date().toISOString().split('T')[0];
+    var nextYear = (function(){ var dt=new Date(); dt.setFullYear(dt.getFullYear()+1); return dt.toISOString().split('T')[0]; })();
+    document.getElementById('g-sub-start').value = (t && t.subscriptionStart) || today;
+    document.getElementById('g-sub-end').value   = (t && t.subscriptionEnd)   || nextYear;
+  });
+  document.getElementById('grant-modal').classList.add('show');
+}
+
+function closeGrantModal(){ document.getElementById('grant-modal').classList.remove('show'); }
+
+function grantExtend(months){
+  var endInput = document.getElementById('g-sub-end');
+  var startInput = document.getElementById('g-sub-start');
+  if(!startInput.value) startInput.value = new Date().toISOString().split('T')[0];
+  var base = endInput.value ? new Date(endInput.value) : new Date();
+  base.setMonth(base.getMonth() + months);
+  endInput.value = base.toISOString().split('T')[0];
+}
+
+async function grantSave(){
+  var uid = document.getElementById('g-uid').value;
+  var email = document.getElementById('g-email').value;
+  var name = document.getElementById('g-name').value;
+  var start = document.getElementById('g-sub-start').value;
+  var end = document.getElementById('g-sub-end').value;
+  if(!end){ alert('만료일을 설정하세요.'); return; }
+  try{
+    await window.fbSetDoc(window.fbDoc('tenants', uid), {
+      id: uid, name: name, email: email,
+      subscriptionStart: start, subscriptionEnd: end, updated: Date.now()
+    }, { merge: true });
+    closeGrantModal();
+    loadAuthUsers();
+  }catch(e){ alert('저장 실패: ' + e.message); }
+}
+
+async function grantRevoke(){
+  var uid = document.getElementById('g-uid').value;
+  var email = document.getElementById('g-email').value;
+  if(!confirm((email||'이 가입자')+' 의 이용 권한을 취소(차단)하시겠습니까?\n취소하면 다시 "승인 대기" 상태가 됩니다.')) return;
+  try{
+    await window.fbSetDoc(window.fbDoc('tenants', uid), {
+      id: uid, subscriptionStart: '', subscriptionEnd: '', updated: Date.now()
+    }, { merge: true });
+    closeGrantModal();
+    loadAuthUsers();
+  }catch(e){ alert('처리 실패: ' + e.message); }
 }
 
 async function downloadTenantCSV(tenantId, tenantName, tenantEmail) {
