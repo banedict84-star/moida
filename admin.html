@@ -1007,8 +1007,8 @@ async function downloadTenantCSV(tenantId, tenantName) {
   try {
     var members = await window.fbGetDocs('tenants/' + tenantId + '/members');
     if (members.length === 0) { alert(tenantName + ' 의원의 당원 데이터가 없습니다.'); return; }
-    var headers = ['성명','휴대전화','주민번호','행정동','당원구분','소속','투표결과','나이','연령대','성별','추천인','서브추천인','서드추천인','주소','카톡관리','카톡답장','문자관리','가족수','메모'];
-    var keys = ['name','phone','jumin','dong','member_type','affiliation','vote_result','age','age_group','gender','recommender','sub_recommender','third_recommender','address','kakao_mgmt','kakao_reply','text_reply','family_cnt','memo'];
+    var headers = ['성명','휴대전화','생년월일','행정동','당원구분','소속','투표결과','나이','연령대','성별','추천인','2차추천','3차추천','주소','카톡관리','카톡답장','문자관리','가족수','점수','메모'];
+    var keys = ['name','phone','rrn','dong','type','org','vote','age','ageb','sex','rec','sub','third','addr','katalk','krGrade','smGrade','family','score','memo'];
     var csv = '﻿' + headers.join(',') + '\n';
     members.forEach(function(m) {
       csv += keys.map(function(k) {
@@ -1023,8 +1023,10 @@ async function downloadTenantCSV(tenantId, tenantName) {
     var a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
     a.download = tenantName + '_당원목록_' + new Date().toISOString().split('T')[0] + '.csv';
+    document.body.appendChild(a);
     a.click();
-    URL.revokeObjectURL(a.href);
+    document.body.removeChild(a);
+    setTimeout(function(){ URL.revokeObjectURL(a.href); }, 1000);
   } catch(e) { alert('다운로드 실패: ' + e.message); }
 }
 
