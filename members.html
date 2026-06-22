@@ -1121,7 +1121,7 @@ onAuthStateChanged(_auth, async function(user){
   function sortVal(m,f){
     if(f==='family'){ var n=famCount(m); return n==null?-1:n; }
     if(f==='lean'){ return ({ours:4,rival:3,float:2,none:1})[leanOf(m)]||0; }
-    if(f==='katalk'){ return ({'관리중':3,'수신거부':2,'—':1})[m.katalk]||0; }
+    if(f==='katalk'){ var v=m.katalk; if(v==='관리중'||v==='수신'||v==='발송') return 3; if(v==='수신거부'||v==='거부'||v==='미수신') return 2; return 1; }
     return m[f];
   }
   document.querySelectorAll('th[data-sort]').forEach(function(th){
