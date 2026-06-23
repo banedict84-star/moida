@@ -1,6 +1,14 @@
 {
-  "updated": "2026-06-23 18:21 UTC",
+  "updated": "2026-06-23 20:34 UTC",
   "items": [
+    {
+      "source": "naver",
+      "press": "newsis.com",
+      "date": "2026.06.24",
+      "title": "[오늘의 주요일정]경기남부(6월24일 수요일)",
+      "snippet": "0 공모사업 해양수산부 현장평가, 백미항 ◇안산시 ▲오전 9시30분, 경기도·안산시사회복지사협회... 집합교육, 글로벌센터2·3 ◇광명시 ▲오전 9시, 친환경급식 지킴이단 식재료공급업체 현장점검, 해정수산...",
+      "url": "https://www.newsis.com/view/NISX20260623_0003680047"
+    },
     {
       "source": "naver",
       "press": "kyeonggi.com",
@@ -506,14 +514,6 @@
       "url": "https://www.etoday.co.kr/news/view/2596107"
     },
     {
-      "source": "naver",
-      "press": "enewstoday.co.kr",
-      "date": "2026.06.22",
-      "title": "GH, 전세사기 피해자 대상 맞춤형 법률지원 나서",
-      "snippet": "이어 3·4차 교육은 부천과 안산에서 열리며 경·공매 절차와 배당표 이해 등 실무적인 내용을 다룰 예정이다. GH에 따르면 도내 전세사기 피해자의 약 70%가 청년층으로, 상당수가 소송과 경매 절차를 처음 경험하는 것으로...",
-      "url": "http://www.enewstoday.co.kr/news/articleView.html?idxno=2441199"
-    },
-    {
       "source": "google",
       "press": "경기인터넷신문",
       "date": "2026.06.22",
@@ -523,19 +523,19 @@
     },
     {
       "source": "google",
-      "press": "newszoom.kr",
-      "date": "2026.06.22",
-      "title": "안산교육지원청, 시티투어버스 연계 가족체험 운영… 지역 이해와 인성교육을 함께",
-      "snippet": "안산교육지원청, 시티투어버스 연계 가족체험 운영… 지역 이해와 인성교육을 함께 newszoom.kr",
-      "url": "https://news.google.com/rss/articles/CBMiREFVX3lxTE9ISGVEVlp6MG84TzlRbjFWOVRCUWpOczY4WEhHYVU3YVpLTW90amZVN1RIN0JLaG4zRWRlZW5xXzVqYnB4?oc=5"
-    },
-    {
-      "source": "google",
       "press": "안산뉴스",
       "date": "2026.06.22",
       "title": "안산맞춤형 입시설명회…7월 11일",
       "snippet": "안산맞춤형 입시설명회…7월 11일 안산뉴스",
       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFB5NTVGdWtTdlFUYzV6T1RFTmhDYzJTRVNmMWZYMmx0STg2dUJRcFVUYkJ5Z19XZVFEU09pQ3lfeHpYLW1vOUZyWkQ1WTNXdVV4aUVlcXF5aW96ck5SLTduTURFZkxjVEFfdXg1dw?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "미디어라이프 중부신문",
+      "date": "2026.06.22",
+      "title": "안산교육지원청, 시티투어버스 연계 가족체험 운영… 지역 이해와 인성교육을 함께",
+      "snippet": "안산교육지원청, 시티투어버스 연계 가족체험 운영… 지역 이해와 인성교육을 함께 미디어라이프 중부신문",
+      "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE9NNU81NjhBMmJMLU9WajlvSzlJWmRFTkttUmhReU5Ta3hvVWRSOWZBUzNQMmY3eS11bzU3eGlHWHVfbl9iSFE1aGZ0b0FvNERDYXFieF9JS0EzZUY4eWZhcnpR?oc=5"
     },
     {
       "source": "google",
@@ -723,11 +723,11 @@
     },
     {
       "source": "google",
-      "press": "브릿지경제",
+      "press": "v.daum.net",
       "date": "2026.06.17",
-      "title": "안산교육지원청, 현 학군 체제 유지… 새솔동 학생 해양중학교 입학 불가할 듯",
-      "snippet": "안산교육지원청, 현 학군 체제 유지… 새솔동 학생 해양중학교 입학 불가할 듯 브릿지경제",
-      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5CSGRscUh0dzB0aVdTS1lVUjczblpuc3NoVlZFdWtCY0lMRWo0NWtnYkVmbFFpV0tnT3pJUDNLZTQ4dHhJWm1TOEFhdVVwempBTzJWdW93cXZndw?oc=5"
+      "title": "안산시, 기존 학군 유지한 안산교육청 환영…“시민 목소리 반영”",
+      "snippet": "안산시, 기존 학군 유지한 안산교육청 환영…“시민 목소리 반영” v.daum.net",
+      "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE9hWjRuVW9mZHBBTTJwc2NKMHdzRUprNlBpR1UxeExVRUpLSnZXdkhUM1ZzdF82MFBWZHJlSEtzUDV6eTdvNFdJcHdBaVBXdXM?oc=5"
     },
     {
       "source": "google",
@@ -760,6 +760,14 @@
       "title": "안산교육지원청, 관내 학부모 대상 화해중재 역량강화 연수 실시",
       "snippet": "안산교육지원청, 관내 학부모 대상 화해중재 역량강화 연수 실시 누리일보",
       "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFBLcTF1QzJlMjZiZW56andLcGllN2hXNGdBZkkwZmpoQVA5ZDVucElKdFk1TFBlV3Z0azlycGtIQzkwUDc2c1Z0TzFfVjlGNGw4QzBBZ3dJOWFDOVNucjFXTm4wdV8?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "일간경기",
+      "date": "2026.06.17",
+      "title": "안산해양중 학구통합 백지화‥ 안산교육지원청 행정예고",
+      "snippet": "안산해양중 학구통합 백지화‥ 안산교육지원청 행정예고 일간경기",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE05TzJlWjZlRUN2THo3emRmOWtDSlQ4OUZvX1VTLWNwZ1ZFblItRmFHcmZWaS1ZTVNkRlZUYXItMk5fZFhwQmtnWjhtQ1g2dW93ZU5QcWZlNUNHTV8xLUxnOVRFS2tTRlRJ?oc=5"
     },
     {
       "source": "naver",
@@ -1018,14 +1026,6 @@
       "url": "https://www.joongboo.com/news/articleView.html?idxno=363728461"
     },
     {
-      "source": "google",
-      "press": "경기신문",
-      "date": "2026.06.11",
-      "title": "안산시-안산교육지원청, 학생 교육환경 개선 위한 간담회 개최",
-      "snippet": "안산시-안산교육지원청, 학생 교육환경 개선 위한 간담회 개최 경기신문",
-      "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE1KSWppUDNhcFVyN0t3WWM1Q25PdjRYNUtXN0wxTUlxSHJsenQ3N1VrdzJSWWF5dDN4VVNvVng0VVNfSGZVMHYtWHkzNjVmS2RsZnNpUkNwVDl3V1dKaGZ1NW1R?oc=5"
-    },
-    {
       "source": "naver",
       "press": "doctorstimes.com",
       "date": "2026.06.10",
@@ -1035,11 +1035,11 @@
     },
     {
       "source": "google",
-      "press": "경인투데이뉴스",
+      "press": "경기매일",
       "date": "2026.06.10",
-      "title": "안산 상록구, 야간 이륜차 소음 집중 점검…불법 개조·난폭운전 단속 강화:경인투데이뉴스",
-      "snippet": "안산 상록구, 야간 이륜차 소음 집중 점검…불법 개조·난폭운전 단속 강화:경인투데이뉴스 경인투데이뉴스",
-      "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTFBDb3dJWFNCQnNRNXNlaFdqMHlkRktTcHV3Xzhxb01jclNqS3ZLMmtMWlFSSWhsTU93VDBqdWRHMkg4aHVFR1ptb2NTYTduU0nSAV9BVV95cUxNQlZuNWNORGhXSjJUQ2RlbHp4eG90UEc3dWRDN05fZmotYTdnbGJBd0JaNEVZRTV1SklmMnBsazdNa2s4b0xMUWtmcFZDT0pKak9sN3JZM09Dam02MlJoQQ?oc=5"
+      "title": "안산시 상록구, 야간 이륜차 소음 합동 특별단속 실시",
+      "snippet": "안산시 상록구, 야간 이륜차 소음 합동 특별단속 실시 경기매일",
+      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9odm9EVXllcnNWQVJfd21qcTljbmxpVkotRGFiMUN6djJWOWo5MWpmMTlBRGxIbjQ5Rll6WkdDaDNEZjdEU1J1S1A0dDdoRmZ1ZGFEdlNES2tGLXQ4ZW9yYkotVGoyREE?oc=5"
     },
     {
       "source": "naver",
@@ -1723,10 +1723,10 @@
     },
     {
       "source": "google",
-      "press": "경기청소년신문",
+      "press": "igoodnews.or.kr",
       "date": "2026.04.10",
       "title": "경기도의회 장윤정 의원, 안산 학교급식실 환기설비 운영 점검 나서",
-      "snippet": "경기도의회 장윤정 의원, 안산 학교급식실 환기설비 운영 점검 나서 경기청소년신문",
+      "snippet": "경기도의회 장윤정 의원, 안산 학교급식실 환기설비 운영 점검 나서 igoodnews.or.kr",
       "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE44djc1dkZGWmdXYl9mZnVzWmc0TS1qdjFaVmhfOVgyalg0QjF3WVhUdDNRQzJENXp2WFkyRWJtX2xOdVZyRnVHUkdpRHlzXzRfNDg0MTQ5N25jWW9Oc2dwV2tJTnE4aXkt?oc=5"
     },
     {
@@ -1835,19 +1835,19 @@
     },
     {
       "source": "naver",
-      "press": "news1.kr",
-      "date": "2026.03.26",
-      "title": "[재산공개]김성수 경기도의원 324억 신고…4년 연속 도내 최고 자산가",
-      "snippet": "김성수 경기도의회 의원(국민의힘·하남2)이 324억여 원의 재산을 보유해 4년 연속 도내 재산공개 대상... 반면, 장윤정 의원(민주·안산3)은 -2490만 원을 신고해 도의원 중 재산이 가장 적었다. 이어 정동혁(민주...",
-      "url": "https://www.news1.kr/local/gyeonggi/6114090"
-    },
-    {
-      "source": "naver",
       "press": "kihoilbo.co.kr",
       "date": "2026.03.26",
       "title": "경기도의원 152명 중 112명 재산 늘어",
       "snippet": "기호일보, KIHOILBO 경기도의회 전경.<경기도의회 제공> 올해 경기도 광역의원의 평균 재산은 12억6천383만... 가장 적은 재산을 보유한 도의원은 장윤정(민주·안산3) 의원으로 마이너스 2천490만 원을 신고했다....",
       "url": "https://www.kihoilbo.co.kr/news/articleView.html?idxno=3017496"
+    },
+    {
+      "source": "naver",
+      "press": "news1.kr",
+      "date": "2026.03.26",
+      "title": "[재산공개]김성수 경기도의원 324억 신고…4년 연속 도내 최고 자산가",
+      "snippet": "김성수 경기도의회 의원(국민의힘·하남2)이 324억여 원의 재산을 보유해 4년 연속 도내 재산공개 대상... 반면, 장윤정 의원(민주·안산3)은 -2490만 원을 신고해 도의원 중 재산이 가장 적었다. 이어 정동혁(민주...",
+      "url": "https://www.news1.kr/local/gyeonggi/6114090"
     },
     {
       "source": "naver",
