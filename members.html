@@ -1425,7 +1425,8 @@ onAuthStateChanged(_auth, async function(user){
     var tsel=document.querySelector('#dtfType .tseg-opt.on'); if(tsel){ m.type=tsel.dataset.v; m.typeK=typeToK(m.type); }
     m.orgs=editOrgs.map(function(o){ return {cat:o.cat,name:o.name,title:o.title}; }); syncOrgStr(m); saveOrgs(m); m.rec=g('dtfRec1')||'—'; m.rec2=g('dtfRec2')||'—'; m.rec3=g('dtfRec3')||'—'; m.sub=m.rec2; m.third=m.rec3;
     var d=deriveFromRrn(g('dtfRrn')); if(d){ m.age=d.age; m.ageb=d.ageb; m.sex=d.sex; }
-    if(window._getMemberPhoto) m.photo=window._getMemberPhoto();
+    var _newPhoto = window._getMemberPhotoFile && window._getMemberPhotoFile();
+    if(!_newPhoto && window._getMemberPhoto){ m.photo=window._getMemberPhoto(); }  // 새 파일 없으면 기존 URL 유지/삭제 반영
     if(isNew){
       m.no=members.length+1; members.unshift(m); dispMembers.unshift(m); // 목록 맨 위에 추가
       if(!m.mid) m.mid='m'+Date.now()+Math.random().toString(36).slice(2,7);
@@ -1435,6 +1436,13 @@ onAuthStateChanged(_auth, async function(user){
       }
     }
     saveMembers(); recalcScores(); renderRows(); closeDetail();
+    // 새 사진은 Cloud Storage로 업로드(base64를 명단에 넣지 않음) 후 URL만 저장
+    if(_newPhoto && window._uploadPhoto && _uid && _uid!=='default'){
+      window._uploadPhoto(_uid, m.mid, _newPhoto).then(function(url){
+        m.photo=url; if(window._clearMemberPhotoFile) window._clearMemberPhotoFile();
+        saveMembers(); renderRows();
+      }).catch(function(e){ console.warn('photo upload err', e); });
+    }
   }
   if(_save) _save.addEventListener('click', function(){
     var nm=(document.getElementById('dtfName').value||'').trim();
@@ -1512,13 +1520,16 @@ onAuthStateChanged(_auth, async function(user){
     var img=document.getElementById('dtPhotoImg'), ph=document.getElementById('dtPhotoPh');
     var btn=document.getElementById('dtPhotoBtn'), del=document.getElementById('dtPhotoDel');
     if(!box) return;
+    var _pendingFile=null;   // 선택된 새 사진 파일(저장 시 Cloud Storage 업로드)
     function show(src){ if(src){ img.src=src; img.style.display='block'; ph.style.display='none'; del.style.display=''; } else { img.removeAttribute('src'); img.style.display='none'; ph.style.display=''; del.style.display='none'; } }
     function pick(){ inp.click(); }
     box.addEventListener('click', pick); btn.addEventListener('click', pick);
-    inp.addEventListener('change', function(){ var f=this.files&&this.files[0]; if(!f) return; var rd=new FileReader(); rd.onload=function(e){ show(e.target.result); }; rd.readAsDataURL(f); });
-    del.addEventListener('click', function(e){ e.stopPropagation(); show(''); inp.value=''; });
-    window._setMemberPhoto=show;
+    inp.addEventListener('change', function(){ var f=this.files&&this.files[0]; if(!f) return; _pendingFile=f; var rd=new FileReader(); rd.onload=function(e){ show(e.target.result); }; rd.readAsDataURL(f); }); // 미리보기만 dataURL
+    del.addEventListener('click', function(e){ e.stopPropagation(); _pendingFile=null; show(''); inp.value=''; });
+    window._setMemberPhoto=function(src){ _pendingFile=null; show(src); };  // 기존 회원 열 때 호출(URL 표시)
     window._getMemberPhoto=function(){ return img.style.display==='none'?'':(img.getAttribute('src')||''); };
+    window._getMemberPhotoFile=function(){ return _pendingFile; };
+    window._clearMemberPhotoFile=function(){ _pendingFile=null; };
   })();
 
   // 주민번호 입력 포맷: 앞 6자리 + 뒤 입력분 표시, 나머지는 * 패딩
