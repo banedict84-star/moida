@@ -672,14 +672,24 @@ onAuthStateChanged(_auth, async function(user){
 
     // ── 구성원 현황 ──
     (function(){
+      function renderMem(members){
+        var total=members.length;
+        var right=members.filter(function(m){ return m.type==='권리당원'; }).length;
+        var pct=total?Math.round(right/total*100):0;
+        var tEl=document.getElementById('memTotal'); if(tEl) tEl.textContent=total;
+        var pEl=document.getElementById('memPct'); if(pEl) pEl.textContent=total?pct+'%':'';
+        var rEl=document.getElementById('memRight'); if(rEl) rEl.innerHTML=right+(total?'<span class="mf-pct">'+pct+'%</span>':'');
+      }
       var members=[];
       try{ var raw=localStorage.getItem('moida_members_'+_uid); if(raw) members=JSON.parse(raw); }catch(e){}
-      var total=members.length;
-      var right=members.filter(function(m){ return m.type==='권리당원'; }).length;
-      var pct=total?Math.round(right/total*100):0;
-      var tEl=document.getElementById('memTotal'); if(tEl) tEl.textContent=total;
-      var pEl=document.getElementById('memPct'); if(pEl) pEl.textContent=total?pct+'%':'';
-      var rEl=document.getElementById('memRight'); if(rEl) rEl.innerHTML=right+(total?'<span class="mf-pct">'+pct+'%</span>':'');
+      renderMem(members);
+      // 대용량(localStorage 초과)으로 캐시가 비면 IndexedDB에서 보강
+      if(!members.length){
+        try{ var rq=indexedDB.open('moida',1);
+          rq.onupgradeneeded=function(){ if(!rq.result.objectStoreNames.contains('kv')) rq.result.createObjectStore('kv'); };
+          rq.onsuccess=function(){ try{ var tx=rq.result.transaction('kv','readonly'); var g=tx.objectStore('kv').get('members_'+_uid); g.onsuccess=function(){ if(g.result && g.result.length) renderMem(g.result); }; }catch(e){} };
+        }catch(e){}
+      }
     })();
   })();
 
