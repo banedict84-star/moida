@@ -1049,8 +1049,15 @@ onAuthStateChanged(_auth, async function(user){
         if(curI==null) return;
         var m=members[curI]; if(!m) return;
         m.type=t; m.typeK=typeToK(t);
-        saveMembers(); recalcScores(); renderRows();
+        m.score=calcScore(m);
+        var tr=tbody.querySelector('tr[data-i="'+curI+'"]');
+        if(tr){
+          var tc=tr.querySelector('.type-cell');
+          if(tc) tc.innerHTML=(!m.type||m.type==='—')?'<span class="muted-cell type-pick">—</span>':'<span class="tag '+typeCls(m.type)+' type-pick"><span class="d" style="background:currentColor"></span>'+m.type+'</span>';
+          var sc=tr.querySelector('.score'); if(sc){ sc.textContent=m.score; sc.className='score '+scoreCls(m.score); }
+        }
         pop.classList.remove('show');
+        clearTimeout(window._inlT); window._inlT=setTimeout(function(){ saveMembers(); }, 500);
       });
     });
     tbody.addEventListener('click', function(e){
@@ -1081,8 +1088,14 @@ onAuthStateChanged(_auth, async function(user){
         if(curI==null) return;
         var m=members[curI]; if(!m) return;
         m.katalk=opt.dataset.kt;
-        saveMembers(); recalcScores(); renderRows();
+        m.score=calcScore(m);
+        var tr=tbody.querySelector('tr[data-i="'+curI+'"]');
+        if(tr){
+          var kp=tr.querySelector('.kt-pick'); if(kp) kp.innerHTML=ktCell(m.katalk);
+          var sc=tr.querySelector('.score'); if(sc){ sc.textContent=m.score; sc.className='score '+scoreCls(m.score); }
+        }
         pop.classList.remove('show');
+        clearTimeout(window._inlT); window._inlT=setTimeout(function(){ saveMembers(); }, 500);
       });
     });
     tbody.addEventListener('click', function(e){
