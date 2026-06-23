@@ -1185,8 +1185,10 @@ onAuthStateChanged(_auth, async function(user){
       var wrap=gb.closest('.gauge');
       wrap.querySelectorAll('.gb').forEach(function(s){ var sv=+s.dataset.v; s.className='gb'+(sv<=grade?' on'+grade:''); });
       var gv=wrap.querySelector('.gv'); if(gv) gv.textContent=grade||'-';
+      m.score=calcScore(m);
+      var sc=tr.querySelector('.score'); if(sc){ sc.textContent=m.score; sc.className='score '+scoreCls(m.score); }
       clearTimeout(window._gbT);
-      window._gbT=setTimeout(function(){ saveGrades(); saveMembers(); recalcScores(); renderRows(); }, 500);
+      window._gbT=setTimeout(function(){ saveGrades(); saveMembers(); }, 500);
       return;
     }
     // 게이지·카톡관리·당원구분 칸 클릭은 상세가 열리지 않도록 무시(인라인 변경 팝업만 동작)
