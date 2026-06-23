@@ -395,11 +395,13 @@
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import { getFirestore, doc, getDoc, setDoc, collection, getDocs, deleteDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import { getStorage, ref as _sref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-storage.js";
 const _fbCfg = {apiKey:"AIzaSyAIjhvbCztHoF7YwP2IYIk2C6jCI64uFhs",authDomain:"jjj2195-1bd15.firebaseapp.com",projectId:"jjj2195-1bd15",storageBucket:"jjj2195-1bd15.firebasestorage.app",messagingSenderId:"370852437825",appId:"1:370852437825:web:b0a891d6a99b426d230bc0"};
 const _app = initializeApp(_fbCfg);
 const _auth = getAuth(_app);
 const _db = getFirestore(_app);
+const _storage = getStorage(_app);
 
 window._fsSave = async function(uid, key, data){
   try{ await setDoc(doc(_db,'moida_users',uid), {[key]: JSON.stringify(data)}, {merge:true}); }catch(e){ console.warn('fs save err',e); }
@@ -407,6 +409,60 @@ window._fsSave = async function(uid, key, data){
 window._fsLoad = async function(uid, key){
   try{ var snap=await getDoc(doc(_db,'moida_users',uid)); if(snap.exists()&&snap.data()[key]) return JSON.parse(snap.data()[key]); }catch(e){ console.warn('fs load err',e); } return null;
 };
+
+// ── 대용량 명단 저장: 청크 샤딩 (Firestore 1MiB 문서 한계 회피, 수만 명 지원) ──
+// moida_users/{uid}/member_chunks/{i} 각 문서에 _MEM_CHUNK명씩 JSON으로 저장.
+// 저장 시 변경된 청크만 쓰고(쓰기 횟수 최소화), 줄어든 청크는 삭제한다.
+const _MEM_CHUNK = 1500;
+window._chunkSnap = {};        // i -> 마지막 저장된 JSON 문자열
+window._prevChunkCount = 0;
+window._fsSaveMembers = async function(uid, members){
+  try{
+    var total = Math.ceil(members.length/_MEM_CHUNK);
+    for(var i=0;i<total;i++){
+      var js = JSON.stringify(members.slice(i*_MEM_CHUNK, (i+1)*_MEM_CHUNK));
+      if(window._chunkSnap[i]===js) continue;                 // 안 바뀐 청크는 건너뜀
+      await setDoc(doc(_db,'moida_users',uid,'member_chunks',String(i)), {data:js, n:i, t:Date.now()});
+      window._chunkSnap[i]=js;
+    }
+    for(var j=total;j<window._prevChunkCount;j++){            // 줄어든 청크 삭제
+      try{ await deleteDoc(doc(_db,'moida_users',uid,'member_chunks',String(j))); }catch(e){}
+      delete window._chunkSnap[j];
+    }
+    window._prevChunkCount = total;
+    await setDoc(doc(_db,'moida_users',uid), {memberChunks: total, membersCount: members.length}, {merge:true});
+  }catch(e){ console.warn('fs members save err', e); }
+};
+window._fsLoadMembers = async function(uid){
+  try{
+    var snap = await getDocs(collection(_db,'moida_users',uid,'member_chunks'));
+    if(snap && !snap.empty){
+      var chunks=[];
+      snap.forEach(function(d){ var dd=d.data()||{}; chunks.push({n:(dd.n!=null?dd.n:(parseInt(d.id,10)||0)), data:dd.data||'[]'}); });
+      chunks.sort(function(a,b){ return a.n-b.n; });
+      var all=[];
+      chunks.forEach(function(c){ window._chunkSnap[c.n]=c.data; try{ all=all.concat(JSON.parse(c.data)); }catch(e){} });
+      window._prevChunkCount = chunks.length;
+      return all;
+    }
+    // 구버전(단일 'members' 필드) → 마이그레이션용 폴백
+    var meta = await getDoc(doc(_db,'moida_users',uid));
+    if(meta.exists() && meta.data().members){ try{ return JSON.parse(meta.data().members); }catch(e){} }
+  }catch(e){ console.warn('fs members load err', e); }
+  return null;
+};
+// 회원 사진 → Cloud Storage 업로드 후 다운로드 URL 반환 (base64를 명단 배열에 넣지 않음)
+window._uploadPhoto = async function(uid, mid, file){
+  var r = _sref(_storage, 'member_photos/'+uid+'/'+mid);
+  await uploadBytes(r, file);
+  return await getDownloadURL(r);
+};
+
+// ── IndexedDB 캐시: localStorage 5MB 한계 회피 (수만 명 로컬 보관) ──
+var _idb=null;
+function _idbOpen(){ return new Promise(function(res){ if(_idb) return res(_idb); try{ var rq=indexedDB.open('moida',1); rq.onupgradeneeded=function(){ if(!rq.result.objectStoreNames.contains('kv')) rq.result.createObjectStore('kv'); }; rq.onsuccess=function(){ _idb=rq.result; res(_idb); }; rq.onerror=function(){ res(null); }; }catch(e){ res(null); } }); }
+window._idbSet=function(k,v){ return _idbOpen().then(function(db){ if(!db) return; return new Promise(function(res){ try{ var tx=db.transaction('kv','readwrite'); tx.objectStore('kv').put(v,k); tx.oncomplete=function(){res();}; tx.onerror=function(){res();}; }catch(e){ res(); } }); }); };
+window._idbGet=function(k){ return _idbOpen().then(function(db){ if(!db) return null; return new Promise(function(res){ try{ var tx=db.transaction('kv','readonly'); var rq=tx.objectStore('kv').get(k); rq.onsuccess=function(){ res(rq.result==null?null:rq.result); }; rq.onerror=function(){ res(null); }; }catch(e){ res(null); } }); }); };
 async function _trackLogin(user){
   try{ await setDoc(doc(_db,'moida_auth_users',user.uid), {uid:user.uid, email:user.email||'', displayName:user.displayName||'', lastLogin:Date.now(), provider:(user.providerData&&user.providerData[0]?user.providerData[0].providerId:'')}, {merge:true}); }catch(e){}
 }
@@ -422,10 +478,11 @@ onAuthStateChanged(_auth, async function(user){
     el.innerHTML='<div style="font-weight:700;color:var(--ink-2);font-size:13px;padding:2px 10px 1px">'+(user.displayName||'')+'</div>'
       +'<div style="font-size:11.5px;color:var(--ink-3);padding:0 10px 6px;word-break:break-all">'+(user.email||'')+'</div>';
   }
-  // Firestore에서 구성원 데이터 로드 후 화면 갱신
-  var fsData = await window._fsLoad(user.uid, 'members');
+  // Firestore에서 구성원 데이터 로드 후 화면 갱신 (청크 샤딩 → 수만 명 지원)
+  var fsData = await window._fsLoadMembers(user.uid);
   if(fsData && Array.isArray(fsData) && fsData.length > 0){
-    try{ localStorage.setItem('moida_members_'+user.uid, JSON.stringify(fsData)); }catch(e){}
+    try{ localStorage.setItem('moida_members_'+user.uid, JSON.stringify(fsData)); }catch(e){}  // 소규모 호환(초과 시 무시)
+    if(window._idbSet) window._idbSet('members_'+user.uid, fsData);                              // 대용량 캐시
     if(window._reloadMembersFromFS) window._reloadMembersFromFS(fsData);
   }
   // 투표활동(성향 근거)도 Firestore에서 불러와 복원
@@ -685,8 +742,9 @@ onAuthStateChanged(_auth, async function(user){
   var _MEM_KEY = 'moida_members_' + _uid;
   function loadMembers(){ try{ var d=JSON.parse(localStorage.getItem(_MEM_KEY)); return Array.isArray(d)?d:[]; }catch(e){ return []; } }
   function saveMembers(){
-    localStorage.setItem(_MEM_KEY, JSON.stringify(members));
-    if(window._fsSave && _uid && _uid!=='default') window._fsSave(_uid, 'members', members);
+    try{ localStorage.setItem(_MEM_KEY, JSON.stringify(members)); }catch(e){}   // 소규모 호환(용량 초과 시 무시)
+    if(window._idbSet) window._idbSet('members_'+_uid, members);                  // 대용량 캐시(IndexedDB)
+    if(window._fsSaveMembers && _uid && _uid!=='default') window._fsSaveMembers(_uid, members);  // 청크 샤딩 저장
   }
   window._reloadMembersFromFS = function(fsData){
     members = fsData;
@@ -715,6 +773,14 @@ onAuthStateChanged(_auth, async function(user){
     recalcScores(); renderRows();
   };
   var members = loadMembers();
+  // localStorage가 비었거나 용량 초과로 못 읽은 경우(대용량) IndexedDB 캐시에서 즉시 복원
+  if((!members || !members.length) && window._idbGet){
+    window._idbGet('members_'+_uid).then(function(cached){
+      if(cached && cached.length && (!members || !members.length) && window._reloadMembersFromFS){
+        window._reloadMembersFromFS(cached);
+      }
+    });
+  }
   // normalize members: fill missing fields with defaults, assign mid
   (function(){
     var D={rrn:'—',dong:'—',org:'—',rec:'—',rec2:'—',rec3:'—',sub:'—',third:'—',addr:'—',addrDetail:'',family:null,age:'',ageb:'—',sex:'—',vote:'미확인',voteK:'err',katalk:'—',type:'일반당원',typeK:'old',krGrade:0,smGrade:0,photo:'',orgs:[]};
