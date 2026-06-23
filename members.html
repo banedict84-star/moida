@@ -1069,7 +1069,9 @@ onAuthStateChanged(_auth, async function(user){
   var filters={ dong:[], type:[], ageb:[], sex:[] };
   var searchKw='';
   var dispMembers = members.slice();
-  function renderRows(){
+  var _rowCap, _ROWBASE=400, _ROWSTEP=600;
+  function renderRows(keepCap){
+    if(!keepCap || _rowCap==null) _rowCap=_ROWBASE;        // 필터/정렬/검색 시 다시 처음부터
     var rows = dispMembers.filter(function(m){
       return (!filters.dong.length || filters.dong.indexOf(m.dong)>=0)
         && (!filters.type.length || filters.type.indexOf(m.type)>=0)
@@ -1078,7 +1080,10 @@ onAuthStateChanged(_auth, async function(user){
         && (!searchKw || [m.name,m.phone,m.addr,m.rec,m.rec2,m.rec3,m.sub,m.third,m.dong,(m.orgs||[]).map(orgRepText).join(' ')].some(function(v){ return v!=null && String(v).toLowerCase().replace(/-/g,'').indexOf(searchKw)>=0; }));
     });
     var tfLeft=document.getElementById('tfLeft'); if(tfLeft) tfLeft.innerHTML='조회 <b>'+rows.length+'</b>명 · 당원을 클릭하면 상세정보가 표시됩니다';
-    tbody.innerHTML = rows.map(function(m,ri){ var i=members.indexOf(m); if(i<0) i=members.findIndex(function(x){ return x.mid&&x.mid===m.mid; }); return `
+    // 한 번에 그리는 행 수를 제한해 수만 명에서도 멈추지 않게 함(가상화)
+    var idxByMid={}; members.forEach(function(x,ix){ if(x.mid) idxByMid[x.mid]=ix; });
+    var shown = rows.length>_rowCap ? rows.slice(0,_rowCap) : rows;
+    var html = shown.map(function(m,ri){ var i=m.mid&&idxByMid[m.mid]!=null?idxByMid[m.mid]:members.indexOf(m); return `
     <tr data-i="${i}">
       <td class="muted-cell">${ri+1}</td>
       <td><span class="score ${scoreCls(m.score)}">${m.score}</span></td>
@@ -1099,7 +1104,13 @@ onAuthStateChanged(_auth, async function(user){
       <td>${famDisplay(m)}</td>
       <td class="${(m.addr||"—")==="—"?"muted-cell":""}">${m.addr||"—"}</td>
     </tr>`; }).join("");
+    if(rows.length>_rowCap){
+      html += '<tr class="more-row"><td colspan="18" style="text-align:center;padding:14px;cursor:pointer;color:var(--primary);font-weight:700;background:var(--primary-soft)">아래 '+(rows.length-_rowCap).toLocaleString()+'명 더 불러오기 (클릭)</td></tr>';
+    }
+    tbody.innerHTML = html;
   }
+  // "더 보기" 클릭 시 다음 묶음 추가 렌더
+  tbody.addEventListener('click', function(e){ var mr=e.target.closest('.more-row'); if(mr){ e.stopPropagation(); _rowCap+=_ROWSTEP; renderRows(true); } });
   renderRows();
 
   // 당원구분 인라인 변경 팝업
@@ -1231,6 +1242,7 @@ onAuthStateChanged(_auth, async function(user){
 
   // 게이지 클릭(등급 저장) + 행 클릭(상세)
   tbody.addEventListener('click',function(e){
+    if(e.target.closest('.more-row')) return;   // "더 보기" 행은 상세 열지 않음
     var ol=e.target.closest('.org-link');
     if(ol){
       e.stopPropagation();
