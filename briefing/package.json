@@ -1,0 +1,14 @@
+{
+  "name": "moida-briefing",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "매일 아침 카카오톡 나에게 보내기 브리핑 (일정 + 관련 기사)",
+  "scripts": {
+    "start": "node briefing.mjs",
+    "dry": "node briefing.mjs --dry"
+  },
+  "dependencies": {
+    "firebase-admin": "^12.7.0"
+  }
+}
