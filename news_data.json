@@ -1,6 +1,38 @@
 {
-  "updated": "2026-06-24 21:54 UTC",
+  "updated": "2026-06-24 23:43 UTC",
   "items": [
+    {
+      "source": "naver",
+      "press": "news1.kr",
+      "date": "2026.06.25",
+      "title": "경기 안산 식품가공공장 화재…2명 연기흡입, 22명 대피",
+      "snippet": "24일 오후 5시15분쯤 경기 안산시 상록구의 한 식품 가공 공장 5층에서 불이 났다. 이 불로 공장 직원 22명이 자력으로 대피하고, 2명이 연기를 마셔 병원으로 이송됐다. 불은 출동한 소방당국에 의해 1시간10여분 만인...",
+      "url": "https://www.news1.kr/local/gyeonggi/6207608"
+    },
+    {
+      "source": "naver",
+      "press": "enewstoday.co.kr",
+      "date": "2026.06.25",
+      "title": "서울시교육청, 특수교육대상학생 위한 2027학년도 대학 입학 설명회 개...",
+      "snippet": "학위과정을 운영하는 강남대학교, 강동대학교, 나사렛대학교, 안산대학교, 한경국립대학교, 협성대학교와 비학위과정을 운영하는 호산나대학이 참여해 대학별 전형 방식과 교육과정, 지원 프로그램 등을 상세히 안내할...",
+      "url": "http://www.enewstoday.co.kr/news/articleView.html?idxno=2442221"
+    },
+    {
+      "source": "naver",
+      "press": "enetnews.co.kr",
+      "date": "2026.06.25",
+      "title": "[브랜드평판] 서초구, 대한민국 기초자치단체 6월 1위... 송파구, 강남구...",
+      "snippet": "북구 ▲남양주시 ▲부천시 ▲종로구 ▲안산시 ▲구로구 ▲속초시 ▲전주시 ▲평택시 순이다. 구창환... 재건축·재개발 이슈와 교육·생활 인프라에 대한 소비자 관심이 꾸준히 높아지는 가운데, 강남 3구의...",
+      "url": "https://www.enetnews.co.kr/news/articleView.html?idxno=51590"
+    },
+    {
+      "source": "naver",
+      "press": "ohmynews.com",
+      "date": "2026.06.25",
+      "title": "퇴직금 포기 각서 받고 잠 못 들던 엄마의 대변신",
+      "snippet": "고용노동부 안산지청을 찾았습니다. 쭈뼛거리며 민원실을 찾는 엄마에게 어느 여성 근로감독관이 어떻게... 제가 만난 신임 노동감독관 교육을 담당하는 노동부의 간부는 걱정했습니다. 여전히 노동감독관 업무가 절대적...",
+      "url": "https://www.ohmynews.com/NWS_Web/View/at_pg.aspx?CNTN_CD=A0003245841&CMPT_CD=P0010&utm_source=naver&utm_medium=newsearch&utm_campaign=naver_news"
+    },
     {
       "source": "naver",
       "press": "christiantoday.co.kr",
@@ -355,19 +387,19 @@
     },
     {
       "source": "naver",
-      "press": "fnnews.com",
-      "date": "2026.06.24",
-      "title": "한양대, THE 세계대학 영향력 평가 세계 6위…국내 1위",
-      "snippet": "한양대는 교육과 연구 전반에 SDGs 요소를 더 확대한다는 계획이다. 서울 성동구와 경기 안산시 등 캠퍼스가 위치한 지방자치단체, 산업계, 시민사회가 함께 참여하는 ESG 기반 협력체계를 넓히고 친환경 캠퍼스 조성과...",
-      "url": "http://www.fnnews.com/news/202606241035199217"
-    },
-    {
-      "source": "naver",
       "press": "news.unn.net",
       "date": "2026.06.24",
       "title": "한양대, 'THE 세계대학 영향력 평가' 세계 6위·국내 1위… 창학 이래 최...",
       "snippet": "◇ 미래를 향한 실천형 혁신 전략 한양대는 이번 성과에 안주하지 않고 교육과 연구 전반에 SDGs를 전방위적으로 내재화할 방침이다. 성동구, 안산시 등 캠퍼스 소재 지자체 및 산업계, 시민사회가 함께...",
       "url": "https://news.unn.net/news/articleView.html?idxno=593877"
+    },
+    {
+      "source": "naver",
+      "press": "fnnews.com",
+      "date": "2026.06.24",
+      "title": "한양대, THE 세계대학 영향력 평가 세계 6위…국내 1위",
+      "snippet": "한양대는 교육과 연구 전반에 SDGs 요소를 더 확대한다는 계획이다. 서울 성동구와 경기 안산시 등 캠퍼스가 위치한 지방자치단체, 산업계, 시민사회가 함께 참여하는 ESG 기반 협력체계를 넓히고 친환경 캠퍼스 조성과...",
+      "url": "http://www.fnnews.com/news/202606241035199217"
     },
     {
       "source": "naver",
@@ -424,30 +456,6 @@
       "title": "최신 주거트렌드 '숲세권' 선호도 고공행진",
       "snippet": "교육환경(60%)과 미래가치(65%)보다 높은 수치로 자연환경이 주거 선택의 중요한 기준으로 자리 잡고 있다는... 괴화산과 안산을 중심으로 친자연적인 주거환경을 갖춘 세종시 반곡동 소재 '수루배마을1단지...",
       "url": "http://www.ikld.kr/news/articleView.html?idxno=336443"
-    },
-    {
-      "source": "naver",
-      "press": "businesspost.co.kr",
-      "date": "2026.06.24",
-      "title": "[Who Is ?] 남동우 RF머트리얼즈 대표이사",
-      "snippet": "구체적으로 88억 원은 경기 안산시 소재 4958㎡(1500평) 규모의 부지 매입에, 162억 원은 신규 공장 건설에... 이번 협약은 대림대가 추구하는 '산학 협력형 실무 교육'의 구체적 실현 사례로, 대학과 기업이 함께...",
-      "url": "https://www.businesspost.co.kr/BP?command=article_view&num=440399"
-    },
-    {
-      "source": "naver",
-      "press": "bosa.co.kr",
-      "date": "2026.06.24",
-      "title": "제이씨헬스케어, 수도권 대형병원 감염관리 '정밀 조준'",
-      "snippet": "그동안 경기도 안산 본사를 중심으로 전국 유통망을 다져온 제이씨헬스케어는 이번 송파 서울지점 확장을... 특히 서울지점은 전국 대리점을 대상으로 한 제품 교육과 고도화된 기술 지원의 '허브' 역할을 수행하게 된다....",
-      "url": "https://www.bosa.co.kr/news/articleView.html?idxno=3006909"
-    },
-    {
-      "source": "naver",
-      "press": "ekn.kr",
-      "date": "2026.06.24",
-      "title": "[패트롤] 광명시-시흥시-안산시-안양시-양주시",
-      "snippet": "광명=에너지경제신문 강근주기자 광명시는 민선7-8기 8년간 복지-교육-돌봄-경제-주거-환경 등 다양한... 안산=에너지경제신문 강근주기자 안산시가 기업 경쟁력 강화와 지역경제 발전에 기여한 중소기업 경영인과...",
-      "url": "https://www.ekn.kr/web/view.php?key=20260624028175991"
     },
     {
       "source": "google",
@@ -725,17 +733,17 @@
       "source": "naver",
       "press": "m-i.kr",
       "date": "2026.06.19",
-      "title": "안산시 반월동 지사협, 복지사각지대 선제 발굴 캠페인",
-      "snippet": "안산시 상록구 반월동 지역사회보장협의체는 지난 17일 복지 사각지대 발굴을 위한 거리 홍보 캠페인을 전개했다고 19일 밝혔다. 사진=안산시 매일일보 = 송훈희 기자 | 안산시 상록구 반월동 지역사회보장협의체는 지난...",
-      "url": "https://www.m-i.kr/news/articleView.html?idxno=1383195"
+      "title": "안산 월피동, 고독사 예방 캠페인 전개…복지사각지대 발굴 나서",
+      "snippet": "안산시 상록구 월피동 지역사회보장협의체가 고독사 예방 및 복지사각지대 발굴을 위한 홍보 캠페인을 진행하고 있다. 사진=안산시 매일일보 = 송훈희 기자 | 안산시 상록구 월피동 지역사회보장협의체는 18일 고독사...",
+      "url": "https://www.m-i.kr/news/articleView.html?idxno=1383197"
     },
     {
       "source": "naver",
       "press": "m-i.kr",
       "date": "2026.06.19",
-      "title": "안산 월피동, 고독사 예방 캠페인 전개…복지사각지대 발굴 나서",
-      "snippet": "안산시 상록구 월피동 지역사회보장협의체가 고독사 예방 및 복지사각지대 발굴을 위한 홍보 캠페인을 진행하고 있다. 사진=안산시 매일일보 = 송훈희 기자 | 안산시 상록구 월피동 지역사회보장협의체는 18일 고독사...",
-      "url": "https://www.m-i.kr/news/articleView.html?idxno=1383197"
+      "title": "안산시 반월동 지사협, 복지사각지대 선제 발굴 캠페인",
+      "snippet": "안산시 상록구 반월동 지역사회보장협의체는 지난 17일 복지 사각지대 발굴을 위한 거리 홍보 캠페인을 전개했다고 19일 밝혔다. 사진=안산시 매일일보 = 송훈희 기자 | 안산시 상록구 반월동 지역사회보장협의체는 지난...",
+      "url": "https://www.m-i.kr/news/articleView.html?idxno=1383195"
     },
     {
       "source": "naver",
@@ -843,19 +851,19 @@
     },
     {
       "source": "google",
-      "press": "신아일보",
-      "date": "2026.06.17",
-      "title": "안산교육지원청-한양대 ERICA, AI·디지털 교육 협력체계 구축",
-      "snippet": "안산교육지원청-한양대 ERICA, AI·디지털 교육 협력체계 구축 신아일보",
-      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBDeTRUWmJiMlFXS3NaazBvR1h2OG1ySnd4ckdkMTVGMkY2Q05MdzNWcmZ2SFJIeXoxaFZuWTVhRktvWXBQbWtQdjZtQ01TR1E0NEh3SmdpeEhTcF81c0hxSGZ3Q1haNEtPb0tfck9qejc?oc=5"
-    },
-    {
-      "source": "google",
       "press": "v.daum.net",
       "date": "2026.06.17",
       "title": "안산시, 기존 학군 유지한 안산교육청 환영…“시민 목소리 반영”",
       "snippet": "안산시, 기존 학군 유지한 안산교육청 환영…“시민 목소리 반영” v.daum.net",
       "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE9hWjRuVW9mZHBBTTJwc2NKMHdzRUprNlBpR1UxeExVRUpLSnZXdkhUM1ZzdF82MFBWZHJlSEtzUDV6eTdvNFdJcHdBaVBXdXM?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "신아일보",
+      "date": "2026.06.17",
+      "title": "안산교육지원청-한양대 ERICA, AI·디지털 교육 협력체계 구축",
+      "snippet": "안산교육지원청-한양대 ERICA, AI·디지털 교육 협력체계 구축 신아일보",
+      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBDeTRUWmJiMlFXS3NaazBvR1h2OG1ySnd4ckdkMTVGMkY2Q05MdzNWcmZ2SFJIeXoxaFZuWTVhRktvWXBQbWtQdjZtQ01TR1E0NEh3SmdpeEhTcF81c0hxSGZ3Q1haNEtPb0tfck9qejc?oc=5"
     },
     {
       "source": "naver",
@@ -936,14 +944,6 @@
       "title": "안산시, 6월 정기분 자동차세 290억 원 부과",
       "snippet": "경기 안산시는 6월 정기분 자동차세 약 24만 건에 대해 290억 원(상록구 약 11만 건·140억 원, 단원구 약 13만 건·150억 원)을 부과하고 납부 홍보에 나선다고 15일 밝혔다. 자동차세는 차량의 배기량과 종류, 용도 등에...",
       "url": "https://www.viva100.com/article/20260615500336"
-    },
-    {
-      "source": "naver",
-      "press": "newsis.com",
-      "date": "2026.06.15",
-      "title": "[안산소식]'2026 e스포츠 페스티벌' 참가자 모집 등",
-      "snippet": "◇6월 정기분 자동차세 290억원 부과 경기 안산시는 2026년 6월 정기분 자동차세 약 24만 건에 대해 290억원(상록구 약 11만 건·140억원, 단원구 약 13만 건·150억원)을 부과했다고 15일 밝혔다. 이번 정기분은 올해 1...",
-      "url": "https://www.newsis.com/view/NISX20260615_0003668944"
     },
     {
       "source": "google",
@@ -1819,6 +1819,14 @@
     },
     {
       "source": "naver",
+      "press": "kgnews.co.kr",
+      "date": "2026.03.26",
+      "title": "[재산공개]경기도의원 74% 재산 증가…평균 12억6000만원",
+      "snippet": "반면 장윤정(민주·안산3) 의원은 마이너스 2400만 원을 신고해 재산이 가장 적었다. 장 의원은 예금이... 등의 순으로 재산 신고액이 적었다. [ 경기신문 = 장진우 기자 ] 경기도의회 전경 (사진=경기도의회 제공)",
+      "url": "https://www.kgnews.co.kr/news/article.html?no=888958"
+    },
+    {
+      "source": "naver",
       "press": "kihoilbo.co.kr",
       "date": "2026.03.26",
       "title": "경기도의원 152명 중 112명 재산 늘어",
@@ -1832,14 +1840,6 @@
       "title": "[재산공개]김성수 경기도의원 324억 신고…4년 연속 도내 최고 자산가",
       "snippet": "김성수 경기도의회 의원(국민의힘·하남2)이 324억여 원의 재산을 보유해 4년 연속 도내 재산공개 대상... 반면, 장윤정 의원(민주·안산3)은 -2490만 원을 신고해 도의원 중 재산이 가장 적었다. 이어 정동혁(민주...",
       "url": "https://www.news1.kr/local/gyeonggi/6114090"
-    },
-    {
-      "source": "naver",
-      "press": "kgnews.co.kr",
-      "date": "2026.03.26",
-      "title": "[재산공개]경기도의원 74% 재산 증가…평균 12억6000만원",
-      "snippet": "반면 장윤정(민주·안산3) 의원은 마이너스 2400만 원을 신고해 재산이 가장 적었다. 장 의원은 예금이... 등의 순으로 재산 신고액이 적었다. [ 경기신문 = 장진우 기자 ] 경기도의회 전경 (사진=경기도의회 제공)",
-      "url": "https://www.kgnews.co.kr/news/article.html?no=888958"
     },
     {
       "source": "google",
