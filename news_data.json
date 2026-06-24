@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-24 12:34 UTC",
+  "updated": "2026-06-24 15:42 UTC",
   "items": [
     {
       "source": "naver",
@@ -579,19 +579,19 @@
     },
     {
       "source": "naver",
-      "press": "m-i.kr",
-      "date": "2026.06.22",
-      "title": "김태희 경기도의원, 경기지방정원 방문자센터·정원지원센터 추진현황...",
-      "snippet": "경기지방정원 방문자센터 및 정원지원센터는 안산시 상록구 본오동 일원에 조성되는 경기지방정원의 운영과 이용 활성화를 지원하기 위한 시설이다. 총사업비 288억원을 투입해 연면적 3912㎡, 지상 2층 규모로 건립될...",
-      "url": "https://www.m-i.kr/news/articleView.html?idxno=1383978"
-    },
-    {
-      "source": "naver",
       "press": "newsfreezone.co.kr",
       "date": "2026.06.22",
       "title": "김태희 경기도의원, 경기지방정원 핵심시설 건립 현황 살펴",
       "snippet": "경기지방정원 방문자센터 및 정원지원센터는 안산시 상록구 본오동 일원에 조성 중인 경기지방정원의 운영 기반을 구축하고 이용 활성화를 지원하기 위한 시설이다. 총사업비 288억 원이 투입되며 연면적 3,912㎡, 지상 2층...",
       "url": "https://www.newsfreezone.co.kr/news/articleView.html?idxno=695754"
+    },
+    {
+      "source": "naver",
+      "press": "m-i.kr",
+      "date": "2026.06.22",
+      "title": "김태희 경기도의원, 경기지방정원 방문자센터·정원지원센터 추진현황...",
+      "snippet": "경기지방정원 방문자센터 및 정원지원센터는 안산시 상록구 본오동 일원에 조성되는 경기지방정원의 운영과 이용 활성화를 지원하기 위한 시설이다. 총사업비 288억원을 투입해 연면적 3912㎡, 지상 2층 규모로 건립될...",
+      "url": "https://www.m-i.kr/news/articleView.html?idxno=1383978"
     },
     {
       "source": "naver",
@@ -627,11 +627,11 @@
     },
     {
       "source": "google",
-      "press": "리버럴미디어",
+      "press": "경기인터넷신문",
       "date": "2026.06.22",
       "title": "안산교육지원청, “초등 입학 불안 뚝!” 유치원 교사 대상 초등학교 교육과정 이해 연수 실시",
-      "snippet": "안산교육지원청, “초등 입학 불안 뚝!” 유치원 교사 대상 초등학교 교육과정 이해 연수 실시 리버럴미디어",
-      "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE9DTDdBVzBWcUdPU0hpT1NUdG9YYUNDU3BfYjdaM2FVUF9hdjNwTTBabDhFaXdSS3hjYWc2Mm9scEdCa3BucFlCeVN6d0VWT1Z0QlFZYWowb24xZHRqYmJKZk5NSEk?oc=5"
+      "snippet": "안산교육지원청, “초등 입학 불안 뚝!” 유치원 교사 대상 초등학교 교육과정 이해 연수 실시 경기인터넷신문",
+      "url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE5QQ1lIY0FJcUlydHp5bm9iT2NXdkQyOHd5aTRlNlB5OGpya29jSzBNWmFnZjY0U1ZZWTdfN29Eamg0amJHLUhJaw?oc=5"
     },
     {
       "source": "google",
@@ -640,6 +640,14 @@
       "title": "안산맞춤형 입시설명회…7월 11일",
       "snippet": "안산맞춤형 입시설명회…7월 11일 안산뉴스",
       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFB5NTVGdWtTdlFUYzV6T1RFTmhDYzJTRVNmMWZYMmx0STg2dUJRcFVUYkJ5Z19XZVFEU09pQ3lfeHpYLW1vOUZyWkQ1WTNXdVV4aUVlcXF5aW96ck5SLTduTURFZkxjVEFfdXg1dw?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "미디어라이프 중부신문",
+      "date": "2026.06.22",
+      "title": "안산교육지원청, 시티투어버스 연계 가족체험 운영… 지역 이해와 인성교육을 함께",
+      "snippet": "안산교육지원청, 시티투어버스 연계 가족체험 운영… 지역 이해와 인성교육을 함께 미디어라이프 중부신문",
+      "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE9NNU81NjhBMmJMLU9WajlvSzlJWmRFTkttUmhReU5Ta3hvVWRSOWZBUzNQMmY3eS11bzU3eGlHWHVfbl9iSFE1aGZ0b0FvNERDYXFieF9JS0EzZUY4eWZhcnpR?oc=5"
     },
     {
       "source": "google",
@@ -696,14 +704,6 @@
       "title": "경기도안산교육지원청, “지친 교사에게 쉼을 선물하다” 교육활동 침해 교원 「회복·재충전 힐링 캠프」운영",
       "snippet": "경기도안산교육지원청, “지친 교사에게 쉼을 선물하다” 교육활동 침해 교원 「회복·재충전 힐링 캠프」운영 경기종합뉴스",
       "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE9mempQR3RrTDQ2STNDb3pLOFk2Z2FtUzVTZ1Z5cHY3NkNaQVYwOW1qTTA2Wk1nY2s4ck9WbXZxRTV3NlB4WC1yR2h0VTRXNm1oTlhfVTVaM1JLX2FsWDZmVF9MR2UyWjFyb05jeFo3N0kzMGF6?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "저널25방송",
-      "date": "2026.06.20",
-      "title": "안산교육지원청, 시티투어버스 연계 가족체험 운영… 지역 이해와 인성교육을 함께",
-      "snippet": "안산교육지원청, 시티투어버스 연계 가족체험 운영… 지역 이해와 인성교육을 함께 저널25방송",
-      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBxWTlvalJXNWlwNkw2UjhxRmFpazJZV1h3TVd1Sk1VTGVvTXNtTk96dWhpTWhvenA2RHU0Sk5ucXRfSFlTazFVU29qR1NtWDAyTzJnUGRvaDFYWUloMXMwSVh0MWZZRzYwaUpJVg?oc=5"
     },
     {
       "source": "naver",
@@ -850,6 +850,14 @@
       "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBDeTRUWmJiMlFXS3NaazBvR1h2OG1ySnd4ckdkMTVGMkY2Q05MdzNWcmZ2SFJIeXoxaFZuWTVhRktvWXBQbWtQdjZtQ01TR1E0NEh3SmdpeEhTcF81c0hxSGZ3Q1haNEtPb0tfck9qejc?oc=5"
     },
     {
+      "source": "google",
+      "press": "v.daum.net",
+      "date": "2026.06.17",
+      "title": "안산시, 기존 학군 유지한 안산교육청 환영…“시민 목소리 반영”",
+      "snippet": "안산시, 기존 학군 유지한 안산교육청 환영…“시민 목소리 반영” v.daum.net",
+      "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE9hWjRuVW9mZHBBTTJwc2NKMHdzRUprNlBpR1UxeExVRUpLSnZXdkhUM1ZzdF82MFBWZHJlSEtzUDV6eTdvNFdJcHdBaVBXdXM?oc=5"
+    },
+    {
       "source": "naver",
       "press": "ekn.kr",
       "date": "2026.06.16",
@@ -872,14 +880,6 @@
       "title": "안산교육삼락회 첫 공식 만남",
       "snippet": "안산교육삼락회 첫 공식 만남 실버넷뉴스",
       "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1PVTVKVzJfREZoOGd1NWtpcFhoNjFfYjJ3ZzNfNzdDbmp4R092NEFZOW9mclFEQmJLd2hmaDBnR2lEb0J6TlZtQ3hfVjBDakpOUGc4eTZlVUtyckVWREljcGFxRGR0a3RyUHVCRGNZTXDSAXNBVV95cUxNbXYwaUZWX3NLOUUzYzBpZkUzWTM4V3NhcHlvS2ZPMElhRGM5djBVV0Iza3Z0ZFVrWnNJVTljdjZZUWlFVW5VVWZxTWNOS215SEhWTUJ1XzJUUHZOV21oNFZkaV9qRU5xR3ZGdGI0V1VXV2kw?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "신아일보",
-      "date": "2026.06.16",
-      "title": "김동규 경기도의원, 안산교육지원청과 간담회 가져",
-      "snippet": "김동규 경기도의원, 안산교육지원청과 간담회 가져 신아일보",
-      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1yeDdoMFFJR0NaWDBLcnlFUTZjdG1tTVpVbVdpTHpGQW1TRWg4RXBOMDQ2ZTZJRHJpT3pIcWZnMGR5QU9FZHE4d3NRYXJmcUxjYjNpLUFpVElTSTVwXzFaeFVfNTQ3WnV1RzlKYjRiWFQ?oc=5"
     },
     {
       "source": "naver",
@@ -947,19 +947,19 @@
     },
     {
       "source": "google",
-      "press": "경기종합뉴스",
-      "date": "2026.06.15",
-      "title": "김남국 의원, 안산 교육 현안 ‘상생 돌파구’모색 위해 안산교육청 방문",
-      "snippet": "김남국 의원, 안산 교육 현안 ‘상생 돌파구’모색 위해 안산교육청 방문 경기종합뉴스",
-      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE8xbmJadS1MNEdscUlPQ295cDNtMlJQbmd6TWhfQ3VyLXBMVTQySUU0cVRia3AyTUlzN0xNTWNfN0VtZTdhZm5mMGQ1U3NZOFhFQzZTdTJBdkVFM2Rha2tzOFJGaHVUSUhiR056X21qV1JEU2g0?oc=5"
-    },
-    {
-      "source": "google",
       "press": "신아일보",
       "date": "2026.06.15",
       "title": "해양·해솔 학군 갈등 해법 모색…김남국 의원, 안산교육지원청과 간담회",
       "snippet": "해양·해솔 학군 갈등 해법 모색…김남국 의원, 안산교육지원청과 간담회 신아일보",
       "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1Vbzc0NnExRjFmNlg5UjNySUlxNEFwU3N0MVplTHNDdW8xX09ncDVCdl9IaVZuM0xTa2NtRFhvV0J4dkt2eklNUm9NZ1Y2M2ZOM0JmbkJ1SmNSaHQ2cEk5c3NwOTJVcXBVX2N5VmZQaTc?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "경기종합뉴스",
+      "date": "2026.06.15",
+      "title": "김남국 의원, 안산 교육 현안 ‘상생 돌파구’모색 위해 안산교육청 방문",
+      "snippet": "김남국 의원, 안산 교육 현안 ‘상생 돌파구’모색 위해 안산교육청 방문 경기종합뉴스",
+      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE8xbmJadS1MNEdscUlPQ295cDNtMlJQbmd6TWhfQ3VyLXBMVTQySUU0cVRia3AyTUlzN0xNTWNfN0VtZTdhZm5mMGQ1U3NZOFhFQzZTdTJBdkVFM2Rha2tzOFJGaHVUSUhiR056X21qV1JEU2g0?oc=5"
     },
     {
       "source": "google",
@@ -1040,14 +1040,6 @@
       "title": "안광률 \"제12대 도의회 민주당 원내대표 도전… 성과로 증명하겠다\"",
       "snippet": "안광률 경기도의원이 11일 오전 10시 도의회 브리핑룸에서 기자회견을 열고 제12대 도의회 더불어민주당... 이영봉·유경현·박상현·이병숙·이채명·이홍근·장윤정 의원과 백승기 당선인을 포함한 일부 당선인들이 참석했다.",
       "url": "https://www.joongboo.com/news/articleView.html?idxno=363728461"
-    },
-    {
-      "source": "google",
-      "press": "경기신문",
-      "date": "2026.06.11",
-      "title": "안산시-안산교육지원청, 학생 교육환경 개선 위한 간담회 개최",
-      "snippet": "안산시-안산교육지원청, 학생 교육환경 개선 위한 간담회 개최 경기신문",
-      "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE1KSWppUDNhcFVyN0t3WWM1Q25PdjRYNUtXN0wxTUlxSHJsenQ3N1VrdzJSWWF5dDN4VVNvVng0VVNfSGZVMHYtWHkzNjVmS2RsZnNpUkNwVDl3V1dKaGZ1NW1R?oc=5"
     },
     {
       "source": "naver",
@@ -1234,14 +1226,6 @@
       "url": "https://www.newsfreezone.co.kr/news/articleView.html?idxno=692039"
     },
     {
-      "source": "google",
-      "press": "반월신문",
-      "date": "2026.05.27",
-      "title": "차량 1대·집기류 화재 안산 상록구 본오동 카센터 화재",
-      "snippet": "차량 1대·집기류 화재 안산 상록구 본오동 카센터 화재 반월신문",
-      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE42WEotQmM5ZHRNeVZacjByMV9yTGNsaDdvZUVnZWhUckZBSzhiMU1ycFZXQjlSSGRMdW1aYXZtQTFMLTd6T01VV0pESExhYlVUakhXNFhHOFFfNFFxNUlMRlFJN3F6RTA?oc=5"
-    },
-    {
       "source": "naver",
       "press": "newscj.com",
       "date": "2026.05.26",
@@ -1411,19 +1395,19 @@
     },
     {
       "source": "google",
-      "press": "연합뉴스",
-      "date": "2026.05.13",
-      "title": "안산 상록구 다세대주택서 불…1명 사망·3명 중경상",
-      "snippet": "안산 상록구 다세대주택서 불…1명 사망·3명 중경상 연합뉴스",
-      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE91T1VUTjFsVE1fVzdLbWhjdnUyZVh4blRVUmszcnVzT25IOHQ1T2J1Uk16SHM0UHFoeDlXUllVNWZmM19mX2pSaXliOU9jNmdfYVNkU3p3QUI2XzjSAWBBVV95cUxQRUVibk9OcUtnV0dqeEREMF80dmI3WUJONzVXTmY4UU9SNEtrczl4RU1XVnpKY3ZhSkFhLWN1NF9lVEx1aS1zTF9rdUNhWEUwMmlCV1p6RlV3dWNFSnVKOFg?oc=5"
-    },
-    {
-      "source": "google",
       "press": "경향신문",
       "date": "2026.05.13",
       "title": "안산 상록구 다세대주택서 화재···1명 숨지고 3명 부상",
       "snippet": "안산 상록구 다세대주택서 화재···1명 숨지고 3명 부상 경향신문",
       "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE94ZFJWc1liZGRLTWM0aVAxVjY5c0VSOE40bVN0RXA3QlRidXMzdVkwdFljWVIxTG5oOGNwLUtsMl9pT2NJY1VTOEh4OGRMRU02b3Bob0pwa3dSQdIBX0FVX3lxTE52SDdudTdHX3NXYVFOQkhjSnFLR2pmVW5hbmE0aEZYM3B6WXVLNGpoY09DY0xlMVpuZVEzYWIzZVFjY1h1TTYtRHFMVFdPR0RfQ05pWGVIRm5NUG16cTRN?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "연합뉴스",
+      "date": "2026.05.13",
+      "title": "안산 상록구 다세대주택서 불…1명 사망·3명 중경상",
+      "snippet": "안산 상록구 다세대주택서 불…1명 사망·3명 중경상 연합뉴스",
+      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE91T1VUTjFsVE1fVzdLbWhjdnUyZVh4blRVUmszcnVzT25IOHQ1T2J1Uk16SHM0UHFoeDlXUllVNWZmM19mX2pSaXliOU9jNmdfYVNkU3p3QUI2XzjSAWBBVV95cUxQRUVibk9OcUtnV0dqeEREMF80dmI3WUJONzVXTmY4UU9SNEtrczl4RU1XVnpKY3ZhSkFhLWN1NF9lVEx1aS1zTF9rdUNhWEUwMmlCV1p6RlV3dWNFSnVKOFg?oc=5"
     },
     {
       "source": "naver",
@@ -1675,6 +1659,14 @@
     },
     {
       "source": "google",
+      "press": "경기남부뉴스",
+      "date": "2026.04.27",
+      "title": "경기도의회 장윤정 의원, 학교 급식실 환기설비 개선 TF 후속 정담회 개최...현장 체감 개선 논의",
+      "snippet": "경기도의회 장윤정 의원, 학교 급식실 환기설비 개선 TF 후속 정담회 개최...현장 체감 개선 논의 경기남부뉴스",
+      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE1LckYwaW1MaHhuTHN2WXBRUXQzdXlkNTlUdEV2aWlNRjJHd1YzNXVNLTlfcGxUdnZFeGw4WnNMMFhaYzktV1JHNk55OTJEWklidV9SREYxU0d0SWUwc0tzSmF0T2R3NHc?oc=5"
+    },
+    {
+      "source": "google",
       "press": "동아일보",
       "date": "2026.04.25",
       "title": "안산 상록구 금속 구조물 제작 공장서 불…35분 만에 완진",
@@ -1899,6 +1891,14 @@
     },
     {
       "source": "google",
+      "press": "중앙신문",
+      "date": "2026.02.04",
+      "title": "안산 상록구 어린이집 화재…21분 만에 진화, 인명피해 없어",
+      "snippet": "안산 상록구 어린이집 화재…21분 만에 진화, 인명피해 없어 중앙신문",
+      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBnbUZ1QzJLb2E3OUNtb2FWSjJnMldkeGE1NlR4OEpTZ0p3dmExYXFvQmpOeVk2Mk4zQ0VlN2FnUmk5SGlSQWZ0eDVBTTItd1JYMGxmWmVRV2ZoaFNYdVFpbV9uV3FXeWdXcFE?oc=5"
+    },
+    {
+      "source": "google",
       "press": "경기일보",
       "date": "2026.01.21",
       "title": "안산 상록구, 농업인 영농 부담 낮춘다…농기계 구입비 ‘절반 지원’",
@@ -1928,6 +1928,14 @@
       "title": "장윤정 경기도의원, ‘2025 지방의정대상’ 수상 영예",
       "snippet": "장윤정 경기도의원, ‘2025 지방의정대상’ 수상 영예 경인매일",
       "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5xQklJbUNlSHQ0bzlEQnhhYWp4Z0EweWlrVEdvWFQ2anRGdVJEWDc1WlktX25NenNCUmhqSkdpY0pZbk5JYnJ3bmlid21MMHNsbkFsSEE3OUNHeXlHa08tMmRxbHVBcUpG?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "전자신문",
+      "date": "2025.12.27",
+      "title": "장윤정 경기도의원 “정쟁 아닌 민생, 도민 삶 향한 정치 지켜야”",
+      "snippet": "장윤정 경기도의원 “정쟁 아닌 민생, 도민 삶 향한 정치 지켜야” 전자신문",
+      "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE9MYlE1UGl6dm9pT2FaUk54NUFXaU5wcWtVUFo1QmRtcWtNRl8wb05RUWJ1V1JUS3VTSWx5Y3pScEo2WWNCb0txR1FFbHN0dw?oc=5"
     }
   ]
 }
