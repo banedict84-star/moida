@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>가죽공예 단체수업 자동화</title>
+<style>
+  :root{
+    --bg:#f6f4f1; --card:#fff; --ink:#2b2320; --sub:#8a7d74;
+    --line:#e7e1da; --brand:#7a4f2c; --brand2:#a9743f; --accent:#c9a26a;
+    --ok:#3f7d4e; --warn:#c08a2d; --danger:#b4513f;
+    --shadow:0 2px 14px rgba(60,40,20,.07);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    background:var(--bg);color:var(--ink);letter-spacing:-.01em}
+  header{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;padding:18px 22px;
+    display:flex;align-items:center;gap:12px;box-shadow:var(--shadow)}
+  header h1{font-size:18px;margin:0;font-weight:800;letter-spacing:-.03em}
+  header .badge{font-size:11px;background:rgba(255,255,255,.2);padding:3px 9px;border-radius:20px}
+  nav{display:flex;gap:4px;padding:10px 16px;background:#fff;border-bottom:1px solid var(--line);
+    overflow-x:auto;position:sticky;top:0;z-index:5}
+  nav button{border:0;background:transparent;padding:9px 14px;border-radius:10px;font-size:14px;
+    font-weight:700;color:var(--sub);cursor:pointer;white-space:nowrap}
+  nav button.active{background:var(--brand);color:#fff}
+  main{max-width:1100px;margin:0 auto;padding:18px 16px 60px}
+  .tab{display:none}.tab.active{display:block;animation:fade .25s}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;
+    box-shadow:var(--shadow);margin-bottom:16px}
+  .card h2{font-size:16px;margin:0 0 14px;font-weight:800}
+  .grid{display:grid;gap:12px}
+  @media(min-width:720px){.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:repeat(3,1fr)}
+    .g4{grid-template-columns:repeat(4,1fr)}}
+  label{display:block;font-size:12px;font-weight:700;color:var(--sub);margin:0 0 5px}
+  input,select,textarea{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:10px;
+    font-size:14px;font-family:inherit;background:#fdfcfb}
+  textarea{resize:vertical;min-height:70px}
+  .btn{border:0;background:var(--brand);color:#fff;padding:11px 18px;border-radius:11px;font-size:14px;
+    font-weight:700;cursor:pointer}
+  .btn.sec{background:#efe8e0;color:var(--brand)}
+  .btn.sm{padding:7px 12px;font-size:12.5px;border-radius:9px}
+  .btn.ghost{background:transparent;color:var(--sub);border:1px solid var(--line)}
+  .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:var(--shadow)}
+  .stat .n{font-size:26px;font-weight:800;color:var(--brand)}
+  .stat .l{font-size:12.5px;color:var(--sub);margin-top:3px;font-weight:600}
+  table{width:100%;border-collapse:collapse;font-size:13.5px}
+  th,td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--line)}
+  th{font-size:11.5px;color:var(--sub);font-weight:700}
+  .pill{display:inline-block;font-size:11px;font-weight:700;padding:3px 9px;border-radius:20px}
+  .s-문의접수{background:#eef2f7;color:#52688a}
+  .s-견적발송{background:#fff3e0;color:#b07c1d}
+  .s-계약확정{background:#e9f3ec;color:var(--ok)}
+  .s-수업완료{background:#ece8f5;color:#6c5aa0}
+  .s-정산완료{background:#eee;color:#777}
+  .muted{color:var(--sub);font-size:13px}
+  .big{font-size:22px;font-weight:800;color:var(--brand)}
+  .kv{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px dashed var(--line);font-size:14px}
+  .kv:last-child{border:0}
+  .modal{position:fixed;inset:0;background:rgba(40,30,20,.45);display:none;align-items:flex-start;
+    justify-content:center;padding:24px 14px;z-index:20;overflow:auto}
+  .modal.show{display:flex}
+  .modal .box{background:#fff;border-radius:18px;max-width:680px;width:100%;padding:22px}
+  .close{float:right;border:0;background:#efe8e0;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:16px}
+  .tag{font-size:11px;background:#f0e9e1;color:var(--brand);padding:2px 8px;border-radius:6px;margin-right:4px}
+  .draft{background:#faf7f3;border:1px dashed var(--accent);border-radius:12px;padding:14px;
+    font-size:13.5px;white-space:pre-wrap;line-height:1.6}
+  .hint{font-size:12px;color:var(--sub);background:#f3efe9;border-radius:8px;padding:8px 10px;margin-top:6px}
+  .del{color:var(--danger);cursor:pointer;font-size:12px;font-weight:700}
+  .flow{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}
+  .flow span{font-size:11.5px;background:#f0e9e1;padding:5px 10px;border-radius:8px;color:var(--brand);font-weight:700}
+  .flow span.on{background:var(--brand);color:#fff}
+</style>
+</head>
+<body>
+<header>
+  <span style="font-size:22px">🧵</span>
+  <h1>가죽공예 단체수업 자동화</h1>
+  <span class="badge">학교·기관 B2B</span>
+</header>
+<nav>
+  <button data-tab="dash" class="active">대시보드</button>
+  <button data-tab="inq">문의관리</button>
+  <button data-tab="quote">견적 계산기</button>
+  <button data-tab="teachers">강사</button>
+  <button data-tab="settings">단가 설정</button>
+  <button data-tab="guide">자동화 안내</button>
+</nav>
+<main>
+
+  <!-- 대시보드 -->
+  <section id="dash" class="tab active">
+    <div class="grid g4" style="margin-bottom:16px">
+      <div class="stat"><div class="n" id="st-active">0</div><div class="l">진행중 문의</div></div>
+      <div class="stat"><div class="n" id="st-month">0</div><div class="l">이번달 수업</div></div>
+      <div class="stat"><div class="n" id="st-rev">0원</div><div class="l">계약 합계</div></div>
+      <div class="stat"><div class="n" id="st-revisit">0</div><div class="l">재방문 대상</div></div>
+    </div>
+    <div class="card">
+      <h2>🔔 오늘 할 일 (자동 알림)</h2>
+      <div id="todos"><p class="muted">문의를 등록하면 단계별로 할 일이 여기에 자동으로 떠요.</p></div>
+    </div>
+    <div class="card">
+      <h2>🔁 재방문 제안 대상</h2>
+      <p class="muted" style="margin-top:-8px">지난 수업 후 일정 기간이 지난 기관 — 자동 안내문이 준비돼요.</p>
+      <div id="revisit"></div>
+    </div>
+  </section>
+
+  <!-- 문의관리 -->
+  <section id="inq" class="tab">
+    <div class="card">
+      <h2>➕ 새 문의 등록</h2>
+      <div class="grid g3">
+        <div><label>기관명</label><input id="f-org" placeholder="예: 햇살초등학교"></div>
+        <div><label>담당자</label><input id="f-mgr" placeholder="예: 김선생"></div>
+        <div><label>연락처 / 이메일</label><input id="f-contact" placeholder="010-0000-0000"></div>
+        <div><label>인원수</label><input id="f-people" type="number" placeholder="30"></div>
+        <div><label>희망 날짜</label><input id="f-date" type="date"></div>
+        <div><label>장소(지역)</label><input id="f-loc" placeholder="예: 서울 강서구"></div>
+        <div><label>만들 품목</label><select id="f-item"></select></div>
+        <div><label>예산(선택)</label><input id="f-budget" placeholder="예: 150만원"></div>
+        <div><label>메모</label><input id="f-memo" placeholder="요청사항"></div>
+      </div>
+      <div class="row" style="margin-top:14px">
+        <button class="btn" onclick="addInquiry()">문의 등록 + 견적 자동 생성</button>
+        <span class="muted">등록하면 견적·강사배정·안내문이 자동으로 만들어져요.</span>
+      </div>
+    </div>
+    <div class="card">
+      <h2>📋 문의 목록</h2>
+      <div style="overflow-x:auto">
+      <table>
+        <thead><tr><th>기관</th><th>인원</th><th>품목</th><th>날짜</th><th>견적</th><th>상태</th><th></th></tr></thead>
+        <tbody id="inq-rows"></tbody>
+      </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- 견적 계산기 -->
+  <section id="quote" class="tab">
+    <div class="card">
+      <h2>🧮 즉석 견적 계산기</h2>
+      <div class="grid g3">
+        <div><label>인원수</label><input id="q-people" type="number" value="30" oninput="calcQuote()"></div>
+        <div><label>품목</label><select id="q-item" onchange="calcQuote()"></select></div>
+        <div><label>출장 거리(편도 km, 선택)</label><input id="q-km" type="number" value="0" oninput="calcQuote()"></div>
+      </div>
+      <div id="q-result" style="margin-top:16px"></div>
+    </div>
+  </section>
+
+  <!-- 강사 -->
+  <section id="teachers" class="tab">
+    <div class="card">
+      <h2>➕ 강사 등록</h2>
+      <div class="grid g4">
+        <div><label>이름</label><input id="t-name" placeholder="홍길동"></div>
+        <div><label>지역</label><input id="t-region" placeholder="서울 전역"></div>
+        <div><label>전문 품목(쉼표)</label><input id="t-items" placeholder="카드지갑,반지갑"></div>
+        <div><label>연락처</label><input id="t-contact" placeholder="010-..."></div>
+      </div>
+      <button class="btn sm" style="margin-top:12px" onclick="addTeacher()">강사 추가</button>
+      <p class="hint">'내가 직접' 강사도 한 명 등록해두면 자동 배정에 포함돼요.</p>
+    </div>
+    <div class="card">
+      <h2>👩‍🏫 강사 목록</h2>
+      <div id="t-rows"></div>
+    </div>
+  </section>
+
+  <!-- 단가 설정 -->
+  <section id="settings" class="tab">
+    <div class="card">
+      <h2>💰 품목별 단가표</h2>
+      <p class="muted" style="margin-top:-8px">견적은 이 표를 기준으로 자동 계산돼요. 숫자를 바꾸면 바로 저장됩니다.</p>
+      <div style="overflow-x:auto">
+      <table>
+        <thead><tr><th>품목</th><th>난이도</th><th>재료키트 단가(원)</th><th>1인 수업료(원)</th><th></th></tr></thead>
+        <tbody id="price-rows"></tbody>
+      </table>
+      </div>
+      <div class="row" style="margin-top:10px">
+        <input id="np-name" placeholder="품목명" style="max-width:160px">
+        <select id="np-level" style="max-width:110px"><option>쉬움</option><option>보통</option><option>어려움</option></select>
+        <input id="np-kit" type="number" placeholder="키트단가" style="max-width:130px">
+        <input id="np-fee" type="number" placeholder="수업료" style="max-width:130px">
+        <button class="btn sm" onclick="addPrice()">품목 추가</button>
+      </div>
+    </div>
+    <div class="card">
+      <h2>⚙️ 운영 기준</h2>
+      <div class="grid g3">
+        <div><label>강사 1명당 담당 인원</label><input id="cfg-perteacher" type="number" oninput="saveCfg()"></div>
+        <div><label>강사 출장비(1인, 원)</label><input id="cfg-travel" type="number" oninput="saveCfg()"></div>
+        <div><label>km당 추가 출장비(원)</label><input id="cfg-km" type="number" oninput="saveCfg()"></div>
+        <div><label>재방문 제안 기준(개월)</label><input id="cfg-revisit" type="number" oninput="saveCfg()"></div>
+        <div><label>업체/공방명</label><input id="cfg-biz" oninput="saveCfg()" placeholder="○○가죽공방"></div>
+        <div><label>대표 연락처</label><input id="cfg-phone" oninput="saveCfg()"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 자동화 안내 -->
+  <section id="guide" class="tab">
+    <div class="card">
+      <h2>🤖 어디까지 자동화됐나</h2>
+      <div class="flow">
+        <span class="on">문의 접수</span><span class="on">견적 자동산출</span><span class="on">강사 자동배정</span>
+        <span class="on">안내문/계약 초안</span><span>재료 준비(직접)</span><span class="on">수업 후 후기요청</span><span class="on">재방문 제안</span>
+      </div>
+      <p class="muted">※ '재료 준비'만 직접 하시고, 나머지 서류·계산·안내·일정은 이 도구가 자동 생성해요.</p>
+      <div class="kv"><b>견적서</b><span>인원·품목·거리 입력 → 자동 계산 + 안내문 생성</span></div>
+      <div class="kv"><b>강사 배정</b><span>인원수 ÷ 기준 → 필요 인원 계산, 지역·품목 맞는 강사 추천</span></div>
+      <div class="kv"><b>서류</b><span>견적안내·계약안내·세금계산서 안내 문구 자동 작성(복사해서 발송)</span></div>
+      <div class="kv"><b>재방문</b><span>지난 거래일 기준 자동으로 대상 추려서 제안문 준비</span></div>
+    </div>
+    <div class="card">
+      <h2>📈 한 단계 더 — 완전 무인 자동화</h2>
+      <p class="muted" style="margin-top:-6px">지금은 "초안 자동 생성 → 내가 복사 발송"까지예요. 아래를 붙이면 발송까지 무인화됩니다.</p>
+      <div class="kv"><b>카카오 알림톡</b><span>견적·리마인드·재방문 문자 자동 발송</span></div>
+      <div class="kv"><b>네이버폼 연동</b><span>문의가 자동으로 목록에 들어옴</span></div>
+      <div class="kv"><b>Claude API</b><span>기관 성격에 맞춰 안내문을 매번 새로 작성</span></div>
+      <div class="kv"><b>전자 세금계산서</b><span>정산 단계에서 자동 발행 연동</span></div>
+      <p class="hint">원하시면 이 중 하나씩 실제로 연결해 드릴게요. (지금 환경에 카카오·네이버 도구가 이미 연결돼 있어요.)</p>
+    </div>
+  </section>
+
+</main>
+
+<!-- 상세 모달 -->
+<div class="modal" id="modal"><div class="box" id="modal-body"></div></div>
+
+<script>
+const won = n => (Math.round(n)||0).toLocaleString('ko-KR')+'원';
+const $ = id => document.getElementById(id);
+const todayStr = () => new Date().toISOString().slice(0,10);
+
+// ---------- 기본 데이터 ----------
+const DEFAULT_PRICES = [
+  {name:'키링/팔찌', level:'쉬움', kit:8000, fee:12000},
+  {name:'카드지갑', level:'쉬움', kit:12000, fee:18000},
+  {name:'반지갑', level:'보통', kit:20000, fee:25000},
+  {name:'장지갑', level:'어려움', kit:35000, fee:35000},
+  {name:'에코백/토트백', level:'어려움', kit:40000, fee:40000},
+];
+const DEFAULT_CFG = {perteacher:15, travel:50000, km:1000, revisit:5, biz:'우리가죽공방', phone:''};
+
+let DB = {
+  inquiries: JSON.parse(localStorage.getItem('lc_inq')||'[]'),
+  teachers: JSON.parse(localStorage.getItem('lc_teach')||'[]'),
+  prices: JSON.parse(localStorage.getItem('lc_price')||'null') || DEFAULT_PRICES,
+  cfg: Object.assign({}, DEFAULT_CFG, JSON.parse(localStorage.getItem('lc_cfg')||'{}')),
+};
+function save(){
+  localStorage.setItem('lc_inq', JSON.stringify(DB.inquiries));
+  localStorage.setItem('lc_teach', JSON.stringify(DB.teachers));
+  localStorage.setItem('lc_price', JSON.stringify(DB.prices));
+  localStorage.setItem('lc_cfg', JSON.stringify(DB.cfg));
+}
+
+// ---------- 견적 로직 ----------
+function priceOf(itemName){ return DB.prices.find(p=>p.name===itemName) || DB.prices[0]; }
+function quote(people, itemName, km){
+  const p = priceOf(itemName); people = +people||0; km = +km||0;
+  const need = Math.max(1, Math.ceil(people / (DB.cfg.perteacher||15)));
+  const kitTotal = p.kit * people;
+  const feeTotal = p.fee * people;
+  const travel = need * (DB.cfg.travel||0) + km * (DB.cfg.km||0);
+  const total = kitTotal + feeTotal + travel;
+  return {p, people, need, kitTotal, feeTotal, travel, total};
+}
+
+// ---------- 강사 배정 ----------
+function assignTeachers(inq){
+  const q = quote(inq.people, inq.item, inq.km);
+  const matched = DB.teachers.filter(t =>
+    (!t.items || t.items.length===0 || t.items.some(it=>inq.item.includes(it)||it.includes(inq.item)))
+  );
+  return {need:q.need, candidates: matched.slice(0, q.need), short: Math.max(0, q.need - matched.length)};
+}
+
+// ---------- 안내문 자동 생성 ----------
+function draftQuote(inq){
+  const q = quote(inq.people, inq.item, inq.km);
+  return `[${DB.cfg.biz}] 가죽공예 단체수업 견적 안내
+
+안녕하세요, ${inq.org} ${inq.mgr||'담당자'}님.
+문의 주신 가죽공예 단체수업 견적 안내드립니다.
+
+· 품목: ${inq.item} (난이도 ${q.p.level})
+· 인원: ${q.people}명
+· 일정: ${inq.date||'협의'}
+· 장소: ${inq.loc||'협의'}
+
+[견적]
+· 재료키트  ${won(q.p.kit)} × ${q.people}명 = ${won(q.kitTotal)}
+· 수업료    ${won(q.p.fee)} × ${q.people}명 = ${won(q.feeTotal)}
+· 강사 ${q.need}명 출장비${inq.km?` (편도 ${inq.km}km 포함)`:''} = ${won(q.travel)}
+─────────────────────────
+· 합계(VAT 별도): ${won(q.total)}
+
+세금계산서 발행 가능하며, 일정 확정 시 계약서 보내드리겠습니다.
+문의: ${DB.cfg.phone||'(연락처 입력)'}`;
+}
+function draftContract(inq){
+  const q = quote(inq.people, inq.item, inq.km);
+  return `[${DB.cfg.biz}] 수업 확정 및 진행 안내
+
+${inq.org} ${inq.mgr||'담당자'}님, 일정 확정 감사합니다.
+
+· 확정 일정: ${inq.date||'(미정)'}
+· 품목/인원: ${inq.item} / ${q.people}명
+· 배정 강사: ${q.need}명
+· 결제 합계: ${won(q.total)} (VAT 별도, 세금계산서 발행)
+
+준비사항
+· 저희: 재료키트 ${q.people}개 + 도구 일체 지참
+· 기관: 책상·의자 배치, 콘센트 확인
+
+수업 3일 전 최종 인원 확정 부탁드립니다.`;
+}
+function draftRevisit(inq){
+  return `[${DB.cfg.biz}] 가죽공예 수업 재진행 제안
+
+안녕하세요, ${inq.org} ${inq.mgr||'담당자'}님.
+지난 ${inq.date||'이전'} 가죽공예 수업 잘 마무리되어 감사했습니다.
+
+새 학기/분기를 맞아 다시 한 번 단체수업을 제안드립니다.
+지난번 ${inq.item} 외에 다른 품목도 준비되어 있습니다.
+편하신 일정 알려주시면 견적 바로 보내드리겠습니다.`;
+}
+
+// ---------- 렌더 ----------
+function fillItemSelects(){
+  const opts = DB.prices.map(p=>`<option>${p.name}</option>`).join('');
+  ['f-item','q-item'].forEach(id=>{ if($(id)) $(id).innerHTML = opts; });
+}
+function renderInq(){
+  const tb = $('inq-rows');
+  if(!DB.inquiries.length){ tb.innerHTML='<tr><td colspan="7" class="muted">아직 문의가 없어요.</td></tr>'; return; }
+  tb.innerHTML = DB.inquiries.map(i=>{
+    const q = quote(i.people,i.item,i.km);
+    return `<tr>
+      <td><b>${i.org}</b><br><span class="muted">${i.loc||''}</span></td>
+      <td>${i.people}명</td><td>${i.item}</td><td>${i.date||'-'}</td>
+      <td>${won(q.total)}</td>
+      <td><span class="pill s-${i.status}">${i.status}</span></td>
+      <td><button class="btn sm sec" onclick="openInq('${i.id}')">열기</button></td>
+    </tr>`;
+  }).join('');
+}
+function renderTeachers(){
+  const el = $('t-rows');
+  if(!DB.teachers.length){ el.innerHTML='<p class="muted">등록된 강사가 없어요.</p>'; return; }
+  el.innerHTML = DB.teachers.map(t=>`<div class="kv">
+    <span><b>${t.name}</b> · ${t.region||'-'} ${(t.items||[]).map(x=>`<span class="tag">${x}</span>`).join('')}</span>
+    <span>${t.contact||''} <span class="del" onclick="delTeacher('${t.id}')">삭제</span></span>
+  </div>`).join('');
+}
+function renderPrices(){
+  $('price-rows').innerHTML = DB.prices.map((p,idx)=>`<tr>
+    <td>${p.name}</td><td>${p.level}</td>
+    <td><input type="number" value="${p.kit}" onchange="editPrice(${idx},'kit',this.value)" style="max-width:120px"></td>
+    <td><input type="number" value="${p.fee}" onchange="editPrice(${idx},'fee',this.value)" style="max-width:120px"></td>
+    <td><span class="del" onclick="delPrice(${idx})">삭제</span></td>
+  </tr>`).join('');
+}
+function renderCfg(){
+  $('cfg-perteacher').value=DB.cfg.perteacher; $('cfg-travel').value=DB.cfg.travel;
+  $('cfg-km').value=DB.cfg.km; $('cfg-revisit').value=DB.cfg.revisit;
+  $('cfg-biz').value=DB.cfg.biz; $('cfg-phone').value=DB.cfg.phone;
+}
+function renderDash(){
+  const active = DB.inquiries.filter(i=>!['수업완료','정산완료'].includes(i.status));
+  $('st-active').textContent = active.length;
+  const thisMonth = new Date().toISOString().slice(0,7);
+  $('st-month').textContent = DB.inquiries.filter(i=>(i.date||'').startsWith(thisMonth)).length;
+  const rev = DB.inquiries.filter(i=>['계약확정','수업완료','정산완료'].includes(i.status))
+    .reduce((s,i)=>s+quote(i.people,i.item,i.km).total,0);
+  $('st-rev').textContent = won(rev);
+
+  // todos
+  const todos=[];
+  DB.inquiries.forEach(i=>{
+    if(i.status==='문의접수') todos.push(`📨 <b>${i.org}</b> 견적 발송하기 — <button class="btn sm sec" onclick="openInq('${i.id}')">견적 열기</button>`);
+    else if(i.status==='견적발송') todos.push(`📞 <b>${i.org}</b> 견적 회신 확인 / 계약 안내 — <button class="btn sm sec" onclick="openInq('${i.id}')">열기</button>`);
+    else if(i.status==='계약확정'){
+      todos.push(`🧰 <b>${i.org}</b> 재료키트 ${i.people}개 준비 (직접) — ${i.date||'일정확인'}`);
+    } else if(i.status==='수업완료') todos.push(`🧾 <b>${i.org}</b> 세금계산서 발행 / 후기 요청 — <button class="btn sm sec" onclick="openInq('${i.id}')">열기</button>`);
+  });
+  $('todos').innerHTML = todos.length ? todos.map(t=>`<div class="kv"><span>${t}</span></div>`).join('') : '<p class="muted">지금 처리할 일이 없어요 👍</p>';
+
+  // revisit
+  const cut = new Date(); cut.setMonth(cut.getMonth()-(DB.cfg.revisit||5));
+  const revisit = DB.inquiries.filter(i=>['수업완료','정산완료'].includes(i.status) && i.date && new Date(i.date) < cut);
+  $('st-revisit').textContent = revisit.length;
+  $('revisit').innerHTML = revisit.length ? revisit.map(i=>`<div class="kv">
+    <span><b>${i.org}</b> · 지난수업 ${i.date} (${i.item})</span>
+    <button class="btn sm" onclick="showDraft('재방문 제안문','${i.id}','revisit')">제안문 만들기</button>
+  </div>`).join('') : '<p class="muted">아직 재방문 대상이 없어요.</p>';
+}
+function renderAll(){ fillItemSelects(); renderInq(); renderTeachers(); renderPrices(); renderCfg(); renderDash(); calcQuote(); }
+
+// ---------- 액션 ----------
+function uid(){ return 'x'+Math.random().toString(36).slice(2,9); }
+function addInquiry(){
+  const org=$('f-org').value.trim();
+  if(!org){ alert('기관명을 입력해 주세요.'); return; }
+  DB.inquiries.unshift({
+    id:uid(), org, mgr:$('f-mgr').value.trim(), contact:$('f-contact').value.trim(),
+    people:+$('f-people').value||1, date:$('f-date').value, loc:$('f-loc').value.trim(),
+    item:$('f-item').value, budget:$('f-budget').value.trim(), memo:$('f-memo').value.trim(),
+    status:'문의접수', created:todayStr()
+  });
+  save();
+  ['f-org','f-mgr','f-contact','f-people','f-loc','f-budget','f-memo'].forEach(id=>$(id).value='');
+  renderAll();
+  document.querySelector('[data-tab="inq"]').click();
+  // 등록 직후 상세 자동 오픈
+  openInq(DB.inquiries[0].id);
+}
+function openInq(id){
+  const i = DB.inquiries.find(x=>x.id===id); if(!i) return;
+  const q = quote(i.people,i.item,i.km);
+  const a = assignTeachers(i);
+  const steps=['문의접수','견적발송','계약확정','수업완료','정산완료'];
+  $('modal-body').innerHTML = `
+    <button class="close" onclick="closeModal()">✕</button>
+    <h2 style="margin:0 0 4px">${i.org}</h2>
+    <p class="muted" style="margin:0 0 12px">${i.mgr||''} · ${i.contact||'연락처 없음'} · ${i.loc||''}</p>
+    <div class="flow">${steps.map(s=>`<span class="${s===i.status?'on':''}" style="cursor:pointer" onclick="setStatus('${i.id}','${s}')">${s}</span>`).join('')}</div>
+    <div class="card" style="box-shadow:none;margin:12px 0">
+      <div class="kv"><span>품목 / 인원</span><b>${i.item} · ${i.people}명</b></div>
+      <div class="kv"><span>재료키트</span><span>${won(q.p.kit)} × ${i.people} = ${won(q.kitTotal)}</span></div>
+      <div class="kv"><span>수업료</span><span>${won(q.p.fee)} × ${i.people} = ${won(q.feeTotal)}</span></div>
+      <div class="kv"><span>강사 출장비 (${q.need}명)</span><span>${won(q.travel)}</span></div>
+      <div class="kv"><span class="big">합계(VAT별도)</span><span class="big">${won(q.total)}</span></div>
+    </div>
+    <div class="card" style="box-shadow:none;margin:12px 0">
+      <b>🧑‍🏫 자동 강사 배정</b>
+      <p class="muted" style="margin:6px 0">필요 강사 <b>${a.need}명</b> ${a.short>0?`· ⚠️ ${a.short}명 부족 (강사 더 등록 필요)`:'· ✅ 배정 가능'}</p>
+      ${a.candidates.length? a.candidates.map(t=>`<span class="tag">${t.name} (${t.region})</span>`).join('') : '<span class="muted">등록된 강사 없음 — 강사 탭에서 추가</span>'}
+    </div>
+    <div class="row">
+      <button class="btn sm" onclick="showDraft('견적 안내문','${i.id}','quote')">견적 안내문</button>
+      <button class="btn sm" onclick="showDraft('수업 확정 안내','${i.id}','contract')">계약/확정 안내</button>
+      <button class="btn sm sec" onclick="showDraft('재방문 제안문','${i.id}','revisit')">재방문 제안</button>
+      <span style="flex:1"></span>
+      <span class="del" onclick="delInq('${i.id}')">문의 삭제</span>
+    </div>
+    <div id="draft-area" style="margin-top:14px"></div>`;
+  $('modal').classList.add('show');
+}
+function showDraft(title,id,type){
+  const i = DB.inquiries.find(x=>x.id===id); if(!i) return;
+  const text = type==='quote'?draftQuote(i):type==='contract'?draftContract(i):draftRevisit(i);
+  const area = $('draft-area') || $('modal-body');
+  if(!$('modal').classList.contains('show')){ // 대시보드에서 직접 호출
+    $('modal-body').innerHTML = `<button class="close" onclick="closeModal()">✕</button><h2>${title} · ${i.org}</h2><div id="draft-area"></div>`;
+    $('modal').classList.add('show');
+  }
+  ($('draft-area')||area).innerHTML = `<b>${title}</b>
+    <div class="draft" id="dtext">${text}</div>
+    <div class="row" style="margin-top:8px">
+      <button class="btn sm" onclick="copyDraft()">📋 복사하기</button>
+      <span class="muted">복사해서 이메일/문자로 발송하세요. (자동 발송 연동 가능)</span>
+    </div>`;
+}
+function copyDraft(){
+  const t=$('dtext').innerText;
+  navigator.clipboard.writeText(t).then(()=>alert('복사됐어요! 붙여넣기 해서 발송하세요.'),
+    ()=>{const r=document.createRange();r.selectNode($('dtext'));window.getSelection().removeAllRanges();window.getSelection().addRange(r);document.execCommand('copy');alert('복사됐어요!');});
+}
+function setStatus(id,s){ const i=DB.inquiries.find(x=>x.id===id); i.status=s; save(); openInq(id); renderInq(); renderDash(); }
+function delInq(id){ if(!confirm('이 문의를 삭제할까요?'))return; DB.inquiries=DB.inquiries.filter(x=>x.id!==id); save(); closeModal(); renderAll(); }
+function closeModal(){ $('modal').classList.remove('show'); }
+
+function addTeacher(){
+  const name=$('t-name').value.trim(); if(!name){alert('이름을 입력하세요');return;}
+  DB.teachers.push({id:uid(),name,region:$('t-region').value.trim(),
+    items:$('t-items').value.split(',').map(s=>s.trim()).filter(Boolean),contact:$('t-contact').value.trim()});
+  save(); ['t-name','t-region','t-items','t-contact'].forEach(id=>$(id).value=''); renderTeachers();
+}
+function delTeacher(id){ DB.teachers=DB.teachers.filter(t=>t.id!==id); save(); renderTeachers(); }
+
+function addPrice(){
+  const name=$('np-name').value.trim(); if(!name){alert('품목명을 입력하세요');return;}
+  DB.prices.push({name,level:$('np-level').value,kit:+$('np-kit').value||0,fee:+$('np-fee').value||0});
+  save(); $('np-name').value='';$('np-kit').value='';$('np-fee').value=''; renderPrices(); fillItemSelects();
+}
+function editPrice(i,k,v){ DB.prices[i][k]=+v||0; save(); }
+function delPrice(i){ if(DB.prices.length<=1){alert('최소 1개는 있어야 해요');return;} DB.prices.splice(i,1); save(); renderPrices(); fillItemSelects(); }
+
+function saveCfg(){
+  DB.cfg={perteacher:+$('cfg-perteacher').value||15, travel:+$('cfg-travel').value||0,
+    km:+$('cfg-km').value||0, revisit:+$('cfg-revisit').value||5,
+    biz:$('cfg-biz').value, phone:$('cfg-phone').value};
+  save(); renderDash();
+}
+
+function calcQuote(){
+  if(!$('q-result'))return;
+  const q = quote($('q-people').value,$('q-item').value,$('q-km').value);
+  $('q-result').innerHTML = `
+    <div class="kv"><span>재료키트 ${won(q.p.kit)} × ${q.people}명</span><b>${won(q.kitTotal)}</b></div>
+    <div class="kv"><span>수업료 ${won(q.p.fee)} × ${q.people}명</span><b>${won(q.feeTotal)}</b></div>
+    <div class="kv"><span>강사 ${q.need}명 출장비</span><b>${won(q.travel)}</b></div>
+    <div class="kv"><span class="big">합계 (VAT 별도)</span><span class="big">${won(q.total)}</span></div>
+    <p class="hint">필요 강사 ${q.need}명 (인원 ${q.people} ÷ ${DB.cfg.perteacher}명 기준). 단가는 '단가 설정'에서 조정.</p>`;
+}
+
+// 탭
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('nav button').forEach(x=>x.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active'); $(b.dataset.tab).classList.add('active');
+  if(b.dataset.tab==='dash') renderDash();
+});
+$('modal').onclick=e=>{ if(e.target.id==='modal') closeModal(); };
+
+renderAll();
+</script>
+</body>
+</html>
