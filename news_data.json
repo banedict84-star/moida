@@ -1,6 +1,14 @@
 {
-  "updated": "2026-06-26 10:36 UTC",
+  "updated": "2026-06-26 13:30 UTC",
   "items": [
+    {
+      "source": "naver",
+      "press": "safetynews.co.kr",
+      "date": "2026.06.26",
+      "title": "김동규 경기도의원 \"복지는 봉사...20년 복지전문가로 기억되고 싶다\"",
+      "snippet": "김동규 경기도의원(안산4) 재선에 성공한 김동규 경기도의원(안산4)은 \"복지는 봉사라는 마음으로 지난 16년간... 김동규 경기도의원이 26일 오후5시 상록구청 1층 쉼터 까페에서 기자들과 차담회를 갖으며 질문에...",
+      "url": "https://www.safetynews.co.kr/news/articleView.html?idxno=249225"
+    },
     {
       "source": "naver",
       "press": "enewstoday.co.kr",
@@ -498,14 +506,6 @@
       "url": "https://www.veritas-a.com/news/articleView.html?idxno=616596"
     },
     {
-      "source": "naver",
-      "press": "gosiweek.com",
-      "date": "2026.06.25",
-      "title": "법제처, 청년 창업 규제 개선 착수…재창업 연령기준·신기술 인증 손본...",
-      "snippet": "법제처는 25일 경기 안산시에 있는 청년창업사관학교를 방문해 청년 창업자들과 간담회를 열고 창업 과정에서... 특히 청년창업사관학교는 창업 3년 이내, 만 39세 이하 창업자를 대상으로 교육과 사업화 지원, 사무공간 등을...",
-      "url": "https://www.gosiweek.com/article/1065598482210817"
-    },
-    {
       "source": "google",
       "press": "데일리엔뉴스",
       "date": "2026.06.25",
@@ -739,14 +739,6 @@
     },
     {
       "source": "naver",
-      "press": "lawissue.co.kr",
-      "date": "2026.06.22",
-      "title": "김태희 경기도의원, 경기지방정원 기반시설 공사 점검… 2028년 준공 목...",
-      "snippet": "경기지방정원은 안산시 상록구 본오동 일원에 조성되고 있으며, 방문자센터와 정원지원센터는 정원 운영과 이용 활성화를 뒷받침할 거점 시설로 건립된다. 총사업비는 288억 원이다. 시설은 연면적 3912㎡, 지상 2층 규모로...",
-      "url": "http://www.lawissue.co.kr/view.php?ud=202606221523164066d94aa4ada6_12"
-    },
-    {
-      "source": "naver",
       "press": "jeonmae.co.kr",
       "date": "2026.06.22",
       "title": "김태희 경기도의원, 경기지방정원 지원시설 신축 현황 점검",
@@ -755,11 +747,11 @@
     },
     {
       "source": "naver",
-      "press": "newsfreezone.co.kr",
+      "press": "lawissue.co.kr",
       "date": "2026.06.22",
-      "title": "김태희 경기도의원, 경기지방정원 핵심시설 건립 현황 살펴",
-      "snippet": "경기지방정원 방문자센터 및 정원지원센터는 안산시 상록구 본오동 일원에 조성 중인 경기지방정원의 운영 기반을 구축하고 이용 활성화를 지원하기 위한 시설이다. 총사업비 288억 원이 투입되며 연면적 3,912㎡, 지상 2층...",
-      "url": "https://www.newsfreezone.co.kr/news/articleView.html?idxno=695754"
+      "title": "김태희 경기도의원, 경기지방정원 기반시설 공사 점검… 2028년 준공 목...",
+      "snippet": "경기지방정원은 안산시 상록구 본오동 일원에 조성되고 있으며, 방문자센터와 정원지원센터는 정원 운영과 이용 활성화를 뒷받침할 거점 시설로 건립된다. 총사업비는 288억 원이다. 시설은 연면적 3912㎡, 지상 2층 규모로...",
+      "url": "http://www.lawissue.co.kr/view.php?ud=202606221523164066d94aa4ada6_12"
     },
     {
       "source": "naver",
@@ -768,6 +760,14 @@
       "title": "김태희 경기도의원, 경기지방정원 방문자센터·정원지원센터 추진현황...",
       "snippet": "경기지방정원 방문자센터 및 정원지원센터는 안산시 상록구 본오동 일원에 조성되는 경기지방정원의 운영과 이용 활성화를 지원하기 위한 시설이다. 총사업비 288억원을 투입해 연면적 3912㎡, 지상 2층 규모로 건립될...",
       "url": "https://www.m-i.kr/news/articleView.html?idxno=1383978"
+    },
+    {
+      "source": "naver",
+      "press": "newsfreezone.co.kr",
+      "date": "2026.06.22",
+      "title": "김태희 경기도의원, 경기지방정원 핵심시설 건립 현황 살펴",
+      "snippet": "경기지방정원 방문자센터 및 정원지원센터는 안산시 상록구 본오동 일원에 조성 중인 경기지방정원의 운영 기반을 구축하고 이용 활성화를 지원하기 위한 시설이다. 총사업비 288억 원이 투입되며 연면적 3,912㎡, 지상 2층...",
+      "url": "https://www.newsfreezone.co.kr/news/articleView.html?idxno=695754"
     },
     {
       "source": "naver",
@@ -795,11 +795,11 @@
     },
     {
       "source": "google",
-      "press": "리버럴미디어",
+      "press": "메트로타임즈",
       "date": "2026.06.22",
       "title": "안산교육지원청, “초등 입학 불안 뚝!” 유치원 교사 대상 초등학교 교육과정 이해 연수 실시",
-      "snippet": "안산교육지원청, “초등 입학 불안 뚝!” 유치원 교사 대상 초등학교 교육과정 이해 연수 실시 리버럴미디어",
-      "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE9DTDdBVzBWcUdPU0hpT1NUdG9YYUNDU3BfYjdaM2FVUF9hdjNwTTBabDhFaXdSS3hjYWc2Mm9scEdCa3BucFlCeVN6d0VWT1Z0QlFZYWowb24xZHRqYmJKZk5NSEk?oc=5"
+      "snippet": "안산교육지원청, “초등 입학 불안 뚝!” 유치원 교사 대상 초등학교 교육과정 이해 연수 실시 메트로타임즈",
+      "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE5DY1FRZzJ2dDl2ZTRuUWZVZjhycjJzb2phaWZONGpUNG5zUFhlejZxaG85NUR4WTBHSlZ6UUhWZGZpd2lFbVRNRDN0eUVMSE5oY0ZSU2dvbkg?oc=5"
     },
     {
       "source": "google",
@@ -978,14 +978,6 @@
       "url": "http://www.fntimes.com/html/view.php?ud=202606170845446408048b718333_18"
     },
     {
-      "source": "naver",
-      "press": "topstarnews.net",
-      "date": "2026.06.17",
-      "title": "'내가 많이 먹을 상인가' 안산 이동 우거지감자탕·왕갈비탕 맛집 \"든든...",
-      "snippet": "안산 상록구 이동, 한대앞역 인근 약 300m 거리에 위치한 우거지감자탕 맛집은 든든한 한끼를 내놓는 인기 식당이다. 이날 방송을 통해서는 우거지감자탕과 왕갈비탕 등을 집중 조명해 시청자의 침샘을 자극했다. 코미디TV...",
-      "url": "https://www.topstarnews.net/news/articleView.html?idxno=16097347"
-    },
-    {
       "source": "google",
       "press": "브릿지경제",
       "date": "2026.06.17",
@@ -1008,14 +1000,6 @@
       "title": "[브리프] 경기도의회 6월 15일 주요 의정 소식",
       "snippet": "송기우 기자 kwsong@ekn.kr 경기도의회 더불어민주당, 제12대 전반기 대표의원 및 의장단 선출 예고 경기도의회, 11일 보건건강국 2025회계연도 결산 심사 장윤정 도의원, 경기도교육청 예산유보 지적하며 적기 집행 당부...",
       "url": "https://www.ekn.kr/web/view.php?key=20260616020173465"
-    },
-    {
-      "source": "google",
-      "press": "일간경기",
-      "date": "2026.06.16",
-      "title": "김동규 의원, 안산시 상록구 주민 교육민원 해결 ‘앞장’",
-      "snippet": "김동규 의원, 안산시 상록구 주민 교육민원 해결 ‘앞장’ 일간경기",
-      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE0xb2VBd0FXZlU0amFiOTdVSjQ2RVRSLXFmdjRfLUQwNUlxMTRnQmgyYmdGVEQtbmhPbTlpT1NfbWZLb2Rwdjc5SVQ2LV9tcmVKSm5GSmVDMjR6azl5cGhmY2ktUzNSZWtM?oc=5"
     },
     {
       "source": "google",
@@ -1048,14 +1032,6 @@
       "title": "경기도의회 장윤정 의원, 경기도교육청 예산유보 운영 점검…“절감보다 적기 집행이 중요”",
       "snippet": "경기도의회 장윤정 의원, 경기도교육청 예산유보 운영 점검…“절감보다 적기 집행이 중요” 경인종합일보",
       "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5VMjhnQU5TMklhcldjRTN0NXo2RUxIZ0RsSlBKYmYzSGxqR1BQMy1Vd3BjSmxmWkIyeDdTLVlyT29IZUlnaDQ2Q2UzRHlTR0FydGxMWFA2ZDlYVGZVbUZnUWtDNnpyNDVUZzVpOW1n0gFyQVVfeXFMT1ZDZDFsTGZ5QUlXVFhnWWxReUtQOGctQzN0TUhSRjUtODhSbldxT2ppMXhPSTNPYXdWSTBLM0tsRUllYkJodXVpM2tDRXVHNEFnbFNKanhPWDY4OXRXeHlnSDl6ZUZGNlp2QmVyYmFzSXdn?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "광교신문",
-      "date": "2026.06.14",
-      "title": "안산시 상록구, 사회복지직 공무원‘고민타파 힐링데이’ 운영",
-      "snippet": "안산시 상록구, 사회복지직 공무원‘고민타파 힐링데이’ 운영 광교신문",
-      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1MRlpWWnowRklubWJDVC1lTkJRVk1TemgzVk5IcDFrbG9UZkMtQzdPRGRXRlFtcjRNYkdGYmtYYzJRUXVpRmNvZEZrQUJieFpEZEFsa3JOMGtTdFAyaERnOThnY1ptOHQ10gFsQVVfeXFMTmFTSE56NlJfS0V1NWxITFhRc0RoTzlaVzlqZWVrSTRJR3FjYm9vQ3FrN0wtaGVtRURrbVREZGkyeks1TWk2WUU4cUpXUVZnU242aXUtc1RJX3FzaU4zRGQ2c1FGVGFvZENqUi00?oc=5"
     },
     {
       "source": "naver",
@@ -1098,20 +1074,20 @@
       "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPMHBhOXhTNHBVRjA3WVk1OXB3RHlZaHotaHFpM2ZVNEllTDE4Y3dOTDdzQ2JjVmFQTHhneHlQTHJXUE5MaGROQTh4V3pNZmR1dk9GSzZ6YUxKSGNCMUo4Q2RHM0V0bHVpblVBeWVHZERLWG5GMjg0dnU3SHB6OGZmSFVjQ2p0bFJOSEpQSVJYT1Z4YWc?oc=5"
     },
     {
-      "source": "naver",
-      "press": "newscj.com",
-      "date": "2026.06.12",
-      "title": "장윤정 부위원장, 교육청 예산유보 운영 점검… \"적기 집행이 우선\"",
-      "snippet": "장윤정 경기도의회 교육기획위원회 부위원장(더불어민주당, 안산3)이 경기도교육청의 예산유보 운영 실태를 점검하며 교육현장에 필요한 예산의 적기 집행 중요성을 강조했다. 장 부위원장은 지난 11일 열린 2025회계연도...",
-      "url": "https://www.newscj.com/news/articleView.html?idxno=3408864"
-    },
-    {
       "source": "google",
       "press": "더코리아",
       "date": "2026.06.12",
       "title": "장윤정 경기도의회 교육기획위원회 부위원장, 경기도교육청 예산유보 운영 점검 > 뉴스",
       "snippet": "장윤정 경기도의회 교육기획위원회 부위원장, 경기도교육청 예산유보 운영 점검 > 뉴스 더코리아",
       "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFA4aWt5Vl9FYVZmYklkdUd0UU9DNS1qT08tR28zNC1YT0JsU1R3QWk3NmxyenRTTi1NdTFGb2hWenEwbWRjUk5xYmhnTzZsX2hYNVkyY0NnYnMtUkh5bXowU1E2UHNjZ3pvdnBIRXhjWUE?oc=5"
+    },
+    {
+      "source": "naver",
+      "press": "newscj.com",
+      "date": "2026.06.12",
+      "title": "장윤정 부위원장, 교육청 예산유보 운영 점검… \"적기 집행이 우선\"",
+      "snippet": "장윤정 경기도의회 교육기획위원회 부위원장(더불어민주당, 안산3)이 경기도교육청의 예산유보 운영 실태를 점검하며 교육현장에 필요한 예산의 적기 집행 중요성을 강조했다. 장 부위원장은 지난 11일 열린 2025회계연도...",
+      "url": "https://www.newscj.com/news/articleView.html?idxno=3408864"
     },
     {
       "source": "naver",
@@ -1128,14 +1104,6 @@
       "title": "[병원계 소식] 6월 10일",
       "snippet": "■고려대 안산병원, 연구 성과 자문단 'Networking Day' 개최 고려대학교 안산병원(원장 서동훈)이 연구 성과... 국립암센터 중앙암생존자통합지지센터(센터장 장윤정)는 이번 캠페인의 일환으로 '권역센터와 함께 만든 변화의...",
       "url": "http://www.doctorstimes.com/news/articleView.html?idxno=238466"
-    },
-    {
-      "source": "google",
-      "press": "안산타임스",
-      "date": "2026.06.10",
-      "title": "상록구, 야간 이륜차 소음 합동 특별단속 실시",
-      "snippet": "상록구, 야간 이륜차 소음 합동 특별단속 실시 안산타임스",
-      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTFBKZUtoaUUyTWNfWDZURlppX0lodGEtODNrUkVGNklydUxxejdnWUkwNHVVT2pKaUdmaFA0VWRlMVlyZ0ZSZTlaRzBVcHRYQkNxdTh5MzNDakExV1dXc1d6elc2ZkxGQzcyYkNMUW5lZ9IBc0FVX3lxTE5kbUUxU1lxWjNPUk15Z0lReXotOGs1LWxIeXdPbDJjZEFRTndUNnFOUVBYeHdpZ0R1YmY0aEtrbVdUZnViRjNsNFJscy1hRnpWb1g5LUwzSTN4aGF3eFVzRlBjQW9VM2t2aWFXTDRyR0hzZkk?oc=5"
     },
     {
       "source": "naver",
@@ -1314,6 +1282,14 @@
       "url": "https://www.newsfreezone.co.kr/news/articleView.html?idxno=692039"
     },
     {
+      "source": "google",
+      "press": "천지일보",
+      "date": "2026.05.27",
+      "title": "[6.3지선 후보 인터뷰] 더불어민주당 장윤정 후보 “통학로·학교부터 바꿔 아이 키우기 좋은 도시 만들 것”",
+      "snippet": "[6.3지선 후보 인터뷰] 더불어민주당 장윤정 후보 “통학로·학교부터 바꿔 아이 키우기 좋은 도시 만들 것” 천지일보",
+      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBFdllCV3RHSzhtQnpsdVdvYnhfUXNIY1lheUZQRHM4bUNDQ3dHVnpnVVhfR3VPeWdKQlVWMkYtYm9jM0J5VlU0U2dFbWVieHROWFU0VE4yWmFoRlZLOFZoMUc3aTBrM0Nib3c?oc=5"
+    },
+    {
       "source": "naver",
       "press": "newscj.com",
       "date": "2026.05.26",
@@ -1459,14 +1435,6 @@
     },
     {
       "source": "google",
-      "press": "v.daum.net",
-      "date": "2026.05.13",
-      "title": "안산 상록구 다세대 주택 화재…1명 사망·3명 부상",
-      "snippet": "안산 상록구 다세대 주택 화재…1명 사망·3명 부상 v.daum.net",
-      "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE1hLUp2SWhtWjM3VFJJdVV1WGhTaDk0SGVLa3Zia2NwS3lFZGdPbHI0YXpOSGhYZ3RhVFNwT0ppS0MxQVBTUVE?oc=5"
-    },
-    {
-      "source": "google",
       "press": "연합뉴스",
       "date": "2026.05.13",
       "title": "안산 상록구 비닐하우스서 불…1시간 20여분 만에 진화",
@@ -1475,11 +1443,11 @@
     },
     {
       "source": "google",
-      "press": "연합뉴스",
+      "press": "v.daum.net",
       "date": "2026.05.13",
-      "title": "안산 상록구 다세대주택서 불…1명 사망·3명 중경상",
-      "snippet": "안산 상록구 다세대주택서 불…1명 사망·3명 중경상 연합뉴스",
-      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE91T1VUTjFsVE1fVzdLbWhjdnUyZVh4blRVUmszcnVzT25IOHQ1T2J1Uk16SHM0UHFoeDlXUllVNWZmM19mX2pSaXliOU9jNmdfYVNkU3p3QUI2XzjSAWBBVV95cUxQRUVibk9OcUtnV0dqeEREMF80dmI3WUJONzVXTmY4UU9SNEtrczl4RU1XVnpKY3ZhSkFhLWN1NF9lVEx1aS1zTF9rdUNhWEUwMmlCV1p6RlV3dWNFSnVKOFg?oc=5"
+      "title": "안산 상록구 다세대 주택 화재…1명 사망·3명 부상",
+      "snippet": "안산 상록구 다세대 주택 화재…1명 사망·3명 부상 v.daum.net",
+      "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE1hLUp2SWhtWjM3VFJJdVV1WGhTaDk0SGVLa3Zia2NwS3lFZGdPbHI0YXpOSGhYZ3RhVFNwT0ppS0MxQVBTUVE?oc=5"
     },
     {
       "source": "google",
@@ -1488,6 +1456,14 @@
       "title": "안산 상록구 다세대 주택 불…1명 사망·3명 부상",
       "snippet": "안산 상록구 다세대 주택 불…1명 사망·3명 부상 서울신문",
       "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9ERkxuNk5RRFVpQmNqRVMtalpDU05MNndSNGIzb1l0bmZvOUZNU0dYeUptT2NyNDlvN2ZyLW9neG8xZWRKb2FPMzl0STFERTNjYWpqVF9jc1NhWlhMTlNBNWUyMGttZEl4YkdYTFJ2ZkJrUWNtdmFkSDlhOA?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "연합뉴스",
+      "date": "2026.05.13",
+      "title": "안산 상록구 다세대주택서 불…1명 사망·3명 중경상",
+      "snippet": "안산 상록구 다세대주택서 불…1명 사망·3명 중경상 연합뉴스",
+      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE91T1VUTjFsVE1fVzdLbWhjdnUyZVh4blRVUmszcnVzT25IOHQ1T2J1Uk16SHM0UHFoeDlXUllVNWZmM19mX2pSaXliOU9jNmdfYVNkU3p3QUI2XzjSAWBBVV95cUxQRUVibk9OcUtnV0dqeEREMF80dmI3WUJONzVXTmY4UU9SNEtrczl4RU1XVnpKY3ZhSkFhLWN1NF9lVEx1aS1zTF9rdUNhWEUwMmlCV1p6RlV3dWNFSnVKOFg?oc=5"
     },
     {
       "source": "naver",
@@ -1602,6 +1578,22 @@
       "url": "https://www.kihoilbo.co.kr/news/articleView.html?idxno=3021926"
     },
     {
+      "source": "google",
+      "press": "경기일보",
+      "date": "2026.05.06",
+      "title": "안산 상록 상가에 차량 돌진…70대 운전자 등 4명 부상",
+      "snippet": "안산 상록 상가에 차량 돌진…70대 운전자 등 4명 부상 경기일보",
+      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFB2cC1QVExwd1pxbGlKZFh2V1RLVHdndlZuMk5adUpqaUV3Z2g1eC1oa2N3VzdrMG8zVDczQ0kzSEZkV0N1ekhkNUVFMGQzYTF0WUhtV293Q0ZLOGs?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "더리포트",
+      "date": "2026.05.05",
+      "title": "[6·3 지선] 장윤정 의원 \"안산 정치권 경선 개입 의혹 녹취 제보\"… 파장 확산",
+      "snippet": "[6·3 지선] 장윤정 의원 \"안산 정치권 경선 개입 의혹 녹취 제보\"… 파장 확산 더리포트",
+      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1FZkl4bzBBV1VKcGk2M2NNQm16WnpjUDU0VlZWVjRkc0pDQ0lCLXJPTUwxY2pILUZoT3ZTREJ4MWhkRjZaaWh5YUVBVVVGVW9GR0lGd2hDR1BLdXFBcl81dncxeHI3UGNmcl9CYXBB?oc=5"
+    },
+    {
       "source": "naver",
       "press": "thereport.co.kr",
       "date": "2026.05.05",
@@ -1619,19 +1611,11 @@
     },
     {
       "source": "google",
-      "press": "더리포트",
-      "date": "2026.05.05",
-      "title": "[6·3 지선] 장윤정 의원 \"안산 정치권 경선 개입 의혹 녹취 제보\"… 파장 확산",
-      "snippet": "[6·3 지선] 장윤정 의원 \"안산 정치권 경선 개입 의혹 녹취 제보\"… 파장 확산 더리포트",
-      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1FZkl4bzBBV1VKcGk2M2NNQm16WnpjUDU0VlZWVjRkc0pDQ0lCLXJPTUwxY2pILUZoT3ZTREJ4MWhkRjZaaWh5YUVBVVVGVW9GR0lGd2hDR1BLdXFBcl81dncxeHI3UGNmcl9CYXBB?oc=5"
-    },
-    {
-      "source": "google",
       "press": "v.daum.net",
       "date": "2026.05.03",
       "title": "[경기의정 25시] 장윤정 도의원 “교육, 미래 위한 투자”…입법부터 현장까지 '촘촘'",
       "snippet": "[경기의정 25시] 장윤정 도의원 “교육, 미래 위한 투자”…입법부터 현장까지 '촘촘' v.daum.net",
-      "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE5DVk9BYkxiVjktNUhmY2hfTnRuSmFmS2JLbUlVWGoteHZGZmozamtJOG1MZ0FtWURkcmVQbmFBMFJRZDBPRmc?oc=5"
+      "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFA5bi1JWmRROGRVci16U0liVVhndnU1WnhhQ2R6MDM2NmJtd3pBS0JKcUR4UlB1ejZhN3FDdjNOZW1FckNMNjBiVzU4RC16SF80OWJCVQ?oc=5"
     },
     {
       "source": "naver",
@@ -1722,20 +1706,28 @@
       "url": "https://www.seoul.co.kr/news/publicnews/local_govern/kyungki_do/2026/04/27/20260427500177?wlog_tag3=naver"
     },
     {
+      "source": "google",
+      "press": "경기남부뉴스",
+      "date": "2026.04.27",
+      "title": "경기도의회 장윤정 의원, 학교 급식실 환기설비 개선 TF 후속 정담회 개최...현장 체감 개선 논의",
+      "snippet": "경기도의회 장윤정 의원, 학교 급식실 환기설비 개선 TF 후속 정담회 개최...현장 체감 개선 논의 경기남부뉴스",
+      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE1LckYwaW1MaHhuTHN2WXBRUXQzdXlkNTlUdEV2aWlNRjJHd1YzNXVNLTlfcGxUdnZFeGw4WnNMMFhaYzktV1JHNk55OTJEWklidV9SREYxU0d0SWUwc0tzSmF0T2R3NHc?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "동아일보",
+      "date": "2026.04.25",
+      "title": "안산 상록구 금속 구조물 제작 공장서 불…35분 만에 완진",
+      "snippet": "안산 상록구 금속 구조물 제작 공장서 불…35분 만에 완진 동아일보",
+      "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE9aNk9telFyd253d0xfZ0IxWTgwa3VvaDc3b3ZzZEtCZnZwOVQxbTN3V201dWZNZllWTWVNT2RscWhFM3dMcWdtRm1CZE5Ca3ZmWHBGRGQxV2JfRVQ2UHZtTGVkMS1vSWJaLXdMSUp1TXNhem9PN2fSAWZBVV95cUxNekI3eFlqQTY1bURXeWpzdy1veXhkXzBVN0lIUTQxNGtsbTNZZTFYZzFXNFhDTzZFYnFkS25VSU1fRnd6MUxHTFlRRFhpSEFDY29lRjdRdUdCS0h4SlJxMUhGQk5hQkE?oc=5"
+    },
+    {
       "source": "naver",
       "press": "seoul.co.kr",
       "date": "2026.04.23",
       "title": "장윤정 경기도의원, 학교 급식실 환기설비 개선 TF 결과 보고…냉난방 ...",
       "snippet": "경기도의회 교육기획위원회 장윤정 의원(더불어민주당, 안산3)은 지난 4월 22일 열린 제389회 임시회 제1차 교육기획위원회 회의에서 위원장으로 활동해 온 ‘학교 급식실 환기설비 개선 TF’ 점검 결과를 보고했다. TF는...",
       "url": "https://www.seoul.co.kr/news/publicnews/local_govern/kyungki_do/2026/04/23/20260423500242?wlog_tag3=naver"
-    },
-    {
-      "source": "google",
-      "press": "세계환경신문",
-      "date": "2026.04.22",
-      "title": "장윤정 의원, 경기도의회 교육기획위원회 부위원장 선임… “책임 있는 마무리 이끌 것”",
-      "snippet": "장윤정 의원, 경기도의회 교육기획위원회 부위원장 선임… “책임 있는 마무리 이끌 것” 세계환경신문",
-      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5FWXFoQ2xDUEprd1ZHSXQ3eVNDenBnTkJvMmxRVDdTU0E4QmJtR2tFVDJ1MGJNOTFMTEREckFSMVFJM1ZBT3pjc0hQbC1zTlF6VERobHd2bXZhdw?oc=5"
     },
     {
       "source": "naver",
@@ -1752,6 +1744,14 @@
       "title": "장윤정 경기도의원, 교육기획위 부위원장 선임",
       "snippet": "장윤정(더불어민주당, 안산3)이 제389회 경기도의회 임시회 교육기획위원회에서 부위원장으로 선임됐다. 이번 선임은 제11대 경기도의회 임기 종료를 앞두고 이뤄진 것으로, 위원회 안정성과 교육정책 마무리 과정에서...",
       "url": "https://www.newsfreezone.co.kr/news/articleView.html?idxno=686441"
+    },
+    {
+      "source": "google",
+      "press": "세계환경신문",
+      "date": "2026.04.22",
+      "title": "장윤정 의원, 경기도의회 교육기획위원회 부위원장 선임… “책임 있는 마무리 이끌 것”",
+      "snippet": "장윤정 의원, 경기도의회 교육기획위원회 부위원장 선임… “책임 있는 마무리 이끌 것” 세계환경신문",
+      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5FWXFoQ2xDUEprd1ZHSXQ3eVNDenBnTkJvMmxRVDdTU0E4QmJtR2tFVDJ1MGJNOTFMTEREckFSMVFJM1ZBT3pjc0hQbC1zTlF6VERobHd2bXZhdw?oc=5"
     },
     {
       "source": "naver",
@@ -1827,14 +1827,6 @@
     },
     {
       "source": "google",
-      "press": "오토투데이",
-      "date": "2026.04.02",
-      "title": "장윤정·경기의회, 기계설비유지관리자 처우 개선 논의",
-      "snippet": "장윤정·경기의회, 기계설비유지관리자 처우 개선 논의 오토투데이",
-      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE41TnQ0TkpCdXd0Slo5QkI3RWRCZXp4T1lmVWxzSUg5ZzBueXBOa0FuclNydU5CZmF4bnNqektrZzE1a2xuOHBRTWJYNHhZaTlneXFBa3hGajVtdEp3eHVaVDhRRHMtT0xvZ0lPMnpB?oc=5"
-    },
-    {
-      "source": "google",
       "press": "중앙신문",
       "date": "2026.04.01",
       "title": "장윤정 경기도의원, 경기도교육청 기계설비유지관리자 처우 개선 논의",
@@ -1907,6 +1899,14 @@
     },
     {
       "source": "google",
+      "press": "인천일보",
+      "date": "2026.03.22",
+      "title": "[경기의정 25시] 장윤정 도의원 “아이 키우기 좋은 도시로 교육·돌봄, 현실과 연결을”",
+      "snippet": "[경기의정 25시] 장윤정 도의원 “아이 키우기 좋은 도시로 교육·돌봄, 현실과 연결을” 인천일보",
+      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5kTFE3MXhaTXgtd0Nlc3luOVUycmNMdzhqVjJjZE9mUnRXeDdCdW81MVNTaVZLWVA2RmlHYlh0TEhqRWhsYWR1UkdTTDEtUTczZ1VUYmJseWp3Ul9yTVhtNkdLdm85dDdCWEw4cUJXaWE?oc=5"
+    },
+    {
+      "source": "google",
       "press": "현대일보",
       "date": "2026.03.09",
       "title": "장윤정 의원(안산3) 시곡중 오수관 파손현장 신속복구 조치 요구",
@@ -1923,6 +1923,14 @@
     },
     {
       "source": "google",
+      "press": "더코리아",
+      "date": "2026.03.07",
+      "title": "경기도의회 장윤정 의원 안산 시곡중 오수관 파손 현장 긴급 점검 > 뉴스",
+      "snippet": "경기도의회 장윤정 의원 안산 시곡중 오수관 파손 현장 긴급 점검 > 뉴스 더코리아",
+      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9ub0NaemZSa0RuUHRYb0tuTmtZYklnY2pnUFliU3h5T1pjTEN0emdoMXdKaDE0NDVjWjc3MEVpbVR1dkJWMDFnVU14QzJvdmRSeU1oN2tPRWl5ZVlTRExpOEtFVENHWWRrTXZSZmw4clY?oc=5"
+    },
+    {
+      "source": "google",
       "press": "한국미디어뉴스",
       "date": "2026.03.05",
       "title": "경기도의회 장윤정 의원, 안산 학교 환경개선에 87억 원 규모 예산 확보",
@@ -1931,19 +1939,11 @@
     },
     {
       "source": "google",
-      "press": "안산뉴스",
-      "date": "2026.01.04",
-      "title": "장윤정 도의원 지역발전 특교금 12억원 확보",
-      "snippet": "장윤정 도의원 지역발전 특교금 12억원 확보 안산뉴스",
-      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9KNFhBYkNfTVo1cHVTNU1WQk5Kc2VrWWhCSnJwdEhFeGo5M01UbUJKSC1zN2h5Q0F3R1lEQkZMNHFGVVdxQ0llQW9yX3hnRndBWkcwbnBFXzloZVRlNUR4Q2otblN0Vi1TWEg1Sg?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "경기일보",
-      "date": "2026.01.01",
-      "title": "장윤정 경기도의원, 환경개선과 도시 기반 확충 위한 사업비 확보",
-      "snippet": "장윤정 경기도의원, 환경개선과 도시 기반 확충 위한 사업비 확보 경기일보",
-      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE5rMndfUE52aU8wNElIRHJ3bk5WRm1QaEJkV3R4WkJuYVJfN1VSQWszclZIS3FiUW5uRE1FWEZvS19kQjJSNC1keXpFLUZ6NUptczMxZjVmai12YjA?oc=5"
+      "press": "뉴스핌",
+      "date": "2026.02.11",
+      "title": "안산 상록구 부곡동서 차량 화재…인명피해 없어",
+      "snippet": "안산 상록구 부곡동서 차량 화재…인명피해 없어 뉴스핌",
+      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE9MazNlSlhmQndMMXh6RWFBWHNfZzJZRU9jQ0VYTUw1cVpUZkxla0JSVGhuRUFpeUR3a3loUF9hUTUyVnBPSGVqS1NVSzhoWUx6OWhTdkxrSmV0LXps?oc=5"
     },
     {
       "source": "google",
