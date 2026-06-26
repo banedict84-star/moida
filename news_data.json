@@ -1,6 +1,14 @@
 {
-  "updated": "2026-06-26 19:19 UTC",
+  "updated": "2026-06-26 21:07 UTC",
   "items": [
+    {
+      "source": "naver",
+      "press": "medicalworldnews.co.kr",
+      "date": "2026.06.27",
+      "title": "[6월 26일 병원계 이모저모①]고려대안산, 노원을지대, 부산대병원, 유...",
+      "snippet": "◆고려대 안산병원, 스마트 약제 시스템 구축…항암제 조제 로봇과 ADS 도입 고려대학교 안산병원(병원장... ◆노원을지대병원, 협력의료기관 실무자 초청 교육 개최 노원을지대학교병원(병원장 김재훈)이 지난 25일 이...",
+      "url": "https://medicalworldnews.co.kr/news/view.php?idx=1510975538"
+    },
     {
       "source": "naver",
       "press": "safetynews.co.kr",
@@ -211,19 +219,19 @@
     },
     {
       "source": "naver",
-      "press": "gosiweek.com",
-      "date": "2026.06.26",
-      "title": "장안대학교 파크골프산업과, 전용구장 개장 기념 시범라운딩 개최",
-      "snippet": "이번 행사는 파크골프산업과 전용구장 개장을 기념하고 지역사회와 대학이 함께하는 파크골프 전문교육 협력체계를 구축하기 위해 마련되었다. 행사에는 이종진 장안대학교 총장을 비롯해 경기도, 화성, 수원, 안산, 시흥...",
-      "url": "https://www.gosiweek.com/article/1065576868616739"
-    },
-    {
-      "source": "naver",
       "press": "ekn.kr",
       "date": "2026.06.26",
       "title": "[패트롤] 광명시-부천시-시흥시-안산시-안양시",
       "snippet": "한편 목감아트하우스27은 생활문화교육, 공연, 전시, 대관 프로그램 등을 운영하며 시민이 일상에서 문화예술을 즐길 수 있도록 다양한 문화사업을 추진하고 있다. 안산=에너지경제신문 강근주기자 안산시가 여성 권익...",
       "url": "https://www.ekn.kr/web/view.php?key=20260626021316740"
+    },
+    {
+      "source": "naver",
+      "press": "gosiweek.com",
+      "date": "2026.06.26",
+      "title": "장안대학교 파크골프산업과, 전용구장 개장 기념 시범라운딩 개최",
+      "snippet": "이번 행사는 파크골프산업과 전용구장 개장을 기념하고 지역사회와 대학이 함께하는 파크골프 전문교육 협력체계를 구축하기 위해 마련되었다. 행사에는 이종진 장안대학교 총장을 비롯해 경기도, 화성, 수원, 안산, 시흥...",
+      "url": "https://www.gosiweek.com/article/1065576868616739"
     },
     {
       "source": "naver",
@@ -379,19 +387,19 @@
     },
     {
       "source": "google",
-      "press": "안산타임스",
-      "date": "2026.06.26",
-      "title": "안산교육지원청, 유치원 교실 속 행동문제 ‘모의수업’으로 해법 찾는다",
-      "snippet": "안산교육지원청, 유치원 교실 속 행동문제 ‘모의수업’으로 해법 찾는다 안산타임스",
-      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE1OamY0MG1xcmRnenZOOVdYTnpoMmxZWDBROXhvX043dVlRbVB3UG1weUQtV3NLMzY2MWUtUXgzejRzZS1iOWdSN3lzdUNPcGplOW1xV1JQNU5CMnV3UUJoOWxTTVRjem03UTRlSmNnTdIBc0FVX3lxTE1kc0tNZTlMUXNMc0JkbjJTMUVTaDhZWEhLT2dSSk93engwZ1UwTDF2c1Ywdjk5NEhyZHJsd08tRlctNVl5VlhHSXQ4UWluMFB0Nm1LUGJwSlpyZW1oTDQwRGR6UVFERzRaZzZJWXBRejN5ZjA?oc=5"
-    },
-    {
-      "source": "google",
       "press": "연합뉴스",
       "date": "2026.06.26",
       "title": "안산시, 여름철 재난부터 생활안전까지…민생안전 협력체계 총력 가동",
       "snippet": "안산시, 여름철 재난부터 생활안전까지…민생안전 협력체계 총력 가동 연합뉴스",
       "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9ONkROUFZXSjRQU0pLVmdkamVnXzkwTFNYWDlsQWoxMDBKSEpubG5NUzlTZmZtS0JuWldXWHJvcWJxQTFPMUNsU1AzNUdkTUVVYkRzWS1fU0kwVEE?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "안산타임스",
+      "date": "2026.06.26",
+      "title": "안산교육지원청, 유치원 교실 속 행동문제 ‘모의수업’으로 해법 찾는다",
+      "snippet": "안산교육지원청, 유치원 교실 속 행동문제 ‘모의수업’으로 해법 찾는다 안산타임스",
+      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE1OamY0MG1xcmRnenZOOVdYTnpoMmxZWDBROXhvX043dVlRbVB3UG1weUQtV3NLMzY2MWUtUXgzejRzZS1iOWdSN3lzdUNPcGplOW1xV1JQNU5CMnV3UUJoOWxTTVRjem03UTRlSmNnTdIBc0FVX3lxTE1kc0tNZTlMUXNMc0JkbjJTMUVTaDhZWEhLT2dSSk93engwZ1UwTDF2c1Ywdjk5NEhyZHJsd08tRlctNVl5VlhHSXQ4UWluMFB0Nm1LUGJwSlpyZW1oTDQwRGR6UVFERzRaZzZJWXBRejN5ZjA?oc=5"
     },
     {
       "source": "naver",
@@ -504,14 +512,6 @@
       "title": "[경기도 소식] 아동학대 예방과 대응체계 구축 위해 민간·경찰과 논의...",
       "snippet": "아동학대예방 교육과 인식 개선 캠페인, 아동학대예방 조기지원 시범사업 등을 하며 학대 발생... 이는 지난해 3개사보다 확대된 규모로, 이 가운데 안산 소재 에이로봇과 성남 소재 비트센싱이 포함돼, 경기도 기업의...",
       "url": "http://www.iminju.net/news/articleView.html?idxno=165824"
-    },
-    {
-      "source": "naver",
-      "press": "newsis.com",
-      "date": "2026.06.25",
-      "title": "한양대 ERICA, 경기도 앵커 사업 연차평가 최고 등급 획득",
-      "snippet": "고도화된 교육·연구 역량을 지역 산업과 밀착 연계해 지역 기업의 기술혁신과 경쟁력 강화에 이바지하고, 지역사회가 필요로 하는 실무형 인재를 지속적으로 양성해 온 점 역시 주요 성과로 인정됐다. 에리카는 안산시와...",
-      "url": "https://www.newsis.com/view/NISX20260625_0003683947"
     },
     {
       "source": "google",
@@ -771,19 +771,19 @@
     },
     {
       "source": "naver",
-      "press": "m-i.kr",
-      "date": "2026.06.22",
-      "title": "김태희 경기도의원, 경기지방정원 방문자센터·정원지원센터 추진현황...",
-      "snippet": "경기지방정원 방문자센터 및 정원지원센터는 안산시 상록구 본오동 일원에 조성되는 경기지방정원의 운영과 이용 활성화를 지원하기 위한 시설이다. 총사업비 288억원을 투입해 연면적 3912㎡, 지상 2층 규모로 건립될...",
-      "url": "https://www.m-i.kr/news/articleView.html?idxno=1383978"
-    },
-    {
-      "source": "naver",
       "press": "newsfreezone.co.kr",
       "date": "2026.06.22",
       "title": "김태희 경기도의원, 경기지방정원 핵심시설 건립 현황 살펴",
       "snippet": "경기지방정원 방문자센터 및 정원지원센터는 안산시 상록구 본오동 일원에 조성 중인 경기지방정원의 운영 기반을 구축하고 이용 활성화를 지원하기 위한 시설이다. 총사업비 288억 원이 투입되며 연면적 3,912㎡, 지상 2층...",
       "url": "https://www.newsfreezone.co.kr/news/articleView.html?idxno=695754"
+    },
+    {
+      "source": "naver",
+      "press": "m-i.kr",
+      "date": "2026.06.22",
+      "title": "김태희 경기도의원, 경기지방정원 방문자센터·정원지원센터 추진현황...",
+      "snippet": "경기지방정원 방문자센터 및 정원지원센터는 안산시 상록구 본오동 일원에 조성되는 경기지방정원의 운영과 이용 활성화를 지원하기 위한 시설이다. 총사업비 288억원을 투입해 연면적 3912㎡, 지상 2층 규모로 건립될...",
+      "url": "https://www.m-i.kr/news/articleView.html?idxno=1383978"
     },
     {
       "source": "naver",
@@ -901,17 +901,17 @@
       "source": "naver",
       "press": "m-i.kr",
       "date": "2026.06.19",
-      "title": "안산 월피동, 고독사 예방 캠페인 전개…복지사각지대 발굴 나서",
-      "snippet": "안산시 상록구 월피동 지역사회보장협의체가 고독사 예방 및 복지사각지대 발굴을 위한 홍보 캠페인을 진행하고 있다. 사진=안산시 매일일보 = 송훈희 기자 | 안산시 상록구 월피동 지역사회보장협의체는 18일 고독사...",
-      "url": "https://www.m-i.kr/news/articleView.html?idxno=1383197"
+      "title": "안산시 반월동 지사협, 복지사각지대 선제 발굴 캠페인",
+      "snippet": "안산시 상록구 반월동 지역사회보장협의체는 지난 17일 복지 사각지대 발굴을 위한 거리 홍보 캠페인을 전개했다고 19일 밝혔다. 사진=안산시 매일일보 = 송훈희 기자 | 안산시 상록구 반월동 지역사회보장협의체는 지난...",
+      "url": "https://www.m-i.kr/news/articleView.html?idxno=1383195"
     },
     {
       "source": "naver",
       "press": "m-i.kr",
       "date": "2026.06.19",
-      "title": "안산시 반월동 지사협, 복지사각지대 선제 발굴 캠페인",
-      "snippet": "안산시 상록구 반월동 지역사회보장협의체는 지난 17일 복지 사각지대 발굴을 위한 거리 홍보 캠페인을 전개했다고 19일 밝혔다. 사진=안산시 매일일보 = 송훈희 기자 | 안산시 상록구 반월동 지역사회보장협의체는 지난...",
-      "url": "https://www.m-i.kr/news/articleView.html?idxno=1383195"
+      "title": "안산 월피동, 고독사 예방 캠페인 전개…복지사각지대 발굴 나서",
+      "snippet": "안산시 상록구 월피동 지역사회보장협의체가 고독사 예방 및 복지사각지대 발굴을 위한 홍보 캠페인을 진행하고 있다. 사진=안산시 매일일보 = 송훈희 기자 | 안산시 상록구 월피동 지역사회보장협의체는 18일 고독사...",
+      "url": "https://www.m-i.kr/news/articleView.html?idxno=1383197"
     },
     {
       "source": "naver",
@@ -1594,14 +1594,6 @@
       "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFB2cC1QVExwd1pxbGlKZFh2V1RLVHdndlZuMk5adUpqaUV3Z2g1eC1oa2N3VzdrMG8zVDczQ0kzSEZkV0N1ekhkNUVFMGQzYTF0WUhtV293Q0ZLOGs?oc=5"
     },
     {
-      "source": "google",
-      "press": "더리포트",
-      "date": "2026.05.05",
-      "title": "[6·3 지선] 장윤정 의원 \"안산 정치권 경선 개입 의혹 녹취 제보\"… 파장 확산",
-      "snippet": "[6·3 지선] 장윤정 의원 \"안산 정치권 경선 개입 의혹 녹취 제보\"… 파장 확산 더리포트",
-      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1FZkl4bzBBV1VKcGk2M2NNQm16WnpjUDU0VlZWVjRkc0pDQ0lCLXJPTUwxY2pILUZoT3ZTREJ4MWhkRjZaaWh5YUVBVVVGVW9GR0lGd2hDR1BLdXFBcl81dncxeHI3UGNmcl9CYXBB?oc=5"
-    },
-    {
       "source": "naver",
       "press": "thereport.co.kr",
       "date": "2026.05.05",
@@ -1616,6 +1608,14 @@
       "title": "[6·3 지방선거 이모저모] 경선 승복했지만… 장윤정 도의원 \"국회의원...",
       "snippet": "사진=본인제공 장윤정 경기도의원(더불어민주당·안산3)이 최근 제보받은 녹취파일을 근거로 지역 정치권의 경선개입 의혹을 제기하고 나서 파문이 일고 있다. 장 의원은 지난 4일 배포한 자료에서 \"국회의원과 지방의회...",
       "url": "https://www.joongboo.com/news/articleView.html?idxno=363724655"
+    },
+    {
+      "source": "google",
+      "press": "더리포트",
+      "date": "2026.05.05",
+      "title": "[6·3 지선] 장윤정 의원 \"안산 정치권 경선 개입 의혹 녹취 제보\"… 파장 확산",
+      "snippet": "[6·3 지선] 장윤정 의원 \"안산 정치권 경선 개입 의혹 녹취 제보\"… 파장 확산 더리포트",
+      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1FZkl4bzBBV1VKcGk2M2NNQm16WnpjUDU0VlZWVjRkc0pDQ0lCLXJPTUwxY2pILUZoT3ZTREJ4MWhkRjZaaWh5YUVBVVVGVW9GR0lGd2hDR1BLdXFBcl81dncxeHI3UGNmcl9CYXBB?oc=5"
     },
     {
       "source": "google",
@@ -1883,11 +1883,11 @@
     },
     {
       "source": "naver",
-      "press": "kihoilbo.co.kr",
+      "press": "news1.kr",
       "date": "2026.03.26",
-      "title": "경기도의원 152명 중 112명 재산 늘어",
-      "snippet": "기호일보, KIHOILBO 경기도의회 전경.<경기도의회 제공> 올해 경기도 광역의원의 평균 재산은 12억6천383만... 가장 적은 재산을 보유한 도의원은 장윤정(민주·안산3) 의원으로 마이너스 2천490만 원을 신고했다....",
-      "url": "https://www.kihoilbo.co.kr/news/articleView.html?idxno=3017496"
+      "title": "[재산공개]김성수 경기도의원 324억 신고…4년 연속 도내 최고 자산가",
+      "snippet": "김성수 경기도의회 의원(국민의힘·하남2)이 324억여 원의 재산을 보유해 4년 연속 도내 재산공개 대상... 반면, 장윤정 의원(민주·안산3)은 -2490만 원을 신고해 도의원 중 재산이 가장 적었다. 이어 정동혁(민주...",
+      "url": "https://www.news1.kr/local/gyeonggi/6114090"
     },
     {
       "source": "google",
@@ -1907,6 +1907,14 @@
     },
     {
       "source": "google",
+      "press": "인천일보",
+      "date": "2026.03.22",
+      "title": "[경기의정 25시] 장윤정 도의원 “아이 키우기 좋은 도시로 교육·돌봄, 현실과 연결을”",
+      "snippet": "[경기의정 25시] 장윤정 도의원 “아이 키우기 좋은 도시로 교육·돌봄, 현실과 연결을” 인천일보",
+      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5kTFE3MXhaTXgtd0Nlc3luOVUycmNMdzhqVjJjZE9mUnRXeDdCdW81MVNTaVZLWVA2RmlHYlh0TEhqRWhsYWR1UkdTTDEtUTczZ1VUYmJseWp3Ul9yTVhtNkdLdm85dDdCWEw4cUJXaWE?oc=5"
+    },
+    {
+      "source": "google",
       "press": "현대일보",
       "date": "2026.03.09",
       "title": "장윤정 의원(안산3) 시곡중 오수관 파손현장 신속복구 조치 요구",
@@ -1920,6 +1928,14 @@
       "title": "장윤정 도의원 ‘시곡중 오수관 사고’ 신속 복구 요구",
       "snippet": "장윤정 도의원 ‘시곡중 오수관 사고’ 신속 복구 요구 안산뉴스",
       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBBbVVRa0JyLS1BSzUzcHl5Vk1VcmlJNlEtdjUxLUh6NGF0bjdBejhXTThxMGptX2R1X2xYTWp1cFVhZm9NQUw5MHdfT2FRQWcwRWptVHJJU2VFOUZGeHZlUW5uVzV4NmdKaU9XRQ?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "더코리아",
+      "date": "2026.03.07",
+      "title": "경기도의회 장윤정 의원 안산 시곡중 오수관 파손 현장 긴급 점검 > 뉴스",
+      "snippet": "경기도의회 장윤정 의원 안산 시곡중 오수관 파손 현장 긴급 점검 > 뉴스 더코리아",
+      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9ub0NaemZSa0RuUHRYb0tuTmtZYklnY2pnUFliU3h5T1pjTEN0emdoMXdKaDE0NDVjWjc3MEVpbVR1dkJWMDFnVU14QzJvdmRSeU1oN2tPRWl5ZVlTRExpOEtFVENHWWRrTXZSZmw4clY?oc=5"
     },
     {
       "source": "google",
