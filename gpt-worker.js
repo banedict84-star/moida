@@ -55,6 +55,23 @@ export default {
       //    게이트웨이 OpenAI 엔드포인트를 넣으면 자동 적용.
       //    예: https://gateway.ai.cloudflare.com/v1/<계정ID>/<게이트웨이>/openai
       const OPENAI_BASE = (env.OPENAI_BASE || "https://api.openai.com/v1").replace(/\/+$/, "");
+      const path = new URL(request.url).pathname;
+
+      // 이미지 생성 경로: POST /image → OpenAI Images(gpt-image-1) 중계
+      //  · 웹자보 배경/비주얼 생성용(하이브리드). 글자는 클라이언트가 코드로 얹음.
+      if (path.endsWith("/image")) {
+        const imgPayload = Object.assign(
+          { model: "gpt-image-1", size: "1024x1536", n: 1 },
+          body
+        );
+        const ir = await fetch(`${OPENAI_BASE}/images/generations`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "Authorization": `Bearer ${env.OPENAI_API_KEY}` },
+          body: JSON.stringify(imgPayload),
+        });
+        const iraw = await ir.text();
+        return new Response(iraw, { status: ir.status, headers: { ...cors, "Content-Type": "application/json" } });
+      }
 
       // 완전 투명 프록시: 클라이언트가 보낸 본문을 그대로 OpenAI로 전달.
       //  · 도구(tools)·모델·파라미터 등 모든 기능은 "사이트 코드"에서 제어되고
