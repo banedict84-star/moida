@@ -93,56 +93,85 @@ jobs:
           with open("notices_data.json", "w", encoding="utf-8") as f:
               json.dump({"updated": now_utc, "items": gy_notices}, f, ensure_ascii=False, indent=2)
 
-          # ── 중앙당 (theminjoo.kr) ───────────────────────────────────────
+          # ── 중앙당 (theminjoo.kr) — Playwright (직접요청·프록시 모두 403) ──
           from urllib.parse import urljoin
+          import re as _rect
+          from playwright.sync_api import sync_playwright as _spw_ct
 
-          CT_BASE     = "https://theminjoo.kr"
-          CT_URL      = f"{CT_BASE}/main/sub/news/list.php?brd=1"
-          CT_PER_PAGE = 20   # 페이지당 항목 수
-          CT_PAGES    = 2    # 2페이지 = 40건
+          CT_BASE  = "https://theminjoo.kr"
+          CT_URL   = f"{CT_BASE}/main/sub/news/list.php?brd=1"
+          CT_PER   = 20
+          CT_PAGES = 3
+          CT_DATE  = _rect.compile(r'20\d\d\s*[.\-/]\s*\d{1,2}\s*[.\-/]\s*\d{1,2}')
 
           ct_notices, ct_seen = [], set()
-          for page in range(1, CT_PAGES + 1):
-              sno = (page - 1) * CT_PER_PAGE
-              print(f"\n[중앙당] 페이지 {page} (sno={sno})")
-              page_url = f"{CT_URL}&sno={sno}"
-              html = fetch(page_url, extra_headers={"Referer": CT_BASE + "/"})
-              if not html:
-                  print("  HTML 없음 — 스킵")
-                  continue
+
+          # 구조에 의존하지 않는 파서: 날짜가 가까이 있는 링크를 공지로 간주
+          def parse_ct(html, page_url):
               soup = BeautifulSoup(html, "lxml")
-
-              # <time> 태그 기준으로 부모 탐색해서 제목/링크 추출
-              for time_el in soup.find_all("time"):
-                  date_str = time_el.get_text(strip=True).replace("/", "-").strip()
-                  if not date_str:
+              added = 0
+              for a in soup.select("a[href]"):
+                  title = a.get_text(" ", strip=True)
+                  if not title or len(title) < 5:
                       continue
-                  ancestor = time_el.parent
-                  for _ in range(6):
-                      if ancestor is None:
+                  href = urljoin(page_url, a.get("href", ""))
+                  low = href.lower()
+                  if "list.php" in low or "javascript" in low or href.endswith("#"):
+                      continue
+                  date_str, node = "", a
+                  for _ in range(5):
+                      if node is None:
                           break
-                      a = ancestor.find("a", href=True)
-                      if a:
-                          title = a.get_text(strip=True)
-                          href = urljoin(page_url, a.get("href", ""))
-                          if title and len(title) > 2 and href not in ct_seen:
-                              cat_el = ancestor.select_one(".cate, .category, .label, span.tag, .type, .board_type")
-                              category = cat_el.get_text(strip=True) if cat_el else "일반"
-                              # 공지 타입 감지: 클래스나 텍스트에 "공지"/"notice" 포함 여부
-                              anc_class = " ".join(ancestor.get("class", []))
-                              if "notice" in anc_class.lower() or "공지" in anc_class:
-                                  category = "공지"
-                              ct_seen.add(href)
-                              ct_notices.append({"title": title, "date": date_str, "link": href, "category": category})
-                              print(f"  [{page}] {date_str} [{category}] {title[:40]}")
+                      m = CT_DATE.search(node.get_text(" ", strip=True))
+                      if m:
+                          date_str = m.group(0)
                           break
-                      ancestor = ancestor.parent
+                      node = node.parent
+                  if not date_str or href in ct_seen:
+                      continue
+                  ds = _rect.sub(r'\s', '', _rect.sub(r'[./]', '-', date_str))
+                  parts = [p for p in ds.split("-") if p]
+                  if len(parts) >= 3:
+                      ds = f"{parts[0]}-{int(parts[1]):02d}-{int(parts[2]):02d}"
+                  holder = a.find_parent(["tr", "li", "div"])
+                  cls = " ".join(holder.get("class", [])) if holder else ""
+                  category = "공지" if ("공지" in title or "notice" in cls.lower()) else "일반"
+                  ct_seen.add(href)
+                  ct_notices.append({"title": title, "date": ds, "link": href, "category": category})
+                  print(f"  {ds} [{category}] {title[:40]}")
+                  added += 1
+              return added
 
-              time.sleep(0.5)
+          try:
+              with _spw_ct() as pw:
+                  browser = pw.chromium.launch(headless=True)
+                  ctx = browser.new_context(
+                      user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+                      locale="ko-KR", viewport={"width": 1280, "height": 800})
+                  pg = ctx.new_page()
+                  for page in range(1, CT_PAGES + 1):
+                      sno = (page - 1) * CT_PER
+                      page_url = f"{CT_URL}&sno={sno}"
+                      print(f"\n[중앙당] 페이지 {page} (sno={sno})")
+                      try:
+                          pg.goto(page_url, wait_until="networkidle", timeout=30000)
+                          time.sleep(1.0)
+                          cnt = parse_ct(pg.content(), page_url)
+                          print(f"  → {cnt}건 추가 (누계 {len(ct_notices)}건)")
+                      except Exception as e:
+                          print(f"  페이지{page} ERROR: {e}")
+                      time.sleep(1)
+                  browser.close()
+          except Exception as e:
+              print(f"중앙당 Playwright ERROR: {e}")
 
           print(f"\n중앙당 수집: {len(ct_notices)}건")
-          with open("central_data.json", "w", encoding="utf-8") as f:
-              json.dump({"updated": now_utc, "items": ct_notices}, f, ensure_ascii=False, indent=2)
+          # 0건이면 기존 파일 유지 (실패한 크롤이 좋은 데이터를 덮어쓰지 않도록)
+          if ct_notices:
+              with open("central_data.json", "w", encoding="utf-8") as f:
+                  json.dump({"updated": now_utc, "items": ct_notices}, f, ensure_ascii=False, indent=2)
+          else:
+              print("  수집 실패 — 기존 central_data.json 유지")
 
           # ── 경기도의회 (ggc.go.kr) ──────────────────────────────────────
           import re as _re
