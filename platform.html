@@ -264,33 +264,23 @@ button{font-family:inherit}
           <div style="display:flex;align-items:center;gap:11px;padding:16px 20px;border-bottom:1px solid #eef1f5">
             <div style="width:40px;height:40px;border-radius:11px;background:linear-gradient(135deg,#16305c,#3b6fd4);display:flex;align-items:center;justify-content:center;color:#fff"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.6L19.5 10l-5.6 1.9L12 17.5l-1.9-5.6L4.5 10l5.6-1.9z"/></svg></div>
             <div style="flex:1"><div style="font-size:15px;font-weight:700">AI 비서실장</div><div style="font-size:12px;color:#16a34a;display:flex;align-items:center;gap:5px;margin-top:1px"><span style="width:7px;height:7px;border-radius:50%;background:#16a34a"></span>의정활동 데이터 연동됨</div></div>
-            <button style="height:34px;padding:0 13px;background:#f3f5f8;border:1px solid #e7eaef;border-radius:8px;font-size:12.5px;font-weight:600;color:#5b6675;cursor:pointer">새 대화</button>
+            <button id="aiNew" style="height:34px;padding:0 13px;background:#f3f5f8;border:1px solid #e7eaef;border-radius:8px;font-size:12.5px;font-weight:600;color:#5b6675;cursor:pointer">새 대화</button>
           </div>
-          <div style="flex:1;overflow-y:auto;padding:22px 20px;display:flex;flex-direction:column;gap:18px;background:#fafbfc">
+          <div id="aiMessages" style="flex:1;overflow-y:auto;padding:22px 20px;display:flex;flex-direction:column;gap:18px;background:#fafbfc">
             <div style="display:flex;gap:11px;max-width:78%">
               <div style="width:32px;height:32px;border-radius:9px;background:linear-gradient(135deg,#16305c,#3b6fd4);flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#fff"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.6L19.5 10l-5.6 1.9L12 17.5l-1.9-5.6L4.5 10l5.6-1.9z"/></svg></div>
               <div style="background:#fff;border:1px solid #eef1f5;border-radius:4px 14px 14px 14px;padding:14px 16px;font-size:13.5px;line-height:1.6;color:#27313f">의원님, 좋은 아침입니다. 오늘 처리하실 핵심 업무를 정리했습니다.<br><br>① 오후 2시 <b>국토위 전체회의</b> 질의자료 검토<br>② <b>전세사기 민원 6건</b> 답변 승인 대기<br>③ '청년 주거' 보도자료 배포 검토<br><br>먼저 어떤 것부터 도와드릴까요?</div>
             </div>
             <div style="display:flex;flex-wrap:wrap;gap:8px;margin-left:43px">
-              <button style="padding:8px 14px;background:#fff;border:1px solid #d6e0ee;border-radius:20px;font-size:12.5px;font-weight:600;color:#1d3a6e;cursor:pointer" data-hover="background:#eaf1fb">질의자료 요약 보여줘</button>
-              <button style="padding:8px 14px;background:#fff;border:1px solid #d6e0ee;border-radius:20px;font-size:12.5px;font-weight:600;color:#1d3a6e;cursor:pointer" data-hover="background:#eaf1fb">민원 답변 초안 작성</button>
-              <button style="padding:8px 14px;background:#fff;border:1px solid #d6e0ee;border-radius:20px;font-size:12.5px;font-weight:600;color:#1d3a6e;cursor:pointer" data-hover="background:#eaf1fb">보도자료 작성</button>
-            </div>
-            <div style="display:flex;justify-content:flex-end">
-              <div style="background:#1d3a6e;color:#fff;border-radius:14px 4px 14px 14px;padding:13px 16px;font-size:13.5px;line-height:1.55;max-width:70%">전세사기 민원 답변 초안부터 작성해줘.</div>
-            </div>
-            <div style="display:flex;gap:11px;max-width:82%">
-              <div style="width:32px;height:32px;border-radius:9px;background:linear-gradient(135deg,#16305c,#3b6fd4);flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#fff"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.6L19.5 10l-5.6 1.9L12 17.5l-1.9-5.6L4.5 10l5.6-1.9z"/></svg></div>
-              <div style="background:#fff;border:1px solid #eef1f5;border-radius:4px 14px 14px 14px;padding:14px 16px;font-size:13.5px;line-height:1.6;color:#27313f;flex:1">6건의 공통 쟁점을 반영한 답변 초안입니다. 피해 유형별로 안내 문구를 구성했어요.
-                <div style="margin-top:12px;padding:14px;background:#f7f9fc;border:1px solid #e8edf3;border-radius:10px;font-size:12.5px;color:#3a4554;line-height:1.6">"안녕하십니까, 장윤정 의원실입니다. 전세사기 피해와 관련하여 어려움을 겪고 계신 점 깊이 공감합니다. 현재 발의된 전세사기 특별법 개정안을 통해…"</div>
-                <div style="display:flex;gap:8px;margin-top:12px"><button style="padding:7px 13px;background:#1d3a6e;color:#fff;border:none;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer">민원함에 적용</button><button style="padding:7px 13px;background:#fff;border:1px solid #d6dde6;color:#5b6675;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer">수정 요청</button></div>
-              </div>
+              <button class="ai-chip" style="padding:8px 14px;background:#fff;border:1px solid #d6e0ee;border-radius:20px;font-size:12.5px;font-weight:600;color:#1d3a6e;cursor:pointer" data-hover="background:#eaf1fb">질의자료 요약 보여줘</button>
+              <button class="ai-chip" style="padding:8px 14px;background:#fff;border:1px solid #d6e0ee;border-radius:20px;font-size:12.5px;font-weight:600;color:#1d3a6e;cursor:pointer" data-hover="background:#eaf1fb">민원 답변 초안 작성</button>
+              <button class="ai-chip" style="padding:8px 14px;background:#fff;border:1px solid #d6e0ee;border-radius:20px;font-size:12.5px;font-weight:600;color:#1d3a6e;cursor:pointer" data-hover="background:#eaf1fb">보도자료 작성</button>
             </div>
           </div>
           <div style="padding:14px 16px;border-top:1px solid #eef1f5;background:#fff">
             <div style="display:flex;align-items:center;gap:10px;background:#f3f5f8;border:1px solid #e7eaef;border-radius:12px;padding:6px 6px 6px 16px">
-              <input placeholder="비서실장에게 무엇이든 물어보세요…" style="flex:1;border:none;background:transparent;outline:none;font-size:13.5px;font-family:inherit;color:#1a2330;height:36px"/>
-              <button style="width:38px;height:38px;border-radius:9px;background:#1d3a6e;border:none;display:flex;align-items:center;justify-content:center;color:#fff;cursor:pointer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+              <input id="aiInput" placeholder="비서실장에게 무엇이든 물어보세요…" style="flex:1;border:none;background:transparent;outline:none;font-size:13.5px;font-family:inherit;color:#1a2330;height:36px"/>
+              <button id="aiSend" style="width:38px;height:38px;border-radius:9px;background:#1d3a6e;border:none;display:flex;align-items:center;justify-content:center;color:#fff;cursor:pointer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
             </div>
           </div>
         </div>
@@ -298,19 +288,14 @@ button{font-family:inherit}
         <div style="display:flex;flex-direction:column;gap:16px;overflow-y:auto">
           <div style="background:#fff;border:1px solid #e9ecf1;border-radius:14px;padding:18px;box-shadow:0 1px 2px rgba(16,24,40,0.04)">
             <div style="font-size:14px;font-weight:700;margin-bottom:14px">오늘의 할 일</div>
-            <div style="display:flex;flex-direction:column;gap:10px">
-              <div style="display:flex;gap:10px;align-items:flex-start"><span style="width:18px;height:18px;border-radius:6px;border:1.8px solid #16a34a;background:#16a34a;flex-shrink:0;display:flex;align-items:center;justify-content:center;margin-top:1px"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg></span><span style="font-size:13px;color:#9aa3b0;text-decoration:line-through">주간 회의 안건 정리</span></div>
-              <div style="display:flex;gap:10px;align-items:flex-start"><span style="width:18px;height:18px;border-radius:6px;border:1.8px solid #cbd5e1;flex-shrink:0;margin-top:1px"></span><span style="font-size:13px;color:#27313f">국토위 질의자료 최종 검토</span></div>
-              <div style="display:flex;gap:10px;align-items:flex-start"><span style="width:18px;height:18px;border-radius:6px;border:1.8px solid #cbd5e1;flex-shrink:0;margin-top:1px"></span><span style="font-size:13px;color:#27313f">민원 답변 6건 승인</span></div>
-              <div style="display:flex;gap:10px;align-items:flex-start"><span style="width:18px;height:18px;border-radius:6px;border:1.8px solid #cbd5e1;flex-shrink:0;margin-top:1px"></span><span style="font-size:13px;color:#27313f">청년단체 모임 축사 확인</span></div>
-            </div>
+            <div id="aiTodo" style="display:flex;flex-direction:column;gap:10px"></div>
           </div>
           <div style="background:#fff;border:1px solid #e9ecf1;border-radius:14px;padding:18px;box-shadow:0 1px 2px rgba(16,24,40,0.04)">
             <div style="font-size:14px;font-weight:700;margin-bottom:14px">빠른 작업</div>
             <div style="display:flex;flex-direction:column;gap:9px">
-              <button style="display:flex;align-items:center;gap:11px;padding:11px 13px;background:#f7f9fc;border:1px solid #eef1f5;border-radius:10px;font-size:13px;font-weight:600;color:#27313f;cursor:pointer;text-align:left" data-hover="border-color:#cbd9ea;background:#eef4fc"><span style="width:30px;height:30px;border-radius:8px;background:#e8f0fe;color:#2563eb;display:flex;align-items:center;justify-content:center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2.5h8l4 4V21.5H6z"/><path d="M9 12h6M9 16h6"/></svg></span>보도자료 작성</button>
-              <button style="display:flex;align-items:center;gap:11px;padding:11px 13px;background:#f7f9fc;border:1px solid #eef1f5;border-radius:10px;font-size:13px;font-weight:600;color:#27313f;cursor:pointer;text-align:left" data-hover="border-color:#cbd9ea;background:#eef4fc"><span style="width:30px;height:30px;border-radius:8px;background:#e7f6ec;color:#16a34a;display:flex;align-items:center;justify-content:center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7.5l9 6 9-6"/></svg></span>민원 답변 자동화</button>
-              <button style="display:flex;align-items:center;gap:11px;padding:11px 13px;background:#f7f9fc;border:1px solid #eef1f5;border-radius:10px;font-size:13px;font-weight:600;color:#27313f;cursor:pointer;text-align:left" data-hover="border-color:#cbd9ea;background:#eef4fc"><span style="width:30px;height:30px;border-radius:8px;background:#fdf2e3;color:#d97706;display:flex;align-items:center;justify-content:center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v6l4 2"/><circle cx="12" cy="12" r="9"/></svg></span>일정 브리핑 생성</button>
+              <button class="ai-quick" data-action="보도자료 작성" style="display:flex;align-items:center;gap:11px;padding:11px 13px;background:#f7f9fc;border:1px solid #eef1f5;border-radius:10px;font-size:13px;font-weight:600;color:#27313f;cursor:pointer;text-align:left" data-hover="border-color:#cbd9ea;background:#eef4fc"><span style="width:30px;height:30px;border-radius:8px;background:#e8f0fe;color:#2563eb;display:flex;align-items:center;justify-content:center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2.5h8l4 4V21.5H6z"/><path d="M9 12h6M9 16h6"/></svg></span>보도자료 작성</button>
+              <button class="ai-quick" data-action="민원 답변 자동화" style="display:flex;align-items:center;gap:11px;padding:11px 13px;background:#f7f9fc;border:1px solid #eef1f5;border-radius:10px;font-size:13px;font-weight:600;color:#27313f;cursor:pointer;text-align:left" data-hover="border-color:#cbd9ea;background:#eef4fc"><span style="width:30px;height:30px;border-radius:8px;background:#e7f6ec;color:#16a34a;display:flex;align-items:center;justify-content:center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7.5l9 6 9-6"/></svg></span>민원 답변 자동화</button>
+              <button class="ai-quick" data-action="일정 브리핑 생성" style="display:flex;align-items:center;gap:11px;padding:11px 13px;background:#f7f9fc;border:1px solid #eef1f5;border-radius:10px;font-size:13px;font-weight:600;color:#27313f;cursor:pointer;text-align:left" data-hover="border-color:#cbd9ea;background:#eef4fc"><span style="width:30px;height:30px;border-radius:8px;background:#fdf2e3;color:#d97706;display:flex;align-items:center;justify-content:center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v6l4 2"/><circle cx="12" cy="12" r="9"/></svg></span>일정 브리핑 생성</button>
             </div>
           </div>
         </div>
@@ -496,13 +481,13 @@ button{font-family:inherit}
         <div style="background:#fff;border:1px solid #e9ecf1;border-radius:14px;padding:22px;box-shadow:0 1px 2px rgba(16,24,40,0.04)">
           <div style="font-size:15px;font-weight:700;margin-bottom:18px">프로필</div>
           <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px">
-            <div style="width:60px;height:60px;border-radius:16px;background:linear-gradient(135deg,#16305c,#3b6fd4);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:22px">장</div>
-            <div><div style="font-size:16px;font-weight:700">장윤정</div><div style="font-size:13px;color:#8a94a3;margin-top:2px">국회의원 · 제22대 · 국토교통위원회</div></div>
+            <div id="setAvatar" style="width:60px;height:60px;border-radius:16px;background:linear-gradient(135deg,#16305c,#3b6fd4);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:22px">·</div>
+            <div><div id="setName" style="font-size:16px;font-weight:700">—</div><div id="setSub" style="font-size:13px;color:#8a94a3;margin-top:2px">—</div></div>
             <button style="margin-left:auto;height:36px;padding:0 14px;background:#fff;border:1px solid #d6dde6;border-radius:9px;font-size:12.5px;font-weight:600;color:#5b6675;cursor:pointer">사진 변경</button>
           </div>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
-            <div><div style="font-size:12.5px;color:#6b7585;font-weight:600;margin-bottom:6px">이름</div><div style="height:40px;border:1px solid #e7eaef;border-radius:9px;display:flex;align-items:center;padding:0 13px;font-size:13.5px;background:#fafbfc">장윤정</div></div>
-            <div><div style="font-size:12.5px;color:#6b7585;font-weight:600;margin-bottom:6px">이메일</div><div style="height:40px;border:1px solid #e7eaef;border-radius:9px;display:flex;align-items:center;padding:0 13px;font-size:13.5px;background:#fafbfc">yj.jang@assembly.go.kr</div></div>
+            <div><div style="font-size:12.5px;color:#6b7585;font-weight:600;margin-bottom:6px">이름</div><div id="setNameField" style="height:40px;border:1px solid #e7eaef;border-radius:9px;display:flex;align-items:center;padding:0 13px;font-size:13.5px;background:#fafbfc">—</div></div>
+            <div><div style="font-size:12.5px;color:#6b7585;font-weight:600;margin-bottom:6px">이메일</div><div id="setEmailField" style="height:40px;border:1px solid #e7eaef;border-radius:9px;display:flex;align-items:center;padding:0 13px;font-size:13.5px;background:#fafbfc">—</div></div>
           </div>
         </div>
 
@@ -510,10 +495,10 @@ button{font-family:inherit}
           <div style="font-size:15px;font-weight:700;margin-bottom:6px">알림 설정</div>
           <div style="font-size:12.5px;color:#9aa3b0;margin-bottom:16px">받고 싶은 알림 유형을 선택하세요.</div>
           <div style="display:flex;flex-direction:column">
-            <div style="display:flex;align-items:center;justify-content:space-between;padding:13px 0;border-bottom:1px solid #f2f4f7"><div><div style="font-size:13.5px;font-weight:600">긴급 민원 접수</div><div style="font-size:12px;color:#9aa3b0;margin-top:2px">긴급 분류 민원이 접수되면 즉시 알림</div></div><div style="width:42px;height:24px;border-radius:13px;background:#1d3a6e;position:relative;cursor:pointer"><span style="position:absolute;top:3px;right:3px;width:18px;height:18px;border-radius:50%;background:#fff"></span></div></div>
-            <div style="display:flex;align-items:center;justify-content:space-between;padding:13px 0;border-bottom:1px solid #f2f4f7"><div><div style="font-size:13.5px;font-weight:600">언론 모니터링</div><div style="font-size:12px;color:#9aa3b0;margin-top:2px">의원님 관련 보도 발견 시 알림</div></div><div style="width:42px;height:24px;border-radius:13px;background:#1d3a6e;position:relative;cursor:pointer"><span style="position:absolute;top:3px;right:3px;width:18px;height:18px;border-radius:50%;background:#fff"></span></div></div>
-            <div style="display:flex;align-items:center;justify-content:space-between;padding:13px 0;border-bottom:1px solid #f2f4f7"><div><div style="font-size:13.5px;font-weight:600">일정 리마인더</div><div style="font-size:12px;color:#9aa3b0;margin-top:2px">일정 30분 전 알림</div></div><div style="width:42px;height:24px;border-radius:13px;background:#1d3a6e;position:relative;cursor:pointer"><span style="position:absolute;top:3px;right:3px;width:18px;height:18px;border-radius:50%;background:#fff"></span></div></div>
-            <div style="display:flex;align-items:center;justify-content:space-between;padding:13px 0"><div><div style="font-size:13.5px;font-weight:600">AI 일일 브리핑</div><div style="font-size:12px;color:#9aa3b0;margin-top:2px">매일 오전 8시 브리핑 발송</div></div><div style="width:42px;height:24px;border-radius:13px;background:#cbd5e1;position:relative;cursor:pointer"><span style="position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff"></span></div></div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:13px 0;border-bottom:1px solid #f2f4f7"><div><div style="font-size:13.5px;font-weight:600">긴급 민원 접수</div><div style="font-size:12px;color:#9aa3b0;margin-top:2px">긴급 분류 민원이 접수되면 즉시 알림</div></div><div class="set-toggle" data-key="urgentMinwon" style="width:42px;height:24px;border-radius:13px;position:relative;cursor:pointer"></div></div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:13px 0;border-bottom:1px solid #f2f4f7"><div><div style="font-size:13.5px;font-weight:600">언론 모니터링</div><div style="font-size:12px;color:#9aa3b0;margin-top:2px">의원님 관련 보도 발견 시 알림</div></div><div class="set-toggle" data-key="news" style="width:42px;height:24px;border-radius:13px;position:relative;cursor:pointer"></div></div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:13px 0;border-bottom:1px solid #f2f4f7"><div><div style="font-size:13.5px;font-weight:600">일정 리마인더</div><div style="font-size:12px;color:#9aa3b0;margin-top:2px">일정 30분 전 알림</div></div><div class="set-toggle" data-key="schedule" style="width:42px;height:24px;border-radius:13px;position:relative;cursor:pointer"></div></div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:13px 0"><div><div style="font-size:13.5px;font-weight:600">AI 일일 브리핑</div><div style="font-size:12px;color:#9aa3b0;margin-top:2px">매일 오전 8시 브리핑 발송</div></div><div class="set-toggle" data-key="aiBrief" style="width:42px;height:24px;border-radius:13px;position:relative;cursor:pointer"></div></div>
           </div>
         </div>
 
@@ -525,7 +510,7 @@ button{font-family:inherit}
             <div style="display:flex;align-items:center;gap:12px;padding:13px;border:1px solid #eef1f5;border-radius:11px"><span style="width:36px;height:36px;border-radius:9px;background:#f3f5f8;color:#9aa3b0;display:flex;align-items:center;justify-content:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="14" rx="4"/><path d="M10 9l5 3-5 3z" fill="currentColor"/></svg></span><div style="flex:1"><div style="font-size:13.5px;font-weight:600">유튜브 채널</div><div style="font-size:11.5px;color:#9aa3b0">연결 안 됨</div></div><button style="height:32px;padding:0 13px;background:#1d3a6e;color:#fff;border:none;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer">연결</button></div>
           </div>
         </div>
-        <div style="display:flex;justify-content:flex-end;gap:10px"><button style="height:40px;padding:0 18px;background:#fff;border:1px solid #d6dde6;border-radius:10px;font-size:13.5px;font-weight:600;color:#5b6675;cursor:pointer">취소</button><button style="height:40px;padding:0 20px;background:#1d3a6e;color:#fff;border:none;border-radius:10px;font-size:13.5px;font-weight:600;cursor:pointer">변경사항 저장</button></div>
+        <div style="display:flex;justify-content:flex-end;gap:10px"><button id="setCancel" style="height:40px;padding:0 18px;background:#fff;border:1px solid #d6dde6;border-radius:10px;font-size:13.5px;font-weight:600;color:#5b6675;cursor:pointer">취소</button><button id="setSave" data-hover="background:#16305c" style="height:40px;padding:0 20px;background:#1d3a6e;color:#fff;border:none;border-radius:10px;font-size:13.5px;font-weight:600;cursor:pointer">변경사항 저장</button></div>
       </div>
       </div>
 
@@ -1390,6 +1375,102 @@ onAuthStateChanged(_auth, async function(user){
   var addBtn=document.getElementById('prAddBtn'); if(addBtn) addBtn.addEventListener('click', openAdd);
   render();
   M.onData(function(){ render(); });
+})();
+</script>
+<!-- ── 설정 (프로필 + 알림 토글) ─────────────────────────────────────── -->
+<script>
+(function(){
+  'use strict';
+  var M = window.MOIDA; if(!M) return;
+  function nk(){ return 'moida_settings_'+M.uidOf(); }
+  var DEF = { urgentMinwon:true, news:true, schedule:true, aiBrief:false };
+  var notif = load();
+  function load(){ try{ return Object.assign({},DEF,JSON.parse(localStorage.getItem(nk())||'{}')); }catch(e){ return Object.assign({},DEF); } }
+  function paintToggle(el){ var on=!!notif[el.dataset.key]; el.style.background=on?'#1d3a6e':'#cbd5e1';
+    el.innerHTML='<span style="position:absolute;top:3px;'+(on?'right':'left')+':3px;width:18px;height:18px;border-radius:50%;background:#fff"></span>'; }
+  function paintToggles(){ document.querySelectorAll('.set-toggle').forEach(paintToggle); }
+  document.querySelectorAll('.set-toggle').forEach(function(el){
+    el.addEventListener('click', function(){
+      if(window.MOIDA_READONLY){ alert('이용 기간이 만료되어 읽기 전용 상태입니다.'); return; }
+      notif[el.dataset.key]=!notif[el.dataset.key]; try{ localStorage.setItem(nk(), JSON.stringify(notif)); }catch(e){} paintToggle(el);
+    });
+  });
+  function set(id,v){ var e=document.getElementById(id); if(e) e.textContent=v; }
+  function paint(){
+    var p=M.profile||{}; var nm=p.name||M.sessUser().displayName||(M.sessUser().email||'').split('@')[0]||'';
+    var em=p.email||M.sessUser().email||''; var sub=[p.position,p.district].filter(Boolean).join(' · ')||'의원실 구성원';
+    set('setName', nm||'—'); set('setSub', sub); set('setNameField', nm||'—'); set('setEmailField', em||'—');
+    var av=document.getElementById('setAvatar'); if(av) av.textContent= nm?nm.charAt(0):'·';
+  }
+  function toast(msg){
+    var t=document.createElement('div');
+    t.style.cssText='position:fixed;bottom:28px;left:50%;transform:translateX(-50%);background:#15182a;color:#fff;font-size:13px;font-weight:600;padding:11px 20px;border-radius:10px;z-index:300;box-shadow:0 8px 24px rgba(22,26,45,0.3)';
+    t.textContent=msg; document.body.appendChild(t); setTimeout(function(){ t.style.transition='opacity .3s'; t.style.opacity='0'; setTimeout(function(){t.remove();},300); }, 1600);
+  }
+  var sv=document.getElementById('setSave'); if(sv) sv.addEventListener('click', function(){ try{ localStorage.setItem(nk(), JSON.stringify(notif)); }catch(e){} toast('변경사항이 저장되었습니다.'); });
+  var cc=document.getElementById('setCancel'); if(cc) cc.addEventListener('click', function(){ notif=load(); paintToggles(); });
+  paint(); paintToggles();
+  M.onData(function(){ notif=load(); paint(); paintToggles(); });
+})();
+</script>
+
+<!-- ── AI 비서실장 (인터랙티브 채팅 목업 + 할 일) ────────────────────── -->
+<script>
+(function(){
+  'use strict';
+  var M = window.MOIDA; if(!M) return;
+  var AV='<div style="width:32px;height:32px;border-radius:9px;background:linear-gradient(135deg,#16305c,#3b6fd4);flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#fff"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.6L19.5 10l-5.6 1.9L12 17.5l-1.9-5.6L4.5 10l5.6-1.9z"/></svg></div>';
+  var msgs=document.getElementById('aiMessages');
+  var seed = msgs ? msgs.innerHTML : '';
+  function scroll(){ if(msgs) msgs.scrollTop=msgs.scrollHeight; }
+  function addUser(t){ msgs.insertAdjacentHTML('beforeend','<div style="display:flex;justify-content:flex-end"><div style="background:#1d3a6e;color:#fff;border-radius:14px 4px 14px 14px;padding:13px 16px;font-size:13.5px;line-height:1.55;max-width:70%">'+M.esc(t)+'</div></div>'); scroll(); }
+  function addAI(html){ msgs.insertAdjacentHTML('beforeend','<div style="display:flex;gap:11px;max-width:82%">'+AV+'<div style="background:#fff;border:1px solid #eef1f5;border-radius:4px 14px 14px 14px;padding:14px 16px;font-size:13.5px;line-height:1.6;color:#27313f;flex:1">'+html+'</div></div>'); scroll(); }
+  function pad(n){ return String(n).padStart(2,'0'); }
+  function todayKey(){ var d=new Date(); return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate()); }
+  function reply(text){
+    var t=text;
+    if(/일정|브리핑|스케줄/.test(t)){
+      var ev=(M.events||[]).filter(function(e){return e.date===todayKey();}).sort(function(a,b){return (a.time||'').localeCompare(b.time||'');});
+      if(!ev.length) return '오늘 등록된 일정이 없습니다. <b>일정·행사</b> 탭에서 일정을 추가하시면 자동으로 브리핑에 반영해 드릴게요.';
+      return '오늘 일정 '+ev.length+'건을 정리했습니다.<br><br>'+ev.map(function(e){return '· <b>'+M.esc(e.time||'')+'</b> '+M.esc(e.title||'')+(e._location?' ('+M.esc(e._location)+')':'');}).join('<br>')+'<br><br>이동 동선과 사전 준비 자료도 정리해 드릴까요?';
+    }
+    if(/민원|답변/.test(t)){
+      var open=(M.complaints||[]).filter(function(c){return (c.status||'접수')!=='종결';}).length;
+      return '현재 미처리 민원은 <b>'+open+'건</b>입니다. 공통 쟁점을 반영한 답변 초안을 만들어 보았습니다.'
+        +'<div style="margin-top:12px;padding:14px;background:#f7f9fc;border:1px solid #e8edf3;border-radius:10px;font-size:12.5px;color:#3a4554;line-height:1.6">"안녕하십니까, 의원실입니다. 말씀해 주신 내용을 면밀히 검토하였으며, 관계 기관과 협의해 신속히 조치하겠습니다…"</div>'
+        +'<div style="display:flex;gap:8px;margin-top:12px"><span style="font-size:11.5px;color:#9aa3b0">※ 데모 응답입니다 — 실제 생성형 답변은 API 연동 시 제공됩니다.</span></div>';
+    }
+    if(/보도자료|언론|홍보/.test(t)){
+      return '보도자료 초안 구조를 제안합니다.<br><br>① <b>제목</b> — 핵심 메시지 1문장<br>② <b>리드</b> — 발표 배경·일시·장소<br>③ <b>본문</b> — 주요 내용·기대효과<br>④ <b>인용</b> — 의원 코멘트<br><br>주제를 알려주시면 전체 문안을 작성해 드릴게요.';
+    }
+    if(/질의|자료|국토위|회의/.test(t)){
+      return '국토위 질의자료 핵심을 요약했습니다.<br><br>· 전세사기 피해 구제 진행 현황<br>· 청년 주거지원 예산 집행률<br>· 지역 교통망 확충 후속 조치<br><br>각 항목별 예상 답변과 반박 논리도 준비해 드릴까요?';
+    }
+    return '말씀하신 내용을 바탕으로 도와드리겠습니다. <b>민원 답변</b>, <b>보도자료 작성</b>, <b>일정 브리핑</b> 등을 요청하시면 바로 정리해 드릴게요.<br><br><span style="font-size:11.5px;color:#9aa3b0">※ 현재는 데모 응답입니다. 실제 AI 연동(예: Claude API)을 붙이면 의정 데이터 기반으로 답변합니다.</span>';
+  }
+  function send(text){ text=(text||'').trim(); if(!text) return; addUser(text); var r=reply(text); setTimeout(function(){ addAI(r); }, 350); }
+  var input=document.getElementById('aiInput'), sendBtn=document.getElementById('aiSend');
+  if(sendBtn) sendBtn.addEventListener('click', function(){ if(input){ send(input.value); input.value=''; input.focus(); } });
+  if(input) input.addEventListener('keydown', function(e){ if(e.key==='Enter'){ e.preventDefault(); send(input.value); input.value=''; } });
+  if(msgs) msgs.addEventListener('click', function(e){ var chip=e.target.closest('.ai-chip'); if(chip){ send(chip.textContent.trim()); } });
+  document.querySelectorAll('.ai-quick').forEach(function(b){ b.addEventListener('click', function(){ location.hash='#secretary'; send(b.dataset.action); }); });
+  var nb=document.getElementById('aiNew'); if(nb) nb.addEventListener('click', function(){ if(msgs){ msgs.innerHTML=seed; scroll(); } });
+
+  /* 오늘의 할 일 */
+  function tk(){ return 'moida_todo_'+M.uidOf(); }
+  var TASKS=['주간 회의 안건 정리','국토위 질의자료 최종 검토','민원 답변 6건 승인','청년단체 모임 축사 확인'];
+  var done;
+  function loadTodo(){ try{ done=JSON.parse(localStorage.getItem(tk())||'null'); }catch(e){ done=null; } if(!Array.isArray(done)) done=[true,false,false,false]; while(done.length<TASKS.length) done.push(false); }
+  function renderTodo(){
+    var box=document.getElementById('aiTodo'); if(!box) return;
+    box.innerHTML=TASKS.map(function(t,i){ var c=done[i];
+      var chk='<span style="width:18px;height:18px;border-radius:6px;border:1.8px solid '+(c?'#16a34a':'#cbd5e1')+';'+(c?'background:#16a34a;':'')+'flex-shrink:0;display:flex;align-items:center;justify-content:center;margin-top:1px">'+(c?'<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>':'')+'</span>';
+      return '<div class="todo-item" data-i="'+i+'" style="display:flex;gap:10px;align-items:flex-start;cursor:pointer">'+chk+'<span style="font-size:13px;color:'+(c?'#9aa3b0':'#27313f')+';'+(c?'text-decoration:line-through':'')+'">'+M.esc(t)+'</span></div>';
+    }).join('');
+    box.querySelectorAll('.todo-item').forEach(function(el){ el.addEventListener('click', function(){ var i=+el.dataset.i; done[i]=!done[i]; try{ localStorage.setItem(tk(), JSON.stringify(done)); }catch(e){} renderTodo(); }); });
+  }
+  loadTodo(); renderTodo();
+  M.onData(function(){ loadTodo(); renderTodo(); });
 })();
 </script>
 <script src="access-guard.js"></script>
