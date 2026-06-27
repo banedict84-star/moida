@@ -20,3 +20,9 @@ jobs:
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          # 배포할 때마다 OPENAI_API_KEY 시크릿을 워커에 자동 주입(재배포 시 유실 방지).
+          # 값은 GitHub 저장소 시크릿 OPENAI_API_KEY 에서만 읽음 — 코드/깃에는 절대 저장하지 않음.
+          secrets: |
+            OPENAI_API_KEY
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
