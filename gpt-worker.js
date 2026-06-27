@@ -48,8 +48,6 @@ export default {
 
     try {
       const body = await request.json();
-      const messages = Array.isArray(body.messages) ? body.messages.slice(-20) : [];
-      const model = body.model || "gpt-4o-mini";
 
       // OpenAI 호출 베이스 URL.
       //  · 기본: 직접 호출(https://api.openai.com/v1) — 일부 지역에서 "Country not supported" 발생
@@ -58,30 +56,33 @@ export default {
       //    예: https://gateway.ai.cloudflare.com/v1/<계정ID>/<게이트웨이>/openai
       const OPENAI_BASE = (env.OPENAI_BASE || "https://api.openai.com/v1").replace(/\/+$/, "");
 
+      // 함수 호출(tools)을 포함해 그대로 OpenAI로 전달
+      const payload = {
+        model: body.model || "gpt-4o-mini",
+        messages: Array.isArray(body.messages) ? body.messages.slice(-40) : [],
+        temperature: typeof body.temperature === "number" ? body.temperature : 0.5,
+        max_tokens: body.max_tokens || 1000,
+      };
+      if (body.tools) payload.tools = body.tools;
+      if (body.tool_choice) payload.tool_choice = body.tool_choice;
+
       const r = await fetch(`${OPENAI_BASE}/chat/completions`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           "Authorization": `Bearer ${env.OPENAI_API_KEY}`,
         },
-        body: JSON.stringify({ model, messages, temperature: 0.6, max_tokens: 900 }),
+        body: JSON.stringify(payload),
       });
 
-      // 업스트림 응답을 그대로 읽어서, 실패 시 실제 원인을 화면에 노출(진단용)
+      // OpenAI 응답을 그대로 통과(tool_calls 포함). 처리는 클라이언트가 담당.
       const raw = await r.text();
-      let data = null;
-      try { data = JSON.parse(raw); } catch (_) {}
-      const reply =
-        data?.choices?.[0]?.message?.content ??
-        data?.error?.message ??
-        (Array.isArray(data?.errors) ? data.errors.map(function(e){ return e && (e.message || JSON.stringify(e)); }).join("; ") : null) ??
-        ("[업스트림 " + r.status + "] " + (raw ? raw.slice(0, 700) : "빈 응답"));
-      return new Response(JSON.stringify({ reply }), {
-        status: r.ok ? 200 : 502,
+      return new Response(raw, {
+        status: r.status,
         headers: { ...cors, "Content-Type": "application/json" },
       });
     } catch (e) {
-      return new Response(JSON.stringify({ reply: "프록시 오류: " + (e && e.message || e) }), {
+      return new Response(JSON.stringify({ error: { message: "프록시 오류: " + (e && e.message || e) } }), {
         status: 500, headers: { ...cors, "Content-Type": "application/json" },
       });
     }
