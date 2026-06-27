@@ -1416,13 +1416,57 @@ onAuthStateChanged(_auth, async function(user){
     }
     return '말씀하신 내용을 바탕으로 도와드리겠습니다. <b>민원 답변</b>, <b>보도자료 작성</b>, <b>일정 브리핑</b> 등을 요청하시면 바로 정리해 드릴게요.<br><br><span style="font-size:11.5px;color:#9aa3b0">※ 현재는 데모 응답입니다. 실제 AI 연동(예: Claude API)을 붙이면 의정 데이터 기반으로 답변합니다.</span>';
   }
-  function send(text){ text=(text||'').trim(); if(!text) return; addUser(text); var r=reply(text); setTimeout(function(){ addAI(r); }, 350); }
+  /* ── GPT 연결 (Cloudflare Worker 프록시) ──────────────────────────────
+     · 엔드포인트 미설정 시 위의 목업 응답으로 자동 폴백
+     · 켜는 법: 워커 배포 후 아래 GPT_ENDPOINT에 URL 입력
+       또는 콘솔에서 localStorage.setItem('moida_gpt_endpoint','https://...workers.dev') */
+  var GPT_ENDPOINT = '';                 // ← 워커 URL 입력 (예: 'https://moida-gpt.banedict84.workers.dev')
+  var GPT_MODEL    = 'gpt-4o-mini';
+  function gptEndpoint(){ try{ return (localStorage.getItem('moida_gpt_endpoint')||GPT_ENDPOINT).trim(); }catch(e){ return GPT_ENDPOINT; } }
+  function sysPrompt(){
+    var p=M.profile||{}; var nm=p.name||'의원';
+    var ev=(M.events||[]).filter(function(e){return e.date===todayKey();}).sort(function(a,b){return (a.time||'').localeCompare(b.time||'');});
+    var evtxt=ev.length?ev.map(function(e){return (e.time||'')+' '+(e.title||'')+(e._location?' @'+e._location:'');}).join(' / '):'없음';
+    var open=(M.complaints||[]).filter(function(c){return (c.status||'접수')!=='종결';}).length;
+    return '당신은 대한민국 의원실의 유능한 AI 비서실장입니다. 의원("'+nm+'")과 보좌진을 돕습니다. '
+      +'정중하고 간결한 실무 한국어로 답하세요. 민원 답변 초안·보도자료·일정 브리핑·질의자료 정리 등을 도와줍니다. '
+      +'오늘 '+todayKey()+'. 오늘 일정: '+evtxt+'. 미처리 민원 '+open+'건. 등록 연락처 '+((M.members||[]).length)+'명. '
+      +'확실하지 않은 사실은 추측하지 말고 확인이 필요하다고 안내하세요.';
+  }
+  var history=[];
+  function mdToHtml(s){
+    s=M.esc(s);
+    s=s.replace(/\*\*([^*]+)\*\*/g,'<b>$1</b>').replace(/`([^`]+)`/g,'<code style="background:#f1f3f7;padding:1px 5px;border-radius:5px">$1</code>').replace(/\n/g,'<br>');
+    return s;
+  }
+  function addTyping(){
+    msgs.insertAdjacentHTML('beforeend','<div style="display:flex;gap:11px;max-width:82%">'+AV+'<div style="background:#fff;border:1px solid #eef1f5;border-radius:4px 14px 14px 14px;padding:14px 16px;font-size:13.5px;color:#9aa3b0">생각하는 중…</div></div>');
+    scroll(); return msgs.lastElementChild;
+  }
+  function send(text){
+    text=(text||'').trim(); if(!text) return;
+    addUser(text);
+    var ep=gptEndpoint();
+    if(!ep){ var r=reply(text); setTimeout(function(){ addAI(r); }, 350); return; }
+    if(!history.length) history.push({role:'system', content:sysPrompt()});
+    history.push({role:'user', content:text});
+    var typing=addTyping();
+    fetch(ep, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({model:GPT_MODEL, messages:history})})
+      .then(function(r){ return r.json(); })
+      .then(function(d){
+        if(typing) typing.remove();
+        var msg=(d&&d.reply)||'응답을 받지 못했습니다.';
+        history.push({role:'assistant', content:msg});
+        addAI(mdToHtml(msg));
+      })
+      .catch(function(e){ if(typing) typing.remove(); addAI('연결 오류: '+M.esc(e&&e.message||String(e))+'<br><span style="font-size:11.5px;color:#9aa3b0">워커 주소·CORS를 확인해 주세요.</span>'); });
+  }
   var input=document.getElementById('aiInput'), sendBtn=document.getElementById('aiSend');
   if(sendBtn) sendBtn.addEventListener('click', function(){ if(input){ send(input.value); input.value=''; input.focus(); } });
   if(input) input.addEventListener('keydown', function(e){ if(e.key==='Enter'){ e.preventDefault(); send(input.value); input.value=''; } });
   if(msgs) msgs.addEventListener('click', function(e){ var chip=e.target.closest('.ai-chip'); if(chip){ send(chip.textContent.trim()); } });
   document.querySelectorAll('.ai-quick').forEach(function(b){ b.addEventListener('click', function(){ location.hash='#secretary'; send(b.dataset.action); }); });
-  var nb=document.getElementById('aiNew'); if(nb) nb.addEventListener('click', function(){ if(msgs){ msgs.innerHTML=seed; scroll(); } });
+  var nb=document.getElementById('aiNew'); if(nb) nb.addEventListener('click', function(){ if(msgs){ msgs.innerHTML=seed; history=[]; scroll(); } });
 
   /* 오늘의 할 일 */
   function tk(){ return 'moida_todo_'+M.uidOf(); }
