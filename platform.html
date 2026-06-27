@@ -1420,7 +1420,7 @@ onAuthStateChanged(_auth, async function(user){
      · 엔드포인트 미설정 시 위의 목업 응답으로 자동 폴백
      · 켜는 법: 워커 배포 후 아래 GPT_ENDPOINT에 URL 입력
        또는 콘솔에서 localStorage.setItem('moida_gpt_endpoint','https://...workers.dev') */
-  var GPT_ENDPOINT = '';                 // ← 워커 URL 입력 (예: 'https://moida-gpt.banedict84.workers.dev')
+  var GPT_ENDPOINT = 'https://moida-gpt.banedict84.workers.dev';  // Cloudflare Worker 프록시
   var GPT_MODEL    = 'gpt-4o-mini';
   function gptEndpoint(){ try{ return (localStorage.getItem('moida_gpt_endpoint')||GPT_ENDPOINT).trim(); }catch(e){ return GPT_ENDPOINT; } }
   function sysPrompt(){
