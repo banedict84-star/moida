@@ -227,7 +227,7 @@ button{font-family:inherit}
 
             <div style="background:#fff;border:1px solid #e9ecf1;border-radius:14px;padding:20px;box-shadow:0 1px 2px rgba(16,24,40,0.04)">
               <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
-                <span style="font-size:15px;font-weight:700;letter-spacing:-0.01em">오늘의 일정</span>
+                <span style="font-size:15px;font-weight:700;letter-spacing:-0.01em">다가오는 일정</span>
                 <span data-go="schedule" style="font-size:12.5px;color:#2563eb;font-weight:600;cursor:pointer">전체 보기</span>
               </div>
               <div id="dashToday" style="display:flex;flex-direction:column"></div>
@@ -649,6 +649,18 @@ onAuthStateChanged(_auth, async function(user){
     try{ await setDoc(doc(_db,'moida_users',euid), {[key]: JSON.stringify(data)}, {merge:true}); }catch(e){ console.warn('save fail', e); }
   };
 
+  /* 임베드된 페이지(일정·조직관리 등)가 localStorage를 바꾸면 부모 대시보드도 즉시 동기화 */
+  if(!window.__moidaStorageSync){
+    window.__moidaStorageSync = true;
+    window.addEventListener('storage', function(ev){
+      if(!ev.key) return;
+      var m = ev.key.match(/^moida_(members|events|complaints|policies|pr)_(.+)$/);
+      if(!m || m[2]!==euid) return;
+      try{ M[m[1]] = JSON.parse(ev.newValue||'[]')||[]; }catch(e){ return; }
+      if(M.emit) M.emit();
+    });
+  }
+
   M.emit();
 });
 </script>
@@ -1033,13 +1045,17 @@ onAuthStateChanged(_auth, async function(user){
   }
   function renderToday(){
     var box = document.getElementById('dashToday'); if(!box) return;
-    var ev = (M.events||[]).filter(function(e){ return e.date===todayKey(); }).sort(function(a,b){return (a.time||'').localeCompare(b.time||'');});
-    if(!ev.length){ box.innerHTML = '<div style="padding:18px 0;text-align:center;color:#9aa3b0;font-size:13px">오늘 예정된 일정이 없습니다.</div>'; return; }
+    var tk = todayKey(), DOW=['일','월','화','수','목','금','토'];
+    var ev = (M.events||[]).filter(function(e){ return e.date && e.date>=tk; })
+      .sort(function(a,b){ return (a.date+(a.time||'')).localeCompare(b.date+(b.time||'')); }).slice(0,3);
+    if(!ev.length){ box.innerHTML = '<div style="padding:18px 0;text-align:center;color:#9aa3b0;font-size:13px">예정된 일정이 없습니다.</div>'; return; }
     box.innerHTML = ev.map(function(e,i){
       var c = cat(e.cat); var last = i===ev.length-1;
       var meta = e._location || '';
+      var d = new Date(e.date+'T00:00:00');
+      var dlabel = e.date===tk ? '오늘' : (isNaN(d)? e.date : ((d.getMonth()+1)+'/'+d.getDate()+' ('+DOW[d.getDay()]+')'));
       return '<div style="display:flex;gap:14px;padding:11px 0;'+(last?'':'border-bottom:1px solid #f0f2f5')+'">'
-        +'<div style="font-size:13px;font-weight:700;color:#16202e;width:46px;flex-shrink:0">'+M.esc(e.time||'')+'</div>'
+        +'<div style="width:62px;flex-shrink:0"><div style="font-size:12.5px;font-weight:700;color:'+(e.date===tk?'#1d3a6e':'#16202e')+'">'+M.esc(dlabel)+'</div><div style="font-size:11.5px;color:#8a94a3;margin-top:1px">'+M.esc(e.time||'')+'</div></div>'
         +'<div style="width:3px;border-radius:3px;background:'+c.fg+';flex-shrink:0"></div>'
         +'<div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:600">'+M.esc(e.title||'일정')+'</div>'+(meta?'<div style="font-size:12px;color:#8a94a3;margin-top:2px">'+M.esc(meta)+'</div>':'')+'</div>'
         +'<span style="font-size:11px;font-weight:600;color:'+c.fg+';background:'+c.bg+';padding:3px 9px;border-radius:6px;height:fit-content">'+M.esc(e.cat||'의정')+'</span></div>';
@@ -1049,8 +1065,15 @@ onAuthStateChanged(_auth, async function(user){
     var box = document.getElementById('dashNews'); if(!box) return;
     var SC = { '긍정':'#16a34a','중립':'#94a3b8','부정':'#dc2626' };
     var FG = { '긍정':'#16a34a','중립':'#6b7585','부정':'#dc2626' };
-    var list = (M.news||[]).slice(0,4);
-    if(!list.length){ box.innerHTML = '<div style="grid-column:1/-1;padding:18px;text-align:center;color:#9aa3b0;font-size:13px">뉴스 데이터를 불러오는 중…</div>'; return; }
+    var nm = (M.profile&&M.profile.name) || '';
+    var all = (M.news||[]);
+    // 의원 이름으로 검색되는(이름이 포함된) 기사 우선
+    if(nm){
+      var named = all.filter(function(x){ return (String(x.title||'')+String(x.snippet||'')).indexOf(nm)>=0; });
+      if(named.length) all = named;
+    }
+    var list = all.slice(0,4);
+    if(!list.length){ box.innerHTML = '<div style="grid-column:1/-1;padding:18px;text-align:center;color:#9aa3b0;font-size:13px">'+(nm?M.esc(nm)+' 관련 뉴스를 불러오는 중…':'뉴스 데이터를 불러오는 중…')+'</div>'; return; }
     box.innerHTML = list.map(function(x){
       return '<a href="'+M.esc(x.url||'#')+'" target="_blank" rel="noopener" style="display:flex;gap:12px;padding:12px;border:1px solid #eef1f5;border-radius:10px;text-decoration:none;color:inherit" data-hover="border-color:#d6dde6">'
         +'<span style="width:4px;border-radius:3px;background:'+(SC[x._s]||'#94a3b8')+';flex-shrink:0"></span>'
