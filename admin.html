@@ -9,7 +9,7 @@
   :root{
     --bg:#f3f5f8; --surface:#ffffff; --line:#e8eaf0; --line-soft:#f1f3f7;
     --ink:#1c2030; --ink-2:#5a6072; --ink-3:#9298a8; --ink-4:#b6bcca;
-    --primary:#1452a0; --primary-600:#0e3f80; --primary-soft:#e7f0fb;
+    --primary:#2f5fd0; --primary-600:#16305c; --primary-soft:#e8f0fe;
     --shadow-sm:0 1px 2px rgba(22,26,45,.04),0 1px 3px rgba(22,26,45,.03);
     --shadow-md:0 4px 16px rgba(22,26,45,.06),0 1px 3px rgba(22,26,45,.04);
   }
@@ -33,7 +33,7 @@
   .login-box h1{font-size:23px;font-weight:800;color:var(--ink);margin-bottom:8px;letter-spacing:-.03em}
   .login-box h1 b{color:var(--primary)}
   .login-box p{font-size:13.5px;color:var(--ink-3);margin-bottom:26px;font-weight:500;line-height:1.55}
-  .btn-google{display:flex;align-items:center;justify-content:center;gap:10px;padding:14px 32px;background:linear-gradient(135deg,#1a5bb0,#0e3f80);color:#fff;border:none;border-radius:13px;font-size:15px;font-weight:700;cursor:pointer;width:100%;font-family:inherit;box-shadow:0 8px 20px rgba(20,82,160,.3);transition:transform .12s,box-shadow .15s}
+  .btn-google{display:flex;align-items:center;justify-content:center;gap:10px;padding:14px 32px;background:linear-gradient(135deg,#1a5bb0,#16305c);color:#fff;border:none;border-radius:13px;font-size:15px;font-weight:700;cursor:pointer;width:100%;font-family:inherit;box-shadow:0 8px 20px rgba(20,82,160,.3);transition:transform .12s,box-shadow .15s}
   .btn-google:hover{transform:translateY(-1px);box-shadow:0 12px 26px rgba(20,82,160,.4)}
   .login-error{color:#dc2626;font-size:13px;margin-top:14px;min-height:20px;font-weight:600}
   .login-foot{position:relative;z-index:1;margin-top:18px;font-size:12px;color:var(--ink-3);font-weight:500;text-align:center}
@@ -44,7 +44,7 @@
 
   .sidebar{background:var(--surface);border-right:1px solid var(--line);display:flex;flex-direction:column;padding:20px 16px;position:sticky;top:0;height:100vh;overflow-y:auto}
   .logo{display:flex;align-items:center;gap:11px;padding:6px 8px 0}
-  .logo-mark{width:36px;height:36px;border-radius:11px;flex-shrink:0;background:linear-gradient(140deg,#2f74c9 0%,#1452a0 60%,#0e3f80 100%);display:flex;align-items:center;justify-content:center;box-shadow:0 5px 14px rgba(20,82,160,.34);position:relative;overflow:hidden}
+  .logo-mark{width:36px;height:36px;border-radius:11px;flex-shrink:0;background:linear-gradient(135deg,#16305c 0%,#2f5fd0 100%);display:flex;align-items:center;justify-content:center;box-shadow:0 5px 14px rgba(20,82,160,.34);position:relative;overflow:hidden}
   .logo-mark::after{content:"";position:absolute;inset:0;background:radial-gradient(65% 55% at 28% 20%,rgba(255,255,255,.42),rgba(255,255,255,0) 70%)}
   .logo-name{font-size:20px;font-weight:800;letter-spacing:-.04em;color:#1c2030;line-height:1}
   .logo-name b{color:var(--primary)}
@@ -144,8 +144,8 @@
   .stat-ico{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
   .stat-num{font-size:32px;font-weight:800;color:var(--ink);line-height:1;letter-spacing:-.03em}
   .stat-label{font-size:13px;color:var(--ink-2);margin-top:8px;font-weight:600}
-  .c-indigo{background:#e7f0fb;color:#1452a0}.c-emerald{background:#e7f6ee;color:#10936a}
-  .c-amber{background:#fdf0e0;color:#cd7d18}.c-violet{background:#e9f1fc;color:#2f74c9}
+  .c-indigo{background:#e7f0fb;color:#2f5fd0}.c-emerald{background:#e7f6ee;color:#10936a}
+  .c-amber{background:#fdf0e0;color:#cd7d18}.c-violet{background:#e9f1fc;color:#2f5fd0}
 
   .empty{text-align:center;padding:34px;color:var(--ink-3);font-size:13.5px;font-weight:500}
 
@@ -359,14 +359,14 @@
       <svg viewBox="0 0 132 132" fill="none" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <linearGradient id="mBody" x1="20" y1="14" x2="112" y2="120" gradientUnits="userSpaceOnUse">
-            <stop stop-color="#3b82d6"/><stop offset=".55" stop-color="#1452a0"/><stop offset="1" stop-color="#0e3f80"/>
+            <stop stop-color="#3b82d6"/><stop offset=".55" stop-color="#2f5fd0"/><stop offset="1" stop-color="#16305c"/>
           </linearGradient>
         </defs>
         <!-- 3-dot antenna motif -->
         <circle cx="52" cy="13" r="4.2" fill="#9cc0ee"/>
         <circle cx="80" cy="13" r="4.2" fill="#9cc0ee"/>
-        <circle cx="66" cy="6" r="5" fill="#1452a0"/>
-        <path d="M66 18v10" stroke="#1452a0" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="66" cy="6" r="5" fill="#2f5fd0"/>
+        <path d="M66 18v10" stroke="#2f5fd0" stroke-width="3" stroke-linecap="round"/>
         <!-- body -->
         <rect x="20" y="26" width="92" height="80" rx="26" fill="url(#mBody)"/>
         <rect x="20" y="26" width="92" height="80" rx="26" fill="url(#mBody)"/>
@@ -379,12 +379,12 @@
         <circle cx="80" cy="63" r="2" fill="#fff"/>
         <!-- shield badge -->
         <path d="M66 96c7-1.6 11-6 11-12v-7l-11-3-11 3v7c0 6 4 10.4 11 12z" fill="#ffd66b"/>
-        <path d="M61.5 84.5l3.2 3.4 6-6.4" stroke="#0e3f80" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M61.5 84.5l3.2 3.4 6-6.4" stroke="#16305c" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
         <!-- ears -->
-        <rect x="13" y="58" width="8" height="20" rx="4" fill="#1452a0"/>
-        <rect x="111" y="58" width="8" height="20" rx="4" fill="#1452a0"/>
+        <rect x="13" y="58" width="8" height="20" rx="4" fill="#2f5fd0"/>
+        <rect x="111" y="58" width="8" height="20" rx="4" fill="#2f5fd0"/>
         <!-- shadow -->
-        <ellipse cx="66" cy="118" rx="34" ry="6" fill="#1452a0" fill-opacity=".12"/>
+        <ellipse cx="66" cy="118" rx="34" ry="6" fill="#2f5fd0" fill-opacity=".12"/>
       </svg>
     </div>
     <div class="badge"><span style="width:5px;height:5px;border-radius:50%;background:#dc2626;display:inline-block"></span>총관리자 전용</div>

@@ -14,8 +14,9 @@
     --ink:#1c2030;
     --ink-2:#5a6072;
     --ink-3:#9298a8;
-    --primary:#1452a0;
-    --primary-soft:#e7f0fb;
+    --primary:#2f5fd0;
+    --primary-600:#16305c;
+    --primary-soft:#e8f0fe;
     --shadow-card: 0 1px 2px rgba(22,26,45,.04), 0 8px 28px rgba(22,26,45,.07);
     --shadow-float: 0 2px 6px rgba(22,26,45,.05), 0 18px 44px rgba(22,26,45,.12);
   }
@@ -30,7 +31,7 @@
   /* ===== Sidebar ===== */
   .sidebar{ background:var(--surface); border-right:1px solid var(--line); display:flex; flex-direction:column; padding:18px 16px; position:sticky; top:0; height:100vh; overflow-y:auto; }
   .logo{ display:flex; align-items:center; gap:11px; padding:8px 8px 18px; }
-  .logo-mark{ width:36px; height:36px; border-radius:11px; flex-shrink:0; background:linear-gradient(140deg,#2f74c9 0%,#1452a0 60%,#0e3f80 100%); display:flex; align-items:center; justify-content:center; box-shadow:0 5px 14px rgba(20,82,160,.34); position:relative; overflow:hidden; }
+  .logo-mark{ width:36px; height:36px; border-radius:11px; flex-shrink:0; background:linear-gradient(135deg,#16305c 0%,#2f5fd0 100%); display:flex; align-items:center; justify-content:center; box-shadow:0 5px 14px rgba(20,82,160,.34); position:relative; overflow:hidden; }
   .logo-mark::after{ content:""; position:absolute; inset:0; background:radial-gradient(65% 55% at 28% 20%, rgba(255,255,255,.42), rgba(255,255,255,0) 70%); }
   .logo-name{ font-size:20px; font-weight:800; letter-spacing:-.04em; color:#1c2030; line-height:1; }
   .logo-name b{ color:var(--primary); font-weight:800; }
@@ -167,7 +168,7 @@
   .sr-item{ display:flex; align-items:center; gap:10px; padding:9px 12px; border-radius:10px; cursor:pointer; text-decoration:none; }
   .sr-item:hover{ background:var(--line-soft); }
   .sr-ico{ width:28px; height:28px; border-radius:8px; flex-shrink:0; display:flex; align-items:center; justify-content:center; color:#fff; }
-  .sr-ico.s-notice{ background:#1452a0; } .sr-ico.s-sched{ background:#2f74c9; } .sr-ico.s-member{ background:#0e7a6b; }
+  .sr-ico.s-notice{ background:#2f5fd0; } .sr-ico.s-sched{ background:#2f5fd0; } .sr-ico.s-member{ background:#0e7a6b; }
   .sr-body{ min-width:0; flex:1; }
   .sr-t{ font-size:13.5px; font-weight:600; color:var(--ink); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
   .sr-t b{ color:var(--primary); font-weight:700; }
@@ -189,13 +190,13 @@
   .noti-item.unread{ background:#f3f7fd; }
   .noti-item.unread:hover{ background:#e9f1fb; }
   .noti-ico{ width:34px; height:34px; border-radius:10px; flex-shrink:0; display:flex; align-items:center; justify-content:center; color:#fff; }
-  .noti-ico.n-notice{ background:#1452a0; } .noti-ico.n-sched{ background:#2f74c9; } .noti-ico.n-member{ background:#0e7a6b; }
+  .noti-ico.n-notice{ background:#2f5fd0; } .noti-ico.n-sched{ background:#2f5fd0; } .noti-ico.n-member{ background:#0e7a6b; }
   .noti-body{ min-width:0; flex:1; }
   .noti-t{ font-size:13px; font-weight:600; color:var(--ink); line-height:1.35; }
   .noti-s{ font-size:11.5px; color:var(--ink-3); margin-top:2px; }
   .noti-unreaddot{ width:7px; height:7px; border-radius:50%; background:#ef4444; flex-shrink:0; align-self:center; }
   .noti-empty{ padding:30px 16px; text-align:center; font-size:13px; color:var(--ink-3); }
-  .avatar{ width:38px; height:38px; border-radius:50%; background:linear-gradient(135deg,#2f74c9,#0e3f80); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:14px; cursor:pointer; box-shadow:0 3px 10px rgba(20,82,160,.35); }
+  .avatar{ width:38px; height:38px; border-radius:50%; background:linear-gradient(135deg,#2f5fd0,#16305c); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:14px; cursor:pointer; box-shadow:0 3px 10px rgba(20,82,160,.35); }
 
   /* content */
   .content{ position:relative; z-index:1; padding:4px 32px 18px; }
@@ -248,7 +249,7 @@
   .tile-ico{ width:52px; height:52px; border-radius:16px; display:flex; align-items:center; justify-content:center; box-shadow:0 8px 20px rgba(22,26,45,.13); transition:transform .14s, box-shadow .14s; }
   .tile:hover .tile-ico{ transform:translateY(-3px); box-shadow:0 14px 26px rgba(22,26,45,.18); }
   .tile-lbl{ font-size:12.5px; font-weight:600; color:#2a3d5c; }
-  .t-notice{ background:linear-gradient(140deg,#1a5bb0,#2f74c9); }
+  .t-notice{ background:linear-gradient(140deg,#1a5bb0,#2f5fd0); }
   .t-member{ background:linear-gradient(140deg,#0e7a6b,#16b39a); }
   .t-task{ background:linear-gradient(140deg,#c77d18,#e0a338); }
   .t-add{ background:rgba(255,255,255,.72); border:1.5px dashed #aebfd4; }
@@ -266,8 +267,8 @@
   .card-title .ti{ width:28px; height:28px; border-radius:8px; display:flex; align-items:center; justify-content:center; }
   .see-all{ display:inline-flex; align-items:center; gap:3px; font-size:12.5px; font-weight:600; color:var(--ink-3); text-decoration:none; cursor:pointer; }
   .see-all:hover{ color:var(--primary); }
-  .c-indigo{ background:#e7f0fb; color:#1452a0; } .c-emerald{ background:#e3f5ef; color:#0e7a6b; }
-  .c-amber{ background:#fbf0df; color:#bf7714; } .c-violet{ background:#e9f1fc; color:#2f74c9; }
+  .c-indigo{ background:#e7f0fb; color:#2f5fd0; } .c-emerald{ background:#e3f5ef; color:#0e7a6b; }
+  .c-amber{ background:#fbf0df; color:#bf7714; } .c-violet{ background:#e9f1fc; color:#2f5fd0; }
 
   .row{ display:flex; align-items:center; gap:13px; padding:9px 10px; border-radius:12px; transition:background .14s; cursor:pointer; }
   .row:hover{ background:var(--line-soft); }
@@ -280,7 +281,7 @@
   .row .r-body{ font-size:13px; color:var(--ink-2); margin-top:4px; line-height:1.5; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
   .row .r-s{ font-size:12.5px; color:var(--ink-3); margin-top:6px; font-weight:500; }
   .author-pill{ display:inline-flex; align-items:center; padding:2px 9px; border-radius:20px; background:#15182a; color:#fff; font-size:11px; font-weight:700; white-space:nowrap; }
-  .author-pill.central{ background:#1452a0; }
+  .author-pill.central{ background:#2f5fd0; }
   .author-pill.gyeonggi{ background:#0d9488; }
   .author-pill.council{ background:#b45309; }
   .row .r-meta{ font-size:12.5px; color:var(--ink-3); font-weight:500; flex-shrink:0; }
@@ -292,7 +293,7 @@
   /* schedule chip */
   .sched-row{ display:flex; align-items:center; gap:14px; padding:13px 12px; border-radius:12px; cursor:pointer; transition:background .14s; }
   .sched-row:hover{ background:var(--line-soft); }
-  .date-chip{ width:50px; height:52px; border-radius:13px; flex-shrink:0; background:linear-gradient(160deg,#1a5bb0,#2f74c9); color:#fff; display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:0 6px 14px rgba(20,82,160,.28); }
+  .date-chip{ width:50px; height:52px; border-radius:13px; flex-shrink:0; background:linear-gradient(160deg,#1a5bb0,#2f5fd0); color:#fff; display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:0 6px 14px rgba(20,82,160,.28); }
   .date-chip .m{ font-size:9.5px; font-weight:700; opacity:.9; line-height:1; }
   .date-chip .d{ font-size:20px; font-weight:800; line-height:1.15; }
 
@@ -304,7 +305,7 @@
   .mem-fig.mf-total{ background:linear-gradient(135deg,#eef4fc,#e3edfa); }
   .mem-fig.mf-right{ background:linear-gradient(135deg,#e7f6f0,#ddf2e9); }
   .mem-fig .mf-ico{ width:42px; height:42px; border-radius:12px; display:flex; align-items:center; justify-content:center; flex-shrink:0; box-shadow:0 4px 10px rgba(20,40,80,.10); }
-  .mf-total .mf-ico{ background:#1452a0; color:#fff; }
+  .mf-total .mf-ico{ background:#2f5fd0; color:#fff; }
   .mf-right .mf-ico{ background:#0e7a6b; color:#fff; }
   .mem-fig .mf-body{ display:flex; flex-direction:column; gap:3px; min-width:0; }
   .mem-fig .mf-num{ font-size:30px; font-weight:800; letter-spacing:-.03em; line-height:1; display:flex; align-items:baseline; gap:6px; }
@@ -754,7 +755,7 @@ onAuthStateChanged(_auth, async function(user){
     var OPTS=[
       { key:'all',      label:'전체 공지',      color:'#64748b', href:'notices.html' },
       { key:'admin',    label:'MOIDA 공지',     color:'#15182a', href:'notices.html?src=admin' },
-      { key:'central',  label:'민주당 중앙당',   color:'#1452a0', href:'notices.html?src=central' },
+      { key:'central',  label:'민주당 중앙당',   color:'#2f5fd0', href:'notices.html?src=central' },
       { key:'gyeonggi', label:'민주당 경기도당', color:'#0d9488', href:'notices.html?src=gyeonggi' },
       { key:'council',  label:'경기도의회',      color:'#b45309', href:'notices.html?src=council' }
     ];
