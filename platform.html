@@ -145,8 +145,8 @@ button{font-family:inherit}
       <div class="pg" style="max-width:1320px;margin:0 auto">
         <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:12px">
           <div>
-            <div style="font-size:22px;font-weight:700;letter-spacing:-0.02em;color:#16202e">안녕하세요, 장윤정 의원님</div>
-            <div style="font-size:13.5px;color:#7a8593;margin-top:4px">오늘 처리할 민원 23건과 일정 5건이 있습니다. AI 비서실장이 브리핑을 준비했어요.</div>
+            <div id="dashGreet" style="font-size:22px;font-weight:700;letter-spacing:-0.02em;color:#16202e">안녕하세요</div>
+            <div id="dashGreetSub" style="font-size:13.5px;color:#7a8593;margin-top:4px">오늘의 업무 현황입니다.</div>
           </div>
           <button style="display:flex;align-items:center;gap:8px;height:40px;padding:0 18px;background:#1d3a6e;color:#fff;border:none;border-radius:10px;font-size:13.5px;font-weight:600;cursor:pointer;box-shadow:0 1px 2px rgba(16,24,40,0.1)" data-hover="background:#16305c">
             <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.6L19.5 10l-5.6 1.9L12 17.5l-1.9-5.6L4.5 10l5.6-1.9z"/></svg>
@@ -168,24 +168,24 @@ button{font-family:inherit}
               <span style="font-size:13px;color:#6b7585;font-weight:500">오늘 일정</span>
               <span style="width:34px;height:34px;border-radius:9px;background:#e8f0fe;color:#2563eb;display:flex;align-items:center;justify-content:center"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg></span>
             </div>
-            <div style="display:flex;align-items:baseline;gap:6px;margin-top:14px"><span style="font-size:30px;font-weight:700;letter-spacing:-0.02em">5</span><span style="font-size:14px;color:#8a94a3;font-weight:500">건</span></div>
-            <div style="display:flex;align-items:center;gap:6px;font-size:12px;margin-top:8px"><span style="color:#2563eb;font-weight:700">14:00</span><span style="color:#9aa3b0">국토위 전체회의</span></div>
+            <div style="display:flex;align-items:baseline;gap:6px;margin-top:14px"><span id="kpiToday" style="font-size:30px;font-weight:700;letter-spacing:-0.02em">0</span><span style="font-size:14px;color:#8a94a3;font-weight:500">건</span></div>
+            <div id="kpiTodayMeta" style="display:flex;align-items:center;gap:6px;font-size:12px;margin-top:8px"><span style="color:#9aa3b0">예정된 일정 없음</span></div>
           </div>
           <div style="background:#fff;border:1px solid #e9ecf1;border-radius:14px;padding:18px 20px;box-shadow:0 1px 2px rgba(16,24,40,0.04)">
             <div style="display:flex;align-items:center;justify-content:space-between">
-              <span style="font-size:13px;color:#6b7585;font-weight:500">신규 지지자</span>
+              <span style="font-size:13px;color:#6b7585;font-weight:500">등록 연락처</span>
               <span style="width:34px;height:34px;border-radius:9px;background:#e7f6ec;color:#16a34a;display:flex;align-items:center;justify-content:center"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.1"/><path d="M3 20c0-3.2 2.7-5 6-5s6 1.8 6 5"/><path d="M16 5.6a3 3 0 0 1 0 5.6M21 20c0-2.5-1.4-4.1-3.5-4.7"/></svg></span>
             </div>
-            <div style="display:flex;align-items:baseline;gap:6px;margin-top:14px"><span style="font-size:30px;font-weight:700;letter-spacing:-0.02em">128</span><span style="font-size:14px;color:#8a94a3;font-weight:500">명</span></div>
-            <div style="display:flex;align-items:center;gap:6px;font-size:12px;margin-top:8px"><span style="color:#16a34a;font-weight:700">▲ 12%</span><span style="color:#9aa3b0">이번 주</span></div>
+            <div style="display:flex;align-items:baseline;gap:6px;margin-top:14px"><span id="kpiMembers" style="font-size:30px;font-weight:700;letter-spacing:-0.02em">0</span><span style="font-size:14px;color:#8a94a3;font-weight:500">명</span></div>
+            <div id="kpiMembersMeta" style="display:flex;align-items:center;gap:6px;font-size:12px;margin-top:8px"><span style="color:#9aa3b0">CRM에서 관리</span></div>
           </div>
           <div style="background:#fff;border:1px solid #e9ecf1;border-radius:14px;padding:18px 20px;box-shadow:0 1px 2px rgba(16,24,40,0.04)">
             <div style="display:flex;align-items:center;justify-content:space-between">
               <span style="font-size:13px;color:#6b7585;font-weight:500">언론 노출</span>
               <span style="width:34px;height:34px;border-radius:9px;background:#eef0fb;color:#5b51d8;display:flex;align-items:center;justify-content:center"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h13v14H5a1 1 0 0 1-1-1z"/><path d="M17 8h3v9a2 2 0 0 1-2 2M8 9h5M8 13h5"/></svg></span>
             </div>
-            <div style="display:flex;align-items:baseline;gap:6px;margin-top:14px"><span style="font-size:30px;font-weight:700;letter-spacing:-0.02em">17</span><span style="font-size:14px;color:#8a94a3;font-weight:500">건</span></div>
-            <div style="display:flex;align-items:center;gap:6px;font-size:12px;margin-top:8px"><span style="color:#16a34a;font-weight:700">긍정 11</span><span style="color:#9aa3b0">중립 4 · 부정 2</span></div>
+            <div style="display:flex;align-items:baseline;gap:6px;margin-top:14px"><span id="kpiNews" style="font-size:30px;font-weight:700;letter-spacing:-0.02em">0</span><span style="font-size:14px;color:#8a94a3;font-weight:500">건</span></div>
+            <div id="kpiNewsMeta" style="display:flex;align-items:center;gap:6px;font-size:12px;margin-top:8px"><span style="color:#9aa3b0">집계 중</span></div>
           </div>
         </div>
 
@@ -213,32 +213,7 @@ button{font-family:inherit}
                 <span style="font-size:15px;font-weight:700;letter-spacing:-0.01em">오늘의 일정</span>
                 <span style="font-size:12.5px;color:#2563eb;font-weight:600;cursor:pointer">전체 보기</span>
               </div>
-              <div style="display:flex;flex-direction:column">
-                <div style="display:flex;gap:14px;padding:11px 0;border-bottom:1px solid #f0f2f5">
-                  <div style="font-size:13px;font-weight:700;color:#16202e;width:46px;flex-shrink:0">09:30</div>
-                  <div style="width:3px;border-radius:3px;background:#16a34a;flex-shrink:0"></div>
-                  <div style="flex:1"><div style="font-size:13.5px;font-weight:600">의원실 주간 회의</div><div style="font-size:12px;color:#8a94a3;margin-top:2px">의원회관 512호 · 보좌진 전원</div></div>
-                  <span style="font-size:11px;font-weight:600;color:#16a34a;background:#e7f6ec;padding:3px 9px;border-radius:6px;height:fit-content">내부</span>
-                </div>
-                <div style="display:flex;gap:14px;padding:11px 0;border-bottom:1px solid #f0f2f5">
-                  <div style="font-size:13px;font-weight:700;color:#16202e;width:46px;flex-shrink:0">11:00</div>
-                  <div style="width:3px;border-radius:3px;background:#d97706;flex-shrink:0"></div>
-                  <div style="flex:1"><div style="font-size:13.5px;font-weight:600">전세사기 피해자 간담회</div><div style="font-size:12px;color:#8a94a3;margin-top:2px">지역사무소 · 피해자 대표 5인</div></div>
-                  <span style="font-size:11px;font-weight:600;color:#d97706;background:#fdf2e3;padding:3px 9px;border-radius:6px;height:fit-content">지역</span>
-                </div>
-                <div style="display:flex;gap:14px;padding:11px 0;border-bottom:1px solid #f0f2f5">
-                  <div style="font-size:13px;font-weight:700;color:#16202e;width:46px;flex-shrink:0">14:00</div>
-                  <div style="width:3px;border-radius:3px;background:#2563eb;flex-shrink:0"></div>
-                  <div style="flex:1"><div style="font-size:13.5px;font-weight:600">국토교통위원회 전체회의</div><div style="font-size:12px;color:#8a94a3;margin-top:2px">본관 제1소회의실 · 발언 예정</div></div>
-                  <span style="font-size:11px;font-weight:600;color:#2563eb;background:#e8f0fe;padding:3px 9px;border-radius:6px;height:fit-content">의정</span>
-                </div>
-                <div style="display:flex;gap:14px;padding:11px 0">
-                  <div style="font-size:13px;font-weight:700;color:#16202e;width:46px;flex-shrink:0">18:30</div>
-                  <div style="width:3px;border-radius:3px;background:#5b51d8;flex-shrink:0"></div>
-                  <div style="flex:1"><div style="font-size:13.5px;font-weight:600">지역 청년단체 정기 모임</div><div style="font-size:12px;color:#8a94a3;margin-top:2px">청년창업센터 · 축사</div></div>
-                  <span style="font-size:11px;font-weight:600;color:#5b51d8;background:#eef0fb;padding:3px 9px;border-radius:6px;height:fit-content">외부</span>
-                </div>
-              </div>
+              <div id="dashToday" style="display:flex;flex-direction:column"></div>
             </div>
           </div>
 
@@ -278,24 +253,7 @@ button{font-family:inherit}
 
         <div style="background:#fff;border:1px solid #e9ecf1;border-radius:14px;padding:20px;box-shadow:0 1px 2px rgba(16,24,40,0.04);margin-top:16px">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px"><span style="font-size:15px;font-weight:700;letter-spacing:-0.01em">뉴스·언론 모니터링</span><span style="font-size:12.5px;color:#2563eb;font-weight:600;cursor:pointer">전체 보기</span></div>
-          <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px">
-            <div style="display:flex;gap:12px;padding:12px;border:1px solid #eef1f5;border-radius:10px" data-hover="border-color:#d6dde6">
-              <span style="width:4px;border-radius:3px;background:#16a34a;flex-shrink:0"></span>
-              <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:600;line-height:1.4">"장윤정 의원, 전세사기 피해 구제 법안 대표발의"</div><div style="display:flex;align-items:center;gap:8px;margin-top:6px;font-size:11.5px;color:#9aa3b0"><span>연합뉴스</span><span>·</span><span>1시간 전</span><span style="margin-left:auto;color:#16a34a;font-weight:600">긍정</span></div></div>
-            </div>
-            <div style="display:flex;gap:12px;padding:12px;border:1px solid #eef1f5;border-radius:10px" data-hover="border-color:#d6dde6">
-              <span style="width:4px;border-radius:3px;background:#94a3b8;flex-shrink:0"></span>
-              <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:600;line-height:1.4">"국토위, 주거안정 대책 두고 여야 공방"</div><div style="display:flex;align-items:center;gap:8px;margin-top:6px;font-size:11.5px;color:#9aa3b0"><span>한겨레</span><span>·</span><span>3시간 전</span><span style="margin-left:auto;color:#6b7585;font-weight:600">중립</span></div></div>
-            </div>
-            <div style="display:flex;gap:12px;padding:12px;border:1px solid #eef1f5;border-radius:10px" data-hover="border-color:#d6dde6">
-              <span style="width:4px;border-radius:3px;background:#16a34a;flex-shrink:0"></span>
-              <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:600;line-height:1.4">"청년 주거 지원 확대… 지역사회 환영"</div><div style="display:flex;align-items:center;gap:8px;margin-top:6px;font-size:11.5px;color:#9aa3b0"><span>지역일보</span><span>·</span><span>5시간 전</span><span style="margin-left:auto;color:#16a34a;font-weight:600">긍정</span></div></div>
-            </div>
-            <div style="display:flex;gap:12px;padding:12px;border:1px solid #eef1f5;border-radius:10px" data-hover="border-color:#d6dde6">
-              <span style="width:4px;border-radius:3px;background:#dc2626;flex-shrink:0"></span>
-              <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:600;line-height:1.4">"예산안 심사 지연에 비판 목소리"</div><div style="display:flex;align-items:center;gap:8px;margin-top:6px;font-size:11.5px;color:#9aa3b0"><span>매일경제</span><span>·</span><span>7시간 전</span><span style="margin-left:auto;color:#dc2626;font-weight:600">부정</span></div></div>
-            </div>
-          </div>
+          <div id="dashNews" style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px"></div>
         </div>
       </div>
       </div>
@@ -601,38 +559,11 @@ button{font-family:inherit}
       <div class="pg" style="max-width:1100px;margin:0 auto">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
           <div style="font-size:15px;font-weight:700">사용자 및 권한 관리</div>
-          <button style="display:flex;align-items:center;gap:6px;height:38px;padding:0 15px;background:#1d3a6e;color:#fff;border:none;border-radius:9px;font-size:13px;font-weight:600;cursor:pointer"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>구성원 초대</button>
+          <button id="adminInviteBtn" data-hover="background:#16305c" style="display:flex;align-items:center;gap:6px;height:38px;padding:0 15px;background:#1d3a6e;color:#fff;border:none;border-radius:9px;font-size:13px;font-weight:600;cursor:pointer"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>구성원 초대</button>
         </div>
         <div style="background:#fff;border:1px solid #e9ecf1;border-radius:14px;box-shadow:0 1px 2px rgba(16,24,40,0.04);overflow:hidden;margin-bottom:18px">
           <div style="display:grid;grid-template-columns:2fr 1.3fr 1fr 1fr 0.6fr;padding:13px 20px;background:#fafbfc;border-bottom:1px solid #eef1f5;font-size:12px;font-weight:600;color:#8a94a3"><span>구성원</span><span>역할</span><span>최근 접속</span><span>상태</span><span></span></div>
-          <div style="display:grid;grid-template-columns:2fr 1.3fr 1fr 1fr 0.6fr;padding:14px 20px;border-bottom:1px solid #f2f4f7;align-items:center;font-size:13px" data-hover="background:#fafbfc">
-            <div style="display:flex;align-items:center;gap:11px"><span style="width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,#3b6fd4,#5b8cff);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px">장</span><div><div style="font-weight:600">장윤정</div><div style="font-size:11.5px;color:#9aa3b0">yj.jang@assembly.go.kr</div></div></div>
-            <span><span style="font-size:11.5px;font-weight:600;color:#dc2626;background:#fdecec;padding:3px 10px;border-radius:6px">의원 (관리자)</span></span>
-            <span style="color:#5b6675">방금 전</span>
-            <span><span style="font-size:11.5px;font-weight:600;color:#16a34a;display:flex;align-items:center;gap:5px"><span style="width:7px;height:7px;border-radius:50%;background:#16a34a"></span>활성</span></span>
-            <span style="color:#bcc4ce;cursor:pointer;text-align:right">···</span>
-          </div>
-          <div style="display:grid;grid-template-columns:2fr 1.3fr 1fr 1fr 0.6fr;padding:14px 20px;border-bottom:1px solid #f2f4f7;align-items:center;font-size:13px" data-hover="background:#fafbfc">
-            <div style="display:flex;align-items:center;gap:11px"><span style="width:34px;height:34px;border-radius:10px;background:#e8f0fe;color:#2563eb;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px">박</span><div><div style="font-weight:600">박정훈</div><div style="font-size:11.5px;color:#9aa3b0">jh.park@assembly.go.kr</div></div></div>
-            <span><span style="font-size:11.5px;font-weight:600;color:#2563eb;background:#e8f0fe;padding:3px 10px;border-radius:6px">정책지원관</span></span>
-            <span style="color:#5b6675">10분 전</span>
-            <span><span style="font-size:11.5px;font-weight:600;color:#16a34a;display:flex;align-items:center;gap:5px"><span style="width:7px;height:7px;border-radius:50%;background:#16a34a"></span>활성</span></span>
-            <span style="color:#bcc4ce;cursor:pointer;text-align:right">···</span>
-          </div>
-          <div style="display:grid;grid-template-columns:2fr 1.3fr 1fr 1fr 0.6fr;padding:14px 20px;border-bottom:1px solid #f2f4f7;align-items:center;font-size:13px" data-hover="background:#fafbfc">
-            <div style="display:flex;align-items:center;gap:11px"><span style="width:34px;height:34px;border-radius:10px;background:#e7f6ec;color:#16a34a;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px">정</span><div><div style="font-weight:600">정수민</div><div style="font-size:11.5px;color:#9aa3b0">sm.jung@assembly.go.kr</div></div></div>
-            <span><span style="font-size:11.5px;font-weight:600;color:#16a34a;background:#e7f6ec;padding:3px 10px;border-radius:6px">비서</span></span>
-            <span style="color:#5b6675">1시간 전</span>
-            <span><span style="font-size:11.5px;font-weight:600;color:#16a34a;display:flex;align-items:center;gap:5px"><span style="width:7px;height:7px;border-radius:50%;background:#16a34a"></span>활성</span></span>
-            <span style="color:#bcc4ce;cursor:pointer;text-align:right">···</span>
-          </div>
-          <div style="display:grid;grid-template-columns:2fr 1.3fr 1fr 1fr 0.6fr;padding:14px 20px;align-items:center;font-size:13px" data-hover="background:#fafbfc">
-            <div style="display:flex;align-items:center;gap:11px"><span style="width:34px;height:34px;border-radius:10px;background:#eef0fb;color:#5b51d8;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px">한</span><div><div style="font-weight:600">한가람</div><div style="font-size:11.5px;color:#9aa3b0">gr.han@assembly.go.kr</div></div></div>
-            <span><span style="font-size:11.5px;font-weight:600;color:#5b51d8;background:#eef0fb;padding:3px 10px;border-radius:6px">홍보담당</span></span>
-            <span style="color:#9aa3b0">2일 전</span>
-            <span><span style="font-size:11.5px;font-weight:600;color:#9aa3b0;display:flex;align-items:center;gap:5px"><span style="width:7px;height:7px;border-radius:50%;background:#cbd5e1"></span>대기</span></span>
-            <span style="color:#bcc4ce;cursor:pointer;text-align:right">···</span>
-          </div>
+          <div id="adminUsers"></div>
         </div>
 
         <div style="background:#fff;border:1px solid #e9ecf1;border-radius:14px;padding:20px;box-shadow:0 1px 2px rgba(16,24,40,0.04)">
@@ -840,13 +771,14 @@ button{font-family:inherit}
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import { getFirestore, doc, getDoc, setDoc, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 const _app = initializeApp({apiKey:"AIzaSyAIjhvbCztHoF7YwP2IYIk2C6jCI64uFhs",authDomain:"jjj2195-1bd15.firebaseapp.com",projectId:"jjj2195-1bd15",storageBucket:"jjj2195-1bd15.firebasestorage.app",messagingSenderId:"370852437825",appId:"1:370852437825:web:b0a891d6a99b426d230bc0"});
 const _auth = getAuth(_app);
 const _db = getFirestore(_app);
 const M = window.MOIDA;
 M.db = _db; M.auth = _auth;
+M.fs = { doc:doc, getDoc:getDoc, setDoc:setDoc, collection:collection, query:query, where:where, getDocs:getDocs };
 
 /* 로그아웃 */
 var pc = document.getElementById('profileCard');
@@ -1207,6 +1139,7 @@ onAuthStateChanged(_auth, async function(user){
     POOL = (items||[]).map(function(x){ x._s = sentimentOf((x.title||'')+' '+(x.snippet||'')); return x; });
     var cnt = document.getElementById('newsCount'); if(cnt) cnt.textContent = POOL.length;
     buildFilters(); renderList(); renderSidebar();
+    M.news = POOL; if(window.__dashNews) try{ window.__dashNews(); }catch(e){}
   }
 
   if(window.__NEWS_TEST){ ingest(window.__NEWS_TEST); }
@@ -1215,6 +1148,146 @@ onAuthStateChanged(_auth, async function(user){
       .then(function(j){ ingest(j.items||j||[]); })
       .catch(function(e){ console.warn('news_data.json load fail', e); ingest([]); });
   }
+})();
+</script>
+<!-- ── 대시보드 집계 (events + members + news) ───────────────────────── -->
+<script>
+(function(){
+  'use strict';
+  var M = window.MOIDA; if(!M) return;
+  var CATS = { '의정':{fg:'#2563eb',bg:'#e8f0fe'}, '지역':{fg:'#d97706',bg:'#fdf2e3'}, '외부':{fg:'#5b51d8',bg:'#eef0fb'} };
+  function cat(c){ return CATS[c]||CATS['의정']; }
+  function pad(n){ return String(n).padStart(2,'0'); }
+  function todayKey(){ var d=new Date(); return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate()); }
+
+  function renderGreet(){
+    var nm = (M.profile&&M.profile.name) || (M.sessUser().displayName) || (M.sessUser().email||'').split('@')[0] || '';
+    var g = document.getElementById('dashGreet');
+    if(g) g.textContent = nm ? ('안녕하세요, '+nm+' 의원님') : '안녕하세요';
+    var todays = (M.events||[]).filter(function(e){ return e.date===todayKey(); }).length;
+    var sub = document.getElementById('dashGreetSub');
+    if(sub) sub.textContent = '오늘 일정 '+todays+'건 · 등록 연락처 '+((M.members||[]).length).toLocaleString()+'명. AI 비서실장이 브리핑을 준비했어요.';
+  }
+  function renderKpis(){
+    var ev = (M.events||[]).filter(function(e){ return e.date===todayKey(); }).sort(function(a,b){return (a.time||'').localeCompare(b.time||'');});
+    var kt = document.getElementById('kpiToday'); if(kt) kt.textContent = ev.length;
+    var ktm = document.getElementById('kpiTodayMeta');
+    if(ktm) ktm.innerHTML = ev.length ? '<span style="color:#2563eb;font-weight:700">'+M.esc(ev[0].time||'')+'</span><span style="color:#9aa3b0">'+M.esc(ev[0].title||'')+'</span>' : '<span style="color:#9aa3b0">예정된 일정 없음</span>';
+    var km = document.getElementById('kpiMembers'); if(km) km.textContent = ((M.members||[]).length).toLocaleString();
+    var news = M.news||[];
+    var kn = document.getElementById('kpiNews'); if(kn) kn.textContent = news.length;
+    var pos=news.filter(function(x){return x._s==='긍정';}).length, neg=news.filter(function(x){return x._s==='부정';}).length, neu=news.length-pos-neg;
+    var knm = document.getElementById('kpiNewsMeta');
+    if(knm) knm.innerHTML = news.length ? '<span style="color:#16a34a;font-weight:700">긍정 '+pos+'</span><span style="color:#9aa3b0">중립 '+neu+' · 부정 '+neg+'</span>' : '<span style="color:#9aa3b0">집계 중</span>';
+  }
+  function renderToday(){
+    var box = document.getElementById('dashToday'); if(!box) return;
+    var ev = (M.events||[]).filter(function(e){ return e.date===todayKey(); }).sort(function(a,b){return (a.time||'').localeCompare(b.time||'');});
+    if(!ev.length){ box.innerHTML = '<div style="padding:18px 0;text-align:center;color:#9aa3b0;font-size:13px">오늘 예정된 일정이 없습니다.</div>'; return; }
+    box.innerHTML = ev.map(function(e,i){
+      var c = cat(e.cat); var last = i===ev.length-1;
+      var meta = e._location || '';
+      return '<div style="display:flex;gap:14px;padding:11px 0;'+(last?'':'border-bottom:1px solid #f0f2f5')+'">'
+        +'<div style="font-size:13px;font-weight:700;color:#16202e;width:46px;flex-shrink:0">'+M.esc(e.time||'')+'</div>'
+        +'<div style="width:3px;border-radius:3px;background:'+c.fg+';flex-shrink:0"></div>'
+        +'<div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:600">'+M.esc(e.title||'일정')+'</div>'+(meta?'<div style="font-size:12px;color:#8a94a3;margin-top:2px">'+M.esc(meta)+'</div>':'')+'</div>'
+        +'<span style="font-size:11px;font-weight:600;color:'+c.fg+';background:'+c.bg+';padding:3px 9px;border-radius:6px;height:fit-content">'+M.esc(e.cat||'의정')+'</span></div>';
+    }).join('');
+  }
+  function renderNews(){
+    var box = document.getElementById('dashNews'); if(!box) return;
+    var SC = { '긍정':'#16a34a','중립':'#94a3b8','부정':'#dc2626' };
+    var FG = { '긍정':'#16a34a','중립':'#6b7585','부정':'#dc2626' };
+    var list = (M.news||[]).slice(0,4);
+    if(!list.length){ box.innerHTML = '<div style="grid-column:1/-1;padding:18px;text-align:center;color:#9aa3b0;font-size:13px">뉴스 데이터를 불러오는 중…</div>'; return; }
+    box.innerHTML = list.map(function(x){
+      return '<a href="'+M.esc(x.url||'#')+'" target="_blank" rel="noopener" style="display:flex;gap:12px;padding:12px;border:1px solid #eef1f5;border-radius:10px;text-decoration:none;color:inherit" data-hover="border-color:#d6dde6">'
+        +'<span style="width:4px;border-radius:3px;background:'+(SC[x._s]||'#94a3b8')+';flex-shrink:0"></span>'
+        +'<div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:600;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">'+M.esc(x.title||'')+'</div>'
+        +'<div style="display:flex;align-items:center;gap:8px;margin-top:6px;font-size:11.5px;color:#9aa3b0"><span>'+M.esc(x.press||x.source||'')+'</span><span>·</span><span>'+M.esc(x.date||'')+'</span><span style="margin-left:auto;color:'+(FG[x._s]||'#6b7585')+';font-weight:600">'+M.esc(x._s||'')+'</span></div></div></a>';
+    }).join('');
+    if(window.__bindHover) box.querySelectorAll('[data-hover]').forEach(window.__bindHover);
+  }
+  function renderAll(){ renderGreet(); renderKpis(); renderToday(); renderNews(); }
+  window.__dashNews = function(){ renderKpis(); renderNews(); };
+  renderAll();
+  M.onData(function(){ renderAll(); });
+})();
+</script>
+<!-- ── 관리 (← invitations: 구성원·권한) ─────────────────────────────── -->
+<script>
+(function(){
+  'use strict';
+  var M = window.MOIDA; if(!M) return;
+  var ROLE = {
+    '의원 (관리자)':{fg:'#dc2626',bg:'#fdecec'}, '정책지원관':{fg:'#2563eb',bg:'#e8f0fe'},
+    '비서':{fg:'#16a34a',bg:'#e7f6ec'}, '홍보담당':{fg:'#5b51d8',bg:'#eef0fb'}, '조직담당':{fg:'#d97706',bg:'#fdf2e3'}
+  };
+  function roleColor(r){ return ROLE[r]||{fg:'#64748b',bg:'#eef1f5'}; }
+  function userRow(name, email, role, last, active, lead){
+    var rc = roleColor(role);
+    var ava = lead ? 'background:linear-gradient(135deg,#3b6fd4,#5b8cff);color:#fff' : 'background:'+rc.bg+';color:'+rc.fg;
+    var stColor = active?'#16a34a':'#9aa3b0', stDot = active?'#16a34a':'#cbd5e1', stTxt = active?'활성':'대기';
+    return '<div style="display:grid;grid-template-columns:2fr 1.3fr 1fr 1fr 0.6fr;padding:14px 20px;border-bottom:1px solid #f2f4f7;align-items:center;font-size:13px" data-hover="background:#fafbfc">'
+      +'<div style="display:flex;align-items:center;gap:11px"><span style="width:34px;height:34px;border-radius:10px;'+ava+';display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px">'+M.esc((name||'·').charAt(0))+'</span><div style="min-width:0"><div style="font-weight:600">'+M.esc(name||'')+'</div><div style="font-size:11.5px;color:#9aa3b0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+M.esc(email||'')+'</div></div></div>'
+      +'<span><span style="font-size:11.5px;font-weight:600;color:'+rc.fg+';background:'+rc.bg+';padding:3px 10px;border-radius:6px">'+M.esc(role)+'</span></span>'
+      +'<span style="color:#5b6675">'+M.esc(last||'—')+'</span>'
+      +'<span><span style="font-size:11.5px;font-weight:600;color:'+stColor+';display:flex;align-items:center;gap:5px"><span style="width:7px;height:7px;border-radius:50%;background:'+stDot+'"></span>'+stTxt+'</span></span>'
+      +'<span style="color:#bcc4ce;cursor:pointer;text-align:right">···</span></div>';
+  }
+  function renderUsers(){
+    var box = document.getElementById('adminUsers'); if(!box) return;
+    var p = M.profile||{};
+    var nm = p.name || M.sessUser().displayName || (M.sessUser().email||'').split('@')[0] || '의원';
+    var em = p.email || M.sessUser().email || '';
+    var rows = [ userRow(nm, em, '의원 (관리자)', '방금 전', true, true) ];
+    (M.staff||[]).forEach(function(s){ rows.push(userRow(s.name||(s.email||'').split('@')[0], s.email, s.role||'구성원', '—', false, false)); });
+    box.innerHTML = rows.join('');
+    if(window.__bindHover) box.querySelectorAll('[data-hover]').forEach(window.__bindHover);
+  }
+  async function loadStaff(){
+    if(!M.db || !M.uid || !M.fs) return;
+    try{
+      var qs = await M.fs.getDocs(M.fs.query(M.fs.collection(M.db,'invitations'), M.fs.where('ownerUid','==',M.uid)));
+      var arr = []; qs.forEach(function(d){ var x=d.data(); arr.push({ email:x.email||'', role:x.role||'', name:x.name||'' }); });
+      M.staff = arr; renderUsers();
+    }catch(e){ console.warn('staff load fail', e); }
+  }
+  async function doInvite(email, name, role){
+    if(!M.db || !M.uid || !M.fs){ alert('로그인 후 이용해 주세요.'); return false; }
+    if(window.MOIDA_READONLY){ alert('이용 기간이 만료되어 읽기 전용 상태입니다.'); return false; }
+    var key = email.toLowerCase().replace(/\./g,'_').replace(/@/g,'__');
+    try{
+      await M.fs.setDoc(M.fs.doc(M.db,'invitations',key), { ownerUid:M.uid, email:email.toLowerCase(), name:name||'', role:role, created:Date.now() }, {merge:true});
+      M.staff = (M.staff||[]).filter(function(s){ return (s.email||'').toLowerCase()!==email.toLowerCase(); });
+      M.staff.push({ email:email.toLowerCase(), name:name||'', role:role });
+      renderUsers(); return true;
+    }catch(e){ alert('초대 저장 실패: '+(e&&e.message||e)); return false; }
+  }
+  var btn = document.getElementById('adminInviteBtn');
+  if(btn) btn.addEventListener('click', function(){
+    var ovl = document.createElement('div');
+    ovl.style.cssText='position:fixed;inset:0;background:rgba(16,24,40,0.45);display:flex;align-items:center;justify-content:center;z-index:200';
+    ovl.innerHTML='<div style="background:#fff;border-radius:16px;width:420px;max-width:94vw;padding:24px;box-shadow:0 20px 60px rgba(16,24,40,0.3)">'
+      +'<div style="font-size:16px;font-weight:700;margin-bottom:6px">구성원 초대</div>'
+      +'<div style="font-size:12.5px;color:#8a94a3;margin-bottom:16px">초대한 이메일로 가입하면 의원실 데이터에 접근할 수 있습니다.</div>'
+      +'<div style="margin-bottom:12px"><label style="display:block;font-size:12px;font-weight:600;color:#5b6675;margin-bottom:5px">이메일</label><input id="i_email" type="email" placeholder="name@example.com" style="width:100%;height:38px;border:1px solid #e7eaef;border-radius:9px;padding:0 11px;font-size:13.5px;font-family:inherit;outline:none"/></div>'
+      +'<div style="margin-bottom:12px"><label style="display:block;font-size:12px;font-weight:600;color:#5b6675;margin-bottom:5px">이름 (선택)</label><input id="i_name" placeholder="홍길동" style="width:100%;height:38px;border:1px solid #e7eaef;border-radius:9px;padding:0 11px;font-size:13.5px;font-family:inherit;outline:none"/></div>'
+      +'<div style="margin-bottom:12px"><label style="display:block;font-size:12px;font-weight:600;color:#5b6675;margin-bottom:5px">역할</label><select id="i_role" style="width:100%;height:38px;border:1px solid #e7eaef;border-radius:9px;padding:0 11px;font-size:13.5px;font-family:inherit;background:#fff"><option>정책지원관</option><option>비서</option><option>홍보담당</option><option>조직담당</option></select></div>'
+      +'<div style="display:flex;justify-content:flex-end;gap:8px;margin-top:8px"><button id="i_cancel" style="height:38px;padding:0 16px;background:#fff;border:1px solid #d6dde6;border-radius:9px;font-size:13px;font-weight:600;color:#5b6675;cursor:pointer">취소</button><button id="i_save" style="height:38px;padding:0 18px;background:#1d3a6e;color:#fff;border:none;border-radius:9px;font-size:13px;font-weight:600;cursor:pointer">초대 보내기</button></div></div>';
+    document.body.appendChild(ovl);
+    ovl.querySelector('#i_email').focus();
+    ovl.querySelector('#i_cancel').onclick=function(){ ovl.remove(); };
+    ovl.onclick=function(e){ if(e.target===ovl) ovl.remove(); };
+    ovl.querySelector('#i_save').onclick=async function(){
+      var email=ovl.querySelector('#i_email').value.trim();
+      if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){ ovl.querySelector('#i_email').focus(); return; }
+      var ok = await doInvite(email, ovl.querySelector('#i_name').value.trim(), ovl.querySelector('#i_role').value);
+      if(ok) ovl.remove();
+    };
+  });
+  renderUsers();
+  M.onData(function(){ renderUsers(); loadStaff(); });
 })();
 </script>
 <script src="access-guard.js"></script>
