@@ -56,15 +56,11 @@ export default {
       //    예: https://gateway.ai.cloudflare.com/v1/<계정ID>/<게이트웨이>/openai
       const OPENAI_BASE = (env.OPENAI_BASE || "https://api.openai.com/v1").replace(/\/+$/, "");
 
-      // 함수 호출(tools)을 포함해 그대로 OpenAI로 전달
-      const payload = {
-        model: body.model || "gpt-4o-mini",
-        messages: Array.isArray(body.messages) ? body.messages.slice(-40) : [],
-        temperature: typeof body.temperature === "number" ? body.temperature : 0.5,
-        max_tokens: body.max_tokens || 1000,
-      };
-      if (body.tools) payload.tools = body.tools;
-      if (body.tool_choice) payload.tool_choice = body.tool_choice;
+      // 완전 투명 프록시: 클라이언트가 보낸 본문을 그대로 OpenAI로 전달.
+      //  · 도구(tools)·모델·파라미터 등 모든 기능은 "사이트 코드"에서 제어되고
+      //    자동 배포되므로, 이 워커는 이후 다시 수정할 필요가 없습니다.
+      const payload = Object.assign({ model: "gpt-4o-mini", temperature: 0.5, max_tokens: 1000 }, body);
+      if (Array.isArray(payload.messages)) payload.messages = payload.messages.slice(-40);
 
       const r = await fetch(`${OPENAI_BASE}/chat/completions`, {
         method: "POST",
