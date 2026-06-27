@@ -16,23 +16,30 @@ button{font-family:inherit}
 .pg{animation:fadeUp .24s ease both}
 </style>
 <style>.page{display:none}.nav-accent{display:none}.nav-item.active .nav-accent{display:block}.nav-item.active{background:rgba(91,140,255,0.16);color:#fff}.nav-item.active svg{color:#fff}</style>
+<style>
+#sideBar.collapsed{width:72px!important}
+#sideBar.collapsed .sb-brandtext,#sideBar.collapsed .sb-label,#sideBar.collapsed .sb-profiletext,#sideBar.collapsed .nav-item>span:not(.nav-accent),#sideBar.collapsed #profileCard>svg{display:none!important}
+#sideBar.collapsed .sb-head{justify-content:center;padding-left:0;padding-right:0}
+#sideBar.collapsed .nav-item{justify-content:center;padding-left:0!important;padding-right:0!important}
+#sideBar.collapsed #profileCard{justify-content:center}
+</style>
 </head>
 <body>
 <div style="display:flex;height:100vh;width:100%;font-family:'Pretendard',sans-serif;color:#1a2330;background:#f5f6f8;overflow:hidden">
 
-  <aside style="width:240px;flex-shrink:0;background:#0f1d33;display:flex;flex-direction:column;color:#9fb0c7">
-    <div style="display:flex;align-items:center;gap:11px;padding:20px 18px 16px">
+  <aside id="sideBar" style="width:240px;flex-shrink:0;background:#0f1d33;display:flex;flex-direction:column;color:#9fb0c7;transition:width .2s ease">
+    <div class="sb-head" style="display:flex;align-items:center;gap:11px;padding:20px 18px 16px">
       <div style="width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#16305c,#2f5fd0);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(22,48,92,0.32);flex-shrink:0">
         <svg width="21" height="21" viewBox="0 0 48 48"><path d="M8 21 Q24 3 40 21 Z" fill="#fff"/><circle cx="24" cy="6.4" r="2.7" fill="#7fb0ff"/><rect x="6.5" y="20.3" width="35" height="3.2" rx="1.6" fill="#fff"/><rect x="11" y="25" width="3" height="12.6" rx="1.5" fill="#fff"/><rect x="19" y="25" width="3" height="12.6" rx="1.5" fill="#fff"/><rect x="27" y="25" width="3" height="12.6" rx="1.5" fill="#fff"/><rect x="35" y="25" width="3" height="12.6" rx="1.5" fill="#fff"/><rect x="5.5" y="38.6" width="37" height="3.4" rx="1.7" fill="#fff"/></svg>
       </div>
-      <div>
-        <div id="brandName" style="color:#fff;font-size:14.5px;font-weight:700;letter-spacing:-0.01em">의원실</div>
-        <div style="color:#6f84a0;font-size:11px;letter-spacing:0.02em;margin-top:1px">AI 비서실 플랫폼</div>
+      <div class="sb-brandtext" style="min-width:0">
+        <div id="brandName" style="color:#fff;font-size:14.5px;font-weight:700;letter-spacing:-0.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">의원실</div>
+        <div style="color:#6f84a0;font-size:11px;letter-spacing:0.02em;margin-top:1px;white-space:nowrap">AI 비서실 플랫폼</div>
       </div>
     </div>
 
     <nav style="flex:1;display:flex;flex-direction:column;gap:2px;padding:6px 14px;overflow-y:auto">
-      <div style="font-size:10.5px;font-weight:700;letter-spacing:0.08em;color:#536683;padding:12px 12px 6px">업무</div>
+      <div class="sb-label" style="font-size:10.5px;font-weight:700;letter-spacing:0.08em;color:#536683;padding:12px 12px 6px">업무</div>
 
       <div class="nav-item" data-page="dashboard" style="position:relative;display:flex;align-items:center;gap:11px;padding:10px 12px;border-radius:9px;font-size:13.5px;font-weight:500;cursor:pointer;transition:background .15s,color .15s" data-hover="background:rgba(255,255,255,0.06)">
         <span class="nav-accent" style="position:absolute;left:-14px;top:9px;bottom:9px;width:3px;border-radius:0 3px 3px 0;background:#5b8cff"></span>
@@ -92,7 +99,7 @@ button{font-family:inherit}
 
       
 
-      <div style="font-size:10.5px;font-weight:700;letter-spacing:0.08em;color:#536683;padding:16px 12px 6px">시스템</div>
+      <div class="sb-label" style="font-size:10.5px;font-weight:700;letter-spacing:0.08em;color:#536683;padding:16px 12px 6px">시스템</div>
 
       <div class="nav-item" data-page="admin" style="position:relative;display:flex;align-items:center;gap:11px;padding:10px 12px;border-radius:9px;font-size:13.5px;font-weight:500;cursor:pointer;transition:background .15s,color .15s" data-hover="background:rgba(255,255,255,0.06)">
         <span class="nav-accent" style="position:absolute;left:-14px;top:9px;bottom:9px;width:3px;border-radius:0 3px 3px 0;background:#5b8cff"></span>
@@ -110,7 +117,7 @@ button{font-family:inherit}
     <div style="padding:14px;border-top:1px solid rgba(255,255,255,0.07)">
       <div id="profileCard" title="로그아웃" style="display:flex;align-items:center;gap:11px;padding:8px;border-radius:10px;cursor:pointer" data-hover="background:rgba(255,255,255,0.05)">
         <div id="sideAvatar" style="width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,#3b6fd4,#5b8cff);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:15px;flex-shrink:0">·</div>
-        <div style="min-width:0;flex:1">
+        <div class="sb-profiletext" style="min-width:0;flex:1">
           <div id="sideName" style="color:#fff;font-size:13px;font-weight:600">로그인 필요</div>
           <div id="sideSub" style="color:#6f84a0;font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">—</div>
         </div>
@@ -120,7 +127,10 @@ button{font-family:inherit}
   </aside>
 
   <main style="flex:1;display:flex;flex-direction:column;min-width:0;height:100vh;overflow:hidden">
-    <header style="height:64px;flex-shrink:0;background:#fff;border-bottom:1px solid #e7eaef;display:flex;align-items:center;gap:18px;padding:0 28px;z-index:5">
+    <header style="height:64px;flex-shrink:0;background:#fff;border-bottom:1px solid #e7eaef;display:flex;align-items:center;gap:14px;padding:0 28px;z-index:5">
+      <button id="sbToggle" title="사이드바 접기/펴기" aria-label="사이드바 접기/펴기" style="width:38px;height:38px;flex-shrink:0;border-radius:10px;border:1px solid #e7eaef;background:#f3f5f8;color:#5b6675;display:flex;align-items:center;justify-content:center;cursor:pointer" data-hover="background:#e9edf2">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
       <div style="min-width:0">
         <div style="font-size:18px;font-weight:700;letter-spacing:-0.01em;color:#16202e" id="pageTitle">대시보드</div>
         <div style="font-size:12px;color:#8a94a3;margin-top:1px" id="pageSub">의원실 업무를 한눈에</div>
@@ -254,7 +264,7 @@ button{font-family:inherit}
           <div id="aiMessages" style="flex:1;overflow-y:auto;padding:22px 20px;display:flex;flex-direction:column;gap:18px;background:#fafbfc">
             <div style="display:flex;gap:11px;max-width:78%">
               <div style="width:32px;height:32px;border-radius:9px;background:linear-gradient(135deg,#16305c,#3b6fd4);flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#fff"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.6L19.5 10l-5.6 1.9L12 17.5l-1.9-5.6L4.5 10l5.6-1.9z"/></svg></div>
-              <div style="background:#fff;border:1px solid #eef1f5;border-radius:4px 14px 14px 14px;padding:14px 16px;font-size:13.5px;line-height:1.6;color:#27313f">의원님, 좋은 아침입니다. 오늘 처리하실 핵심 업무를 정리했습니다.<br><br>① 오후 2시 <b>국토위 전체회의</b> 질의자료 검토<br>② <b>전세사기 민원 6건</b> 답변 승인 대기<br>③ '청년 주거' 보도자료 배포 검토<br><br>먼저 어떤 것부터 도와드릴까요?</div>
+              <div id="aiGreet" style="background:#fff;border:1px solid #eef1f5;border-radius:4px 14px 14px 14px;padding:14px 16px;font-size:13.5px;line-height:1.6;color:#27313f">좋은 하루입니다. 의정활동을 도와드리겠습니다.</div>
             </div>
             <div style="display:flex;flex-wrap:wrap;gap:8px;margin-left:43px">
               <button class="ai-chip" style="padding:8px 14px;background:#fff;border:1px solid #d6e0ee;border-radius:20px;font-size:12.5px;font-weight:600;color:#1d3a6e;cursor:pointer" data-hover="background:#eaf1fb">질의자료 요약 보여줘</button>
@@ -492,6 +502,18 @@ button{font-family:inherit}
     if(pg){ pg.style.animation='none'; void pg.offsetWidth; pg.style.animation=''; }
     if(('#'+page) !== location.hash) history.replaceState(null,'','#'+page);
   }
+
+  /* 사이드바 접기/펴기 (상태 저장) */
+  (function(){
+    var sb=document.getElementById('sideBar'), tog=document.getElementById('sbToggle');
+    if(!sb||!tog) return;
+    var KEY='moida_sb_collapsed';
+    try{ if(localStorage.getItem(KEY)==='1') sb.classList.add('collapsed'); }catch(e){}
+    tog.addEventListener('click', function(){
+      var on=sb.classList.toggle('collapsed');
+      try{ localStorage.setItem(KEY, on?'1':'0'); }catch(e){}
+    });
+  })();
 
   window.__go = show; /* 대시보드 카드 등에서 페이지 전환에 사용 */
   navItems.forEach(function(n){
@@ -1556,13 +1578,17 @@ onAuthStateChanged(_auth, async function(user){
   }
   function runLoop(typing, depth){
     if(depth>6){ if(typing) typing.remove(); addAI('처리 단계가 너무 많아 중단했습니다. 다시 시도해 주세요.'); return; }
+    var _status=0;
     fetch(gptEndpoint(), {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({model:GPT_MODEL, messages:history, tools:TOOLS})})
-      .then(function(r){ return r.json(); })
-      .then(function(d){
+      .then(function(r){ _status=r.status; return r.text(); })
+      .then(function(txt){
+        var d=null; try{ d=JSON.parse(txt); }catch(e){}
         var msg = d && d.choices && d.choices[0] && d.choices[0].message;
         if(!msg){
           if(typing) typing.remove();
-          var err=(d&&d.error&&d.error.message)||(d&&Array.isArray(d.errors)&&d.errors.map(function(e){return e&&e.message;}).join('; '))||'응답을 받지 못했습니다.';
+          var err=(d&&d.error&&d.error.message)
+                ||(d&&Array.isArray(d.errors)&&d.errors.map(function(e){return e&&(e.message||e.code);}).filter(Boolean).join('; '))
+                ||((txt&&txt.trim())? ('HTTP '+_status+' · '+txt.slice(0,400)) : ('HTTP '+_status+' · 빈 응답을 받았습니다.'));
           addAI('오류: '+M.esc(err)); return;
         }
         history.push(msg);
@@ -1602,6 +1628,27 @@ onAuthStateChanged(_auth, async function(user){
   }
   loadTodo(); renderTodo();
   M.onData(function(){ loadTodo(); renderTodo(); });
+
+  /* 첫 인사 — 실데이터 기반 브리핑 (하드코딩 제거) */
+  function _today(){ var d=new Date(); return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2); }
+  function greetHtml(){
+    var nm=(M.profile&&M.profile.name)||''; var h=new Date().getHours();
+    var sal=h<11?'좋은 아침입니다':(h<18?'안녕하세요':'늦은 시간까지 수고 많으십니다');
+    var head=(nm?M.esc(nm)+' 의원님, ':'')+sal+'. 오늘 처리하실 핵심 업무를 정리했습니다.';
+    var lines=[];
+    var ev=(M.events||[]).filter(function(e){return e.date===_today();}).sort(function(a,b){return (a.time||'').localeCompare(b.time||'');});
+    if(ev.length) lines.push('오늘 일정 <b>'+ev.length+'건</b> — 첫 일정 '+M.esc(((ev[0].time||'')+' '+(ev[0].title||'')).trim()));
+    var open=(M.complaints||[]).filter(function(c){var s=c.status||'접수';return s!=='종결'&&s!=='답변완료';}).length;
+    if(open) lines.push('미처리 민원 <b>'+open+'건</b> 답변 대기');
+    var act=(M.policies||[]).filter(function(p){return (+p.progress||0)<100;}).length;
+    if(act) lines.push('추진 중 정책 <b>'+act+'건</b> 점검');
+    var NUM=['①','②','③','④'];
+    var body=lines.length ? '<br><br>'+lines.slice(0,4).map(function(l,i){return NUM[i]+' '+l;}).join('<br>') : '<br><br>아직 등록된 데이터가 적습니다. 일정·민원·정책을 추가하시면 매일 핵심을 브리핑해 드릴게요.';
+    return head+body+'<br><br>먼저 어떤 것부터 도와드릴까요?';
+  }
+  function paintGreet(){ if(history.length) return; var g=document.getElementById('aiGreet'); if(!g) return; g.innerHTML=greetHtml(); seed = msgs?msgs.innerHTML:seed; }
+  paintGreet();
+  M.onData(function(){ paintGreet(); });
 })();
 </script>
 <!-- ── 공지사항 (중앙당·경기도당·경기도의회 크롤 + MOIDA 공지) ────────── -->
