@@ -430,42 +430,23 @@ button{font-family:inherit}
       <div class="pg" style="max-width:1320px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:16px;align-items:start">
         <div style="background:#fff;border:1px solid #e9ecf1;border-radius:14px;padding:20px;box-shadow:0 1px 2px rgba(16,24,40,0.04)">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px">
-            <div style="display:flex;align-items:center;gap:12px"><span style="font-size:18px;font-weight:700">2026년 6월</span><div style="display:flex;gap:4px"><button style="width:30px;height:30px;border-radius:8px;border:1px solid #e7eaef;background:#fff;cursor:pointer;color:#5b6675;display:flex;align-items:center;justify-content:center"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 6l-6 6 6 6"/></svg></button><button style="width:30px;height:30px;border-radius:8px;border:1px solid #e7eaef;background:#fff;cursor:pointer;color:#5b6675;display:flex;align-items:center;justify-content:center"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10 6l6 6-6 6"/></svg></button></div></div>
-            <div style="display:flex;align-items:center;gap:14px;font-size:12px;color:#6b7585"><span style="display:flex;align-items:center;gap:5px"><span style="width:8px;height:8px;border-radius:3px;background:#2563eb"></span>의정</span><span style="display:flex;align-items:center;gap:5px"><span style="width:8px;height:8px;border-radius:3px;background:#d97706"></span>지역</span><span style="display:flex;align-items:center;gap:5px"><span style="width:8px;height:8px;border-radius:3px;background:#5b51d8"></span>외부</span></div>
+            <div style="display:flex;align-items:center;gap:12px"><span id="calLabel" style="font-size:18px;font-weight:700">—</span><div style="display:flex;gap:4px"><button data-cal="prev" style="width:30px;height:30px;border-radius:8px;border:1px solid #e7eaef;background:#fff;cursor:pointer;color:#5b6675;display:flex;align-items:center;justify-content:center" data-hover="background:#f3f5f8"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 6l-6 6 6 6"/></svg></button><button data-cal="next" style="width:30px;height:30px;border-radius:8px;border:1px solid #e7eaef;background:#fff;cursor:pointer;color:#5b6675;display:flex;align-items:center;justify-content:center" data-hover="background:#f3f5f8"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10 6l6 6-6 6"/></svg></button></div></div>
+            <div style="display:flex;align-items:center;gap:14px"><div style="display:flex;align-items:center;gap:14px;font-size:12px;color:#6b7585"><span style="display:flex;align-items:center;gap:5px"><span style="width:8px;height:8px;border-radius:3px;background:#2563eb"></span>의정</span><span style="display:flex;align-items:center;gap:5px"><span style="width:8px;height:8px;border-radius:3px;background:#d97706"></span>지역</span><span style="display:flex;align-items:center;gap:5px"><span style="width:8px;height:8px;border-radius:3px;background:#5b51d8"></span>외부</span></div><button id="schAddBtn" data-hover="background:#16305c" style="display:flex;align-items:center;gap:6px;height:32px;padding:0 13px;background:#1d3a6e;color:#fff;border:none;border-radius:8px;font-size:12.5px;font-weight:600;cursor:pointer"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>일정 추가</button></div>
           </div>
           <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-bottom:8px">
             <div style="text-align:center;font-size:12px;font-weight:600;color:#dc2626;padding:4px">일</div><div style="text-align:center;font-size:12px;font-weight:600;color:#8a94a3;padding:4px">월</div><div style="text-align:center;font-size:12px;font-weight:600;color:#8a94a3;padding:4px">화</div><div style="text-align:center;font-size:12px;font-weight:600;color:#8a94a3;padding:4px">수</div><div style="text-align:center;font-size:12px;font-weight:600;color:#8a94a3;padding:4px">목</div><div style="text-align:center;font-size:12px;font-weight:600;color:#8a94a3;padding:4px">금</div><div style="text-align:center;font-size:12px;font-weight:600;color:#2563eb;padding:4px">토</div>
           </div>
-          <div style="display:grid;grid-template-columns:repeat(7,1fr);grid-auto-rows:84px;gap:6px">
-            <div style="border:1px solid #f0f2f5;border-radius:8px;padding:6px;font-size:12px;color:#c2cad3">22</div>
-            <div style="border:1px solid #f0f2f5;border-radius:8px;padding:6px;font-size:12px;color:#1a2330"><div>23</div><div style="font-size:10px;background:#e8f0fe;color:#2563eb;border-radius:4px;padding:2px 5px;margin-top:4px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">예결위</div></div>
-            <div style="border:1px solid #f0f2f5;border-radius:8px;padding:6px;font-size:12px;color:#1a2330"><div>24</div><div style="font-size:10px;background:#fdf2e3;color:#d97706;border-radius:4px;padding:2px 5px;margin-top:4px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">현장방문</div></div>
-            <div style="border:1px solid #f0f2f5;border-radius:8px;padding:6px;font-size:12px;color:#1a2330"><div>25</div></div>
-            <div style="border:1px solid #f0f2f5;border-radius:8px;padding:6px;font-size:12px;color:#1a2330"><div>26</div><div style="font-size:10px;background:#eef0fb;color:#5b51d8;border-radius:4px;padding:2px 5px;margin-top:4px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">토론회</div></div>
-            <div style="border:2px solid #1d3a6e;border-radius:8px;padding:6px;font-size:12px;color:#1a2330;background:#f7faff"><div style="font-weight:700;color:#1d3a6e">27</div><div style="font-size:10px;background:#e8f0fe;color:#2563eb;border-radius:4px;padding:2px 5px;margin-top:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">국토위</div><div style="font-size:10px;background:#eef0fb;color:#5b51d8;border-radius:4px;padding:2px 5px;margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">청년모임</div></div>
-            <div style="border:1px solid #f0f2f5;border-radius:8px;padding:6px;font-size:12px;color:#1a2330"><div>28</div></div>
-            <div style="border:1px solid #f0f2f5;border-radius:8px;padding:6px;font-size:12px;color:#dc2626"><div>29</div></div>
-            <div style="border:1px solid #f0f2f5;border-radius:8px;padding:6px;font-size:12px;color:#1a2330"><div>30</div><div style="font-size:10px;background:#fdf2e3;color:#d97706;border-radius:4px;padding:2px 5px;margin-top:4px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">간담회</div></div>
-            <div style="border:1px solid #f0f2f5;border-radius:8px;padding:6px;font-size:12px;color:#c2cad3"><div>1</div></div>
-            <div style="border:1px solid #f0f2f5;border-radius:8px;padding:6px;font-size:12px;color:#c2cad3"><div>2</div><div style="font-size:10px;background:#e8f0fe;color:#2563eb;border-radius:4px;padding:2px 5px;margin-top:4px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">본회의</div></div>
-            <div style="border:1px solid #f0f2f5;border-radius:8px;padding:6px;font-size:12px;color:#c2cad3"><div>3</div></div>
-            <div style="border:1px solid #f0f2f5;border-radius:8px;padding:6px;font-size:12px;color:#c2cad3"><div>4</div><div style="font-size:10px;background:#eef0fb;color:#5b51d8;border-radius:4px;padding:2px 5px;margin-top:4px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">행사</div></div>
-            <div style="border:1px solid #f0f2f5;border-radius:8px;padding:6px;font-size:12px;color:#c2cad3"><div>5</div></div>
-          </div>
+          <div id="calGrid" style="display:grid;grid-template-columns:repeat(7,1fr);grid-auto-rows:84px;gap:6px"></div>
         </div>
         <div style="display:flex;flex-direction:column;gap:16px">
           <div style="background:#fff;border:1px solid #e9ecf1;border-radius:14px;padding:18px;box-shadow:0 1px 2px rgba(16,24,40,0.04)">
             <div style="font-size:14px;font-weight:700;margin-bottom:14px">다가오는 일정</div>
-            <div style="display:flex;flex-direction:column;gap:13px">
-              <div style="display:flex;gap:11px"><div style="text-align:center;flex-shrink:0"><div style="font-size:11px;color:#8a94a3;font-weight:600">금</div><div style="font-size:17px;font-weight:700;color:#1d3a6e">27</div></div><div style="border-left:2px solid #e8f0fe;padding-left:11px"><div style="font-size:13px;font-weight:600">국토위 전체회의</div><div style="font-size:11.5px;color:#9aa3b0;margin-top:2px">14:00 · 제1소회의실</div></div></div>
-              <div style="display:flex;gap:11px"><div style="text-align:center;flex-shrink:0"><div style="font-size:11px;color:#8a94a3;font-weight:600">금</div><div style="font-size:17px;font-weight:700;color:#1a2330">27</div></div><div style="border-left:2px solid #eef0fb;padding-left:11px"><div style="font-size:13px;font-weight:600">청년단체 정기모임</div><div style="font-size:11.5px;color:#9aa3b0;margin-top:2px">18:30 · 청년창업센터</div></div></div>
-              <div style="display:flex;gap:11px"><div style="text-align:center;flex-shrink:0"><div style="font-size:11px;color:#8a94a3;font-weight:600">화</div><div style="font-size:17px;font-weight:700;color:#1a2330">30</div></div><div style="border-left:2px solid #fdf2e3;padding-left:11px"><div style="font-size:13px;font-weight:600">소상공인 간담회</div><div style="font-size:11.5px;color:#9aa3b0;margin-top:2px">10:00 · 지역사무소</div></div></div>
-            </div>
+            <div id="upNext" style="display:flex;flex-direction:column;gap:13px"></div>
           </div>
           <div style="background:#fff;border:1px solid #e9ecf1;border-radius:14px;padding:18px;box-shadow:0 1px 2px rgba(16,24,40,0.04)">
             <div style="font-size:13px;color:#6b7585;font-weight:600;margin-bottom:6px">이번 달 일정</div>
-            <div style="display:flex;align-items:baseline;gap:6px"><span style="font-size:26px;font-weight:700">38</span><span style="font-size:13px;color:#9aa3b0">건</span></div>
-            <div style="display:flex;gap:14px;margin-top:12px;font-size:11.5px;color:#6b7585"><span>의정 18</span><span>지역 14</span><span>외부 6</span></div>
+            <div style="display:flex;align-items:baseline;gap:6px"><span id="schCount" style="font-size:26px;font-weight:700">0</span><span style="font-size:13px;color:#9aa3b0">건</span></div>
+            <div id="schBreak" style="display:flex;gap:14px;margin-top:12px;font-size:11.5px;color:#6b7585"><span>의정 0</span><span>지역 0</span><span>외부 0</span></div>
           </div>
         </div>
       </div>
@@ -594,65 +575,23 @@ button{font-family:inherit}
       <div class="pg" style="max-width:1320px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) 310px;gap:16px;align-items:start">
         <div>
           <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;flex-wrap:wrap">
-            <button style="height:34px;padding:0 13px;background:#1d3a6e;color:#fff;border:none;border-radius:8px;font-size:12.5px;font-weight:600;cursor:pointer">전체</button>
-            <button style="height:34px;padding:0 13px;background:#fff;border:1px solid #e7eaef;color:#5b6675;border-radius:8px;font-size:12.5px;font-weight:600;cursor:pointer">긍정</button>
-            <button style="height:34px;padding:0 13px;background:#fff;border:1px solid #e7eaef;color:#5b6675;border-radius:8px;font-size:12.5px;font-weight:600;cursor:pointer">중립</button>
-            <button style="height:34px;padding:0 13px;background:#fff;border:1px solid #e7eaef;color:#5b6675;border-radius:8px;font-size:12.5px;font-weight:600;cursor:pointer">부정</button>
+            <div id="newsFilters" style="display:flex;align-items:center;gap:8px"></div>
             <div style="flex:1"></div>
-            <span style="font-size:12.5px;color:#9aa3b0">오늘 17건 수집됨</span>
+            <span style="font-size:12.5px;color:#9aa3b0">최근 <b id="newsCount" style="color:#5b6675">0</b>건 수집됨</span>
           </div>
-          <div style="background:#fff;border:1px solid #e9ecf1;border-radius:14px;box-shadow:0 1px 2px rgba(16,24,40,0.04);overflow:hidden">
-            <div style="display:flex;gap:14px;padding:17px 20px;border-bottom:1px solid #f2f4f7" data-hover="background:#fafbfc">
-              <span style="width:4px;border-radius:3px;background:#16a34a;flex-shrink:0"></span>
-              <div style="flex:1;min-width:0">
-                <div style="font-size:14.5px;font-weight:600;line-height:1.45">"장윤정 의원, 전세사기 피해 구제 법안 대표발의… 실효성 주목"</div>
-                <div style="font-size:12.5px;color:#7a8593;margin-top:7px;line-height:1.5">장윤정 의원이 대표발의한 전세사기 피해자 보호 특별법 개정안이 피해자 구제의 실질적 전환점이 될 것이라는 평가가 나온다.</div>
-                <div style="display:flex;align-items:center;gap:10px;margin-top:10px"><span style="font-size:11.5px;font-weight:600;color:#5b6675">연합뉴스</span><span style="font-size:11.5px;color:#bcc4ce">1시간 전</span><span style="font-size:11px;font-weight:600;color:#16a34a;background:#e7f6ec;padding:2px 9px;border-radius:5px">긍정</span><span style="font-size:11px;color:#2563eb;background:#e8f0fe;padding:2px 9px;border-radius:5px">전세사기</span></div>
-              </div>
-            </div>
-            <div style="display:flex;gap:14px;padding:17px 20px;border-bottom:1px solid #f2f4f7" data-hover="background:#fafbfc">
-              <span style="width:4px;border-radius:3px;background:#94a3b8;flex-shrink:0"></span>
-              <div style="flex:1;min-width:0">
-                <div style="font-size:14.5px;font-weight:600;line-height:1.45">"국토위, 주거안정 종합대책 두고 여야 공방 지속"</div>
-                <div style="font-size:12.5px;color:#7a8593;margin-top:7px;line-height:1.5">국토교통위원회 전체회의에서 주거안정 대책의 재원 마련 방안을 두고 여야가 입장차를 보였다.</div>
-                <div style="display:flex;align-items:center;gap:10px;margin-top:10px"><span style="font-size:11.5px;font-weight:600;color:#5b6675">한겨레</span><span style="font-size:11.5px;color:#bcc4ce">3시간 전</span><span style="font-size:11px;font-weight:600;color:#6b7585;background:#eef1f5;padding:2px 9px;border-radius:5px">중립</span><span style="font-size:11px;color:#2563eb;background:#e8f0fe;padding:2px 9px;border-radius:5px">주거안정</span></div>
-              </div>
-            </div>
-            <div style="display:flex;gap:14px;padding:17px 20px;border-bottom:1px solid #f2f4f7" data-hover="background:#fafbfc">
-              <span style="width:4px;border-radius:3px;background:#16a34a;flex-shrink:0"></span>
-              <div style="flex:1;min-width:0">
-                <div style="font-size:14.5px;font-weight:600;line-height:1.45">"청년 주거 지원 확대 추진… 지역사회 환영 목소리"</div>
-                <div style="font-size:12.5px;color:#7a8593;margin-top:7px;line-height:1.5">청년 주거 부담 완화를 위한 정책이 추진되면서 지역 청년단체들이 기대를 나타냈다.</div>
-                <div style="display:flex;align-items:center;gap:10px;margin-top:10px"><span style="font-size:11.5px;font-weight:600;color:#5b6675">지역일보</span><span style="font-size:11.5px;color:#bcc4ce">5시간 전</span><span style="font-size:11px;font-weight:600;color:#16a34a;background:#e7f6ec;padding:2px 9px;border-radius:5px">긍정</span><span style="font-size:11px;color:#2563eb;background:#e8f0fe;padding:2px 9px;border-radius:5px">청년주거</span></div>
-              </div>
-            </div>
-            <div style="display:flex;gap:14px;padding:17px 20px" data-hover="background:#fafbfc">
-              <span style="width:4px;border-radius:3px;background:#dc2626;flex-shrink:0"></span>
-              <div style="flex:1;min-width:0">
-                <div style="font-size:14.5px;font-weight:600;line-height:1.45">"예산안 심사 지연에 일각서 비판 목소리"</div>
-                <div style="font-size:12.5px;color:#7a8593;margin-top:7px;line-height:1.5">상임위 예산 심사 일정이 늦어지면서 처리 지연에 대한 우려가 제기되고 있다.</div>
-                <div style="display:flex;align-items:center;gap:10px;margin-top:10px"><span style="font-size:11.5px;font-weight:600;color:#5b6675">매일경제</span><span style="font-size:11.5px;color:#bcc4ce">7시간 전</span><span style="font-size:11px;font-weight:600;color:#dc2626;background:#fdecec;padding:2px 9px;border-radius:5px">부정</span><span style="font-size:11px;color:#2563eb;background:#e8f0fe;padding:2px 9px;border-radius:5px">예산심사</span></div>
-              </div>
-            </div>
+          <div id="newsList" style="background:#fff;border:1px solid #e9ecf1;border-radius:14px;box-shadow:0 1px 2px rgba(16,24,40,0.04);overflow:hidden">
           </div>
         </div>
         <div style="display:flex;flex-direction:column;gap:16px">
           <div style="background:#fff;border:1px solid #e9ecf1;border-radius:14px;padding:18px;box-shadow:0 1px 2px rgba(16,24,40,0.04)">
             <div style="font-size:14px;font-weight:700;margin-bottom:14px">오늘의 여론 지수</div>
-            <div style="display:flex;align-items:flex-end;gap:8px;margin-bottom:12px"><span style="font-size:32px;font-weight:700;color:#16a34a;letter-spacing:-0.02em">+64</span><span style="font-size:12px;color:#16a34a;font-weight:600;margin-bottom:6px">▲ 8</span></div>
-            <div style="display:flex;height:10px;border-radius:5px;overflow:hidden;margin-bottom:10px"><div style="width:65%;background:#16a34a"></div><div style="width:23%;background:#94a3b8"></div><div style="width:12%;background:#dc2626"></div></div>
-            <div style="display:flex;justify-content:space-between;font-size:11.5px;color:#6b7585"><span>긍정 65%</span><span>중립 23%</span><span>부정 12%</span></div>
+            <div style="display:flex;align-items:flex-end;gap:8px;margin-bottom:12px"><span id="opIndex" style="font-size:32px;font-weight:700;color:#16a34a;letter-spacing:-0.02em">0</span><span style="font-size:12px;color:#9aa3b0;font-weight:600;margin-bottom:6px">감정분석 추정</span></div>
+            <div style="display:flex;height:10px;border-radius:5px;overflow:hidden;margin-bottom:10px"><div id="opPos" style="width:0%;background:#16a34a"></div><div id="opNeu" style="width:0%;background:#94a3b8"></div><div id="opNeg" style="width:0%;background:#dc2626"></div></div>
+            <div style="display:flex;justify-content:space-between;font-size:11.5px;color:#6b7585"><span id="opPosL">긍정 0%</span><span id="opNeuL">중립 0%</span><span id="opNegL">부정 0%</span></div>
           </div>
           <div style="background:#fff;border:1px solid #e9ecf1;border-radius:14px;padding:18px;box-shadow:0 1px 2px rgba(16,24,40,0.04)">
             <div style="font-size:14px;font-weight:700;margin-bottom:14px">주요 키워드</div>
-            <div style="display:flex;flex-wrap:wrap;gap:8px">
-              <span style="font-size:13px;font-weight:700;color:#1d3a6e;background:#e8f0fe;padding:6px 13px;border-radius:20px">전세사기</span>
-              <span style="font-size:12.5px;font-weight:600;color:#2563eb;background:#eef4fc;padding:5px 12px;border-radius:20px">청년주거</span>
-              <span style="font-size:12px;font-weight:600;color:#5b6675;background:#f3f5f8;padding:5px 11px;border-radius:20px">주거안정</span>
-              <span style="font-size:12px;font-weight:600;color:#5b6675;background:#f3f5f8;padding:5px 11px;border-radius:20px">국토위</span>
-              <span style="font-size:11.5px;font-weight:600;color:#5b6675;background:#f3f5f8;padding:4px 10px;border-radius:20px">소상공인</span>
-              <span style="font-size:11.5px;font-weight:600;color:#5b6675;background:#f3f5f8;padding:4px 10px;border-radius:20px">교통망</span>
-            </div>
+            <div id="newsKeywords" style="display:flex;flex-wrap:wrap;gap:8px"></div>
           </div>
         </div>
       </div>
@@ -1075,6 +1014,207 @@ onAuthStateChanged(_auth, async function(user){
   // initial render from cache + re-render when Firestore arrives
   compute();
   M.onData(function(){ compute(); });
+})();
+</script>
+<!-- ── 일정·행사 (← schedule/events) ─────────────────────────────────── -->
+<script>
+(function(){
+  'use strict';
+  var M = window.MOIDA; if(!M) return;
+  var DOW = ['일','월','화','수','목','금','토'];
+  var CATS = { '의정':{fg:'#2563eb',bg:'#e8f0fe'}, '지역':{fg:'#d97706',bg:'#fdf2e3'}, '외부':{fg:'#5b51d8',bg:'#eef0fb'} };
+  function catColor(c){ return CATS[c] || CATS['의정']; }
+  function pad(n){ return String(n).padStart(2,'0'); }
+  function ymd(d){ return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate()); }
+  var now = new Date();
+  var calY = now.getFullYear(), calM = now.getMonth();
+
+  function byDate(){
+    var map = {};
+    (M.events||[]).forEach(function(e){ if(!e.date) return; (map[e.date]=map[e.date]||[]).push(e); });
+    return map;
+  }
+  function renderCal(){
+    var grid = document.getElementById('calGrid'); if(!grid) return;
+    document.getElementById('calLabel').textContent = calY+'년 '+(calM+1)+'월';
+    var startDow = new Date(calY,calM,1).getDay();
+    var lastDay = new Date(calY,calM+1,0).getDate();
+    var endDow = new Date(calY,calM,lastDay).getDay();
+    var cells = startDow + lastDay + (6-endDow);
+    var start = new Date(calY,calM,1-startDow);
+    var map = byDate();
+    var tk = ymd(now);
+    var html = '';
+    for(var i=0;i<cells;i++){
+      var dt = new Date(start.getFullYear(),start.getMonth(),start.getDate()+i);
+      var inM = dt.getMonth()===calM, dow = dt.getDay(), key = ymd(dt), evs = (map[key]||[]).slice().sort(function(a,b){return (a.time||'').localeCompare(b.time||'');});
+      var isToday = key===tk;
+      var numCol = !inM?'#c2cad3':(dow===0?'#dc2626':dow===6?'#2563eb':'#1a2330');
+      var border = isToday?'border:2px solid #1d3a6e;background:#f7faff':'border:1px solid #f0f2f5';
+      var chips = evs.slice(0,2).map(function(e){ var c=catColor(e.cat); return '<div title="'+M.esc((e.time?e.time+' ':'')+(e.title||''))+'" style="font-size:10px;background:'+c.bg+';color:'+c.fg+';border-radius:4px;padding:2px 5px;margin-top:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+M.esc(e.title||'일정')+'</div>'; }).join('');
+      var more = evs.length>2?'<div style="font-size:9.5px;color:#9aa3b0;margin-top:2px">+'+(evs.length-2)+'건</div>':'';
+      html += '<div style="'+border+';border-radius:8px;padding:6px;font-size:12px;color:'+numCol+';overflow:hidden"><div'+(isToday?' style="font-weight:700;color:#1d3a6e"':'')+'>'+dt.getDate()+'</div>'+chips+more+'</div>';
+    }
+    grid.innerHTML = html;
+  }
+  function renderUpcoming(){
+    var box = document.getElementById('upNext'); if(!box) return;
+    var tk = ymd(now);
+    var up = (M.events||[]).filter(function(e){ return e.date && e.date>=tk; })
+      .sort(function(a,b){ return (a.date+(a.time||'')).localeCompare(b.date+(b.time||'')); }).slice(0,6);
+    if(!up.length){ box.innerHTML = '<div style="font-size:12.5px;color:#9aa3b0;padding:6px 0">예정된 일정이 없습니다.</div>'; return; }
+    box.innerHTML = up.map(function(e){
+      var d = new Date(e.date+'T00:00:00'); var c = catColor(e.cat);
+      var meta = [e.time, e._location].filter(Boolean).join(' · ');
+      return '<div style="display:flex;gap:11px"><div style="text-align:center;flex-shrink:0"><div style="font-size:11px;color:#8a94a3;font-weight:600">'+DOW[d.getDay()]+'</div><div style="font-size:17px;font-weight:700;color:#1a2330">'+d.getDate()+'</div></div>'
+        +'<div style="border-left:2px solid '+c.bg+';padding-left:11px;min-width:0"><div style="font-size:13px;font-weight:600">'+M.esc(e.title||'일정')+'</div>'+(meta?'<div style="font-size:11.5px;color:#9aa3b0;margin-top:2px">'+M.esc(meta)+'</div>':'')+'</div></div>';
+    }).join('');
+  }
+  function renderStat(){
+    var pref = calY+'-'+pad(calM+1);
+    var ms = (M.events||[]).filter(function(e){ return (e.date||'').slice(0,7)===pref; });
+    var cnt = document.getElementById('schCount'); if(cnt) cnt.textContent = ms.length;
+    var b = {'의정':0,'지역':0,'외부':0};
+    ms.forEach(function(e){ var c = e.cat||'의정'; if(b[c]==null) c='의정'; b[c]++; });
+    var bd = document.getElementById('schBreak');
+    if(bd) bd.innerHTML = '<span>의정 '+b['의정']+'</span><span>지역 '+b['지역']+'</span><span>외부 '+b['외부']+'</span>';
+  }
+  function renderAll(){ renderCal(); renderUpcoming(); renderStat(); if(window.__bindHover) document.querySelectorAll('#calGrid [data-hover]').forEach(window.__bindHover); }
+
+  document.querySelectorAll('[data-cal]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      calM += (btn.dataset.cal==='next'?1:-1);
+      if(calM>11){ calM=0; calY++; } if(calM<0){ calM=11; calY--; }
+      renderCal(); renderStat();
+    });
+  });
+
+  var addBtn = document.getElementById('schAddBtn');
+  if(addBtn) addBtn.addEventListener('click', function(){
+    if(window.MOIDA_READONLY){ alert('이용 기간이 만료되어 읽기 전용 상태입니다.'); return; }
+    openAdd();
+  });
+  function row(label, inner){ return '<div style="margin-bottom:12px"><label style="display:block;font-size:12px;font-weight:600;color:#5b6675;margin-bottom:5px">'+label+'</label>'+inner+'</div>'; }
+  function inp(id,type,val,ph){ return '<input id="'+id+'" type="'+(type||'text')+'"'+(val?' value="'+val+'"':'')+(ph?' placeholder="'+ph+'"':'')+' style="width:100%;height:38px;border:1px solid #e7eaef;border-radius:9px;padding:0 11px;font-size:13.5px;font-family:inherit;outline:none"/>'; }
+  function openAdd(){
+    var ovl = document.createElement('div');
+    ovl.style.cssText='position:fixed;inset:0;background:rgba(16,24,40,0.45);display:flex;align-items:center;justify-content:center;z-index:200';
+    ovl.innerHTML='<div style="background:#fff;border-radius:16px;width:420px;max-width:94vw;padding:24px;box-shadow:0 20px 60px rgba(16,24,40,0.3)">'
+      +'<div style="font-size:16px;font-weight:700;margin-bottom:16px">일정 추가</div>'
+      +row('제목', inp('e_title','text','','일정 제목'))
+      +'<div style="display:flex;gap:10px">'+row('날짜', inp('e_date','date',ymd(now)))+row('시간', inp('e_time','time','09:00'))+'</div>'
+      +row('구분', '<select id="e_cat" style="width:100%;height:38px;border:1px solid #e7eaef;border-radius:9px;padding:0 11px;font-size:13.5px;font-family:inherit;background:#fff"><option>의정</option><option>지역</option><option>외부</option></select>')
+      +row('장소', inp('e_loc','text','','장소 (선택)'))
+      +'<div style="display:flex;justify-content:flex-end;gap:8px;margin-top:8px"><button id="e_cancel" style="height:38px;padding:0 16px;background:#fff;border:1px solid #d6dde6;border-radius:9px;font-size:13px;font-weight:600;color:#5b6675;cursor:pointer">취소</button><button id="e_save" style="height:38px;padding:0 18px;background:#1d3a6e;color:#fff;border:none;border-radius:9px;font-size:13px;font-weight:600;cursor:pointer">저장</button></div>'
+      +'</div>';
+    document.body.appendChild(ovl);
+    ovl.querySelector('#e_title').focus();
+    ovl.querySelector('#e_cancel').onclick=function(){ ovl.remove(); };
+    ovl.onclick=function(e){ if(e.target===ovl) ovl.remove(); };
+    ovl.querySelector('#e_save').onclick=function(){
+      var title=ovl.querySelector('#e_title').value.trim();
+      if(!title){ ovl.querySelector('#e_title').focus(); return; }
+      var ev={ title:title, date:ovl.querySelector('#e_date').value, time:ovl.querySelector('#e_time').value,
+        cat:ovl.querySelector('#e_cat').value, _location:ovl.querySelector('#e_loc').value.trim(),
+        author:(M.profile&&M.profile.name)||'', created:Date.now() };
+      M.events = M.events||[]; M.events.push(ev);
+      M.save && M.save('events', M.events);
+      var d=new Date(ev.date+'T00:00:00'); if(!isNaN(d)){ calY=d.getFullYear(); calM=d.getMonth(); }
+      renderAll(); ovl.remove();
+    };
+  }
+
+  renderAll();
+  M.onData(function(){ renderAll(); });
+})();
+</script>
+<!-- ── 뉴스 (← news_data.json) + 감정·키워드·여론지수 ─────────────────── -->
+<script>
+(function(){
+  'use strict';
+  var M = window.MOIDA; if(!M) return;
+  var POS = ['환영','호평','기대','통과','성과','지원','확대','개선','추진','협약','표창','격려','우수','선정','합의','발의','구제','강화','활성','상생','감사','수상','체결','유치','출범','기여','앞장','동참','희망'];
+  var NEG = ['논란','비판','의혹','반발','지연','갈등','우려','피해','사고','반대','부정','무산','충돌','공방','위기','실패','중단','파행','규탄','질타','적발','혼란','불만','악화','후퇴','책임론','부담','피소'];
+  var SENT = { '긍정':{fg:'#16a34a',bg:'#e7f6ec'}, '중립':{fg:'#6b7585',bg:'#eef1f5'}, '부정':{fg:'#dc2626',bg:'#fdecec'} };
+  var BAR = { '긍정':'#16a34a','중립':'#94a3b8','부정':'#dc2626' };
+  var STOP = {'장윤정':1,'의원':1,'경기도':1,'경기도의원':1,'안산':1,'기자':1,'관련':1,'대한':1,'위해':1,'오늘':1,'올해':1,'지난':1,'경기':1,'도의원':1};
+  var POOL = [], filter = '전체';
+
+  function sentimentOf(t){
+    var s = String(t||''); var p=0,n=0;
+    POS.forEach(function(w){ if(s.indexOf(w)>=0) p++; });
+    NEG.forEach(function(w){ if(s.indexOf(w)>=0) n++; });
+    return p>n?'긍정':(n>p?'부정':'중립');
+  }
+  function relDate(d){
+    var s = String(d||'').replace(/\./g,'-').replace(/-+$/,''); var dt=new Date(s);
+    if(isNaN(dt)) return d||'';
+    var diff = Math.floor((Date.now()-dt.getTime())/86400000);
+    return diff<=0?'오늘':diff===1?'어제':diff<7?diff+'일 전':String(d);
+  }
+  function buildFilters(){
+    var box = document.getElementById('newsFilters'); if(!box) return;
+    var opts = ['전체','긍정','중립','부정'];
+    box.innerHTML = opts.map(function(o){ var on=o===filter;
+      return '<button data-sent="'+o+'" style="height:34px;padding:0 13px;border-radius:8px;font-size:12.5px;font-weight:600;cursor:pointer;'
+        +(on?'background:#1d3a6e;color:#fff;border:none':'background:#fff;border:1px solid #e7eaef;color:#5b6675')+'">'+o+'</button>'; }).join('');
+    box.querySelectorAll('button').forEach(function(b){ b.addEventListener('click', function(){ filter=b.dataset.sent; buildFilters(); renderList(); }); });
+  }
+  function renderList(){
+    var box = document.getElementById('newsList'); if(!box) return;
+    var list = POOL.filter(function(x){ return filter==='전체' || x._s===filter; });
+    if(!list.length){
+      box.innerHTML = '<div style="padding:40px 20px;text-align:center;color:#9aa3b0;font-size:13.5px">'+(POOL.length?'해당 감정의 기사가 없습니다.':'뉴스 데이터를 불러오지 못했습니다.')+'</div>';
+      return;
+    }
+    box.innerHTML = list.slice(0,40).map(function(x,i){
+      var c = SENT[x._s]; var last = i===Math.min(list.length,40)-1;
+      return '<a href="'+M.esc(x.url||'#')+'" target="_blank" rel="noopener" style="display:flex;gap:14px;padding:17px 20px;'+(last?'':'border-bottom:1px solid #f2f4f7;')+'text-decoration:none;color:inherit" data-hover="background:#fafbfc">'
+        +'<span style="width:4px;border-radius:3px;background:'+BAR[x._s]+';flex-shrink:0"></span>'
+        +'<div style="flex:1;min-width:0">'
+        +'<div style="font-size:14.5px;font-weight:600;line-height:1.45">'+M.esc(x.title||'')+'</div>'
+        +(x.snippet?'<div style="font-size:12.5px;color:#7a8593;margin-top:7px;line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">'+M.esc(x.snippet)+'</div>':'')
+        +'<div style="display:flex;align-items:center;gap:10px;margin-top:10px"><span style="font-size:11.5px;font-weight:600;color:#5b6675">'+M.esc(x.press||x.source||'')+'</span><span style="font-size:11.5px;color:#bcc4ce">'+M.esc(relDate(x.date))+'</span><span style="font-size:11px;font-weight:600;color:'+c.fg+';background:'+c.bg+';padding:2px 9px;border-radius:5px">'+x._s+'</span></div>'
+        +'</div></a>';
+    }).join('');
+    if(window.__bindHover) box.querySelectorAll('[data-hover]').forEach(window.__bindHover);
+  }
+  function renderSidebar(){
+    var pos=0,neu=0,neg=0;
+    POOL.forEach(function(x){ if(x._s==='긍정')pos++; else if(x._s==='부정')neg++; else neu++; });
+    var tot = POOL.length||1;
+    var pp=Math.round(pos/tot*100), np=Math.round(neg/tot*100), up=100-pp-np;
+    var idx = Math.round((pos-neg)/tot*100);
+    var ie = document.getElementById('opIndex');
+    if(ie){ ie.textContent = (idx>0?'+':'')+idx; ie.style.color = idx>0?'#16a34a':idx<0?'#dc2626':'#6b7585'; }
+    var set=function(id,w){ var e=document.getElementById(id); if(e) e.style.width=w+'%'; };
+    set('opPos',pp); set('opNeu',up); set('opNeg',np);
+    var t=function(id,v){ var e=document.getElementById(id); if(e) e.textContent=v; };
+    t('opPosL','긍정 '+pp+'%'); t('opNeuL','중립 '+up+'%'); t('opNegL','부정 '+np+'%');
+    // keyword cloud
+    var freq={};
+    POOL.forEach(function(x){ String(x.title||'').replace(/[^가-힣A-Za-z0-9]/g,' ').split(/\s+/).forEach(function(w){
+      if(w.length<2 || STOP[w] || /^[0-9]+$/.test(w)) return; freq[w]=(freq[w]||0)+1; }); });
+    var top = Object.keys(freq).sort(function(a,b){return freq[b]-freq[a];}).slice(0,8);
+    var kb = document.getElementById('newsKeywords');
+    if(kb){ kb.innerHTML = top.length ? top.map(function(w,i){
+      var st = i===0?'font-size:13px;font-weight:700;color:#1d3a6e;background:#e8f0fe;padding:6px 13px'
+        : i<2?'font-size:12.5px;font-weight:600;color:#2563eb;background:#eef4fc;padding:5px 12px'
+        : 'font-size:'+(i<4?12:11.5)+'px;font-weight:600;color:#5b6675;background:#f3f5f8;padding:'+(i<4?'5px 11px':'4px 10px')+'';
+      return '<span style="'+st+';border-radius:20px">'+M.esc(w)+'</span>'; }).join('') : '<span style="font-size:12px;color:#9aa3b0">키워드 없음</span>'; }
+  }
+  function ingest(items){
+    POOL = (items||[]).map(function(x){ x._s = sentimentOf((x.title||'')+' '+(x.snippet||'')); return x; });
+    var cnt = document.getElementById('newsCount'); if(cnt) cnt.textContent = POOL.length;
+    buildFilters(); renderList(); renderSidebar();
+  }
+
+  if(window.__NEWS_TEST){ ingest(window.__NEWS_TEST); }
+  else {
+    fetch('news_data.json').then(function(r){ return r.json(); })
+      .then(function(j){ ingest(j.items||j||[]); })
+      .catch(function(e){ console.warn('news_data.json load fail', e); ingest([]); });
+  }
 })();
 </script>
 <script src="access-guard.js"></script>
