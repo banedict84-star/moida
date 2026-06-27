@@ -1006,7 +1006,9 @@ onAuthStateChanged(_auth, async function(user){
     // view preference는 저장하지 않음 — 항상 목록으로 시작
   }
   document.querySelectorAll('.vbtn').forEach(function(b){ b.addEventListener('click',function(){ switchView(b.dataset.view); }); });
-  // 항상 목록(feed) 뷰로 시작
+  // 파라미터(view=cal)로 진입 시 캘린더 뷰로 시작 (platform 임베드용)
+  try{ if(/[?&]view=cal/.test(location.search)) switchView('cal'); }catch(e){}
+  // 그 외에는 항상 목록(feed) 뷰로 시작
   document.querySelectorAll('.ctab').forEach(function(t){ t.addEventListener('click',function(){
     document.querySelectorAll('.ctab').forEach(function(x){ x.classList.remove('active'); }); t.classList.add('active');
   }); });
