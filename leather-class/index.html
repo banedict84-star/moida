@@ -176,7 +176,7 @@
       </div>
     </div>
     <div class="card">
-      <h2>📋 문의 목록</h2>
+      <h2>📋 문의 목록 <button class="btn sm sec" style="float:right;margin-top:-2px" onclick="syncSheet(false)">🔄 신청 불러오기</button></h2>
       <div style="overflow-x:auto">
       <table>
         <thead><tr><th>기관</th><th>인원</th><th>품목</th><th>날짜</th><th>견적</th><th>상태</th><th></th></tr></thead>
@@ -305,6 +305,17 @@
       </div>
     </div>
     <div class="card">
+      <h2>🔗 신청 자동 연동 (구글시트)</h2>
+      <p class="muted" style="margin-top:-8px">광고 신청이 쌓이는 구글시트를 연결하면, 신청이 '문의관리'에 자동으로 들어와요.</p>
+      <label>게시된 구글시트 CSV 주소</label>
+      <input id="cfg-sheet" oninput="saveCfg()" placeholder="구글시트 → 파일 → 웹에 게시 → CSV 주소 붙여넣기">
+      <div class="row" style="margin-top:10px">
+        <button class="btn sm" onclick="syncSheet(false)">🔄 지금 불러오기</button>
+        <span class="muted">도구 켤 때마다 자동으로도 불러와요.</span>
+      </div>
+      <p class="hint">구글시트에서 <b>파일 → 공유 → 웹에 게시 → '쉼표로 구분된 값(.csv)'</b> 선택 후 나오는 주소를 넣으세요.</p>
+    </div>
+    <div class="card">
       <h2>💾 데이터 백업 / 복원</h2>
       <p class="muted" style="margin-top:-8px">데이터는 이 브라우저에만 저장돼요. 가끔 백업 파일을 받아두면 안전합니다.</p>
       <div class="row">
@@ -360,7 +371,7 @@ const DEFAULT_PRICES = [
   {name:'에코백/토트백', level:'어려움', kit:40000, fee:40000},
 ];
 const DEFAULT_CFG = {perteacher:15, travel:50000, km:1000, revisit:5, vat:10, valid:14,
-  biz:'우리가죽공방', owner:'', phone:'', bizno:'', email:'', addr:''};
+  biz:'우리가죽공방', owner:'', phone:'', bizno:'', email:'', addr:'', sheetUrl:''};
 
 let DB = {
   inquiries: JSON.parse(localStorage.getItem('lc_inq')||'[]'),
@@ -490,6 +501,7 @@ function renderCfg(){
   $('cfg-vat').value=DB.cfg.vat; $('cfg-valid').value=DB.cfg.valid;
   $('cfg-biz').value=DB.cfg.biz; $('cfg-owner').value=DB.cfg.owner; $('cfg-phone').value=DB.cfg.phone;
   $('cfg-bizno').value=DB.cfg.bizno; $('cfg-email').value=DB.cfg.email; $('cfg-addr').value=DB.cfg.addr;
+  if($('cfg-sheet')) $('cfg-sheet').value=DB.cfg.sheetUrl;
 }
 function renderDash(){
   const active = DB.inquiries.filter(i=>!['수업완료','정산완료'].includes(i.status));
@@ -792,6 +804,54 @@ function renderProspects(){
     `총 ${s.length}곳 · 미접촉 ${s.filter(x=>x.status==='미접촉').length} · 메일발송 ${s.filter(x=>x.status==='메일발송').length} · 회신 ${s.filter(x=>x.status==='회신').length} · <b style="color:var(--ok)">수업확정 ${s.filter(x=>x.status==='수업확정').length}</b>`;
 }
 
+// ---------- 구글시트 신청 동기화 ----------
+function parseCSV(text){
+  const rows=[]; let row=[], val='', q=false;
+  for(let i=0;i<text.length;i++){
+    const ch=text[i];
+    if(q){
+      if(ch==='"'){ if(text[i+1]==='"'){val+='"';i++;} else q=false; }
+      else val+=ch;
+    } else {
+      if(ch==='"') q=true;
+      else if(ch===','){ row.push(val); val=''; }
+      else if(ch==='\n'){ row.push(val); rows.push(row); row=[]; val=''; }
+      else if(ch!=='\r') val+=ch;
+    }
+  }
+  if(val.length||row.length){ row.push(val); rows.push(row); }
+  return rows;
+}
+function matchItem(name){
+  name=(name||'').trim();
+  const hit=DB.prices.find(p=>p.name===name||p.name.includes(name)||name.includes(p.name));
+  return hit?hit.name:(DB.prices[0]?DB.prices[0].name:name);
+}
+async function syncSheet(silent){
+  const url=DB.cfg.sheetUrl;
+  if(!url){ if(!silent) alert("'단가 설정' 탭에서 구글시트 CSV 주소를 먼저 넣어주세요."); return; }
+  try{
+    const res=await fetch(url, {cache:'no-store'});
+    const rows=parseCSV(await res.text());
+    let added=0;
+    for(let r=1;r<rows.length;r++){
+      const c=rows[r]; if(!c||!c[1]) continue;
+      // 0접수일시 1기관 2담당 3연락처 4이메일 5인원 6날짜 7품목 8지역 9요청 10예상견적 11상태
+      const key=(c[0]||'')+'|'+(c[1]||'')+'|'+(c[4]||'');
+      if(DB.inquiries.some(i=>i.sheetKey===key)) continue;
+      DB.inquiries.unshift({id:uid(), sheetKey:key, org:(c[1]||'').trim(), mgr:(c[2]||'').trim(),
+        contact:(c[3]||'').trim(), email:(c[4]||'').trim(), people:+c[5]||1, date:(c[6]||'').trim(),
+        item:matchItem(c[7]), loc:(c[8]||'').trim(), memo:(c[9]||'').trim(), budget:'',
+        status:'문의접수', created:(c[0]||'').slice(0,10)});
+      added++;
+    }
+    if(added){ save(); renderAll(); }
+    if(!silent) alert(added? `신청 ${added}건을 새로 불러왔어요!` : '새로 들어온 신청이 없어요.');
+  }catch(e){
+    if(!silent) alert('불러오기 실패 😢\n구글시트가 "웹에 게시(CSV)" 상태인지 확인하세요.');
+  }
+}
+
 // 견적 메일 (문의 회신용 — 광고 아님)
 function sendQuoteEmail(id){
   const i=DB.inquiries.find(x=>x.id===id); if(!i)return;
@@ -823,7 +883,8 @@ function saveCfg(){
     km:+$('cfg-km').value||0, revisit:+$('cfg-revisit').value||5,
     vat:+$('cfg-vat').value||0, valid:+$('cfg-valid').value||14,
     biz:$('cfg-biz').value, owner:$('cfg-owner').value, phone:$('cfg-phone').value,
-    bizno:$('cfg-bizno').value, email:$('cfg-email').value, addr:$('cfg-addr').value};
+    bizno:$('cfg-bizno').value, email:$('cfg-email').value, addr:$('cfg-addr').value,
+    sheetUrl:$('cfg-sheet')?$('cfg-sheet').value.trim():DB.cfg.sheetUrl};
   save(); renderDash();
 }
 
@@ -866,6 +927,7 @@ document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{
 $('modal').onclick=e=>{ if(e.target.id==='modal') closeModal(); };
 
 renderAll();
+if(DB.cfg.sheetUrl) syncSheet(true);  // 켤 때 신청 자동 동기화
 </script>
 </body>
 </html>
