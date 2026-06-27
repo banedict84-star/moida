@@ -1634,7 +1634,7 @@ onAuthStateChanged(_auth, async function(user){
     {type:'function',function:{name:'add_event',description:'새 일정을 등록',parameters:{type:'object',properties:{title:{type:'string'},date:{type:'string',description:'YYYY-MM-DD'},time:{type:'string',description:'HH:MM'},cat:{type:'string',enum:['의정','지역','외부']},location:{type:'string'}},required:['title','date']}}},
     {type:'function',function:{name:'list_policies',description:'발의 법안/정책 목록 조회',parameters:{type:'object',properties:{}}}},
     {type:'function',function:{name:'list_notices',description:'중앙당·경기도당·경기도의회 등 외부 기관 공지사항 조회(최신순). 출처/검색어로 필터 가능.',parameters:{type:'object',properties:{source:{type:'string',enum:['중앙당','경기도당','경기도의회']},query:{type:'string',description:'제목 검색어'},limit:{type:'number',description:'개수(기본 10)'}}}}},
-    {type:'function',function:{name:'create_poster',description:'홍보용 웹자보(디자인 카드 이미지)를 생성해 화면에 표시한다. 행사·의정보고·정책·모집 안내 등에 사용. 제목은 짧고 강하게.',parameters:{type:'object',properties:{title:{type:'string',description:'핵심 제목(12자 내외 권장)'},subtitle:{type:'string',description:'부제(선택)'},points:{type:'array',items:{type:'string'},description:'본문 핵심 항목 2~4개(선택)'},date:{type:'string',description:'일시(선택)'},place:{type:'string',description:'장소(선택)'},category:{type:'string',description:'상단 분류 배지, 예: 의정보고·행사안내·정책·모집'},theme:{type:'string',enum:['navy','red','green'],description:'색상 테마(기본 navy)'}},required:['title']}}}
+    {type:'function',function:{name:'create_poster',description:'홍보용 웹자보(디자인 카드)를 생성해 화면에 표시한다. 행사·의정보고·정책·모집 안내 등에 사용. 반드시 임팩트 있는 한 줄 핵심 메시지(message, 슬로건)를 넣고, 제목은 짧고 강하게. 의원 직함(position)이 있으면 채운다.',parameters:{type:'object',properties:{title:{type:'string',description:'핵심 제목/주제(10자 내외, 강하게)'},message:{type:'string',description:'가장 크게 강조되는 핵심 메시지·슬로건 한 문장. 예: "청년이 살기 좋은 도시, 함께 만들겠습니다"'},position:{type:'string',description:'의원 직함·소속(예: 경기도의원 · 안산 상록구). 모르면 비움'},subtitle:{type:'string',description:'부제(선택, message 없을 때만 표시)'},points:{type:'array',items:{type:'string'},description:'본문 핵심 항목 2~4개(간결하게)'},date:{type:'string',description:'일시(선택)'},place:{type:'string',description:'장소(선택)'},category:{type:'string',description:'상단 분류 배지, 예: 의정보고·행사안내·정책·모집'},theme:{type:'string',enum:['navy','red','green'],description:'색상 테마(기본 navy)'}},required:['title','message']}}}
   ];
   /* ── 웹자보(디자인 카드) 생성 ─────────────────────────────────────── */
   function wrapText(s, n){
@@ -1648,47 +1648,68 @@ onAuthStateChanged(_auth, async function(user){
     return lines;
   }
   function posterSVG(o){
-    var W=480,H=600, X=44;
+    var W=480,H=600,X=40,CW=W-2*X;
     var THEMES={navy:['#16305c','#2f5fd0','#7fb0ff'],red:['#7a1d2b','#dc2626','#fca5a5'],green:['#0f5132','#16a34a','#86efac']};
     var th=THEMES[o.theme]||THEMES.navy;
     var nm=(M.profile&&M.profile.name)||'의원실';
-    var pos=[(M.profile&&M.profile.position),(M.profile&&M.profile.district)].filter(Boolean).join(' ');
-    var e=M.esc;
+    var pos=o.position || [(M.profile&&M.profile.position),(M.profile&&M.profile.district)].filter(Boolean).join(' ') || '';
+    var e=M.esc, FB=92, FOOT=H-FB;
     var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 '+W+' '+H+'" width="'+W+'" height="'+H+'" style="width:100%;height:auto;display:block;font-family:Pretendard,\'Apple SD Gothic Neo\',\'Malgun Gothic\',sans-serif">';
     s+='<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="'+th[0]+'"/><stop offset="1" stop-color="'+th[1]+'"/></linearGradient></defs>';
     s+='<rect width="'+W+'" height="'+H+'" fill="#ffffff"/>';
-    // 상단 밴드
-    s+='<rect width="'+W+'" height="172" fill="url(#g)"/>';
-    // 로고(돔)
-    s+='<g transform="translate('+X+',44) scale(0.62)"><path d="M8 21 Q24 3 40 21 Z" fill="#fff"/><circle cx="24" cy="6.4" r="2.7" fill="'+th[2]+'"/><rect x="6.5" y="20.3" width="35" height="3.2" rx="1.6" fill="#fff"/><rect x="11" y="25" width="3" height="12.6" rx="1.5" fill="#fff"/><rect x="19" y="25" width="3" height="12.6" rx="1.5" fill="#fff"/><rect x="27" y="25" width="3" height="12.6" rx="1.5" fill="#fff"/><rect x="35" y="25" width="3" height="12.6" rx="1.5" fill="#fff"/><rect x="5.5" y="38.6" width="37" height="3.4" rx="1.7" fill="#fff"/></g>';
-    s+='<text x="'+(X+44)+'" y="58" fill="#fff" font-size="18" font-weight="700">'+e(nm)+'</text>';
-    if(pos) s+='<text x="'+(X+44)+'" y="78" fill="rgba(255,255,255,.78)" font-size="12.5">'+e(pos)+'</text>';
+    // 상단 밴드 + 장식
+    var BH=196;
+    s+='<rect width="'+W+'" height="'+BH+'" fill="url(#g)"/>';
+    s+='<circle cx="'+(W-26)+'" cy="34" r="124" fill="#ffffff" opacity="0.06"/>';
+    s+='<circle cx="'+(W-72)+'" cy="-12" r="58" fill="#ffffff" opacity="0.05"/>';
+    // 로고 + 이름 + 직함
+    s+='<g transform="translate('+X+',32) scale(0.58)"><path d="M8 21 Q24 3 40 21 Z" fill="#fff"/><circle cx="24" cy="6.4" r="2.7" fill="'+th[2]+'"/><rect x="6.5" y="20.3" width="35" height="3.2" rx="1.6" fill="#fff"/><rect x="11" y="25" width="3" height="12.6" rx="1.5" fill="#fff"/><rect x="19" y="25" width="3" height="12.6" rx="1.5" fill="#fff"/><rect x="27" y="25" width="3" height="12.6" rx="1.5" fill="#fff"/><rect x="35" y="25" width="3" height="12.6" rx="1.5" fill="#fff"/><rect x="5.5" y="38.6" width="37" height="3.4" rx="1.7" fill="#fff"/></g>';
+    s+='<text x="'+(X+42)+'" y="48" fill="#fff" font-size="17.5" font-weight="800">'+e(nm)+'</text>';
+    s+='<text x="'+(X+42)+'" y="67" fill="rgba(255,255,255,.82)" font-size="12" font-weight="600">'+e(pos||'의정활동 보고')+'</text>';
     // 분류 배지
-    var cat=o.category||'안내';
-    s+='<rect x="'+(W-X-(cat.length*15+24))+'" y="40" width="'+(cat.length*15+24)+'" height="28" rx="14" fill="rgba(255,255,255,.16)"/>';
-    s+='<text x="'+(W-X-12)+'" y="59" text-anchor="end" fill="#fff" font-size="13" font-weight="700">'+e(cat)+'</text>';
-    // 제목
-    var tl=wrapText(o.title,12), ty=140;
-    tl.slice(0,2).forEach(function(l,i){ s+='<text x="'+X+'" y="'+(ty+i*30)+'" fill="#fff" font-size="27" font-weight="800">'+e(l)+'</text>'; });
-    // 부제
-    var y=210;
-    if(o.subtitle){ wrapText(o.subtitle,22).slice(0,2).forEach(function(l){ s+='<text x="'+X+'" y="'+y+'" fill="#5b6675" font-size="15" font-weight="600">'+e(l)+'</text>'; y+=24; }); y+=6; }
-    // 구분선
-    s+='<rect x="'+X+'" y="'+y+'" width="48" height="4" rx="2" fill="'+th[1]+'"/>'; y+=30;
-    // 본문 항목
+    var cat=o.category||'안내', bw=cat.length*14.5+26;
+    s+='<rect x="'+(W-X-bw)+'" y="33" width="'+bw+'" height="28" rx="14" fill="rgba(255,255,255,.18)"/>';
+    s+='<text x="'+(W-X-13)+'" y="51.5" text-anchor="end" fill="#fff" font-size="12.5" font-weight="700">'+e(cat)+'</text>';
+    // 제목(히어로)
+    var tl=wrapText(o.title,12).slice(0,2);
+    var tBase=BH-26-(tl.length-1)*34;
+    tl.forEach(function(l,i){ s+='<text x="'+X+'" y="'+(tBase+i*34)+'" fill="#fff" font-size="29" font-weight="800" letter-spacing="-0.6">'+e(l)+'</text>'; });
+    var y=BH+42;
+    // 핵심 메시지(슬로건) — 강조 박스
+    if(o.message){
+      var ml=wrapText(o.message,17).slice(0,3);
+      var boxH=24+ml.length*28;
+      s+='<rect x="'+X+'" y="'+y+'" width="'+CW+'" height="'+boxH+'" rx="13" fill="'+th[1]+'" opacity="0.08"/>';
+      s+='<rect x="'+X+'" y="'+y+'" width="5" height="'+boxH+'" rx="2.5" fill="'+th[1]+'"/>';
+      s+='<text x="'+(X+20)+'" y="'+(y+38)+'" fill="'+th[1]+'" opacity="0.32" font-size="38" font-weight="800">“</text>';
+      var my=y+33;
+      ml.forEach(function(l){ s+='<text x="'+(X+46)+'" y="'+my+'" fill="'+th[0]+'" font-size="18.5" font-weight="800" letter-spacing="-0.3">'+e(l)+'</text>'; my+=28; });
+      y+=boxH+28;
+    } else if(o.subtitle){
+      wrapText(o.subtitle,24).slice(0,2).forEach(function(l){ s+='<text x="'+X+'" y="'+y+'" fill="#5b6675" font-size="15.5" font-weight="600">'+e(l)+'</text>'; y+=24; });
+      y+=18;
+    }
+    // 본문 항목(푸터를 넘지 않게)
     (o.points||[]).slice(0,4).forEach(function(p){
+      if(y > FOOT-26) return;
       s+='<circle cx="'+(X+5)+'" cy="'+(y-5)+'" r="3.5" fill="'+th[1]+'"/>';
-      var wl=wrapText(p,20);
-      wl.forEach(function(l,i){ s+='<text x="'+(X+20)+'" y="'+y+'" fill="#27313f" font-size="16.5" font-weight="'+(i===0?'600':'400')+'">'+e(l)+'</text>'; y+=26; });
+      wrapText(p,21).forEach(function(l,i){ if(y>FOOT-12) return; s+='<text x="'+(X+20)+'" y="'+y+'" fill="#37414f" font-size="15.5" font-weight="'+(i===0?'600':'400')+'">'+e(l)+'</text>'; y+=25; });
       y+=8;
     });
     // 하단 정보 밴드
-    s+='<rect x="0" y="'+(H-92)+'" width="'+W+'" height="92" fill="#f5f7fa"/>';
-    s+='<rect x="0" y="'+(H-92)+'" width="'+W+'" height="3" fill="url(#g)"/>';
-    var fy=H-56;
-    if(o.date){ s+='<text x="'+X+'" y="'+fy+'" fill="#16305c" font-size="15" font-weight="700">📅 '+e(o.date)+'</text>'; }
-    if(o.place){ s+='<text x="'+X+'" y="'+(fy+24)+'" fill="#5b6675" font-size="14" font-weight="600">📍 '+e(o.place)+'</text>'; }
-    s+='<text x="'+(W-X)+'" y="'+(H-30)+'" text-anchor="end" fill="#9aa3b0" font-size="12" font-weight="600">'+e(nm)+'</text>';
+    s+='<rect x="0" y="'+FOOT+'" width="'+W+'" height="'+FB+'" fill="#f4f6f9"/>';
+    s+='<rect x="0" y="'+FOOT+'" width="'+W+'" height="3.5" fill="url(#g)"/>';
+    var fy=H-54;
+    if(o.date){
+      s+='<g transform="translate('+X+','+(fy-12)+')" fill="none" stroke="'+th[0]+'" stroke-width="1.7" stroke-linecap="round"><rect x="0.5" y="1.5" width="15" height="13.5" rx="2.5"/><path d="M0.5 6h15M4.5 0v3M11.5 0v3"/></g>';
+      s+='<text x="'+(X+24)+'" y="'+fy+'" fill="'+th[0]+'" font-size="14.5" font-weight="700">'+e(o.date)+'</text>';
+    }
+    if(o.place){
+      s+='<g transform="translate('+X+','+(fy+8)+')" fill="none" stroke="#7a8593" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 15s5.5-4.5 5.5-9A5.5 5.5 0 0 0 2.5 6c0 4.5 5.5 9 5.5 9z"/><circle cx="8" cy="6" r="2"/></g>';
+      s+='<text x="'+(X+24)+'" y="'+(fy+22)+'" fill="#5b6675" font-size="13.5" font-weight="600">'+e(o.place)+'</text>';
+    }
+    s+='<text x="'+(W-X)+'" y="'+(H-46)+'" text-anchor="end" fill="#1c2738" font-size="14" font-weight="800">'+e(nm)+'</text>';
+    if(pos) s+='<text x="'+(W-X)+'" y="'+(H-28)+'" text-anchor="end" fill="#9aa3b0" font-size="11.5" font-weight="600">'+e(pos)+'</text>';
     s+='</svg>';
     return s;
   }
@@ -1815,9 +1836,10 @@ onAuthStateChanged(_auth, async function(user){
     } else {
       history.push({role:'user', content:fullText});
     }
-    runLoop(addTyping(), 0);
+    runLoop(addTyping(), 0, 0);
   }
-  function runLoop(typing, depth){
+  function runLoop(typing, depth, retry){
+    retry=retry||0;
     if(depth>6){ if(typing) typing.remove(); addAI('처리 단계가 너무 많아 중단했습니다. 다시 시도해 주세요.'); return; }
     var _status=0;
     fetch(gptEndpoint(), {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({model:GPT_MODEL, messages:history, tools:TOOLS})})
@@ -1826,10 +1848,16 @@ onAuthStateChanged(_auth, async function(user){
         var d=null; try{ d=JSON.parse(txt); }catch(e){}
         var msg = d && d.choices && d.choices[0] && d.choices[0].message;
         if(!msg){
+          // 게이트웨이 일시 오류(502/503/504)는 자동 재시도
+          if((_status===502||_status===503||_status===504||_status===429) && retry<2){
+            setTimeout(function(){ runLoop(typing, depth, retry+1); }, 900*(retry+1));
+            return;
+          }
           if(typing) typing.remove();
           var err=(d&&d.error&&d.error.message)
                 ||(d&&Array.isArray(d.errors)&&d.errors.map(function(e){return e&&(e.message||e.code);}).filter(Boolean).join('; '))
                 ||((txt&&txt.trim())? ('HTTP '+_status+' · '+txt.slice(0,400)) : ('HTTP '+_status+' · 빈 응답을 받았습니다.'));
+          if(_status===502||_status===503||_status===504) err='AI 서버가 일시적으로 응답하지 않습니다(HTTP '+_status+'). 잠시 후 다시 시도해 주세요.';
           addAI('오류: '+M.esc(err)); return;
         }
         history.push(msg);
@@ -1839,13 +1867,16 @@ onAuthStateChanged(_auth, async function(user){
             var result=execTool(tc.function&&tc.function.name, args);
             history.push({role:'tool', tool_call_id:tc.id, content:JSON.stringify(result)});
           });
-          runLoop(typing, depth+1);
+          runLoop(typing, depth+1, 0);
         } else {
           if(typing) typing.remove();
           addAI(mdToHtml(msg.content||''));
         }
       })
-      .catch(function(e){ if(typing) typing.remove(); addAI('연결 오류: '+M.esc(e&&e.message||String(e))); });
+      .catch(function(e){
+        if(retry<2){ setTimeout(function(){ runLoop(typing, depth, retry+1); }, 900*(retry+1)); return; }
+        if(typing) typing.remove(); addAI('연결 오류: '+M.esc(e&&e.message||String(e)));
+      });
   }
   var input=document.getElementById('aiInput'), sendBtn=document.getElementById('aiSend');
   if(sendBtn) sendBtn.addEventListener('click', function(){ if(input){ send(input.value); input.value=''; input.focus(); } });
@@ -1869,18 +1900,28 @@ onAuthStateChanged(_auth, async function(user){
       return '<span style="display:inline-flex;align-items:center;gap:7px;background:#eef2f8;border:1px solid #dbe3ef;border-radius:9px;padding:6px 10px;font-size:12px;color:#3a4658;max-width:210px"><span>'+ico+'</span><span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+M.esc(a.name)+'</span><button data-rmatt="'+i+'" title="제거" style="border:none;background:transparent;color:#9aa3b0;cursor:pointer;font-size:15px;line-height:1;padding:0 0 0 2px">×</button></span>';
     }).join('');
   }
+  function downscaleImage(dataUrl, name){
+    var img=new Image();
+    img.onload=function(){
+      var max=1280, w=img.width, h=img.height;
+      if(w>max||h>max){ var r=Math.min(max/w, max/h); w=Math.round(w*r); h=Math.round(h*r); }
+      var url=dataUrl;
+      try{ var c=document.createElement('canvas'); c.width=w; c.height=h; c.getContext('2d').drawImage(img,0,0,w,h); url=c.toDataURL('image/jpeg',0.85); }catch(e){}
+      attachments.push({name:name, kind:'image', dataUrl:url}); renderAttach();
+    };
+    img.onerror=function(){ attachments.push({name:name, kind:'image', dataUrl:dataUrl}); renderAttach(); };
+    img.src=dataUrl;
+  }
   function addFiles(files){
     Array.prototype.slice.call(files||[]).forEach(function(f){
-      if(f.size > 6*1024*1024){ alert('"'+f.name+'" 은 6MB를 초과해 첨부할 수 없습니다.'); return; }
+      if(f.size > 12*1024*1024){ alert('"'+f.name+'" 은 너무 커서 첨부할 수 없습니다(12MB 제한).'); return; }
       var isImg=/^image\//.test(f.type);
-      // 텍스트로 읽을 수 있는 형식만 텍스트 처리, 그 외 비이미지는 이름만 안내
       var isText = isImg ? false : (/^text\//.test(f.type) || /\.(txt|md|csv|tsv|json|log|html?|xml|js|ts|py)$/i.test(f.name) || f.type==='application/json');
       if(!isImg && !isText){ alert('"'+f.name+'" 형식은 첨부할 수 없습니다. 텍스트 또는 이미지 파일을 올려주세요.'); return; }
       var rd=new FileReader();
       rd.onload=function(){
-        if(isImg) attachments.push({name:f.name, kind:'image', dataUrl:String(rd.result||'')});
-        else attachments.push({name:f.name, kind:'text', content:String(rd.result||'')});
-        renderAttach();
+        if(isImg) downscaleImage(String(rd.result||''), f.name);
+        else { attachments.push({name:f.name, kind:'text', content:String(rd.result||'')}); renderAttach(); }
       };
       rd.onerror=function(){ alert('"'+f.name+'" 을 읽지 못했습니다.'); };
       if(isImg) rd.readAsDataURL(f); else rd.readAsText(f);
