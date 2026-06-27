@@ -82,6 +82,7 @@
 <nav>
   <button data-tab="dash" class="active">대시보드</button>
   <button data-tab="inq">문의관리</button>
+  <button data-tab="sales">🎯 영업</button>
   <button data-tab="quote">견적 계산기</button>
   <button data-tab="teachers">강사</button>
   <button data-tab="settings">단가 설정</button>
@@ -119,7 +120,8 @@
       <div class="grid g3">
         <div><label>기관명</label><input id="f-org" placeholder="예: 햇살초등학교"></div>
         <div><label>담당자</label><input id="f-mgr" placeholder="예: 김선생"></div>
-        <div><label>연락처 / 이메일</label><input id="f-contact" placeholder="010-0000-0000"></div>
+        <div><label>연락처</label><input id="f-contact" placeholder="010-0000-0000"></div>
+        <div><label>이메일</label><input id="f-email" placeholder="견적 메일 보낼 주소"></div>
         <div><label>인원수</label><input id="f-people" type="number" placeholder="30"></div>
         <div><label>희망 날짜</label><input id="f-date" type="date"></div>
         <div><label>장소(지역)</label><input id="f-loc" placeholder="예: 서울 강서구"></div>
@@ -172,6 +174,50 @@
     <div class="card">
       <h2>👩‍🏫 강사 목록</h2>
       <div id="t-rows"></div>
+    </div>
+  </section>
+
+  <!-- 영업(아웃바운드) -->
+  <section id="sales" class="tab">
+    <div class="card">
+      <h2>🎯 영업 대상 추가</h2>
+      <p class="muted" style="margin-top:-8px">수업을 넣을 만한 곳(학교·복지관·문화센터·기업 등)을 등록하면, 맞춤 영업메일이 자동으로 작성돼요.</p>
+      <div class="grid g3">
+        <div><label>기관명</label><input id="p-name" placeholder="예: 강서구립도서관"></div>
+        <div><label>유형</label><select id="p-type">
+          <option>초등학교</option><option>중·고등학교</option><option>복지관</option>
+          <option>문화센터/평생교육원</option><option>도서관</option><option>기업/기관</option><option>기타</option>
+        </select></div>
+        <div><label>지역</label><input id="p-region" placeholder="예: 서울 강서구"></div>
+        <div><label>이메일</label><input id="p-email" placeholder="영업메일 받을 주소"></div>
+        <div><label>전화(선택)</label><input id="p-phone" placeholder="02-..."></div>
+        <div><label>메모(선택)</label><input id="p-memo" placeholder="담당부서 등"></div>
+      </div>
+      <div class="row" style="margin-top:12px">
+        <button class="btn" onclick="addProspect()">영업 대상 추가</button>
+        <button class="btn sec" onclick="$('imp-prospect').style.display='block'">📥 여러 곳 한번에 붙여넣기</button>
+      </div>
+      <div id="imp-prospect" style="display:none;margin-top:12px">
+        <label>한 줄에 하나씩: <b>기관명, 유형, 지역, 이메일, 전화</b> (쉼표 구분)</label>
+        <textarea id="imp-text" placeholder="강서도서관, 도서관, 서울 강서구, lib@example.com, 02-000-0000
+햇살복지관, 복지관, 서울 양천구, welfare@example.com,"></textarea>
+        <button class="btn sm" style="margin-top:8px" onclick="importProspects()">불러오기</button>
+        <p class="hint">엑셀/구글시트에서 복사해 붙여넣어도 돼요. (지역·유형만 알려주시면 제가 실제 명단을 찾아 채워드릴 수도 있어요.)</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>📨 영업 진행 현황</h2>
+      <div class="row" style="margin-bottom:6px">
+        <span class="muted" id="sales-summary"></span>
+      </div>
+      <div style="overflow-x:auto">
+      <table>
+        <thead><tr><th>기관</th><th>유형/지역</th><th>이메일</th><th>상태</th><th>영업메일</th></tr></thead>
+        <tbody id="prospect-rows"></tbody>
+      </table>
+      </div>
+      <p class="hint">"✉️ Gmail로 보내기"를 누르면 받는사람·제목·본문이 다 채워진 Gmail 작성창이 열려요. 보내기만 누르면 끝! (자동으로 '메일발송' 상태로 바뀜)</p>
     </div>
   </section>
 
@@ -233,8 +279,9 @@
     <div class="card">
       <h2>🤖 어디까지 자동화됐나</h2>
       <div class="flow">
-        <span class="on">문의 접수</span><span class="on">견적 자동산출</span><span class="on">정식 견적서</span><span class="on">강사 자동배정</span>
-        <span class="on">안내문/계약 초안</span><span>재료 준비(직접)</span><span class="on">준비 체크리스트</span><span class="on">후기요청</span><span class="on">재방문 제안</span>
+        <span class="on">영업 대상</span><span class="on">영업메일 자동작성</span><span class="on">Gmail 원클릭</span><span class="on">문의 접수</span>
+        <span class="on">견적 자동산출</span><span class="on">정식 견적서</span><span class="on">견적 메일</span><span class="on">강사 자동배정</span>
+        <span class="on">계약 초안</span><span>재료 준비(직접)</span><span class="on">준비 체크리스트</span><span class="on">재방문 제안</span>
       </div>
       <p class="muted">※ '재료 준비'만 직접 하시고, 나머지 서류·계산·안내·일정은 이 도구가 자동 생성해요.</p>
       <div class="kv"><b>견적서</b><span>인원·품목·거리 입력 → 자동 계산 + 안내문 생성</span></div>
@@ -277,12 +324,14 @@ const DEFAULT_CFG = {perteacher:15, travel:50000, km:1000, revisit:5, vat:10, va
 let DB = {
   inquiries: JSON.parse(localStorage.getItem('lc_inq')||'[]'),
   teachers: JSON.parse(localStorage.getItem('lc_teach')||'[]'),
+  prospects: JSON.parse(localStorage.getItem('lc_prospect')||'[]'),
   prices: JSON.parse(localStorage.getItem('lc_price')||'null') || DEFAULT_PRICES,
   cfg: Object.assign({}, DEFAULT_CFG, JSON.parse(localStorage.getItem('lc_cfg')||'{}')),
 };
 function save(){
   localStorage.setItem('lc_inq', JSON.stringify(DB.inquiries));
   localStorage.setItem('lc_teach', JSON.stringify(DB.teachers));
+  localStorage.setItem('lc_prospect', JSON.stringify(DB.prospects));
   localStorage.setItem('lc_price', JSON.stringify(DB.prices));
   localStorage.setItem('lc_cfg', JSON.stringify(DB.cfg));
 }
@@ -443,7 +492,7 @@ function renderDash(){
     </div>`;
   }).join('') : '<p class="muted">예정된 수업이 없어요.</p>';
 }
-function renderAll(){ fillItemSelects(); renderInq(); renderTeachers(); renderPrices(); renderCfg(); renderDash(); calcQuote(); }
+function renderAll(){ fillItemSelects(); renderInq(); renderTeachers(); renderProspects(); renderPrices(); renderCfg(); renderDash(); calcQuote(); }
 
 // ---------- 액션 ----------
 function uid(){ return 'x'+Math.random().toString(36).slice(2,9); }
@@ -452,12 +501,13 @@ function addInquiry(){
   if(!org){ alert('기관명을 입력해 주세요.'); return; }
   DB.inquiries.unshift({
     id:uid(), org, mgr:$('f-mgr').value.trim(), contact:$('f-contact').value.trim(),
+    email:$('f-email').value.trim(),
     people:+$('f-people').value||1, date:$('f-date').value, loc:$('f-loc').value.trim(),
     item:$('f-item').value, budget:$('f-budget').value.trim(), memo:$('f-memo').value.trim(),
     status:'문의접수', created:todayStr()
   });
   save();
-  ['f-org','f-mgr','f-contact','f-people','f-loc','f-budget','f-memo'].forEach(id=>$(id).value='');
+  ['f-org','f-mgr','f-contact','f-email','f-people','f-loc','f-budget','f-memo'].forEach(id=>$(id).value='');
   renderAll();
   document.querySelector('[data-tab="inq"]').click();
   // 등록 직후 상세 자동 오픈
@@ -471,7 +521,7 @@ function openInq(id){
   $('modal-body').innerHTML = `
     <button class="close" onclick="closeModal()">✕</button>
     <h2 style="margin:0 0 4px">${i.org}</h2>
-    <p class="muted" style="margin:0 0 12px">${i.mgr||''} · ${i.contact||'연락처 없음'} · ${i.loc||''}</p>
+    <p class="muted" style="margin:0 0 12px">${i.mgr||''} · ${i.contact||'연락처 없음'} ${i.email?'· '+i.email:''} · ${i.loc||''}</p>
     <div class="flow">${steps.map(s=>`<span class="${s===i.status?'on':''}" style="cursor:pointer" onclick="setStatus('${i.id}','${s}')">${s}</span>`).join('')}</div>
     <div class="card" style="box-shadow:none;margin:12px 0">
       <div class="kv"><span>품목 / 인원</span><b>${i.item} · ${i.people}명</b></div>
@@ -491,6 +541,7 @@ function openInq(id){
     </div>
     <div class="row">
       <button class="btn sm" onclick="printQuote('${i.id}')">📄 견적서 인쇄/PDF</button>
+      <button class="btn sm" onclick="sendQuoteEmail('${i.id}')">📧 견적 메일 보내기</button>
       <button class="btn sm" onclick="showDraft('견적 안내문','${i.id}','quote')">견적 안내문</button>
       <button class="btn sm" onclick="showDraft('수업 확정 안내','${i.id}','contract')">계약/확정 안내</button>
       <button class="btn sm sec" onclick="showDraft('재방문 제안문','${i.id}','revisit')">재방문 제안</button>
@@ -596,6 +647,120 @@ function setStatus(id,s){ const i=DB.inquiries.find(x=>x.id===id); i.status=s; s
 function delInq(id){ if(!confirm('이 문의를 삭제할까요?'))return; DB.inquiries=DB.inquiries.filter(x=>x.id!==id); save(); closeModal(); renderAll(); }
 function closeModal(){ $('modal').classList.remove('show'); }
 
+// ---------- 영업(아웃바운드) ----------
+const SALES_INTRO = {
+  '초등학교':'학생 대상 방과후·체험학습·창의적체험활동으로 가죽공예 원데이 클래스를 진행합니다. 안전한 도구와 난이도별 키트로 저학년도 완성할 수 있습니다.',
+  '중·고등학교':'진로체험·동아리·자유학기제 프로그램으로 적합한 가죽공예 수업을 제공합니다. 직접 만든 작품을 가져갈 수 있어 만족도가 높습니다.',
+  '복지관':'어르신·주민 대상 정서·여가 프로그램으로 가죽공예를 추천드립니다. 손작업 중심이라 집중도와 성취감이 높습니다.',
+  '문화센터/평생교육원':'단발성 원데이 특강부터 정규 강좌 개설까지 협의 가능합니다. 수강생 모집용 커리큘럼·샘플 이미지도 제공해 드립니다.',
+  '도서관':'주민 대상 문화프로그램·가족 체험 행사에 어울리는 가죽공예 클래스를 진행합니다.',
+  '기업/기관':'임직원 워크숍·팀빌딩·기념일 원데이 클래스로 가죽공예를 제안드립니다. 인원·예산에 맞춰 패키지를 구성해 드립니다.',
+  '기타':'단체 인원에 맞춘 가죽공예 출장수업을 진행합니다.'
+};
+function salesSubject(p){ return `(광고) ${DB.cfg.biz||'가죽공방'} 가죽공예 단체 출장수업 제안`; }
+function salesBody(p){
+  const c=DB.cfg;
+  return `${p.name} 담당자님께,
+
+안녕하세요. ${c.biz||'가죽공방'}입니다.
+저희는 학교·기관을 직접 찾아가는 가죽공예 단체 출장수업을 운영하고 있습니다.
+
+${SALES_INTRO[p.type]||SALES_INTRO['기타']}
+
+[진행 방식]
+· 인원·난이도에 맞춰 재료키트와 강사를 모두 준비해 방문합니다.
+· 품목 예시: 키링/팔찌, 카드지갑, 반지갑 등 (난이도별 선택)
+· 견적서·세금계산서 발행 가능
+
+샘플 견적이나 커리큘럼이 필요하시면 본 메일로 회신 주세요.
+인원과 희망 일정만 알려주시면 견적서를 바로 보내드리겠습니다.
+
+감사합니다.
+
+${c.biz||'가죽공방'} ${c.owner||''}
+☎ ${c.phone||'(연락처)'}   ✉ ${c.email||''}
+────────────────────
+본 메일은 광고성 정보를 포함합니다. 수신을 원치 않으시면 회신으로 '수신거부'라고 보내주시면 더 이상 발송하지 않습니다.`;
+}
+function gmailLink(to,su,body){
+  return 'https://mail.google.com/mail/?view=cm&fs=1&to='+encodeURIComponent(to||'')+
+    '&su='+encodeURIComponent(su)+'&body='+encodeURIComponent(body);
+}
+function mailtoLink(to,su,body){
+  return 'mailto:'+encodeURIComponent(to||'')+'?subject='+encodeURIComponent(su)+'&body='+encodeURIComponent(body);
+}
+function addProspect(){
+  const name=$('p-name').value.trim(); if(!name){alert('기관명을 입력하세요');return;}
+  DB.prospects.unshift({id:uid(), name, type:$('p-type').value, region:$('p-region').value.trim(),
+    email:$('p-email').value.trim(), phone:$('p-phone').value.trim(), memo:$('p-memo').value.trim(),
+    status:'미접촉', lastContact:''});
+  save(); ['p-name','p-region','p-email','p-phone','p-memo'].forEach(id=>$(id).value=''); renderProspects();
+}
+function importProspects(){
+  const lines=$('imp-text').value.split('\n').map(l=>l.trim()).filter(Boolean);
+  let n=0;
+  lines.forEach(l=>{
+    const [name,type,region,email,phone] = l.split(',').map(s=>(s||'').trim());
+    if(!name) return;
+    DB.prospects.unshift({id:uid(), name, type:type||'기타', region:region||'', email:email||'',
+      phone:phone||'', memo:'', status:'미접촉', lastContact:''}); n++;
+  });
+  save(); $('imp-text').value=''; renderProspects(); alert(n+'곳 추가됐어요.');
+}
+function setProspectStatus(id,s){ const p=DB.prospects.find(x=>x.id===id); p.status=s; save(); renderProspects(); }
+function delProspect(id){ DB.prospects=DB.prospects.filter(x=>x.x!==id&&x.id!==id); save(); renderProspects(); }
+function sendSales(id,how){
+  const p=DB.prospects.find(x=>x.id===id); if(!p)return;
+  if(!p.email){ alert('이메일이 없어요. 먼저 이메일을 등록하세요.'); return; }
+  const url=(how==='mailto'?mailtoLink:gmailLink)(p.email, salesSubject(p), salesBody(p));
+  window.open(url,'_blank');
+  if(p.status==='미접촉'){ p.status='메일발송'; p.lastContact=todayStr(); save(); renderProspects(); }
+}
+function previewSales(id){
+  const p=DB.prospects.find(x=>x.id===id); if(!p)return;
+  $('modal-body').innerHTML=`<button class="close" onclick="closeModal()">✕</button>
+    <h2>영업메일 미리보기 · ${p.name}</h2>
+    <p class="muted">제목: ${salesSubject(p)}</p>
+    <div class="draft" id="dtext">${salesBody(p)}</div>
+    <div class="row" style="margin-top:10px">
+      <button class="btn sm" onclick="sendSales('${p.id}','gmail')">✉️ Gmail로 보내기</button>
+      <button class="btn sm sec" onclick="sendSales('${p.id}','mailto')">기본 메일앱</button>
+      <button class="btn sm ghost" onclick="copyDraft()">📋 복사</button>
+    </div>`;
+  $('modal').classList.add('show');
+}
+const P_STATES=['미접촉','메일발송','회신','수업확정','거절'];
+function renderProspects(){
+  const tb=$('prospect-rows'); if(!tb) return;
+  if(!DB.prospects.length){ tb.innerHTML='<tr><td colspan="5" class="muted">아직 영업 대상이 없어요. 위에서 추가하세요.</td></tr>'; }
+  else tb.innerHTML=DB.prospects.map(p=>`<tr>
+    <td><b>${p.name}</b>${p.phone?`<br><span class="muted">${p.phone}</span>`:''}</td>
+    <td>${p.type}<br><span class="muted">${p.region||''}</span></td>
+    <td>${p.email||'<span class="muted">없음</span>'}</td>
+    <td><select onchange="setProspectStatus('${p.id}',this.value)" style="padding:5px 6px;font-size:12px">
+      ${P_STATES.map(s=>`<option ${p.status===s?'selected':''}>${s}</option>`).join('')}
+    </select>${p.lastContact?`<br><span class="muted" style="font-size:11px">${p.lastContact}</span>`:''}</td>
+    <td><div class="row" style="gap:4px">
+      <button class="btn sm" onclick="sendSales('${p.id}','gmail')">✉️ Gmail</button>
+      <button class="btn sm sec" onclick="previewSales('${p.id}')">미리보기</button>
+      <span class="del" onclick="delProspect('${p.id}')">삭제</span>
+    </div></td>
+  </tr>`).join('');
+  const s=DB.prospects;
+  if($('sales-summary')) $('sales-summary').innerHTML=
+    `총 ${s.length}곳 · 미접촉 ${s.filter(x=>x.status==='미접촉').length} · 메일발송 ${s.filter(x=>x.status==='메일발송').length} · 회신 ${s.filter(x=>x.status==='회신').length} · <b style="color:var(--ok)">수업확정 ${s.filter(x=>x.status==='수업확정').length}</b>`;
+}
+
+// 견적 메일 (문의 회신용 — 광고 아님)
+function sendQuoteEmail(id){
+  const i=DB.inquiries.find(x=>x.id===id); if(!i)return;
+  if(!i.email){ alert('이 문의에 이메일이 없어요. 문의관리에서 이메일을 입력하세요.'); return; }
+  const su=`[${DB.cfg.biz||'가죽공방'}] 가죽공예 단체수업 견적 안내`;
+  const body=draftQuote(i)+`\n\n※ 정식 견적서(PDF)는 별도 첨부해 드립니다. ('견적서 인쇄/PDF'로 저장 후 첨부)`;
+  window.open(gmailLink(i.email, su, body),'_blank');
+  if(i.status==='문의접수'){ setStatus(id,'견적발송'); }
+}
+
 function addTeacher(){
   const name=$('t-name').value.trim(); if(!name){alert('이름을 입력하세요');return;}
   DB.teachers.push({id:uid(),name,region:$('t-region').value.trim(),
@@ -632,8 +797,8 @@ function importData(input){
   r.onload=()=>{ try{ const d=JSON.parse(r.result);
     if(!d.inquiries||!d.prices){alert('백업 파일 형식이 아니에요.');return;}
     if(!confirm('현재 데이터를 백업 파일로 덮어쓸까요?'))return;
-    DB={inquiries:d.inquiries||[], teachers:d.teachers||[], prices:d.prices||DEFAULT_PRICES,
-      cfg:Object.assign({},DEFAULT_CFG,d.cfg||{})};
+    DB={inquiries:d.inquiries||[], teachers:d.teachers||[], prospects:d.prospects||[],
+      prices:d.prices||DEFAULT_PRICES, cfg:Object.assign({},DEFAULT_CFG,d.cfg||{})};
     save(); renderAll(); alert('복원 완료!');
   }catch(e){ alert('파일을 읽을 수 없어요.'); } };
   r.readAsText(f); input.value='';
