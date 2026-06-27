@@ -1667,7 +1667,7 @@ onAuthStateChanged(_auth, async function(user){
     {type:'function',function:{name:'add_event',description:'새 일정을 등록',parameters:{type:'object',properties:{title:{type:'string'},date:{type:'string',description:'YYYY-MM-DD'},time:{type:'string',description:'HH:MM'},cat:{type:'string',enum:['의정','지역','외부']},location:{type:'string'}},required:['title','date']}}},
     {type:'function',function:{name:'list_policies',description:'발의 법안/정책 목록 조회',parameters:{type:'object',properties:{}}}},
     {type:'function',function:{name:'list_notices',description:'중앙당·경기도당·경기도의회 등 외부 기관 공지사항 조회(최신순). 출처/검색어로 필터 가능.',parameters:{type:'object',properties:{source:{type:'string',enum:['중앙당','경기도당','경기도의회']},query:{type:'string',description:'제목 검색어'},limit:{type:'number',description:'개수(기본 10)'}}}}},
-    {type:'function',function:{name:'create_poster',description:'홍보용 웹자보(디자인 카드)를 생성해 화면에 표시한다. 반드시 임팩트 있는 한 줄 핵심 메시지(message, 슬로건)를 넣는다. 템플릿 선택: 사용자가 현장/단체 사진을 첨부했으면 template="event"(사진+네이비 캡션), 인물 사진이거나 후보 홍보면 template="portrait"(사진+번호+이름), 사진이 없으면 template="card". 직함(position)은 알면 채운다.',parameters:{type:'object',properties:{template:{type:'string',enum:['card','event','portrait'],description:'레이아웃. 첨부 사진 유무로 결정'},title:{type:'string',description:'핵심 제목/주제(event는 행사명, 짧게)'},message:{type:'string',description:'가장 크게 강조되는 핵심 메시지·슬로건 한 문장'},position:{type:'string',description:'의원 직함·소속(예: 경기도의원 · 안산 상록구)'},number:{type:'string',description:'portrait용 기호 번호(예: 2). 해당 시에만'},region:{type:'string',description:'event 푸터 지역(예: 일동·이동·성포동)'},subtitle:{type:'string',description:'부제(card에서 message 없을 때만)'},points:{type:'array',items:{type:'string'},description:'card 본문 핵심 항목 2~4개'},date:{type:'string',description:'일시(선택)'},place:{type:'string',description:'장소(card 전용, 선택)'},category:{type:'string',description:'상단 분류 배지'},theme:{type:'string',enum:['navy','red','green'],description:'card 색상 테마'}},required:['title','message']}}}
+    {type:'function',function:{name:'create_poster',description:'홍보용 웹자보(디자인 카드)를 생성해 화면에 표시한다. 반드시 임팩트 있는 한 줄 핵심 메시지(message, 슬로건)를 넣는다. 템플릿: 현장/단체 사진 첨부 시 template="event", 인물 홍보면 template="portrait", 사진 없이 AI가 배경 비주얼을 그리길 원하면 ai_background=true(글자·로고는 코드가 정확히 얹음), 단순 카드면 template="card". 직함(position)은 알면 채운다.',parameters:{type:'object',properties:{template:{type:'string',enum:['card','event','portrait'],description:'레이아웃. 첨부 사진 유무로 결정'},ai_background:{type:'boolean',description:'true면 GPT 이미지 AI가 배경 비주얼을 생성(하이브리드). 사진 첨부가 없고 디자인 느낌을 원할 때.'},background_prompt:{type:'string',description:'ai_background용 배경 묘사(영문 권장, 텍스트·얼굴 없는 추상 배경). 예: "youth housing, hopeful city sunrise"'},title:{type:'string',description:'핵심 제목/주제'},message:{type:'string',description:'가장 크게 강조되는 핵심 메시지·슬로건 한 문장'},position:{type:'string',description:'의원 직함·소속(예: 경기도의원 · 안산 상록구)'},number:{type:'string',description:'portrait용 기호 번호'},region:{type:'string',description:'event 푸터 지역'},subtitle:{type:'string',description:'부제(card에서 message 없을 때만)'},points:{type:'array',items:{type:'string'},description:'card 본문 핵심 항목 2~4개'},date:{type:'string',description:'일시(선택)'},place:{type:'string',description:'장소(card 전용)'},category:{type:'string',description:'상단 분류 배지'},theme:{type:'string',enum:['navy','red','green'],description:'card 색상 테마'}},required:['title','message']}}}
   ];
   /* ── 웹자보(디자인 카드) 생성 ─────────────────────────────────────── */
   function wrapText(s, n){
@@ -1735,7 +1735,27 @@ onAuthStateChanged(_auth, async function(user){
     s+='<text x="34" y="'+(H-28)+'" fill="#fff" font-size="46" font-weight="900" letter-spacing="-2">'+e((o.number?o.number+' ':'')+nm)+'</text>';
     s+='</svg>'; return s;
   }
+  /* AI 배경 비주얼형 (생성 배경 + 코드로 글자·로고 합성) */
+  function posterVisual(o){
+    var W=480,H=600,e=M.esc;
+    var nm=profName(), pos=profPos(o);
+    var s=svgOpen('<defs><linearGradient id="scrim" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0a1428" stop-opacity="0.5"/><stop offset="0.45" stop-color="#0a1428" stop-opacity="0.12"/><stop offset="1" stop-color="#0a1428" stop-opacity="0.94"/></linearGradient></defs>');
+    s+='<rect width="480" height="600" fill="#101f4a"/>';
+    s+=photoTag(o._bg,0,0,W,H);
+    s+='<rect width="480" height="600" fill="url(#scrim)"/>';
+    s+=partyMark(34,52);
+    if(o.category){ var bw=o.category.length*14.5+26; s+='<rect x="'+(W-34-bw)+'" y="32" width="'+bw+'" height="28" rx="14" fill="rgba(255,255,255,.22)"/><text x="'+(W-34-13)+'" y="50.5" text-anchor="end" fill="#fff" font-size="12.5" font-weight="700">'+e(o.category)+'</text>'; }
+    var sl=wrapText(o.message||o.title,12).slice(0,3), sy=H-186-(sl.length-1)*40;
+    sl.forEach(function(l){ s+='<text x="34" y="'+sy+'" fill="#fff" font-size="30" font-weight="900" letter-spacing="-1.2">'+e(l)+'</text>'; sy+=40; });
+    if(o.message && o.title && o.title!==o.message){ s+='<text x="34" y="'+(sy+4)+'" fill="rgba(255,255,255,.86)" font-size="14.5" font-weight="600">'+e(wrapText(o.title,30)[0])+'</text>'; }
+    s+='<rect x="34" y="'+(H-92)+'" width="412" height="1.3" fill="rgba(255,255,255,.28)"/>';
+    if(pos) s+='<text x="34" y="'+(H-58)+'" fill="rgba(255,255,255,.85)" font-size="13" font-weight="600">'+e(pos)+'</text>';
+    s+='<text x="34" y="'+(H-24)+'" fill="#fff" font-size="29" font-weight="900" letter-spacing="-1">'+e(nm)+'</text>';
+    s+=govSeal(W-52, H-40, 18);
+    s+='</svg>'; return s;
+  }
   function posterSVG(o){
+    if(o._bg) return posterVisual(o);
     var tpl=o.template||'card';
     if(tpl==='event') return posterEvent(o);
     if(tpl==='portrait') return posterPortrait(o);
@@ -1836,6 +1856,41 @@ onAuthStateChanged(_auth, async function(user){
     scroll();
   }
 
+  /* ── 하이브리드: GPT 이미지 AI로 배경 생성 → 코드로 글자/로고 합성 ─────── */
+  function aiImage(prompt){
+    var ep=gptEndpoint().replace(/\/+$/,'')+'/image';
+    return fetch(ep, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prompt:prompt, size:'1024x1536'})})
+      .then(function(r){ return r.text().then(function(t){ return {s:r.status,t:t}; }); })
+      .then(function(res){
+        var d=null; try{ d=JSON.parse(res.t); }catch(e){}
+        var b64=d&&d.data&&d.data[0]&&d.data[0].b64_json;
+        if(b64) return 'data:image/png;base64,'+b64;
+        var url=d&&d.data&&d.data[0]&&d.data[0].url;
+        if(url) return url;
+        var err=(d&&d.error&&d.error.message)||('HTTP '+res.s+' · '+(res.t||'').slice(0,200));
+        throw new Error(err);
+      });
+  }
+  function bgPrompt(o){
+    var theme=o.background_prompt || ((o.title||'')+' '+(o.message||''));
+    return 'A clean professional VERTICAL background for a Korean political/public-office promotional card. Theme: '+theme+'. Style: modern, deep navy blue (#16305c) and white, subtle abstract geometric shapes and soft gradient light, dignified government/parliament mood, premium, generous empty space for text overlay. STRICT: absolutely NO text, NO letters, NO words, NO numbers, NO logos, NO human faces, NO people. Background graphic only.';
+  }
+  function addPosterAI(o){
+    var id='pl'+Date.now()+Math.random().toString(36).slice(2,6);
+    msgs.insertAdjacentHTML('beforeend',
+      '<div id="'+id+'" style="display:flex;gap:11px;max-width:82%">'+AV+
+      '<div style="background:#fff;border:1px solid #eef1f5;border-radius:4px 14px 14px 14px;padding:16px;flex:1;font-size:13px;color:#5b6675">🎨 AI가 배경 이미지를 생성하는 중입니다… (10~20초 소요)</div></div>');
+    scroll();
+    aiImage(bgPrompt(o)).then(function(dataUrl){
+      o._bg=dataUrl; var el=document.getElementById(id); if(el) el.remove();
+      addPoster(posterSVG(o), o);
+    }).catch(function(err){
+      var el=document.getElementById(id); if(el) el.remove();
+      addPoster(posterSVG(o), o);
+      addAI('※ AI 배경 생성에 실패해 기본 디자인으로 만들었습니다.<br><span style="font-size:11.5px;color:#9aa3b0">사유: '+M.esc(err&&err.message||String(err))+' (gpt-image-1 미인증 계정이면 OpenAI에서 조직 인증이 필요합니다.)</span>');
+    });
+  }
+
   function refreshUI(){ ['__minwonRefresh','__schRefresh','__policyRefresh','__dashRefresh'].forEach(function(k){ try{ if(window[k]) window[k](); }catch(e){} }); }
   function reloadCrm(){ try{ var f=document.querySelector('.page[data-page="crm"] iframe'); if(f) f.contentWindow.location.reload(); }catch(e){} }
   function reloadSchedule(){ try{ var f=document.querySelector('.page[data-page="schedule"] iframe'); if(f) f.contentWindow.location.reload(); }catch(e){} }
@@ -1903,6 +1958,10 @@ onAuthStateChanged(_auth, async function(user){
       if(name==='create_poster'){
         if(!a.title) return {error:'제목이 필요합니다.'};
         a._photos = lastPhotos.slice();
+        if(a.ai_background && !a._photos.length){
+          try{ addPosterAI(a); }catch(e){ return {error:'웹자보 생성 실패: '+(e&&e.message||e)}; }
+          return {ok:true, created:'웹자보(AI 배경 생성 중)', title:a.title, note:'AI가 배경 이미지를 그리는 중입니다(10~20초). 완성되면 자동으로 표시됩니다.'};
+        }
         var needPhoto = (a.template==='event'||a.template==='portrait');
         try{ addPoster(posterSVG(a), a); }catch(e){ return {error:'웹자보 생성 실패: '+(e&&e.message||e)}; }
         return {ok:true, created:'웹자보', title:a.title, template:a.template||'card',
