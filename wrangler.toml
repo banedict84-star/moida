@@ -1,0 +1,12 @@
+# moida-gpt — AI 비서실장 OpenAI 프록시 워커 배포 설정
+# GitHub Actions(.github/workflows/deploy-worker.yml)가 이 파일을 읽어 자동 배포합니다.
+# 비밀키(OPENAI_API_KEY)는 여기에 두지 않습니다 — Cloudflare 시크릿으로만 보관(배포 시 유지됨).
+
+name = "moida-gpt"
+main = "gpt-worker.js"
+compatibility_date = "2024-11-01"
+account_id = "0a43eeb2c6fe53d7e8e6f38d7ea96905"
+
+# 평문 변수(비밀 아님): AI Gateway 경유 OpenAI 엔드포인트
+[vars]
+OPENAI_BASE = "https://gateway.ai.cloudflare.com/v1/0a43eeb2c6fe53d7e8e6f38d7ea96905/moida/openai"
