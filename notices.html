@@ -9,7 +9,7 @@
   :root{
     --bg:#f3f5f8; --surface:#ffffff; --line:#e8eaf0; --line-soft:#f1f3f7;
     --ink:#1c2030; --ink-2:#5a6072; --ink-3:#9298a8; --ink-4:#b6bcca;
-    --primary:#1452a0; --primary-600:#0e3f80; --primary-soft:#e7f0fb;
+    --primary:#2f5fd0; --primary-600:#16305c; --primary-soft:#e8f0fe;
     --shadow-sm:0 1px 2px rgba(22,26,45,.04),0 1px 3px rgba(22,26,45,.03);
     --shadow-md:0 4px 16px rgba(22,26,45,.06),0 1px 3px rgba(22,26,45,.04);
     --shadow-panel:0 2px 6px rgba(22,26,45,.05),0 12px 32px rgba(22,26,45,.10);
@@ -23,7 +23,7 @@
   /* ===== Sidebar (shared) ===== */
   .sidebar{ background:var(--surface); border-right:1px solid var(--line); display:flex; flex-direction:column; padding:18px 16px; position:sticky; top:0; height:100vh; overflow-y:auto; }
   .logo{ display:flex; align-items:center; gap:11px; padding:8px 8px 18px; }
-  .logo-mark{ width:36px; height:36px; border-radius:11px; flex-shrink:0; background:linear-gradient(140deg,#2f74c9 0%,#1452a0 60%,#0e3f80 100%); display:flex; align-items:center; justify-content:center; box-shadow:0 5px 14px rgba(79,70,229,.34); position:relative; overflow:hidden; }
+  .logo-mark{ width:36px; height:36px; border-radius:11px; flex-shrink:0; background:linear-gradient(135deg,#16305c 0%,#2f5fd0 100%); display:flex; align-items:center; justify-content:center; box-shadow:0 5px 14px rgba(79,70,229,.34); position:relative; overflow:hidden; }
   .logo-mark::after{ content:""; position:absolute; inset:0; background:radial-gradient(65% 55% at 28% 20%, rgba(255,255,255,.42), rgba(255,255,255,0) 70%); }
   .logo-name{ font-size:20px; font-weight:800; letter-spacing:-.04em; color:#1c2030; line-height:1; }
   .logo-name b{ color:var(--primary); font-weight:800; }
@@ -99,7 +99,7 @@
   /* ===== Main / page ===== */
   .main{ display:flex; flex-direction:column; min-width:0; }
   .page-head{ display:flex; align-items:flex-start; gap:16px; padding:22px 28px 0; }
-  .ph-mark{ width:46px; height:46px; border-radius:13px; background:linear-gradient(140deg,#2f74c9,#0e3f80); color:#fff; display:flex; align-items:center; justify-content:center; font-size:21px; font-weight:800; flex-shrink:0; box-shadow:0 6px 16px rgba(79,70,229,.3); }
+  .ph-mark{ width:46px; height:46px; border-radius:13px; background:linear-gradient(140deg,#2f5fd0,#16305c); color:#fff; display:flex; align-items:center; justify-content:center; font-size:21px; font-weight:800; flex-shrink:0; box-shadow:0 6px 16px rgba(79,70,229,.3); }
   .ph-info h1{ font-size:21px; font-weight:800; letter-spacing:-.025em; }
   .ph-sub{ margin-top:5px; font-size:13px; color:var(--ink-2); font-weight:500; }
   .ph-conn{ display:inline-flex; align-items:center; gap:5px; margin-top:7px; font-size:12px; font-weight:600; color:#10936a; }
@@ -155,7 +155,7 @@
   tbody tr:last-child td{ border-bottom:none; }
   .nm-cell{ font-weight:700; color:var(--ink); }
   .score{ display:inline-flex; align-items:center; justify-content:center; min-width:30px; height:24px; padding:0 8px; border-radius:7px; font-weight:800; font-size:12.5px; }
-  .sc-hi{ background:#e7f6ee; color:#0f9d63; } .sc-mid{ background:#e7f0fb; color:#1452a0; } .sc-lo{ background:#f1f3f7; color:#9298a8; }
+  .sc-hi{ background:#e7f6ee; color:#0f9d63; } .sc-mid{ background:#e7f0fb; color:#2f5fd0; } .sc-lo{ background:#f1f3f7; color:#9298a8; }
   .tag{ display:inline-flex; align-items:center; gap:6px; padding:3px 9px; border-radius:7px; font-size:12px; font-weight:600; }
   .tag .d{ width:7px; height:7px; border-radius:50%; }
   .tg-vote{ background:#e7f6ee; color:#0f9d63;} .tg-old{ background:#e8f1fe; color:#2563eb;} .tg-new{ background:#f1ebfd; color:#7c3aed;} .tg-out{ background:#fdeaea; color:#dc2626;} .tg-err{ background:#fdf0e0; color:#cd7d18;}
@@ -174,7 +174,7 @@
   /* detail panel */
   .detail{ background:var(--surface); border:1px solid var(--line); border-radius:16px; box-shadow:var(--shadow-panel); position:sticky; top:18px; overflow:hidden; }
   .dt-head{ display:flex; align-items:center; gap:11px; padding:18px 20px 0; }
-  .dt-ava{ width:42px; height:42px; border-radius:12px; background:linear-gradient(140deg,#2f74c9,#0e3f80); color:#fff; display:flex; align-items:center; justify-content:center; font-size:17px; font-weight:700; }
+  .dt-ava{ width:42px; height:42px; border-radius:12px; background:linear-gradient(140deg,#2f5fd0,#16305c); color:#fff; display:flex; align-items:center; justify-content:center; font-size:17px; font-weight:700; }
   .dt-head h2{ font-size:16px; font-weight:800; }
   .dt-head .dt-sub{ font-size:12px; color:var(--ink-3); margin-top:3px; font-weight:500; }
   .tabs{ display:flex; gap:4px; padding:16px 20px 0; border-bottom:1px solid var(--line); }
@@ -691,7 +691,7 @@ c1|2026.03.10|2,051|경기도의회 의정모니터단 모집 공고`;
   var OPTS=[
     { key:'all',      label:'전체 공지',      color:'#64748b', href:'notices.html' },
     { key:'admin',    label:'MOIDA 공지',     color:'#15182a', href:'notices.html?src=admin' },
-    { key:'central',  label:'민주당 중앙당',   color:'#1452a0', href:'notices.html?src=central' },
+    { key:'central',  label:'민주당 중앙당',   color:'#2f5fd0', href:'notices.html?src=central' },
     { key:'gyeonggi', label:'민주당 경기도당', color:'#0d9488', href:'notices.html?src=gyeonggi' },
     { key:'council',  label:'경기도의회',      color:'#b45309', href:'notices.html?src=council' }
   ];
