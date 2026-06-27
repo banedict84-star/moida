@@ -14,15 +14,28 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    # GitHub에 OPENAI_API_KEY 시크릿이 있으면 'true', 없으면 'false'
+    env:
+      HAS_OPENAI: ${{ secrets.OPENAI_API_KEY != '' }}
     steps:
       - uses: actions/checkout@v4
-      - name: Deploy to Cloudflare Workers
+
+      # (A) GitHub에 OPENAI_API_KEY가 등록돼 있으면: 배포 + 키를 워커에 자동 주입
+      #     → 재배포해도 키가 유실되지 않음(권장).
+      - name: Deploy (with OPENAI_API_KEY injection)
+        if: env.HAS_OPENAI == 'true'
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          # 배포할 때마다 OPENAI_API_KEY 시크릿을 워커에 자동 주입(재배포 시 유실 방지).
-          # 값은 GitHub 저장소 시크릿 OPENAI_API_KEY 에서만 읽음 — 코드/깃에는 절대 저장하지 않음.
           secrets: |
             OPENAI_API_KEY
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+
+      # (B) GitHub에 키가 없으면: 배포만 수행하고 Cloudflare에 수동 등록된 시크릿은 절대 건드리지 않음.
+      #     (wrangler deploy는 기존 시크릿을 보존함)
+      - name: Deploy (keep Cloudflare-managed secret)
+        if: env.HAS_OPENAI != 'true'
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
