@@ -419,8 +419,9 @@ button{font-family:inherit}
           <div style="font-size:15px;font-weight:700;margin-bottom:18px">프로필</div>
           <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px">
             <div id="setAvatar" style="width:60px;height:60px;border-radius:16px;background:linear-gradient(135deg,#16305c,#3b6fd4);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:22px">·</div>
-            <div><div id="setName" style="font-size:16px;font-weight:700">—</div><div id="setSub" style="font-size:13px;color:#8a94a3;margin-top:2px">—</div></div>
-            <button style="margin-left:auto;height:36px;padding:0 14px;background:#fff;border:1px solid #d6dde6;border-radius:9px;font-size:12.5px;font-weight:600;color:#5b6675;cursor:pointer">사진 변경</button>
+            <div><div id="setName" style="font-size:16px;font-weight:700">—</div><div id="setSub" style="font-size:13px;color:#8a94a3;margin-top:2px">—</div><div style="font-size:11.5px;color:#9aa3b0;margin-top:4px">웹자보 인물 사진으로 사용됩니다</div></div>
+            <input id="setPhotoFile" type="file" accept="image/png,image/jpeg,image/webp" style="display:none"/>
+            <button id="setPhotoBtn" style="margin-left:auto;height:36px;padding:0 14px;background:#fff;border:1px solid #d6dde6;border-radius:9px;font-size:12.5px;font-weight:600;color:#5b6675;cursor:pointer">의원 사진 등록</button>
           </div>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
             <div><div style="font-size:12.5px;color:#6b7585;font-weight:600;margin-bottom:6px">이름</div><div id="setNameField" style="height:40px;border:1px solid #e7eaef;border-radius:9px;display:flex;align-items:center;padding:0 13px;font-size:13.5px;background:#fafbfc">—</div></div>
@@ -575,7 +576,7 @@ button{font-family:inherit}
     var snm = document.getElementById('sideName');
     var ssub = document.getElementById('sideSub');
     if(brand && disp) brand.textContent = disp + ' 의원실';
-    if(av) av.textContent = disp ? disp.charAt(0) : '·';
+    if(av){ if(p&&p.photo){ av.style.backgroundImage='url('+p.photo+')'; av.style.backgroundSize='cover'; av.style.backgroundPosition='center'; av.textContent=''; } else { av.style.backgroundImage=''; av.textContent = disp ? disp.charAt(0) : '·'; } }
     if(snm) snm.textContent = disp || '로그인 필요';
     if(ssub) ssub.textContent = sub || '—';
   }
@@ -1511,8 +1512,40 @@ onAuthStateChanged(_auth, async function(user){
     var p=M.profile||{}; var nm=p.name||M.sessUser().displayName||(M.sessUser().email||'').split('@')[0]||'';
     var em=p.email||M.sessUser().email||''; var sub=[p.position,p.district].filter(Boolean).join(' · ')||'의원실 구성원';
     set('setName', nm||'—'); set('setSub', sub); set('setNameField', nm||'—'); set('setEmailField', em||'—');
-    var av=document.getElementById('setAvatar'); if(av) av.textContent= nm?nm.charAt(0):'·';
+    var av=document.getElementById('setAvatar'); if(av){ if(p.photo){ av.style.backgroundImage='url('+p.photo+')'; av.style.backgroundSize='cover'; av.style.backgroundPosition='center'; av.textContent=''; } else { av.style.backgroundImage=''; av.textContent= nm?nm.charAt(0):'·'; } }
   }
+  function saveProfilePhoto(dataUrl){
+    M.profile = M.profile || {};
+    M.profile.photo = dataUrl;
+    try{ localStorage.setItem('moida_tenant_'+(M.uid||M.sessUser().uid||'default'), JSON.stringify(M.profile)); }catch(e){}
+    if(M.paintProfile) M.paintProfile(M.profile);
+    paint();
+    try{ if(M.db && M.uid && M.fs && !window.MOIDA_READONLY){ M.fs.setDoc(M.fs.doc(M.db,'tenants',M.uid), {photo:dataUrl}, {merge:true}); } }catch(e){}
+    toast('의원 사진이 등록되었습니다. 웹자보 인물 템플릿에 사용됩니다.');
+  }
+  (function(){
+    var pb=document.getElementById('setPhotoBtn'), pf=document.getElementById('setPhotoFile');
+    if(!pb||!pf) return;
+    pb.addEventListener('click', function(){ if(window.MOIDA_READONLY){ alert('읽기 전용 상태입니다.'); return; } pf.click(); });
+    pf.addEventListener('change', function(){
+      var f=pf.files&&pf.files[0]; if(!f){ return; } pf.value='';
+      if(!/^image\//.test(f.type)){ alert('이미지 파일만 등록할 수 있습니다.'); return; }
+      var rd=new FileReader();
+      rd.onload=function(){
+        var img=new Image();
+        img.onload=function(){
+          var max=720, w=img.width, h=img.height;
+          if(w>max||h>max){ var r=Math.min(max/w,max/h); w=Math.round(w*r); h=Math.round(h*r); }
+          var url=String(rd.result||'');
+          try{ var c=document.createElement('canvas'); c.width=w; c.height=h; c.getContext('2d').drawImage(img,0,0,w,h); url=c.toDataURL('image/jpeg',0.85); }catch(e){}
+          saveProfilePhoto(url);
+        };
+        img.onerror=function(){ saveProfilePhoto(String(rd.result||'')); };
+        img.src=String(rd.result||'');
+      };
+      rd.readAsDataURL(f);
+    });
+  })();
   function toast(msg){
     var t=document.createElement('div');
     t.style.cssText='position:fixed;bottom:28px;left:50%;transform:translateX(-50%);background:#15182a;color:#fff;font-size:13px;font-weight:600;padding:11px 20px;border-radius:10px;z-index:300;box-shadow:0 8px 24px rgba(22,26,45,0.3)';
@@ -1634,7 +1667,7 @@ onAuthStateChanged(_auth, async function(user){
     {type:'function',function:{name:'add_event',description:'새 일정을 등록',parameters:{type:'object',properties:{title:{type:'string'},date:{type:'string',description:'YYYY-MM-DD'},time:{type:'string',description:'HH:MM'},cat:{type:'string',enum:['의정','지역','외부']},location:{type:'string'}},required:['title','date']}}},
     {type:'function',function:{name:'list_policies',description:'발의 법안/정책 목록 조회',parameters:{type:'object',properties:{}}}},
     {type:'function',function:{name:'list_notices',description:'중앙당·경기도당·경기도의회 등 외부 기관 공지사항 조회(최신순). 출처/검색어로 필터 가능.',parameters:{type:'object',properties:{source:{type:'string',enum:['중앙당','경기도당','경기도의회']},query:{type:'string',description:'제목 검색어'},limit:{type:'number',description:'개수(기본 10)'}}}}},
-    {type:'function',function:{name:'create_poster',description:'홍보용 웹자보(디자인 카드)를 생성해 화면에 표시한다. 행사·의정보고·정책·모집 안내 등에 사용. 반드시 임팩트 있는 한 줄 핵심 메시지(message, 슬로건)를 넣고, 제목은 짧고 강하게. 의원 직함(position)이 있으면 채운다.',parameters:{type:'object',properties:{title:{type:'string',description:'핵심 제목/주제(10자 내외, 강하게)'},message:{type:'string',description:'가장 크게 강조되는 핵심 메시지·슬로건 한 문장. 예: "청년이 살기 좋은 도시, 함께 만들겠습니다"'},position:{type:'string',description:'의원 직함·소속(예: 경기도의원 · 안산 상록구). 모르면 비움'},subtitle:{type:'string',description:'부제(선택, message 없을 때만 표시)'},points:{type:'array',items:{type:'string'},description:'본문 핵심 항목 2~4개(간결하게)'},date:{type:'string',description:'일시(선택)'},place:{type:'string',description:'장소(선택)'},category:{type:'string',description:'상단 분류 배지, 예: 의정보고·행사안내·정책·모집'},theme:{type:'string',enum:['navy','red','green'],description:'색상 테마(기본 navy)'}},required:['title','message']}}}
+    {type:'function',function:{name:'create_poster',description:'홍보용 웹자보(디자인 카드)를 생성해 화면에 표시한다. 반드시 임팩트 있는 한 줄 핵심 메시지(message, 슬로건)를 넣는다. 템플릿 선택: 사용자가 현장/단체 사진을 첨부했으면 template="event"(사진+네이비 캡션), 인물 사진이거나 후보 홍보면 template="portrait"(사진+번호+이름), 사진이 없으면 template="card". 직함(position)은 알면 채운다.',parameters:{type:'object',properties:{template:{type:'string',enum:['card','event','portrait'],description:'레이아웃. 첨부 사진 유무로 결정'},title:{type:'string',description:'핵심 제목/주제(event는 행사명, 짧게)'},message:{type:'string',description:'가장 크게 강조되는 핵심 메시지·슬로건 한 문장'},position:{type:'string',description:'의원 직함·소속(예: 경기도의원 · 안산 상록구)'},number:{type:'string',description:'portrait용 기호 번호(예: 2). 해당 시에만'},region:{type:'string',description:'event 푸터 지역(예: 일동·이동·성포동)'},subtitle:{type:'string',description:'부제(card에서 message 없을 때만)'},points:{type:'array',items:{type:'string'},description:'card 본문 핵심 항목 2~4개'},date:{type:'string',description:'일시(선택)'},place:{type:'string',description:'장소(card 전용, 선택)'},category:{type:'string',description:'상단 분류 배지'},theme:{type:'string',enum:['navy','red','green'],description:'card 색상 테마'}},required:['title','message']}}}
   ];
   /* ── 웹자보(디자인 카드) 생성 ─────────────────────────────────────── */
   function wrapText(s, n){
@@ -1647,7 +1680,68 @@ onAuthStateChanged(_auth, async function(user){
     if(cur) lines.push(cur);
     return lines;
   }
+  function svgOpen(defs){
+    return '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 480 600" width="480" height="600" style="width:100%;height:auto;display:block;font-family:Pretendard,\'Apple SD Gothic Neo\',\'Malgun Gothic\',sans-serif">'+(defs||'');
+  }
+  function photoTag(url,x,yy,w,h){
+    if(url) return '<image x="'+x+'" y="'+yy+'" width="'+w+'" height="'+h+'" preserveAspectRatio="xMidYMid slice" href="'+url+'" xlink:href="'+url+'"/>';
+    return '<rect x="'+x+'" y="'+yy+'" width="'+w+'" height="'+h+'" fill="#e6eaf0"/>'
+      +'<g transform="translate('+(x+w/2)+','+(yy+h/2-16)+')" fill="none" stroke="#aab3c0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="-15" y="-11" width="30" height="24" rx="3"/><circle cx="-6" cy="-2" r="3"/><path d="M-15 9l9-7 7 5 5-4 9 7"/></g>'
+      +'<text x="'+(x+w/2)+'" y="'+(yy+h/2+22)+'" text-anchor="middle" fill="#9aa3b0" font-size="13" font-weight="700">사진을 첨부하면 들어갑니다</text>';
+  }
+  function partyMark(x,yy){ /* 더불어민주당 워드마크 근사(흰색) */
+    return '<text x="'+x+'" y="'+yy+'" fill="#fff" font-size="10.5" font-weight="700" letter-spacing="-0.3">더불어</text>'
+      +'<text x="'+x+'" y="'+(yy+17)+'" fill="#fff" font-size="18" font-weight="900" letter-spacing="-1.2">민주당</text>';
+  }
+  function govSeal(cx,cy,r){ /* 의회 금빛 인장 근사 */
+    return '<circle cx="'+cx+'" cy="'+cy+'" r="'+r+'" fill="#e8b53a" opacity="0.16"/><circle cx="'+cx+'" cy="'+cy+'" r="'+r+'" fill="none" stroke="#edc15a" stroke-width="2"/><text x="'+cx+'" y="'+(cy+(r*0.34))+'" text-anchor="middle" fill="#edc15a" font-size="'+(r*0.78)+'" font-weight="800">의회</text>';
+  }
+  function profPos(o){ return o.position || [(M.profile&&M.profile.position),(M.profile&&M.profile.district)].filter(Boolean).join(' ') || ''; }
+  function profName(){ return (M.profile&&M.profile.name)||'의원'; }
+
+  /* 현장 사진형 자보 (사진 + 네이비 캡션 + 로고·직함·이름) */
+  function posterEvent(o){
+    var W=480,H=600,e=M.esc, PH=354;
+    var nm=profName(), pos=profPos(o), region=(M.profile&&M.profile.district)||o.region||'';
+    var photo=(o._photos&&o._photos[0])||'';
+    var s=svgOpen('<defs><linearGradient id="ng" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1c3f86"/><stop offset="1" stop-color="#101f4a"/></linearGradient></defs>');
+    s+='<rect width="480" height="600" fill="#101f4a"/>';
+    s+=photoTag(photo,0,0,W,PH);
+    if(o.date){ var dw=String(o.date).length*8.5+22; s+='<rect x="14" y="14" width="'+dw+'" height="26" rx="6" fill="rgba(8,14,28,.7)"/><text x="'+(14+dw/2)+'" y="32" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">'+e(o.date)+'</text>'; }
+    s+='<rect x="0" y="'+PH+'" width="480" height="'+(H-PH)+'" fill="url(#ng)"/>';
+    var tl=wrapText(o.title,15).slice(0,2), ty=PH+(tl.length>1?40:52);
+    tl.forEach(function(l){ s+='<text x="240" y="'+ty+'" text-anchor="middle" fill="#f4c84b" font-size="26" font-weight="800" letter-spacing="-0.5">'+e(l)+'</text>'; ty+=31; });
+    if(o.message){ wrapText(o.message,26).slice(0,2).forEach(function(l){ s+='<text x="240" y="'+ty+'" text-anchor="middle" fill="rgba(255,255,255,.92)" font-size="15" font-weight="600">'+e(l)+'</text>'; ty+=21; }); }
+    s+='<rect x="34" y="'+(H-86)+'" width="412" height="1.3" fill="rgba(255,255,255,.16)"/>';
+    s+=partyMark(34,H-50);
+    if(region) s+='<text x="34" y="'+(H-18)+'" fill="rgba(255,255,255,.72)" font-size="11.5" font-weight="600">'+e(region)+'</text>';
+    s+='<text x="446" y="'+(H-50)+'" text-anchor="end" fill="rgba(255,255,255,.85)" font-size="11.5" font-weight="600">'+e(pos||'경기도의원')+'</text>';
+    s+=govSeal(446-(nm.length*25)-22, H-29, 15);
+    s+='<text x="446" y="'+(H-20)+'" text-anchor="end" fill="#fff" font-size="25" font-weight="900" letter-spacing="-0.5">'+e(nm)+'</text>';
+    s+='</svg>'; return s;
+  }
+  /* 인물 사진형 자보 (사진 + 슬로건 + 번호·이름) */
+  function posterPortrait(o){
+    var W=480,H=600,e=M.esc;
+    var nm=profName(), photo=(o._photos&&o._photos[0])||(M.profile&&M.profile.photo)||'';
+    var s=svgOpen('<defs><linearGradient id="pb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1f56e0"/><stop offset="1" stop-color="#143fb0"/></linearGradient></defs>');
+    s+='<rect width="480" height="600" fill="url(#pb)"/>';
+    s+=photoTag(photo,250,0,230,600);
+    s+='<rect x="250" y="0" width="60" height="600" fill="#1f56e0" opacity="0.0"/>';
+    s+=partyMark(36,56);
+    var sl=wrapText(o.message||o.title,6).slice(0,3), sy=232;
+    sl.forEach(function(l){ s+='<text x="38" y="'+sy+'" fill="#fff" font-size="33" font-weight="900" letter-spacing="-1.5">'+e(l)+'</text>'; sy+=42; });
+    if(o.category) s+='<text x="38" y="'+(H-92)+'" fill="#f4c84b" font-size="15" font-weight="700">'+e(o.category)+'</text>';
+    s+='<text x="34" y="'+(H-28)+'" fill="#fff" font-size="46" font-weight="900" letter-spacing="-2">'+e((o.number?o.number+' ':'')+nm)+'</text>';
+    s+='</svg>'; return s;
+  }
   function posterSVG(o){
+    var tpl=o.template||'card';
+    if(tpl==='event') return posterEvent(o);
+    if(tpl==='portrait') return posterPortrait(o);
+    return posterCard(o);
+  }
+  function posterCard(o){
     var W=480,H=600,X=40,CW=W-2*X;
     var THEMES={navy:['#16305c','#2f5fd0','#7fb0ff'],red:['#7a1d2b','#dc2626','#fca5a5'],green:['#0f5132','#16a34a','#86efac']};
     var th=THEMES[o.theme]||THEMES.navy;
@@ -1808,17 +1902,24 @@ onAuthStateChanged(_auth, async function(user){
       }
       if(name==='create_poster'){
         if(!a.title) return {error:'제목이 필요합니다.'};
+        a._photos = lastPhotos.slice();
+        var needPhoto = (a.template==='event'||a.template==='portrait');
         try{ addPoster(posterSVG(a), a); }catch(e){ return {error:'웹자보 생성 실패: '+(e&&e.message||e)}; }
-        return {ok:true, created:'웹자보', title:a.title, note:'화면에 카드가 표시되었습니다. 사용자는 PNG로 저장할 수 있습니다.'};
+        return {ok:true, created:'웹자보', title:a.title, template:a.template||'card',
+          photoUsed: a._photos.length>0,
+          note: (needPhoto && !a._photos.length) ? '사진 영역은 비어 있습니다. 사용자가 사진을 첨부하면 더 완성도 높은 자보가 됩니다.' : '화면에 카드가 표시되었습니다. 사용자는 PNG로 저장할 수 있습니다.'};
       }
       return {error:'알 수 없는 도구: '+name};
     }catch(e){ return {error:String(e&&e.message||e)}; }
   }
   var attachments=[]; /* {name, kind:'text'|'image', content|dataUrl} */
+  var lastPhotos=[]; /* 가장 최근 첨부한 이미지(웹자보 합성용) */
   function send(text){
     text=(text||'').trim();
     if(!text && !attachments.length) return;
     var atts=attachments.slice(); attachments=[]; renderAttach();
+    var _imgs=atts.filter(function(a){return a.kind==='image';});
+    if(_imgs.length) lastPhotos=_imgs.map(function(f){return f.dataUrl;});
     addUser(text, atts);
     var ep=gptEndpoint();
     if(!ep){ var r=reply(text); setTimeout(function(){ addAI(r); }, 350); return; }
