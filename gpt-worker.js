@@ -67,8 +67,15 @@ export default {
         body: JSON.stringify({ model, messages, temperature: 0.6, max_tokens: 900 }),
       });
 
-      const data = await r.json();
-      const reply = data?.choices?.[0]?.message?.content ?? (data?.error?.message || "GPT 응답을 받지 못했습니다.");
+      // 업스트림 응답을 그대로 읽어서, 실패 시 실제 원인을 화면에 노출(진단용)
+      const raw = await r.text();
+      let data = null;
+      try { data = JSON.parse(raw); } catch (_) {}
+      const reply =
+        data?.choices?.[0]?.message?.content ??
+        data?.error?.message ??
+        (Array.isArray(data?.errors) ? data.errors.map(function(e){ return e && (e.message || JSON.stringify(e)); }).join("; ") : null) ??
+        ("[업스트림 " + r.status + "] " + (raw ? raw.slice(0, 700) : "빈 응답"));
       return new Response(JSON.stringify({ reply }), {
         status: r.ok ? 200 : 502,
         headers: { ...cors, "Content-Type": "application/json" },
