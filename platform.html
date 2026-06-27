@@ -1205,11 +1205,17 @@ onAuthStateChanged(_auth, async function(user){
     var done = c.status==='종결';
     var pr = done ? {fg:'#64748b',bg:'#eef1f5',label:'완료'} : (function(){ var p=PRI[c.priority]||PRI['일반']; return {fg:p.fg,bg:p.bg,label:c.priority||'일반'}; })();
     var prog = (c.status==='처리중') ? '<div style="height:5px;border-radius:3px;background:#eef1f5;margin-top:9px;overflow:hidden"><div style="width:'+(Math.max(0,Math.min(100,+c.progress||0)))+'%;height:100%;background:#2563eb"></div></div>' : '';
+    var cur=c.status||'접수';
+    var statusSel='<div style="margin-top:10px;display:flex;align-items:center;gap:6px">'
+      +'<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#9aa3b0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M5 12h14M13 6l6 6-6 6"/></svg>'
+      +'<select class="mw-status" data-id="'+M.esc(c.id)+'" style="flex:1;height:30px;border:1px solid #e2e7ee;border-radius:7px;font-size:11.5px;font-weight:600;font-family:inherit;background:#fff;color:#445064;padding:0 6px;cursor:pointer">'
+      + COLS.map(function(col){ return '<option'+(col.s===cur?' selected':'')+'>'+col.s+'</option>'; }).join('')
+      +'</select></div>';
     return '<div draggable="true" data-id="'+M.esc(c.id)+'" style="background:#fff;border-radius:10px;padding:13px;box-shadow:0 1px 2px rgba(16,24,40,0.05);cursor:grab'+(done?';opacity:0.85':'')+'">'
       +'<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:7px"><span style="font-size:10.5px;font-weight:700;color:'+pr.fg+';background:'+pr.bg+';padding:2px 7px;border-radius:5px">'+M.esc(pr.label)+'</span><span style="font-size:11px;color:#9aa3b0">'+M.esc(rel(c.date))+'</span></div>'
       +'<div style="font-size:13px;font-weight:600;line-height:1.4;margin-bottom:8px">'+M.esc(c.title||'(제목 없음)')+'</div>'
       +'<div style="display:flex;align-items:center;gap:6px;font-size:11.5px;color:#8a94a3"><span style="color:#5b6675;font-weight:600">'+M.esc(c.field||'기타')+'</span>'+(c.name?'<span>·</span><span>'+M.esc(c.name)+'</span>':'')+'</div>'
-      +prog+'</div>';
+      +prog+statusSel+'</div>';
   }
   function render(){
     var board = document.getElementById('mwBoard'); if(!board) return;
@@ -1239,9 +1245,28 @@ onAuthStateChanged(_auth, async function(user){
         if(window.MOIDA_READONLY){ alert('읽기 전용 상태입니다.'); return; }
         var id=e.dataTransfer.getData('text/plain');
         var c=(M.complaints||[]).find(function(x){ return String(x.id)===String(id); });
-        if(c && c.status!==col.dataset.status){ c.status=col.dataset.status; if(c.status==='종결') c.progress=100; M.save&&M.save('complaints', M.complaints); render(); }
+        if(c && c.status!==col.dataset.status){ setStatus(c, col.dataset.status); }
       });
     });
+    // 상태 드롭다운으로 단계 이동(드래그가 어려운 환경 대비)
+    board.querySelectorAll('.mw-status').forEach(function(s){
+      s.addEventListener('mousedown', function(e){ e.stopPropagation(); });
+      s.addEventListener('click', function(e){ e.stopPropagation(); });
+      s.addEventListener('change', function(){
+        if(window.MOIDA_READONLY){ alert('읽기 전용 상태입니다.'); render(); return; }
+        var c=(M.complaints||[]).find(function(x){ return String(x.id)===String(s.dataset.id); });
+        if(c){ setStatus(c, s.value); }
+      });
+    });
+  }
+  function setStatus(c, st){
+    c.status=st;
+    if(st==='종결'||st==='답변완료') c.progress=100;
+    else if(st==='처리중' && !(+c.progress)) c.progress=30;
+    else if(st==='접수') c.progress=0;
+    M.save&&M.save('complaints', M.complaints);
+    render();
+    if(window.__dashRefresh) try{ window.__dashRefresh(); }catch(e){}
   }
   function fld(label,inner){ return '<div style="margin-bottom:12px"><label style="display:block;font-size:12px;font-weight:600;color:#5b6675;margin-bottom:5px">'+label+'</label>'+inner+'</div>'; }
   function sel(id,opts){ return '<select id="'+id+'" style="width:100%;height:38px;border:1px solid #e7eaef;border-radius:9px;padding:0 11px;font-size:13.5px;font-family:inherit;background:#fff">'+opts.map(function(o){return '<option>'+o+'</option>';}).join('')+'</select>'; }
