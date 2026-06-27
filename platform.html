@@ -83,6 +83,13 @@ button{font-family:inherit}
         <span>뉴스</span>
       </div>
 
+      <div class="nav-item" data-page="notices" style="position:relative;display:flex;align-items:center;gap:11px;padding:10px 12px;border-radius:9px;font-size:13.5px;font-weight:500;cursor:pointer;transition:background .15s,color .15s" data-hover="background:rgba(255,255,255,0.06)">
+        <span class="nav-accent" style="position:absolute;left:-14px;top:9px;bottom:9px;width:3px;border-radius:0 3px 3px 0;background:#5b8cff"></span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l13-4v10L3 13z"/><path d="M7 12.5V17a2 2 0 0 0 4 0v-3.2"/><path d="M19 9.5a3 3 0 0 1 0 5"/></svg>
+        <span>공지사항</span>
+        <span id="ntBadge" style="margin-left:auto;background:#e5484d;color:#fff;font-size:10.5px;font-weight:700;min-width:19px;height:19px;border-radius:10px;display:none;align-items:center;justify-content:center;padding:0 5px">0</span>
+      </div>
+
       <div style="font-size:10.5px;font-weight:700;letter-spacing:0.08em;color:#536683;padding:16px 12px 6px">시스템</div>
 
       <div class="nav-item" data-page="admin" style="position:relative;display:flex;align-items:center;gap:11px;padding:10px 12px;border-radius:9px;font-size:13.5px;font-weight:500;cursor:pointer;transition:background .15s,color .15s" data-hover="background:rgba(255,255,255,0.06)">
@@ -428,6 +435,17 @@ button{font-family:inherit}
       </div>
       </div>
 
+      <div class="page" data-page="notices">
+      <div class="pg" style="max-width:1100px;margin:0 auto">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;flex-wrap:wrap">
+          <div id="ntTabs" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"></div>
+          <div style="flex:1"></div>
+          <span style="font-size:12.5px;color:#9aa3b0">총 <b id="ntCount" style="color:#5b6675">0</b>건</span>
+        </div>
+        <div id="ntList" style="background:#fff;border:1px solid #e9ecf1;border-radius:14px;box-shadow:0 1px 2px rgba(16,24,40,0.04);overflow:hidden"></div>
+      </div>
+      </div>
+
       <div class="page" data-page="admin">
       <div class="pg" style="max-width:1100px;margin:0 auto">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
@@ -554,6 +572,7 @@ button{font-family:inherit}
     pr:['홍보','SNS·언론 홍보 콘텐츠 관리'],
     policy:['정책','법안·정책 추진 현황'],
     news:['뉴스','실시간 언론·여론 모니터링'],
+    notices:['공지사항','중앙당·경기도당·경기도의회 공지'],
     admin:['관리','사용자·권한 관리'],
     settings:['설정','계정 및 시스템 설정']
   };
@@ -1471,6 +1490,91 @@ onAuthStateChanged(_auth, async function(user){
   }
   loadTodo(); renderTodo();
   M.onData(function(){ loadTodo(); renderTodo(); });
+})();
+</script>
+<!-- ── 공지사항 (중앙당·경기도당·경기도의회 크롤 + MOIDA 공지) ────────── -->
+<script>
+(function(){
+  'use strict';
+  var M = window.MOIDA; if(!M) return;
+  var SRC = [
+    {key:'all', label:'전체', color:'#1d3a6e'},
+    {key:'admin', label:'MOIDA', color:'#1d3a6e'},
+    {key:'central', label:'민주당 중앙당', color:'#2563eb', file:'central_data.json'},
+    {key:'gyeonggi', label:'경기도당', color:'#16a34a', file:'notices_data.json'},
+    {key:'council', label:'경기도의회', color:'#5b51d8', file:'council_data.json'}
+  ];
+  var POOL = [], tab = 'all';
+  function dnum(d){ return +String(d||'').replace(/\D/g,''); }
+  function meta(k){ for(var i=0;i<SRC.length;i++){ if(SRC[i].key===k) return SRC[i]; } return SRC[0]; }
+  function uid(){ return M.uidOf(); }
+
+  function buildTabs(){
+    var box = document.getElementById('ntTabs'); if(!box) return;
+    box.innerHTML = SRC.map(function(s){
+      var n = s.key==='all' ? POOL.length : POOL.filter(function(x){return x.src===s.key;}).length;
+      var on = s.key===tab;
+      return '<button data-tab="'+s.key+'" style="height:34px;padding:0 13px;border-radius:8px;font-size:12.5px;font-weight:600;cursor:pointer;'
+        +(on?'background:#1d3a6e;color:#fff;border:none':'background:#fff;border:1px solid #e7eaef;color:#5b6675')+'">'+s.label+(n?' <span style="opacity:.65">'+n+'</span>':'')+'</button>';
+    }).join('');
+    box.querySelectorAll('button').forEach(function(b){ b.addEventListener('click', function(){ tab=b.dataset.tab; buildTabs(); renderList(); }); });
+  }
+  function renderList(){
+    var box = document.getElementById('ntList'); if(!box) return;
+    var list = POOL.filter(function(x){ return tab==='all' || x.src===tab; });
+    var cnt = document.getElementById('ntCount'); if(cnt) cnt.textContent = list.length;
+    if(!list.length){ box.innerHTML = '<div style="padding:40px 20px;text-align:center;color:#9aa3b0;font-size:13.5px">'+(POOL.length?'해당 출처의 공지가 없습니다.':'공지를 불러오는 중입니다…')+'</div>'; return; }
+    box.innerHTML = list.slice(0,200).map(function(x,i){
+      var sm = meta(x.src); var notice = x.category==='공지'; var last = i===Math.min(list.length,200)-1;
+      return '<a href="'+M.esc(x.link||'#')+'" target="_blank" rel="noopener" style="display:grid;grid-template-columns:92px 1fr auto;gap:14px;align-items:center;padding:13px 20px;'+(last?'':'border-bottom:1px solid #f2f4f7;')+'text-decoration:none;color:inherit" data-hover="background:#fafbfc">'
+        +'<span style="font-size:11px;font-weight:600;color:'+sm.color+';background:'+sm.color+'14;padding:4px 0;border-radius:6px;text-align:center">'+M.esc(sm.label)+'</span>'
+        +'<span style="font-size:13.5px;font-weight:'+(notice?'700':'600')+';color:#27313f;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+(notice?'<span style="color:#dc2626;margin-right:5px">[공지]</span>':'')+M.esc(x.title||'')+'</span>'
+        +'<span style="font-size:12px;color:#9aa3b0">'+M.esc(String(x.date||'').replace(/-/g,'.'))+'</span></a>';
+    }).join('');
+    if(window.__bindHover) box.querySelectorAll('[data-hover]').forEach(window.__bindHover);
+  }
+  function refreshBadge(){
+    var badge = document.getElementById('ntBadge'); if(!badge) return;
+    try{
+      var all = POOL.map(function(x){ return x.date; });
+      if(!all.length) return;
+      localStorage.setItem('moida_notices_all_'+uid(), JSON.stringify(all));
+      var rk = 'moida_notices_read_'+uid();
+      if(localStorage.getItem(rk)==null){ localStorage.setItem(rk, String(all.reduce(function(a,b){return Math.max(a,dnum(b));},0))); }
+      var read = +(localStorage.getItem(rk)||0);
+      var unread = all.filter(function(d){ return dnum(d)>read; }).length;
+      if(unread>0 && location.hash!=='#notices'){ badge.textContent = unread>99?'99+':unread; badge.style.display='flex'; }
+      else badge.style.display='none';
+    }catch(e){}
+  }
+  function markRead(){
+    try{ var mx = POOL.map(function(x){return dnum(x.date);}).reduce(function(a,b){return Math.max(a,b);},0); localStorage.setItem('moida_notices_read_'+uid(), String(mx)); }catch(e){}
+    var badge = document.getElementById('ntBadge'); if(badge) badge.style.display='none';
+  }
+  function refresh(){ buildTabs(); renderList(); if(location.hash==='#notices') markRead(); else refreshBadge(); }
+  window.addEventListener('hashchange', function(){ if(location.hash==='#notices') markRead(); });
+
+  // 출처별 정적 JSON 로드
+  SRC.filter(function(s){ return s.file; }).forEach(function(s){
+    fetch(s.file).then(function(r){ return r.json(); }).then(function(j){
+      (j.items||[]).forEach(function(it){ POOL.push({ title:it.title, date:it.date, link:it.link, category:it.category, src:s.key }); });
+      POOL.sort(function(a,b){ return dnum(b.date)-dnum(a.date); });
+      refresh();
+    }).catch(function(e){ console.warn('notice load fail', s.file, e); refresh(); });
+  });
+  // MOIDA 공지(admin_notices, Firestore) — 로그인 후 best-effort
+  function loadAdmin(){
+    if(!M.db || !M.fs) return;
+    M.fs.getDocs(M.fs.collection(M.db,'admin_notices')).then(function(qs){
+      qs.forEach(function(d){ var x=d.data(); var ms=+(x.created||0); var dt=new Date(ms);
+        var ds=isNaN(dt.getTime())?'':dt.getFullYear()+'-'+String(dt.getMonth()+1).padStart(2,'0')+'-'+String(dt.getDate()).padStart(2,'0');
+        POOL.push({ title:x.title||'', date:ds, link:'#', category:'공지', src:'admin' }); });
+      POOL.sort(function(a,b){ return dnum(b.date)-dnum(a.date); });
+      refresh();
+    }).catch(function(e){ console.warn('admin_notices fail', e); });
+  }
+  refresh();
+  M.onData(function(){ loadAdmin(); });
 })();
 </script>
 <script src="access-guard.js"></script>
