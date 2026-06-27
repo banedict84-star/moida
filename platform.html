@@ -257,7 +257,12 @@ button{font-family:inherit}
 
       <div class="page" data-page="secretary">
       <div class="pg" style="max-width:1320px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:16px;height:calc(100vh - 130px)">
-        <div style="background:#fff;border:1px solid #e9ecf1;border-radius:14px;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 1px 2px rgba(16,24,40,0.04)">
+        <div id="aiPanel" style="position:relative;background:#fff;border:1px solid #e9ecf1;border-radius:14px;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 1px 2px rgba(16,24,40,0.04)">
+          <div id="aiDrop" style="display:none;position:absolute;inset:0;z-index:30;background:rgba(29,58,110,0.07);backdrop-filter:blur(1px);border:2.5px dashed #1d3a6e;border-radius:14px;align-items:center;justify-content:center;flex-direction:column;gap:12px;color:#1d3a6e;pointer-events:none">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5-5 5 5"/><path d="M12 5v12"/></svg>
+            <div style="font-size:15px;font-weight:700">파일을 놓아 첨부하세요</div>
+            <div style="font-size:12px;color:#5b6675">텍스트·이미지 파일 (최대 6MB)</div>
+          </div>
           <div style="display:flex;align-items:center;gap:11px;padding:16px 20px;border-bottom:1px solid #eef1f5">
             <div style="width:40px;height:40px;border-radius:11px;background:linear-gradient(135deg,#16305c,#3b6fd4);display:flex;align-items:center;justify-content:center;color:#fff"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.6L19.5 10l-5.6 1.9L12 17.5l-1.9-5.6L4.5 10l5.6-1.9z"/></svg></div>
             <div style="flex:1"><div style="font-size:15px;font-weight:700">AI 비서실장</div><div style="font-size:12px;color:#16a34a;display:flex;align-items:center;gap:5px;margin-top:1px"><span style="width:7px;height:7px;border-radius:50%;background:#16a34a"></span>의정활동 데이터 연동됨</div></div>
@@ -1864,11 +1869,13 @@ onAuthStateChanged(_auth, async function(user){
       return '<span style="display:inline-flex;align-items:center;gap:7px;background:#eef2f8;border:1px solid #dbe3ef;border-radius:9px;padding:6px 10px;font-size:12px;color:#3a4658;max-width:210px"><span>'+ico+'</span><span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+M.esc(a.name)+'</span><button data-rmatt="'+i+'" title="제거" style="border:none;background:transparent;color:#9aa3b0;cursor:pointer;font-size:15px;line-height:1;padding:0 0 0 2px">×</button></span>';
     }).join('');
   }
-  if(attachBtn&&fileInput){ attachBtn.addEventListener('click', function(){ fileInput.click(); }); }
-  if(fileInput){ fileInput.addEventListener('change', function(){
-    Array.prototype.slice.call(fileInput.files||[]).forEach(function(f){
+  function addFiles(files){
+    Array.prototype.slice.call(files||[]).forEach(function(f){
       if(f.size > 6*1024*1024){ alert('"'+f.name+'" 은 6MB를 초과해 첨부할 수 없습니다.'); return; }
       var isImg=/^image\//.test(f.type);
+      // 텍스트로 읽을 수 있는 형식만 텍스트 처리, 그 외 비이미지는 이름만 안내
+      var isText = isImg ? false : (/^text\//.test(f.type) || /\.(txt|md|csv|tsv|json|log|html?|xml|js|ts|py)$/i.test(f.name) || f.type==='application/json');
+      if(!isImg && !isText){ alert('"'+f.name+'" 형식은 첨부할 수 없습니다. 텍스트 또는 이미지 파일을 올려주세요.'); return; }
       var rd=new FileReader();
       rd.onload=function(){
         if(isImg) attachments.push({name:f.name, kind:'image', dataUrl:String(rd.result||'')});
@@ -1878,9 +1885,20 @@ onAuthStateChanged(_auth, async function(user){
       rd.onerror=function(){ alert('"'+f.name+'" 을 읽지 못했습니다.'); };
       if(isImg) rd.readAsDataURL(f); else rd.readAsText(f);
     });
-    fileInput.value='';
-  }); }
+  }
+  if(attachBtn&&fileInput){ attachBtn.addEventListener('click', function(){ fileInput.click(); }); }
+  if(fileInput){ fileInput.addEventListener('change', function(){ addFiles(fileInput.files); fileInput.value=''; }); }
   if(attachBox){ attachBox.addEventListener('click', function(e){ var rb=e.target.closest('[data-rmatt]'); if(rb){ attachments.splice(+rb.getAttribute('data-rmatt'),1); renderAttach(); } }); }
+
+  /* 드래그 앤 드롭 첨부 */
+  var aiPanel=document.getElementById('aiPanel'), aiDrop=document.getElementById('aiDrop'), dragDepth=0;
+  if(aiPanel && aiDrop){
+    function hasFiles(e){ return e.dataTransfer && Array.prototype.indexOf.call(e.dataTransfer.types||[], 'Files')>=0; }
+    aiPanel.addEventListener('dragenter', function(e){ if(!hasFiles(e)) return; e.preventDefault(); dragDepth++; aiDrop.style.display='flex'; });
+    aiPanel.addEventListener('dragover', function(e){ if(!hasFiles(e)) return; e.preventDefault(); e.dataTransfer.dropEffect='copy'; });
+    aiPanel.addEventListener('dragleave', function(e){ if(!hasFiles(e)) return; dragDepth--; if(dragDepth<=0){ dragDepth=0; aiDrop.style.display='none'; } });
+    aiPanel.addEventListener('drop', function(e){ e.preventDefault(); dragDepth=0; aiDrop.style.display='none'; if(e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files.length) addFiles(e.dataTransfer.files); });
+  }
 
   /* 오늘의 할 일 */
   function tk(){ return 'moida_todo_'+M.uidOf(); }
