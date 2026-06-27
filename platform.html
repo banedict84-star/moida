@@ -46,10 +46,23 @@ button{font-family:inherit}
         <span>AI 비서실장</span>
       </div>
 
+      <div class="nav-item" data-page="notices" style="position:relative;display:flex;align-items:center;gap:11px;padding:10px 12px;border-radius:9px;font-size:13.5px;font-weight:500;cursor:pointer;transition:background .15s,color .15s" data-hover="background:rgba(255,255,255,0.06)">
+        <span class="nav-accent" style="position:absolute;left:-14px;top:9px;bottom:9px;width:3px;border-radius:0 3px 3px 0;background:#5b8cff"></span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l13-4v10L3 13z"/><path d="M7 12.5V17a2 2 0 0 0 4 0v-3.2"/><path d="M19 9.5a3 3 0 0 1 0 5"/></svg>
+        <span>공지사항</span>
+        <span id="ntBadge" style="margin-left:auto;background:#e5484d;color:#fff;font-size:10.5px;font-weight:700;min-width:19px;height:19px;border-radius:10px;display:none;align-items:center;justify-content:center;padding:0 5px">0</span>
+      </div>
+
       <div class="nav-item" data-page="crm" style="position:relative;display:flex;align-items:center;gap:11px;padding:10px 12px;border-radius:9px;font-size:13.5px;font-weight:500;cursor:pointer;transition:background .15s,color .15s" data-hover="background:rgba(255,255,255,0.06)">
         <span class="nav-accent" style="position:absolute;left:-14px;top:9px;bottom:9px;width:3px;border-radius:0 3px 3px 0;background:#5b8cff"></span>
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.1"/><path d="M3 20c0-3.2 2.7-5 6-5s6 1.8 6 5"/><path d="M16 5.6a3 3 0 0 1 0 5.6M21 20c0-2.5-1.4-4.1-3.5-4.7"/></svg>
         <span>CRM</span>
+      </div>
+
+      <div class="nav-item" data-page="schedule" style="position:relative;display:flex;align-items:center;gap:11px;padding:10px 12px;border-radius:9px;font-size:13.5px;font-weight:500;cursor:pointer;transition:background .15s,color .15s" data-hover="background:rgba(255,255,255,0.06)">
+        <span class="nav-accent" style="position:absolute;left:-14px;top:9px;bottom:9px;width:3px;border-radius:0 3px 3px 0;background:#5b8cff"></span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg>
+        <span>일정·행사</span>
       </div>
 
       <div class="nav-item" data-page="minwon" style="position:relative;display:flex;align-items:center;gap:11px;padding:10px 12px;border-radius:9px;font-size:13.5px;font-weight:500;cursor:pointer;transition:background .15s,color .15s" data-hover="background:rgba(255,255,255,0.06)">
@@ -57,12 +70,6 @@ button{font-family:inherit}
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7.5l9 6 9-6"/></svg>
         <span>민원</span>
         <span id="mwBadge" style="margin-left:auto;background:#e5484d;color:#fff;font-size:10.5px;font-weight:700;min-width:19px;height:19px;border-radius:10px;display:flex;align-items:center;justify-content:center;padding:0 5px">0</span>
-      </div>
-
-      <div class="nav-item" data-page="schedule" style="position:relative;display:flex;align-items:center;gap:11px;padding:10px 12px;border-radius:9px;font-size:13.5px;font-weight:500;cursor:pointer;transition:background .15s,color .15s" data-hover="background:rgba(255,255,255,0.06)">
-        <span class="nav-accent" style="position:absolute;left:-14px;top:9px;bottom:9px;width:3px;border-radius:0 3px 3px 0;background:#5b8cff"></span>
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg>
-        <span>일정·행사</span>
       </div>
 
       <div class="nav-item" data-page="pr" style="position:relative;display:flex;align-items:center;gap:11px;padding:10px 12px;border-radius:9px;font-size:13.5px;font-weight:500;cursor:pointer;transition:background .15s,color .15s" data-hover="background:rgba(255,255,255,0.06)">
@@ -83,12 +90,7 @@ button{font-family:inherit}
         <span>뉴스</span>
       </div>
 
-      <div class="nav-item" data-page="notices" style="position:relative;display:flex;align-items:center;gap:11px;padding:10px 12px;border-radius:9px;font-size:13.5px;font-weight:500;cursor:pointer;transition:background .15s,color .15s" data-hover="background:rgba(255,255,255,0.06)">
-        <span class="nav-accent" style="position:absolute;left:-14px;top:9px;bottom:9px;width:3px;border-radius:0 3px 3px 0;background:#5b8cff"></span>
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l13-4v10L3 13z"/><path d="M7 12.5V17a2 2 0 0 0 4 0v-3.2"/><path d="M19 9.5a3 3 0 0 1 0 5"/></svg>
-        <span>공지사항</span>
-        <span id="ntBadge" style="margin-left:auto;background:#e5484d;color:#fff;font-size:10.5px;font-weight:700;min-width:19px;height:19px;border-radius:10px;display:none;align-items:center;justify-content:center;padding:0 5px">0</span>
-      </div>
+      
 
       <div style="font-size:10.5px;font-weight:700;letter-spacing:0.08em;color:#536683;padding:16px 12px 6px">시스템</div>
 
