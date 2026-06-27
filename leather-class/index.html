@@ -755,10 +755,10 @@ function importProspects(){
   const lines=$('imp-text').value.split('\n').map(l=>l.trim()).filter(Boolean);
   let n=0;
   lines.forEach(l=>{
-    const [name,type,region,email,phone] = l.split(',').map(s=>(s||'').trim());
+    const [name,type,region,email,phone,memo] = l.split(',').map(s=>(s||'').trim());
     if(!name) return;
     DB.prospects.unshift({id:uid(), name, type:type||'기타', region:region||'', email:email||'',
-      phone:phone||'', memo:'', status:'미접촉', lastContact:''}); n++;
+      phone:phone||'', memo:memo||'', status:'미접촉', lastContact:''}); n++;
   });
   save(); $('imp-text').value=''; renderProspects(); alert(n+'곳 추가됐어요.');
 }
@@ -789,7 +789,7 @@ function renderProspects(){
   const tb=$('prospect-rows'); if(!tb) return;
   if(!DB.prospects.length){ tb.innerHTML='<tr><td colspan="5" class="muted">아직 영업 대상이 없어요. 위에서 추가하세요.</td></tr>'; }
   else tb.innerHTML=DB.prospects.map(p=>`<tr>
-    <td><b>${p.name}</b>${p.phone?`<br><span class="muted">${p.phone}</span>`:''}</td>
+    <td><b>${p.name}</b>${p.phone?`<br><span class="muted">${p.phone}</span>`:''}${p.memo?`<br><a href="${/^https?:/.test(p.memo)?p.memo:'http://'+p.memo}" target="_blank" style="font-size:11px;color:var(--brand)">홈페이지↗</a>`:''}</td>
     <td>${p.type}<br><span class="muted">${p.region||''}</span></td>
     <td>${p.email||'<span class="muted">없음</span>'}</td>
     <td><select onchange="setProspectStatus('${p.id}',this.value)" style="padding:5px 6px;font-size:12px">
