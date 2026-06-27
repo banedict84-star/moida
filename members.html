@@ -1544,7 +1544,7 @@ onAuthStateChanged(_auth, async function(user){
     (function(){ var lg=document.querySelector('.logo'); if(!lg) return;
       lg.addEventListener('click',function(e){
         if(app.classList.contains('collapsed')){ e.preventDefault(); e.stopPropagation(); app.classList.remove('collapsed'); localStorage.setItem(KEY,'0'); }
-        else { location.href='dashboard.html'; }
+        else { location.href='platform.html'; }
       });
     })();
   })();
