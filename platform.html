@@ -309,29 +309,7 @@ button{font-family:inherit}
       </div>
       </div>
 
-      <div class="page" data-page="crm">
-      <div class="pg" style="max-width:1320px;margin:0 auto">
-        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:18px">
-          <div style="background:#fff;border:1px solid #e9ecf1;border-radius:13px;padding:16px 18px;box-shadow:0 1px 2px rgba(16,24,40,0.04)"><div style="font-size:12.5px;color:#6b7585;font-weight:500">전체 연락처</div><div id="crmKpiTotal" style="font-size:25px;font-weight:700;margin-top:6px">0</div></div>
-          <div style="background:#fff;border:1px solid #e9ecf1;border-radius:13px;padding:16px 18px;box-shadow:0 1px 2px rgba(16,24,40,0.04)"><div style="font-size:12.5px;color:#6b7585;font-weight:500">권리당원</div><div id="crmKpiRight" style="font-size:25px;font-weight:700;margin-top:6px;color:#16a34a">0</div></div>
-          <div style="background:#fff;border:1px solid #e9ecf1;border-radius:13px;padding:16px 18px;box-shadow:0 1px 2px rgba(16,24,40,0.04)"><div style="font-size:12.5px;color:#6b7585;font-weight:500">일반당원</div><div id="crmKpiNormal" style="font-size:25px;font-weight:700;margin-top:6px;color:#2563eb">0</div></div>
-          <div style="background:#fff;border:1px solid #e9ecf1;border-radius:13px;padding:16px 18px;box-shadow:0 1px 2px rgba(16,24,40,0.04)"><div style="font-size:12.5px;color:#6b7585;font-weight:500">소속 단체</div><div id="crmKpiOrg" style="font-size:25px;font-weight:700;margin-top:6px;color:#5b51d8">0</div></div>
-        </div>
-
-        <div style="background:#fff;border:1px solid #e9ecf1;border-radius:14px;box-shadow:0 1px 2px rgba(16,24,40,0.04);overflow:hidden">
-          <div style="display:flex;align-items:center;gap:10px;padding:16px 18px;border-bottom:1px solid #eef1f5;flex-wrap:wrap">
-            <div style="display:flex;align-items:center;gap:8px;width:260px;height:36px;padding:0 12px;background:#f3f5f8;border:1px solid #e7eaef;border-radius:9px;color:#9aa3b0;font-size:13px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg><input id="crmSearch" placeholder="이름·연락처·행정동 검색" style="flex:1;border:none;background:transparent;outline:none;font-size:13px;font-family:inherit;color:#1a2330"/></div>
-            <div id="crmSegs" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"></div>
-            <div style="flex:1"></div>
-            <button id="crmAddBtn" style="display:flex;align-items:center;gap:6px;height:36px;padding:0 14px;background:#fff;border:1px solid #d6e0ee;color:#1d3a6e;border-radius:9px;font-size:12.5px;font-weight:600;cursor:pointer" data-hover="background:#eaf1fb"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>연락처 추가</button>
-          </div>
-          <div style="display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr 0.9fr 1fr;padding:11px 18px;background:#fafbfc;border-bottom:1px solid #eef1f5;font-size:12px;font-weight:600;color:#8a94a3">
-            <span>이름</span><span>구분</span><span>행정동</span><span>연락처</span><span>관계도</span><span>추천인</span>
-          </div>
-          <div id="crmRows"></div>
-        </div>
-      </div>
-      </div>
+      <div class="page" data-page="crm"><iframe src="members.html?embed=1" title="조직관리" style="display:block;border:1px solid #e9ecf1;border-radius:12px;background:#fff;width:100%;height:calc(100vh - 130px)"></iframe></div>
 
       <div class="page" data-page="minwon">
       <div class="pg" style="max-width:1320px;margin:0 auto">
@@ -409,42 +387,9 @@ button{font-family:inherit}
       </div>
       </div>
 
-      <div class="page" data-page="news">
-      <div class="pg" style="max-width:1320px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) 310px;gap:16px;align-items:start">
-        <div>
-          <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;flex-wrap:wrap">
-            <div id="newsFilters" style="display:flex;align-items:center;gap:8px"></div>
-            <div style="flex:1"></div>
-            <span style="font-size:12.5px;color:#9aa3b0">최근 <b id="newsCount" style="color:#5b6675">0</b>건 수집됨</span>
-          </div>
-          <div id="newsList" style="background:#fff;border:1px solid #e9ecf1;border-radius:14px;box-shadow:0 1px 2px rgba(16,24,40,0.04);overflow:hidden">
-          </div>
-        </div>
-        <div style="display:flex;flex-direction:column;gap:16px">
-          <div style="background:#fff;border:1px solid #e9ecf1;border-radius:14px;padding:18px;box-shadow:0 1px 2px rgba(16,24,40,0.04)">
-            <div style="font-size:14px;font-weight:700;margin-bottom:14px">오늘의 여론 지수</div>
-            <div style="display:flex;align-items:flex-end;gap:8px;margin-bottom:12px"><span id="opIndex" style="font-size:32px;font-weight:700;color:#16a34a;letter-spacing:-0.02em">0</span><span style="font-size:12px;color:#9aa3b0;font-weight:600;margin-bottom:6px">감정분석 추정</span></div>
-            <div style="display:flex;height:10px;border-radius:5px;overflow:hidden;margin-bottom:10px"><div id="opPos" style="width:0%;background:#16a34a"></div><div id="opNeu" style="width:0%;background:#94a3b8"></div><div id="opNeg" style="width:0%;background:#dc2626"></div></div>
-            <div style="display:flex;justify-content:space-between;font-size:11.5px;color:#6b7585"><span id="opPosL">긍정 0%</span><span id="opNeuL">중립 0%</span><span id="opNegL">부정 0%</span></div>
-          </div>
-          <div style="background:#fff;border:1px solid #e9ecf1;border-radius:14px;padding:18px;box-shadow:0 1px 2px rgba(16,24,40,0.04)">
-            <div style="font-size:14px;font-weight:700;margin-bottom:14px">주요 키워드</div>
-            <div id="newsKeywords" style="display:flex;flex-wrap:wrap;gap:8px"></div>
-          </div>
-        </div>
-      </div>
-      </div>
+      <div class="page" data-page="news"><iframe src="news.html?embed=1" title="뉴스" style="display:block;border:1px solid #e9ecf1;border-radius:12px;background:#fff;width:100%;height:calc(100vh - 130px)"></iframe></div>
 
-      <div class="page" data-page="notices">
-      <div class="pg" style="max-width:1100px;margin:0 auto">
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;flex-wrap:wrap">
-          <div id="ntTabs" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"></div>
-          <div style="flex:1"></div>
-          <span style="font-size:12.5px;color:#9aa3b0">총 <b id="ntCount" style="color:#5b6675">0</b>건</span>
-        </div>
-        <div id="ntList" style="background:#fff;border:1px solid #e9ecf1;border-radius:14px;box-shadow:0 1px 2px rgba(16,24,40,0.04);overflow:hidden"></div>
-      </div>
-      </div>
+      <div class="page" data-page="notices"><iframe src="notices.html?embed=1" title="공지사항" style="display:block;border:1px solid #e9ecf1;border-radius:12px;background:#fff;width:100%;height:calc(100vh - 130px)"></iframe></div>
 
       <div class="page" data-page="admin">
       <div class="pg" style="max-width:1100px;margin:0 auto">
@@ -751,6 +696,7 @@ onAuthStateChanged(_auth, async function(user){
   }
   var seg = '전체';
   function compute(){
+    if(!document.getElementById('crmRows')) return; /* CRM이 iframe으로 대체된 경우 무시 */
     var ms = M.members||[];
     document.getElementById('crmKpiTotal').textContent = ms.length.toLocaleString();
     document.getElementById('crmKpiRight').textContent  = ms.filter(function(m){return /권리/.test(m.type||'');}).length.toLocaleString();
