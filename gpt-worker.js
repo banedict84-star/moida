@@ -51,7 +51,14 @@ export default {
       const messages = Array.isArray(body.messages) ? body.messages.slice(-20) : [];
       const model = body.model || "gpt-4o-mini";
 
-      const r = await fetch("https://api.openai.com/v1/chat/completions", {
+      // OpenAI 호출 베이스 URL.
+      //  · 기본: 직접 호출(https://api.openai.com/v1) — 일부 지역에서 "Country not supported" 발생
+      //  · 권장: Cloudflare AI Gateway 경유(지역 차단 회피). 워커 변수 OPENAI_BASE에
+      //    게이트웨이 OpenAI 엔드포인트를 넣으면 자동 적용.
+      //    예: https://gateway.ai.cloudflare.com/v1/<계정ID>/<게이트웨이>/openai
+      const OPENAI_BASE = (env.OPENAI_BASE || "https://api.openai.com/v1").replace(/\/+$/, "");
+
+      const r = await fetch(`${OPENAI_BASE}/chat/completions`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
