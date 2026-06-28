@@ -1,6 +1,22 @@
 {
-  "updated": "2026-06-28 15:51 UTC",
+  "updated": "2026-06-28 17:44 UTC",
   "items": [
+    {
+      "source": "naver",
+      "press": "etnews.com",
+      "date": "2026.06.29",
+      "title": "경기도의회 민주당 수석부대표단 인선…협치·의정지원수석 신설",
+      "snippet": "경기도·경기도교육청과의 협의 창구를 넓히고, 당내 60%를 차지하는 초선 의원의 의정활동 지원과 대표단... 정책위원장은 김태희 의원(안산2), 정무수석부대표는 유경현 의원(부천7), 기획수석부대표는 이자형 의원...",
+      "url": "https://www.etnews.com/20260629000010"
+    },
+    {
+      "source": "naver",
+      "press": "joygm.com",
+      "date": "2026.06.29",
+      "title": "경기도의회 더불어민주당 수석부대표단 인선 완료",
+      "snippet": "또한 경기도의회 위상을 강화하고 경기도, 경기도교육청 집행부와 협치를 강화하기 위해 협치수석을... 민주당의 정책을 책임질 정책위원장은 김태희 의원(안산2)이, 정무수석부대표는 유경현 의원(부천7)이...",
+      "url": "http://www.joygm.com/news/articleView.html?idxno=215306"
+    },
     {
       "source": "naver",
       "press": "joongangenews.com",
@@ -227,14 +243,6 @@
     },
     {
       "source": "naver",
-      "press": "tournews21.com",
-      "date": "2026.06.28",
-      "title": "경기도의회 더불어민주당 수석부대표단 인선 완료",
-      "snippet": "또한, 도의회의 위상을 강화하고 도(道), 경기도교육청 집행부와 협치를 강화하기 위해 협치수석을... 당의 정책을 책임질 정책위원장은 김태희 의원(안산2)이, 정무수석부대표는 유경현 의원(부천7)이...",
-      "url": "https://www.tournews21.com/news/articleView.html?idxno=137413"
-    },
-    {
-      "source": "naver",
       "press": "news1.kr",
       "date": "2026.06.28",
       "title": "경기도의회 민주당, 총괄수석부대표에 장한별…부대표단 인선 완료",
@@ -328,14 +336,6 @@
       "title": "[6월 26일 병원계 이모저모①]고려대안산, 노원을지대, 부산대병원, 유...",
       "snippet": "◆고려대 안산병원, 스마트 약제 시스템 구축…항암제 조제 로봇과 ADS 도입 고려대학교 안산병원(병원장... ◆노원을지대병원, 협력의료기관 실무자 초청 교육 개최 노원을지대학교병원(병원장 김재훈)이 지난 25일 이...",
       "url": "https://medicalworldnews.co.kr/news/view.php?idx=1510975538"
-    },
-    {
-      "source": "google",
-      "press": "교육연합신문",
-      "date": "2026.06.27",
-      "title": "안산교육지원청, 시티투어버스 연계 가족체험 운영",
-      "snippet": "안산교육지원청, 시티투어버스 연계 가족체험 운영 교육연합신문",
-      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE1KMlBlNUtEakt6T0d6ZXRoVWRBOEx1ZmROcEdwT3VMQ1JGaTNhNDV5Q0haTFZEQUpOMHBEMlJRODdQeHpMSThzWUpaV1Rwdko5TDAzTVAtT3RaTzJZ?oc=5"
     },
     {
       "source": "naver",
@@ -472,22 +472,6 @@
       "title": "\"지방 소멸 막을 정답 찾았다\"… 한양대 ERICA, 경기도 34개 대학 혁신평...",
       "snippet": "미래 교육의 핵심 생포선으로 떠올랐다. 단순히 상아탑에 갇힌 이론 교육을 넘어 지역 산업의 실제 수요를... 실제로 한양대 ERICA는 캠퍼스가 위치한 안산시는 물론 인접한 광명시 등 주요 지자체, 유관 혁신 기관들과...",
       "url": "http://www.dailysmart.co.kr/news/articleView.html?idxno=126070"
-    },
-    {
-      "source": "naver",
-      "press": "health.chosun.com",
-      "date": "2026.06.26",
-      "title": "[병원계 이모저모] 순천향대 천안병원, 제1회 진료지원 간호 심포지엄 ...",
-      "snippet": "병원은 앞으로도 지속적인 교육과 학술 교류를 통해 진료지원 간호의 전문성을 높이고 협업 기반의 의료서비스를 강화해 나갈 계획이다. ■ 고려대 안산병원, 항암제 조제 로봇·자동 불출 시스템 도입 고려대...",
-      "url": "https://health.chosun.com/site/data/html_dir/2026/06/26/2026062601605.html"
-    },
-    {
-      "source": "naver",
-      "press": "shinailbo.co.kr",
-      "date": "2026.06.26",
-      "title": "안산환경재단, 초등학교 찾아가는 환경교육 호응…500회 조기 마감",
-      "snippet": "환경문제를 이해하고 스스로 실천할 수 있는 역량을 기르는 과정\"이라며 \"앞으로도 학생들이 쉽고 재미있게 환경을 배우고 실천할 수 있도록 학교 현장 중심의 환경교육을 지속 확대해 나가겠다\"고 말했다. [신아일보] 안산",
-      "url": "https://www.shinailbo.co.kr/news/articleView.html?idxno=5034625"
     },
     {
       "source": "google",
@@ -779,14 +763,6 @@
     },
     {
       "source": "naver",
-      "press": "lawissue.co.kr",
-      "date": "2026.06.22",
-      "title": "김태희 경기도의원, 경기지방정원 기반시설 공사 점검… 2028년 준공 목...",
-      "snippet": "경기지방정원은 안산시 상록구 본오동 일원에 조성되고 있으며, 방문자센터와 정원지원센터는 정원 운영과 이용 활성화를 뒷받침할 거점 시설로 건립된다. 총사업비는 288억 원이다. 시설은 연면적 3912㎡, 지상 2층 규모로...",
-      "url": "http://www.lawissue.co.kr/view.php?ud=202606221523164066d94aa4ada6_12"
-    },
-    {
-      "source": "naver",
       "press": "jeonmae.co.kr",
       "date": "2026.06.22",
       "title": "김태희 경기도의원, 경기지방정원 지원시설 신축 현황 점검",
@@ -795,11 +771,11 @@
     },
     {
       "source": "naver",
-      "press": "newsfreezone.co.kr",
+      "press": "lawissue.co.kr",
       "date": "2026.06.22",
-      "title": "김태희 경기도의원, 경기지방정원 핵심시설 건립 현황 살펴",
-      "snippet": "경기지방정원 방문자센터 및 정원지원센터는 안산시 상록구 본오동 일원에 조성 중인 경기지방정원의 운영 기반을 구축하고 이용 활성화를 지원하기 위한 시설이다. 총사업비 288억 원이 투입되며 연면적 3,912㎡, 지상 2층...",
-      "url": "https://www.newsfreezone.co.kr/news/articleView.html?idxno=695754"
+      "title": "김태희 경기도의원, 경기지방정원 기반시설 공사 점검… 2028년 준공 목...",
+      "snippet": "경기지방정원은 안산시 상록구 본오동 일원에 조성되고 있으며, 방문자센터와 정원지원센터는 정원 운영과 이용 활성화를 뒷받침할 거점 시설로 건립된다. 총사업비는 288억 원이다. 시설은 연면적 3912㎡, 지상 2층 규모로...",
+      "url": "http://www.lawissue.co.kr/view.php?ud=202606221523164066d94aa4ada6_12"
     },
     {
       "source": "naver",
@@ -808,6 +784,14 @@
       "title": "김태희 경기도의원, 경기지방정원 방문자센터·정원지원센터 추진현황...",
       "snippet": "경기지방정원 방문자센터 및 정원지원센터는 안산시 상록구 본오동 일원에 조성되는 경기지방정원의 운영과 이용 활성화를 지원하기 위한 시설이다. 총사업비 288억원을 투입해 연면적 3912㎡, 지상 2층 규모로 건립될...",
       "url": "https://www.m-i.kr/news/articleView.html?idxno=1383978"
+    },
+    {
+      "source": "naver",
+      "press": "newsfreezone.co.kr",
+      "date": "2026.06.22",
+      "title": "김태희 경기도의원, 경기지방정원 핵심시설 건립 현황 살펴",
+      "snippet": "경기지방정원 방문자센터 및 정원지원센터는 안산시 상록구 본오동 일원에 조성 중인 경기지방정원의 운영 기반을 구축하고 이용 활성화를 지원하기 위한 시설이다. 총사업비 288억 원이 투입되며 연면적 3,912㎡, 지상 2층...",
+      "url": "https://www.newsfreezone.co.kr/news/articleView.html?idxno=695754"
     },
     {
       "source": "naver",
@@ -893,17 +877,17 @@
       "source": "naver",
       "press": "m-i.kr",
       "date": "2026.06.19",
-      "title": "안산시 반월동 지사협, 복지사각지대 선제 발굴 캠페인",
-      "snippet": "안산시 상록구 반월동 지역사회보장협의체는 지난 17일 복지 사각지대 발굴을 위한 거리 홍보 캠페인을 전개했다고 19일 밝혔다. 사진=안산시 매일일보 = 송훈희 기자 | 안산시 상록구 반월동 지역사회보장협의체는 지난...",
-      "url": "https://www.m-i.kr/news/articleView.html?idxno=1383195"
+      "title": "안산 월피동, 고독사 예방 캠페인 전개…복지사각지대 발굴 나서",
+      "snippet": "안산시 상록구 월피동 지역사회보장협의체가 고독사 예방 및 복지사각지대 발굴을 위한 홍보 캠페인을 진행하고 있다. 사진=안산시 매일일보 = 송훈희 기자 | 안산시 상록구 월피동 지역사회보장협의체는 18일 고독사...",
+      "url": "https://www.m-i.kr/news/articleView.html?idxno=1383197"
     },
     {
       "source": "naver",
       "press": "m-i.kr",
       "date": "2026.06.19",
-      "title": "안산 월피동, 고독사 예방 캠페인 전개…복지사각지대 발굴 나서",
-      "snippet": "안산시 상록구 월피동 지역사회보장협의체가 고독사 예방 및 복지사각지대 발굴을 위한 홍보 캠페인을 진행하고 있다. 사진=안산시 매일일보 = 송훈희 기자 | 안산시 상록구 월피동 지역사회보장협의체는 18일 고독사...",
-      "url": "https://www.m-i.kr/news/articleView.html?idxno=1383197"
+      "title": "안산시 반월동 지사협, 복지사각지대 선제 발굴 캠페인",
+      "snippet": "안산시 상록구 반월동 지역사회보장협의체는 지난 17일 복지 사각지대 발굴을 위한 거리 홍보 캠페인을 전개했다고 19일 밝혔다. 사진=안산시 매일일보 = 송훈희 기자 | 안산시 상록구 반월동 지역사회보장협의체는 지난...",
+      "url": "https://www.m-i.kr/news/articleView.html?idxno=1383195"
     },
     {
       "source": "naver",
@@ -1048,6 +1032,14 @@
       "title": "안산교육지원청, “유치원 교사, 바이브 코딩으로 아이들의 상상을 현실로~”",
       "snippet": "안산교육지원청, “유치원 교사, 바이브 코딩으로 아이들의 상상을 현실로~” newszoom.kr",
       "url": "https://news.google.com/rss/articles/CBMiREFVX3lxTE1tLWRvVGVEdndaOThydV9NUFZVaHJnSDhxREFGSTQ2VDVhczZ2bUduTzltaXNmZ09jZ3B0NDJ5U3hjbWVQ?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "매일일보",
+      "date": "2026.06.15",
+      "title": "김남국 의원, 안산 교육현안 해법 모색",
+      "snippet": "김남국 의원, 안산 교육현안 해법 모색 매일일보",
+      "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE9VaUdnSklIemlwTU9sLUVJWG9KNDVsUy1QTDJrUUFvRlZhdGFESUV4MXc4YXJTWkItMFJBRGxaeW0xdGFXcmpGaWdXNnUwTjA0SG5sRV9PUjhXa2pEenYtYmtJNUw?oc=5"
     },
     {
       "source": "google",
@@ -1818,20 +1810,20 @@
       "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE4zR1VkX09YVU9udnZnck9kQUVZMFp5NjlfNlBGZ255aGphNWs3SjV4a0E5ZmxsZ08yR00tajhmbU1ERUZGNExCM0FnaEJsY0VHRFZ1ejVmajFuNzBwYlVfdkxvOHRPdFBSYUE?oc=5"
     },
     {
+      "source": "google",
+      "press": "전국매일신문",
+      "date": "2026.04.06",
+      "title": "장윤정 경기도의원, 재선 도전 선언···안산 지역 변화 강조",
+      "snippet": "장윤정 경기도의원, 재선 도전 선언···안산 지역 변화 강조 전국매일신문",
+      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE0wLWpqakhrX3B5amFmcThCV1N0TXBmaG5ucklFOE9weW4xb0hLakQ4WEJBNTg5UDJaenpCcXE3XzZYcnd6dU9TWE5rR1dKcjJ2N3FINmxBWmdHM1l3S1hqWTlkRW5aWjBnVGNScDZn?oc=5"
+    },
+    {
       "source": "naver",
       "press": "newscj.com",
       "date": "2026.04.06",
       "title": "장윤정 경기도의원, 재선 도전 선언… \"성과로 증명하는 정치\"",
       "snippet": "더불어민주당 장윤정 경기도의원이 6일 경기도의회 브리핑룸에서 재선 도전을 선언하며 \"말이 아닌 실력과 성과로 안산의 변화를 완성하겠다\"고 밝혔다. 장 의원은 이날 출마 기자회견에서 \"정치는 결과로 증명해야 한다\"며...",
       "url": "https://www.newscj.com/news/articleView.html?idxno=3391793"
-    },
-    {
-      "source": "naver",
-      "press": "jeonmae.co.kr",
-      "date": "2026.04.06",
-      "title": "장윤정 경기도의원, 재선 도전 선언···안산 지역 변화 강조",
-      "snippet": "장윤정 경기도의원 장윤정 경기도의원이 재선 도전을 공식 선언하며 안산 지역 발전 비전을 제시했다. 장 의원은 6일 경기도의회 브리핑룸에서 기자회견을 열고 지역 변화를 이끌겠다는 의지를 밝혔다. 그는 일동과 이동...",
-      "url": "https://www.jeonmae.co.kr/news/articleView.html?idxno=1245705"
     },
     {
       "source": "naver",
@@ -1912,14 +1904,6 @@
       "title": "장윤정 도의원, 학교 급식실 소음·환기 개선 나선다",
       "snippet": "장윤정 도의원, 학교 급식실 소음·환기 개선 나선다 안산뉴스",
       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE8wMlZVRFNmNlNFR0E3T3BIVElKOVp2RHNDN1k1Mml4Z2dVX0xTT0RvUnJPc3gtMWpMUUhxaHc1Uk94eHpmeU9HamZQUmQtd1VJV1Fkdm5iOWFwbHhaYV95aE9Ra0pscDk3Q0ZISA?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "인천일보",
-      "date": "2026.03.22",
-      "title": "[경기의정 25시] 장윤정 도의원 “아이 키우기 좋은 도시로 교육·돌봄, 현실과 연결을”",
-      "snippet": "[경기의정 25시] 장윤정 도의원 “아이 키우기 좋은 도시로 교육·돌봄, 현실과 연결을” 인천일보",
-      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5kTFE3MXhaTXgtd0Nlc3luOVUycmNMdzhqVjJjZE9mUnRXeDdCdW81MVNTaVZLWVA2RmlHYlh0TEhqRWhsYWR1UkdTTDEtUTczZ1VUYmJseWp3Ul9yTVhtNkdLdm85dDdCWEw4cUJXaWE?oc=5"
     },
     {
       "source": "google",
