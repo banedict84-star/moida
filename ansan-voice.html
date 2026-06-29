@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>안산의 목소리 · 이슈맵</title>
+<meta name="description" content="안산 시민의 목소리를 지도 위에 모았습니다. 우리 동네 현안을 확인하고 직접 제보하세요.">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<style>
+  :root{
+    --bg:#f1f5fb; --surface:#ffffff; --line:#e3e9f2; --line-soft:#eef3fa;
+    --ink:#15233d; --ink-2:#51607a; --ink-3:#8794aa; --ink-4:#b3bdcf;
+    --primary:#2f5fd0; --primary-600:#16305c; --primary-700:#0f1d33; --primary-soft:#e8f0fe;
+    --shadow-card:0 1px 2px rgba(16,40,80,.05),0 14px 38px rgba(16,40,80,.10);
+    --land:#dce7f7; --land-2:#cfe0f4; --sea:#eaf2fb;
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{ font-family:"Pretendard Variable",Pretendard,-apple-system,system-ui,sans-serif; color:var(--ink); background:var(--bg); -webkit-font-smoothing:antialiased; letter-spacing:-.01em; }
+  a{ color:inherit; text-decoration:none; }
+  button{ font-family:inherit; cursor:pointer; }
+
+  /* ── Header ─────────────────────────────────────── */
+  .site-head{ position:sticky; top:0; z-index:40; background:rgba(255,255,255,.82); backdrop-filter:blur(12px); border-bottom:1px solid var(--line); }
+  .head-inner{ max-width:1240px; margin:0 auto; height:62px; padding:0 22px; display:flex; align-items:center; gap:18px; }
+  .brand{ display:flex; align-items:center; gap:11px; }
+  .logo-mark{ width:40px; height:40px; border-radius:12px; background:linear-gradient(140deg,#2f5fd0 0%,#2f5fd0 56%,#16305c 100%); display:flex; align-items:center; justify-content:center; box-shadow:0 6px 16px rgba(20,82,160,.30); position:relative; overflow:hidden; flex-shrink:0; }
+  .logo-mark::after{ content:""; position:absolute; inset:0; background:radial-gradient(64% 54% at 28% 20%,rgba(255,255,255,.46),rgba(255,255,255,0) 70%); }
+  .brand-txt b{ display:block; font-size:17px; font-weight:800; letter-spacing:-.03em; line-height:1.1; }
+  .brand-txt span{ display:block; font-size:11.5px; color:var(--ink-3); font-weight:600; margin-top:1px; }
+  .head-nav{ margin-left:auto; display:flex; align-items:center; gap:4px; }
+  .head-nav a{ padding:8px 14px; border-radius:9px; font-size:13.5px; font-weight:600; color:var(--ink-2); transition:background .15s,color .15s; }
+  .head-nav a:hover{ background:var(--line-soft); color:var(--ink); }
+  .head-cta{ background:linear-gradient(135deg,#1a5bb0,#16305c); color:#fff!important; box-shadow:0 6px 16px rgba(20,82,160,.26); }
+  .head-cta:hover{ filter:brightness(1.06); }
+  .hamb{ display:none; margin-left:auto; width:40px; height:40px; border:1px solid var(--line); border-radius:10px; background:#fff; align-items:center; justify-content:center; }
+
+  /* ── Hero ───────────────────────────────────────── */
+  .hero{ position:relative; overflow:hidden; padding:54px 22px 40px;
+    background:
+      radial-gradient(120% 80% at 86% -10%, rgba(208,232,255,.9) 0%, rgba(208,232,255,0) 46%),
+      radial-gradient(90% 70% at 8% 4%, rgba(173,209,246,.55) 0%, rgba(173,209,246,0) 54%),
+      linear-gradient(168deg,#cfe3f7 0%,#dbe9f6 30%,#e8eff8 64%,var(--bg) 100%); }
+  .hero-inner{ max-width:1240px; margin:0 auto; }
+  .hero h1{ font-size:38px; font-weight:800; letter-spacing:-.04em; line-height:1.18; }
+  .hero h1 b{ color:var(--primary); }
+  .hero p{ font-size:15.5px; color:var(--ink-2); font-weight:500; margin-top:14px; max-width:560px; line-height:1.6; }
+  .hero-actions{ display:flex; gap:10px; margin-top:24px; flex-wrap:wrap; }
+  .btn-primary{ display:inline-flex; align-items:center; gap:8px; height:46px; padding:0 22px; border:none; border-radius:12px; background:linear-gradient(135deg,#1a5bb0,#16305c); color:#fff; font-size:14.5px; font-weight:700; box-shadow:0 10px 24px rgba(20,82,160,.28); transition:transform .12s,box-shadow .15s; }
+  .btn-primary:hover{ transform:translateY(-1px); box-shadow:0 14px 30px rgba(20,82,160,.36); }
+  .btn-ghost{ display:inline-flex; align-items:center; gap:8px; height:46px; padding:0 20px; border:1px solid var(--line); border-radius:12px; background:rgba(255,255,255,.8); color:var(--ink); font-size:14.5px; font-weight:700; transition:background .15s; }
+  .btn-ghost:hover{ background:#fff; }
+
+  .stat-row{ display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-top:34px; max-width:680px; }
+  .stat{ background:rgba(255,255,255,.72); border:1px solid rgba(255,255,255,.9); border-radius:14px; padding:14px 16px; box-shadow:0 4px 14px rgba(16,40,80,.06); }
+  .stat .n{ font-size:26px; font-weight:800; letter-spacing:-.03em; }
+  .stat .n.c1{ color:var(--primary); } .stat .n.c2{ color:#16a34a; } .stat .n.c3{ color:#d97706; }
+  .stat .l{ font-size:12px; color:var(--ink-3); font-weight:600; margin-top:2px; }
+
+  /* ── Section frame ──────────────────────────────── */
+  .section{ max-width:1240px; margin:0 auto; padding:46px 22px; }
+  .sec-head{ margin-bottom:20px; }
+  .sec-head .kicker{ font-size:12.5px; font-weight:700; color:var(--primary); letter-spacing:.02em; }
+  .sec-head h2{ font-size:24px; font-weight:800; letter-spacing:-.03em; margin-top:5px; }
+  .sec-head p{ font-size:14px; color:var(--ink-3); font-weight:500; margin-top:6px; }
+
+  /* ── Issue map layout ───────────────────────────── */
+  .map-grid{ display:grid; grid-template-columns:1.55fr 1fr; gap:18px; align-items:start; }
+  .panel{ background:var(--surface); border:1px solid var(--line); border-radius:18px; box-shadow:var(--shadow-card); }
+
+  .chips{ display:flex; flex-wrap:wrap; gap:7px; margin-bottom:14px; }
+  .chip{ display:inline-flex; align-items:center; gap:7px; height:33px; padding:0 13px; border:1px solid var(--line); border-radius:999px; background:#fff; font-size:12.5px; font-weight:700; color:var(--ink-2); transition:all .14s; }
+  .chip .dot{ width:8px; height:8px; border-radius:50%; }
+  .chip:hover{ border-color:var(--ink-4); }
+  .chip.on{ color:#fff; border-color:transparent; }
+
+  .map-wrap{ position:relative; padding:12px; }
+  .map-canvas{ position:relative; width:100%; aspect-ratio:1/0.82; }
+  .map-canvas svg{ width:100%; height:100%; display:block; }
+  .gu-region{ fill:var(--land); stroke:#fff; stroke-width:2.5; transition:fill .15s; cursor:pointer; }
+  .gu-region:hover{ fill:var(--land-2); }
+  .gu-region.dim{ opacity:.42; }
+  .gu-label{ font-size:15px; font-weight:800; fill:#3d567f; letter-spacing:-.02em; pointer-events:none; }
+  .dong-label{ font-size:10px; font-weight:600; fill:#6b80a3; pointer-events:none; }
+
+  .pin{ position:absolute; transform:translate(-50%,-100%); cursor:pointer; transition:transform .12s,filter .12s,opacity .15s; z-index:2; }
+  .pin:hover{ transform:translate(-50%,-100%) scale(1.16); z-index:5; }
+  .pin svg{ display:block; filter:drop-shadow(0 4px 6px rgba(16,40,80,.30)); }
+  .pin.hidden{ opacity:0; pointer-events:none; transform:translate(-50%,-100%) scale(.5); }
+  .pin.active svg{ filter:drop-shadow(0 0 0 3px #fff) drop-shadow(0 6px 10px rgba(16,40,80,.5)); }
+  .pin .cnt{ position:absolute; top:3px; left:50%; transform:translateX(-50%); font-size:11px; font-weight:800; color:#fff; pointer-events:none; }
+
+  .map-legend{ display:flex; flex-wrap:wrap; gap:10px 16px; padding:0 14px 14px; }
+  .lg{ display:flex; align-items:center; gap:6px; font-size:11.5px; font-weight:600; color:var(--ink-2); }
+  .lg .dot{ width:9px; height:9px; border-radius:50%; }
+
+  /* ── List ───────────────────────────────────────── */
+  .list-head{ display:flex; align-items:center; gap:10px; padding:15px 16px 12px; border-bottom:1px solid var(--line-soft); }
+  .list-head .t{ font-size:14.5px; font-weight:800; }
+  .list-head .c{ font-size:12px; font-weight:700; color:var(--primary); background:var(--primary-soft); padding:2px 9px; border-radius:999px; }
+  .srch{ margin-left:auto; position:relative; }
+  .srch input{ width:160px; height:34px; padding:0 12px 0 32px; border:1px solid var(--line); border-radius:9px; font-family:inherit; font-size:12.5px; outline:none; background:#fcfdff; }
+  .srch input:focus{ border-color:var(--primary); box-shadow:0 0 0 3px var(--primary-soft); }
+  .srch svg{ position:absolute; left:10px; top:9px; color:var(--ink-3); }
+  .issue-list{ max-height:560px; overflow-y:auto; }
+  .issue-item{ display:flex; gap:12px; padding:14px 16px; border-bottom:1px solid var(--line-soft); cursor:pointer; transition:background .12s; }
+  .issue-item:hover{ background:#f8fafd; }
+  .issue-item.active{ background:var(--primary-soft); }
+  .issue-item .bar{ width:4px; border-radius:3px; flex-shrink:0; }
+  .issue-item .meta{ flex:1; min-width:0; }
+  .issue-item .tl{ font-size:13.5px; font-weight:700; line-height:1.4; }
+  .issue-item .sub{ display:flex; align-items:center; gap:7px; margin-top:5px; font-size:11.5px; color:var(--ink-3); font-weight:600; flex-wrap:wrap; }
+  .tag{ padding:1px 8px; border-radius:999px; font-size:11px; font-weight:700; }
+  .st{ padding:1px 8px; border-radius:999px; font-size:11px; font-weight:700; }
+  .st-접수{ background:#eef1f5; color:#6b7585; }
+  .st-검토중{ background:#fff3e0; color:#d97706; }
+  .st-진행중{ background:#e6f0ff; color:#2563eb; }
+  .st-해결{ background:#e7f7ee; color:#16a34a; }
+  .vote{ display:inline-flex; align-items:center; gap:3px; }
+  .empty{ padding:50px 20px; text-align:center; color:var(--ink-3); font-size:13px; font-weight:600; }
+
+  /* ── Detail / Form modal ────────────────────────── */
+  .modal-bg{ position:fixed; inset:0; z-index:60; background:rgba(15,29,51,.5); backdrop-filter:blur(3px); display:none; align-items:center; justify-content:center; padding:20px; }
+  .modal-bg.show{ display:flex; }
+  .modal{ width:520px; max-width:100%; max-height:90vh; overflow-y:auto; background:#fff; border-radius:20px; box-shadow:0 30px 70px rgba(16,40,80,.3); }
+  .modal-top{ padding:22px 24px 0; }
+  .modal-x{ position:absolute; top:16px; right:16px; width:34px; height:34px; border:none; background:rgba(255,255,255,.7); border-radius:9px; color:var(--ink-2); display:flex; align-items:center; justify-content:center; }
+  .modal-x:hover{ background:var(--line-soft); }
+  .field{ margin-bottom:14px; }
+  .field label{ display:block; font-size:12.5px; font-weight:700; color:var(--ink-2); margin-bottom:7px; }
+  .field input,.field select,.field textarea{ width:100%; padding:12px 13px; border:1px solid var(--line); border-radius:11px; font-family:inherit; font-size:14px; color:var(--ink); outline:none; background:#fcfdff; }
+  .field input:focus,.field select:focus,.field textarea:focus{ border-color:var(--primary); box-shadow:0 0 0 3px var(--primary-soft); background:#fff; }
+  .field textarea{ resize:vertical; min-height:96px; }
+  .grid2{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+
+  /* ── How it works ───────────────────────────────── */
+  .how-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  .how-card{ background:var(--surface); border:1px solid var(--line); border-radius:16px; padding:22px; box-shadow:0 1px 2px rgba(16,40,80,.04); }
+  .how-card .ic{ width:44px; height:44px; border-radius:12px; background:var(--primary-soft); display:flex; align-items:center; justify-content:center; color:var(--primary); margin-bottom:13px; }
+  .how-card h3{ font-size:15.5px; font-weight:800; }
+  .how-card p{ font-size:13px; color:var(--ink-3); font-weight:500; margin-top:7px; line-height:1.6; }
+
+  /* ── Footer ─────────────────────────────────────── */
+  .site-foot{ border-top:1px solid var(--line); background:#fff; }
+  .foot-inner{ max-width:1240px; margin:0 auto; padding:30px 22px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:14px; }
+  .foot-inner .l{ font-size:12.5px; color:var(--ink-3); font-weight:500; }
+  .foot-inner .l b{ color:var(--ink-2); font-weight:700; }
+  .foot-links{ display:flex; gap:16px; font-size:12.5px; font-weight:600; color:var(--ink-2); }
+
+  .toast{ position:fixed; bottom:24px; left:50%; transform:translateX(-50%) translateY(20px); background:#15233d; color:#fff; padding:13px 22px; border-radius:12px; font-size:13.5px; font-weight:600; box-shadow:0 14px 34px rgba(16,40,80,.4); opacity:0; pointer-events:none; transition:all .25s; z-index:80; }
+  .toast.show{ opacity:1; transform:translateX(-50%) translateY(0); }
+
+  @media(max-width:920px){
+    .map-grid{ grid-template-columns:1fr; }
+    .stat-row{ grid-template-columns:repeat(2,1fr); }
+    .how-grid{ grid-template-columns:1fr; }
+    .head-nav{ display:none; }
+    .hamb{ display:flex; }
+    .hero h1{ font-size:30px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── Header ─────────────────────────────────────── -->
+<header class="site-head">
+  <div class="head-inner">
+    <a class="brand" href="#top">
+      <div class="logo-mark"><svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+        <path d="M7 8.5 12 14.5 17 8.5" stroke="#fff" stroke-opacity=".55" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="7" cy="8" r="2.6" fill="#fff"/><circle cx="17" cy="8" r="2.6" fill="#fff"/><circle cx="12" cy="15.5" r="3.1" fill="#fff"/>
+      </svg></div>
+      <div class="brand-txt"><b>안산의 목소리</b><span>ANSAN VOICE · 시민 이슈맵</span></div>
+    </a>
+    <nav class="head-nav">
+      <a href="#issue-map">이슈맵</a>
+      <a href="#how">참여 방법</a>
+      <a href="#" id="reportNav" class="head-cta">제보하기</a>
+    </nav>
+    <button class="hamb" id="hambBtn" aria-label="메뉴"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</header>
+
+<!-- ── Hero ───────────────────────────────────────── -->
+<section class="hero" id="top">
+  <div class="hero-inner">
+    <h1>안산 시민의 목소리,<br><b>지도 위에 모았습니다.</b></h1>
+    <p>우리 동네 교통·환경·안전·복지 현안을 한눈에 확인하세요. 직접 제보하면 의원실이 지도에 담아 함께 풀어갑니다.</p>
+    <div class="hero-actions">
+      <a href="#" id="reportHero" class="btn-primary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+        우리 동네 이슈 제보
+      </a>
+      <a href="#issue-map" class="btn-ghost">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 20 3 17V4l6 3 6-3 6 3v13l-6-3-6 3zM9 7v13M15 4v13"/></svg>
+        이슈맵 보기
+      </a>
+    </div>
+    <div class="stat-row" id="heroStats">
+      <div class="stat"><div class="n c1" id="sTotal">0</div><div class="l">등록된 이슈</div></div>
+      <div class="stat"><div class="n c3" id="sProgress">0</div><div class="l">진행 중</div></div>
+      <div class="stat"><div class="n c2" id="sDone">0</div><div class="l">해결 완료</div></div>
+      <div class="stat"><div class="n" id="sVotes">0</div><div class="l">시민 공감</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Issue Map ──────────────────────────────────── -->
+<section class="section" id="issue-map">
+  <div class="sec-head">
+    <div class="kicker">ISSUE MAP</div>
+    <h2>안산 이슈맵</h2>
+    <p>분야를 선택하거나 지도의 핀을 눌러 현안을 살펴보세요.</p>
+  </div>
+
+  <div class="chips" id="chips"></div>
+
+  <div class="map-grid">
+    <!-- map -->
+    <div class="panel">
+      <div class="map-wrap">
+        <div class="map-canvas" id="mapCanvas">
+          <svg viewBox="0 0 1000 820" id="mapSvg" aria-label="안산시 지도">
+            <rect x="0" y="0" width="1000" height="820" fill="var(--sea)"/>
+            <!-- 단원구 (서부 본토) -->
+            <path class="gu-region" data-gu="단원구" d="M362 132 Q470 108 612 124 Q650 128 656 176 L668 360 Q672 470 612 520 Q520 552 430 540 Q368 532 352 470 Q336 360 344 250 Q348 170 362 132 Z"/>
+            <!-- 상록구 (동부 본토) -->
+            <path class="gu-region" data-gu="상록구" d="M668 360 L656 176 Q652 132 700 130 Q820 120 912 148 Q956 162 956 220 L948 520 Q944 612 856 636 Q740 660 668 600 Q636 560 648 470 Q656 410 668 360 Z"/>
+            <!-- 시화방조제 / 연결부 -->
+            <path class="gu-region" data-gu="단원구" d="M196 560 Q150 470 232 430 Q300 400 344 446 L352 470 Q336 360 344 470 Q300 520 300 560 Q270 600 232 596 Q210 590 196 560 Z" opacity="0"/>
+            <!-- 대부도 (반도) -->
+            <path class="gu-region" data-gu="단원구" d="M120 700 Q88 620 150 580 Q210 548 268 588 Q320 624 312 700 Q304 766 232 776 Q156 780 120 700 Z"/>
+            <!-- 연결 다리 -->
+            <path d="M300 600 L356 500" stroke="#c4d6ef" stroke-width="7" stroke-linecap="round" fill="none" stroke-dasharray="2 9"/>
+
+            <text class="gu-label" x="470" y="300">단원구</text>
+            <text class="gu-label" x="780" y="330">상록구</text>
+            <text class="gu-label" x="178" y="690" style="font-size:13px">대부도</text>
+
+            <text class="dong-label" x="440" y="350">고잔동</text>
+            <text class="dong-label" x="404" y="430">원곡동</text>
+            <text class="dong-label" x="392" y="270">선부동</text>
+            <text class="dong-label" x="470" y="240">와동</text>
+            <text class="dong-label" x="520" y="430">초지동</text>
+            <text class="dong-label" x="740" y="240">성포동</text>
+            <text class="dong-label" x="760" y="360">사동</text>
+            <text class="dong-label" x="820" y="430">본오동</text>
+            <text class="dong-label" x="700" y="190">월피동</text>
+            <text class="dong-label" x="850" y="520">반월동</text>
+          </svg>
+          <!-- pins injected here -->
+        </div>
+      </div>
+      <div class="map-legend" id="legend"></div>
+    </div>
+
+    <!-- list -->
+    <div class="panel">
+      <div class="list-head">
+        <span class="t">현안 목록</span>
+        <span class="c" id="listCount">0</span>
+        <div class="srch">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <input type="text" id="searchInput" placeholder="검색">
+        </div>
+      </div>
+      <div class="issue-list" id="issueList"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── How it works ───────────────────────────────── -->
+<section class="section" id="how" style="padding-top:6px">
+  <div class="sec-head">
+    <div class="kicker">HOW IT WORKS</div>
+    <h2>이렇게 함께 만듭니다</h2>
+  </div>
+  <div class="how-grid">
+    <div class="how-card">
+      <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+      <h3>1. 제보</h3>
+      <p>우리 동네 불편·현안을 위치와 분야와 함께 남겨주세요. 이름 없이도 가능합니다.</p>
+    </div>
+    <div class="how-card">
+      <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13A4 4 0 0 1 16 11"/></svg></div>
+      <h3>2. 공감</h3>
+      <p>시민들의 공감이 모이면 우선순위가 높아집니다. 같은 현안에 함께 힘을 실어주세요.</p>
+    </div>
+    <div class="how-card">
+      <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+      <h3>3. 해결</h3>
+      <p>의원실이 소관 부서와 함께 검토하고, 진행 상황을 지도에서 투명하게 공개합니다.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ─────────────────────────────────────── -->
+<footer class="site-foot">
+  <div class="foot-inner">
+    <div class="l">© 2026 <b>안산의 목소리</b> · 경기도의원 장윤정 의정활동 · 시민 이슈맵</div>
+    <div class="foot-links"><a href="#issue-map">이슈맵</a><a href="#how">참여 방법</a><a href="#" id="reportFoot">제보하기</a></div>
+  </div>
+</footer>
+
+<!-- ── Detail modal ───────────────────────────────── -->
+<div class="modal-bg" id="detailBg">
+  <div class="modal" style="position:relative">
+    <button class="modal-x" onclick="closeDetail()"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    <div id="detailBody"></div>
+  </div>
+</div>
+
+<!-- ── Report modal ───────────────────────────────── -->
+<div class="modal-bg" id="reportBg">
+  <div class="modal" style="position:relative">
+    <button class="modal-x" onclick="closeReport()"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    <div class="modal-top">
+      <div class="kicker" style="font-size:12.5px;font-weight:700;color:var(--primary)">제보하기</div>
+      <h2 style="font-size:21px;font-weight:800;letter-spacing:-.03em;margin:5px 0 4px">우리 동네 이슈 제보</h2>
+      <p style="font-size:13px;color:var(--ink-3);font-weight:500;margin-bottom:18px">남겨주신 내용은 의원실에서 검토 후 이슈맵에 반영됩니다.</p>
+    </div>
+    <div style="padding:0 24px 24px">
+      <div class="field">
+        <label>제목</label>
+        <input type="text" id="rTitle" placeholder="예) 상록수역 앞 횡단보도 신호 개선 요청">
+      </div>
+      <div class="grid2">
+        <div class="field">
+          <label>분야</label>
+          <select id="rCat"></select>
+        </div>
+        <div class="field">
+          <label>지역(동)</label>
+          <input type="text" id="rDong" placeholder="예) 사동">
+        </div>
+      </div>
+      <div class="field">
+        <label>내용</label>
+        <textarea id="rDesc" placeholder="현안 내용을 구체적으로 적어주세요. 위치, 시간대, 불편 사항 등을 함께 적으면 좋습니다."></textarea>
+      </div>
+      <div class="field">
+        <label>연락처 <span style="color:var(--ink-4);font-weight:500">(선택 · 진행 안내용)</span></label>
+        <input type="text" id="rContact" placeholder="휴대폰 또는 이메일">
+      </div>
+      <button class="btn-primary" style="width:100%;justify-content:center" id="rSubmit">제보 보내기</button>
+      <p style="font-size:11.5px;color:var(--ink-4);font-weight:500;text-align:center;margin-top:12px;line-height:1.5">※ 데모 화면입니다. 실제 전송 연동(이메일·DB)은 의원실 설정에서 추가할 수 있습니다.</p>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ───────── 데이터 (ansan_issues_data.json 우선, 실패 시 인라인 폴백) ───────── */
+const FALLBACK = {
+  categories: [
+    { key:"traffic", label:"교통",      color:"#2f5fd0" },
+    { key:"env",     label:"환경",      color:"#16a34a" },
+    { key:"welfare", label:"복지",      color:"#e0245e" },
+    { key:"edu",     label:"교육",      color:"#7c5cff" },
+    { key:"safety",  label:"안전",      color:"#f59e0b" },
+    { key:"housing", label:"주거·개발", color:"#0ea5e9" },
+    { key:"culture", label:"문화·체육", color:"#ec4899" },
+    { key:"economy", label:"경제·상권", color:"#14b8a6" }
+  ],
+  issues: [
+    { id:1,title:"상록수역 환승센터 출구 보행로 협소",category:"traffic",gu:"상록구",dong:"사동",status:"진행중",date:"2026-06-18",votes:142,x:72,y:40,summary:"출퇴근 시간 상록수역 2번 출구 일대 보행로가 좁아 보행자 혼잡이 극심합니다. 보행로 확폭과 횡단보도 신호 개선이 필요합니다." },
+    { id:2,title:"본오동 어린이 통학로 과속 차량",category:"safety",gu:"상록구",dong:"본오동",status:"검토중",date:"2026-06-21",votes:98,x:80,y:52,summary:"본오초·양지중 통학로에 과속 차량이 많아 사고 위험이 큽니다. 과속방지턱 추가 설치와 스쿨존 단속 강화를 요청합니다." },
+    { id:3,title:"고잔신도시 상가 공실 장기화",category:"economy",gu:"단원구",dong:"고잔동",status:"접수",date:"2026-06-25",votes:64,x:48,y:44,summary:"고잔동 중심상가의 1층 공실이 장기화되며 상권이 침체되고 있습니다. 청년 창업 지원과 임대료 안정 대책이 필요합니다." },
+    { id:4,title:"원곡동 다문화거리 야간 가로등 부족",category:"safety",gu:"단원구",dong:"원곡동",status:"진행중",date:"2026-06-15",votes:121,x:42,y:56,summary:"다문화 음식거리 일대 야간 조도가 낮아 보행 안전이 우려됩니다. LED 가로등 추가 설치를 추진 중입니다." },
+    { id:5,title:"화랑유원지 산책로 노면 파손",category:"env",gu:"단원구",dong:"초지동",status:"해결",date:"2026-05-30",votes:76,x:55,y:60,summary:"화랑유원지 호수 둘레길 일부 구간 노면이 파손되어 안전사고 우려가 있었습니다. 보수 공사가 완료되었습니다." },
+    { id:6,title:"선부동 노후 아파트 재건축 추진 문의",category:"housing",gu:"단원구",dong:"선부동",status:"검토중",date:"2026-06-20",votes:153,x:38,y:38,summary:"준공 30년이 넘은 선부동 일대 아파트 단지의 재건축·리모델링 추진 현황과 행정 지원을 묻는 주민 의견이 많습니다." },
+    { id:7,title:"안산천 합수부 악취 민원",category:"env",gu:"상록구",dong:"성포동",status:"진행중",date:"2026-06-19",votes:88,x:66,y:34,summary:"여름철 안산천 합수부에서 악취가 발생합니다. 수질 개선과 준설, 하수 차집 시설 점검이 필요합니다." },
+    { id:8,title:"월피동 경로당 냉방기 노후",category:"welfare",gu:"상록구",dong:"월피동",status:"접수",date:"2026-06-24",votes:41,x:70,y:26,summary:"월피동 경로당 에어컨이 노후되어 폭염 대응이 어렵습니다. 냉방기 교체와 무더위쉼터 지원을 요청합니다." },
+    { id:9,title:"사동 89블록 통학버스 증차 요구",category:"edu",gu:"상록구",dong:"사동",status:"검토중",date:"2026-06-22",votes:109,x:76,y:46,summary:"한양대 ERICA 인근 신규 입주 단지 학생들의 통학 불편이 큽니다. 통학버스 노선 신설·증차를 검토 중입니다." },
+    { id:10,title:"와동 행정복지센터 주차난",category:"traffic",gu:"단원구",dong:"와동",status:"진행중",date:"2026-06-17",votes:73,x:46,y:32,summary:"와동 행정복지센터 방문객 주차 공간이 부족합니다. 공영주차장 확충과 주변 도로 주차 정비가 필요합니다." },
+    { id:11,title:"대부도 관광객 쓰레기 무단투기",category:"env",gu:"단원구",dong:"대부동",status:"검토중",date:"2026-06-23",votes:67,x:22,y:80,summary:"주말 대부도 해안가 관광객 증가로 쓰레기 무단투기가 심합니다. 분리수거함 확대와 환경감시 인력 보강이 필요합니다." },
+    { id:12,title:"반월공단 인근 미세먼지 측정 강화",category:"env",gu:"상록구",dong:"반월동",status:"접수",date:"2026-06-26",votes:95,x:86,y:64,summary:"반월·시화 산단 인근 주거지역 대기질 우려가 큽니다. 미세먼지·악취 측정망 확대와 사업장 점검을 요청합니다." },
+    { id:13,title:"초지역 일대 자전거도로 단절 구간",category:"traffic",gu:"단원구",dong:"초지동",status:"검토중",date:"2026-06-16",votes:58,x:52,y:50,summary:"초지역 주변 자전거도로가 중간에 끊겨 안전사고 위험이 있습니다. 연결 정비와 노면 표시 개선이 필요합니다." },
+    { id:14,title:"성포동 도서관 주말 운영시간 연장",category:"culture",gu:"상록구",dong:"성포동",status:"해결",date:"2026-05-28",votes:84,x:64,y:30,summary:"주말 도서관 이용 수요가 높아 운영시간 연장을 건의했고, 토요일 야간 개방이 시범 시행됩니다." },
+    { id:15,title:"고잔동 보행자 안심 귀갓길 조성",category:"safety",gu:"단원구",dong:"고잔동",status:"진행중",date:"2026-06-14",votes:112,x:50,y:40,summary:"고잔동 일대 1인 가구 밀집 구간에 안심귀갓길·비상벨·CCTV 확충을 추진 중입니다." },
+    { id:16,title:"본오동 전통시장 시설 현대화",category:"economy",gu:"상록구",dong:"본오동",status:"검토중",date:"2026-06-12",votes:79,x:82,y:56,summary:"본오동 전통시장 아케이드·화장실·주차 등 노후 시설 현대화와 디지털 전환 지원을 요청합니다." }
+  ]
+};
+
+let CATS = FALLBACK.categories;
+let ISSUES = FALLBACK.issues.slice();
+let catMap = {};
+let activeCat = "all";
+let activeId = null;
+let searchQ = "";
+
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+function pinSvg(color){
+  return '<svg width="30" height="38" viewBox="0 0 30 38" fill="none"><path d="M15 1C7.8 1 2 6.8 2 14c0 8.5 11 21 12.2 22.3a1.1 1.1 0 0 0 1.6 0C17 35 28 22.5 28 14 28 6.8 22.2 1 15 1z" fill="'+color+'" stroke="#fff" stroke-width="2"/><circle cx="15" cy="14" r="5.4" fill="#fff" fill-opacity=".92"/></svg>';
+}
+
+/* ───────── 렌더 ───────── */
+function renderChips(){
+  const wrap = $("#chips");
+  let html = '<button class="chip'+(activeCat==="all"?" on":"")+'" style="'+(activeCat==="all"?"background:var(--primary-600)":"")+'" data-cat="all">전체</button>';
+  CATS.forEach(c=>{
+    const on = activeCat===c.key;
+    html += '<button class="chip'+(on?" on":"")+'" style="'+(on?"background:"+c.color:"")+'" data-cat="'+c.key+'"><span class="dot" style="background:'+c.color+'"></span>'+esc(c.label)+'</button>';
+  });
+  wrap.innerHTML = html;
+  wrap.querySelectorAll(".chip").forEach(b=> b.onclick = ()=>{ activeCat=b.dataset.cat; activeId=null; renderAll(); });
+}
+
+function renderLegend(){
+  $("#legend").innerHTML = CATS.map(c=>'<span class="lg"><span class="dot" style="background:'+c.color+'"></span>'+esc(c.label)+'</span>').join("");
+}
+
+function filtered(){
+  return ISSUES.filter(it=>{
+    if(activeCat!=="all" && it.category!==activeCat) return false;
+    if(searchQ){
+      const q = searchQ.toLowerCase();
+      if(!(it.title+it.dong+it.gu+it.summary).toLowerCase().includes(q)) return false;
+    }
+    return true;
+  });
+}
+
+function renderPins(){
+  const canvas = $("#mapCanvas");
+  canvas.querySelectorAll(".pin").forEach(p=>p.remove());
+  const show = new Set(filtered().map(i=>i.id));
+  ISSUES.forEach(it=>{
+    const c = catMap[it.category];
+    const el = document.createElement("div");
+    el.className = "pin"+(show.has(it.id)?"":" hidden")+(activeId===it.id?" active":"");
+    el.style.left = it.x+"%"; el.style.top = it.y+"%";
+    el.title = it.title;
+    el.innerHTML = pinSvg(c?c.color:"#888");
+    el.onclick = ()=> openDetail(it.id);
+    canvas.appendChild(el);
+  });
+}
+
+function renderList(){
+  const list = filtered().sort((a,b)=> b.votes-a.votes);
+  $("#listCount").textContent = list.length;
+  if(!list.length){ $("#issueList").innerHTML = '<div class="empty">해당 분야의 현안이 없습니다.</div>'; return; }
+  $("#issueList").innerHTML = list.map(it=>{
+    const c = catMap[it.category];
+    return '<div class="issue-item'+(activeId===it.id?" active":"")+'" data-id="'+it.id+'">'
+      +'<div class="bar" style="background:'+(c?c.color:"#888")+'"></div>'
+      +'<div class="meta"><div class="tl">'+esc(it.title)+'</div>'
+      +'<div class="sub">'
+      +'<span class="tag" style="background:'+hex2soft(c?c.color:"#888")+';color:'+(c?c.color:"#888")+'">'+esc(c?c.label:"")+'</span>'
+      +'<span class="st st-'+it.status+'">'+it.status+'</span>'
+      +'<span>'+esc(it.gu)+' '+esc(it.dong)+'</span>'
+      +'<span class="vote"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 9V5a3 3 0 0 0-6 0v4H5l7 11 7-11h-3z" transform="rotate(180 12 12)"/></svg>'+it.votes+'</span>'
+      +'</div></div></div>';
+  }).join("");
+  $("#issueList").querySelectorAll(".issue-item").forEach(el=> el.onclick = ()=> openDetail(+el.dataset.id));
+}
+
+function renderStats(){
+  $("#sTotal").textContent = ISSUES.length;
+  $("#sProgress").textContent = ISSUES.filter(i=>i.status==="진행중").length;
+  $("#sDone").textContent = ISSUES.filter(i=>i.status==="해결").length;
+  $("#sVotes").textContent = ISSUES.reduce((a,b)=>a+(b.votes||0),0).toLocaleString();
+}
+
+function renderAll(){ renderChips(); renderPins(); renderList(); }
+
+function hex2soft(hex){
+  const h = hex.replace("#",""); const r=parseInt(h.slice(0,2),16),g=parseInt(h.slice(2,4),16),b=parseInt(h.slice(4,6),16);
+  return "rgba("+r+","+g+","+b+",0.12)";
+}
+
+/* ───────── 상세 ───────── */
+function openDetail(id){
+  const it = ISSUES.find(i=>i.id===id); if(!it) return;
+  activeId = id; renderPins(); renderList();
+  const c = catMap[it.category];
+  $("#detailBody").innerHTML =
+    '<div style="height:7px;background:'+(c?c.color:"#888")+'"></div>'
+    +'<div style="padding:24px">'
+    +'<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px">'
+      +'<span class="tag" style="background:'+hex2soft(c?c.color:"#888")+';color:'+(c?c.color:"#888")+'">'+esc(c?c.label:"")+'</span>'
+      +'<span class="st st-'+it.status+'">'+it.status+'</span>'
+      +'<span style="font-size:12px;color:var(--ink-3);font-weight:600;align-self:center">'+esc(it.gu)+' '+esc(it.dong)+'</span>'
+    +'</div>'
+    +'<h2 style="font-size:20px;font-weight:800;letter-spacing:-.03em;line-height:1.35">'+esc(it.title)+'</h2>'
+    +'<p style="font-size:14px;color:var(--ink-2);font-weight:500;line-height:1.7;margin-top:14px">'+esc(it.summary)+'</p>'
+    +'<div style="display:flex;align-items:center;gap:14px;margin-top:20px;padding-top:16px;border-top:1px solid var(--line-soft)">'
+      +'<button id="voteBtn" data-id="'+it.id+'" style="display:inline-flex;align-items:center;gap:7px;height:42px;padding:0 18px;border:1px solid var(--line);border-radius:11px;background:#fff;font-size:13.5px;font-weight:700;color:var(--ink)">'
+        +'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10v12M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88z"/></svg>'
+        +'공감 <b id="voteN" style="color:var(--primary)">'+it.votes+'</b>'
+      +'</button>'
+      +'<span style="font-size:12px;color:var(--ink-3);font-weight:600">접수일 '+esc(it.date)+'</span>'
+    +'</div></div>';
+  $("#detailBg").classList.add("show");
+  const vb = $("#voteBtn");
+  vb.onclick = ()=>{ it.votes++; $("#voteN").textContent=it.votes; renderList(); renderStats(); vb.disabled=true; vb.style.opacity=.6; showToast("공감해 주셔서 감사합니다!"); };
+}
+function closeDetail(){ $("#detailBg").classList.remove("show"); activeId=null; renderPins(); renderList(); }
+
+/* ───────── 제보 ───────── */
+function openReport(){
+  $("#rCat").innerHTML = CATS.map(c=>'<option value="'+c.key+'">'+esc(c.label)+'</option>').join("");
+  $("#reportBg").classList.add("show");
+}
+function closeReport(){ $("#reportBg").classList.remove("show"); }
+
+function submitReport(){
+  const title = $("#rTitle").value.trim();
+  const dong = $("#rDong").value.trim();
+  const desc = $("#rDesc").value.trim();
+  if(!title){ showToast("제목을 입력해 주세요."); return; }
+  if(!desc){ showToast("내용을 입력해 주세요."); return; }
+  const catKey = $("#rCat").value;
+  const gu = ["대부동","고잔동","와동","원곡동","초지동","선부동","신길동"].includes(dong) ? "단원구" : (dong?"상록구":"안산시");
+  const it = {
+    id: Math.max(0,...ISSUES.map(i=>i.id))+1,
+    title, category:catKey, gu, dong:dong||"안산", status:"접수",
+    date: new Date().toISOString().slice(0,10), votes:1,
+    x: 30+Math.round((title.length*7+dong.length*5)%50), y: 25+Math.round((desc.length*3)%55),
+    summary: desc
+  };
+  ISSUES.unshift(it);
+  closeReport();
+  $("#rTitle").value=""; $("#rDong").value=""; $("#rDesc").value=""; $("#rContact").value="";
+  activeCat="all"; renderAll(); renderStats();
+  showToast("제보가 등록되었습니다. 감사합니다!");
+  document.getElementById("issue-map").scrollIntoView({behavior:"smooth"});
+}
+
+/* ───────── 기타 UI ───────── */
+let toastT;
+function showToast(msg){ const t=$("#toast"); t.textContent=msg; t.classList.add("show"); clearTimeout(toastT); toastT=setTimeout(()=>t.classList.remove("show"),2200); }
+
+document.querySelectorAll("#reportNav,#reportHero,#reportFoot").forEach(b=> b.addEventListener("click", e=>{ e.preventDefault(); openReport(); }));
+$("#rSubmit").addEventListener("click", submitReport);
+$("#searchInput").addEventListener("input", e=>{ searchQ=e.target.value; renderPins(); renderList(); });
+$("#hambBtn").addEventListener("click", ()=> document.getElementById("issue-map").scrollIntoView({behavior:"smooth"}));
+document.querySelectorAll(".modal-bg").forEach(bg=> bg.addEventListener("click", e=>{ if(e.target===bg) bg.classList.remove("show"); }));
+document.addEventListener("keydown", e=>{ if(e.key==="Escape"){ closeDetail(); closeReport(); } });
+
+// 지도 구역 클릭 → 해당 구 핀 강조(검색 활용)
+document.querySelectorAll(".gu-region").forEach(r=>{
+  r.addEventListener("click", ()=>{ searchQ=r.dataset.gu; $("#searchInput").value=r.dataset.gu; renderPins(); renderList(); document.querySelector(".panel .list-head").scrollIntoView({behavior:"smooth",block:"nearest"}); });
+});
+
+/* ───────── 부트스트랩 ───────── */
+function boot(data){
+  if(data && Array.isArray(data.issues) && data.issues.length){
+    if(Array.isArray(data.categories) && data.categories.length) CATS = data.categories;
+    ISSUES = data.issues.slice();
+  }
+  catMap = {}; CATS.forEach(c=> catMap[c.key]=c);
+  renderLegend(); renderAll(); renderStats();
+}
+
+fetch("ansan_issues_data.json", {cache:"no-store"})
+  .then(r=> r.ok ? r.json() : Promise.reject())
+  .then(boot)
+  .catch(()=> boot(FALLBACK));
+</script>
+</body>
+</html>
