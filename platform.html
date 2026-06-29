@@ -424,9 +424,12 @@ button{font-family:inherit}
             <button id="setPhotoBtn" style="margin-left:auto;height:36px;padding:0 14px;background:#fff;border:1px solid #d6dde6;border-radius:9px;font-size:12.5px;font-weight:600;color:#5b6675;cursor:pointer">의원 사진 등록</button>
           </div>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
-            <div><div style="font-size:12.5px;color:#6b7585;font-weight:600;margin-bottom:6px">이름</div><div id="setNameField" style="height:40px;border:1px solid #e7eaef;border-radius:9px;display:flex;align-items:center;padding:0 13px;font-size:13.5px;background:#fafbfc">—</div></div>
-            <div><div style="font-size:12.5px;color:#6b7585;font-weight:600;margin-bottom:6px">이메일</div><div id="setEmailField" style="height:40px;border:1px solid #e7eaef;border-radius:9px;display:flex;align-items:center;padding:0 13px;font-size:13.5px;background:#fafbfc">—</div></div>
+            <div><div style="font-size:12.5px;color:#6b7585;font-weight:600;margin-bottom:6px">의원 성함</div><input id="setNameInput" placeholder="예: 장윤정" style="width:100%;height:40px;border:1px solid #e7eaef;border-radius:9px;padding:0 13px;font-size:13.5px;font-family:inherit;outline:none"/></div>
+            <div><div style="font-size:12.5px;color:#6b7585;font-weight:600;margin-bottom:6px">이메일</div><div id="setEmailField" style="height:40px;border:1px solid #e7eaef;border-radius:9px;display:flex;align-items:center;padding:0 13px;font-size:13.5px;background:#fafbfc;color:#8a94a3">—</div></div>
+            <div><div style="font-size:12.5px;color:#6b7585;font-weight:600;margin-bottom:6px">직함</div><input id="setPosInput" placeholder="예: 경기도의원 · 교육기획위원회 부위원장" style="width:100%;height:40px;border:1px solid #e7eaef;border-radius:9px;padding:0 13px;font-size:13.5px;font-family:inherit;outline:none"/></div>
+            <div><div style="font-size:12.5px;color:#6b7585;font-weight:600;margin-bottom:6px">지역</div><input id="setDistInput" placeholder="예: 안산 상록구 · 일동·이동·성포동" style="width:100%;height:40px;border:1px solid #e7eaef;border-radius:9px;padding:0 13px;font-size:13.5px;font-family:inherit;outline:none"/></div>
           </div>
+          <div style="text-align:right;margin-top:14px"><button id="setProfileSave" data-hover="background:#16305c" style="height:38px;padding:0 18px;background:#1d3a6e;color:#fff;border:none;border-radius:9px;font-size:13px;font-weight:600;cursor:pointer">프로필 저장</button></div>
         </div>
 
         <div style="background:#fff;border:1px solid #e9ecf1;border-radius:14px;padding:22px;box-shadow:0 1px 2px rgba(16,24,40,0.04)">
@@ -1508,12 +1511,31 @@ onAuthStateChanged(_auth, async function(user){
     });
   });
   function set(id,v){ var e=document.getElementById(id); if(e) e.textContent=v; }
+  function setVal(id,v){ var e=document.getElementById(id); if(e && document.activeElement!==e) e.value=v||''; }
   function paint(){
     var p=M.profile||{}; var nm=p.name||M.sessUser().displayName||(M.sessUser().email||'').split('@')[0]||'';
     var em=p.email||M.sessUser().email||''; var sub=[p.position,p.district].filter(Boolean).join(' · ')||'의원실 구성원';
-    set('setName', nm||'—'); set('setSub', sub); set('setNameField', nm||'—'); set('setEmailField', em||'—');
+    set('setName', nm||'—'); set('setSub', sub); set('setEmailField', em||'—');
+    setVal('setNameInput', p.name||''); setVal('setPosInput', p.position||''); setVal('setDistInput', p.district||'');
     var av=document.getElementById('setAvatar'); if(av){ if(p.photo){ av.style.backgroundImage='url('+p.photo+')'; av.style.backgroundSize='cover'; av.style.backgroundPosition='center'; av.textContent=''; } else { av.style.backgroundImage=''; av.textContent= nm?nm.charAt(0):'·'; } }
   }
+  (function(){
+    var btn=document.getElementById('setProfileSave'); if(!btn) return;
+    btn.addEventListener('click', function(){
+      if(window.MOIDA_READONLY){ alert('읽기 전용 상태입니다.'); return; }
+      var nmv=(document.getElementById('setNameInput')||{}).value||'';
+      var posv=(document.getElementById('setPosInput')||{}).value||'';
+      var distv=(document.getElementById('setDistInput')||{}).value||'';
+      if(!nmv.trim()){ alert('의원 성함을 입력해 주세요.'); return; }
+      M.profile = M.profile || {};
+      M.profile.name=nmv.trim(); M.profile.position=posv.trim(); M.profile.district=distv.trim();
+      try{ localStorage.setItem('moida_tenant_'+(M.uid||M.sessUser().uid||'default'), JSON.stringify(M.profile)); }catch(e){}
+      if(M.paintProfile) M.paintProfile(M.profile);
+      paint();
+      try{ if(M.db && M.uid && M.fs && !window.MOIDA_READONLY){ M.fs.setDoc(M.fs.doc(M.db,'tenants',M.uid), {name:M.profile.name, position:M.profile.position, district:M.profile.district}, {merge:true}); } }catch(e){}
+      toast('프로필이 저장되었습니다. 웹자보·사이드바에 반영됩니다.');
+    });
+  })();
   function saveProfilePhoto(dataUrl){
     M.profile = M.profile || {};
     M.profile.photo = dataUrl;
@@ -1918,8 +1940,16 @@ onAuthStateChanged(_auth, async function(user){
     if(o.host) info.push('주최 '+o.host); if(o.phone) info.push('문의 '+o.phone);
     if(info.length) L.push('· 행사정보(아이콘 박스): '+info.join(' / '));
     L.push('· 인물 이름(가장 크게): 「'+nm+'」'+(pos?'  (이름 아래 작게 직함: 「'+pos+'」)':'')+'  — 이름을 두 번 반복하지 말 것.');
-    L.push('· 하단 띠: 더불어민주당 로고 + 「'+nm+' 의원」');
-    L.push('밝고 깔끔하며 신뢰감 있는 디자인. 파랑(#1b3aa0)·흰색, 초록 잎 포인트. 슬로건은 손글씨풍이되 철자는 정확히. 인물은 오른쪽 배치. 고해상도, 여백 균형.');
+    L.push('· 하단 띠: 더불어민주당 로고 + 「'+(pos?pos+' ':'')+nm+'」');
+    L.push('');
+    L.push('[레이아웃 — 전문 정당 행사 홍보 포스터, 이 구성을 반드시 지킬 것]');
+    L.push('1) 맨 위: 손글씨풍 한 줄 인사 문구(작게, 청록/초록).');
+    L.push('2) 그 아래: 아주 크고 굵은 제목(진한 네이비, 1~2줄). 제목 앞에 초록 원형 배지로 지역/포인트 단어 강조 가능.');
+    L.push('3) 제목 아래: 파란 리본/띠 박스 안에 흰색 글씨로 핵심 슬로건 한 줄.');
+    L.push('4) 중앙: 좌측에 행사 현장 사진을 크게 배치, 우측에 인물(상반신, 정장)을 선명하게 누끼처럼 배치.');
+    L.push('5) 좌하단: 둥근 흰색 정보 박스 — 달력·핀·사람·전화 아이콘과 함께 일시/장소/주최/문의를 줄맞춰 표기.');
+    L.push('6) 맨 아래: 파란 띠 — 좌측 더불어민주당 로고, 우측 금색 의회 엠블럼 + 직함 + 이름(굵게).');
+    L.push('색감: 파랑(#1b3aa0)·흰색 기본 + 초록 잎 포인트. 밝고 깨끗하며 신뢰감 있게. 여백 균형, 고해상도.');
     L.push('가장 중요: 모든 한글 맞춤법을 정확히. 따옴표 「」 안 문구는 절대 변형·오타·글자중복 금지.');
     return L.join('\n');
   }
