@@ -1903,20 +1903,24 @@ onAuthStateChanged(_auth, async function(user){
         throw new Error((d&&d.error&&d.error.message)||('HTTP '+res.s+' · '+(res.t||'').slice(0,200)));
       });
   }
-  function fullPosterPrompt(o){
+  function fullPosterPrompt(o, hasPortrait){
     var nm=profName(), pos=profPos(o), L=[];
+    var nPhoto=(o._photos?o._photos.length:0), nScene=nPhoto-(hasPortrait?1:0);
     L.push('전문적인 한국 정당·의정 행사 홍보 포스터(세로형 1024x1536)를 디자인해줘.');
-    if(o._photos&&o._photos.length) L.push('제공된 사진을 행사 현장 사진으로 자연스럽게 사용해줘.');
-    L.push('제목: "'+(o.title||'')+'"');
-    if(o.message) L.push('핵심 슬로건: "'+o.message+'"');
+    if(nScene>0 && hasPortrait) L.push('제공된 사진 중 앞쪽은 행사 현장 사진(배경으로 사용), 마지막 사진은 인물 사진이다. 인물은 반드시 이 인물 사진의 얼굴·성별·헤어·외모를 그대로 유지해 그려라(절대 다른 사람으로 바꾸지 말 것).');
+    else if(hasPortrait) L.push('제공된 인물 사진의 얼굴·성별·헤어·외모를 그대로 유지해 인물을 그려라(절대 다른 사람으로 바꾸지 말 것).');
+    else if(nScene>0) L.push('제공된 사진을 행사 현장 사진으로 배경에 자연스럽게 사용해줘.');
+    L.push('아래 한국어 텍스트는 한 글자도 바꾸지 말고 오타 없이 정확히 그대로 표기하라:');
+    L.push('· 제목: 「'+(o.title||'')+'」');
+    if(o.message) L.push('· 슬로건: 「'+o.message+'」');
     var info=[];
     if(o.date) info.push('일시 '+o.date); if(o.place) info.push('장소 '+o.place);
     if(o.host) info.push('주최 '+o.host); if(o.phone) info.push('문의 '+o.phone);
-    if(info.length) L.push('행사 정보 박스(아이콘 포함): '+info.join(', '));
-    L.push('인물: '+nm+(pos?'('+pos+')':'')+' — 오른쪽에 정장 차림의 자신감 있는 인물을 배치.');
-    L.push('하단에 더불어민주당 및 경기도의회 스타일 로고와 "'+(pos||'경기도의원')+' '+nm+'" 표기.');
-    L.push('밝고 깔끔하며 신뢰감 있는 디자인. 파랑(#1b3aa0)·흰색, 초록 잎 포인트, 손글씨풍 강조 문구.');
-    L.push('모든 텍스트는 정확한 한국어 맞춤법으로 또렷하게(글자 깨짐 금지). 고해상도, 여백 균형.');
+    if(info.length) L.push('· 행사정보(아이콘 박스): '+info.join(' / '));
+    L.push('· 인물 표기: '+nm+(pos?' ('+pos+')':''));
+    L.push('· 하단 로고/소속: 더불어민주당, '+(pos||'경기도의회'));
+    L.push('밝고 깔끔하며 신뢰감 있는 디자인. 파랑(#1b3aa0)·흰색, 초록 잎 포인트, 손글씨풍 강조 문구. 인물은 오른쪽 배치. 고해상도, 여백 균형.');
+    L.push('가장 중요: 모든 한글 철자를 정확히. 따옴표 「」 안 문구는 절대 변형·오타 금지.');
     return L.join('\n');
   }
   var _posterImgs={};
@@ -1936,8 +1940,11 @@ onAuthStateChanged(_auth, async function(user){
       '<div id="'+id+'" style="display:flex;gap:11px;max-width:82%">'+AV+
       '<div style="background:#fff;border:1px solid #eef1f5;border-radius:4px 14px 14px 14px;padding:16px;flex:1;font-size:13px;color:#5b6675">🎨 AI가 포스터 전체를 생성하는 중입니다… (20~40초 소요)</div></div>');
     scroll();
-    var imgs=(o._photos&&o._photos.length)?o._photos:null;
-    var pr=imgs ? aiImageEdit(fullPosterPrompt(o), imgs) : aiImage(fullPosterPrompt(o));
+    var scene=(o._photos&&o._photos.length)?o._photos.slice():[];
+    var portrait=(M.profile&&M.profile.photo)||'';
+    var imgs=scene.slice(); if(portrait) imgs.push(portrait); // 마지막 = 인물 참조
+    var hasPortrait=!!portrait;
+    var pr=imgs.length ? aiImageEdit(fullPosterPrompt(o, hasPortrait), imgs) : aiImage(fullPosterPrompt(o, false));
     pr.then(function(dataUrl){ var el=document.getElementById(id); if(el) el.remove(); addImagePoster(dataUrl, o.title); })
       .catch(function(err){ var el=document.getElementById(id); if(el) el.remove();
         addAI('※ 포스터 생성에 실패했습니다.<br><span style="font-size:11.5px;color:#9aa3b0">사유: '+M.esc(err&&err.message||String(err))+'</span>'); });
