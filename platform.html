@@ -1881,7 +1881,7 @@ onAuthStateChanged(_auth, async function(user){
   /* ── 하이브리드: GPT 이미지 AI로 배경 생성 → 코드로 글자/로고 합성 ─────── */
   function aiImage(prompt){
     var ep=gptEndpoint().replace(/\/+$/,'')+'/image';
-    return fetch(ep, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prompt:prompt, size:'1024x1536'})})
+    return fetch(ep, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prompt:prompt, size:'1024x1024'})})
       .then(function(r){ return r.text().then(function(t){ return {s:r.status,t:t}; }); })
       .then(function(res){
         var d=null; try{ d=JSON.parse(res.t); }catch(e){}
@@ -1916,7 +1916,7 @@ onAuthStateChanged(_auth, async function(user){
   /* ── 전체 이미지 AI 포스터 (gpt-image-1이 포스터 전체를 생성) ─────────── */
   function aiImageEdit(prompt, images){
     var ep=gptEndpoint().replace(/\/+$/,'')+'/image-edit';
-    return fetch(ep,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prompt:prompt, images:images, size:'1024x1536'})})
+    return fetch(ep,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prompt:prompt, images:images, size:'1024x1024'})})
       .then(function(r){ return r.text().then(function(t){ return {s:r.status,t:t}; }); })
       .then(function(res){
         var d=null; try{ d=JSON.parse(res.t); }catch(e){}
@@ -1928,7 +1928,7 @@ onAuthStateChanged(_auth, async function(user){
   function fullPosterPrompt(o, hasPortrait){
     var nm=profName(), pos=profPos(o), L=[];
     var nPhoto=(o._photos?o._photos.length:0), nScene=nPhoto-(hasPortrait?1:0);
-    L.push('전문적인 한국 정당·의정 행사 홍보 포스터(세로형 1024x1536)를 디자인해줘.');
+    L.push('전문적인 한국 정당·의정 행사 홍보 포스터(정사각형 1024x1024)를 디자인해줘.');
     if(nScene>0 && hasPortrait) L.push('제공된 사진 중 앞쪽은 행사 현장 사진(배경으로 사용), 마지막 사진은 인물 사진이다. 인물은 반드시 이 인물 사진의 얼굴·성별·헤어·외모를 그대로 유지해 그려라(절대 다른 사람으로 바꾸지 말 것).');
     else if(hasPortrait) L.push('제공된 인물 사진의 얼굴·성별·헤어·외모를 그대로 유지해 인물을 그려라(절대 다른 사람으로 바꾸지 말 것).');
     else if(nScene>0) L.push('제공된 사진을 행사 현장 사진으로 배경에 자연스럽게 사용해줘.');

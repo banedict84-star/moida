@@ -60,7 +60,7 @@ export default {
       // 이미지 생성 경로: POST /image → OpenAI Images(gpt-image-1) 중계 (텍스트 프롬프트만)
       if (path.endsWith("/image")) {
         const imgPayload = Object.assign(
-          { model: "gpt-image-1", size: "1024x1536", n: 1, quality: "high" },
+          { model: "gpt-image-1", size: "1024x1024", n: 1, quality: "high" },
           body
         );
         const ir = await fetch(`${OPENAI_BASE}/images/generations`, {
@@ -78,7 +78,7 @@ export default {
         const fd = new FormData();
         fd.append("model", "gpt-image-1");
         fd.append("prompt", String(body.prompt || ""));
-        fd.append("size", String(body.size || "1024x1536"));
+        fd.append("size", String(body.size || "1024x1024"));
         fd.append("quality", String(body.quality || "high")); // 고품질 → 한글 글자 정확도↑ (ChatGPT 수준)
         const imgs = Array.isArray(body.images) ? body.images.slice(0, 4) : [];
         imgs.forEach((durl, i) => {
