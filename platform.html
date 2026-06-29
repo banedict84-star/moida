@@ -1689,7 +1689,7 @@ onAuthStateChanged(_auth, async function(user){
     {type:'function',function:{name:'add_event',description:'새 일정을 등록',parameters:{type:'object',properties:{title:{type:'string'},date:{type:'string',description:'YYYY-MM-DD'},time:{type:'string',description:'HH:MM'},cat:{type:'string',enum:['의정','지역','외부']},location:{type:'string'}},required:['title','date']}}},
     {type:'function',function:{name:'list_policies',description:'발의 법안/정책 목록 조회',parameters:{type:'object',properties:{}}}},
     {type:'function',function:{name:'list_notices',description:'중앙당·경기도당·경기도의회 등 외부 기관 공지사항 조회(최신순). 출처/검색어로 필터 가능.',parameters:{type:'object',properties:{source:{type:'string',enum:['중앙당','경기도당','경기도의회']},query:{type:'string',description:'제목 검색어'},limit:{type:'number',description:'개수(기본 10)'}}}}},
-    {type:'function',function:{name:'create_poster',description:'홍보용 웹자보를 생성해 화면에 표시한다. 반드시 임팩트 있는 한 줄 핵심 메시지(message, 슬로건)를 넣는다. 모드 선택: 사용자가 "전체를 AI로/ChatGPT처럼/완성된 포스터 이미지"를 원하면 full_image=true(gpt-image-1이 포스터 전체를 그림 — 사진 첨부 시 참조). full_image일 때는 너(아트디렉터)가 image_prompt에 디자인을 자유롭게 직접 써라(분위기·구도·색·배경·요소). 정확한 글자·이름·직함·로고·사이즈는 시스템이 자동으로 덧붙이니, image_prompt에는 디자인 묘사에 집중하라. 정확한 글자·로고가 중요하면 코드 템플릿: 현장 사진은 template="event", 인물은 template="portrait", 배경만 AI는 ai_background=true, 단순 카드는 template="card". 직함(position)은 알면 채운다.',parameters:{type:'object',properties:{full_image:{type:'boolean',description:'true면 gpt-image-1이 포스터 전체(레이아웃·글자·인물 포함)를 한 장으로 생성. 첨부 사진을 참조로 사용.'},image_prompt:{type:'string',description:'full_image 전용. 포스터 디자인을 한국어로 자유롭게 묘사(전체 분위기·구도·배경·인물 배치·색감·강조 요소 등). 제목/슬로건/이름/직함 같은 정확한 글자는 여기 넣지 말 것(시스템이 따로 정확히 추가함).'},template:{type:'string',enum:['card','event','portrait'],description:'코드 템플릿 레이아웃'},ai_background:{type:'boolean',description:'배경만 AI 생성(하이브리드)'},background_prompt:{type:'string',description:'ai_background용 배경 묘사(영문, 텍스트·얼굴 없는 추상 배경)'},title:{type:'string',description:'핵심 제목/주제'},message:{type:'string',description:'핵심 메시지·슬로건 한 문장'},position:{type:'string',description:'의원 직함·소속'},number:{type:'string',description:'portrait용 기호 번호'},region:{type:'string',description:'event 푸터 지역'},host:{type:'string',description:'full_image 행사 주최'},phone:{type:'string',description:'full_image 문의 연락처'},subtitle:{type:'string',description:'부제(card에서 message 없을 때만)'},points:{type:'array',items:{type:'string'},description:'card 본문 핵심 항목 2~4개'},date:{type:'string',description:'일시(선택)'},place:{type:'string',description:'장소'},category:{type:'string',description:'상단 분류 배지'},theme:{type:'string',enum:['navy','red','green'],description:'card 색상 테마'}},required:['title','message']}}}
+    {type:'function',function:{name:'create_poster',description:'홍보용 웹자보를 코드 템플릿으로 생성한다(1080x1350 PNG, 더불어민주당 네이비 스타일). 제목·슬로건·일시·장소·주최·문의를 정확히 표기하고, 사진은 사용자가 첨부한 현장 사진 + 설정에 등록된 의원 사진을 그대로 사용한다(AI가 새로 그리지 않음 → 글자·얼굴 정확). 반드시 임팩트 있는 한 줄 슬로건(message)을 넣는다.',parameters:{type:'object',properties:{title:{type:'string',description:'핵심 제목/주제(짧게)'},message:{type:'string',description:'핵심 메시지·슬로건 한 문장'},category:{type:'string',description:'상단 분류 배지(예: 의정활동·행사안내·정책)'},date:{type:'string',description:'일시'},place:{type:'string',description:'장소'},host:{type:'string',description:'주최'},phone:{type:'string',description:'문의 연락처'},position:{type:'string',description:'의원 직함·소속(미지정 시 프로필 사용)'},region:{type:'string',description:'하단 지역 표기'},template_key:{type:'string',description:'디자인 템플릿 키(기본 navy). 추가 템플릿 생기면 선택'}},required:['title','message']}}}
   ];
   /* ── 웹자보(디자인 카드) 생성 ─────────────────────────────────────── */
   function wrapText(s, n){
@@ -1998,6 +1998,79 @@ onAuthStateChanged(_auth, async function(user){
         addAI('※ 포스터 생성에 실패했습니다.<br><span style="font-size:11.5px;color:#9aa3b0">사유: '+M.esc(err&&err.message||String(err))+'</span>'); });
   }
 
+  /* ═══ 코드 템플릿 렌더링(HTML/SVG → 1080x1350 PNG). AI 이미지 대체 ═══ */
+  function bigPhoto(url,x,y,w,h){
+    if(url) return '<image x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" preserveAspectRatio="xMidYMid slice" href="'+url+'" xlink:href="'+url+'"/>';
+    return '<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" fill="#dde3ec"/>'
+      +'<text x="'+(x+w/2)+'" y="'+(y+h/2)+'" text-anchor="middle" fill="#9aa3b0" font-size="30" font-weight="700">사진을 첨부하세요</text>';
+  }
+  /* 템플릿: 더불어민주당 네이비 스타일 (현장사진+인물+정보+로고), 1080x1350 */
+  function tplNavy(o){
+    var W=1080,H=1350,X=64,e=M.esc;
+    var nm=profName(), pos=profPos(o);
+    var scene=(o._photos&&o._photos[0])||'';
+    var portrait=(M.profile&&M.profile.photo)||(o._photos&&o._photos[1])||'';
+    var region=(M.profile&&M.profile.district)||o.region||'';
+    var s='<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1080 1350" width="1080" height="1350" style="width:100%;height:auto;display:block;font-family:Pretendard,\'Apple SD Gothic Neo\',\'Malgun Gothic\',sans-serif">';
+    s+='<defs><linearGradient id="nv" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1b3aa0"/><stop offset="1" stop-color="#12277a"/></linearGradient>'
+      +'<linearGradient id="shade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0a1430" stop-opacity="0"/><stop offset="1" stop-color="#0a1430" stop-opacity="0.6"/></linearGradient></defs>';
+    s+='<rect width="1080" height="1350" fill="#ffffff"/>';
+    // 상단 헤더(네이비)
+    s+='<rect width="1080" height="372" fill="url(#nv)"/>';
+    s+='<circle cx="1010" cy="40" r="180" fill="#ffffff" opacity="0.06"/>';
+    // 분류 배지 + 정당
+    var cat=o.category||'의정활동', bw=cat.length*30+56;
+    s+='<rect x="'+X+'" y="56" width="'+bw+'" height="56" rx="28" fill="rgba(255,255,255,0.16)"/>';
+    s+='<text x="'+(X+bw/2)+'" y="93" text-anchor="middle" fill="#fff" font-size="27" font-weight="700">'+e(cat)+'</text>';
+    s+='<text x="'+(W-X)+'" y="84" text-anchor="end" fill="#fff" font-size="30" font-weight="900" letter-spacing="-1">더불어민주당</text>';
+    // 제목(대형)
+    var tl=wrapText(o.title,13).slice(0,2), ty=tl.length>1?215:250;
+    tl.forEach(function(l){ s+='<text x="'+X+'" y="'+ty+'" fill="#fff" font-size="74" font-weight="900" letter-spacing="-2">'+e(l)+'</text>'; ty+=82; });
+    // 슬로건 리본
+    if(o.message){ s+='<rect x="'+X+'" y="300" width="'+(W-2*X)+'" height="56" rx="10" fill="rgba(255,255,255,0.14)"/>';
+      s+='<text x="'+(W/2)+'" y="338" text-anchor="middle" fill="#fff" font-size="27" font-weight="700">'+e(wrapText(o.message,34)[0])+'</text>'; }
+    // 사진 영역
+    s+=bigPhoto(scene,0,372,1080,640);
+    if(portrait){ s+='<rect x="600" y="372" width="480" height="640" fill="url(#shade)"/>'; s+=bigPhoto(portrait,600,372,480,640); }
+    // 정보 박스(흰색 둥근)
+    var info=[]; if(o.date) info.push(['cal',o.date]); if(o.place) info.push(['pin',o.place]); if(o.host) info.push(['ppl',o.host]); if(o.phone) info.push(['tel',o.phone]);
+    if(info.length){
+      var ih=info.length*64+44, iy=1012-ih-24;
+      s+='<rect x="'+X+'" y="'+iy+'" width="560" height="'+ih+'" rx="22" fill="#ffffff" opacity="0.96"/>';
+      var ICO={cal:'<rect x="0.5" y="2" width="19" height="17" rx="3"/><path d="M0.5 7.5h19M5.5 0v4M14.5 0v4"/>',pin:'<path d="M10 19s7-6 7-11A7 7 0 0 0 3 8c0 5 7 11 7 11z"/><circle cx="10" cy="8" r="2.5"/>',ppl:'<circle cx="7" cy="6" r="3.2"/><path d="M1 19c0-4 2.7-6 6-6s6 2 6 6"/><circle cx="15" cy="7" r="2.6"/>',tel:'<path d="M4 3h4l2 5-3 2a12 12 0 0 0 6 6l2-3 5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 2 5a2 2 0 0 1 2-2z"/>'};
+      var ry=iy+52;
+      info.forEach(function(it){ s+='<g transform="translate('+(X+34)+','+(ry-19)+')" fill="none" stroke="#1b3aa0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'+ICO[it[0]]+'</g>';
+        s+='<text x="'+(X+78)+'" y="'+ry+'" fill="#1c2738" font-size="31" font-weight="700">'+e(it[1])+'</text>'; ry+=64; });
+    }
+    // 하단 띠(네이비) — 좌: 정당 / 우: 직함+이름(+의회 인장)
+    s+='<rect x="0" y="1218" width="1080" height="132" fill="url(#nv)"/>';
+    s+='<text x="'+X+'" y="1284" fill="#fff" font-size="36" font-weight="900" letter-spacing="-1">더불어민주당</text>';
+    if(region) s+='<text x="'+X+'" y="1318" fill="rgba(255,255,255,0.72)" font-size="21" font-weight="600">'+e(region)+'</text>';
+    if(pos) s+='<text x="'+(W-X)+'" y="1266" text-anchor="end" fill="rgba(255,255,255,0.85)" font-size="22" font-weight="600">'+e(pos)+'</text>';
+    var sealX=(W-X)-(nm.length*48)-46;
+    s+='<circle cx="'+sealX+'" cy="1301" r="27" fill="#edc15a" opacity="0.2"/><circle cx="'+sealX+'" cy="1301" r="27" fill="none" stroke="#edc15a" stroke-width="3"/><text x="'+sealX+'" y="1310" text-anchor="middle" fill="#edc15a" font-size="22" font-weight="800">의회</text>';
+    s+='<text x="'+(W-X)+'" y="1315" text-anchor="end" fill="#fff" font-size="48" font-weight="900" letter-spacing="-1.5">'+e(nm)+'</text>';
+    s+='</svg>'; return s;
+  }
+  var POSTER_TEMPLATES = { navy: tplNavy }; /* 교체·추가 가능 */
+  function svgToPng(svgStr, W, H){
+    return new Promise(function(res, rej){
+      var blob=new Blob([svgStr],{type:'image/svg+xml;charset=utf-8'});
+      var url=URL.createObjectURL(blob); var img=new Image();
+      img.onload=function(){ try{ var c=document.createElement('canvas'); c.width=W; c.height=H; c.getContext('2d').drawImage(img,0,0,W,H); URL.revokeObjectURL(url); res(c.toDataURL('image/png')); }catch(e){ URL.revokeObjectURL(url); rej(e); } };
+      img.onerror=function(){ URL.revokeObjectURL(url); rej(new Error('SVG 렌더 실패')); };
+      img.src=url;
+    });
+  }
+  function renderTemplatePoster(o){
+    var key=o.template_key||'navy', fn=POSTER_TEMPLATES[key]||POSTER_TEMPLATES.navy;
+    var id='pl'+Date.now()+Math.random().toString(36).slice(2,6);
+    msgs.insertAdjacentHTML('beforeend','<div id="'+id+'" style="display:flex;gap:11px;max-width:82%">'+AV+'<div style="background:#fff;border:1px solid #eef1f5;border-radius:4px 14px 14px 14px;padding:16px;flex:1;font-size:13px;color:#5b6675">🖼️ 웹자보를 만드는 중…</div></div>');
+    scroll();
+    svgToPng(fn(o), 1080, 1350).then(function(dataUrl){ var el=document.getElementById(id); if(el) el.remove(); addImagePoster(dataUrl, o.title); })
+      .catch(function(err){ var el=document.getElementById(id); if(el) el.remove(); addAI('※ 웹자보 생성 실패: '+M.esc(err&&err.message||String(err))); });
+  }
+
   function refreshUI(){ ['__minwonRefresh','__schRefresh','__policyRefresh','__dashRefresh'].forEach(function(k){ try{ if(window[k]) window[k](); }catch(e){} }); }
   function reloadCrm(){ try{ var f=document.querySelector('.page[data-page="crm"] iframe'); if(f) f.contentWindow.location.reload(); }catch(e){} }
   function reloadSchedule(){ try{ var f=document.querySelector('.page[data-page="schedule"] iframe'); if(f) f.contentWindow.location.reload(); }catch(e){} }
@@ -2065,20 +2138,13 @@ onAuthStateChanged(_auth, async function(user){
       if(name==='create_poster'){
         if(!a.title) return {error:'제목이 필요합니다.'};
         a._photos = lastPhotos.slice();
-        if(a.full_image){
-          try{ addPosterFull(a); }catch(e){ return {error:'포스터 생성 실패: '+(e&&e.message||e)}; }
-          return {ok:true, created:'웹자보(전체 이미지 AI 생성 중)', title:a.title, photoUsed:a._photos.length>0,
-            note:'gpt-image-1이 포스터 전체를 생성하는 중입니다(20~40초). 완성되면 자동 표시됩니다.'};
-        }
-        if(a.ai_background && !a._photos.length){
-          try{ addPosterAI(a); }catch(e){ return {error:'웹자보 생성 실패: '+(e&&e.message||e)}; }
-          return {ok:true, created:'웹자보(AI 배경 생성 중)', title:a.title, note:'AI가 배경 이미지를 그리는 중입니다(10~20초). 완성되면 자동으로 표시됩니다.'};
-        }
-        var needPhoto = (a.template==='event'||a.template==='portrait');
-        try{ addPoster(posterSVG(a), a); }catch(e){ return {error:'웹자보 생성 실패: '+(e&&e.message||e)}; }
-        return {ok:true, created:'웹자보', title:a.title, template:a.template||'card',
-          photoUsed: a._photos.length>0,
-          note: (needPhoto && !a._photos.length) ? '사진 영역은 비어 있습니다. 사용자가 사진을 첨부하면 더 완성도 높은 자보가 됩니다.' : '화면에 카드가 표시되었습니다. 사용자는 PNG로 저장할 수 있습니다.'};
+        var hasScene = a._photos.length>0;
+        var hasPortrait = !!((M.profile&&M.profile.photo)||a._photos[1]);
+        try{ renderTemplatePoster(a); }catch(e){ return {error:'웹자보 생성 실패: '+(e&&e.message||e)}; }
+        return {ok:true, created:'웹자보(코드 템플릿)', title:a.title,
+          background: hasScene?'첨부 사진 사용':'없음(빈 배경)',
+          portrait: hasPortrait?'사용':'설정에 의원 사진 미등록',
+          note:'코드 템플릿으로 1080x1350 PNG 생성. 글자·로고·사진이 정확히 들어가며 PNG로 저장 가능.'};
       }
       return {error:'알 수 없는 도구: '+name};
     }catch(e){ return {error:String(e&&e.message||e)}; }
