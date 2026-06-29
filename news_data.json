@@ -1,6 +1,86 @@
 {
-  "updated": "2026-06-29 05:12 UTC",
+  "updated": "2026-06-29 10:09 UTC",
   "items": [
+    {
+      "source": "naver",
+      "press": "enewstoday.co.kr",
+      "date": "2026.06.29",
+      "title": "[인사] 경기 안산시",
+      "snippet": "이영옥 ▲ 상록구 행정지원과장 문훈기 ▲ 단원구 민원봉사과장 송은선 ▲ 단원구 선부2동장 김민정 ▲ 상록구 주민복지과장 김윤희 ▲ 상하수도사업소 정수과장 정연호 ▲ 단원구 가로정비과장 김현식 ▲ 도시주택국...",
+      "url": "http://www.enewstoday.co.kr/news/articleView.html?idxno=2443534"
+    },
+    {
+      "source": "naver",
+      "press": "businesspost.co.kr",
+      "date": "2026.06.29",
+      "title": "[인사] 한국폴리텍대학, 부산시설공단, 지식재산처 외",
+      "snippet": "이채규 ◆경기 안산시 ▷서기관 △농업기술센터소장 정진권 ▷사무관 △청년정책관 이세영 △기획경제실... 이영옥 △상록구 행정지원과장 문훈기 △단원구 민원봉사과장 송은선 △단원구 선부2동장 김민정 △상록구...",
+      "url": "https://www.businesspost.co.kr/BP?command=article_view&num=441113"
+    },
+    {
+      "source": "naver",
+      "press": "news2day.co.kr",
+      "date": "2026.06.29",
+      "title": "[오늘의 인사 : 6월 29일] 대신증권·두산그룹·외교부·지식재산처·질...",
+      "snippet": "경기 안산시 ◇ 서기관 ▷ 농업기술센터소장 정진권 ◇ 사무관 ▷ 청년정책관 이세영 ▷ 기획경제실... 이영옥 ▷ 상록구 행정지원과장 문훈기 ▷ 단원구 민원봉사과장 송은선 ▷ 단원구 선부2동장 김민정 ▷ 상록구...",
+      "url": "https://www.news2day.co.kr/article/20260629500082"
+    },
+    {
+      "source": "naver",
+      "press": "newsis.com",
+      "date": "2026.06.29",
+      "title": "[인사]안산시",
+      "snippet": "이영옥 ▲상록구 행정지원과장 문훈기 ▲단원구 민원봉사과장 송은선 ▲선부2동장 김민정 ▲상록구 주민복지과장 김윤희 ▲정수과장 정연호 ▲단원구 가로정비과장 김현식 ▲토지정보과장 고재준 ▲건설도로하천과장...",
+      "url": "https://www.newsis.com/view/NISX20260629_0003688293"
+    },
+    {
+      "source": "naver",
+      "press": "mt.co.kr",
+      "date": "2026.06.29",
+      "title": "GS건설, 6416억원 안산 성포지구 주상복합 개발사업 수주",
+      "snippet": "사업 대상지는 경기도 안산시 상록구 성포동 586번지 일원이다. 지하 6층~지상 49층 규모로 아파트 4개동 984가구와 오피스텔 2개동 370실, 근린생활시설 및 공공업무시설 등을 조성하는 주상복합 개발사업이다....",
+      "url": "https://www.mt.co.kr/estate/2026/06/29/2026062916264167156"
+    },
+    {
+      "source": "naver",
+      "press": "kmaeil.com",
+      "date": "2026.06.29",
+      "title": "경기경제자유구역, 건축허가면적 7배 '증가'…기업 유치 순항",
+      "snippet": "경기경제자유구역청(이하 경기경제청)은 2026년 1월부터 6월까지 경제자유구역이 위치한 평택 포승과 시흥 배곧, 안산시 상록구 안산사이언스밸리 지역의 건축 행정지표를 분석한 결과, 지난해 같은 기간보다 건축허가...",
+      "url": "https://www.kmaeil.com/news/articleView.html?idxno=643806"
+    },
+    {
+      "source": "naver",
+      "press": "joseilbo.com",
+      "date": "2026.06.29",
+      "title": "GS건설, 6416억 안산 성포지구 주상복합 공사 수주 [공시pick]",
+      "snippet": "이번 사업은 경기도 안산시 상록구 성포동 일원에 지하 6층~지상 49층 주상복합 시설을 짓는 공사다. 아파트 4개 동 984세대와 오피스텔 2개 동 370호실, 근린생활시설, 공공업무시설 등이 포함된다. 사업지는 옛...",
+      "url": "http://www.joseilbo.com/news/news_read.php?uid=570934&class=17&grp="
+    },
+    {
+      "source": "naver",
+      "press": "topstarnews.net",
+      "date": "2026.06.29",
+      "title": "GS건설, 안산 성포지구 주상복합 641억 5천만 원 수주→중형 개발사업 박...",
+      "snippet": "이번 계약은 경기도 안산시 상록구 성포동 586번지 일원에서 진행되는 주상복합단지 건설사업으로, 대규모 복합시설을 새롭게 추진할 계획임을 밝혔다. 한국거래소 공시에 따르면 이번 계약의 규모는 GS건설의...",
+      "url": "https://www.topstarnews.net/news/articleView.html?idxno=16116992"
+    },
+    {
+      "source": "naver",
+      "press": "joongboo.com",
+      "date": "2026.06.29",
+      "title": "\"수확철 농촌에 일손을\" 안산 농협·고향주부모임, 감자밭서 구슬땀",
+      "snippet": "NH농협 안산시지부와 고향주부모임 안산시지회는 29일 안산시 상록구 팔곡이동의 한 감자 재배농가에서 합동 농촌일손돕기 봉사활동을 펼쳤다. 이날 봉사에는 주원식 NH농협 안산시지부장을 비롯해 최기호 반월농협...",
+      "url": "https://www.joongboo.com/news/articleView.html?idxno=363730006"
+    },
+    {
+      "source": "naver",
+      "press": "joongboo.com",
+      "date": "2026.06.29",
+      "title": "학사모 쓴 정곡경로당 어르신들 \"인생 황혼에 또 하나의 졸업\"",
+      "snippet": "안산시 상록구 본오1동 소재 정곡경로당 어르신들이 8주간의 노래교실을 마치고 학사모를 쓰고 수료식을 하고 있다. 사진=정곡경로당 인생의 황혼기에 다시 학사모를 쓴 어르신들의 얼굴에는 졸업생 못지않은 환한 웃음이...",
+      "url": "https://www.joongboo.com/news/articleView.html?idxno=363730003"
+    },
     {
       "source": "naver",
       "press": "mt.co.kr",
@@ -80,6 +160,126 @@
       "title": "경기경제자유구역 건축허가면적 7배 '껑충'…기업 유치 순항",
       "snippet": "경기경제자유구역청은 올해 1월부터 6월까지 경제자유구역이 위치한 평택 포승과 시흥 배곧, 안산시 상록구 안산사이언스밸리 지역의 건축 행정지표를 분석한 결과 지난해 같은 기간보다 건축허가 면적과 건수 모두...",
       "url": "https://view.asiae.co.kr/article/2026062907150711090"
+    },
+    {
+      "source": "naver",
+      "press": "doctorstimes.com",
+      "date": "2026.06.29",
+      "title": "[병원계 소식] 6월 29일",
+      "snippet": "■가천대 길병원-인천적십자병원과 공동 지역사회 통합돌봄 전문가 역량 강화 교육 가천대 길병원(원장... ■고려대 안산병원 연구팀, AI로 소아 지방간 MRI 수준 정밀 진단 성공 좌측부터 최가영 고려대 안산병원...",
+      "url": "http://www.doctorstimes.com/news/articleView.html?idxno=238794"
+    },
+    {
+      "source": "naver",
+      "press": "kihoilbo.co.kr",
+      "date": "2026.06.29",
+      "title": "'제조업 메카'시흥의 대전환",
+      "snippet": "센터가 들어서는 정왕동 일대는 관내 산단 뿐 아니라 광명ㆍ시흥 및 안산ㆍ반월 산단으로 이어지는 제조업... 재직자와 구직자를 대상으로 교육을 운영하며 지역 기업과 협력해 소부장 인력 양성도 지원하고 하는 것은...",
+      "url": "https://www.kihoilbo.co.kr/news/articleView.html?idxno=3027350"
+    },
+    {
+      "source": "naver",
+      "press": "news.unn.net",
+      "date": "2026.06.29",
+      "title": "안산대 간호학과, 예비 간호사 전공역량 강화를 위한 기초해부 연수",
+      "snippet": "안산대는 이번 연수를 통해 현장 중심의 실무 중심 교육을 실현했다. 생생한 해부학 실습 경험은 간호학과 학생들의 전문 역량 강화에 크게 기여했다. 나아가 인체에 대한 깊은 이해를 갖춘 우수한 보건의료 인력을...",
+      "url": "https://news.unn.net/news/articleView.html?idxno=594075"
+    },
+    {
+      "source": "naver",
+      "press": "beyondpost.co.kr",
+      "date": "2026.06.29",
+      "title": "마커스앤컴퍼니 경비보안교육원, 일반경비원신임교육·경비지도사 주말...",
+      "snippet": "마커스앤컴퍼니 경비보안교육원은 인천 부평역 캠퍼스를 중심으로 부평, 남동구, 미추홀구, 연수구, 계양구, 부천, 인천 전역은 물론 광명, 시흥, 안산, 안양, 김포, 고양 등 수도권 각지에서 교육생들이 참여하고 있다. 또한...",
+      "url": "http://www.beyondpost.co.kr/view.php?ud=2026062916204715929aeda69934_30"
+    },
+    {
+      "source": "naver",
+      "press": "lawissue.co.kr",
+      "date": "2026.06.29",
+      "title": "씨큐인, 우민탐정 출범으로 탐정사업 본격 진출",
+      "snippet": "현재 교육에는 서울 강서구·양천구·구로구·영등포구·마포구·은평구를 비롯해 인천 부평구·미추홀구·연수구·계양구·남동구·서구, 경기 부천시·시흥시·김포시·안양시·안산시 등 수도권 각 지역의 교육생들이...",
+      "url": "http://www.lawissue.co.kr/view.php?ud=2026062916191643619aeda69934_12"
+    },
+    {
+      "source": "naver",
+      "press": "kmib.co.kr",
+      "date": "2026.06.29",
+      "title": "시흥에 ‘길 건너 지하철역’ 힐스테이트 생긴다",
+      "snippet": "서해선뿐 아니라 3정거장 거리 시흥시청역에는 월곶판교선과 신안산선이 개통 예정이다.... 교육여건면에서는 인접한 은계지구에 시흥 최초의 과학계열 특수목적고교인 시흥과학고가 2029년 3월 개교를 앞두고 있다....",
+      "url": "https://www.kmib.co.kr/article/view.asp?arcid=0030037284&code=61141511&cp=nv"
+    },
+    {
+      "source": "naver",
+      "press": "kyeongin.com",
+      "date": "2026.06.29",
+      "title": "안산시, 대학생 등록금 반값부터 장학금까지… ‘교육하기 좋은 도시’",
+      "snippet": "육성” 안산시가 대학생 등록금 부담을 덜고 지역 인재를 육성하기 위한 다양한 교육지원 정책을 추진하며 ‘교육하기 좋은 도시’ 조성에 속도를 내고 있다. 29일 시에 따르면 시는 대학생 본인부담 등록금 반값지원...",
+      "url": "https://www.kyeongin.com/article/1766365"
+    },
+    {
+      "source": "naver",
+      "press": "shinailbo.co.kr",
+      "date": "2026.06.29",
+      "title": "안산시, 2027학년도 맞춤형 입시설명회 개최",
+      "snippet": "이번 행사는 변화하는 대학입시 제도에 대한 정보를 제공하고 수험생과 학부모의 진학 준비를 지원하기 위해 안산시와 경기도안산교육지원청이 공동 주최하고 안산인재육성재단이 주관한다. 설명회에서는...",
+      "url": "https://www.shinailbo.co.kr/news/articleView.html?idxno=5035416"
+    },
+    {
+      "source": "naver",
+      "press": "hankyung.com",
+      "date": "2026.06.29",
+      "title": "한글 배우는 할머니들에 웃고 울고…'오지게 재밌는 가시나들'",
+      "snippet": "제작사 라이브는 지난 6월 5일 성인 문해교육기관인 '푸른어머니학교'의 학습자 및 교사 100명을 공연에... 공연은 지방 투어로 이어진다. 오는 8월 안동을 시작으로, 광주, 김해, 거창, 안산, 과천에서 관객들과 만날 예정이다.",
+      "url": "https://www.hankyung.com/article/202606294088H"
+    },
+    {
+      "source": "naver",
+      "press": "kihoilbo.co.kr",
+      "date": "2026.06.29",
+      "title": "참안산사람들, 봉사 넘어 지역 공동체 문화 확산에 앞장",
+      "snippet": "참안산사람들은 2005년 창립 이후 꾸준히 사회공헌 활동을 이어오며 있으며 지난 22일에는 참안산 아카데미 58기 개강식을 열고 지역 인재 양성과 교육, 교류와 봉사 활동을 통해 안산 발전에 기여하겠다고 밝혔다. 안산=",
+      "url": "https://www.kihoilbo.co.kr/news/articleView.html?idxno=3027354"
+    },
+    {
+      "source": "naver",
+      "press": "donga.com",
+      "date": "2026.06.29",
+      "title": "‘재선’ 장한별, 경기도의회 민주당 총괄수석부대표 선임",
+      "snippet": "정책위원장에는 김태희 의원(안산 2), 정무수석부대표에는 유경현 의원(부천 7), 기획수석부대표에는 이자형 의원(광주 3)이 각각 임명됐다. 경기도와 경기도교육청 등 집행부와의 협력을 강화하기 위해 협치수석부대표를...",
+      "url": "https://www.donga.com/news/Society/article/all/20260629/134201950/1"
+    },
+    {
+      "source": "naver",
+      "press": "newspim.com",
+      "date": "2026.06.29",
+      "title": "안산시 '2027학년도 안산 맞춤형 입시설명회' 내달 11일 개최",
+      "snippet": "이 행사는 안산시와 경기도안산교육지원청이 공동으로 주최하며 (재)안산인재육성재단이 주관한다. 안산시청 전경. [사진=안산시] 설명회에서는 파주고등학교 교사이자 한국대학교육협의회 상담교사, 경기도교육청...",
+      "url": "https://www.newspim.com/news/view/20260629001052"
+    },
+    {
+      "source": "naver",
+      "press": "news1.kr",
+      "date": "2026.06.29",
+      "title": "안산시, 해양중 학부모 간담회…\"학급당 학생수 탄력적 조정 필요\"",
+      "snippet": "따라서 내년 입학하는 신입생부터 학급당 학생 수를 탄력적으로 조정해 학급수를 유지하자는 것이 학부모들의 의견이다. 시는 학부모들의 이같은 의견을 수렴해 추후 안산교육지원청에 추후 전달할 방침이다.",
+      "url": "https://www.news1.kr/local/gyeonggi/6211576"
+    },
+    {
+      "source": "naver",
+      "press": "newspim.com",
+      "date": "2026.06.29",
+      "title": "평택시 청소년상담복지센터, 릴레이 부모교육 특강 운영",
+      "snippet": "평택시 청소년상담복지센터 전경 모습[사진=평택시] 특히 평택시를 비롯해 안산시, 오산시, 화성시... 오석연 평택시 청소년상담복지센터장은 \"부모교육은 자녀의 건강한 성장뿐만 아니라 행복한 가정과 지역사회를 만드는...",
+      "url": "https://www.newspim.com/news/view/20260629000854"
+    },
+    {
+      "source": "naver",
+      "press": "m-i.kr",
+      "date": "2026.06.29",
+      "title": "안산시 호수동 주민자치회, '2026년 주민총회' 개최",
+      "snippet": "이민근 안산시장은 \"주민들의 적극적인 참여 속에서 진정한 자치 분권의 의미를 확인할 수 있었다\"며 \"안산시가 역점 추진 중인 글로벌 에듀타운 조성 등 교육·문화 인프라 확충으로 호수동의 가치를 높여 나가겠다\"고...",
+      "url": "https://www.m-i.kr/news/articleView.html?idxno=1386020"
     },
     {
       "source": "naver",
@@ -187,19 +387,19 @@
     },
     {
       "source": "naver",
-      "press": "newsfreezone.co.kr",
-      "date": "2026.06.29",
-      "title": "[인터뷰] 김동규 경기도의원 \"복지전문가로 안산의 변화 이끌겠다\"",
-      "snippet": "김 의원은 \"기업이 떠나고 청년이 떠나는 도시가 되어서는 안 된다\"며 \"교육도시인지, 첨단산업도시인지, 해양도시인지 안산만의 정체성을 분명히 세워야 한다\"고 강조했다. 또 \"교통과 교육은 수도권 다른 도시에 뒤처지지...",
-      "url": "https://www.newsfreezone.co.kr/news/articleView.html?idxno=696748"
-    },
-    {
-      "source": "naver",
       "press": "siminilbo.co.kr",
       "date": "2026.06.29",
       "title": "안산시, 안산해양중 교육환경 개선 논의…학부모와 머리 맞대",
       "snippet": "이민근 안산시장은 “안산의 모든 학생들이 더 나은 교육환경에서 학습할 수 있도록 안산교육지원청과 긴밀히 협력하겠다”며 “교육현장의 목소리가 교육정책에 충분히 반영될 수 있도록 필요한 행정적·재정적 지원을...",
       "url": "https://www.siminilbo.co.kr/news/newsview.php?ncode=1160263508148810"
+    },
+    {
+      "source": "naver",
+      "press": "newsfreezone.co.kr",
+      "date": "2026.06.29",
+      "title": "[인터뷰] 김동규 경기도의원 \"복지전문가로 안산의 변화 이끌겠다\"",
+      "snippet": "김 의원은 \"기업이 떠나고 청년이 떠나는 도시가 되어서는 안 된다\"며 \"교육도시인지, 첨단산업도시인지, 해양도시인지 안산만의 정체성을 분명히 세워야 한다\"고 강조했다. 또 \"교통과 교육은 수도권 다른 도시에 뒤처지지...",
+      "url": "https://www.newsfreezone.co.kr/news/articleView.html?idxno=696748"
     },
     {
       "source": "naver",
@@ -314,28 +514,12 @@
       "url": "http://www.enewstoday.co.kr/news/articleView.html?idxno=2443177"
     },
     {
-      "source": "naver",
-      "press": "newsis.com",
+      "source": "google",
+      "press": "뉴스후플러스",
       "date": "2026.06.29",
-      "title": "[오늘의 주요일정]경기남부(6월29일 월요일)",
-      "snippet": "구청장실 ◇안산시 ▲오후 3시, 민선9기 안산시장직 준비위원회 해단식, 경기테크노파크 ▲오후 5시... 역량강화 교육, 늠내홀 ▲오후 4시, 2026년 제5차 도-시·군 부단체장 회의, 재난안전상황실 ◇광명시 ▲오후 2시...",
-      "url": "https://www.newsis.com/view/NISX20260628_0003686568"
-    },
-    {
-      "source": "naver",
-      "press": "etnews.com",
-      "date": "2026.06.29",
-      "title": "경기도의회 민주당 수석부대표단 인선…협치·의정지원수석 신설",
-      "snippet": "경기도·경기도교육청과의 협의 창구를 넓히고, 당내 60%를 차지하는 초선 의원의 의정활동 지원과 대표단... 정책위원장은 김태희 의원(안산2), 정무수석부대표는 유경현 의원(부천7), 기획수석부대표는 이자형 의원...",
-      "url": "https://www.etnews.com/20260629000010"
-    },
-    {
-      "source": "naver",
-      "press": "joygm.com",
-      "date": "2026.06.29",
-      "title": "경기도의회 더불어민주당 수석부대표단 인선 완료",
-      "snippet": "또한 경기도의회 위상을 강화하고 경기도, 경기도교육청 집행부와 협치를 강화하기 위해 협치수석을... 민주당의 정책을 책임질 정책위원장은 김태희 의원(안산2)이, 정무수석부대표는 유경현 의원(부천7)이...",
-      "url": "http://www.joygm.com/news/articleView.html?idxno=215306"
+      "title": "안산시, 안산해양중 학부모와 간담회…",
+      "snippet": "안산시, 안산해양중 학부모와 간담회… 뉴스후플러스",
+      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE80TFFMZDBrMDc2UGRrTUZUeE9TMVpBclZxd0ZQTzBXRF9CVU1tZ2tWMUx3ck9YengtbkZsdERsM2g5aXhyallBODVVRXNRSFYwaF81VXFiOHhkTE9jVE5YZXBIeC0xNXprM1M3OElR?oc=5"
     },
     {
       "source": "google",
@@ -360,134 +544,6 @@
       "title": "안산시 상록구, 무인민원발급창구 신규 설치",
       "snippet": "안산시 상록구, 무인민원발급창구 신규 설치 경기도민일보 미디어",
       "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9EemI4WllIeTJudU02V1hpTVJ3a3J2OW1kRVJQazFScHItSHVmUnF3ZXA2TFhqZ2pNMVZrd09VTGl2UHFZME5uMEQwRDAwSE81ekxzYU1FS1BiMVowYTFkV2ZZN0pRVGlIcGc?oc=5"
-    },
-    {
-      "source": "naver",
-      "press": "the-biz.co.kr",
-      "date": "2026.06.28",
-      "title": "안광률 경기도의회 민주당 대표당선자, 수석부대표단 인선 발표",
-      "snippet": "협치수석은 경기도와 경기도교육청 등 집행부와의 정책 협력을 강화하는 역할을 맡는다. 의정지원수석은... 정책위원장은 김태희 의원(안산2)이 맡고, 정무수석부대표에는 유경현 의원(부천7), 기획수석부대표에는 이자형...",
-      "url": "http://www.the-biz.co.kr/news/articleView.html?idxno=723415"
-    },
-    {
-      "source": "naver",
-      "press": "m-i.kr",
-      "date": "2026.06.28",
-      "title": "경기도의회 더불어민주당, 총괄수석부대표 장한별·수석대변인 전자영...",
-      "snippet": "차기 더불어민주당 대표단은 또한 경기도의회 위상을 강화하고 경기도·경기도교육청 집행부와 협치를... 더불어민주당의 정책을 책임질 정책위원장은 김태희 의원(안산2)이, 정무수석부대표는 유경현 의원(부천7)이...",
-      "url": "https://www.m-i.kr/news/articleView.html?idxno=1385947"
-    },
-    {
-      "source": "naver",
-      "press": "newstown.co.kr",
-      "date": "2026.06.28",
-      "title": "안산시, 여름철 재난 대비 총력…6개 기관 손잡고 민생안전 협력체계 강...",
-      "snippet": "일사천리 민생안전회의는 안산시를 비롯해 안산단원경찰서와 안산상록경찰서, 안산소방서, 안산교육지원청, 평택해양경찰서가 참여하는 지역 대표 안전 거버넌스 협의체다. 각 기관은 정기적인 협의를 통해 재난 대응...",
-      "url": "http://www.newstown.co.kr/news/articleView.html?idxno=707460"
-    },
-    {
-      "source": "naver",
-      "press": "joongangenews.com",
-      "date": "2026.06.28",
-      "title": "[지방의회 24時] 안광률 호(號) '재선 전진 배치'로 경기도의회 민주당...",
-      "snippet": "민주당은 의회의 위상을 한층 강화하고 경기도 및 경기도교육청 집행부와의 실질적인 협치를 주도하기 위해... 더불어민주당의 정책을 총괄할 정책위원장에는 김태희 의원(안산2)이 발탁됐으며, 정무수석부대표에는...",
-      "url": "https://www.joongangenews.com/news/articleView.html?idxno=528829"
-    },
-    {
-      "source": "naver",
-      "press": "enewstoday.co.kr",
-      "date": "2026.06.28",
-      "title": "경기도의회 민주당, 전반기 수석부대표단 인선 완료",
-      "snippet": "특히 경기도 및 경기도교육청과의 협력 강화를 위한 협치수석부대표, 초선의원 의정활동 지원을 위한... 정책위원장은 김태희 의원(안산2), 정무수석부대표는 유경현 의원(부천7), 기획수석부대표는 이자형 의원(광주3)이...",
-      "url": "http://www.enewstoday.co.kr/news/articleView.html?idxno=2443141"
-    },
-    {
-      "source": "naver",
-      "press": "jnilbo.com",
-      "date": "2026.06.28",
-      "title": "전국 뛰는데 광주만 구경…겉도는 'e스포츠 도시'",
-      "snippet": "경기 안산시는 e스포츠 서머 페스티벌을 정례화했고, 경북 예천군은 국가대표 전용 훈련센터 건립을 추진... 김나윤 광주시의회 교육문화위원은 \"e스포츠는 성장 잠재력이 큰 미래 산업인 만큼 지자체의 과감한 투자가...",
-      "url": "https://www.jnilbo.com/news/articleView.html?idxno=90000045968"
-    },
-    {
-      "source": "naver",
-      "press": "gnnews.co.kr",
-      "date": "2026.06.28",
-      "title": "중진공·법제처, 법·제도 개선 현장 간담회",
-      "snippet": "중소벤처기업진흥공단(이하 중진공)은 법제처와 함께 지난 25일 경기도 안산시에 소재한... 한편, 청년창업사관학교는 유망 창업아이템과 혁신기술을 보유한 청년 창업자를 대상으로 사업화 자금, 창업교육, 전담 코칭, 투자...",
-      "url": "https://www.gnnews.co.kr/news/articleView.html?idxno=639875"
-    },
-    {
-      "source": "naver",
-      "press": "kgnews.co.kr",
-      "date": "2026.06.28",
-      "title": "경기도의회 여야, 제12대 도의회 대표단 윤곽…‘협치·소통’vs‘전문...",
-      "snippet": "정책위원장은 김태희(안산2), 정무수석부대표는 유경현(부천7), 기획수석부대표는 이자형(광주3) 의원이 각각... 역할을 세분화해 조직 대응력을 높인다는 구상인데, 운영수석부대표는 정무·기획·교육 분야를...",
-      "url": "https://www.kgnews.co.kr/news/article.html?no=901776"
-    },
-    {
-      "source": "naver",
-      "press": "newsis.com",
-      "date": "2026.06.28",
-      "title": "12대 경기도의회 민주당 총괄수석부대표에 장한별 의원",
-      "snippet": "▲정책위원장 김태희(안산2) 의원 ▲정무수석부대표 유경현(부천7) 의원 ▲기획수석부대표 이자형(광주3)... 또 도의회 위상을 강화하고 경기도·경기도교육청 집행부와 협치를 강화하기 위한 협치수석, 당내 60%를...",
-      "url": "https://www.newsis.com/view/NISX20260628_0003686718"
-    },
-    {
-      "source": "naver",
-      "press": "hankyung.com",
-      "date": "2026.06.28",
-      "title": "중대범죄 촉법소년 기준, 만 14→13세로 낮춘다",
-      "snippet": "이달 경기 안산에서 중학생 촉법소년이 “기분이 나쁘다”며 동급생에게 흉기를 휘두른 사건이 발생하는... 보호·교육의 기회 상실을 통해 장기적으로 더 높은 재범 위험을 초래할 수 있다”며 교육·돌봄...",
-      "url": "https://www.hankyung.com/article/2026062824181"
-    },
-    {
-      "source": "naver",
-      "press": "kpinews.kr",
-      "date": "2026.06.28",
-      "title": "경기도의회 민주, 장한별 총괄수석·전자영 수석대변인 연임",
-      "snippet": "▲ 지난 22일 경기도의회 더불어민주당 당선인총회에서 제12대 전반기 대표의원에 선출된 안광률 교육기획위... 민주당의 정책을 책임질 정책위원장은 김태희(안산2) 의원이, 정무수석부대표는 유경현(부천7) 의원이...",
-      "url": "https://www.kpinews.kr/newsView/1065600881452448"
-    },
-    {
-      "source": "naver",
-      "press": "joongboo.com",
-      "date": "2026.06.28",
-      "title": "제12대 경기도의회 민주당 전반기 수석부대표단 인선… 장한별·전자영...",
-      "snippet": "경기도의회의 위상을 강화하고 경기도, 경기도교육청과 협치를 강화하기 위해 협치수석을 신설했다. 특히... 민주당의 정책을 책임질 정책위원장은 김태희 의원(안산2)이, 정무수석부대표는 유경현 의원(부천7)이...",
-      "url": "https://www.joongboo.com/news/articleView.html?idxno=363729933"
-    },
-    {
-      "source": "naver",
-      "press": "kyeonggi.com",
-      "date": "2026.06.28",
-      "title": "복잡한 사회적 위기, 실학 정신으로 풀어낸다…‘끌어올려! 인문학 거중...",
-      "snippet": "이번 프로그램은 다산연구소가 문화체육관광부 주최, 한국문화예술교육진흥원 주관 ‘2026 모두의 인문학’... 의왕, 안산 등 4개 생활권역에서 총 10개의 인문학 프로그램이 이어진다. 첫 강좌는 로컬크리에이티브 디렉터...",
-      "url": "https://www.kyeonggi.com/article/20260628580243"
-    },
-    {
-      "source": "naver",
-      "press": "joongboo.com",
-      "date": "2026.06.28",
-      "title": "안산 등 4개 시 청소년상담복지센터, 연합 부모교육 성료",
-      "snippet": "서은경 안산시청소년상담복지센터장이 화상회의 플랫폼 줌을 이용해 부모교육 특강을 진행하고 있다. 사진=안산시청소년상담복지센터 안산시청소년상담복지센터는 오산·평택·화성시청소년상담복지센터와 공동으로...",
-      "url": "https://www.joongboo.com/news/articleView.html?idxno=363729902"
-    },
-    {
-      "source": "naver",
-      "press": "joongboo.com",
-      "date": "2026.06.28",
-      "title": "안산시육아종합지원센터, 영유아 클래식 공연 '콩콩콩 클래식' 성황",
-      "snippet": "안산시육아종합지원센터는 지난해부터 경기도교육청 유보통합준비단과 협력해 지역사회 연계 체험 프로그램인 '다·같·이해봄터'를 운영하고 있으며, 앞으로도 지역 미취학 영유아를 위한 다양한 문화예술 프로그램을...",
-      "url": "https://www.joongboo.com/news/articleView.html?idxno=363729901"
-    },
-    {
-      "source": "naver",
-      "press": "ajunews.com",
-      "date": "2026.06.28",
-      "title": "경기도의회 민주당, 수석부대표단 인선...협치·의정지원 조직 강화",
-      "snippet": "초선 60% 의정활동 지원과 경기도·도교육청 협력 체계 구축 과제로 총괄수석부대표 장한별... 정책위원장에는 김태희 의원(안산2)이 인선돼 민주당의 정책 방향과 민생 의제를 조율한다. 정무수석부대표에는 유경현 의원...",
-      "url": "https://www.ajunews.com/view/20260628142123500"
     },
     {
       "source": "google",
@@ -826,14 +882,6 @@
       "url": "https://www.gukjenews.com/news/articleView.html?idxno=3615054"
     },
     {
-      "source": "naver",
-      "press": "100ssd.co.kr",
-      "date": "2026.06.23",
-      "title": "대한노인회 경기 안산시 상록구지회 시곡경로당, 한성건영(주)서 사랑의...",
-      "snippet": "대한노인회 경기 안산시 상록구지회(지회장 김중근) 소속 시곡경로당(회장 함창득)은 6월 19일 한성건영㈜ 김병철 대표로부터 지역 어르신들을 위해 쌀 10kg 짜리 20포를 후원받았다. 이번 후원은 지역사회 어르신들의...",
-      "url": "https://www.100ssd.co.kr/news/articleView.html?idxno=210413"
-    },
-    {
       "source": "google",
       "press": "v.daum.net",
       "date": "2026.06.23",
@@ -843,91 +891,11 @@
     },
     {
       "source": "naver",
-      "press": "onews.tv",
-      "date": "2026.06.22",
-      "title": "경기도의회 김태희 의원 경기지방정원 공사 추진현황 '면밀 체크'",
-      "snippet": "경기지방정원 방문자센터 및 정원지원센터는 안산시 상록구 본오동 일원에 조성되는 경기지방정원의 운영과 이용 활성화를 지원하기 위한 시설로 지난 6월 착공 이후 현장사무소 설치와 자재·장비 조달 등 초기 공정이...",
-      "url": "https://www.onews.tv/news/articleView.html?idxno=281881"
-    },
-    {
-      "source": "naver",
-      "press": "ohmynews.com",
-      "date": "2026.06.22",
-      "title": "세월호 참사 생존자, 12년 뒤 친구들과 하늘공원에 잠들다",
-      "snippet": "▲ 안산 상록구에 위치한 하늘공원(이 사진은 해당 기사 내용과 직접 관련이 없는 참고용 사진임). ⓒ 소중한 \"이재명 대통령도 '국민의 안전이 최우선'이라고 말했다. 재난·참사 생존자들의 (트라우마) 관리와 관련해...",
-      "url": "https://www.ohmynews.com/NWS_Web/View/at_pg.aspx?CNTN_CD=A0003245353&CMPT_CD=P0010&utm_source=naver&utm_medium=newsearch&utm_campaign=naver_news"
-    },
-    {
-      "source": "naver",
-      "press": "lawissue.co.kr",
-      "date": "2026.06.22",
-      "title": "김태희 경기도의원, 경기지방정원 기반시설 공사 점검… 2028년 준공 목...",
-      "snippet": "경기지방정원은 안산시 상록구 본오동 일원에 조성되고 있으며, 방문자센터와 정원지원센터는 정원 운영과 이용 활성화를 뒷받침할 거점 시설로 건립된다. 총사업비는 288억 원이다. 시설은 연면적 3912㎡, 지상 2층 규모로...",
-      "url": "http://www.lawissue.co.kr/view.php?ud=202606221523164066d94aa4ada6_12"
-    },
-    {
-      "source": "naver",
-      "press": "jeonmae.co.kr",
-      "date": "2026.06.22",
-      "title": "김태희 경기도의원, 경기지방정원 지원시설 신축 현황 점검",
-      "snippet": "경기지방정원 방문자센터와 정원지원센터는 안산시 상록구 본오동 일원에 조성되는 경기지방정원의 운영과 이용 활성화를 지원하기 위한 시설이다. 해당 시설은 총사업비 288억 원을 투입해 연면적 3,912㎡, 지상 2층...",
-      "url": "https://www.jeonmae.co.kr/news/articleView.html?idxno=1267484"
-    },
-    {
-      "source": "naver",
-      "press": "newsfreezone.co.kr",
-      "date": "2026.06.22",
-      "title": "김태희 경기도의원, 경기지방정원 핵심시설 건립 현황 살펴",
-      "snippet": "경기지방정원 방문자센터 및 정원지원센터는 안산시 상록구 본오동 일원에 조성 중인 경기지방정원의 운영 기반을 구축하고 이용 활성화를 지원하기 위한 시설이다. 총사업비 288억 원이 투입되며 연면적 3,912㎡, 지상 2층...",
-      "url": "https://www.newsfreezone.co.kr/news/articleView.html?idxno=695754"
-    },
-    {
-      "source": "naver",
-      "press": "m-i.kr",
-      "date": "2026.06.22",
-      "title": "김태희 경기도의원, 경기지방정원 방문자센터·정원지원센터 추진현황...",
-      "snippet": "경기지방정원 방문자센터 및 정원지원센터는 안산시 상록구 본오동 일원에 조성되는 경기지방정원의 운영과 이용 활성화를 지원하기 위한 시설이다. 총사업비 288억원을 투입해 연면적 3912㎡, 지상 2층 규모로 건립될...",
-      "url": "https://www.m-i.kr/news/articleView.html?idxno=1383978"
-    },
-    {
-      "source": "naver",
-      "press": "jeonmae.co.kr",
-      "date": "2026.06.22",
-      "title": "김태희 경기도의원, 경기지방정원 방문자센터 신축현장 점검",
-      "snippet": "경기지방정원 방문자센터와 정원지원센터는 안산시 상록구 본오동 일원에 조성되며, 총사업비 288억 원이 투입된다. 연면적 3,912㎡, 지상 2층 규모로 건립되며 교육·전시 공간과 사무실, 카페, 가든숍, 매표소 등이 들어설...",
-      "url": "https://www.jeonmae.co.kr/news/articleView.html?idxno=1267516"
-    },
-    {
-      "source": "naver",
-      "press": "seoul.co.kr",
-      "date": "2026.06.22",
-      "title": "김태희 경기도의원, 경기지방정원 방문자센터·정원지원센터 신축공사...",
-      "snippet": "안산시 상록구 본오동 일원에 둥지를 트는 경기지방정원 방문자센터 및 정원지원센터는 향후 지방정원의 효율적인 운영과 이용 활성화를 견인할 핵심 지원시설이다. 총사업비 288억원이 투입되는 대규모 프로젝트로...",
-      "url": "https://www.seoul.co.kr/news/publicnews/local_govern/kyungki_do/2026/06/22/20260622500074?wlog_tag3=naver"
-    },
-    {
-      "source": "naver",
-      "press": "newsis.com",
-      "date": "2026.06.22",
-      "title": "[오늘의 주요일정]경기남부(6월22일 월요일)",
-      "snippet": "중회의실 ◇안산시 ▲오전 8시10분, '화랑초 녹색어머니회'와 함께하는 등굣길교통안전캠페인, 화랑초등학교 ▲오전 11시20분, 장마철 민관 합동 방역 안전교육, 상록구청 시민홀 ◇안양시 ▲오전 9시, 간부공무원...",
-      "url": "https://www.newsis.com/view/NISX20260621_0003677398"
-    },
-    {
-      "source": "naver",
       "press": "nc.press",
       "date": "2026.06.21",
       "title": "[NC포토] 알고보니 혼수상태, 골프장 나들이...\"인카금융 '더헤븐 마스터...",
       "snippet": "'히트 제조기' 알고보니 혼수상태(김지환·김경범)가 안산 대부도 더헤븐리조트 내 더헤븐CC에서 열린... 송대관, 장윤정, 신유, 한혜진, 금잔디, 김용임, 홍진영, 김호중, 안성훈, 박서진, 홍지윤, 정서주, 양지은 등...",
       "url": "https://www.nc.press/news/articleView.html?idxno=618592"
-    },
-    {
-      "source": "naver",
-      "press": "joongangenews.com",
-      "date": "2026.06.21",
-      "title": "안산, 푸른 여름날의 문화와 자연이 어우러진 여정",
-      "snippet": "안산시 상록구 이동에 자리한 성호공원은 지역 주민의 쉼터이자 안산을 대표하는 실학자 성호 이익 선생의 학문적 발자취를 따라가는 공간이다. 이곳에는 성호 이익 선생의 묘소와 사당인 첨성사, 기념관이 연결되어...",
-      "url": "https://www.joongangenews.com/news/articleView.html?idxno=525746"
     },
     {
       "source": "google",
@@ -975,7 +943,7 @@
       "date": "2026.06.17",
       "title": "안산시, 기존 학군 유지한 안산교육청 환영…“시민 목소리 반영”",
       "snippet": "안산시, 기존 학군 유지한 안산교육청 환영…“시민 목소리 반영” v.daum.net",
-      "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE0tbFc3Ymo1X3ZtTllEZHAxV3dRb1dNbm9HNy1FcFZaMjkyTUJwZC11WWp4Q0N5dU9aZlE0eTU2YmJVWW9PNDFxSGt0TQ?oc=5"
+      "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE9JSXB3WVFjOEhQakhwamV5RmxCQlVlVjFIWG02elAxOW9OV2JxVlJRZnozenZ5N2E4cDYwdi02SlZZMEFIUnc?oc=5"
     },
     {
       "source": "naver",
@@ -1008,14 +976,6 @@
       "title": "김남국 의원, 안산 교육 현안 ‘상생 돌파구’모색 위해 안산교육청 방문",
       "snippet": "김남국 의원, 안산 교육 현안 ‘상생 돌파구’모색 위해 안산교육청 방문 경기종합뉴스",
       "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE8xbmJadS1MNEdscUlPQ295cDNtMlJQbmd6TWhfQ3VyLXBMVTQySUU0cVRia3AyTUlzN0xNTWNfN0VtZTdhZm5mMGQ1U3NZOFhFQzZTdTJBdkVFM2Rha2tzOFJGaHVUSUhiR056X21qV1JEU2g0?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "신아일보",
-      "date": "2026.06.15",
-      "title": "해양·해솔 학군 갈등 해법 모색…김남국 의원, 안산교육지원청과 간담회",
-      "snippet": "해양·해솔 학군 갈등 해법 모색…김남국 의원, 안산교육지원청과 간담회 신아일보",
-      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1Vbzc0NnExRjFmNlg5UjNySUlxNEFwU3N0MVplTHNDdW8xX09ncDVCdl9IaVZuM0xTa2NtRFhvV0J4dkt2eklNUm9NZ1Y2M2ZOM0JmbkJ1SmNSaHQ2cEk5c3NwOTJVcXBVX2N5VmZQaTc?oc=5"
     },
     {
       "source": "naver",
@@ -1827,11 +1787,11 @@
     },
     {
       "source": "naver",
-      "press": "kihoilbo.co.kr",
+      "press": "news1.kr",
       "date": "2026.03.26",
-      "title": "경기도의원 152명 중 112명 재산 늘어",
-      "snippet": "기호일보, KIHOILBO 경기도의회 전경.<경기도의회 제공> 올해 경기도 광역의원의 평균 재산은 12억6천383만... 가장 적은 재산을 보유한 도의원은 장윤정(민주·안산3) 의원으로 마이너스 2천490만 원을 신고했다....",
-      "url": "https://www.kihoilbo.co.kr/news/articleView.html?idxno=3017496"
+      "title": "[재산공개]김성수 경기도의원 324억 신고…4년 연속 도내 최고 자산가",
+      "snippet": "김성수 경기도의회 의원(국민의힘·하남2)이 324억여 원의 재산을 보유해 4년 연속 도내 재산공개 대상... 반면, 장윤정 의원(민주·안산3)은 -2490만 원을 신고해 도의원 중 재산이 가장 적었다. 이어 정동혁(민주...",
+      "url": "https://www.news1.kr/local/gyeonggi/6114090"
     },
     {
       "source": "google",
@@ -1891,11 +1851,11 @@
     },
     {
       "source": "google",
-      "press": "경기일보",
-      "date": "2026.01.21",
-      "title": "안산 상록구, 농업인 영농 부담 낮춘다…농기계 구입비 ‘절반 지원’",
-      "snippet": "안산 상록구, 농업인 영농 부담 낮춘다…농기계 구입비 ‘절반 지원’ 경기일보",
-      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9Wak9OVktxUU5iekxjaEU1bHY4V0tSUVo1RjZlM2ZBWG96YVlQWUJGcGIyWC1CSzlicmQ1a2NsbG5xTVpJYkNoTjhZemRUaWdDU1FFQ2sydnpjWk0?oc=5"
+      "press": "화성저널",
+      "date": "2026.02.09",
+      "title": "장윤정 의원, “경기도형 환기설비 성능 전면 점검해야”",
+      "snippet": "장윤정 의원, “경기도형 환기설비 성능 전면 점검해야” 화성저널",
+      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE5Nc2NfWGZqRUlHbmozWFMyTHdaTWxtSG0wc0gwNVI2S3F5U3JKTi1uZkVjelRmblk3ajFCNWp3emFnSHZiZHgyd2FXZndoWUwycWlFM2J6R09rOGNnMDhGNVZLNkZsZw?oc=5"
     },
     {
       "source": "google",
