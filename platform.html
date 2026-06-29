@@ -1689,7 +1689,7 @@ onAuthStateChanged(_auth, async function(user){
     {type:'function',function:{name:'add_event',description:'새 일정을 등록',parameters:{type:'object',properties:{title:{type:'string'},date:{type:'string',description:'YYYY-MM-DD'},time:{type:'string',description:'HH:MM'},cat:{type:'string',enum:['의정','지역','외부']},location:{type:'string'}},required:['title','date']}}},
     {type:'function',function:{name:'list_policies',description:'발의 법안/정책 목록 조회',parameters:{type:'object',properties:{}}}},
     {type:'function',function:{name:'list_notices',description:'중앙당·경기도당·경기도의회 등 외부 기관 공지사항 조회(최신순). 출처/검색어로 필터 가능.',parameters:{type:'object',properties:{source:{type:'string',enum:['중앙당','경기도당','경기도의회']},query:{type:'string',description:'제목 검색어'},limit:{type:'number',description:'개수(기본 10)'}}}}},
-    {type:'function',function:{name:'create_poster',description:'홍보용 웹자보를 생성해 화면에 표시한다. 반드시 임팩트 있는 한 줄 핵심 메시지(message, 슬로건)를 넣는다. 모드 선택: 사용자가 "전체를 AI로/ChatGPT처럼/완성된 포스터 이미지"를 원하면 full_image=true(gpt-image-1이 포스터 전체를 그림 — 사진 첨부 시 참조). 정확한 글자·로고가 중요하면 코드 템플릿: 현장 사진은 template="event", 인물은 template="portrait", 배경만 AI는 ai_background=true, 단순 카드는 template="card". 직함(position)은 알면 채운다.',parameters:{type:'object',properties:{full_image:{type:'boolean',description:'true면 gpt-image-1이 포스터 전체(레이아웃·글자·인물 포함)를 한 장으로 생성. 첨부 사진을 참조로 사용.'},template:{type:'string',enum:['card','event','portrait'],description:'코드 템플릿 레이아웃'},ai_background:{type:'boolean',description:'배경만 AI 생성(하이브리드)'},background_prompt:{type:'string',description:'ai_background용 배경 묘사(영문, 텍스트·얼굴 없는 추상 배경)'},title:{type:'string',description:'핵심 제목/주제'},message:{type:'string',description:'핵심 메시지·슬로건 한 문장'},position:{type:'string',description:'의원 직함·소속'},number:{type:'string',description:'portrait용 기호 번호'},region:{type:'string',description:'event 푸터 지역'},host:{type:'string',description:'full_image 행사 주최'},phone:{type:'string',description:'full_image 문의 연락처'},subtitle:{type:'string',description:'부제(card에서 message 없을 때만)'},points:{type:'array',items:{type:'string'},description:'card 본문 핵심 항목 2~4개'},date:{type:'string',description:'일시(선택)'},place:{type:'string',description:'장소'},category:{type:'string',description:'상단 분류 배지'},theme:{type:'string',enum:['navy','red','green'],description:'card 색상 테마'}},required:['title','message']}}}
+    {type:'function',function:{name:'create_poster',description:'홍보용 웹자보를 생성해 화면에 표시한다. 반드시 임팩트 있는 한 줄 핵심 메시지(message, 슬로건)를 넣는다. 모드 선택: 사용자가 "전체를 AI로/ChatGPT처럼/완성된 포스터 이미지"를 원하면 full_image=true(gpt-image-1이 포스터 전체를 그림 — 사진 첨부 시 참조). full_image일 때는 너(아트디렉터)가 image_prompt에 디자인을 자유롭게 직접 써라(분위기·구도·색·배경·요소). 정확한 글자·이름·직함·로고·사이즈는 시스템이 자동으로 덧붙이니, image_prompt에는 디자인 묘사에 집중하라. 정확한 글자·로고가 중요하면 코드 템플릿: 현장 사진은 template="event", 인물은 template="portrait", 배경만 AI는 ai_background=true, 단순 카드는 template="card". 직함(position)은 알면 채운다.',parameters:{type:'object',properties:{full_image:{type:'boolean',description:'true면 gpt-image-1이 포스터 전체(레이아웃·글자·인물 포함)를 한 장으로 생성. 첨부 사진을 참조로 사용.'},image_prompt:{type:'string',description:'full_image 전용. 포스터 디자인을 한국어로 자유롭게 묘사(전체 분위기·구도·배경·인물 배치·색감·강조 요소 등). 제목/슬로건/이름/직함 같은 정확한 글자는 여기 넣지 말 것(시스템이 따로 정확히 추가함).'},template:{type:'string',enum:['card','event','portrait'],description:'코드 템플릿 레이아웃'},ai_background:{type:'boolean',description:'배경만 AI 생성(하이브리드)'},background_prompt:{type:'string',description:'ai_background용 배경 묘사(영문, 텍스트·얼굴 없는 추상 배경)'},title:{type:'string',description:'핵심 제목/주제'},message:{type:'string',description:'핵심 메시지·슬로건 한 문장'},position:{type:'string',description:'의원 직함·소속'},number:{type:'string',description:'portrait용 기호 번호'},region:{type:'string',description:'event 푸터 지역'},host:{type:'string',description:'full_image 행사 주최'},phone:{type:'string',description:'full_image 문의 연락처'},subtitle:{type:'string',description:'부제(card에서 message 없을 때만)'},points:{type:'array',items:{type:'string'},description:'card 본문 핵심 항목 2~4개'},date:{type:'string',description:'일시(선택)'},place:{type:'string',description:'장소'},category:{type:'string',description:'상단 분류 배지'},theme:{type:'string',enum:['navy','red','green'],description:'card 색상 테마'}},required:['title','message']}}}
   ];
   /* ── 웹자보(디자인 카드) 생성 ─────────────────────────────────────── */
   function wrapText(s, n){
@@ -1928,29 +1928,28 @@ onAuthStateChanged(_auth, async function(user){
   function fullPosterPrompt(o, hasPortrait){
     var nm=profName(), pos=profPos(o), L=[];
     var nPhoto=(o._photos?o._photos.length:0), nScene=nPhoto-(hasPortrait?1:0);
-    L.push('전문적인 한국 정당·의정 행사 홍보 포스터(세로형, 최종 출력 1080x1350 인스타 4:5)를 디자인해줘. 제목과 하단 로고띠는 위·아래 가장자리에서 살짝 안쪽으로(여백 확보) 배치해 잘리지 않게 해줘.');
-    if(nScene>0 && hasPortrait) L.push('제공된 사진 중 앞쪽은 행사 현장 사진(배경으로 사용), 마지막 사진은 인물 사진이다. 인물은 반드시 이 인물 사진의 얼굴·성별·헤어·외모를 그대로 유지해 그려라(절대 다른 사람으로 바꾸지 말 것).');
-    else if(hasPortrait) L.push('제공된 인물 사진의 얼굴·성별·헤어·외모를 그대로 유지해 인물을 그려라(절대 다른 사람으로 바꾸지 말 것).');
-    else if(nScene>0) L.push('제공된 사진을 행사 현장 사진으로 배경에 자연스럽게 사용해줘.');
-    L.push('아래 한국어 텍스트는 한 글자도 추가·삭제·변형하지 말고 오타 없이 정확히 그대로만 표기하라(글자 반복 금지):');
+    /* (1) 디자인 본문 — GPT가 작성한 image_prompt 우선, 없으면 기본 안내 */
+    if(o.image_prompt && String(o.image_prompt).trim()){
+      L.push(String(o.image_prompt).trim());
+    } else {
+      L.push('전문적인 한국 정당·의정 행사 홍보 포스터(세로형)를 보기 좋고 신뢰감 있게 디자인해줘. 파랑·흰색 기본 + 초록 포인트.');
+    }
+    /* (2) 사진 사용 가드 */
+    if(nScene>0 && hasPortrait) L.push('[사진] 앞쪽 사진=행사 현장(배경), 마지막 사진=인물. 인물은 이 사진의 얼굴·성별·헤어·외모를 그대로 유지해 그려라(다른 사람으로 바꾸지 말 것).');
+    else if(hasPortrait) L.push('[사진] 제공된 인물 사진의 얼굴·성별·헤어·외모를 그대로 유지해 인물을 그려라(다른 사람으로 바꾸지 말 것).');
+    else if(nScene>0) L.push('[사진] 제공된 사진을 행사 현장 사진으로 자연스럽게 사용해줘.');
+    /* (3) 정확한 텍스트 가드 */
+    L.push('[정확히 표기할 텍스트] 아래는 한 글자도 바꾸지 말고 오타·중복 없이 그대로 표기:');
     L.push('· 제목: 「'+(o.title||'')+'」');
-    if(o.message) L.push('· 슬로건: 「'+o.message+'」  (이 문구의 한글 철자를 특히 정확하게)');
+    if(o.message) L.push('· 슬로건: 「'+o.message+'」');
     var info=[];
     if(o.date) info.push('일시 '+o.date); if(o.place) info.push('장소 '+o.place);
     if(o.host) info.push('주최 '+o.host); if(o.phone) info.push('문의 '+o.phone);
-    if(info.length) L.push('· 행사정보(아이콘 박스): '+info.join(' / '));
-    L.push('· 인물 이름(가장 크게): 「'+nm+'」'+(pos?'  (이름 아래 작게 직함: 「'+pos+'」)':'')+'  — 이름을 두 번 반복하지 말 것.');
-    L.push('· 하단 띠: 더불어민주당 로고 + 「'+(pos?pos+' ':'')+nm+'」');
-    L.push('');
-    L.push('[레이아웃 — 전문 정당 행사 홍보 포스터, 이 구성을 반드시 지킬 것]');
-    L.push('1) 맨 위: 손글씨풍 한 줄 인사 문구(작게, 청록/초록).');
-    L.push('2) 그 아래: 아주 크고 굵은 제목(진한 네이비, 1~2줄). 제목 앞에 초록 원형 배지로 지역/포인트 단어 강조 가능.');
-    L.push('3) 제목 아래: 파란 리본/띠 박스 안에 흰색 글씨로 핵심 슬로건 한 줄.');
-    L.push('4) 중앙: 좌측에 행사 현장 사진을 크게 배치, 우측에 인물(상반신, 정장)을 선명하게 누끼처럼 배치.');
-    L.push('5) 좌하단: 둥근 흰색 정보 박스 — 달력·핀·사람·전화 아이콘과 함께 일시/장소/주최/문의를 줄맞춰 표기.');
-    L.push('6) 맨 아래: 파란 띠 — 좌측 더불어민주당 로고, 우측 금색 의회 엠블럼 + 직함 + 이름(굵게).');
-    L.push('색감: 파랑(#1b3aa0)·흰색 기본 + 초록 잎 포인트. 밝고 깨끗하며 신뢰감 있게. 여백 균형, 고해상도.');
-    L.push('가장 중요: 모든 한글 맞춤법을 정확히. 따옴표 「」 안 문구는 절대 변형·오타·글자중복 금지.');
+    if(info.length) L.push('· 행사정보: '+info.join(' / '));
+    L.push('· 인물 이름: 「'+nm+'」'+(pos?'  / 직함: 「'+pos+'」':'')+' (이름 중복 표기 금지)');
+    L.push('· 하단: 더불어민주당 로고 + 「'+(pos?pos+' ':'')+nm+'」');
+    /* (4) 출력 가드 */
+    L.push('[출력] 최종 1080x1350(인스타 4:5) 기준. 제목·하단 로고는 가장자리에서 안쪽으로 배치(잘림 방지). 모든 한글 맞춤법 정확히, 「」 안 문구 변형 금지. 고해상도.');
     return L.join('\n');
   }
   function toIGPortrait(dataUrl){ // gpt-image-1(1024x1536) → 정확히 1080x1350 (인스타 4:5, 가로 맞춤 중앙 크롭)
