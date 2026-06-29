@@ -336,7 +336,10 @@ button{font-family:inherit}
 
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
           <div style="font-size:15px;font-weight:700">홍보 콘텐츠</div>
-          <button id="prAddBtn" data-hover="background:#16305c" style="display:flex;align-items:center;gap:6px;height:38px;padding:0 15px;background:#1d3a6e;color:#fff;border:none;border-radius:9px;font-size:13px;font-weight:600;cursor:pointer"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>콘텐츠 작성</button>
+          <div style="display:flex;gap:8px">
+            <button id="peOpenBtn" data-hover="background:#16305c" style="display:flex;align-items:center;gap:6px;height:38px;padding:0 15px;background:#1d3a6e;color:#fff;border:none;border-radius:9px;font-size:13px;font-weight:600;cursor:pointer"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 15l5-5 4 4 3-3 6 6"/><circle cx="9" cy="9" r="1.6"/></svg>웹자보 편집기</button>
+            <button id="prAddBtn" data-hover="background:#eef1f5" style="display:flex;align-items:center;gap:6px;height:38px;padding:0 15px;background:#fff;color:#5b6675;border:1px solid #d6dde6;border-radius:9px;font-size:13px;font-weight:600;cursor:pointer"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>콘텐츠 작성</button>
+          </div>
         </div>
 
         <div id="prGrid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px"></div>
@@ -2402,6 +2405,184 @@ onAuthStateChanged(_auth, async function(user){
   }
   refresh();
   M.onData(function(){ loadAdmin(); });
+})();
+</script>
+<!-- ══ 웹자보 편집기 (편집 가능 템플릿 + 사진 교체 + 실시간 미리보기 + PNG/JPG) ══ -->
+<div id="posterEditor" style="display:none;position:fixed;inset:0;z-index:400;background:#eef1f5;flex-direction:column">
+  <header style="height:58px;flex-shrink:0;background:#fff;border-bottom:1px solid #e3e8ef;display:flex;align-items:center;gap:12px;padding:0 20px">
+    <span style="font-size:15px;font-weight:800;color:#16202e">웹자보 편집기</span>
+    <span style="font-size:12px;color:#9aa3b0">사진·문구를 바꾸면 미리보기가 즉시 갱신됩니다</span>
+    <div style="flex:1"></div>
+    <button id="peGpt" style="height:36px;padding:0 14px;background:#eef2fb;border:1px solid #d6e0ee;border-radius:9px;font-size:12.5px;font-weight:700;color:#1d3a6e;cursor:pointer">✨ GPT로 문구 채우기</button>
+    <button id="pePng" style="height:36px;padding:0 14px;background:#1d3a6e;border:none;border-radius:9px;font-size:12.5px;font-weight:700;color:#fff;cursor:pointer">PNG 저장</button>
+    <button id="peJpg" style="height:36px;padding:0 14px;background:#16305c;border:none;border-radius:9px;font-size:12.5px;font-weight:700;color:#fff;cursor:pointer">JPG 저장</button>
+    <button id="peClose" style="height:36px;padding:0 14px;background:#fff;border:1px solid #d6dde6;border-radius:9px;font-size:12.5px;font-weight:600;color:#5b6675;cursor:pointer">닫기</button>
+  </header>
+  <div style="flex:1;display:grid;grid-template-columns:400px 1fr;min-height:0">
+    <div style="overflow-y:auto;background:#fff;border-right:1px solid #e3e8ef;padding:20px">
+      <div id="peForm"></div>
+    </div>
+    <div style="overflow:auto;display:flex;align-items:flex-start;justify-content:center;padding:28px;background:#dfe4ec">
+      <div id="pePreview" style="box-shadow:0 10px 40px rgba(16,24,40,.2);background:#fff"></div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  'use strict';
+  var M = window.MOIDA; if(!M) return;
+  var GPT_ENDPOINT='https://moida-gpt.banedict84.workers.dev';
+  function gptEndpoint(){ try{ return (localStorage.getItem('moida_gpt_endpoint')||GPT_ENDPOINT).trim(); }catch(e){ return GPT_ENDPOINT; } }
+  function esc(s){ return M.esc(s); }
+  function profName(){ return (M.profile&&M.profile.name)||'의원'; }
+  function profPos(){ return [(M.profile&&M.profile.position),(M.profile&&M.profile.district)].filter(Boolean).join(' · '); }
+  function wrap(s,n){ s=String(s||''); var w=s.split(/\s+/),L=[],c=''; w.forEach(function(x){ while(x.length>n){ if(c){L.push(c);c='';} L.push(x.slice(0,n)); x=x.slice(n);} var t=c?c+' '+x:x; if(t.length>n){ if(c)L.push(c); c=x;} else c=t; }); if(c)L.push(c); return L; }
+  var pe={ title:'', date:'', place:'', message:'', body:'', category:'의정활동', tone:'따뜻하고 신뢰감 있는', ratio:'3:4', name:'', position:'', photos:[] };
+  function peDims(r){ return ({'3:4':[1080,1440],'1:1':[1080,1080],'4:5':[1080,1350]})[r]||[1080,1440]; }
+
+  /* 편집 가능 템플릿 — 흰색/네이비/연블루/베이지, 의정활동 기록 톤 */
+  function editorSVG(d){
+    var dim=peDims(d.ratio), W=dim[0], H=dim[1], X=70;
+    var navy='#13265e', blue='#2f5fd0', beige='#efe6d3';
+    var nm=d.name||profName(), pos=d.position||profPos();
+    var photos=(d.photos||[]).filter(Boolean);
+    var s='<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 '+W+' '+H+'" width="'+W+'" height="'+H+'" style="font-family:Pretendard,\'Apple SD Gothic Neo\',\'Malgun Gothic\',sans-serif">';
+    s+='<rect width="'+W+'" height="'+H+'" fill="#ffffff"/>';
+    s+='<rect x="0" y="0" width="14" height="'+H+'" fill="'+navy+'"/>';
+    // 상단 소속
+    s+='<text x="'+X+'" y="74" fill="'+navy+'" font-size="26" font-weight="800">더불어민주당'+(pos?'  ·  '+esc(pos):'')+'</text>';
+    s+='<rect x="'+X+'" y="90" width="64" height="5" rx="2.5" fill="'+blue+'"/>';
+    // 분류 배지(우상단)
+    if(d.category){ var bw=d.category.length*26+44; s+='<rect x="'+(W-X-bw)+'" y="50" width="'+bw+'" height="46" rx="23" fill="'+beige+'"/><text x="'+(W-X-bw/2)+'" y="80" text-anchor="middle" fill="#7a5b1e" font-size="23" font-weight="700">'+esc(d.category)+'</text>'; }
+    // 제목
+    var ty=176; wrap(d.title,13).slice(0,2).forEach(function(l){ s+='<text x="'+X+'" y="'+ty+'" fill="'+navy+'" font-size="62" font-weight="900" letter-spacing="-2">'+esc(l)+'</text>'; ty+=72; });
+    // 핵심 메시지
+    if(d.message){ ty+=4; wrap(d.message,26).slice(0,2).forEach(function(l){ s+='<text x="'+X+'" y="'+ty+'" fill="'+blue+'" font-size="30" font-weight="700">'+esc(l)+'</text>'; ty+=40; }); }
+    // 본문
+    if(d.body){ ty+=14; wrap(d.body,32).slice(0,4).forEach(function(l){ s+='<text x="'+X+'" y="'+ty+'" fill="#5b6675" font-size="24" font-weight="500">'+esc(l)+'</text>'; ty+=36; }); }
+    // 사진 영역
+    var FH=160, pTop=Math.min(Math.max(ty+34,380), H-FH-340), pBot=H-FH-30, gap=16;
+    if(photos.length){
+      var n=Math.min(photos.length,3), pw=(W-2*X-(n-1)*gap)/n;
+      photos.slice(0,3).forEach(function(u,i){ var px=X+i*(pw+gap);
+        s+='<image x="'+px+'" y="'+pTop+'" width="'+pw+'" height="'+(pBot-pTop)+'" preserveAspectRatio="xMidYMid slice" href="'+u+'" xlink:href="'+u+'"/>';
+        s+='<rect x="'+px+'" y="'+pTop+'" width="'+pw+'" height="'+(pBot-pTop)+'" fill="none" stroke="#ffffff" stroke-width="6"/>';
+      });
+    } else {
+      s+='<rect x="'+X+'" y="'+pTop+'" width="'+(W-2*X)+'" height="'+(pBot-pTop)+'" fill="#eef1f5"/><text x="'+(W/2)+'" y="'+((pTop+pBot)/2)+'" text-anchor="middle" fill="#9aa3b0" font-size="28" font-weight="700">사진을 추가하세요 (1~3장)</text>';
+    }
+    // 푸터 띠
+    s+='<rect x="0" y="'+(H-FH)+'" width="'+W+'" height="'+FH+'" fill="'+navy+'"/>';
+    s+='<text x="'+X+'" y="'+(H-FH+72)+'" fill="#fff" font-size="48" font-weight="900" letter-spacing="-1.5">'+esc(nm)+'</text>';
+    s+='<text x="'+X+'" y="'+(H-FH+114)+'" fill="rgba(255,255,255,.78)" font-size="22" font-weight="600">더불어민주당'+(pos?'  ·  '+esc(pos):'')+'</text>';
+    if(d.date) s+='<text x="'+(W-X)+'" y="'+(H-FH+72)+'" text-anchor="end" fill="#fff" font-size="27" font-weight="700">'+esc(d.date)+'</text>';
+    if(d.place) s+='<text x="'+(W-X)+'" y="'+(H-FH+110)+'" text-anchor="end" fill="rgba(255,255,255,.78)" font-size="22" font-weight="600">'+esc(d.place)+'</text>';
+    s+='</svg>'; return s;
+  }
+
+  function render(){
+    var box=document.getElementById('pePreview'); if(!box) return;
+    box.innerHTML=editorSVG(pe);
+    var svg=box.querySelector('svg'); if(svg){ svg.removeAttribute('width'); svg.removeAttribute('height'); svg.style.display='block'; svg.style.height='auto'; svg.style.maxHeight='80vh'; var dim=peDims(pe.ratio); svg.style.width=Math.min(560, dim[0])+'px'; }
+  }
+  function fld(label,html){ return '<div style="margin-bottom:13px"><label style="display:block;font-size:12px;font-weight:700;color:#5b6675;margin-bottom:5px">'+label+'</label>'+html+'</div>'; }
+  var IN='width:100%;height:38px;border:1px solid #d6dde6;border-radius:8px;padding:0 11px;font-size:13.5px;font-family:inherit;outline:none;box-sizing:border-box';
+  function buildForm(){
+    var f=document.getElementById('peForm');
+    f.innerHTML=
+      fld('행사명/제목','<input id="pe_title" style="'+IN+'" value="'+esc(pe.title)+'"/>')
+      +fld('핵심 메시지(슬로건)','<input id="pe_message" style="'+IN+'" value="'+esc(pe.message)+'"/>')
+      +fld('본문(선택)','<textarea id="pe_body" style="'+IN+';height:74px;padding:9px 11px;resize:vertical">'+esc(pe.body)+'</textarea>')
+      +'<div style="display:flex;gap:10px">'+fld('날짜','<input id="pe_date" style="'+IN+'" value="'+esc(pe.date)+'" placeholder="2025. 6. 15.(일) 09:00"/>')+fld('장소','<input id="pe_place" style="'+IN+'" value="'+esc(pe.place)+'"/>')+'</div>'
+      +'<div style="display:flex;gap:10px">'+fld('분류','<input id="pe_category" style="'+IN+'" value="'+esc(pe.category)+'"/>')+fld('비율','<select id="pe_ratio" style="'+IN+';background:#fff"><option value="3:4">3:4 (1080×1440)</option><option value="4:5">4:5 (1080×1350)</option><option value="1:1">1:1 (1080×1080)</option></select>')+'</div>'
+      +fld('톤앤매너','<input id="pe_tone" style="'+IN+'" value="'+esc(pe.tone)+'"/>')
+      +'<div style="border-top:1px solid #eef1f5;margin:14px 0 12px"></div>'
+      +'<label style="display:block;font-size:12px;font-weight:700;color:#5b6675;margin-bottom:7px">사진 (1~3장 · 클릭해서 교체)</label>'
+      +'<div id="pe_photos" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px"></div>'
+      +'<div style="font-size:11.5px;color:#9aa3b0;margin-top:8px">의원 성함·직함은 설정 프로필에서 자동으로 들어갑니다.</div>';
+    document.getElementById('pe_ratio').value=pe.ratio;
+    renderPhotoSlots();
+    bindForm();
+  }
+  function renderPhotoSlots(){
+    var box=document.getElementById('pe_photos'); if(!box) return;
+    var h='';
+    for(var i=0;i<3;i++){
+      var u=pe.photos[i];
+      h+='<div data-slot="'+i+'" style="position:relative;aspect-ratio:3/4;border:1.5px dashed #cfd8e6;border-radius:9px;background:'+(u?'#000':'#fafbfd')+';overflow:hidden;cursor:pointer;display:flex;align-items:center;justify-content:center">'
+        +(u?'<img src="'+u+'" style="width:100%;height:100%;object-fit:cover"/><button data-rm="'+i+'" style="position:absolute;top:4px;right:4px;width:22px;height:22px;border:none;border-radius:50%;background:rgba(0,0,0,.55);color:#fff;font-size:13px;cursor:pointer;line-height:1">×</button>'
+          :'<span style="font-size:11.5px;color:#9aa3b0;font-weight:600">+ 사진</span>')
+        +'</div>';
+    }
+    box.innerHTML=h;
+    box.querySelectorAll('[data-slot]').forEach(function(el){
+      el.addEventListener('click', function(e){ if(e.target.closest('[data-rm]')) return; openPhoto(+el.getAttribute('data-slot')); });
+    });
+    box.querySelectorAll('[data-rm]').forEach(function(b){ b.addEventListener('click', function(e){ e.stopPropagation(); pe.photos.splice(+b.getAttribute('data-rm'),1); renderPhotoSlots(); render(); }); });
+  }
+  var _fileInput;
+  function openPhoto(slot){
+    if(!_fileInput){ _fileInput=document.createElement('input'); _fileInput.type='file'; _fileInput.accept='image/png,image/jpeg,image/webp'; _fileInput.style.display='none'; document.body.appendChild(_fileInput); }
+    _fileInput.value=''; _fileInput.onchange=function(){
+      var f=_fileInput.files&&_fileInput.files[0]; if(!f) return;
+      var rd=new FileReader(); rd.onload=function(){
+        var img=new Image(); img.onload=function(){
+          var max=1100,w=img.width,h=img.height; if(w>max||h>max){ var r=Math.min(max/w,max/h); w=Math.round(w*r); h=Math.round(h*r); }
+          var c=document.createElement('canvas'); c.width=w; c.height=h; c.getContext('2d').drawImage(img,0,0,w,h);
+          pe.photos[slot]=c.toDataURL('image/jpeg',0.85); renderPhotoSlots(); render();
+        }; img.onerror=function(){ pe.photos[slot]=String(rd.result||''); renderPhotoSlots(); render(); }; img.src=String(rd.result||'');
+      }; rd.readAsDataURL(f);
+    }; _fileInput.click();
+  }
+  function bindForm(){
+    [['pe_title','title'],['pe_message','message'],['pe_body','body'],['pe_date','date'],['pe_place','place'],['pe_category','category'],['pe_tone','tone'],['pe_ratio','ratio']].forEach(function(p){
+      var el=document.getElementById(p[0]); if(!el) return;
+      el.addEventListener('input', function(){ pe[p[1]]=el.value; render(); });
+      el.addEventListener('change', function(){ pe[p[1]]=el.value; render(); });
+    });
+  }
+  function svgToCanvas(svgStr,W,H,cb){
+    var blob=new Blob([svgStr],{type:'image/svg+xml;charset=utf-8'}); var url=URL.createObjectURL(blob); var img=new Image();
+    img.onload=function(){ var c=document.createElement('canvas'); c.width=W; c.height=H; var x=c.getContext('2d'); x.fillStyle='#fff'; x.fillRect(0,0,W,H); x.drawImage(img,0,0,W,H); URL.revokeObjectURL(url); cb(c); };
+    img.onerror=function(){ URL.revokeObjectURL(url); alert('렌더 실패'); }; img.src=url;
+  }
+  function download(type){
+    var dim=peDims(pe.ratio);
+    svgToCanvas(editorSVG(pe), dim[0], dim[1], function(c){
+      var mime=type==='jpg'?'image/jpeg':'image/png';
+      c.toBlob(function(b){ if(!b){ alert('저장 실패'); return; } var a=document.createElement('a'); a.href=URL.createObjectURL(b); a.download=(pe.title||'웹자보')+'.'+type; document.body.appendChild(a); a.click(); a.remove(); }, mime, 0.92);
+    });
+  }
+  function gptFill(){
+    var btn=document.getElementById('peGpt'); var old=btn.textContent; btn.textContent='작성 중…'; btn.disabled=true;
+    var sys='너는 정치인 SNS 웹자보 카피라이터다. 이것은 선거 홍보물이 아니라 당선 이후 의정활동 기록·현장소통용이다. 과한 구호·선거 느낌 금지, 신뢰감 있고 따뜻한 톤. 입력 정보로 제목·핵심메시지(슬로건 한 줄)·본문(2~3문장)·분류배지를 작성하라. 반드시 JSON만 출력: {"title":"","message":"","body":"","category":""}';
+    var usr='행사명: '+pe.title+'\n날짜: '+pe.date+'\n장소: '+pe.place+'\n톤앤매너: '+pe.tone+'\n기존 핵심메시지: '+pe.message;
+    fetch(gptEndpoint(),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'gpt-4o',messages:[{role:'system',content:sys},{role:'user',content:usr}]})})
+      .then(function(r){ return r.text(); }).then(function(t){
+        var d=null; try{ d=JSON.parse(t); }catch(e){}
+        var content=d&&d.choices&&d.choices[0]&&d.choices[0].message&&d.choices[0].message.content;
+        if(!content) throw new Error((d&&d.error&&d.error.message)||'응답 없음');
+        var j=null; try{ j=JSON.parse(content.replace(/```json|```/g,'').trim()); }catch(e){ var m=content.match(/\{[\s\S]*\}/); if(m) j=JSON.parse(m[0]); }
+        if(!j) throw new Error('형식 오류');
+        if(j.title) pe.title=j.title; if(j.message) pe.message=j.message; if(j.body) pe.body=j.body; if(j.category) pe.category=j.category;
+        buildForm(); render();
+      }).catch(function(err){ alert('GPT 문구 생성 실패: '+(err&&err.message||err)); })
+      .finally(function(){ btn.textContent=old; btn.disabled=false; });
+  }
+  function open(){
+    pe.name=profName(); pe.position=profPos();
+    var ov=document.getElementById('posterEditor'); ov.style.display='flex';
+    buildForm(); render();
+  }
+  function close(){ document.getElementById('posterEditor').style.display='none'; }
+  function bindOnce(){
+    var o=document.getElementById('peOpenBtn'); if(o) o.addEventListener('click', open);
+    var c=document.getElementById('peClose'); if(c) c.addEventListener('click', close);
+    var g=document.getElementById('peGpt'); if(g) g.addEventListener('click', gptFill);
+    document.getElementById('pePng').addEventListener('click', function(){ download('png'); });
+    document.getElementById('peJpg').addEventListener('click', function(){ download('jpg'); });
+  }
+  if(document.readyState!=='loading') bindOnce(); else document.addEventListener('DOMContentLoaded', bindOnce);
 })();
 </script>
 <script src="access-guard.js"></script>
