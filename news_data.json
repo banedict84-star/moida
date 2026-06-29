@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-29 14:34 UTC",
+  "updated": "2026-06-29 17:58 UTC",
   "items": [
     {
       "source": "naver",
@@ -938,6 +938,14 @@
       "url": "https://www.asiatime.co.kr/article/20260615500148"
     },
     {
+      "source": "google",
+      "press": "경기종합뉴스",
+      "date": "2026.06.15",
+      "title": "김남국 의원, 안산 교육 현안 ‘상생 돌파구’모색 위해 안산교육청 방문",
+      "snippet": "김남국 의원, 안산 교육 현안 ‘상생 돌파구’모색 위해 안산교육청 방문 경기종합뉴스",
+      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE8xbmJadS1MNEdscUlPQ295cDNtMlJQbmd6TWhfQ3VyLXBMVTQySUU0cVRia3AyTUlzN0xNTWNfN0VtZTdhZm5mMGQ1U3NZOFhFQzZTdTJBdkVFM2Rha2tzOFJGaHVUSUhiR056X21qV1JEU2g0?oc=5"
+    },
+    {
       "source": "naver",
       "press": "jeonmae.co.kr",
       "date": "2026.06.14",
@@ -1130,14 +1138,6 @@
       "url": "https://www.jeonmae.co.kr/news/articleView.html?idxno=1262012"
     },
     {
-      "source": "google",
-      "press": "안산뉴스",
-      "date": "2026.06.04",
-      "title": "민주당 경기도의원 8석 싹쓸이 당선",
-      "snippet": "민주당 경기도의원 8석 싹쓸이 당선 안산뉴스",
-      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE1iZll6bHdKRmM3OG8tcE5XU0tTRWZicDR3UGJjdEZwOW9PbHNsNUxnX1BESXJ3Mnp1RHN1SFEyX0N5V0dEY01ielJidF9MUmlmbzVFeU5CeGd5amR5VS1MNGd2dXUzb2NxMHJqbQ?oc=5"
-    },
-    {
       "source": "naver",
       "press": "kyeongin.com",
       "date": "2026.06.04",
@@ -1160,6 +1160,14 @@
       "title": "[6·3지선-표] 경기 광역의원 당선자 명단",
       "snippet": "(49·민주) ◇안산시 ▷1선거구 ▲김동규(58·민주) ▷2선거구 ▲김태희(49·민주) ▷3선거구 ▲장윤정(33·민주) ▷4선거구 ▲유재수(57·민주) ▷5선거구 ▲이은미(44·민주) ▷6선거구 ▲박은경(60·민주)...",
       "url": "https://www.news1.kr/local/gyeonggi/6187213"
+    },
+    {
+      "source": "google",
+      "press": "안산뉴스",
+      "date": "2026.06.04",
+      "title": "민주당 경기도의원 8석 싹쓸이 당선",
+      "snippet": "민주당 경기도의원 8석 싹쓸이 당선 안산뉴스",
+      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE1iZll6bHdKRmM3OG8tcE5XU0tTRWZicDR3UGJjdEZwOW9PbHNsNUxnX1BESXJ3Mnp1RHN1SFEyX0N5V0dEY01ielJidF9MUmlmbzVFeU5CeGd5amR5VS1MNGd2dXUzb2NxMHJqbQ?oc=5"
     },
     {
       "source": "naver",
@@ -1634,6 +1642,14 @@
       "url": "https://www.newsfreezone.co.kr/news/articleView.html?idxno=686441"
     },
     {
+      "source": "google",
+      "press": "성남신문",
+      "date": "2026.04.22",
+      "title": "경기도의회 장윤정 의원, 교육기획위원회 부위원장 선임...책임 있는 마무리 이끌 것",
+      "snippet": "경기도의회 장윤정 의원, 교육기획위원회 부위원장 선임...책임 있는 마무리 이끌 것 성남신문",
+      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5PSzU0UUQzV0p4d3htZUJSdjdodTlIUlZOU2lQQV8zZkRQcmZ5UWJISUczdkhya3RKbkRyWDlLTkxRcmVEaHFuYTA4cGctRW1VNDZyN21YVUdYdGdGZjkzQk1xdUFKSmZEcW93MDgwdWvSAXBBVV95cUxOT0s1NFFEM1dKeHd4bWVCUnY3aHU5SFJWTlNpUEFfM2ZEUHJmeVFiSElHM3ZIcmt0Sm5Eclg5S05MUXJlRGhxbmEwOHBnLUVtVTQ2cjdtWFVHWHRnRmY5M0JNcXVBSkpmRHFvdzA4MHVr?oc=5"
+    },
+    {
       "source": "naver",
       "press": "mygoyang.com",
       "date": "2026.04.17",
@@ -1739,19 +1755,19 @@
     },
     {
       "source": "naver",
-      "press": "kgnews.co.kr",
-      "date": "2026.03.26",
-      "title": "[재산공개]경기도의원 74% 재산 증가…평균 12억6000만원",
-      "snippet": "반면 장윤정(민주·안산3) 의원은 마이너스 2400만 원을 신고해 재산이 가장 적었다. 장 의원은 예금이... 등의 순으로 재산 신고액이 적었다. [ 경기신문 = 장진우 기자 ] 경기도의회 전경 (사진=경기도의회 제공)",
-      "url": "https://www.kgnews.co.kr/news/article.html?no=888958"
-    },
-    {
-      "source": "naver",
       "press": "kihoilbo.co.kr",
       "date": "2026.03.26",
       "title": "경기도의원 152명 중 112명 재산 늘어",
       "snippet": "기호일보, KIHOILBO 경기도의회 전경.<경기도의회 제공> 올해 경기도 광역의원의 평균 재산은 12억6천383만... 가장 적은 재산을 보유한 도의원은 장윤정(민주·안산3) 의원으로 마이너스 2천490만 원을 신고했다....",
       "url": "https://www.kihoilbo.co.kr/news/articleView.html?idxno=3017496"
+    },
+    {
+      "source": "naver",
+      "press": "news1.kr",
+      "date": "2026.03.26",
+      "title": "[재산공개]김성수 경기도의원 324억 신고…4년 연속 도내 최고 자산가",
+      "snippet": "김성수 경기도의회 의원(국민의힘·하남2)이 324억여 원의 재산을 보유해 4년 연속 도내 재산공개 대상... 반면, 장윤정 의원(민주·안산3)은 -2490만 원을 신고해 도의원 중 재산이 가장 적었다. 이어 정동혁(민주...",
+      "url": "https://www.news1.kr/local/gyeonggi/6114090"
     },
     {
       "source": "google",
