@@ -57,8 +57,7 @@ export default {
       const OPENAI_BASE = (env.OPENAI_BASE || "https://api.openai.com/v1").replace(/\/+$/, "");
       const path = new URL(request.url).pathname;
 
-      // 이미지 생성 경로: POST /image → OpenAI Images(gpt-image-1) 중계
-      //  · 웹자보 배경/비주얼 생성용(하이브리드). 글자는 클라이언트가 코드로 얹음.
+      // 이미지 생성 경로: POST /image → OpenAI Images(gpt-image-1) 중계 (텍스트 프롬프트만)
       if (path.endsWith("/image")) {
         const imgPayload = Object.assign(
           { model: "gpt-image-1", size: "1024x1536", n: 1 },
@@ -68,6 +67,33 @@ export default {
           method: "POST",
           headers: { "Content-Type": "application/json", "Authorization": `Bearer ${env.OPENAI_API_KEY}` },
           body: JSON.stringify(imgPayload),
+        });
+        const iraw = await ir.text();
+        return new Response(iraw, { status: ir.status, headers: { ...cors, "Content-Type": "application/json" } });
+      }
+
+      // 이미지 편집/합성 경로: POST /image-edit → 첨부 사진을 참조로 gpt-image-1이 포스터 전체 생성
+      //  · body: { prompt, images:[dataURL...], size } → multipart(images/edits)로 변환해 중계
+      if (path.endsWith("/image-edit")) {
+        const fd = new FormData();
+        fd.append("model", "gpt-image-1");
+        fd.append("prompt", String(body.prompt || ""));
+        fd.append("size", String(body.size || "1024x1536"));
+        const imgs = Array.isArray(body.images) ? body.images.slice(0, 4) : [];
+        imgs.forEach((durl, i) => {
+          const m = /^data:(.*?);base64,(.*)$/.exec(durl || "");
+          if (!m) return;
+          const bin = atob(m[2]);
+          const arr = new Uint8Array(bin.length);
+          for (let j = 0; j < bin.length; j++) arr[j] = bin.charCodeAt(j);
+          const type = m[1] || "image/png";
+          const ext = type.indexOf("png") >= 0 ? "png" : (type.indexOf("webp") >= 0 ? "webp" : "jpg");
+          fd.append("image[]", new Blob([arr], { type }), `img${i}.${ext}`);
+        });
+        const ir = await fetch(`${OPENAI_BASE}/images/edits`, {
+          method: "POST",
+          headers: { "Authorization": `Bearer ${env.OPENAI_API_KEY}` }, // Content-Type은 fetch가 boundary와 함께 설정
+          body: fd,
         });
         const iraw = await ir.text();
         return new Response(iraw, { status: ir.status, headers: { ...cors, "Content-Type": "application/json" } });
