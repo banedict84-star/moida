@@ -1,6 +1,14 @@
 {
-  "updated": "2026-07-02 20:42 UTC",
+  "updated": "2026-07-02 22:37 UTC",
   "items": [
+    {
+      "source": "naver",
+      "press": "newswhoplus.com",
+      "date": "2026.07.03",
+      "title": "통탄 아파트값, 멈출줄 모르는 지속세...수도권 주간 상승률 1위",
+      "snippet": "이천은 0.08%, 안산 상록구는 0.07% 내렸다. 평택과 파주·포천은 각각 0.02% 하락했다. 경기 전체 상승률은 전주와 같은 0.19%를 유지했다. 동탄과 성남, 수원 등 일부 지역은 높은 상승률을 기록했지만 과천과 이천...",
+      "url": "https://www.newswhoplus.com/news/articleView.html?idxno=63760"
+    },
     {
       "source": "naver",
       "press": "newstown.co.kr",
@@ -8,6 +16,14 @@
       "title": "안산시, ASV 브랜드 상표출원 추진…경기경제자유구역 경쟁력 강화",
       "snippet": "한편 안산사이언스밸리지구는 상록구 사동 한양대학교 ERICA 일원 1.66㎢ 규모로 조성되는 경기경제자유구역이다. 기존 산·학·연 클러스터를 기반으로 AI, 첨단로봇, 스마트제조 분야 글로벌 기업을 유치해 미래...",
       "url": "http://www.newstown.co.kr/news/articleView.html?idxno=708050"
+    },
+    {
+      "source": "naver",
+      "press": "econonews.co.kr",
+      "date": "2026.07.03",
+      "title": "경기도, 4일 수원서 전세사기 피해자 대상 권리구제 설명회 실시",
+      "snippet": "보면 1·2차(6월 용인, 7월 수원) 교육에서는 민사소송과 강제집행, 형사절차 등 '권리구제 법률안내'를 다룬다. 3·4차(9월 부천, 10월 안산) 교육에서는 경·공매 절차와 배당표 이해 등 '경·공매 및 배당의 이해'를 설명한다.",
+      "url": "http://www.econonews.co.kr/news/articleView.html?idxno=440608"
     },
     {
       "source": "naver",
@@ -570,14 +586,6 @@
       "url": "http://www.incheonin.com/news/articleView.html?idxno=119041"
     },
     {
-      "source": "naver",
-      "press": "newsroad.co.kr",
-      "date": "2026.07.02",
-      "title": "김성제 의왕시장 \"2030년 전국 최고 명품도시 완성\"…7대 핵심전략 제시",
-      "snippet": "고천지구와 초평지구, 월암지구와 청계2지구 사업을 적극 지원하고, 의왕군포안산 3기 신도시와 오전... 넷째, 교육·보육 환경 조성이다. 의왕미래교육센터와 창의인재센터를 건립하고, 저출산 대책으로 출산장려금...",
-      "url": "http://www.newsroad.co.kr/news/articleView.html?idxno=61089"
-    },
-    {
       "source": "google",
       "press": "안산타임스",
       "date": "2026.07.02",
@@ -826,14 +834,6 @@
       "url": "https://www.topstarnews.net/news/articleView.html?idxno=16116992"
     },
     {
-      "source": "naver",
-      "press": "joongboo.com",
-      "date": "2026.06.29",
-      "title": "\"수확철 농촌에 일손을\" 안산 농협·고향주부모임, 감자밭서 구슬땀",
-      "snippet": "NH농협 안산시지부와 고향주부모임 안산시지회는 29일 안산시 상록구 팔곡이동의 한 감자 재배농가에서 합동 농촌일손돕기 봉사활동을 펼쳤다. 이날 봉사에는 주원식 NH농협 안산시지부장을 비롯해 최기호 반월농협...",
-      "url": "https://www.joongboo.com/news/articleView.html?idxno=363730006"
-    },
-    {
       "source": "google",
       "press": "경기일보",
       "date": "2026.06.29",
@@ -1040,6 +1040,14 @@
       "title": "장윤정 부위원장, 경기도교육청 예산유보 운영 점검… \"절감보다 적기 ...",
       "snippet": "경기도의회 교육기획위원회 장윤정 부위원장은 최근 열린 2025회계연도 경기도교육청 결산 및 2026년도 제1회 추가경정예산안 심사에서 예산유보액 운영 현황을 점검하며, \"예산 절감 실적보다 중요한 것은 교육현장에...",
       "url": "https://www.jeonmae.co.kr/news/articleView.html?idxno=1264967"
+    },
+    {
+      "source": "google",
+      "press": "선데이뉴스신문",
+      "date": "2026.06.13",
+      "title": "장윤정 경기도의원 “교육예산 묶어두기 관행 재검토해야”…경기도교육청 예산유보 운영 도마 위",
+      "snippet": "장윤정 경기도의원 “교육예산 묶어두기 관행 재검토해야”…경기도교육청 예산유보 운영 도마 위 선데이뉴스신문",
+      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE1NWFltZmpQTVB1NklDckVPT3JQRGFwQnlNWERmb05fVkNfNmFYNlc1OF96SVl0OVJDRmZXeEcxWDNpQlpkMWhnN1RKQmxaek5DRWRieWdqcUU1Q2dj?oc=5"
     },
     {
       "source": "naver",
@@ -1778,20 +1786,20 @@
       "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE4zR1VkX09YVU9udnZnck9kQUVZMFp5NjlfNlBGZ255aGphNWs3SjV4a0E5ZmxsZ08yR00tajhmbU1ERUZGNExCM0FnaEJsY0VHRFZ1ejVmajFuNzBwYlVfdkxvOHRPdFBSYUE?oc=5"
     },
     {
+      "source": "google",
+      "press": "전국매일신문",
+      "date": "2026.04.06",
+      "title": "장윤정 경기도의원, 재선 도전 선언···안산 지역 변화 강조",
+      "snippet": "장윤정 경기도의원, 재선 도전 선언···안산 지역 변화 강조 전국매일신문",
+      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE0wLWpqakhrX3B5amFmcThCV1N0TXBmaG5ucklFOE9weW4xb0hLakQ4WEJBNTg5UDJaenpCcXE3XzZYcnd6dU9TWE5rR1dKcjJ2N3FINmxBWmdHM1l3S1hqWTlkRW5aWjBnVGNScDZn?oc=5"
+    },
+    {
       "source": "naver",
       "press": "newscj.com",
       "date": "2026.04.06",
       "title": "장윤정 경기도의원, 재선 도전 선언… \"성과로 증명하는 정치\"",
       "snippet": "더불어민주당 장윤정 경기도의원이 6일 경기도의회 브리핑룸에서 재선 도전을 선언하며 \"말이 아닌 실력과 성과로 안산의 변화를 완성하겠다\"고 밝혔다. 장 의원은 이날 출마 기자회견에서 \"정치는 결과로 증명해야 한다\"며...",
       "url": "https://www.newscj.com/news/articleView.html?idxno=3391793"
-    },
-    {
-      "source": "naver",
-      "press": "jeonmae.co.kr",
-      "date": "2026.04.06",
-      "title": "장윤정 경기도의원, 재선 도전 선언···안산 지역 변화 강조",
-      "snippet": "장윤정 경기도의원 장윤정 경기도의원이 재선 도전을 공식 선언하며 안산 지역 발전 비전을 제시했다. 장 의원은 6일 경기도의회 브리핑룸에서 기자회견을 열고 지역 변화를 이끌겠다는 의지를 밝혔다. 그는 일동과 이동...",
-      "url": "https://www.jeonmae.co.kr/news/articleView.html?idxno=1245705"
     },
     {
       "source": "naver",
@@ -1843,19 +1851,19 @@
     },
     {
       "source": "naver",
+      "press": "kgnews.co.kr",
+      "date": "2026.03.26",
+      "title": "[재산공개]경기도의원 74% 재산 증가…평균 12억6000만원",
+      "snippet": "반면 장윤정(민주·안산3) 의원은 마이너스 2400만 원을 신고해 재산이 가장 적었다. 장 의원은 예금이... 등의 순으로 재산 신고액이 적었다. [ 경기신문 = 장진우 기자 ] 경기도의회 전경 (사진=경기도의회 제공)",
+      "url": "https://www.kgnews.co.kr/news/article.html?no=888958"
+    },
+    {
+      "source": "naver",
       "press": "kihoilbo.co.kr",
       "date": "2026.03.26",
       "title": "경기도의원 152명 중 112명 재산 늘어",
       "snippet": "기호일보, KIHOILBO 경기도의회 전경.<경기도의회 제공> 올해 경기도 광역의원의 평균 재산은 12억6천383만... 가장 적은 재산을 보유한 도의원은 장윤정(민주·안산3) 의원으로 마이너스 2천490만 원을 신고했다....",
       "url": "https://www.kihoilbo.co.kr/news/articleView.html?idxno=3017496"
-    },
-    {
-      "source": "naver",
-      "press": "news1.kr",
-      "date": "2026.03.26",
-      "title": "[재산공개]김성수 경기도의원 324억 신고…4년 연속 도내 최고 자산가",
-      "snippet": "김성수 경기도의회 의원(국민의힘·하남2)이 324억여 원의 재산을 보유해 4년 연속 도내 재산공개 대상... 반면, 장윤정 의원(민주·안산3)은 -2490만 원을 신고해 도의원 중 재산이 가장 적었다. 이어 정동혁(민주...",
-      "url": "https://www.news1.kr/local/gyeonggi/6114090"
     },
     {
       "source": "google",
@@ -1896,6 +1904,14 @@
       "title": "장윤정 의원, 안산 학교 환경개선 87억원 규모 예산 확보",
       "snippet": "장윤정 의원, 안산 학교 환경개선 87억원 규모 예산 확보 일간경기",
       "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBDY3FVTXFLN2F6cUxkY0F6ckplb0xJX0ttcnJGdkxheEhlRlRrVDZWZmlGWXZNUk84TWxGeHBheHhVbktRT1FNQ0hNcFFQcGd6VnQyX3hFcER4S0JLZGl5SnB0THhnTHNj?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "한국미디어뉴스",
+      "date": "2026.03.05",
+      "title": "경기도의회 장윤정 의원, 안산 학교 환경개선에 87억 원 규모 예산 확보",
+      "snippet": "경기도의회 장윤정 의원, 안산 학교 환경개선에 87억 원 규모 예산 확보 한국미디어뉴스",
+      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE5BMHFCVjZkaGFuNG42NmtvcmxCSVdWTVdQd083dWV5clhBTE5wT21UT25aM3o4OGVHWlV6dXZUYUVxaHl2cG9SQkFYcmxKOU1zMUpIQTV2dHJzalFWUl9qX1F3ci1SUQ?oc=5"
     },
     {
       "source": "google",
