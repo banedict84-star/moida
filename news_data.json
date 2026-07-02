@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-02 17:11 UTC",
+  "updated": "2026-07-02 18:57 UTC",
   "items": [
     {
       "source": "naver",
@@ -571,11 +571,11 @@
     },
     {
       "source": "naver",
-      "press": "pharmnews.com",
+      "press": "4th.kr",
       "date": "2026.07.02",
-      "title": "캄보디아 훈장 이끌어낸 K-제약바이오…'글로벌생명나눔'으로 ESG 선순환",
-      "snippet": "향상시키고, 교육 기자재 지원으로 미래 역량 육성을 돕는 국제 구호 NGO다. 2019년부터 전 세계 저개발국가를... 매년 경기도 안산 석호공원에서 개최되는 '해외 난민 희망나눔 축제'에는 동국제약, 유한양행, 광동제약...",
-      "url": "https://www.pharmnews.com/news/articleView.html?idxno=304581"
+      "title": "[유통소식] 이마트·LG생건 '1매 99원' 리얼순면 생리대 출시",
+      "snippet": "2일 안산상공회의소에서 '시흥·안산 채용 페스타'를 시작으로 10일 서울시50플러스재단 동부캠퍼스, 20일... 참가자들은 서울역 도심공항터미널에서 기내 반입 금지 물품 안전교육을 받고 티켓 발권과 보안검색 등...",
+      "url": "http://www.4th.kr/news/articleView.html?idxno=2114073"
     },
     {
       "source": "google",
@@ -754,14 +754,6 @@
       "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE42QklocTJ1UHZBR2Z4UFp5bGg4T2dzdlZYeDk1SFlKcWZmTGdSVklzLTQzOHVUOUFramxCRHJTdGQ0YWxCVVBiOURPbWxxXzkzN0tTVTAwWmNPUQ?oc=5"
     },
     {
-      "source": "google",
-      "press": "중부일보",
-      "date": "2026.06.30",
-      "title": "안산 원일중, 학생 기자단·미디어 크리에이터 본격 운영",
-      "snippet": "안산 원일중, 학생 기자단·미디어 크리에이터 본격 운영 중부일보",
-      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE9MQUdqQ28wRDl1ZWFDdmprTDlpV1h2c0MyOUpBdzUtWi1EcXdZSjAyWWhxbXpwaTBTdnA2Q1huVVVhV0JsMUJYU2hzNjBGNUlrUng4bE9NRHd2bnZoN3ZYd3hOTzZhZ3l4ZTZDSUdvRQ?oc=5"
-    },
-    {
       "source": "naver",
       "press": "pinpointnews.co.kr",
       "date": "2026.06.29",
@@ -832,6 +824,14 @@
       "title": "\"수확철 농촌에 일손을\" 안산 농협·고향주부모임, 감자밭서 구슬땀",
       "snippet": "NH농협 안산시지부와 고향주부모임 안산시지회는 29일 안산시 상록구 팔곡이동의 한 감자 재배농가에서 합동 농촌일손돕기 봉사활동을 펼쳤다. 이날 봉사에는 주원식 NH농협 안산시지부장을 비롯해 최기호 반월농협...",
       "url": "https://www.joongboo.com/news/articleView.html?idxno=363730006"
+    },
+    {
+      "source": "google",
+      "press": "경기일보",
+      "date": "2026.06.29",
+      "title": "안산시, 안산해양중 학부모 간담회 개최…“교육 여건 개선 노력”",
+      "snippet": "안산시, 안산해양중 학부모 간담회 개최…“교육 여건 개선 노력” 경기일보",
+      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE1OLVJ1VmFWd1J1bGV5Tl9Ud1B2SEJUamVwVlJMTFBQQXBVUzFpQ1hOQzh5cE0xemJqbDZYamQ0TW1YUjNvdnBsSHR5NFEya2ZRSkhpWXdab3JZLXc?oc=5"
     },
     {
       "source": "google",
@@ -938,20 +938,20 @@
       "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE5SakNiRUJkbTF5M0xudlFZZlZ3eXBGWHB6cHoxT0FORkJfRmdXQmFnYVdGd0hJbGZsZUdHSTg0c2Vlai1yMmZhazNkLV9oalU?oc=5"
     },
     {
+      "source": "google",
+      "press": "매일일보",
+      "date": "2026.06.22",
+      "title": "안산교육지원청, 유치원 교사 대상 초등학교 교육과정 이해 연수 실시",
+      "snippet": "안산교육지원청, 유치원 교사 대상 초등학교 교육과정 이해 연수 실시 매일일보",
+      "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE5BNWFIc1JZUFZGMW5RNUZEbndUNVlsM1lTOUNHN1RDT0dUbHk5ZTBBOFFGU2dESzc3YllrbTdBbkdFSzNhemljWWhzUFkxWE5WcmJUNWhmampSby1kYkpIMldJc0E?oc=5"
+    },
+    {
       "source": "naver",
       "press": "nc.press",
       "date": "2026.06.21",
       "title": "[NC포토] 알고보니 혼수상태, 골프장 나들이...\"인카금융 '더헤븐 마스터...",
       "snippet": "'히트 제조기' 알고보니 혼수상태(김지환·김경범)가 안산 대부도 더헤븐리조트 내 더헤븐CC에서 열린... 송대관, 장윤정, 신유, 한혜진, 금잔디, 김용임, 홍진영, 김호중, 안성훈, 박서진, 홍지윤, 정서주, 양지은 등...",
       "url": "https://www.nc.press/news/articleView.html?idxno=618592"
-    },
-    {
-      "source": "google",
-      "press": "시사통신",
-      "date": "2026.06.21",
-      "title": "안산교육지원청, 유치원 R&P 교육연구회 수업공개 나눔 성료",
-      "snippet": "안산교육지원청, 유치원 R&P 교육연구회 수업공개 나눔 성료 시사통신",
-      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBPNlZFNkJxd2JTNXdCNDdwNWZxQkJZVkdfLVVrMHdEbm9ncnIxN29GcFItSklsdnlpVTBjT1Y0RlpnTFBXYV9CSG9GUHFvcDE1bXVjTzAtZHZLeGtacHZ4d1l2dG5kb1XSAWtBVV95cUxNZFMzNVk1Z3lwY0NvOFNnT3RUVGlJaE1QcUt2b1BwQjdDSVNkSXh5TTZfOW1Zc0dmczJ4ekt4NUJnMGZrNFV5cWNJVkRDb2l2eFRCNUVMY0g3Mm1zUVRfSEpVR2s2blhVeHFxdw?oc=5"
     },
     {
       "source": "google",
@@ -986,20 +986,20 @@
       "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5CSGRscUh0dzB0aVdTS1lVUjczblpuc3NoVlZFdWtCY0lMRWo0NWtnYkVmbFFpV0tnT3pJUDNLZTQ4dHhJWm1TOEFhdVVwempBTzJWdW93cXZndw?oc=5"
     },
     {
+      "source": "google",
+      "press": "실버넷뉴스",
+      "date": "2026.06.17",
+      "title": "안산교육삼락회와 안산교육지원청과의 첫 만남",
+      "snippet": "안산교육삼락회와 안산교육지원청과의 첫 만남 실버넷뉴스",
+      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1PVTVKVzJfREZoOGd1NWtpcFhoNjFfYjJ3ZzNfNzdDbmp4R092NEFZOW9mclFEQmJLd2hmaDBnR2lEb0J6TlZtQ3hfVjBDakpOUGc4eTZlVUtyckVWREljcGFxRGR0a3RyUHVCRGNZTXDSAXNBVV95cUxNbXYwaUZWX3NLOUUzYzBpZkUzWTM4V3NhcHlvS2ZPMElhRGM5djBVV0Iza3Z0ZFVrWnNJVTljdjZZUWlFVW5VVWZxTWNOS215SEhWTUJ1XzJUUHZOV21oNFZkaV9qRU5xR3ZGdGI0V1VXV2kw?oc=5"
+    },
+    {
       "source": "naver",
       "press": "ekn.kr",
       "date": "2026.06.16",
       "title": "[브리프] 경기도의회 6월 15일 주요 의정 소식",
       "snippet": "송기우 기자 kwsong@ekn.kr 경기도의회 더불어민주당, 제12대 전반기 대표의원 및 의장단 선출 예고 경기도의회, 11일 보건건강국 2025회계연도 결산 심사 장윤정 도의원, 경기도교육청 예산유보 지적하며 적기 집행 당부...",
       "url": "https://www.ekn.kr/web/view.php?key=20260616020173465"
-    },
-    {
-      "source": "google",
-      "press": "실버넷뉴스",
-      "date": "2026.06.16",
-      "title": "안산교육삼락회와 안산교육지원청과의 첫 만남",
-      "snippet": "안산교육삼락회와 안산교육지원청과의 첫 만남 실버넷뉴스",
-      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1PVTVKVzJfREZoOGd1NWtpcFhoNjFfYjJ3ZzNfNzdDbmp4R092NEFZOW9mclFEQmJLd2hmaDBnR2lEb0J6TlZtQ3hfVjBDakpOUGc4eTZlVUtyckVWREljcGFxRGR0a3RyUHVCRGNZTXDSAXNBVV95cUxNbXYwaUZWX3NLOUUzYzBpZkUzWTM4V3NhcHlvS2ZPMElhRGM5djBVV0Iza3Z0ZFVrWnNJVTljdjZZUWlFVW5VVWZxTWNOS215SEhWTUJ1XzJUUHZOV21oNFZkaV9qRU5xR3ZGdGI0V1VXV2kw?oc=5"
     },
     {
       "source": "naver",
@@ -1011,19 +1011,19 @@
     },
     {
       "source": "google",
-      "press": "신아일보",
-      "date": "2026.06.15",
-      "title": "해양·해솔 학군 갈등 해법 모색…김남국 의원, 안산교육지원청과 간담회",
-      "snippet": "해양·해솔 학군 갈등 해법 모색…김남국 의원, 안산교육지원청과 간담회 신아일보",
-      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1Vbzc0NnExRjFmNlg5UjNySUlxNEFwU3N0MVplTHNDdW8xX09ncDVCdl9IaVZuM0xTa2NtRFhvV0J4dkt2eklNUm9NZ1Y2M2ZOM0JmbkJ1SmNSaHQ2cEk5c3NwOTJVcXBVX2N5VmZQaTc?oc=5"
-    },
-    {
-      "source": "google",
       "press": "경기종합뉴스",
       "date": "2026.06.15",
       "title": "김남국 의원, 안산 교육 현안 ‘상생 돌파구’모색 위해 안산교육청 방문",
       "snippet": "김남국 의원, 안산 교육 현안 ‘상생 돌파구’모색 위해 안산교육청 방문 경기종합뉴스",
       "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE8xbmJadS1MNEdscUlPQ295cDNtMlJQbmd6TWhfQ3VyLXBMVTQySUU0cVRia3AyTUlzN0xNTWNfN0VtZTdhZm5mMGQ1U3NZOFhFQzZTdTJBdkVFM2Rha2tzOFJGaHVUSUhiR056X21qV1JEU2g0?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "신아일보",
+      "date": "2026.06.15",
+      "title": "해양·해솔 학군 갈등 해법 모색…김남국 의원, 안산교육지원청과 간담회",
+      "snippet": "해양·해솔 학군 갈등 해법 모색…김남국 의원, 안산교육지원청과 간담회 신아일보",
+      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1Vbzc0NnExRjFmNlg5UjNySUlxNEFwU3N0MVplTHNDdW8xX09ncDVCdl9IaVZuM0xTa2NtRFhvV0J4dkt2eklNUm9NZ1Y2M2ZOM0JmbkJ1SmNSaHQ2cEk5c3NwOTJVcXBVX2N5VmZQaTc?oc=5"
     },
     {
       "source": "google",
@@ -1040,6 +1040,14 @@
       "title": "장윤정 부위원장, 경기도교육청 예산유보 운영 점검… \"절감보다 적기 ...",
       "snippet": "경기도의회 교육기획위원회 장윤정 부위원장은 최근 열린 2025회계연도 경기도교육청 결산 및 2026년도 제1회 추가경정예산안 심사에서 예산유보액 운영 현황을 점검하며, \"예산 절감 실적보다 중요한 것은 교육현장에...",
       "url": "https://www.jeonmae.co.kr/news/articleView.html?idxno=1264967"
+    },
+    {
+      "source": "google",
+      "press": "선데이뉴스신문",
+      "date": "2026.06.13",
+      "title": "장윤정 경기도의원 “교육예산 묶어두기 관행 재검토해야”…경기도교육청 예산유보 운영 도마 위",
+      "snippet": "장윤정 경기도의원 “교육예산 묶어두기 관행 재검토해야”…경기도교육청 예산유보 운영 도마 위 선데이뉴스신문",
+      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE1NWFltZmpQTVB1NklDckVPT3JQRGFwQnlNWERmb05fVkNfNmFYNlc1OF96SVl0OVJDRmZXeEcxWDNpQlpkMWhnN1RKQmxaek5DRWRieWdqcUU1Q2dj?oc=5"
     },
     {
       "source": "naver",
@@ -1675,14 +1683,6 @@
     },
     {
       "source": "google",
-      "press": "경기남부뉴스",
-      "date": "2026.04.27",
-      "title": "경기도의회 장윤정 의원, 학교 급식실 환기설비 개선 TF 후속 정담회 개최...현장 체감 개선 논의",
-      "snippet": "경기도의회 장윤정 의원, 학교 급식실 환기설비 개선 TF 후속 정담회 개최...현장 체감 개선 논의 경기남부뉴스",
-      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE1LckYwaW1MaHhuTHN2WXBRUXQzdXlkNTlUdEV2aWlNRjJHd1YzNXVNLTlfcGxUdnZFeGw4WnNMMFhaYzktV1JHNk55OTJEWklidV9SREYxU0d0SWUwc0tzSmF0T2R3NHc?oc=5"
-    },
-    {
-      "source": "google",
       "press": "안산뉴스",
       "date": "2026.04.27",
       "title": "장윤정 도의원 교육기획위 부위원장 선임",
@@ -1704,6 +1704,14 @@
       "title": "장윤정 경기도의원, 학교 급식실 환기설비 개선 TF 후속 정담회 개최…...",
       "snippet": "경기도의회 교육기획위원회 장윤정 부위원장(더불어민주당, 안산3)이 지난 24일 「학교 급식실 환기설비 개선 TF」 결과 보고 후속 정담회를 열고, 학교 급식실 종사자 대표들과 함께 현장 개선 과제를 논의했다. 이번...",
       "url": "https://www.seoul.co.kr/news/publicnews/local_govern/kyungki_do/2026/04/27/20260427500177?wlog_tag3=naver"
+    },
+    {
+      "source": "google",
+      "press": "경기남부뉴스",
+      "date": "2026.04.27",
+      "title": "경기도의회 장윤정 의원, 학교 급식실 환기설비 개선 TF 후속 정담회 개최...현장 체감 개선 논의",
+      "snippet": "경기도의회 장윤정 의원, 학교 급식실 환기설비 개선 TF 후속 정담회 개최...현장 체감 개선 논의 경기남부뉴스",
+      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE1LckYwaW1MaHhuTHN2WXBRUXQzdXlkNTlUdEV2aWlNRjJHd1YzNXVNLTlfcGxUdnZFeGw4WnNMMFhaYzktV1JHNk55OTJEWklidV9SREYxU0d0SWUwc0tzSmF0T2R3NHc?oc=5"
     },
     {
       "source": "google",
@@ -1810,12 +1818,12 @@
       "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE81bzdUS21YRlFnQ2ctT0ZWaU5Ud0tCc0VVbVBZdFJ1UjQ5eHdLSVRySkZwSDY3YlBybmlLNHdDT3VwcEgtS0F3SFpTeFdIaEZ6OW0yX0l5Mld4ZkFfUmJjVEt3THJ6VnNCRnB1TGhn?oc=5"
     },
     {
-      "source": "google",
-      "press": "내외뉴스통신",
+      "source": "naver",
+      "press": "lawissue.co.kr",
       "date": "2026.04.01",
-      "title": "장윤정 경기도의원, 기계설비유지관리자 처우개선 논의 정담회 개최",
-      "snippet": "장윤정 경기도의원, 기계설비유지관리자 처우개선 논의 정담회 개최 내외뉴스통신",
-      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE1HcUs1WE1PSTdPS3JBRkNhQVJEY0N5SWpqaHBBLXl6bjBzOG40MVl3dkJiWXhEbFdJWHhPZzB6OFJXdllvLVRIQkI0TTV4eWtRLTZMd2xiTWxGbXlrTEhDYUk2N2lXTnFOb2NUa9IBcEFVX3lxTE9hZjZIdmZvakx2bklVbG9HUVUtakdoTnYyeXF3ckhLSUwxN0dESVVibk42dk90NU9iMlZydmJ5d1lCYVZLVnlIZEhFcnF5a1pTajdKNFZqT1hzbkRTUjhibFVVaGtFSnRFUklINDlTRUk?oc=5"
+      "title": "경기도의회 장윤정 의원 “학교 기계설비관리자 처우 개선 시급”",
+      "snippet": "경기도의회 장윤정 의원이 학교 기계설비유지관리자의 처우 개선 필요성을 강조하며 제도 보완을 촉구했다. 장 의원은 지난 3월 31일 경기도교육청 관계 부서와 공무원노동조합 관계자들과 정담회를 열고 현장 애로사항과...",
+      "url": "http://www.lawissue.co.kr/view.php?ud=202604011511502056d94aa4ada6_12"
     },
     {
       "source": "google",
@@ -1826,12 +1834,12 @@
       "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE9HMDgyMldIY0JXYXpFM25ZOEp6NDB2N1JpbGJwTm91Y25QdFNOaDRRVDdrRjluTDdJejVUMkk5cURMN2tjSFhFME5tMEtvRm5oeGpDRm5BOEgxSm9HLWVUNUVDYzhCQQ?oc=5"
     },
     {
-      "source": "naver",
-      "press": "lawissue.co.kr",
+      "source": "google",
+      "press": "내외뉴스통신",
       "date": "2026.04.01",
-      "title": "경기도의회 장윤정 의원 “학교 기계설비관리자 처우 개선 시급”",
-      "snippet": "경기도의회 장윤정 의원이 학교 기계설비유지관리자의 처우 개선 필요성을 강조하며 제도 보완을 촉구했다. 장 의원은 지난 3월 31일 경기도교육청 관계 부서와 공무원노동조합 관계자들과 정담회를 열고 현장 애로사항과...",
-      "url": "http://www.lawissue.co.kr/view.php?ud=202604011511502056d94aa4ada6_12"
+      "title": "장윤정 경기도의원, 기계설비유지관리자 처우개선 논의 정담회 개최",
+      "snippet": "장윤정 경기도의원, 기계설비유지관리자 처우개선 논의 정담회 개최 내외뉴스통신",
+      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE1HcUs1WE1PSTdPS3JBRkNhQVJEY0N5SWpqaHBBLXl6bjBzOG40MVl3dkJiWXhEbFdJWHhPZzB6OFJXdllvLVRIQkI0TTV4eWtRLTZMd2xiTWxGbXlrTEhDYUk2N2lXTnFOb2NUa9IBcEFVX3lxTE9hZjZIdmZvakx2bklVbG9HUVUtakdoTnYyeXF3ckhLSUwxN0dESVVibk42dk90NU9iMlZydmJ5d1lCYVZLVnlIZEhFcnF5a1pTajdKNFZqT1hzbkRTUjhibFVVaGtFSnRFUklINDlTRUk?oc=5"
     },
     {
       "source": "naver",
@@ -1843,19 +1851,19 @@
     },
     {
       "source": "naver",
-      "press": "kgnews.co.kr",
-      "date": "2026.03.26",
-      "title": "[재산공개]경기도의원 74% 재산 증가…평균 12억6000만원",
-      "snippet": "반면 장윤정(민주·안산3) 의원은 마이너스 2400만 원을 신고해 재산이 가장 적었다. 장 의원은 예금이... 등의 순으로 재산 신고액이 적었다. [ 경기신문 = 장진우 기자 ] 경기도의회 전경 (사진=경기도의회 제공)",
-      "url": "https://www.kgnews.co.kr/news/article.html?no=888958"
-    },
-    {
-      "source": "naver",
       "press": "news1.kr",
       "date": "2026.03.26",
       "title": "[재산공개]김성수 경기도의원 324억 신고…4년 연속 도내 최고 자산가",
       "snippet": "김성수 경기도의회 의원(국민의힘·하남2)이 324억여 원의 재산을 보유해 4년 연속 도내 재산공개 대상... 반면, 장윤정 의원(민주·안산3)은 -2490만 원을 신고해 도의원 중 재산이 가장 적었다. 이어 정동혁(민주...",
       "url": "https://www.news1.kr/local/gyeonggi/6114090"
+    },
+    {
+      "source": "naver",
+      "press": "kihoilbo.co.kr",
+      "date": "2026.03.26",
+      "title": "경기도의원 152명 중 112명 재산 늘어",
+      "snippet": "기호일보, KIHOILBO 경기도의회 전경.<경기도의회 제공> 올해 경기도 광역의원의 평균 재산은 12억6천383만... 가장 적은 재산을 보유한 도의원은 장윤정(민주·안산3) 의원으로 마이너스 2천490만 원을 신고했다....",
+      "url": "https://www.kihoilbo.co.kr/news/articleView.html?idxno=3017496"
     },
     {
       "source": "google",
@@ -1896,6 +1904,14 @@
       "title": "장윤정 의원, 안산 학교 환경개선 87억원 규모 예산 확보",
       "snippet": "장윤정 의원, 안산 학교 환경개선 87억원 규모 예산 확보 일간경기",
       "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBDY3FVTXFLN2F6cUxkY0F6ckplb0xJX0ttcnJGdkxheEhlRlRrVDZWZmlGWXZNUk84TWxGeHBheHhVbktRT1FNQ0hNcFFQcGd6VnQyX3hFcER4S0JLZGl5SnB0THhnTHNj?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "한국미디어뉴스",
+      "date": "2026.03.05",
+      "title": "경기도의회 장윤정 의원, 안산 학교 환경개선에 87억 원 규모 예산 확보",
+      "snippet": "경기도의회 장윤정 의원, 안산 학교 환경개선에 87억 원 규모 예산 확보 한국미디어뉴스",
+      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE5BMHFCVjZkaGFuNG42NmtvcmxCSVdWTVdQd083dWV5clhBTE5wT21UT25aM3o4OGVHWlV6dXZUYUVxaHl2cG9SQkFYcmxKOU1zMUpIQTV2dHJzalFWUl9qX1F3ci1SUQ?oc=5"
     },
     {
       "source": "google",
@@ -1947,19 +1963,27 @@
     },
     {
       "source": "google",
-      "press": "일간경기",
-      "date": "2025.12.28",
-      "title": "장윤정 도의원, “정쟁 아닌 민생, 도민 삶에 닿는 정치 끝까지 책임”",
-      "snippet": "장윤정 도의원, “정쟁 아닌 민생, 도민 삶에 닿는 정치 끝까지 책임” 일간경기",
-      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBaMVlFUk5DWlJRWXg3N1NyaU9Na0ZyeENHX2ZDZHRGR2FXbmt6LVJ2eFFiYlVhMW9DT0JVdVdKWEw0VTFvbGNsdEo3clZIbnd3aDRaRDhJQ2VCX1NSSi1zRUU1S1dnUmU4?oc=5"
-    },
-    {
-      "source": "google",
       "press": "전자신문",
       "date": "2025.12.27",
       "title": "장윤정 경기도의원 “정쟁 아닌 민생, 도민 삶 향한 정치 지켜야”",
       "snippet": "장윤정 경기도의원 “정쟁 아닌 민생, 도민 삶 향한 정치 지켜야” 전자신문",
       "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE9MYlE1UGl6dm9pT2FaUk54NUFXaU5wcWtVUFo1QmRtcWtNRl8wb05RUWJ1V1JUS3VTSWx5Y3pScEo2WWNCb0txR1FFbHN0dw?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "경인매일",
+      "date": "2025.11.28",
+      "title": "장윤정 경기도의원, 민주당 당대표 특별보좌역 청년특보 임명",
+      "snippet": "장윤정 경기도의원, 민주당 당대표 특별보좌역 청년특보 임명 경인매일",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE9BYzNoMzlzaEZwNWN2REFNQ3U4bE9WdzRwNGZ3M0JjeXRlbk1YdFYzMkxCbFFzdVBNSF9pclM1NGtHc3UtcUVBRVY5OGZlYkZ1SFd5QjJqU0YtTFRjNmc2cGcxMmhhcjJL?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "중부일보",
+      "date": "2025.11.19",
+      "title": "[행감인물] 장윤정 경기도의원 “IB 정책, 미비한데 추진만 앞서”",
+      "snippet": "[행감인물] 장윤정 경기도의원 “IB 정책, 미비한데 추진만 앞서” 중부일보",
+      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE9UR1UxQXhSTTk4YkM4NXFKVkdxUlFkQ050TGQ1dVFCM3lWOU8zUWtYN1N0bjd2TUI2QThmSFN2ZTI4NFhYUU9LOEFIMWpKc2NTV09LNDZMWXREN3BoRUllMUppSm8tSjVjVFdzRF9Gdw?oc=5"
     },
     {
       "source": "google",
