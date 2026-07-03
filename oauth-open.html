@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>외부 브라우저로 열기 · MOIDA</title>
+  <meta name="robots" content="noindex">
+  <style>
+    :root{
+      --bg:#f1f5fb; --surface:#ffffff; --line:#e3e9f2; --line-soft:#eef3fa;
+      --ink:#15233d; --ink-2:#51607a; --ink-3:#8794aa; --ink-4:#b3bdcf;
+      --primary:#1452a0; --primary-600:#0e3f80; --primary-soft:#e7f0fb;
+    }
+    *{ box-sizing:border-box; }
+    html,body{ margin:0; height:100%; }
+    body{
+      font-family:"Pretendard Variable",Pretendard,-apple-system,system-ui,sans-serif;
+      color:var(--ink); background:var(--bg); -webkit-font-smoothing:antialiased; letter-spacing:-.01em;
+      display:flex; align-items:center; justify-content:center; padding:24px;
+    }
+    .card{
+      width:100%; max-width:400px; background:var(--surface); border:1px solid var(--line);
+      border-radius:18px; padding:30px 24px 24px; box-shadow:0 12px 34px rgba(16,40,80,.08); text-align:center;
+    }
+    .mark{
+      width:56px; height:56px; margin:0 auto 16px; border-radius:16px;
+      background:linear-gradient(135deg,#1a5bb0,#0e3f80); display:flex; align-items:center; justify-content:center;
+      box-shadow:0 8px 20px rgba(20,82,160,.3);
+    }
+    h1{ font-size:19px; font-weight:800; margin:0 0 8px; }
+    p.lead{ font-size:13.5px; color:var(--ink-2); font-weight:500; line-height:1.6; margin:0 0 20px; }
+    .btn{
+      width:100%; display:flex; align-items:center; justify-content:center; gap:9px; padding:14px;
+      border:none; border-radius:13px; font-family:inherit; font-size:15px; font-weight:700; cursor:pointer;
+      background:linear-gradient(135deg,#1a5bb0,#0e3f80); color:#fff; box-shadow:0 8px 20px rgba(20,82,160,.3);
+      transition:transform .12s; text-decoration:none;
+    }
+    .btn:active{ transform:translateY(1px); }
+    .btn.sub{
+      background:#fff; color:var(--ink); border:1px solid var(--line); box-shadow:none; margin-top:10px; font-size:14px;
+    }
+    .guide{
+      margin-top:20px; padding:14px 15px; background:var(--primary-soft); border-radius:12px;
+      font-size:12.5px; color:var(--primary-600); font-weight:600; line-height:1.65; text-align:left;
+    }
+    .guide b{ font-weight:800; }
+    .err{ color:#b42318; background:#fef3f2; }
+    .foot{ margin-top:20px; font-size:11.5px; color:var(--ink-3); font-weight:500; }
+    .foot b{ color:var(--ink-2); font-weight:700; }
+    code{ background:#fff; border:1px solid var(--line); border-radius:6px; padding:1px 5px; font-size:11.5px; }
+    .hide{ display:none !important; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="mark">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+      </svg>
+    </div>
+
+    <div id="main">
+      <h1>외부 브라우저로 이동합니다</h1>
+      <p class="lead">
+        구글 로그인은 보안 정책상 <b>카톡 안(인앱 브라우저)</b>에서는 열리지 않습니다.<br>
+        아래 버튼을 누르면 <b>크롬·사파리</b>에서 안전하게 로그인됩니다.
+      </p>
+      <a href="#" id="openBtn" class="btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>
+        기본 브라우저로 열기
+      </a>
+      <button id="copyBtn" class="btn sub">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <span id="copyLabel">로그인 링크 복사</span>
+      </button>
+
+      <div class="guide" id="iosGuide" style="display:none">
+        📱 <b>아이폰인데 자동으로 안 열리나요?</b><br>
+        오른쪽 위 <b>공유( ⬆︎ ) → Safari로 열기</b>를 누르거나,
+        위 <b>링크 복사</b> 후 사파리 주소창에 붙여넣어 주세요.
+      </div>
+      <div class="guide" id="aosGuide" style="display:none">
+        🤖 <b>안드로이드인데 자동으로 안 열리나요?</b><br>
+        오른쪽 위 <b>⋮ (더보기) → 다른 브라우저로 열기</b>를 눌러 크롬에서 진행해 주세요.
+      </div>
+    </div>
+
+    <div id="noUrl" class="hide">
+      <h1>연결 정보가 없습니다</h1>
+      <p class="lead">
+        이 페이지는 <code>?url=</code> 뒤에 열고자 하는 주소가 있어야 동작합니다.<br>
+        봇의 버튼 링크를 아래 형식으로 설정해 주세요.
+      </p>
+      <div class="guide">
+        <b>버튼 링크 형식</b><br>
+        <code>.../oauth-open.html?url=</code>&lt;URL인코딩된 구글 OAuth 주소&gt;
+      </div>
+    </div>
+
+    <div class="foot">© 2026 <b>MOIDA</b> · 안전한 외부 브라우저 연결</div>
+  </div>
+
+  <script>
+  (function(){
+    // ── 대상 주소 파싱 (?url= 또는 ?u=) ─────────────────────────────
+    var qs = new URLSearchParams(location.search);
+    var raw = qs.get('url') || qs.get('u') || '';
+    var target = '';
+    try { target = decodeURIComponent(raw); } catch(e) { target = raw; }
+
+    // http/https만 허용 (javascript: 등 스킴 주입 차단)
+    var valid = /^https?:\/\//i.test(target);
+    if(!valid){
+      document.getElementById('main').classList.add('hide');
+      document.getElementById('noUrl').classList.remove('hide');
+      return;
+    }
+
+    // ── 환경 감지 ──────────────────────────────────────────────────
+    var ua = navigator.userAgent || '';
+    var isKakao   = /KAKAOTALK/i.test(ua);
+    var isAndroid = /Android/i.test(ua);
+    var isIOS     = /iPhone|iPad|iPod/i.test(ua);
+    // 카톡 외 흔한 인앱 웹뷰(라인/네이버/페북/인스타 등)도 대상
+    var isOtherInApp = /(FBAN|FBAV|Instagram|Line\/|NAVER|DaumApps|; wv\)|KAKAOSTORY)/i.test(ua);
+    var isInApp = isKakao || isOtherInApp;
+
+    // 안드로이드 크롬 강제 실행용 intent URL 생성
+    function toChromeIntent(u){
+      var noScheme = u.replace(/^https?:\/\//i, '');
+      return 'intent://' + noScheme +
+             '#Intent;scheme=https;package=com.android.chrome;' +
+             'S.browser_fallback_url=' + encodeURIComponent(u) + ';end';
+    }
+
+    // 외부 브라우저로 열기 시도
+    function openExternal(){
+      if(isKakao){
+        // 카카오톡 전용 스킴: 기본 브라우저로 열기 (안드/아이폰 공통)
+        location.href = 'kakaotalk://web/openExternal?url=' + encodeURIComponent(target);
+      } else if(isAndroid){
+        location.href = toChromeIntent(target);
+      } else {
+        // 일반 브라우저(또는 iOS 인앱): 대상으로 직접 이동
+        location.href = target;
+      }
+    }
+
+    // ── 이미 정상 외부 브라우저면 즉시 통과 ─────────────────────────
+    if(!isInApp){
+      location.replace(target);
+      return;
+    }
+
+    // 인앱이면: 자동 시도 + 수동 버튼/안내 노출
+    var btn = document.getElementById('openBtn');
+    btn.addEventListener('click', function(e){ e.preventDefault(); openExternal(); });
+
+    // 플랫폼별 수동 안내
+    if(isIOS) document.getElementById('iosGuide').style.display = 'block';
+    else if(isAndroid) document.getElementById('aosGuide').style.display = 'block';
+
+    // 링크 복사
+    document.getElementById('copyBtn').addEventListener('click', function(){
+      var label = document.getElementById('copyLabel');
+      function done(){ label.textContent = '복사됨 ✓'; setTimeout(function(){ label.textContent='로그인 링크 복사'; }, 1600); }
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(target).then(done, fallbackCopy);
+      } else { fallbackCopy(); }
+      function fallbackCopy(){
+        var t = document.createElement('textarea'); t.value = target;
+        t.style.position='fixed'; t.style.opacity='0'; document.body.appendChild(t);
+        t.focus(); t.select();
+        try{ document.execCommand('copy'); done(); }catch(e){}
+        document.body.removeChild(t);
+      }
+    });
+
+    // 카톡 인앱이면 진입 즉시 한 번 자동 시도 (차단 시 사용자가 버튼으로 재시도)
+    if(isKakao){ setTimeout(openExternal, 350); }
+  })();
+  </script>
+</body>
+</html>
