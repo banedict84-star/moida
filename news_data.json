@@ -1,6 +1,14 @@
 {
-  "updated": "2026-07-03 08:36 UTC",
+  "updated": "2026-07-03 11:50 UTC",
   "items": [
+    {
+      "source": "naver",
+      "press": "gukjenews.com",
+      "date": "2026.07.03",
+      "title": "안산시&김남국 국회의원, 경제자유구역 개발 등 주요현안 간담회",
+      "snippet": "안산경제자유구역은 상록구 사동 일대 약 166만㎡ 규모로, 올해 1월 산업통상자원부에서 신규 경제자유구역으로 지정됐다. 한양대학교 ERICA, 경기테크노파크, 한국산업기술시험원, 한국전기연구원 등 산·학·연 인프라를...",
+      "url": "https://www.gukjenews.com/news/articleView.html?idxno=3625902"
+    },
     {
       "source": "naver",
       "press": "shinailbo.co.kr",
@@ -32,6 +40,22 @@
       "title": "안산시, ASV 브랜드 상표출원 추진…경기경제자유구역 경쟁력 강화",
       "snippet": "한편 안산사이언스밸리지구는 상록구 사동 한양대학교 ERICA 일원 1.66㎢ 규모로 조성되는 경기경제자유구역이다. 기존 산·학·연 클러스터를 기반으로 AI, 첨단로봇, 스마트제조 분야 글로벌 기업을 유치해 미래...",
       "url": "http://www.newstown.co.kr/news/articleView.html?idxno=708050"
+    },
+    {
+      "source": "naver",
+      "press": "newscj.com",
+      "date": "2026.07.03",
+      "title": "경기도, 난민 의료·취업·주거 개선 의견 수렴",
+      "snippet": "◆안산서 첫 현장 간담회 경기도는 3일 안산시 청소년글로벌센터에서 난민지원정책 자문위원회 위원과 난민... 주거·교육·의료·고용 등 생활 전반의 지원 근거를 담고 있다. ◆\"건보료·취업 어렵다\" 참석자들은 의료와...",
+      "url": "https://www.newscj.com/news/articleView.html?idxno=3414347"
+    },
+    {
+      "source": "naver",
+      "press": "lawissue.co.kr",
+      "date": "2026.07.03",
+      "title": "경기도, 난민지원 정책 보완 착수… 정착 과정 애로사항 직접 점검",
+      "snippet": "경기도는 3일 안산시 청소년글로벌센터에서 '난민지원정책 자문위원회 현장 간담회'를 열었다고 밝혔다. 간담회에는 난민 당사자 7명과 자문위원, 경기도 이민사회국 관계자가 참석해 의료·고용·주거·교육 분야에서 겪는...",
+      "url": "http://www.lawissue.co.kr/view.php?ud=202607031448416842d94aa4ada6_12"
     },
     {
       "source": "naver",
@@ -283,11 +307,19 @@
     },
     {
       "source": "google",
-      "press": "경기매일",
+      "press": "코리아타임뉴스",
+      "date": "2026.07.03",
+      "title": "안산교육지원청, 초등 교감과 함께 미래교육의 답을 찾다",
+      "snippet": "안산교육지원청, 초등 교감과 함께 미래교육의 답을 찾다 코리아타임뉴스",
+      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5hTkhLNFhEcnJ4czFqWUFBejJXYmVjM2wzQkxQajdnQm9pVFpVYjVEanZZaDNMTnpYUHhhZ3lNMXUyTGVaZ3hUbkJvckJRU2NCMjNieGZkdkNjNVkxZHdORk0yaWl5NTRVTUE?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "메트로타임즈",
       "date": "2026.07.03",
       "title": "학교를 잇고, 미래를 키우다...안산교육지원청, '연결과 성장의 미래학교' 교육정책 아카데미 운영",
-      "snippet": "학교를 잇고, 미래를 키우다...안산교육지원청, '연결과 성장의 미래학교' 교육정책 아카데미 운영 경기매일",
-      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE04UHRhSHFKRW90VVMyR3Z1VHBmdEpQSXdwSVdEYm5ya21XVDlIcmlMWDlDUkJEbEtNSDg0cVZuVkp0R1lsVGNzbVJxaG45NHEyeTdKMzNmWG02aWhtbEYzcEdpclEzcUE?oc=5"
+      "snippet": "학교를 잇고, 미래를 키우다...안산교육지원청, '연결과 성장의 미래학교' 교육정책 아카데미 운영 메트로타임즈",
+      "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE9zQmlSUWNrdnNhb3ZsZ0xoMk1Ob2hTZkRKQXVfakdIb1NDT3o5Z0xqY1BFdUpxUlFUMWlYOU5GNGE0R1JiMzhmeU1GVUwzWU9wTmhEdExXSWs?oc=5"
     },
     {
       "source": "naver",
@@ -541,17 +573,17 @@
       "source": "naver",
       "press": "shinailbo.co.kr",
       "date": "2026.07.02",
-      "title": "안산인재육성재단, '꿈꾸는 로봇데이' 참가자 모집",
-      "snippet": "기술 교육을 강화했다. 안산인재육성재단 관계자는 \"지난해 참가 학생과 학부모들의 높은 만족도를 바탕으로 올해는 안산 스마트허브와 연계한 스마트팩토리 프로젝트를 새롭게 도입했다\"며 \"청소년들이 AI와 로봇...",
-      "url": "https://www.shinailbo.co.kr/news/articleView.html?idxno=5036988"
+      "title": "안산대학교, 시민 대상 RISE 특강 개최",
+      "snippet": "안산대학교는 이번 강연을 계기로 현장 중심 교육 역량을 평생학습 분야로 확대하고 지역 주민과 학생이 함께 성장할 수 있는 교육 프로그램을 지속적으로 운영할 계획이다. 아울러 지역 수요를 반영한 평생학습...",
+      "url": "https://www.shinailbo.co.kr/news/articleView.html?idxno=5036984"
     },
     {
       "source": "naver",
       "press": "shinailbo.co.kr",
       "date": "2026.07.02",
-      "title": "안산대학교, 시민 대상 RISE 특강 개최",
-      "snippet": "안산대학교는 이번 강연을 계기로 현장 중심 교육 역량을 평생학습 분야로 확대하고 지역 주민과 학생이 함께 성장할 수 있는 교육 프로그램을 지속적으로 운영할 계획이다. 아울러 지역 수요를 반영한 평생학습...",
-      "url": "https://www.shinailbo.co.kr/news/articleView.html?idxno=5036984"
+      "title": "안산인재육성재단, '꿈꾸는 로봇데이' 참가자 모집",
+      "snippet": "기술 교육을 강화했다. 안산인재육성재단 관계자는 \"지난해 참가 학생과 학부모들의 높은 만족도를 바탕으로 올해는 안산 스마트허브와 연계한 스마트팩토리 프로젝트를 새롭게 도입했다\"며 \"청소년들이 AI와 로봇...",
+      "url": "https://www.shinailbo.co.kr/news/articleView.html?idxno=5036988"
     },
     {
       "source": "naver",
@@ -592,22 +624,6 @@
       "title": "“범죄인줄 몰랐다”더니 대포폰 쓰고 휴대전화 초기화…법원, 보이스피...",
       "snippet": "2일 법조계에 따르면 수원지법 안산지원은 지난 5월 통신사기피해환급법 위반 혐의로 기소된 남성 A씨에게... 법원은 A씨가 범행 이후에는 개인 휴대전화를 초기화했고, 경찰 조사를 받을 경우 어떻게 대답할지 사전 교육...",
       "url": "https://www.seoul.co.kr/news/society/2026/07/02/20260702500134?wlog_tag3=naver"
-    },
-    {
-      "source": "naver",
-      "press": "pointdaily.co.kr",
-      "date": "2026.07.02",
-      "title": "K-제약바이오, 캄보디아 훈장 이끌어내다…'글로벌생명나눔'으로 ESG 선...",
-      "snippet": "글로벌생명나눔은 저개발국가에 의약품, 의료기기, 교육 기자재를 지원하는 국제 구호 NGO다. GLS대표단은... 매년 안산 석호공원에서 개최되는 '해외 난민 희망나눔 축제'에는 유한양행, 광동제약, 동화약품, 알피바이오...",
-      "url": "https://www.pointdaily.co.kr/news/articleView.html?idxno=310470"
-    },
-    {
-      "source": "naver",
-      "press": "enewstoday.co.kr",
-      "date": "2026.07.02",
-      "title": "안산대, 지역혁신·취업·창업 지원 확대···실무형 인재 양성 강화",
-      "snippet": "지역혁신과 청년 취업, 창업 역량 강화가 대학의 핵심 과제로 떠오르면서 지역사회와 산업 현장을 연계한 실무 중심 교육이 확대되고 있다. 안산대학교는 RISE사업과 대학일자리플러스센터를 중심으로 평생학습, 진로...",
-      "url": "http://www.enewstoday.co.kr/news/articleView.html?idxno=2444806"
     },
     {
       "source": "google",
@@ -779,19 +795,27 @@
     },
     {
       "source": "google",
-      "press": "한국시사경제",
-      "date": "2026.06.30",
-      "title": "안산교육지원청, '교실을 바꾸는 독서의 힘' 교원 대상 독서인문교육 직무연수 운영",
-      "snippet": "안산교육지원청, '교실을 바꾸는 독서의 힘' 교원 대상 독서인문교육 직무연수 운영 한국시사경제",
-      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5rdDQzUUo5QkY1YW5sQy1XWmJjS3FPd19CbXFCZjY2MzU5VV9KU0NKUmJqMmRYWk1NYUJydHE2cTdkNWJyLUlucDhGbWZUSVN1YlU2cDBTelQ2RUJOVndUVm9NQmpKMWw1emc?oc=5"
-    },
-    {
-      "source": "google",
       "press": "브릿지경제",
       "date": "2026.06.30",
       "title": "안산환경재단, “시화호 환경학교(안산)” 교육프로그램 운영",
       "snippet": "안산환경재단, “시화호 환경학교(안산)” 교육프로그램 운영 브릿지경제",
       "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE42QklocTJ1UHZBR2Z4UFp5bGg4T2dzdlZYeDk1SFlKcWZmTGdSVklzLTQzOHVUOUFramxCRHJTdGQ0YWxCVVBiOURPbWxxXzkzN0tTVTAwWmNPUQ?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "중부일보",
+      "date": "2026.06.30",
+      "title": "안산 원일중, 학생 기자단·미디어 크리에이터 본격 운영",
+      "snippet": "안산 원일중, 학생 기자단·미디어 크리에이터 본격 운영 중부일보",
+      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE9MQUdqQ28wRDl1ZWFDdmprTDlpV1h2c0MyOUpBdzUtWi1EcXdZSjAyWWhxbXpwaTBTdnA2Q1huVVVhV0JsMUJYU2hzNjBGNUlrUng4bE9NRHd2bnZoN3ZYd3hOTzZhZ3l4ZTZDSUdvRQ?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "미디어투데이",
+      "date": "2026.06.30",
+      "title": "안산교육지원청, '교실을 바꾸는 독서의 힘' 교원 대상 독서인문교육 직무연수 운영",
+      "snippet": "안산교육지원청, '교실을 바꾸는 독서의 힘' 교원 대상 독서인문교육 직무연수 운영 미디어투데이",
+      "url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTE92dlEwZ0dpNEllUGk0WlM0QzJsZHlmNWRSNHFzb3o5bEpoV2pGVkRQNWFPLWhaWWxyaGQta0dybzV0X1Q3TW9zN0xR?oc=5"
     },
     {
       "source": "naver",
@@ -832,14 +856,6 @@
       "title": "GS건설, 6416억원 안산 성포지구 주상복합 개발사업 수주",
       "snippet": "사업 대상지는 경기도 안산시 상록구 성포동 586번지 일원이다. 지하 6층~지상 49층 규모로 아파트 4개동 984가구와 오피스텔 2개동 370실, 근린생활시설 및 공공업무시설 등을 조성하는 주상복합 개발사업이다....",
       "url": "https://www.mt.co.kr/estate/2026/06/29/2026062916264167156"
-    },
-    {
-      "source": "naver",
-      "press": "kmaeil.com",
-      "date": "2026.06.29",
-      "title": "경기경제자유구역, 건축허가면적 7배 '증가'…기업 유치 순항",
-      "snippet": "경기경제자유구역청(이하 경기경제청)은 2026년 1월부터 6월까지 경제자유구역이 위치한 평택 포승과 시흥 배곧, 안산시 상록구 안산사이언스밸리 지역의 건축 행정지표를 분석한 결과, 지난해 같은 기간보다 건축허가...",
-      "url": "https://www.kmaeil.com/news/articleView.html?idxno=643806"
     },
     {
       "source": "google",
@@ -939,22 +955,6 @@
     },
     {
       "source": "google",
-      "press": "시사통신",
-      "date": "2026.06.21",
-      "title": "안산교육지원청, 유치원 R&P 교육연구회 수업공개 나눔 성료",
-      "snippet": "안산교육지원청, 유치원 R&P 교육연구회 수업공개 나눔 성료 시사통신",
-      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBPNlZFNkJxd2JTNXdCNDdwNWZxQkJZVkdfLVVrMHdEbm9ncnIxN29GcFItSklsdnlpVTBjT1Y0RlpnTFBXYV9CSG9GUHFvcDE1bXVjTzAtZHZLeGtacHZ4d1l2dG5kb1XSAWtBVV95cUxNZFMzNVk1Z3lwY0NvOFNnT3RUVGlJaE1QcUt2b1BwQjdDSVNkSXh5TTZfOW1Zc0dmczJ4ekt4NUJnMGZrNFV5cWNJVkRDb2l2eFRCNUVMY0g3Mm1zUVRfSEpVR2s2blhVeHFxdw?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "경인일보",
-      "date": "2026.06.20",
-      "title": "안산교육지원청, 중학교 학교군 조정 의견 공개… 일부만 반영",
-      "snippet": "안산교육지원청, 중학교 학교군 조정 의견 공개… 일부만 반영 경인일보",
-      "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE1iZU1tdldUZDY0MDNPblVrLXB1U0o4czRxWk9qYXNyUjJnNmsxODJ4OFhhYlRBQmJNOGZ2cG5QVW1qQTVrVWUwNDdXWGxoemhFZ0E?oc=5"
-    },
-    {
-      "source": "google",
       "press": "반월신문",
       "date": "2026.06.17",
       "title": "민주당 장윤정 경기도의원 당선인사 “보내주신 성원 잊지 않고 성과로 보답하겠다”",
@@ -984,6 +984,14 @@
       "title": "안산교육지원청-한양대 ERICA, AI·디지털 교육 협력체계 구축",
       "snippet": "안산교육지원청-한양대 ERICA, AI·디지털 교육 협력체계 구축 신아일보",
       "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBDeTRUWmJiMlFXS3NaazBvR1h2OG1ySnd4ckdkMTVGMkY2Q05MdzNWcmZ2SFJIeXoxaFZuWTVhRktvWXBQbWtQdjZtQ01TR1E0NEh3SmdpeEhTcF81c0hxSGZ3Q1haNEtPb0tfck9qejc?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "v.daum.net",
+      "date": "2026.06.17",
+      "title": "안산시, 기존 학군 유지한 안산교육청 환영…“시민 목소리 반영”",
+      "snippet": "안산시, 기존 학군 유지한 안산교육청 환영…“시민 목소리 반영” v.daum.net",
+      "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE9hWjRuVW9mZHBBTTJwc2NKMHdzRUprNlBpR1UxeExVRUpLSnZXdkhUM1ZzdF82MFBWZHJlSEtzUDV6eTdvNFdJcHdBaVBXdXM?oc=5"
     },
     {
       "source": "naver",
@@ -1016,14 +1024,6 @@
       "title": "김남국 의원, 안산 교육 현안 ‘상생 돌파구’모색 위해 안산교육청 방문",
       "snippet": "김남국 의원, 안산 교육 현안 ‘상생 돌파구’모색 위해 안산교육청 방문 경기종합뉴스",
       "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE8xbmJadS1MNEdscUlPQ295cDNtMlJQbmd6TWhfQ3VyLXBMVTQySUU0cVRia3AyTUlzN0xNTWNfN0VtZTdhZm5mMGQ1U3NZOFhFQzZTdTJBdkVFM2Rha2tzOFJGaHVUSUhiR056X21qV1JEU2g0?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "newszoom.kr",
-      "date": "2026.06.15",
-      "title": "안산교육지원청, “유치원 교사, 바이브 코딩으로 아이들의 상상을 현실로~”",
-      "snippet": "안산교육지원청, “유치원 교사, 바이브 코딩으로 아이들의 상상을 현실로~” newszoom.kr",
-      "url": "https://news.google.com/rss/articles/CBMiREFVX3lxTE1tLWRvVGVEdndaOThydV9NUFZVaHJnSDhxREFGSTQ2VDVhczZ2bUduTzltaXNmZ09jZ3B0NDJ5U3hjbWVQ?oc=5"
     },
     {
       "source": "naver",
@@ -1843,19 +1843,19 @@
     },
     {
       "source": "naver",
-      "press": "news1.kr",
-      "date": "2026.03.26",
-      "title": "[재산공개]김성수 경기도의원 324억 신고…4년 연속 도내 최고 자산가",
-      "snippet": "김성수 경기도의회 의원(국민의힘·하남2)이 324억여 원의 재산을 보유해 4년 연속 도내 재산공개 대상... 반면, 장윤정 의원(민주·안산3)은 -2490만 원을 신고해 도의원 중 재산이 가장 적었다. 이어 정동혁(민주...",
-      "url": "https://www.news1.kr/local/gyeonggi/6114090"
-    },
-    {
-      "source": "naver",
       "press": "kgnews.co.kr",
       "date": "2026.03.26",
       "title": "[재산공개]경기도의원 74% 재산 증가…평균 12억6000만원",
       "snippet": "반면 장윤정(민주·안산3) 의원은 마이너스 2400만 원을 신고해 재산이 가장 적었다. 장 의원은 예금이... 등의 순으로 재산 신고액이 적었다. [ 경기신문 = 장진우 기자 ] 경기도의회 전경 (사진=경기도의회 제공)",
       "url": "https://www.kgnews.co.kr/news/article.html?no=888958"
+    },
+    {
+      "source": "naver",
+      "press": "kihoilbo.co.kr",
+      "date": "2026.03.26",
+      "title": "경기도의원 152명 중 112명 재산 늘어",
+      "snippet": "기호일보, KIHOILBO 경기도의회 전경.<경기도의회 제공> 올해 경기도 광역의원의 평균 재산은 12억6천383만... 가장 적은 재산을 보유한 도의원은 장윤정(민주·안산3) 의원으로 마이너스 2천490만 원을 신고했다....",
+      "url": "https://www.kihoilbo.co.kr/news/articleView.html?idxno=3017496"
     },
     {
       "source": "google",
@@ -1872,6 +1872,14 @@
       "title": "장윤정 도의원, 학교 급식실 소음·환기 개선 나선다",
       "snippet": "장윤정 도의원, 학교 급식실 소음·환기 개선 나선다 안산뉴스",
       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE8wMlZVRFNmNlNFR0E3T3BIVElKOVp2RHNDN1k1Mml4Z2dVX0xTT0RvUnJPc3gtMWpMUUhxaHc1Uk94eHpmeU9HamZQUmQtd1VJV1Fkdm5iOWFwbHhaYV95aE9Ra0pscDk3Q0ZISA?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "인천일보",
+      "date": "2026.03.22",
+      "title": "[경기의정 25시] 장윤정 도의원 “아이 키우기 좋은 도시로 교육·돌봄, 현실과 연결을”",
+      "snippet": "[경기의정 25시] 장윤정 도의원 “아이 키우기 좋은 도시로 교육·돌봄, 현실과 연결을” 인천일보",
+      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5kTFE3MXhaTXgtd0Nlc3luOVUycmNMdzhqVjJjZE9mUnRXeDdCdW81MVNTaVZLWVA2RmlHYlh0TEhqRWhsYWR1UkdTTDEtUTczZ1VUYmJseWp3Ul9yTVhtNkdLdm85dDdCWEw4cUJXaWE?oc=5"
     },
     {
       "source": "google",
