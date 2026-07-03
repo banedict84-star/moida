@@ -1,6 +1,14 @@
 {
-  "updated": "2026-07-03 20:39 UTC",
+  "updated": "2026-07-03 22:34 UTC",
   "items": [
+    {
+      "source": "naver",
+      "press": "kmib.co.kr",
+      "date": "2026.07.04",
+      "title": "안락사 앞둔 개만 데려가는 공무원이 있다? [개st하우스]",
+      "snippet": "경기도 안산의 한 공공 유기동물센터(시 보호소). 소음 민원을 피해 외딴 산골짜기에 자리 잡은 낡은 보호소... 핸들링 교육을 제가 직접 매일 챙겨줄 예정”이라고 말했습니다. 사람 무섭던 유기견, 2주일간 매일...",
+      "url": "https://www.kmib.co.kr/article/view.asp?arcid=0030061128&code=61171811&cp=nv"
+    },
     {
       "source": "naver",
       "press": "gukjenews.com",
@@ -626,14 +634,6 @@
       "url": "https://www.polinews.co.kr/news/articleView.html?idxno=735785"
     },
     {
-      "source": "naver",
-      "press": "kmaeil.com",
-      "date": "2026.07.02",
-      "title": "정일영 의원, 문체부에 국립현대미술관 송도 분관 건립 요청",
-      "snippet": "안산, 광명 등 수도권 서부 권역에는 국립미술관이 없어 국가 문화시설의 지역 간 편차가 이어지고 있다는 점을 제안의 배경으로 제시했다. 국립문화시설은 지역 주민의 문화 향유 기회를 넓히는 역할과 함께 전시·교육...",
-      "url": "https://www.kmaeil.com/news/articleView.html?idxno=644188"
-    },
-    {
       "source": "google",
       "press": "안산타임스",
       "date": "2026.07.02",
@@ -907,11 +907,11 @@
     },
     {
       "source": "google",
-      "press": "케이에스피뉴스",
+      "press": "대한투데이",
       "date": "2026.06.25",
       "title": "안산시 상록구, 안산동 무인민원발급창구 신규 설치 완료",
-      "snippet": "안산시 상록구, 안산동 무인민원발급창구 신규 설치 완료 케이에스피뉴스",
-      "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE9oRlVURFk5SjhyMXk1bjI5Y2RXNWFBeTZFLXM2R2puenFZS0Q2OWUydDItNGZDdW1kdjhOZmRUSEIzQ2pySmc?oc=5"
+      "snippet": "안산시 상록구, 안산동 무인민원발급창구 신규 설치 완료 대한투데이",
+      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE92aEJCTVFMaDVvN3dFU01qaGRnWmVJTWpXbmpjOU1ROHdoLW05V1BST2plVTh6SjRMVzJuZVlKMEVnUGtuRGlXelZheG9KRWlBMF9FQXg2bVVqbmdNNGxIdVJOWndENHpqa3c?oc=5"
     },
     {
       "source": "naver",
@@ -960,14 +960,6 @@
       "title": "안산교육지원청, 중학교 학교군 조정 의견 공개… 일부만 반영",
       "snippet": "안산교육지원청, 중학교 학교군 조정 의견 공개… 일부만 반영 경인일보",
       "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE1iZU1tdldUZDY0MDNPblVrLXB1U0o4czRxWk9qYXNyUjJnNmsxODJ4OFhhYlRBQmJNOGZ2cG5QVW1qQTVrVWUwNDdXWGxoemhFZ0E?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "안산뉴스",
-      "date": "2026.06.19",
-      "title": "상록구노인복지관 대부도 치유여행",
-      "snippet": "상록구노인복지관 대부도 치유여행 안산뉴스",
-      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9YMWN6VDJ3RkVQSFVic0NWZGlYZ1dULS1wVTY4YzFrVWVDTjVqeVhLUXZfanh1OFhFWmxKZEo4NzJ6Mkt0ZjdsYjhDQmhoYUdtV1lhYmxXWGp4TEtJdzZESkI2WUtyQTNTN3RZQw?oc=5"
     },
     {
       "source": "google",
@@ -1411,19 +1403,19 @@
     },
     {
       "source": "google",
-      "press": "경향신문",
-      "date": "2026.05.13",
-      "title": "안산 상록구 다세대주택서 화재···1명 숨지고 3명 부상",
-      "snippet": "안산 상록구 다세대주택서 화재···1명 숨지고 3명 부상 경향신문",
-      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE94ZFJWc1liZGRLTWM0aVAxVjY5c0VSOE40bVN0RXA3QlRidXMzdVkwdFljWVIxTG5oOGNwLUtsMl9pT2NJY1VTOEh4OGRMRU02b3Bob0pwa3dSQdIBX0FVX3lxTE52SDdudTdHX3NXYVFOQkhjSnFLR2pmVW5hbmE0aEZYM3B6WXVLNGpoY09DY0xlMVpuZVEzYWIzZVFjY1h1TTYtRHFMVFdPR0RfQ05pWGVIRm5NUG16cTRN?oc=5"
-    },
-    {
-      "source": "google",
       "press": "연합뉴스",
       "date": "2026.05.13",
       "title": "안산 상록구 다세대주택서 불…1명 사망·3명 중경상",
       "snippet": "안산 상록구 다세대주택서 불…1명 사망·3명 중경상 연합뉴스",
       "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE91T1VUTjFsVE1fVzdLbWhjdnUyZVh4blRVUmszcnVzT25IOHQ1T2J1Uk16SHM0UHFoeDlXUllVNWZmM19mX2pSaXliOU9jNmdfYVNkU3p3QUI2XzjSAWBBVV95cUxQRUVibk9OcUtnV0dqeEREMF80dmI3WUJONzVXTmY4UU9SNEtrczl4RU1XVnpKY3ZhSkFhLWN1NF9lVEx1aS1zTF9rdUNhWEUwMmlCV1p6RlV3dWNFSnVKOFg?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "경향신문",
+      "date": "2026.05.13",
+      "title": "안산 상록구 다세대주택서 화재···1명 숨지고 3명 부상",
+      "snippet": "안산 상록구 다세대주택서 화재···1명 숨지고 3명 부상 경향신문",
+      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE94ZFJWc1liZGRLTWM0aVAxVjY5c0VSOE40bVN0RXA3QlRidXMzdVkwdFljWVIxTG5oOGNwLUtsMl9pT2NJY1VTOEh4OGRMRU02b3Bob0pwa3dSQdIBX0FVX3lxTE52SDdudTdHX3NXYVFOQkhjSnFLR2pmVW5hbmE0aEZYM3B6WXVLNGpoY09DY0xlMVpuZVEzYWIzZVFjY1h1TTYtRHFMVFdPR0RfQ05pWGVIRm5NUG16cTRN?oc=5"
     },
     {
       "source": "naver",
@@ -1819,19 +1811,19 @@
     },
     {
       "source": "naver",
+      "press": "kgnews.co.kr",
+      "date": "2026.03.26",
+      "title": "[재산공개]경기도의원 74% 재산 증가…평균 12억6000만원",
+      "snippet": "반면 장윤정(민주·안산3) 의원은 마이너스 2400만 원을 신고해 재산이 가장 적었다. 장 의원은 예금이... 등의 순으로 재산 신고액이 적었다. [ 경기신문 = 장진우 기자 ] 경기도의회 전경 (사진=경기도의회 제공)",
+      "url": "https://www.kgnews.co.kr/news/article.html?no=888958"
+    },
+    {
+      "source": "naver",
       "press": "news1.kr",
       "date": "2026.03.26",
       "title": "[재산공개]김성수 경기도의원 324억 신고…4년 연속 도내 최고 자산가",
       "snippet": "김성수 경기도의회 의원(국민의힘·하남2)이 324억여 원의 재산을 보유해 4년 연속 도내 재산공개 대상... 반면, 장윤정 의원(민주·안산3)은 -2490만 원을 신고해 도의원 중 재산이 가장 적었다. 이어 정동혁(민주...",
       "url": "https://www.news1.kr/local/gyeonggi/6114090"
-    },
-    {
-      "source": "naver",
-      "press": "kihoilbo.co.kr",
-      "date": "2026.03.26",
-      "title": "경기도의원 152명 중 112명 재산 늘어",
-      "snippet": "기호일보, KIHOILBO 경기도의회 전경.<경기도의회 제공> 올해 경기도 광역의원의 평균 재산은 12억6천383만... 가장 적은 재산을 보유한 도의원은 장윤정(민주·안산3) 의원으로 마이너스 2천490만 원을 신고했다....",
-      "url": "https://www.kihoilbo.co.kr/news/articleView.html?idxno=3017496"
     },
     {
       "source": "google",
@@ -1851,11 +1843,11 @@
     },
     {
       "source": "google",
-      "press": "인천일보",
-      "date": "2026.03.22",
-      "title": "[경기의정 25시] 장윤정 도의원 “아이 키우기 좋은 도시로 교육·돌봄, 현실과 연결을”",
-      "snippet": "[경기의정 25시] 장윤정 도의원 “아이 키우기 좋은 도시로 교육·돌봄, 현실과 연결을” 인천일보",
-      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5kTFE3MXhaTXgtd0Nlc3luOVUycmNMdzhqVjJjZE9mUnRXeDdCdW81MVNTaVZLWVA2RmlHYlh0TEhqRWhsYWR1UkdTTDEtUTczZ1VUYmJseWp3Ul9yTVhtNkdLdm85dDdCWEw4cUJXaWE?oc=5"
+      "press": "KBS 뉴스",
+      "date": "2026.03.17",
+      "title": "안산시, 상록구 90블록 개발계획 전면 개편…오피스텔 대신 아파트 공급",
+      "snippet": "안산시, 상록구 90블록 개발계획 전면 개편…오피스텔 대신 아파트 공급 KBS 뉴스",
+      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBrQVZXN0hNQ1E2RXgya3FiQmN3YVV6NFFMSUVlWklBT1h2ZG5xRnZCX1RzN1cwWjh2ZmxDekViejlHSDExdTN5RkI5V1oyYUo3N1VaeFZibktHQ2M?oc=5"
     },
     {
       "source": "google",
@@ -1931,14 +1923,6 @@
     },
     {
       "source": "google",
-      "press": "일간경기",
-      "date": "2025.12.28",
-      "title": "장윤정 도의원, “정쟁 아닌 민생, 도민 삶에 닿는 정치 끝까지 책임”",
-      "snippet": "장윤정 도의원, “정쟁 아닌 민생, 도민 삶에 닿는 정치 끝까지 책임” 일간경기",
-      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBaMVlFUk5DWlJRWXg3N1NyaU9Na0ZyeENHX2ZDZHRGR2FXbmt6LVJ2eFFiYlVhMW9DT0JVdVdKWEw0VTFvbGNsdEo3clZIbnd3aDRaRDhJQ2VCX1NSSi1zRUU1S1dnUmU4?oc=5"
-    },
-    {
-      "source": "google",
       "press": "전자신문",
       "date": "2025.12.27",
       "title": "장윤정 경기도의원 “정쟁 아닌 민생, 도민 삶 향한 정치 지켜야”",
@@ -1947,19 +1931,19 @@
     },
     {
       "source": "google",
-      "press": "KPI뉴스",
-      "date": "2025.11.28",
-      "title": "장윤정 경기도의원, 민주당 대표 특별보좌역 청년특보 임명",
-      "snippet": "장윤정 경기도의원, 민주당 대표 특별보좌역 청년특보 임명 KPI뉴스",
-      "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE5PTDRoT1JJcHlBcW4wWU9zQ3FrZFNqby1yZ1BEM1U0Wk40T0ZtalU2TGdiTkRGSFo3eFl2dXNRb2ZPeXJMVmRiS01OdlFKWVVPRThudXdhVdIBU0FVX3lxTFB6aFdtcHFPekU1ME0zTDdHY2k0d0p2YjlaQk9QQkRuUk56YmZ3bjIxUGZ5ZC1SYnVtLU1HQ0E4Y1J1UVd3QklmN09VM1BPSTZrNkpJ?oc=5"
+      "press": "경기남부뉴스",
+      "date": "2025.12.26",
+      "title": "경기도의회 장윤정 의원, “정쟁 아닌 민생, 도민 삶에 닿는 정치 끝까지 책임”",
+      "snippet": "경기도의회 장윤정 의원, “정쟁 아닌 민생, 도민 삶에 닿는 정치 끝까지 책임” 경기남부뉴스",
+      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE4tVDMtQUlSLVhVOFZIa2VUQVBWSy1uUTVsRHRSdU1rcFVFQUExZzFfYVJ4aWlFTDdjWkd3eUZfV3FHUXkxLTdja1p6M0tHNFZ0dC1HVjdHbzQwT2FjMHRlb2N4bHdYV0U?oc=5"
     },
     {
       "source": "google",
-      "press": "기호일보",
-      "date": "2025.11.04",
-      "title": "장윤정 경기도의원 “고교학점제·유보통합, 현장 중심 제도 정착에 힘쓸 것”",
-      "snippet": "장윤정 경기도의원 “고교학점제·유보통합, 현장 중심 제도 정착에 힘쓸 것” 기호일보",
-      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE9jOWtrU1k3R1ZrcllHN3lMVGVCQXJCdnVHVEpLUHZWQWZ0cjB1WVhnakFTZ1pyakwzcUQxbUh0ZG9hc09rYmFIQzlWaFVLbDR0MC1XWWNkMTV2MnF3N1ZPbEpoeUo0SnBkeThSd01abw?oc=5"
+      "press": "반월신문",
+      "date": "2025.03.19",
+      "title": "[시사초대석] - 장윤정 경기도의회 의원 인터뷰",
+      "snippet": "[시사초대석] - 장윤정 경기도의회 의원 인터뷰 반월신문",
+      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBEVUtmZVBQYXU3VTdEVkNwZEg1YTlnWk1ybDVDS3VwOUhkdE4zZlM5XzQtdnQ3ZUFYODhfcEFPZXBlQllYWXVnMmIyNURHZGgwN2pVNEZhWXZ1N1plMFNhZ3daV3hZdm8?oc=5"
     }
   ]
 }
