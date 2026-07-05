@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-05 16:34 UTC",
+  "updated": "2026-07-05 18:37 UTC",
   "items": [
     {
       "source": "naver",
@@ -827,11 +827,11 @@
     },
     {
       "source": "google",
-      "press": "v.daum.net",
+      "press": "중부일보",
       "date": "2026.06.30",
       "title": "안산 원일중, 학생 기자단·미디어 크리에이터 본격 운영",
-      "snippet": "안산 원일중, 학생 기자단·미디어 크리에이터 본격 운영 v.daum.net",
-      "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE5KSDBQbHRIWnZuTTcya2M2YWhYMzRpczNHazJncnNsTFlkRGJqS00wLThvNlNHcmYzYmdZZ0VpdHJyS2JUd0ZHM0tGSi1jSnVia1FWNg?oc=5"
+      "snippet": "안산 원일중, 학생 기자단·미디어 크리에이터 본격 운영 중부일보",
+      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE9MQUdqQ28wRDl1ZWFDdmprTDlpV1h2c0MyOUpBdzUtWi1EcXdZSjAyWWhxbXpwaTBTdnA2Q1huVVVhV0JsMUJYU2hzNjBGNUlrUng4bE9NRHd2bnZoN3ZYd3hOTzZhZ3l4ZTZDSUdvRQ?oc=5"
     },
     {
       "source": "naver",
@@ -891,11 +891,19 @@
     },
     {
       "source": "google",
-      "press": "대한투데이",
+      "press": "이뉴스투데이",
+      "date": "2026.06.25",
+      "title": "안산 상록구, 안산동에 무인민원발급창구 신규 설치 ··· 비대면 민원서비스 확대",
+      "snippet": "안산 상록구, 안산동에 무인민원발급창구 신규 설치 ··· 비대면 민원서비스 확대 이뉴스투데이",
+      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5QVXR1b0dRbmk4RER2bXB1NE5BOTJ4c1Rjc3RQMWU4RUJ0WUxOT2I5TUFfaGNEYktVcUVlN081ZkhZYW1uWnF1ZkwyeldHVVc2SUJOUXMzZ3djYVBLLVRMUTJ1dlJsdVEtQWFXejJaTGnSAXRBVV95cUxOUE9hUG5FX1BxZnFpX1FWSEFieWQ0WlVKeGtWRHJYNVp6aGVvR0JJX2VmM2o1QVB4cG9NYU1uQ29oQkpRc2xrRl8tM3huRDRpR3RTbVBFaGY4ckhwdWxvRHI5eWxWS1h1TUFaeW15cVlvRWZYOA?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "케이에스피뉴스",
       "date": "2026.06.25",
       "title": "안산시 상록구, 안산동 무인민원발급창구 신규 설치 완료",
-      "snippet": "안산시 상록구, 안산동 무인민원발급창구 신규 설치 완료 대한투데이",
-      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE92aEJCTVFMaDVvN3dFU01qaGRnWmVJTWpXbmpjOU1ROHdoLW05V1BST2plVTh6SjRMVzJuZVlKMEVnUGtuRGlXelZheG9KRWlBMF9FQXg2bVVqbmdNNGxIdVJOWndENHpqa3c?oc=5"
+      "snippet": "안산시 상록구, 안산동 무인민원발급창구 신규 설치 완료 케이에스피뉴스",
+      "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE9oRlVURFk5SjhyMXk1bjI5Y2RXNWFBeTZFLXM2R2puenFZS0Q2OWUydDItNGZDdW1kdjhOZmRUSEIzQ2pySmc?oc=5"
     },
     {
       "source": "naver",
@@ -1200,22 +1208,6 @@
       "title": "장윤정 경기도의원 후보 \"교육·지역경제 함께 성장하는 안산 만들 것\"",
       "snippet": "장윤정 더불어민주당 경기도의회 안산3 선거구 후보는 \"정치는 주민 한 사람 한 사람의 삶을 더 나아지게... 최근에는 더불어민주당 경기도당으로부터 2026 지방선거 안산3 광역의원 후보로 재공천을 받았다. 장 후보는 4년...",
       "url": "https://www.newsfreezone.co.kr/news/articleView.html?idxno=692039"
-    },
-    {
-      "source": "google",
-      "press": "안산뉴스",
-      "date": "2026.05.28",
-      "title": "개혁신당 문인수 안산갑 후보 ‘상록수 역세권 맘모스 랜드마크’ 공약",
-      "snippet": "개혁신당 문인수 안산갑 후보 ‘상록수 역세권 맘모스 랜드마크’ 공약 안산뉴스",
-      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9sTjg3S3pSYThYbDYtY013WEVPVXo1Qlp5NHBoOTVGbXFqMExzdmxObU5Ka1dEWDBkV0FDQ3djWWRhOE15M3dGT004NGJCNUVkUVc1UkwySjJWU0ZRQnRsVnRUVjZ5elNXT3F0LQ?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "천지일보",
-      "date": "2026.05.27",
-      "title": "[6.3지선 후보 인터뷰] 더불어민주당 장윤정 후보 “통학로·학교부터 바꿔 아이 키우기 좋은 도시 만들 것”",
-      "snippet": "[6.3지선 후보 인터뷰] 더불어민주당 장윤정 후보 “통학로·학교부터 바꿔 아이 키우기 좋은 도시 만들 것” 천지일보",
-      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBFdllCV3RHSzhtQnpsdVdvYnhfUXNIY1lheUZQRHM4bUNDQ3dHVnpnVVhfR3VPeWdKQlVWMkYtYm9jM0J5VlU0U2dFbWVieHROWFU0VE4yWmFoRlZLOFZoMUc3aTBrM0Nib3c?oc=5"
     },
     {
       "source": "google",
@@ -1747,6 +1739,14 @@
     },
     {
       "source": "google",
+      "press": "오토투데이",
+      "date": "2026.04.02",
+      "title": "장윤정·경기의회, 기계설비유지관리자 처우 개선 논의",
+      "snippet": "장윤정·경기의회, 기계설비유지관리자 처우 개선 논의 오토투데이",
+      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE41TnQ0TkpCdXd0Slo5QkI3RWRCZXp4T1lmVWxzSUg5ZzBueXBOa0FuclNydU5CZmF4bnNqektrZzE1a2xuOHBRTWJYNHhZaTlneXFBa3hGajVtdEp3eHVaVDhRRHMtT0xvZ0lPMnpB?oc=5"
+    },
+    {
+      "source": "google",
       "press": "전국매일신문",
       "date": "2026.04.01",
       "title": "장윤정 경기도의원, 기계설비유지관리자 처우개선 논의",
@@ -1819,14 +1819,6 @@
     },
     {
       "source": "google",
-      "press": "인천일보",
-      "date": "2026.03.22",
-      "title": "[경기의정 25시] 장윤정 도의원 “아이 키우기 좋은 도시로 교육·돌봄, 현실과 연결을”",
-      "snippet": "[경기의정 25시] 장윤정 도의원 “아이 키우기 좋은 도시로 교육·돌봄, 현실과 연결을” 인천일보",
-      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5kTFE3MXhaTXgtd0Nlc3luOVUycmNMdzhqVjJjZE9mUnRXeDdCdW81MVNTaVZLWVA2RmlHYlh0TEhqRWhsYWR1UkdTTDEtUTczZ1VUYmJseWp3Ul9yTVhtNkdLdm85dDdCWEw4cUJXaWE?oc=5"
-    },
-    {
-      "source": "google",
       "press": "KBS 뉴스",
       "date": "2026.03.17",
       "title": "안산시, 상록구 90블록 개발계획 전면 개편…오피스텔 대신 아파트 공급",
@@ -1883,11 +1875,11 @@
     },
     {
       "source": "google",
-      "press": "뉴스프리존",
-      "date": "2026.02.11",
-      "title": "장윤정 의원 “연구 자율성·행정 관리 균형 있는 조직 운영 필요”",
-      "snippet": "장윤정 의원 “연구 자율성·행정 관리 균형 있는 조직 운영 필요” 뉴스프리존",
-      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTFBTNmpmSmdhYnFheGtTRWJsV0hrYVphNDNYTWNHbFk4blJlbExOWGVwNXE2d3VST0E3MldDYndrZC1yZEJmN0tRN2RHcU80Q1NIbWNLREFITUVSYTRvZ3RNalZJZnlxVUx5Zlo2RFdWczV3OVHSAXdBVV95cUxPOFpCWlh3cU1PbzJvWjhXVUZ6S3g5QWRteF9ORHNrMzR6REV0TUVTMW53czlGczJ2UXpHMTJJVnJ2eUdRMFlaZndMUXp6SDU2amg1RjRsMndvajV5TWZEc3p2Ql9HaVFsSWZxbHQyOGgyMDl5RTdkZw?oc=5"
+      "press": "안산뉴스",
+      "date": "2026.01.04",
+      "title": "장윤정 도의원 지역발전 특교금 12억원 확보",
+      "snippet": "장윤정 도의원 지역발전 특교금 12억원 확보 안산뉴스",
+      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9KNFhBYkNfTVo1cHVTNU1WQk5Kc2VrWWhCSnJwdEhFeGo5M01UbUJKSC1zN2h5Q0F3R1lEQkZMNHFGVVdxQ0llQW9yX3hnRndBWkcwbnBFXzloZVRlNUR4Q2otblN0Vi1TWEg1Sg?oc=5"
     },
     {
       "source": "google",
@@ -1904,6 +1896,14 @@
       "title": "장윤정 경기도의원, ‘2025 지방의정대상’ 수상 영예",
       "snippet": "장윤정 경기도의원, ‘2025 지방의정대상’ 수상 영예 경인매일",
       "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5xQklJbUNlSHQ0bzlEQnhhYWp4Z0EweWlrVEdvWFQ2anRGdVJEWDc1WlktX25NenNCUmhqSkdpY0pZbk5JYnJ3bmlid21MMHNsbkFsSEE3OUNHeXlHa08tMmRxbHVBcUpG?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "일간경기",
+      "date": "2025.12.28",
+      "title": "장윤정 도의원, “정쟁 아닌 민생, 도민 삶에 닿는 정치 끝까지 책임”",
+      "snippet": "장윤정 도의원, “정쟁 아닌 민생, 도민 삶에 닿는 정치 끝까지 책임” 일간경기",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBaMVlFUk5DWlJRWXg3N1NyaU9Na0ZyeENHX2ZDZHRGR2FXbmt6LVJ2eFFiYlVhMW9DT0JVdVdKWEw0VTFvbGNsdEo3clZIbnd3aDRaRDhJQ2VCX1NSSi1zRUU1S1dnUmU4?oc=5"
     },
     {
       "source": "google",
@@ -1940,18 +1940,18 @@
     {
       "source": "google",
       "press": "중부일보",
-      "date": "2025.11.28",
-      "title": "장윤정 경기도의원, 민주당 당대표 청년특보 ‘임명’",
-      "snippet": "장윤정 경기도의원, 민주당 당대표 청년특보 ‘임명’ 중부일보",
-      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE5IYUdTZ0lPVkMwOFR6Q0haSEdjeFdFQVZaM0xldGlUdFlRcm52RjVsWklNQUtPc1pMbVVqblFlam9FaURQR1hZV3EzOUhZRXZiSl9JVnVRbEZjNno1Tjc0aWtOSUQxM1RiMkVVbW8ydw?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "중부일보",
       "date": "2025.11.19",
       "title": "[행감인물] 장윤정 경기도의원 “IB 정책, 미비한데 추진만 앞서”",
       "snippet": "[행감인물] 장윤정 경기도의원 “IB 정책, 미비한데 추진만 앞서” 중부일보",
       "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE9UR1UxQXhSTTk4YkM4NXFKVkdxUlFkQ050TGQ1dVFCM3lWOU8zUWtYN1N0bjd2TUI2QThmSFN2ZTI4NFhYUU9LOEFIMWpKc2NTV09LNDZMWXREN3BoRUllMUppSm8tSjVjVFdzRF9Gdw?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "반월신문",
+      "date": "2025.03.19",
+      "title": "[시사초대석] - 장윤정 경기도의회 의원 인터뷰",
+      "snippet": "[시사초대석] - 장윤정 경기도의회 의원 인터뷰 반월신문",
+      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBEVUtmZVBQYXU3VTdEVkNwZEg1YTlnWk1ybDVDS3VwOUhkdE4zZlM5XzQtdnQ3ZUFYODhfcEFPZXBlQllYWXVnMmIyNURHZGgwN2pVNEZhWXZ1N1plMFNhZ3daV3hZdm8?oc=5"
     }
   ]
 }
