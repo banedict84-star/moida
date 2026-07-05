@@ -1,6 +1,14 @@
 {
-  "updated": "2026-07-05 18:37 UTC",
+  "updated": "2026-07-05 20:36 UTC",
   "items": [
+    {
+      "source": "naver",
+      "press": "newsis.com",
+      "date": "2026.07.06",
+      "title": "[오늘의 주요일정]경기남부(7월6일 월요일)",
+      "snippet": "서희홀 ◇경기도교육청 ▲오전 9시30분, 경기교육 대전환 '폰 프리 스쿨' 정책 설명회, 안양아트센터... 다목적홀 ◇안산시 ▲오전 11시20분, 안산시 고문변호사 위촉장 수여식, 시장실 ▲오후 2시, 경기TP 임시이사회...",
+      "url": "https://www.newsis.com/view/NISX20260705_0003696413"
+    },
     {
       "source": "naver",
       "press": "bulkwang.co.kr",
@@ -83,19 +91,19 @@
     },
     {
       "source": "google",
-      "press": "중앙뉴스미디어",
-      "date": "2026.07.05",
-      "title": "안산교육지원청, 안산단원경찰서와 함께 다문화가정 학부모 맞춤 교육 개최",
-      "snippet": "안산교육지원청, 안산단원경찰서와 함께 다문화가정 학부모 맞춤 교육 개최 중앙뉴스미디어",
-      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFBORU51X0NRX1lWcmViUWo4aG1rXzQ1Q1diMGl5Rk5EbTMyLWQ3OGFlQW9jTFQwVWpIT1BuT3lVcEdnQXhYX2JoNEEtNlJFSGVkR1BHeXYyNmVlal8y?oc=5"
-    },
-    {
-      "source": "google",
       "press": "뉴스파노라마",
       "date": "2026.07.05",
       "title": "안산교육지원청, 초등 교감과 함께 미래교육의 답을 찾다",
       "snippet": "안산교육지원청, 초등 교감과 함께 미래교육의 답을 찾다 뉴스파노라마",
       "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE9vSEtsT00ybHYySm9jV3NwRFgtU042SHJZdDF0UEtXckZsYWducDVMck1mbGF3Y2MzMTRZNExCeklPSktXNkpuYnZzdEJUOWZGNDBYQ0Y0U25JSV9PV1FMM0M3dHFXaVRBZmdhRE5CZw?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "newszoom.kr",
+      "date": "2026.07.05",
+      "title": "안산교육지원청, 안산단원경찰서와 함께 다문화가정 학부모 맞춤 교육 개최",
+      "snippet": "안산교육지원청, 안산단원경찰서와 함께 다문화가정 학부모 맞춤 교육 개최 newszoom.kr",
+      "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE1LREdwSEZqU0UzSmtRdDhZd3h2U2JKYW5JNjdkSkJpczV0bWxNUzAtMVl3OGlzUklibGc0UE1vLUNiOUwzU3c?oc=5"
     },
     {
       "source": "google",
@@ -634,14 +642,6 @@
       "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE85eVlTS3RaN1RieDVLcEpwN1c5NWdfV0NOTVNHQWZ1a2hma0puNC15VGx2RThNYlFuSnllRU9YNFJSZGQzS2lZOE5OeHh4b0JtbGY5TnJoNW1MVUJoLXVkZkFqRnFFXzg?oc=5"
     },
     {
-      "source": "naver",
-      "press": "gukjenews.com",
-      "date": "2026.07.02",
-      "title": "국립현대미술관 송도 분관 건립 공식 요청",
-      "snippet": "인천, 부천, 김포, 시흥, 안산, 광명 등 수도권 서부 지역에는 국립미술관이 없어 국가 문화시설의 지역... 또 바이오와 AI 등 미래 첨단산업 기반이 갖춰져 있어 국제전시, 미디어아트, AI아트, 문화예술교육, 국제교류를...",
-      "url": "https://www.gukjenews.com/news/articleView.html?idxno=3625007"
-    },
-    {
       "source": "google",
       "press": "v.daum.net",
       "date": "2026.07.02",
@@ -819,6 +819,14 @@
     },
     {
       "source": "google",
+      "press": "한국시사경제",
+      "date": "2026.06.30",
+      "title": "안산교육지원청, '교실을 바꾸는 독서의 힘' 교원 대상 독서인문교육 직무연수 운영",
+      "snippet": "안산교육지원청, '교실을 바꾸는 독서의 힘' 교원 대상 독서인문교육 직무연수 운영 한국시사경제",
+      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5rdDQzUUo5QkY1YW5sQy1XWmJjS3FPd19CbXFCZjY2MzU5VV9KU0NKUmJqMmRYWk1NYUJydHE2cTdkNWJyLUlucDhGbWZUSVN1YlU2cDBTelQ2RUJOVndUVm9NQmpKMWw1emc?oc=5"
+    },
+    {
+      "source": "google",
       "press": "브릿지경제",
       "date": "2026.06.30",
       "title": "안산환경재단, “시화호 환경학교(안산)” 교육프로그램 운영",
@@ -891,19 +899,11 @@
     },
     {
       "source": "google",
-      "press": "이뉴스투데이",
-      "date": "2026.06.25",
-      "title": "안산 상록구, 안산동에 무인민원발급창구 신규 설치 ··· 비대면 민원서비스 확대",
-      "snippet": "안산 상록구, 안산동에 무인민원발급창구 신규 설치 ··· 비대면 민원서비스 확대 이뉴스투데이",
-      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5QVXR1b0dRbmk4RER2bXB1NE5BOTJ4c1Rjc3RQMWU4RUJ0WUxOT2I5TUFfaGNEYktVcUVlN081ZkhZYW1uWnF1ZkwyeldHVVc2SUJOUXMzZ3djYVBLLVRMUTJ1dlJsdVEtQWFXejJaTGnSAXRBVV95cUxOUE9hUG5FX1BxZnFpX1FWSEFieWQ0WlVKeGtWRHJYNVp6aGVvR0JJX2VmM2o1QVB4cG9NYU1uQ29oQkpRc2xrRl8tM3huRDRpR3RTbVBFaGY4ckhwdWxvRHI5eWxWS1h1TUFaeW15cVlvRWZYOA?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "케이에스피뉴스",
+      "press": "대한투데이",
       "date": "2026.06.25",
       "title": "안산시 상록구, 안산동 무인민원발급창구 신규 설치 완료",
-      "snippet": "안산시 상록구, 안산동 무인민원발급창구 신규 설치 완료 케이에스피뉴스",
-      "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE9oRlVURFk5SjhyMXk1bjI5Y2RXNWFBeTZFLXM2R2puenFZS0Q2OWUydDItNGZDdW1kdjhOZmRUSEIzQ2pySmc?oc=5"
+      "snippet": "안산시 상록구, 안산동 무인민원발급창구 신규 설치 완료 대한투데이",
+      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE92aEJCTVFMaDVvN3dFU01qaGRnWmVJTWpXbmpjOU1ROHdoLW05V1BST2plVTh6SjRMVzJuZVlKMEVnUGtuRGlXelZheG9KRWlBMF9FQXg2bVVqbmdNNGxIdVJOWndENHpqa3c?oc=5"
     },
     {
       "source": "naver",
@@ -1208,6 +1208,14 @@
       "title": "장윤정 경기도의원 후보 \"교육·지역경제 함께 성장하는 안산 만들 것\"",
       "snippet": "장윤정 더불어민주당 경기도의회 안산3 선거구 후보는 \"정치는 주민 한 사람 한 사람의 삶을 더 나아지게... 최근에는 더불어민주당 경기도당으로부터 2026 지방선거 안산3 광역의원 후보로 재공천을 받았다. 장 후보는 4년...",
       "url": "https://www.newsfreezone.co.kr/news/articleView.html?idxno=692039"
+    },
+    {
+      "source": "google",
+      "press": "안산뉴스",
+      "date": "2026.05.28",
+      "title": "개혁신당 문인수 안산갑 후보 ‘상록수 역세권 맘모스 랜드마크’ 공약",
+      "snippet": "개혁신당 문인수 안산갑 후보 ‘상록수 역세권 맘모스 랜드마크’ 공약 안산뉴스",
+      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9sTjg3S3pSYThYbDYtY013WEVPVXo1Qlp5NHBoOTVGbXFqMExzdmxObU5Ka1dEWDBkV0FDQ3djWWRhOE15M3dGT004NGJCNUVkUVc1UkwySjJWU0ZRQnRsVnRUVjZ5elNXT3F0LQ?oc=5"
     },
     {
       "source": "google",
@@ -1787,19 +1795,19 @@
     },
     {
       "source": "naver",
-      "press": "kihoilbo.co.kr",
-      "date": "2026.03.26",
-      "title": "경기도의원 152명 중 112명 재산 늘어",
-      "snippet": "기호일보, KIHOILBO 경기도의회 전경.<경기도의회 제공> 올해 경기도 광역의원의 평균 재산은 12억6천383만... 가장 적은 재산을 보유한 도의원은 장윤정(민주·안산3) 의원으로 마이너스 2천490만 원을 신고했다....",
-      "url": "https://www.kihoilbo.co.kr/news/articleView.html?idxno=3017496"
-    },
-    {
-      "source": "naver",
       "press": "news1.kr",
       "date": "2026.03.26",
       "title": "[재산공개]김성수 경기도의원 324억 신고…4년 연속 도내 최고 자산가",
       "snippet": "김성수 경기도의회 의원(국민의힘·하남2)이 324억여 원의 재산을 보유해 4년 연속 도내 재산공개 대상... 반면, 장윤정 의원(민주·안산3)은 -2490만 원을 신고해 도의원 중 재산이 가장 적었다. 이어 정동혁(민주...",
       "url": "https://www.news1.kr/local/gyeonggi/6114090"
+    },
+    {
+      "source": "naver",
+      "press": "kihoilbo.co.kr",
+      "date": "2026.03.26",
+      "title": "경기도의원 152명 중 112명 재산 늘어",
+      "snippet": "기호일보, KIHOILBO 경기도의회 전경.<경기도의회 제공> 올해 경기도 광역의원의 평균 재산은 12억6천383만... 가장 적은 재산을 보유한 도의원은 장윤정(민주·안산3) 의원으로 마이너스 2천490만 원을 신고했다....",
+      "url": "https://www.kihoilbo.co.kr/news/articleView.html?idxno=3017496"
     },
     {
       "source": "google",
