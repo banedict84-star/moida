@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-07 20:25 UTC",
+  "updated": "2026-07-07 21:54 UTC",
   "items": [
     {
       "source": "naver",
@@ -299,19 +299,19 @@
     },
     {
       "source": "google",
+      "press": "매일일보",
+      "date": "2026.07.07",
+      "title": "안산교육지원청, 디지털 교육 운영학교 성과 공유",
+      "snippet": "안산교육지원청, 디지털 교육 운영학교 성과 공유 매일일보",
+      "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTFAxSjJuMmJ4UjdFSmxjcldBY0ZsV2xHVl9SRjdGWWd2dnRlbE9tdlFTNklyZmRDXzJGV28wc2E3eHdtaF90NEt4akZJLVdwbzlfeGJXYVpOZWhOMVdqOGR1QTlDTQ?oc=5"
+    },
+    {
+      "source": "google",
       "press": "미디어이슈",
       "date": "2026.07.07",
       "title": "안산교육지원청, 학교 간 연대 강화로 AI·디지털 교육 혁신 생태계 구축",
       "snippet": "안산교육지원청, 학교 간 연대 강화로 AI·디지털 교육 혁신 생태계 구축 미디어이슈",
       "url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE56R3ZkMTB6eDdlTkhoRlFnaGlDYi1PWW92Ui1Mc3E1WktkcjhZanV2QjFNS0pTd0RmeHhxbzhzU0RTd3pxUnVxNQ?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "리버럴미디어",
-      "date": "2026.07.07",
-      "title": "안산시, 시민 파워셀러 특강 운영… 세무부터 공공조달까지 실무교육",
-      "snippet": "안산시, 시민 파워셀러 특강 운영… 세무부터 공공조달까지 실무교육 리버럴미디어",
-      "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE1rZ2tldldOcm1va3ZUN3MxRVNOUGJ6YjN5ZHZKX3RnZS0xTGRvUFlQdlhNenpfVGd3SmlaUUo3a0xBb1dwSEJNek94dEFDQmM3Z2o5NS1RcnpCR0hvbzRlOTRVUng?oc=5"
     },
     {
       "source": "naver",
@@ -395,19 +395,19 @@
     },
     {
       "source": "naver",
-      "press": "mt.co.kr",
-      "date": "2026.07.06",
-      "title": "'적정' 학교인데…휠체어타고 화장실, 쉬는시간 넘겼다",
-      "snippet": "\"시작부터 쉽지 않네요.\" 경기 안산시 신길초 4층 한 교실의 문 앞. 수동 휠체어를 타고 문을 빠져나가려 하자... 장애인 화장실도 교육부로부터 '적정' 판단을 받았다. 문제는 학교의 장애인 접근성을 판단하는 기준 자체가...",
-      "url": "https://www.mt.co.kr/society/2026/07/06/2026070613133911092"
-    },
-    {
-      "source": "naver",
       "press": "metroseoul.co.kr",
       "date": "2026.07.06",
       "title": "경기도교육청, 교육공무직 인사·복무 담당자 역량 강화 연수",
       "snippet": "연수는 6일 도교육청 북부청사에서 북부권역 8개 교육지원청을 대상으로, 13일에는 경기도안산교육지원청에서 남부권역 17개 교육지원청을 대상으로 진행되며, 총 25개 교육지원청의 인사·복무 담당자가 참여한다. 이번...",
       "url": "http://www.metroseoul.co.kr/article/20260706500293"
+    },
+    {
+      "source": "naver",
+      "press": "mt.co.kr",
+      "date": "2026.07.06",
+      "title": "'적정' 학교인데…휠체어타고 화장실, 쉬는시간 넘겼다",
+      "snippet": "\"시작부터 쉽지 않네요.\" 경기 안산시 신길초 4층 한 교실의 문 앞. 수동 휠체어를 타고 문을 빠져나가려 하자... 장애인 화장실도 교육부로부터 '적정' 판단을 받았다. 문제는 학교의 장애인 접근성을 판단하는 기준 자체가...",
+      "url": "https://www.mt.co.kr/society/2026/07/06/2026070613133911092"
     },
     {
       "source": "naver",
@@ -443,19 +443,19 @@
     },
     {
       "source": "google",
-      "press": "투데이안산",
-      "date": "2026.07.06",
-      "title": "안산교육지원청, 다문화가정 학부모 맞춤 교육 개최",
-      "snippet": "안산교육지원청, 다문화가정 학부모 맞춤 교육 개최 투데이안산",
-      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1GR0w5eDdZSjdtbEc3TW5EVHU3UzUxWGtCSmdqRzlWbnUxQTNFYlNqTGRLSW5ZWUdtR3JQNDFLY2tOM1RwUmx6aEU4emVsajJ1UHFtVHBSYzFsTURkZHRZUU9pVWVmdXd6cjhRODBn0gFyQVVfeXFMT3ZXdzc4OEhUN3pFMFJxQTVjLW1UeGF1akVidzNnczRhb0xJRzYyUTJSdXZpcGVaQlI1SE5EQUxQYm55M2dsbXdqNzZiQ0hiXzNwUzlDdkc3a2FwZmV3ODd0aVB5T0x4bUg1c0hpWlJ4Rld3?oc=5"
-    },
-    {
-      "source": "google",
       "press": "newszoom.kr",
       "date": "2026.07.06",
       "title": "안산교육지원청, 安心溫心(안심온심) 인성교육으로 가족의 마음을 잇다 여름방학 맞이 가족 소통 프로젝트 '인성 뮤지컬, 가족의 발견'운영",
       "snippet": "안산교육지원청, 安心溫心(안심온심) 인성교육으로 가족의 마음을 잇다 여름방학 맞이 가족 소통 프로젝트 '인성 뮤지컬, 가족의 발견'운영 newszoom.kr",
       "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE80bnFNOUVWVWdJdGs3XzdqVW4yN2ZXX0ZRaUxkb1RFNm1Ma3pQb1M5WDVESDZnQXE3dDh3MGRGZTV0cHlQYXc?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "투데이안산",
+      "date": "2026.07.06",
+      "title": "안산교육지원청, 다문화가정 학부모 맞춤 교육 개최",
+      "snippet": "안산교육지원청, 다문화가정 학부모 맞춤 교육 개최 투데이안산",
+      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1GR0w5eDdZSjdtbEc3TW5EVHU3UzUxWGtCSmdqRzlWbnUxQTNFYlNqTGRLSW5ZWUdtR3JQNDFLY2tOM1RwUmx6aEU4emVsajJ1UHFtVHBSYzFsTURkZHRZUU9pVWVmdXd6cjhRODBn0gFyQVVfeXFMT3ZXdzc4OEhUN3pFMFJxQTVjLW1UeGF1akVidzNnczRhb0xJRzYyUTJSdXZpcGVaQlI1SE5EQUxQYm55M2dsbXdqNzZiQ0hiXzNwUzlDdkc3a2FwZmV3ODd0aVB5T0x4bUg1c0hpWlJ4Rld3?oc=5"
     },
     {
       "source": "google",
@@ -803,19 +803,19 @@
     },
     {
       "source": "google",
-      "press": "v.daum.net",
-      "date": "2026.07.01",
-      "title": "안산교육지원청,경일고에서 ‘2026 안산 루트 기업-학교 만남의 날’ 개최",
-      "snippet": "안산교육지원청,경일고에서 ‘2026 안산 루트 기업-학교 만남의 날’ 개최 v.daum.net",
-      "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE5IdXd3LW1yTlg2Sm94YWpiQmRDR25NM0tJa2ZPSUZNWkpvcWJBanE2N1otWktMZzJpejI2STJpRzQ5Um84SEZCNzdPS3J4Slk?oc=5"
-    },
-    {
-      "source": "google",
       "press": "안산타임스",
       "date": "2026.07.01",
       "title": "안산교육지원청, 교실 안 작은 지구촌, 경계 없는 놀이로 유아 다문화 교육의 길을 열다",
       "snippet": "안산교육지원청, 교실 안 작은 지구촌, 경계 없는 놀이로 유아 다문화 교육의 길을 열다 안산타임스",
       "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTFBzNS13MzZ5b3pZZzQ4dDFYeS0xMlJhb3VQMGZhSkxWaHRnMmJRZTNrQUQ2QXhoQzhYd3hHTEFzbEdtZmtqWHNCcGtHekRvM2FDQTBWUm5zOGZGT2ZMOHlhT0twS0k1MzIzVHRlNUJWMNIBc0FVX3lxTE5Bcm5pWkZrcENjSE1ieE96eVY4RHFSbUtNYkxUWWY1eGNGOXZFYXNlbXl2Zno3ZmNWYzFWN2ZBOVMyb1ozWHRRUXp0ekRpMDNqdG9DV3VOaW8talFFMF9DMUY1ODhiUncxTHVDb24ydW5rRFU?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "v.daum.net",
+      "date": "2026.07.01",
+      "title": "안산교육지원청,경일고에서 ‘2026 안산 루트 기업-학교 만남의 날’ 개최",
+      "snippet": "안산교육지원청,경일고에서 ‘2026 안산 루트 기업-학교 만남의 날’ 개최 v.daum.net",
+      "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE5IdXd3LW1yTlg2Sm94YWpiQmRDR25NM0tJa2ZPSUZNWkpvcWJBanE2N1otWktMZzJpejI2STJpRzQ5Um84SEZCNzdPS3J4Slk?oc=5"
     },
     {
       "source": "naver",
@@ -915,6 +915,14 @@
     },
     {
       "source": "google",
+      "press": "머니투데이",
+      "date": "2026.06.29",
+      "title": "참안산사람들의 '참나눔'…취약계층 212번째 주거 개선 봉사 - 머니투데이",
+      "snippet": "참안산사람들의 '참나눔'…취약계층 212번째 주거 개선 봉사 - 머니투데이 머니투데이",
+      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1WRk5ad3BRNnY3S2tuUHFzY1hHVXRkWHJwdkVTYk9tcDNWbllUUEFWWUpUcTJfRlJWYXJpMkY0bHNUZFhTa1FtNkRkTzFZN0RaYmZ4RTFfcXBDRlZvTTNsZmRab0NlSmxTd3fSAW9BVV95cUxOZnZfT2EtYVFjOEFaZ3dKYmwyeTliUFVQdGNTcEdLcmxEZEpfbTJ0WlFRUmxZVmVIM1pSZ0hfMzNJTXh0TTdfclM3SndtNFlPYU1BWVJ0VWtLdmJCV3BhVXB2Rk9NWld6YTgyeWw5bWs?oc=5"
+    },
+    {
+      "source": "google",
       "press": "경기도민일보 미디어",
       "date": "2026.06.28",
       "title": "안산시 상록구, 무인민원발급창구 신규 설치",
@@ -976,14 +984,6 @@
       "title": "[NC포토] 알고보니 혼수상태, 골프장 나들이...\"인카금융 '더헤븐 마스터...",
       "snippet": "'히트 제조기' 알고보니 혼수상태(김지환·김경범)가 안산 대부도 더헤븐리조트 내 더헤븐CC에서 열린... 송대관, 장윤정, 신유, 한혜진, 금잔디, 김용임, 홍진영, 김호중, 안성훈, 박서진, 홍지윤, 정서주, 양지은 등...",
       "url": "https://www.nc.press/news/articleView.html?idxno=618592"
-    },
-    {
-      "source": "google",
-      "press": "백세시대",
-      "date": "2026.06.19",
-      "title": "대한노인회 경기 안산시 상록구지회, 제7대 김중근 지회장 취임식 개최",
-      "snippet": "대한노인회 경기 안산시 상록구지회, 제7대 김중근 지회장 취임식 개최 백세시대",
-      "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE90LVQ3OERoR0pxY2g2Z090bVlnVEVjZkFURW5KQXpiQWdFX2gtS1Z4SVJ2akJSRkFSZWhqTVZsekUyNzV4UTNEZzhxeXd5UW8tQ0RXUWVYbVhNN0V5SFZLSjhFRlp4UkpYZUk0?oc=5"
     },
     {
       "source": "google",
@@ -1859,19 +1859,19 @@
     },
     {
       "source": "naver",
-      "press": "kgnews.co.kr",
-      "date": "2026.03.26",
-      "title": "[재산공개]경기도의원 74% 재산 증가…평균 12억6000만원",
-      "snippet": "반면 장윤정(민주·안산3) 의원은 마이너스 2400만 원을 신고해 재산이 가장 적었다. 장 의원은 예금이... 등의 순으로 재산 신고액이 적었다. [ 경기신문 = 장진우 기자 ] 경기도의회 전경 (사진=경기도의회 제공)",
-      "url": "https://www.kgnews.co.kr/news/article.html?no=888958"
-    },
-    {
-      "source": "naver",
       "press": "kihoilbo.co.kr",
       "date": "2026.03.26",
       "title": "경기도의원 152명 중 112명 재산 늘어",
       "snippet": "기호일보, KIHOILBO 경기도의회 전경.<경기도의회 제공> 올해 경기도 광역의원의 평균 재산은 12억6천383만... 가장 적은 재산을 보유한 도의원은 장윤정(민주·안산3) 의원으로 마이너스 2천490만 원을 신고했다....",
       "url": "https://www.kihoilbo.co.kr/news/articleView.html?idxno=3017496"
+    },
+    {
+      "source": "naver",
+      "press": "news1.kr",
+      "date": "2026.03.26",
+      "title": "[재산공개]김성수 경기도의원 324억 신고…4년 연속 도내 최고 자산가",
+      "snippet": "김성수 경기도의회 의원(국민의힘·하남2)이 324억여 원의 재산을 보유해 4년 연속 도내 재산공개 대상... 반면, 장윤정 의원(민주·안산3)은 -2490만 원을 신고해 도의원 중 재산이 가장 적었다. 이어 정동혁(민주...",
+      "url": "https://www.news1.kr/local/gyeonggi/6114090"
     },
     {
       "source": "google",
