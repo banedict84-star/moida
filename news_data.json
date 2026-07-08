@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-08 15:42 UTC",
+  "updated": "2026-07-08 18:00 UTC",
   "items": [
     {
       "source": "google",
@@ -499,19 +499,19 @@
     },
     {
       "source": "google",
-      "press": "매일일보",
-      "date": "2026.07.07",
-      "title": "안산교육지원청, '디지털 CO-LINK 네트워크' 개최",
-      "snippet": "안산교육지원청, '디지털 CO-LINK 네트워크' 개최 매일일보",
-      "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE51TUJlQzJ1LUNJaThNRmMwRlhxMVA3UmU0Q05DZWNMaWg1bTJ4YjB2dnFhYk5tR0VoSE91c1ZCbFhfOGVuVkx6Si1ob0QxN0hVMjlNOGhfYXQzM0lPd0MxSVl5aV8?oc=5"
-    },
-    {
-      "source": "google",
       "press": "newszoom.kr",
       "date": "2026.07.07",
       "title": "안산교육지원청, 학교 간 연결로 AI·디지털 교육 성장 생태계 만든다",
       "snippet": "안산교육지원청, 학교 간 연결로 AI·디지털 교육 성장 생태계 만든다 newszoom.kr",
       "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE5vckltMGRqb2NGWTN0dDJPdnM2c0pWREVMUHlkVGpVS0pKQXNaR3hEZjUxRUFtM2swdi0zZVU5ZllNYkxVbkE?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "매일일보",
+      "date": "2026.07.07",
+      "title": "안산교육지원청, 디지털 교육 운영학교 성과 공유",
+      "snippet": "안산교육지원청, 디지털 교육 운영학교 성과 공유 매일일보",
+      "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTFAxSjJuMmJ4UjdFSmxjcldBY0ZsV2xHVl9SRjdGWWd2dnRlbE9tdlFTNklyZmRDXzJGV28wc2E3eHdtaF90NEt4akZJLVdwbzlfeGJXYVpOZWhOMVdqOGR1QTlDTQ?oc=5"
     },
     {
       "source": "google",
@@ -1883,11 +1883,11 @@
     },
     {
       "source": "naver",
-      "press": "kgnews.co.kr",
+      "press": "kihoilbo.co.kr",
       "date": "2026.03.26",
-      "title": "[재산공개]경기도의원 74% 재산 증가…평균 12억6000만원",
-      "snippet": "반면 장윤정(민주·안산3) 의원은 마이너스 2400만 원을 신고해 재산이 가장 적었다. 장 의원은 예금이... 등의 순으로 재산 신고액이 적었다. [ 경기신문 = 장진우 기자 ] 경기도의회 전경 (사진=경기도의회 제공)",
-      "url": "https://www.kgnews.co.kr/news/article.html?no=888958"
+      "title": "경기도의원 152명 중 112명 재산 늘어",
+      "snippet": "기호일보, KIHOILBO 경기도의회 전경.<경기도의회 제공> 올해 경기도 광역의원의 평균 재산은 12억6천383만... 가장 적은 재산을 보유한 도의원은 장윤정(민주·안산3) 의원으로 마이너스 2천490만 원을 신고했다....",
+      "url": "https://www.kihoilbo.co.kr/news/articleView.html?idxno=3017496"
     },
     {
       "source": "naver",
