@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-11 19:42 UTC",
+  "updated": "2026-07-11 21:23 UTC",
   "items": [
     {
       "source": "naver",
@@ -626,6 +626,14 @@
       "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE5EOFc3LWl2eUt5NEtyYnpacURqR05OWDNzV2stelRoQm50S2hwVS04QXd4T1o2MDNYUnFCLUxYbDdHNDAyU3dLalVZTjd4TWM4aFdTUE1WR0Q0TGhaalpJ?oc=5"
     },
     {
+      "source": "google",
+      "press": "매일일보",
+      "date": "2026.07.07",
+      "title": "안산문화재단, 지역화 교육콘텐츠 개발 착수",
+      "snippet": "안산문화재단, 지역화 교육콘텐츠 개발 착수 매일일보",
+      "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE1JUXlnZW9ISU9rVWFTLVhHR0gwamVuUnBLdkd5ZFJlUVRYMm9OSnduSjV1T0hDeGsxMldqSzVnZTZyT3M4RXdKLWpkTUZYX21rMzlBdkFhVGQtNlh2RVV3U19oN3A?oc=5"
+    },
+    {
       "source": "naver",
       "press": "siminilbo.co.kr",
       "date": "2026.07.06",
@@ -1091,19 +1099,19 @@
     },
     {
       "source": "google",
-      "press": "twig24.com",
-      "date": "2026.06.12",
-      "title": "장윤정 경기도의원, 경기도교육청 예산유보 운영 점검…“절감보다 적기 집행이 중요”",
-      "snippet": "장윤정 경기도의원, 경기도교육청 예산유보 운영 점검…“절감보다 적기 집행이 중요” twig24.com",
-      "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxPMzZhTjl2d0hTaXc5UUhhQnZPQzBaOHlZTXpVRG9aWHY5SjFYNzYteHVPMGpNdTQ2NkZWeHB4LTJxckZwQTVMSnYtTUc0Y1VCeHRxRDJyNjFZN2s4UVZqWnJUdHJEYTVXX05zdlh2NGhSUFIwenNicldVcUtLTnk4djVB?oc=5"
-    },
-    {
-      "source": "google",
       "press": "성남포커스",
       "date": "2026.06.12",
       "title": "경기도의회 장윤정 의원, 경기도교육청 예산유보 운영 점검…“절감보다 적기 집행이 중요”",
       "snippet": "경기도의회 장윤정 의원, 경기도교육청 예산유보 운영 점검…“절감보다 적기 집행이 중요” 성남포커스",
       "url": "https://news.google.com/rss/articles/CBMiQ0FVX3lxTE1fSTlRYlAtRVdYSTVVNXFFVk1OeFBwUlVfbW9MN3A1Ul9fM2x0el9vY2IzQk00QmVCdnlId1Z5NUFFLTQ?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "twig24.com",
+      "date": "2026.06.12",
+      "title": "장윤정 경기도의원, 경기도교육청 예산유보 운영 점검…“절감보다 적기 집행이 중요”",
+      "snippet": "장윤정 경기도의원, 경기도교육청 예산유보 운영 점검…“절감보다 적기 집행이 중요” twig24.com",
+      "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxPMzZhTjl2d0hTaXc5UUhhQnZPQzBaOHlZTXpVRG9aWHY5SjFYNzYteHVPMGpNdTQ2NkZWeHB4LTJxckZwQTVMSnYtTUc0Y1VCeHRxRDJyNjFZN2s4UVZqWnJUdHJEYTVXX05zdlh2NGhSUFIwenNicldVcUtLTnk4djVB?oc=5"
     },
     {
       "source": "naver",
@@ -1250,14 +1258,6 @@
       "url": "https://www.jeonmae.co.kr/news/articleView.html?idxno=1262012"
     },
     {
-      "source": "google",
-      "press": "안산뉴스",
-      "date": "2026.06.04",
-      "title": "민주당 경기도의원 8석 싹쓸이 당선",
-      "snippet": "민주당 경기도의원 8석 싹쓸이 당선 안산뉴스",
-      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE1iZll6bHdKRmM3OG8tcE5XU0tTRWZicDR3UGJjdEZwOW9PbHNsNUxnX1BESXJ3Mnp1RHN1SFEyX0N5V0dEY01ielJidF9MUmlmbzVFeU5CeGd5amR5VS1MNGd2dXUzb2NxMHJqbQ?oc=5"
-    },
-    {
       "source": "naver",
       "press": "kyeongin.com",
       "date": "2026.06.04",
@@ -1280,6 +1280,14 @@
       "title": "[6·3지선-표] 경기 광역의원 당선자 명단",
       "snippet": "(49·민주) ◇안산시 ▷1선거구 ▲김동규(58·민주) ▷2선거구 ▲김태희(49·민주) ▷3선거구 ▲장윤정(33·민주) ▷4선거구 ▲유재수(57·민주) ▷5선거구 ▲이은미(44·민주) ▷6선거구 ▲박은경(60·민주)...",
       "url": "https://www.news1.kr/local/gyeonggi/6187213"
+    },
+    {
+      "source": "google",
+      "press": "안산뉴스",
+      "date": "2026.06.04",
+      "title": "민주당 경기도의원 8석 싹쓸이 당선",
+      "snippet": "민주당 경기도의원 8석 싹쓸이 당선 안산뉴스",
+      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE1iZll6bHdKRmM3OG8tcE5XU0tTRWZicDR3UGJjdEZwOW9PbHNsNUxnX1BESXJ3Mnp1RHN1SFEyX0N5V0dEY01ielJidF9MUmlmbzVFeU5CeGd5amR5VS1MNGd2dXUzb2NxMHJqbQ?oc=5"
     },
     {
       "source": "naver",
@@ -1554,14 +1562,6 @@
       "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE94cXMtSzRfclhwaGFQTS1NYUtLdVBaOUFQaFdhUnpqcm5BNGFHUzFYYVlRQlZmN24zMHVBTVFDS29XWVd3c3htZTFCdTVqMmd4eV9RbDZTaktFRzg?oc=5"
     },
     {
-      "source": "google",
-      "press": "일간투데이",
-      "date": "2026.05.09",
-      "title": "기울어진 운동장 안 된다”…장윤정 경기도의원, 안산 정치권 녹취 파장 정면 비판",
-      "snippet": "기울어진 운동장 안 된다”…장윤정 경기도의원, 안산 정치권 녹취 파장 정면 비판 일간투데이",
-      "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE9PNjdvWkxMWnZ6SFlOczZKSW40VnhSd3dXMzFPYnFPckp3b3A0V2taR1lPcnJTc01XR1l6VkJIY3JieHRxYm15ZFdYN25aOEttQmtwbGFlYTJGYmt0REItTzBJVlBETmZvcU5J?oc=5"
-    },
-    {
       "source": "naver",
       "press": "newsis.com",
       "date": "2026.05.09",
@@ -1594,6 +1594,14 @@
       "url": "https://www.joongboo.com/news/articleView.html?idxno=363725048"
     },
     {
+      "source": "google",
+      "press": "일간투데이",
+      "date": "2026.05.09",
+      "title": "기울어진 운동장 안 된다”…장윤정 경기도의원, 안산 정치권 녹취 파장 정면 비판",
+      "snippet": "기울어진 운동장 안 된다”…장윤정 경기도의원, 안산 정치권 녹취 파장 정면 비판 일간투데이",
+      "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE9PNjdvWkxMWnZ6SFlOczZKSW40VnhSd3dXMzFPYnFPckp3b3A0V2taR1lPcnJTc01XR1l6VkJIY3JieHRxYm15ZFdYN25aOEttQmtwbGFlYTJGYmt0REItTzBJVlBETmZvcU5J?oc=5"
+    },
+    {
       "source": "naver",
       "press": "shinailbo.co.kr",
       "date": "2026.05.08",
@@ -1618,14 +1626,6 @@
       "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFB2cC1QVExwd1pxbGlKZFh2V1RLVHdndlZuMk5adUpqaUV3Z2g1eC1oa2N3VzdrMG8zVDczQ0kzSEZkV0N1ekhkNUVFMGQzYTF0WUhtV293Q0ZLOGs?oc=5"
     },
     {
-      "source": "google",
-      "press": "더리포트",
-      "date": "2026.05.05",
-      "title": "[6·3 지선] 장윤정 의원 \"안산 정치권 경선 개입 의혹 녹취 제보\"… 파장 확산",
-      "snippet": "[6·3 지선] 장윤정 의원 \"안산 정치권 경선 개입 의혹 녹취 제보\"… 파장 확산 더리포트",
-      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1FZkl4bzBBV1VKcGk2M2NNQm16WnpjUDU0VlZWVjRkc0pDQ0lCLXJPTUwxY2pILUZoT3ZTREJ4MWhkRjZaaWh5YUVBVVVGVW9GR0lGd2hDR1BLdXFBcl81dncxeHI3UGNmcl9CYXBB?oc=5"
-    },
-    {
       "source": "naver",
       "press": "thereport.co.kr",
       "date": "2026.05.05",
@@ -1640,6 +1640,14 @@
       "title": "[6·3 지방선거 이모저모] 경선 승복했지만… 장윤정 도의원 \"국회의원...",
       "snippet": "사진=본인제공 장윤정 경기도의원(더불어민주당·안산3)이 최근 제보받은 녹취파일을 근거로 지역 정치권의 경선개입 의혹을 제기하고 나서 파문이 일고 있다. 장 의원은 지난 4일 배포한 자료에서 \"국회의원과 지방의회...",
       "url": "https://www.joongboo.com/news/articleView.html?idxno=363724655"
+    },
+    {
+      "source": "google",
+      "press": "더리포트",
+      "date": "2026.05.05",
+      "title": "[6·3 지선] 장윤정 의원 \"안산 정치권 경선 개입 의혹 녹취 제보\"… 파장 확산",
+      "snippet": "[6·3 지선] 장윤정 의원 \"안산 정치권 경선 개입 의혹 녹취 제보\"… 파장 확산 더리포트",
+      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1FZkl4bzBBV1VKcGk2M2NNQm16WnpjUDU0VlZWVjRkc0pDQ0lCLXJPTUwxY2pILUZoT3ZTREJ4MWhkRjZaaWh5YUVBVVVGVW9GR0lGd2hDR1BLdXFBcl81dncxeHI3UGNmcl9CYXBB?oc=5"
     },
     {
       "source": "google",
@@ -1915,19 +1923,19 @@
     },
     {
       "source": "naver",
+      "press": "kgnews.co.kr",
+      "date": "2026.03.26",
+      "title": "[재산공개]경기도의원 74% 재산 증가…평균 12억6000만원",
+      "snippet": "반면 장윤정(민주·안산3) 의원은 마이너스 2400만 원을 신고해 재산이 가장 적었다. 장 의원은 예금이... 등의 순으로 재산 신고액이 적었다. [ 경기신문 = 장진우 기자 ] 경기도의회 전경 (사진=경기도의회 제공)",
+      "url": "https://www.kgnews.co.kr/news/article.html?no=888958"
+    },
+    {
+      "source": "naver",
       "press": "kihoilbo.co.kr",
       "date": "2026.03.26",
       "title": "경기도의원 152명 중 112명 재산 늘어",
       "snippet": "기호일보, KIHOILBO 경기도의회 전경.<경기도의회 제공> 올해 경기도 광역의원의 평균 재산은 12억6천383만... 가장 적은 재산을 보유한 도의원은 장윤정(민주·안산3) 의원으로 마이너스 2천490만 원을 신고했다....",
       "url": "https://www.kihoilbo.co.kr/news/articleView.html?idxno=3017496"
-    },
-    {
-      "source": "naver",
-      "press": "news1.kr",
-      "date": "2026.03.26",
-      "title": "[재산공개]김성수 경기도의원 324억 신고…4년 연속 도내 최고 자산가",
-      "snippet": "김성수 경기도의회 의원(국민의힘·하남2)이 324억여 원의 재산을 보유해 4년 연속 도내 재산공개 대상... 반면, 장윤정 의원(민주·안산3)은 -2490만 원을 신고해 도의원 중 재산이 가장 적었다. 이어 정동혁(민주...",
-      "url": "https://www.news1.kr/local/gyeonggi/6114090"
     },
     {
       "source": "google",
@@ -1992,14 +2000,6 @@
       "title": "경기도의회 장윤정 의원, \"학교 환경, 아이들 안전·학습권과 직결\"",
       "snippet": "경기도의회 장윤정 의원, \"학교 환경, 아이들 안전·학습권과 직결\" 메트로신문",
       "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE5LUk95T2RUay1oOU5rbC0ycEU0SWpWN0syU05HQUZLQ01UcTJ0S2dZaTBrZTJaUUZHWk4yOFlwZUs3NkcwaFNyQWw3ZnZsNmY5VUQyM2NZMkpoY251ampkVA?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "뉴스핌",
-      "date": "2026.02.11",
-      "title": "안산 상록구 부곡동서 차량 화재…인명피해 없어",
-      "snippet": "안산 상록구 부곡동서 차량 화재…인명피해 없어 뉴스핌",
-      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE9MazNlSlhmQndMMXh6RWFBWHNfZzJZRU9jQ0VYTUw1cVpUZkxla0JSVGhuRUFpeUR3a3loUF9hUTUyVnBPSGVqS1NVSzhoWUx6OWhTdkxrSmV0LXps?oc=5"
     }
   ]
 }
