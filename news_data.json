@@ -1,6 +1,22 @@
 {
-  "updated": "2026-07-11 12:29 UTC",
+  "updated": "2026-07-11 14:03 UTC",
   "items": [
+    {
+      "source": "naver",
+      "press": "ekn.kr",
+      "date": "2026.07.11",
+      "title": "[패트롤] 광명시-군포시-시흥시-안산시-안양시",
+      "snippet": "안산=에너지경제신문 강근주기자 인도 청년 리더들이 유네스코 마하트마 간디 평화-지속가능발전교육원(UNESCO MGIEP) 국제 펠로십 프로그램의 현장 학습지로 선정된 안산에 이틀 동안 머물며 안산형 상호문화도시를...",
+      "url": "https://www.ekn.kr/web/view.php?key=20260711025501571"
+    },
+    {
+      "source": "naver",
+      "press": "cstimes.com",
+      "date": "2026.07.11",
+      "title": "공무원연금공단, '경기클래식앙상블 상록봉사단' 출범 및 자원순환 실천",
+      "snippet": "이번에 출범한 '경기클래식앙상블 상록봉사단'은 지난 6월 안산·군포·과천 지역 거주 퇴직공무원을... 공단은 봉사단의 원활한 활동을 위해 교육과 운영 지원을 이어갈 방침이다. 서병철 공무원연금공단...",
+      "url": "https://www.cstimes.com/news/articleView.html?idxno=713095"
+    },
     {
       "source": "naver",
       "press": "bizwnews.com",
@@ -203,19 +219,19 @@
     },
     {
       "source": "naver",
-      "press": "kihoilbo.co.kr",
-      "date": "2026.07.10",
-      "title": "경기도의회 민주 수석대표단, 판교AI혁신클러스터서 첫 현장 정책회의",
-      "snippet": "정책위원장(안산2), 전자영 수석대변인(용인4), 유경현 정무수석(부천7), 이자형 기획수석(광주3), 김회철... 직무 교육 모델개발 ▶데이터센터 건립 시 해당 지역 인센티브 제공 ▶데이터센터의 수익 발생시 지방세와...",
-      "url": "https://www.kihoilbo.co.kr/news/articleView.html?idxno=3028607"
-    },
-    {
-      "source": "naver",
       "press": "joongangenews.com",
       "date": "2026.07.10",
       "title": "안산시, 유네스코 국제 펠로십 현장학습지 선정…인도 청년 리더 방문",
       "snippet": "|중앙이코노미뉴스 고영규 기자|안산시는 유네스코 마하트마 간디 평화·지속가능발전교육원(UNESCO MGIEP) 국제 펠로십 프로그램의 현장학습지로 선정돼 인도 청년 리더들을 맞이했다. [사진=안산시] 경기 안산시는...",
       "url": "https://www.joongangenews.com/news/articleView.html?idxno=532176"
+    },
+    {
+      "source": "naver",
+      "press": "kihoilbo.co.kr",
+      "date": "2026.07.10",
+      "title": "경기도의회 민주 수석대표단, 판교AI혁신클러스터서 첫 현장 정책회의",
+      "snippet": "정책위원장(안산2), 전자영 수석대변인(용인4), 유경현 정무수석(부천7), 이자형 기획수석(광주3), 김회철... 직무 교육 모델개발 ▶데이터센터 건립 시 해당 지역 인센티브 제공 ▶데이터센터의 수익 발생시 지방세와...",
+      "url": "https://www.kihoilbo.co.kr/news/articleView.html?idxno=3028607"
     },
     {
       "source": "naver",
@@ -448,22 +464,6 @@
       "title": "안산대, 지역 주민 대상 '시니어 응급처치 교육' 실시…실습 중심 진행",
       "snippet": "안산대학교 재난안전교육센터는 지난 4일 교내에서 지역 주민 20명을 대상으로 '시니어 라이프 세이프(Senior Life Safe) - 생활 속 응급처치 교육'을 실시했다. 이번 교육은 경기도 지역혁신중심 대학지원체계(RISE) 사업과...",
       "url": "https://www.kyosu.net/news/articleView.html?idxno=207519"
-    },
-    {
-      "source": "naver",
-      "press": "breaknews.com",
-      "date": "2026.07.10",
-      "title": "안산시, 유네스코 국제 펠로십 인도 청년단 방문",
-      "snippet": "안산시가 유네스코 마하트마 간디 평화·지속가능발전교육원의 국제 펠로십 현장학습지로 선정되어 인도 청년 리더들을 맞이했다. 선발된 인도의 차세대 인재들은...",
-      "url": "http://www.breaknews.com/1220795"
-    },
-    {
-      "source": "naver",
-      "press": "newsclaim.co.kr",
-      "date": "2026.07.10",
-      "title": "안산환경재단 ESG탄소중립교육원 ESG부문 대상",
-      "snippet": "ESG탄소중립교육원은 제조기업 최고경영자(CEO)를 대상으로 한 ESG경영자 과정을 비롯해 기업 실무자 교육, 시민 대상 탄소중립 교육, 안산그린리더스클럽 운영 등 다양한 프로그램을 통해 기업의 ESG 대응 역량을...",
-      "url": "https://www.newsclaim.co.kr/news/articleView.html?idxno=3069064"
     },
     {
       "source": "google",
@@ -1035,6 +1035,14 @@
     },
     {
       "source": "google",
+      "press": "경기종합뉴스",
+      "date": "2026.06.20",
+      "title": "안산시상록구노인복지관, 도시숲센터와 함께 ‘대부도 치유여행’",
+      "snippet": "안산시상록구노인복지관, 도시숲센터와 함께 ‘대부도 치유여행’ 경기종합뉴스",
+      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE5Yd3E4WXpNbXptbG51NktqU2NNcXRsYWRqUExYN00teUpNa1NtNDEwYmF0dndzbV9nS2dRaUM3QUQ1Sl9leVZaMXRJZ1JiSVl6NGNmbW9LZmJ1ZG5GTW84NG1hLUtka0p2OEZPUlVtenBxdm0z?oc=5"
+    },
+    {
+      "source": "google",
       "press": "반월신문",
       "date": "2026.06.17",
       "title": "민주당 장윤정 경기도의원 당선인사 “보내주신 성원 잊지 않고 성과로 보답하겠다”",
@@ -1091,19 +1099,19 @@
     },
     {
       "source": "google",
-      "press": "성남포커스",
-      "date": "2026.06.12",
-      "title": "경기도의회 장윤정 의원, 경기도교육청 예산유보 운영 점검…“절감보다 적기 집행이 중요”",
-      "snippet": "경기도의회 장윤정 의원, 경기도교육청 예산유보 운영 점검…“절감보다 적기 집행이 중요” 성남포커스",
-      "url": "https://news.google.com/rss/articles/CBMiQ0FVX3lxTE1fSTlRYlAtRVdYSTVVNXFFVk1OeFBwUlVfbW9MN3A1Ul9fM2x0el9vY2IzQk00QmVCdnlId1Z5NUFFLTQ?oc=5"
-    },
-    {
-      "source": "google",
       "press": "twig24.com",
       "date": "2026.06.12",
       "title": "장윤정 경기도의원, 경기도교육청 예산유보 운영 점검…“절감보다 적기 집행이 중요”",
       "snippet": "장윤정 경기도의원, 경기도교육청 예산유보 운영 점검…“절감보다 적기 집행이 중요” twig24.com",
       "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxPMzZhTjl2d0hTaXc5UUhhQnZPQzBaOHlZTXpVRG9aWHY5SjFYNzYteHVPMGpNdTQ2NkZWeHB4LTJxckZwQTVMSnYtTUc0Y1VCeHRxRDJyNjFZN2s4UVZqWnJUdHJEYTVXX05zdlh2NGhSUFIwenNicldVcUtLTnk4djVB?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "성남포커스",
+      "date": "2026.06.12",
+      "title": "경기도의회 장윤정 의원, 경기도교육청 예산유보 운영 점검…“절감보다 적기 집행이 중요”",
+      "snippet": "경기도의회 장윤정 의원, 경기도교육청 예산유보 운영 점검…“절감보다 적기 집행이 중요” 성남포커스",
+      "url": "https://news.google.com/rss/articles/CBMiQ0FVX3lxTE1fSTlRYlAtRVdYSTVVNXFFVk1OeFBwUlVfbW9MN3A1Ul9fM2x0el9vY2IzQk00QmVCdnlId1Z5NUFFLTQ?oc=5"
     },
     {
       "source": "naver",
@@ -1250,6 +1258,14 @@
       "url": "https://www.jeonmae.co.kr/news/articleView.html?idxno=1262012"
     },
     {
+      "source": "google",
+      "press": "안산뉴스",
+      "date": "2026.06.04",
+      "title": "민주당 경기도의원 8석 싹쓸이 당선",
+      "snippet": "민주당 경기도의원 8석 싹쓸이 당선 안산뉴스",
+      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE1iZll6bHdKRmM3OG8tcE5XU0tTRWZicDR3UGJjdEZwOW9PbHNsNUxnX1BESXJ3Mnp1RHN1SFEyX0N5V0dEY01ielJidF9MUmlmbzVFeU5CeGd5amR5VS1MNGd2dXUzb2NxMHJqbQ?oc=5"
+    },
+    {
       "source": "naver",
       "press": "kyeongin.com",
       "date": "2026.06.04",
@@ -1272,14 +1288,6 @@
       "title": "[6·3지선-표] 경기 광역의원 당선자 명단",
       "snippet": "(49·민주) ◇안산시 ▷1선거구 ▲김동규(58·민주) ▷2선거구 ▲김태희(49·민주) ▷3선거구 ▲장윤정(33·민주) ▷4선거구 ▲유재수(57·민주) ▷5선거구 ▲이은미(44·민주) ▷6선거구 ▲박은경(60·민주)...",
       "url": "https://www.news1.kr/local/gyeonggi/6187213"
-    },
-    {
-      "source": "google",
-      "press": "안산뉴스",
-      "date": "2026.06.04",
-      "title": "민주당 경기도의원 8석 싹쓸이 당선",
-      "snippet": "민주당 경기도의원 8석 싹쓸이 당선 안산뉴스",
-      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE1iZll6bHdKRmM3OG8tcE5XU0tTRWZicDR3UGJjdEZwOW9PbHNsNUxnX1BESXJ3Mnp1RHN1SFEyX0N5V0dEY01ielJidF9MUmlmbzVFeU5CeGd5amR5VS1MNGd2dXUzb2NxMHJqbQ?oc=5"
     },
     {
       "source": "naver",
@@ -1490,14 +1498,6 @@
       "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE91T1VUTjFsVE1fVzdLbWhjdnUyZVh4blRVUmszcnVzT25IOHQ1T2J1Uk16SHM0UHFoeDlXUllVNWZmM19mX2pSaXliOU9jNmdfYVNkU3p3QUI2XzjSAWBBVV95cUxQRUVibk9OcUtnV0dqeEREMF80dmI3WUJONzVXTmY4UU9SNEtrczl4RU1XVnpKY3ZhSkFhLWN1NF9lVEx1aS1zTF9rdUNhWEUwMmlCV1p6RlV3dWNFSnVKOFg?oc=5"
     },
     {
-      "source": "google",
-      "press": "경향신문",
-      "date": "2026.05.13",
-      "title": "안산 상록구 다세대주택서 화재···1명 숨지고 3명 부상",
-      "snippet": "안산 상록구 다세대주택서 화재···1명 숨지고 3명 부상 경향신문",
-      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE94ZFJWc1liZGRLTWM0aVAxVjY5c0VSOE40bVN0RXA3QlRidXMzdVkwdFljWVIxTG5oOGNwLUtsMl9pT2NJY1VTOEh4OGRMRU02b3Bob0pwa3dSQdIBX0FVX3lxTE52SDdudTdHX3NXYVFOQkhjSnFLR2pmVW5hbmE0aEZYM3B6WXVLNGpoY09DY0xlMVpuZVEzYWIzZVFjY1h1TTYtRHFMVFdPR0RfQ05pWGVIRm5NUG16cTRN?oc=5"
-    },
-    {
       "source": "naver",
       "press": "hansbiz.co.kr",
       "date": "2026.05.12",
@@ -1618,6 +1618,14 @@
       "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFB2cC1QVExwd1pxbGlKZFh2V1RLVHdndlZuMk5adUpqaUV3Z2g1eC1oa2N3VzdrMG8zVDczQ0kzSEZkV0N1ekhkNUVFMGQzYTF0WUhtV293Q0ZLOGs?oc=5"
     },
     {
+      "source": "google",
+      "press": "더리포트",
+      "date": "2026.05.05",
+      "title": "[6·3 지선] 장윤정 의원 \"안산 정치권 경선 개입 의혹 녹취 제보\"… 파장 확산",
+      "snippet": "[6·3 지선] 장윤정 의원 \"안산 정치권 경선 개입 의혹 녹취 제보\"… 파장 확산 더리포트",
+      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1FZkl4bzBBV1VKcGk2M2NNQm16WnpjUDU0VlZWVjRkc0pDQ0lCLXJPTUwxY2pILUZoT3ZTREJ4MWhkRjZaaWh5YUVBVVVGVW9GR0lGd2hDR1BLdXFBcl81dncxeHI3UGNmcl9CYXBB?oc=5"
+    },
+    {
       "source": "naver",
       "press": "thereport.co.kr",
       "date": "2026.05.05",
@@ -1632,14 +1640,6 @@
       "title": "[6·3 지방선거 이모저모] 경선 승복했지만… 장윤정 도의원 \"국회의원...",
       "snippet": "사진=본인제공 장윤정 경기도의원(더불어민주당·안산3)이 최근 제보받은 녹취파일을 근거로 지역 정치권의 경선개입 의혹을 제기하고 나서 파문이 일고 있다. 장 의원은 지난 4일 배포한 자료에서 \"국회의원과 지방의회...",
       "url": "https://www.joongboo.com/news/articleView.html?idxno=363724655"
-    },
-    {
-      "source": "google",
-      "press": "더리포트",
-      "date": "2026.05.05",
-      "title": "[6·3 지선] 장윤정 의원 \"안산 정치권 경선 개입 의혹 녹취 제보\"… 파장 확산",
-      "snippet": "[6·3 지선] 장윤정 의원 \"안산 정치권 경선 개입 의혹 녹취 제보\"… 파장 확산 더리포트",
-      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1FZkl4bzBBV1VKcGk2M2NNQm16WnpjUDU0VlZWVjRkc0pDQ0lCLXJPTUwxY2pILUZoT3ZTREJ4MWhkRjZaaWh5YUVBVVVGVW9GR0lGd2hDR1BLdXFBcl81dncxeHI3UGNmcl9CYXBB?oc=5"
     },
     {
       "source": "google",
