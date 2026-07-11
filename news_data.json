@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-11 22:23 UTC",
+  "updated": "2026-07-11 23:28 UTC",
   "items": [
     {
       "source": "naver",
@@ -219,19 +219,19 @@
     },
     {
       "source": "naver",
-      "press": "joongangenews.com",
-      "date": "2026.07.10",
-      "title": "안산시, 유네스코 국제 펠로십 현장학습지 선정…인도 청년 리더 방문",
-      "snippet": "|중앙이코노미뉴스 고영규 기자|안산시는 유네스코 마하트마 간디 평화·지속가능발전교육원(UNESCO MGIEP) 국제 펠로십 프로그램의 현장학습지로 선정돼 인도 청년 리더들을 맞이했다. [사진=안산시] 경기 안산시는...",
-      "url": "https://www.joongangenews.com/news/articleView.html?idxno=532176"
-    },
-    {
-      "source": "naver",
       "press": "kihoilbo.co.kr",
       "date": "2026.07.10",
       "title": "경기도의회 민주 수석대표단, 판교AI혁신클러스터서 첫 현장 정책회의",
       "snippet": "정책위원장(안산2), 전자영 수석대변인(용인4), 유경현 정무수석(부천7), 이자형 기획수석(광주3), 김회철... 직무 교육 모델개발 ▶데이터센터 건립 시 해당 지역 인센티브 제공 ▶데이터센터의 수익 발생시 지방세와...",
       "url": "https://www.kihoilbo.co.kr/news/articleView.html?idxno=3028607"
+    },
+    {
+      "source": "naver",
+      "press": "joongangenews.com",
+      "date": "2026.07.10",
+      "title": "안산시, 유네스코 국제 펠로십 현장학습지 선정…인도 청년 리더 방문",
+      "snippet": "|중앙이코노미뉴스 고영규 기자|안산시는 유네스코 마하트마 간디 평화·지속가능발전교육원(UNESCO MGIEP) 국제 펠로십 프로그램의 현장학습지로 선정돼 인도 청년 리더들을 맞이했다. [사진=안산시] 경기 안산시는...",
+      "url": "https://www.joongangenews.com/news/articleView.html?idxno=532176"
     },
     {
       "source": "naver",
@@ -1016,6 +1016,14 @@
       "title": "안산소방서, 수암119안전센터 개청…골든타임 확보 주력",
       "snippet": "이번 개청식에는 이민근 안산시장과 김태진 안산소방서 정책자문위원장, 민화식 안산문화원장, 장윤정·유재수 경기도의회 의원 등을 비롯해 경기도소방재난본부 관계자, 안산소방서 정책자문위원회 및...",
       "url": "https://www.kyeonggi.com/article/20260624580074"
+    },
+    {
+      "source": "google",
+      "press": "안산신문",
+      "date": "2026.06.24",
+      "title": "장윤정 도의원, 추경안 심사 예산유보액 현황 점검",
+      "snippet": "장윤정 도의원, 추경안 심사 예산유보액 현황 점검 안산신문",
+      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE4yeERuRlNDT0EtZ3U2MXpZcmZ4MDUxOXVTMkptS1BUSFVVLURRSkV2Y2Z1OUpNeHRIeFJacTJuM0o0amUxZGtHZER6aUEyS0NKQjZlanhxaURoc2NGZzRTVUpfU056cmc?oc=5"
     },
     {
       "source": "google",
@@ -1856,14 +1864,6 @@
       "title": "기술적 문제 드러난 안산 학교 환기설비",
       "snippet": "경기도의회 교육기획위원회 '학교 급식실 환기설비 개선 TF'는 지난 1일 안산 지역 학교를 방문해 경기도형 환기설비 운영 실태를 집중 점검했다. 이날 점검에는 TF 위원장인 장윤정 경기도의원을 비롯한 관계자들이...",
       "url": "http://www.fsnews.co.kr/news/articleView.html?idxno=60518"
-    },
-    {
-      "source": "google",
-      "press": "오토투데이",
-      "date": "2026.04.02",
-      "title": "장윤정·경기의회, 기계설비유지관리자 처우 개선 논의",
-      "snippet": "장윤정·경기의회, 기계설비유지관리자 처우 개선 논의 오토투데이",
-      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE41TnQ0TkpCdXd0Slo5QkI3RWRCZXp4T1lmVWxzSUg5ZzBueXBOa0FuclNydU5CZmF4bnNqektrZzE1a2xuOHBRTWJYNHhZaTlneXFBa3hGajVtdEp3eHVaVDhRRHMtT0xvZ0lPMnpB?oc=5"
     },
     {
       "source": "google",
