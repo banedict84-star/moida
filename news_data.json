@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-12 14:04 UTC",
+  "updated": "2026-07-12 15:33 UTC",
   "items": [
     {
       "source": "naver",
@@ -531,19 +531,19 @@
     },
     {
       "source": "naver",
-      "press": "kihoilbo.co.kr",
-      "date": "2026.07.10",
-      "title": "경기도의회 민주 수석대표단, 판교AI혁신클러스터서 첫 현장 정책회의",
-      "snippet": "정책위원장(안산2), 전자영 수석대변인(용인4), 유경현 정무수석(부천7), 이자형 기획수석(광주3), 김회철... 직무 교육 모델개발 ▶데이터센터 건립 시 해당 지역 인센티브 제공 ▶데이터센터의 수익 발생시 지방세와...",
-      "url": "https://www.kihoilbo.co.kr/news/articleView.html?idxno=3028607"
-    },
-    {
-      "source": "naver",
       "press": "joongangenews.com",
       "date": "2026.07.10",
       "title": "안산시, 유네스코 국제 펠로십 현장학습지 선정…인도 청년 리더 방문",
       "snippet": "|중앙이코노미뉴스 고영규 기자|안산시는 유네스코 마하트마 간디 평화·지속가능발전교육원(UNESCO MGIEP) 국제 펠로십 프로그램의 현장학습지로 선정돼 인도 청년 리더들을 맞이했다. [사진=안산시] 경기 안산시는...",
       "url": "https://www.joongangenews.com/news/articleView.html?idxno=532176"
+    },
+    {
+      "source": "naver",
+      "press": "kihoilbo.co.kr",
+      "date": "2026.07.10",
+      "title": "경기도의회 민주 수석대표단, 판교AI혁신클러스터서 첫 현장 정책회의",
+      "snippet": "정책위원장(안산2), 전자영 수석대변인(용인4), 유경현 정무수석(부천7), 이자형 기획수석(광주3), 김회철... 직무 교육 모델개발 ▶데이터센터 건립 시 해당 지역 인센티브 제공 ▶데이터센터의 수익 발생시 지방세와...",
+      "url": "https://www.kihoilbo.co.kr/news/articleView.html?idxno=3028607"
     },
     {
       "source": "naver",
@@ -1818,20 +1818,20 @@
       "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE4zR1VkX09YVU9udnZnck9kQUVZMFp5NjlfNlBGZ255aGphNWs3SjV4a0E5ZmxsZ08yR00tajhmbU1ERUZGNExCM0FnaEJsY0VHRFZ1ejVmajFuNzBwYlVfdkxvOHRPdFBSYUE?oc=5"
     },
     {
-      "source": "google",
-      "press": "전국매일신문",
-      "date": "2026.04.06",
-      "title": "장윤정 경기도의원, 재선 도전 선언···안산 지역 변화 강조",
-      "snippet": "장윤정 경기도의원, 재선 도전 선언···안산 지역 변화 강조 전국매일신문",
-      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE0wLWpqakhrX3B5amFmcThCV1N0TXBmaG5ucklFOE9weW4xb0hLakQ4WEJBNTg5UDJaenpCcXE3XzZYcnd6dU9TWE5rR1dKcjJ2N3FINmxBWmdHM1l3S1hqWTlkRW5aWjBnVGNScDZn?oc=5"
-    },
-    {
       "source": "naver",
       "press": "newscj.com",
       "date": "2026.04.06",
       "title": "장윤정 경기도의원, 재선 도전 선언… \"성과로 증명하는 정치\"",
       "snippet": "더불어민주당 장윤정 경기도의원이 6일 경기도의회 브리핑룸에서 재선 도전을 선언하며 \"말이 아닌 실력과 성과로 안산의 변화를 완성하겠다\"고 밝혔다. 장 의원은 이날 출마 기자회견에서 \"정치는 결과로 증명해야 한다\"며...",
       "url": "https://www.newscj.com/news/articleView.html?idxno=3391793"
+    },
+    {
+      "source": "naver",
+      "press": "jeonmae.co.kr",
+      "date": "2026.04.06",
+      "title": "장윤정 경기도의원, 재선 도전 선언···안산 지역 변화 강조",
+      "snippet": "장윤정 경기도의원 장윤정 경기도의원이 재선 도전을 공식 선언하며 안산 지역 발전 비전을 제시했다. 장 의원은 6일 경기도의회 브리핑룸에서 기자회견을 열고 지역 변화를 이끌겠다는 의지를 밝혔다. 그는 일동과 이동...",
+      "url": "https://www.jeonmae.co.kr/news/articleView.html?idxno=1245705"
     },
     {
       "source": "naver",
@@ -1907,11 +1907,11 @@
     },
     {
       "source": "naver",
-      "press": "kihoilbo.co.kr",
+      "press": "news1.kr",
       "date": "2026.03.26",
-      "title": "경기도의원 152명 중 112명 재산 늘어",
-      "snippet": "기호일보, KIHOILBO 경기도의회 전경.<경기도의회 제공> 올해 경기도 광역의원의 평균 재산은 12억6천383만... 가장 적은 재산을 보유한 도의원은 장윤정(민주·안산3) 의원으로 마이너스 2천490만 원을 신고했다....",
-      "url": "https://www.kihoilbo.co.kr/news/articleView.html?idxno=3017496"
+      "title": "[재산공개]김성수 경기도의원 324억 신고…4년 연속 도내 최고 자산가",
+      "snippet": "김성수 경기도의회 의원(국민의힘·하남2)이 324억여 원의 재산을 보유해 4년 연속 도내 재산공개 대상... 반면, 장윤정 의원(민주·안산3)은 -2490만 원을 신고해 도의원 중 재산이 가장 적었다. 이어 정동혁(민주...",
+      "url": "https://www.news1.kr/local/gyeonggi/6114090"
     },
     {
       "source": "google",
