@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-12 15:33 UTC",
+  "updated": "2026-07-12 17:33 UTC",
   "items": [
     {
       "source": "naver",
@@ -307,11 +307,11 @@
     },
     {
       "source": "google",
-      "press": "뉴스파노라마",
+      "press": "더 데일리가드",
       "date": "2026.07.12",
       "title": "안산교육지원청, '2027학년도 안산 맞춤형 대학입시 설명회' 성황리에 개최",
-      "snippet": "안산교육지원청, '2027학년도 안산 맞춤형 대학입시 설명회' 성황리에 개최 뉴스파노라마",
-      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE1Rcl9VamJDUDBzTS1YdkFQSW1SYWR2TGYwTmY5bzkxQXNVbHA1NHVrOVpoMDZZQkF1ckIyNkE0TFh3Mzd1YkJ3b1J2cURRM20yM25lU3JVNGtMN1pXOVRTcm90X2E1UEI3RC1NU3B5bw?oc=5"
+      "snippet": "안산교육지원청, '2027학년도 안산 맞춤형 대학입시 설명회' 성황리에 개최 더 데일리가드",
+      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9VM292M05TQkJUT1BxX3lUOC14Y2JfNDlienRqazB3ODRqeTdiUXJNeGJRNngzS1gwLXlLYmVkekxobU93dVpieEYzNU93bE54OWlrLWNrMXNPd2MtTERKMzJNRDZ5Ym5zeFNUNlBvU20?oc=5"
     },
     {
       "source": "naver",
@@ -659,6 +659,14 @@
     },
     {
       "source": "google",
+      "press": "안산신문",
+      "date": "2026.07.09",
+      "title": "안산문화재단, 교육콘텐츠 개발 교사지원단 ‘위촉’",
+      "snippet": "안산문화재단, 교육콘텐츠 개발 교사지원단 ‘위촉’ 안산신문",
+      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9fcm5jaS1xSXBRbExxemhKSUxtaF96VWUxOVNtRG1HSDJNUHdWY1NSakdRWWh4RWZHWVp2aG9RSVlVZnpPV2JLaEpmMlctNVZVOEhEcERRbVRVUUZhQkl5bE9yRGZtTnc?oc=5"
+    },
+    {
+      "source": "google",
       "press": "반월신문",
       "date": "2026.07.08",
       "title": "더불어민주당 장윤정 경기도의원, \"초심 잃지 않고 주민 곁에서 실천으로 보답\"",
@@ -760,14 +768,6 @@
       "title": "안산교육지원청, '디지털 CO-LINK 네트워크' 개최",
       "snippet": "안산교육지원청, '디지털 CO-LINK 네트워크' 개최 매일일보",
       "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE51TUJlQzJ1LUNJaThNRmMwRlhxMVA3UmU0Q05DZWNMaWg1bTJ4YjB2dnFhYk5tR0VoSE91c1ZCbFhfOGVuVkx6Si1ob0QxN0hVMjlNOGhfYXQzM0lPd0MxSVl5aV8?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "안산뉴스",
-      "date": "2026.07.07",
-      "title": "안산문화재단 ‘초등 교육콘텐츠 개발’ 교사지원단 출범",
-      "snippet": "안산문화재단 ‘초등 교육콘텐츠 개발’ 교사지원단 출범 안산뉴스",
-      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBHa1l2bmRGZzF1WjNCNkxvZkF2VS1KbEZtQTM4MDR4akR3eGM0LV9XX2JldjlrRU9zdFNTdzFQZE5UaUZiV3Q3N3QyQ3pMbC1lUHJPYUJDamJma1ZISEpRWlQ1cGg2WWVGQ3RBTQ?oc=5"
     },
     {
       "source": "naver",
@@ -1016,14 +1016,6 @@
       "title": "[NC포토] 알고보니 혼수상태, 골프장 나들이...\"인카금융 '더헤븐 마스터...",
       "snippet": "'히트 제조기' 알고보니 혼수상태(김지환·김경범)가 안산 대부도 더헤븐리조트 내 더헤븐CC에서 열린... 송대관, 장윤정, 신유, 한혜진, 금잔디, 김용임, 홍진영, 김호중, 안성훈, 박서진, 홍지윤, 정서주, 양지은 등...",
       "url": "https://www.nc.press/news/articleView.html?idxno=618592"
-    },
-    {
-      "source": "google",
-      "press": "경기종합뉴스",
-      "date": "2026.06.20",
-      "title": "안산시상록구노인복지관, 도시숲센터와 함께 ‘대부도 치유여행’",
-      "snippet": "안산시상록구노인복지관, 도시숲센터와 함께 ‘대부도 치유여행’ 경기종합뉴스",
-      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE5Yd3E4WXpNbXptbG51NktqU2NNcXRsYWRqUExYN00teUpNa1NtNDEwYmF0dndzbV9nS2dRaUM3QUQ1Sl9leVZaMXRJZ1JiSVl6NGNmbW9LZmJ1ZG5GTW84NG1hLUtka0p2OEZPUlVtenBxdm0z?oc=5"
     },
     {
       "source": "google",
@@ -1795,6 +1787,14 @@
     },
     {
       "source": "google",
+      "press": "경기청소년신문",
+      "date": "2026.04.10",
+      "title": "경기도의회 장윤정 의원, 안산 학교급식실 환기설비 운영 점검 나서",
+      "snippet": "경기도의회 장윤정 의원, 안산 학교급식실 환기설비 운영 점검 나서 경기청소년신문",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE44djc1dkZGWmdXYl9mZnVzWmc0TS1qdjFaVmhfOVgyalg0QjF3WVhUdDNRQzJENXp2WFkyRWJtX2xOdVZyRnVHUkdpRHlzXzRfNDg0MTQ5N25jWW9Oc2dwV2tJTnE4aXkt?oc=5"
+    },
+    {
+      "source": "google",
       "press": "안산뉴스",
       "date": "2026.04.07",
       "title": "장윤정 도의원 안산3선거구 재도전 공식선언",
@@ -1843,14 +1843,6 @@
     },
     {
       "source": "google",
-      "press": "오토투데이",
-      "date": "2026.04.02",
-      "title": "장윤정·경기의회, 기계설비유지관리자 처우 개선 논의",
-      "snippet": "장윤정·경기의회, 기계설비유지관리자 처우 개선 논의 오토투데이",
-      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE41TnQ0TkpCdXd0Slo5QkI3RWRCZXp4T1lmVWxzSUg5ZzBueXBOa0FuclNydU5CZmF4bnNqektrZzE1a2xuOHBRTWJYNHhZaTlneXFBa3hGajVtdEp3eHVaVDhRRHMtT0xvZ0lPMnpB?oc=5"
-    },
-    {
-      "source": "google",
       "press": "더코리아",
       "date": "2026.04.01",
       "title": "장윤정 경기도의원 학교 기계설비유지관리자 처우 개선 논의 착수 > 뉴스",
@@ -1890,6 +1882,14 @@
       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE1HcUs1WE1PSTdPS3JBRkNhQVJEY0N5SWpqaHBBLXl6bjBzOG40MVl3dkJiWXhEbFdJWHhPZzB6OFJXdllvLVRIQkI0TTV4eWtRLTZMd2xiTWxGbXlrTEhDYUk2N2lXTnFOb2NUa9IBcEFVX3lxTE9hZjZIdmZvakx2bklVbG9HUVUtakdoTnYyeXF3ckhLSUwxN0dESVVibk42dk90NU9iMlZydmJ5d1lCYVZLVnlIZEhFcnF5a1pTajdKNFZqT1hzbkRTUjhibFVVaGtFSnRFUklINDlTRUk?oc=5"
     },
     {
+      "source": "google",
+      "press": "경기종합뉴스",
+      "date": "2026.03.27",
+      "title": "한국공인중개사협회 안산 상록구지회, 회원 대상 '부동산 조세' 실무 교육 실시!",
+      "snippet": "한국공인중개사협회 안산 상록구지회, 회원 대상 '부동산 조세' 실무 교육 실시! 경기종합뉴스",
+      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE1sZFY0Q3hXVkFWS2JGT0V0ODBrdnZ3M1FTNjhpTTZTT0hXZl9WLU1MaWZLYUpyU25HcGc2VDUwa2FXU24yaG5pbjZ4OWVBUjFCS1kzdHpDS2hHaWdrNU5yR3BLTE1aQ0E3YXJXSzFBNVZZQUlP?oc=5"
+    },
+    {
       "source": "naver",
       "press": "newsis.com",
       "date": "2026.03.26",
@@ -1907,11 +1907,11 @@
     },
     {
       "source": "naver",
-      "press": "news1.kr",
+      "press": "kihoilbo.co.kr",
       "date": "2026.03.26",
-      "title": "[재산공개]김성수 경기도의원 324억 신고…4년 연속 도내 최고 자산가",
-      "snippet": "김성수 경기도의회 의원(국민의힘·하남2)이 324억여 원의 재산을 보유해 4년 연속 도내 재산공개 대상... 반면, 장윤정 의원(민주·안산3)은 -2490만 원을 신고해 도의원 중 재산이 가장 적었다. 이어 정동혁(민주...",
-      "url": "https://www.news1.kr/local/gyeonggi/6114090"
+      "title": "경기도의원 152명 중 112명 재산 늘어",
+      "snippet": "기호일보, KIHOILBO 경기도의회 전경.<경기도의회 제공> 올해 경기도 광역의원의 평균 재산은 12억6천383만... 가장 적은 재산을 보유한 도의원은 장윤정(민주·안산3) 의원으로 마이너스 2천490만 원을 신고했다....",
+      "url": "https://www.kihoilbo.co.kr/news/articleView.html?idxno=3017496"
     },
     {
       "source": "google",
