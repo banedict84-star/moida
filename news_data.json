@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-13 17:30 UTC",
+  "updated": "2026-07-13 19:59 UTC",
   "items": [
     {
       "source": "naver",
@@ -163,19 +163,19 @@
     },
     {
       "source": "naver",
-      "press": "gukjenews.com",
-      "date": "2026.07.13",
-      "title": "안산시, 7월 재산세 807억 부과…7월 31까지 납부",
-      "snippet": "안산시는 2026년 7월 정기분 재산세로 34만7000여 건, 총 807억원을 부과했다고 13일 밝혔다. 단원구는 약 19만8000여 건에 579억원이 부과돼 지난해보다 약 4억7000만원(0.8%) 증가했다. 상록구는 약 14만9000여 건에...",
-      "url": "https://www.gukjenews.com/news/articleView.html?idxno=3633842"
-    },
-    {
-      "source": "naver",
       "press": "newspim.com",
       "date": "2026.07.13",
       "title": "안산 쓰레기 매립지, '새로숲' 정원으로 탈바꿈...슬로건·마크 공개",
       "snippet": "경기도는 안산시 상록구 본오동 일원에 조성 중인 경기지방정원 '새로숲'의 대표 마크와 슬로건을 공개하고 브랜드 구축에 본격적으로 나선다고 13일 밝혔다. 새로숲 공사 진행 현황(2026.6.11.). [사진=경기도] 도에 따르면...",
       "url": "https://www.newspim.com/news/view/20260713000162"
+    },
+    {
+      "source": "naver",
+      "press": "gukjenews.com",
+      "date": "2026.07.13",
+      "title": "안산시, 7월 재산세 807억 부과…7월 31까지 납부",
+      "snippet": "안산시는 2026년 7월 정기분 재산세로 34만7000여 건, 총 807억원을 부과했다고 13일 밝혔다. 단원구는 약 19만8000여 건에 579억원이 부과돼 지난해보다 약 4억7000만원(0.8%) 증가했다. 상록구는 약 14만9000여 건에...",
+      "url": "https://www.gukjenews.com/news/articleView.html?idxno=3633842"
     },
     {
       "source": "naver",
@@ -723,14 +723,6 @@
     },
     {
       "source": "google",
-      "press": "뉴시스",
-      "date": "2026.07.12",
-      "title": "안산교육지원청, 고교학점제·대입제도 설명회 마쳐",
-      "snippet": "안산교육지원청, 고교학점제·대입제도 설명회 마쳐 뉴시스",
-      "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTFBwTTNuTmZqR2NVVEN1RngwSkhjUUFVUGV5RlZPVHhndE81b2c4OEZ1R2doTUFKWTJIb2FDUGRHeU9sWFFsYWN4THVxN2pRb2Y5d0JSMkFLUTZua183Tzh2dl9uNzBISTJBRTluSV9rQVYzUDdLVjNvUNIBeEFVX3lxTFBwTTNuTmZqR2NVVEN1RngwSkhjUUFVUGV5RlZPVHhndE81b2c4OEZ1R2doTUFKWTJIb2FDUGRHeU9sWFFsYWN4THVxN2pRb2Y5d0JSMkFLUTZua183Tzh2dl9uNzBISTJBRTluSV9rQVYzUDdLVjNvUA?oc=5"
-    },
-    {
-      "source": "google",
       "press": "시사통신",
       "date": "2026.07.12",
       "title": "안산교육지원청, 느린학습자 맞춤지원 역량강화 연수 실시",
@@ -752,6 +744,14 @@
       "title": "안산교육지원청, '2027학년도 안산 맞춤형 대학입시 설명회' 성황리에 개최",
       "snippet": "안산교육지원청, '2027학년도 안산 맞춤형 대학입시 설명회' 성황리에 개최 mediatoday.asia",
       "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxOYkJlNFM2QkRnM3ktZnZOdDJQSnVVTFRNYnlqZHdxeFcwOFZWRVczQ1RGVXR1Y3pZTEVnX0JNVUdKemF5dkg4WUF2Yk5vUFZTcHYyRG5kc05rZmlYMUJrVWxmQTN5NEdmUUd1a2pWQXBXS1pYSVdiYXZpZ0NhRnpSSHlLVDhxRU1sZlFDSVAzeWhaSE1wN1lwcg?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "네이트",
+      "date": "2026.07.12",
+      "title": "안산교육지원청, 고교학점제·대입제도 설명회 마쳐",
+      "snippet": "안산교육지원청, 고교학점제·대입제도 설명회 마쳐 네이트",
+      "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE9RM1JnMDNGZEkzSHgwSk1BQm5SdEpQWTF6Rl9oWnBjUFR0a0c4N3ROam9kUS1MYXF6eDNfcjRZUmxaMU1Hc3M1N1c3SV9vUDRfdFNZ?oc=5"
     },
     {
       "source": "google",
@@ -944,6 +944,14 @@
       "title": "교육 생태계 튼튼히 다진다…보라색 물결 돋보인 고양모두연합 임원 워...",
       "snippet": "행사장에는 고양모두연합 임원진과 학교대표단, 자문위원단을 비롯해 한준호 국회의원, 이윤승, 이성한, 정연일 경기도의원 당선인과 손동숙, 이홍규, 고덕희, 김보래, 김윤재, 신지연, 장윤정, 한주연 고양시의원 당선인...",
       "url": "http://www.inews24.com/view/1980961"
+    },
+    {
+      "source": "google",
+      "press": "v.daum.net",
+      "date": "2026.07.01",
+      "title": "안산교육지원청,경일고에서 ‘2026 안산 루트 기업-학교 만남의 날’ 개최",
+      "snippet": "안산교육지원청,경일고에서 ‘2026 안산 루트 기업-학교 만남의 날’ 개최 v.daum.net",
+      "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE5IdXd3LW1yTlg2Sm94YWpiQmRDR25NM0tJa2ZPSUZNWkpvcWJBanE2N1otWktMZzJpejI2STJpRzQ5Um84SEZCNzdPS3J4Slk?oc=5"
     },
     {
       "source": "naver",
@@ -1859,11 +1867,11 @@
     },
     {
       "source": "naver",
-      "press": "news1.kr",
+      "press": "kgnews.co.kr",
       "date": "2026.03.26",
-      "title": "[재산공개]김성수 경기도의원 324억 신고…4년 연속 도내 최고 자산가",
-      "snippet": "김성수 경기도의회 의원(국민의힘·하남2)이 324억여 원의 재산을 보유해 4년 연속 도내 재산공개 대상... 반면, 장윤정 의원(민주·안산3)은 -2490만 원을 신고해 도의원 중 재산이 가장 적었다. 이어 정동혁(민주...",
-      "url": "https://www.news1.kr/local/gyeonggi/6114090"
+      "title": "[재산공개]경기도의원 74% 재산 증가…평균 12억6000만원",
+      "snippet": "반면 장윤정(민주·안산3) 의원은 마이너스 2400만 원을 신고해 재산이 가장 적었다. 장 의원은 예금이... 등의 순으로 재산 신고액이 적었다. [ 경기신문 = 장진우 기자 ] 경기도의회 전경 (사진=경기도의회 제공)",
+      "url": "https://www.kgnews.co.kr/news/article.html?no=888958"
     },
     {
       "source": "naver",
@@ -1915,14 +1923,6 @@
     },
     {
       "source": "google",
-      "press": "한국미디어뉴스",
-      "date": "2026.03.05",
-      "title": "경기도의회 장윤정 의원, 안산 학교 환경개선에 87억 원 규모 예산 확보",
-      "snippet": "경기도의회 장윤정 의원, 안산 학교 환경개선에 87억 원 규모 예산 확보 한국미디어뉴스",
-      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE5BMHFCVjZkaGFuNG42NmtvcmxCSVdWTVdQd083dWV5clhBTE5wT21UT25aM3o4OGVHWlV6dXZUYUVxaHl2cG9SQkFYcmxKOU1zMUpIQTV2dHJzalFWUl9qX1F3ci1SUQ?oc=5"
-    },
-    {
-      "source": "google",
       "press": "뉴스핌",
       "date": "2026.02.11",
       "title": "안산 상록구 부곡동서 차량 화재…인명피해 없어",
@@ -1936,6 +1936,14 @@
       "title": "안산 상록구 도로서 차량 불…진화 완료",
       "snippet": "안산 상록구 도로서 차량 불…진화 완료 경기일보",
       "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBtdUVNeG92LXpKaG9wYU4tdzREWHJ5eWNZbzNjVVh0eTY1QUM5M2dzY2t6bEpwMnNxS1N3VnBibC1EY05oN2dTeGRlc2dkaTBSWXE3alVpb3NnRVU?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "twig24.com",
+      "date": "2026.02.10",
+      "title": "장윤정 경기도의원 “IB교육 확산 속도만큼 제도적 기반도 갖춰야”",
+      "snippet": "장윤정 경기도의원 “IB교육 확산 속도만큼 제도적 기반도 갖춰야” twig24.com",
+      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTFBhQW4tdnBtSzI4ZjFIR2Q2amtsNzdHQUNWZWRfRGtGZjR1STZIcUl2RWdwbG04RXJQaG5iRk9PRHhoRi1uLXMtYWZ1OV9jaERQVXdqenkxeks1U181NWFKS29Ic2hRTTFXbjZoOHJvM1JBOEZn?oc=5"
     },
     {
       "source": "google",
@@ -1960,14 +1968,6 @@
       "title": "장윤정 경기도의원, 환경개선과 도시 기반 확충 위한 사업비 확보",
       "snippet": "장윤정 경기도의원, 환경개선과 도시 기반 확충 위한 사업비 확보 경기일보",
       "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE5rMndfUE52aU8wNElIRHJ3bk5WRm1QaEJkV3R4WkJuYVJfN1VSQWszclZIS3FiUW5uRE1FWEZvS19kQjJSNC1keXpFLUZ6NUptczMxZjVmai12YjA?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "경인매일",
-      "date": "2025.12.29",
-      "title": "장윤정 경기도의원, ‘2025 지방의정대상’ 수상 영예",
-      "snippet": "장윤정 경기도의원, ‘2025 지방의정대상’ 수상 영예 경인매일",
-      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5xQklJbUNlSHQ0bzlEQnhhYWp4Z0EweWlrVEdvWFQ2anRGdVJEWDc1WlktX25NenNCUmhqSkdpY0pZbk5JYnJ3bmlid21MMHNsbkFsSEE3OUNHeXlHa08tMmRxbHVBcUpG?oc=5"
     },
     {
       "source": "google",
