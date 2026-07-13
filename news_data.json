@@ -1,6 +1,14 @@
 {
-  "updated": "2026-07-13 21:29 UTC",
+  "updated": "2026-07-13 22:31 UTC",
   "items": [
+    {
+      "source": "naver",
+      "press": "businesspost.co.kr",
+      "date": "2026.07.14",
+      "title": "[Who Is ?] 유경선 유진그룹 회장",
+      "snippet": "이순산업과 이순은 서울과 안산 등지에서 레미콘을 생산하는 회사다. 유진기업은 2005년 말... 활용하도록 교육을 진행하고 있으며, 티엑스알로보틱스 등 물류 자동화 전문 계열사를 통해 AI 기반의 물류 로봇 기술을...",
+      "url": "https://www.businesspost.co.kr/BP?command=article_view&num=441580"
+    },
     {
       "source": "naver",
       "press": "kyeonggi.com",
@@ -242,14 +250,6 @@
       "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5oNnQ0ZkpDQUg0VFBVR3ZDSEFhTHBYZXNkM2t2UDg3NGxaeml3dGxZeGNKZzRucEZ1XzRoYk9fRWRBNVh0VXZKZV9panFTTmFiOWJBTVdZQ1NLVUh1SGlVQjdlbGhCcXot?oc=5"
     },
     {
-      "source": "google",
-      "press": "경기시사투데이",
-      "date": "2026.07.13",
-      "title": "안산시, 7월 정기분 재산세 807억원 부과 상록구 228억원·단원구 579억원… 7월 31일까지 납부",
-      "snippet": "안산시, 7월 정기분 재산세 807억원 부과 상록구 228억원·단원구 579억원… 7월 31일까지 납부 경기시사투데이",
-      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5zNnp0MndLY1pQdW4zNmdJRkh6cjhHdnV3MFRwTDMtdXZ2a2pKN3ZnRHg4MnJqT21HVTktcVRzVHlSSWh0Tm80R1NIeml4c3FERzZkTGI4ejV4cVJkNGpLVmx4Qkl2S0Vq?oc=5"
-    },
-    {
       "source": "naver",
       "press": "ekn.kr",
       "date": "2026.07.13",
@@ -355,19 +355,19 @@
     },
     {
       "source": "naver",
-      "press": "kyeonggi.com",
-      "date": "2026.07.13",
-      "title": "분홍빛으로 물든 교정…안산국제비즈니스고, 핑크셔츠-데이 성료",
-      "snippet": "안산국제비즈니스고등학교 학생회는 일상 속에서 존중과 배려의 의미를 실천하기 위한 ‘핑크셔츠-데이’를... 이어 강당에서는 학교전담경찰관(SPO)이 나서 실제 사례 중심으로 학교폭력 예방교육이 진행됐다. 학생들은...",
-      "url": "https://www.kyeonggi.com/article/20260713580256"
-    },
-    {
-      "source": "naver",
       "press": "m-i.kr",
       "date": "2026.07.13",
       "title": "경기도의회 더불어민주당, 제12대 전반기 부대표단 임명장 수여",
       "snippet": "또한 후반기에 새롭게 신설돼 경기도 및 교육청과의 협력업무를 담당하게 될 협치부대표단에는 한승훈... 한편 더불어민주당은 지난달 28일 총괄수석 장한별 의원(수원4)·정책위원장 김태희 의원(안산2)·수석대변인...",
       "url": "https://www.m-i.kr/news/articleView.html?idxno=1390955"
+    },
+    {
+      "source": "naver",
+      "press": "kyeonggi.com",
+      "date": "2026.07.13",
+      "title": "분홍빛으로 물든 교정…안산국제비즈니스고, 핑크셔츠-데이 성료",
+      "snippet": "안산국제비즈니스고등학교 학생회는 일상 속에서 존중과 배려의 의미를 실천하기 위한 ‘핑크셔츠-데이’를... 이어 강당에서는 학교전담경찰관(SPO)이 나서 실제 사례 중심으로 학교폭력 예방교육이 진행됐다. 학생들은...",
+      "url": "https://www.kyeonggi.com/article/20260713580256"
     },
     {
       "source": "naver",
@@ -714,14 +714,6 @@
       "url": "https://www.kyongbuk.co.kr/news/articleView.html?idxno=4078083"
     },
     {
-      "source": "naver",
-      "press": "incheonilbo.com",
-      "date": "2026.07.12",
-      "title": "경기도의회 민주당, 판교 AI 클러스터 방문",
-      "snippet": "김태희(안산2) 정책위원장, 전자영(용인4) 수석대변인, 유경현(부천7) 정무수석 등이 참여했다. 또 이자형... 직무 교육 모델 개발 ▲데이터센터 건립 시 해당 지역 인센티브 제공 ▲데이터센터의 수익 발생시 지방세와...",
-      "url": "https://www.incheonilbo.com/news/articleView.html?idxno=1327112"
-    },
-    {
       "source": "google",
       "press": "v.daum.net",
       "date": "2026.07.12",
@@ -843,19 +835,19 @@
     },
     {
       "source": "google",
+      "press": "한국대학신문",
+      "date": "2026.07.10",
+      "title": "안산대 산학협력단, 안산교육지원청 ‘다문화멘토링 사업’ 위탁 운영",
+      "snippet": "안산대 산학협력단, 안산교육지원청 ‘다문화멘토링 사업’ 위탁 운영 한국대학신문",
+      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE13NFlMMjVCZ2VVM2J0ZmhjZk9qUFlqM24wNXZxZHBzRkh1b19QamRlYzF4WW1WdEQ1QVQyaTZqY203OXI2NnVRZ3ZSX3ZyM3pfOTZ5TkNWUktkUnJlMm92WV95VEt3Zw?oc=5"
+    },
+    {
+      "source": "google",
       "press": "경인일보",
       "date": "2026.07.10",
       "title": "안산교육지원청, 초·중등 진로교육 역량강화 직무연수",
       "snippet": "안산교육지원청, 초·중등 진로교육 역량강화 직무연수 경인일보",
       "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE84eTFYOFJPTDVwQkR0VU1CcURqempJMGhwaHluYkRSVldJZ2lreHpRZndFQ3loN3lZeEpEazFKWVZ0c0xoSXpFeDJGbFVHUWY5b3c?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "베리타스알파",
-      "date": "2026.07.10",
-      "title": "안산대 산학협력단 안산교육지원청 '다문화멘토링 사업' 위탁 운영",
-      "snippet": "안산대 산학협력단 안산교육지원청 '다문화멘토링 사업' 위탁 운영 베리타스알파",
-      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE4tbDdzZHhrd1FMNFVvdm44djNOdWU4NEtFSFJFUlBFV21OMG9ueFVPelZYWERrUmUwczMwZkZlNjFmMG53el9QeWc0SUcwV0E3dzhBMDJ2Z3gtdXJ4TkJIY0xVb3hoYVdnblh0OQ?oc=5"
     },
     {
       "source": "naver",
@@ -954,14 +946,6 @@
       "url": "http://www.inews24.com/view/1980961"
     },
     {
-      "source": "google",
-      "press": "v.daum.net",
-      "date": "2026.07.01",
-      "title": "안산교육지원청,경일고에서 ‘2026 안산 루트 기업-학교 만남의 날’ 개최",
-      "snippet": "안산교육지원청,경일고에서 ‘2026 안산 루트 기업-학교 만남의 날’ 개최 v.daum.net",
-      "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE5IdXd3LW1yTlg2Sm94YWpiQmRDR25NM0tJa2ZPSUZNWkpvcWJBanE2N1otWktMZzJpejI2STJpRzQ5Um84SEZCNzdPS3J4Slk?oc=5"
-    },
-    {
       "source": "naver",
       "press": "joongboo.com",
       "date": "2026.06.30",
@@ -1042,6 +1026,14 @@
       "url": "https://www.asiatime.co.kr/article/20260615500148"
     },
     {
+      "source": "google",
+      "press": "경인종합일보",
+      "date": "2026.06.14",
+      "title": "경기도의회 장윤정 의원, 경기도교육청 예산유보 운영 점검…“절감보다 적기 집행이 중요”",
+      "snippet": "경기도의회 장윤정 의원, 경기도교육청 예산유보 운영 점검…“절감보다 적기 집행이 중요” 경인종합일보",
+      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5VMjhnQU5TMklhcldjRTN0NXo2RUxIZ0RsSlBKYmYzSGxqR1BQMy1Vd3BjSmxmWkIyeDdTLVlyT29IZUlnaDQ2Q2UzRHlTR0FydGxMWFA2ZDlYVGZVbUZnUWtDNnpyNDVUZzVpOW1n0gFyQVVfeXFMT1ZDZDFsTGZ5QUlXVFhnWWxReUtQOGctQzN0TUhSRjUtODhSbldxT2ppMXhPSTNPYXdWSTBLM0tsRUllYkJodXVpM2tDRXVHNEFnbFNKanhPWDY4OXRXeHlnSDl6ZUZGNlp2QmVyYmFzSXdn?oc=5"
+    },
+    {
       "source": "naver",
       "press": "jeonmae.co.kr",
       "date": "2026.06.14",
@@ -1080,14 +1072,6 @@
       "title": "장윤정 경기도의원, 경기도교육청 예산유보 운영 점검…“절감보다 적기 집행이 중요”",
       "snippet": "장윤정 경기도의원, 경기도교육청 예산유보 운영 점검…“절감보다 적기 집행이 중요” twig24.com",
       "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxPMzZhTjl2d0hTaXc5UUhhQnZPQzBaOHlZTXpVRG9aWHY5SjFYNzYteHVPMGpNdTQ2NkZWeHB4LTJxckZwQTVMSnYtTUc0Y1VCeHRxRDJyNjFZN2s4UVZqWnJUdHJEYTVXX05zdlh2NGhSUFIwenNicldVcUtLTnk4djVB?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "성남포커스",
-      "date": "2026.06.12",
-      "title": "경기도의회 장윤정 의원, 경기도교육청 예산유보 운영 점검…“절감보다 적기 집행이 중요”",
-      "snippet": "경기도의회 장윤정 의원, 경기도교육청 예산유보 운영 점검…“절감보다 적기 집행이 중요” 성남포커스",
-      "url": "https://news.google.com/rss/articles/CBMiQ0FVX3lxTE1fSTlRYlAtRVdYSTVVNXFFVk1OeFBwUlVfbW9MN3A1Ul9fM2x0el9vY2IzQk00QmVCdnlId1Z5NUFFLTQ?oc=5"
     },
     {
       "source": "naver",
@@ -1472,6 +1456,14 @@
       "title": "안산 상록구 다세대주택서 불…1명 사망·3명 중경상",
       "snippet": "안산 상록구 다세대주택서 불…1명 사망·3명 중경상 연합뉴스",
       "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE91T1VUTjFsVE1fVzdLbWhjdnUyZVh4blRVUmszcnVzT25IOHQ1T2J1Uk16SHM0UHFoeDlXUllVNWZmM19mX2pSaXliOU9jNmdfYVNkU3p3QUI2XzjSAWBBVV95cUxQRUVibk9OcUtnV0dqeEREMF80dmI3WUJONzVXTmY4UU9SNEtrczl4RU1XVnpKY3ZhSkFhLWN1NF9lVEx1aS1zTF9rdUNhWEUwMmlCV1p6RlV3dWNFSnVKOFg?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "경향신문",
+      "date": "2026.05.13",
+      "title": "안산 상록구 다세대주택서 화재···1명 숨지고 3명 부상",
+      "snippet": "안산 상록구 다세대주택서 화재···1명 숨지고 3명 부상 경향신문",
+      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE94ZFJWc1liZGRLTWM0aVAxVjY5c0VSOE40bVN0RXA3QlRidXMzdVkwdFljWVIxTG5oOGNwLUtsMl9pT2NJY1VTOEh4OGRMRU02b3Bob0pwa3dSQdIBX0FVX3lxTE52SDdudTdHX3NXYVFOQkhjSnFLR2pmVW5hbmE0aEZYM3B6WXVLNGpoY09DY0xlMVpuZVEzYWIzZVFjY1h1TTYtRHFMVFdPR0RfQ05pWGVIRm5NUG16cTRN?oc=5"
     },
     {
       "source": "naver",
@@ -1875,11 +1867,11 @@
     },
     {
       "source": "naver",
-      "press": "kgnews.co.kr",
+      "press": "news1.kr",
       "date": "2026.03.26",
-      "title": "[재산공개]경기도의원 74% 재산 증가…평균 12억6000만원",
-      "snippet": "반면 장윤정(민주·안산3) 의원은 마이너스 2400만 원을 신고해 재산이 가장 적었다. 장 의원은 예금이... 등의 순으로 재산 신고액이 적었다. [ 경기신문 = 장진우 기자 ] 경기도의회 전경 (사진=경기도의회 제공)",
-      "url": "https://www.kgnews.co.kr/news/article.html?no=888958"
+      "title": "[재산공개]김성수 경기도의원 324억 신고…4년 연속 도내 최고 자산가",
+      "snippet": "김성수 경기도의회 의원(국민의힘·하남2)이 324억여 원의 재산을 보유해 4년 연속 도내 재산공개 대상... 반면, 장윤정 의원(민주·안산3)은 -2490만 원을 신고해 도의원 중 재산이 가장 적었다. 이어 정동혁(민주...",
+      "url": "https://www.news1.kr/local/gyeonggi/6114090"
     },
     {
       "source": "naver",
@@ -1931,6 +1923,14 @@
     },
     {
       "source": "google",
+      "press": "한국미디어뉴스",
+      "date": "2026.03.05",
+      "title": "경기도의회 장윤정 의원, 안산 학교 환경개선에 87억 원 규모 예산 확보",
+      "snippet": "경기도의회 장윤정 의원, 안산 학교 환경개선에 87억 원 규모 예산 확보 한국미디어뉴스",
+      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE5BMHFCVjZkaGFuNG42NmtvcmxCSVdWTVdQd083dWV5clhBTE5wT21UT25aM3o4OGVHWlV6dXZUYUVxaHl2cG9SQkFYcmxKOU1zMUpIQTV2dHJzalFWUl9qX1F3ci1SUQ?oc=5"
+    },
+    {
+      "source": "google",
       "press": "뉴스핌",
       "date": "2026.02.11",
       "title": "안산 상록구 부곡동서 차량 화재…인명피해 없어",
@@ -1944,14 +1944,6 @@
       "title": "안산 상록구 도로서 차량 불…진화 완료",
       "snippet": "안산 상록구 도로서 차량 불…진화 완료 경기일보",
       "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBtdUVNeG92LXpKaG9wYU4tdzREWHJ5eWNZbzNjVVh0eTY1QUM5M2dzY2t6bEpwMnNxS1N3VnBibC1EY05oN2dTeGRlc2dkaTBSWXE3alVpb3NnRVU?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "twig24.com",
-      "date": "2026.02.10",
-      "title": "장윤정 경기도의원 “IB교육 확산 속도만큼 제도적 기반도 갖춰야”",
-      "snippet": "장윤정 경기도의원 “IB교육 확산 속도만큼 제도적 기반도 갖춰야” twig24.com",
-      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTFBhQW4tdnBtSzI4ZjFIR2Q2amtsNzdHQUNWZWRfRGtGZjR1STZIcUl2RWdwbG04RXJQaG5iRk9PRHhoRi1uLXMtYWZ1OV9jaERQVXdqenkxeks1U181NWFKS29Ic2hRTTFXbjZoOHJvM1JBOEZn?oc=5"
     },
     {
       "source": "google",
@@ -1976,6 +1968,14 @@
       "title": "장윤정 경기도의원, 환경개선과 도시 기반 확충 위한 사업비 확보",
       "snippet": "장윤정 경기도의원, 환경개선과 도시 기반 확충 위한 사업비 확보 경기일보",
       "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE5rMndfUE52aU8wNElIRHJ3bk5WRm1QaEJkV3R4WkJuYVJfN1VSQWszclZIS3FiUW5uRE1FWEZvS19kQjJSNC1keXpFLUZ6NUptczMxZjVmai12YjA?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "경인매일",
+      "date": "2025.12.29",
+      "title": "장윤정 경기도의원, ‘2025 지방의정대상’ 수상 영예",
+      "snippet": "장윤정 경기도의원, ‘2025 지방의정대상’ 수상 영예 경인매일",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5xQklJbUNlSHQ0bzlEQnhhYWp4Z0EweWlrVEdvWFQ2anRGdVJEWDc1WlktX25NenNCUmhqSkdpY0pZbk5JYnJ3bmlid21MMHNsbkFsSEE3OUNHeXlHa08tMmRxbHVBcUpG?oc=5"
     },
     {
       "source": "google",
