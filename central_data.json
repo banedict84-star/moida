@@ -1,18 +1,6 @@
 {
-  "updated": "2026-07-12 23:45 UTC",
+  "updated": "2026-07-13 02:02 UTC",
   "items": [
-    {
-      "title": "제3차 정기전국당원대회 권리당원 선거인단 선거인명부 열람·이의신청 공고",
-      "date": "2026-07-08",
-      "link": "https://theminjoo.kr/main/sub/news/view.php?sno=0&brd=1&post=1219247&search=",
-      "category": "공지"
-    },
-    {
-      "title": "당대표 및 최고위원 선출을 위한 ARS투표 및 여론조사 수행업체 모집 공고",
-      "date": "2026-07-08",
-      "link": "https://theminjoo.kr/main/sub/news/view.php?sno=0&brd=1&post=1219248&search=",
-      "category": "공지"
-    },
     {
       "title": "제3차 정기전국당원대회 재외국민대의원 모집 공고",
       "date": "2026-07-06",
@@ -32,16 +20,28 @@
       "category": "공지"
     },
     {
-      "title": "더불어민주당 제3차 정기전국당원대회 대행업체 공모",
-      "date": "2026-07-02",
-      "link": "https://theminjoo.kr/main/sub/news/view.php?sno=0&brd=1&post=1219189&search=",
-      "category": "공지"
-    },
-    {
       "title": "'을과 더불어 언제나 을지로' <을지로위원회 민원 접수 안내>",
       "date": "2025-09-18",
       "link": "https://theminjoo.kr/main/sub/news/view.php?sno=0&brd=1&post=1213551&search=",
       "category": "공지"
+    },
+    {
+      "title": "제3차 정기전국당원대회 권리당원 선거인단 선거인명부 열람·이의신청 공고",
+      "date": "2026-07-08",
+      "link": "https://theminjoo.kr/main/sub/news/view.php?sno=0&brd=1&post=1219247&search=",
+      "category": "일반"
+    },
+    {
+      "title": "당대표 및 최고위원 선출을 위한 ARS투표 및 여론조사 수행업체 모집 공고",
+      "date": "2026-07-08",
+      "link": "https://theminjoo.kr/main/sub/news/view.php?sno=0&brd=1&post=1219248&search=",
+      "category": "일반"
+    },
+    {
+      "title": "더불어민주당 제3차 정기전국당원대회 대행업체 공모",
+      "date": "2026-07-02",
+      "link": "https://theminjoo.kr/main/sub/news/view.php?sno=0&brd=1&post=1219189&search=",
+      "category": "일반"
     },
     {
       "title": "지역위원장 후보자 추가 공모 안내",
