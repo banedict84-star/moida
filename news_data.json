@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-14 04:28 UTC",
+  "updated": "2026-07-14 06:36 UTC",
   "items": [
     {
       "source": "naver",
@@ -19,11 +19,75 @@
     },
     {
       "source": "naver",
-      "press": "discoverynews.kr",
+      "press": "dynews.co.kr",
       "date": "2026.07.14",
-      "title": "안산시, 유니세프 아동친화도시 '상위인증' 획득",
-      "snippet": "이번 인증 과정에서는 아동의 의견을 정책에 반영할 수 있는 참여 기반을 마련하고, 아동 권리교육과 인식 조사 등을 통해 정책 추진체계를 꾸준히 구축한 점이 긍정적인 평가를 받은 것으로 알려졌다. 안산시는...",
-      "url": "https://www.discoverynews.kr/news/articleView.html?idxno=1096064"
+      "title": "중앙경찰학교 경찰관, 한국어 교육으로 외국인 인권 지켜",
+      "snippet": "채 경감은 과거 안산 원곡파출소 근무 시절에도 외국인 밀집지역에서 범죄예방 한국어 교실을 운영하기도 했다. 그는 \"언어 장벽은 범죄 피해와 가해로 이어질 수 있다\"며 \"한국어 교육은 경찰 본연의 임무 연장선이자 인권...",
+      "url": "https://www.dynews.co.kr/news/articleView.html?idxno=857934"
+    },
+    {
+      "source": "naver",
+      "press": "newsis.com",
+      "date": "2026.07.14",
+      "title": "한양대 ERICA, 경기권 5개 대학과 '연합창업캠프' 개최",
+      "snippet": "올해 캠프는 경기권역 지역성장 인재양성체계(앵커) 사업과 연계해 지역문제 해결 역량을 강화하고, 대학 간 창업교육 협력 기반을 확대하기 위해 마련됐다. 경기 안산시에서 열린 이번 캠프에는 앵커 사업에 참여하는...",
+      "url": "https://www.newsis.com/view/NISX20260714_0003708730"
+    },
+    {
+      "source": "naver",
+      "press": "etnews.com",
+      "date": "2026.07.14",
+      "title": "[꿈을향한 교육] 전자신문, 안양문화高 1~3학년 '지역 맞춤 취업 역량 리...",
+      "snippet": "둘째 날에는 경기도 안산시 대부도 바르바커피 타워360의 커피 박물관을 관람하며 커피에 담긴 역사와 문화를... 교육 관계자는 “학생들이 기업 현장을 직접 보고, 산업의 흐름과 직무 연결성을 이해하는 것이 무엇보다...",
+      "url": "https://www.etnews.com/20260714000359"
+    },
+    {
+      "source": "naver",
+      "press": "sportsseoul.com",
+      "date": "2026.07.14",
+      "title": "고교 투수 맞춤형 ‘S&C 트레이닝 교육’ 성황리 마무리… “한국 야구...",
+      "snippet": "이번 교육은 참가 인원에 맞춘 밀착 지도를 위해 사흘간 총 5회차로 나뉘어 진행됐으며, 중앙고, 선린인터넷고, 경기고, 성남고, 안산공업고, 서울동산고 등의 선수들 약 120명이 참가했다. 선수들은 투구 전후 관리...",
+      "url": "https://www.sportsseoul.com/news/read/1622404?ref=naver"
+    },
+    {
+      "source": "naver",
+      "press": "shinailbo.co.kr",
+      "date": "2026.07.14",
+      "title": "안산시, 유니세프 아동친화도시 상위인증 획득",
+      "snippet": "안산시는 2022년 최초 인증 이후 아동참여위원회를 운영하며 아동 의견을 시정에 반영하고, 아동권리 인식 조사와 찾아가는 아동권리교육 등을 추진해 온 점을 인정받아 상위인증을 받았다. 시는 이번 인증을 계기로...",
+      "url": "https://www.shinailbo.co.kr/news/articleView.html?idxno=5040793"
+    },
+    {
+      "source": "naver",
+      "press": "news.unn.net",
+      "date": "2026.07.14",
+      "title": "[2027 수시/광주여자대학교] 더 큰 꿈을 위한 선택… 취업연계 중점대학...",
+      "snippet": "(사진= 광주여대 제공) 광주여자대학교(총장 이선재)는 대학의 교육철학인 MAUM교육을 바탕으로 K-웰니스를... 기보배, 최미선, 안산 등 올림픽 금메달리스트를 배출했으며, 현재도 국내외 주요 대회에서 꾸준한 성과를...",
+      "url": "https://news.unn.net/news/articleView.html?idxno=594552"
+    },
+    {
+      "source": "naver",
+      "press": "kgnews.co.kr",
+      "date": "2026.07.14",
+      "title": "한양대 ERICA, 경기권 대학들과 '대학창업연합캠프' 개최",
+      "snippet": "지역 현안 발굴 및 생성형 AI 활용 솔루션 도출 창업교육 운영 김지환 센터장 \"대학 경계 넘어 지역사회 문제 해결과 창업 확산 발판 되길\" 한양대학교 ERICA 창업교육센터는 지난 13일 안산시에서 경기권 5개 대학과 함께...",
+      "url": "https://www.kgnews.co.kr/news/article.html?no=903860"
+    },
+    {
+      "source": "naver",
+      "press": "jeonmae.co.kr",
+      "date": "2026.07.14",
+      "title": "안산시, 상상스테이션 개소 1년 만에 경기 우수 청년공간 선정",
+      "snippet": "경기 안산시는 청년센터 상상스테이션이 경기미래세대재단 주관 '2026년 경기청년공간 우수 청년공간... 취업과 역량 강화, 재무교육 등 생활밀착형 교육을 비롯해 문화예술 체험 프로그램도 무료로 운영하고 있다. 쉬었음...",
+      "url": "https://www.jeonmae.co.kr/news/articleView.html?idxno=1274513"
+    },
+    {
+      "source": "naver",
+      "press": "news.unn.net",
+      "date": "2026.07.14",
+      "title": "한국공학대, 경기권 5개 대학과 손잡고 창업 벨류업 캠프",
+      "snippet": "사진=한국공학대 한국공학대학교(총장 황수성) 창업교육센터는 13일 경기도 안산시에서 경기권 5개 대학과 함께 '2026 제7회 대학창업연합캠프-경기실록지리지' 밸류업캠프의 문을 열었다. 지역의 대학생들이 한자리에...",
+      "url": "https://news.unn.net/news/articleView.html?idxno=594746"
     },
     {
       "source": "naver",
@@ -40,6 +104,14 @@
       "title": "안산시, 아동친화도시 갱신 '상위인증' 획득",
       "snippet": "아동권리교육’을 정기적으로 운영하는 등 아동친화 정책을 지속적으로 추진해 왔다. 시는 이러한 정책 성과와 아동 참여 기반을 꾸준히 구축해 온 노력을 종합적으로 인정받아 상위인증을 획득했다고 밝혔다. 안산시...",
       "url": "https://www.edaily.co.kr/news/newspath.asp?newsid=04090166645514520"
+    },
+    {
+      "source": "naver",
+      "press": "ytn.co.kr",
+      "date": "2026.07.14",
+      "title": "\"5070을 모십니다\" 한 자리서 1700여 명 취업, 화제의 시니어 일자리 박...",
+      "snippet": "그래서 전일제 일자리뿐만 아니라 유연한 일자리 또 인턴십, 직업훈련 교육, 사회공헌 일자리 등 중장년의... 9월에는 안산시에서 열리고. 10월에는 평택, 시흥, 하남, 그리고 마지막 11월에 양주시까지 박람회가 쭉...",
+      "url": "https://www.ytn.co.kr/_ln/0103_202607141227329626"
     },
     {
       "source": "naver",
@@ -240,6 +312,30 @@
       "title": "[오늘의 주요일정]경기남부(7월14일 화요일)",
       "snippet": "연수교육, 강남대학교 우원관 ◇안산시 ▲오전 9시30분, 단원구청 직장어린이집, 단원구청 직장어린이집 ▲오후 2시, 2026년 지방자치단체장 재난안전교육, 정부서울청사 별관 대강당 ▲오후 6시, 안산상공회의소...",
       "url": "https://www.newsis.com/view/NISX20260713_0003707368"
+    },
+    {
+      "source": "google",
+      "press": "경기매일",
+      "date": "2026.07.14",
+      "title": "안산교육지원청, 블라디보스톡한국교육원과 국제교류협력 확대 논의",
+      "snippet": "안산교육지원청, 블라디보스톡한국교육원과 국제교류협력 확대 논의 경기매일",
+      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE4yREU0c0cwR01JVlN3bVRXTTk0WkFXSVJNX0RCN29DdmlkZnRVSU92UGxNbFFjSHlsd0UxdzFBbHFfcUFJelFjUzZiNEdtZzlMUHdMR1VyaGNBdGN4MlRnUFRBckpUN2c?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "안산뉴스",
+      "date": "2026.07.14",
+      "title": "안산교육청·블라디보스톡 한국교육원 국제교류협력 논의",
+      "snippet": "안산교육청·블라디보스톡 한국교육원 국제교류협력 논의 안산뉴스",
+      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE1FVU1RZmU4b3ZBcUUtVFRyaUR3SFVUOGpKOXhGUGZ2T0VsVmVmOGRFR09GRG1fR0psTGFjSUdndFpiTG5JM0laX2RpdmFWRWdQdUxHRVFmUHM2X0FEcEtmSHZGRy1QakF5RzVEYw?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "중부시사신문",
+      "date": "2026.07.14",
+      "title": "안산교육지원청, '2026 ANSAN Link+X 디지털 엔진리더 교원 아카데미' 1학기 운영 마무리",
+      "snippet": "안산교육지원청, '2026 ANSAN Link+X 디지털 엔진리더 교원 아카데미' 1학기 운영 마무리 중부시사신문",
+      "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTFAtUVBMdFVYZHBRQ05lVXR5N3JhN2Rsc2lvaGFYVGFLSE92MndENmFWMlJFUmdaODh0XzI0b0lHNXN2bDlNcHA0U09RN2gyYnRPenRtNzA0VHhEMnN6Nm5pemtrcw?oc=5"
     },
     {
       "source": "naver",
@@ -522,92 +618,20 @@
       "url": "https://www.starnewskorea.com/sports/2026/07/13/2026071317220798932"
     },
     {
-      "source": "naver",
-      "press": "cnbizm.com",
-      "date": "2026.07.13",
-      "title": "올 여름 숲에서 놀자...서대문구, 여름철 다양한 유아숲체험원 프로그램...",
-      "snippet": "유아숲지도사가 함께하는 가운데 숲의 다양한 생태 자원과 자연 지형을 이용한 교육, 오감을 활용한 자연물 놀이와 만들기 체험 등으로 이뤄진다. 올해 5월 큰 호응을 얻었던 안산(鞍山) 야간 숲속티어링에 이어 이달 21일...",
-      "url": "https://www.cnbizm.com/news/articleView.html?idxno=308480"
-    },
-    {
-      "source": "naver",
-      "press": "siminilbo.co.kr",
-      "date": "2026.07.13",
-      "title": "안산화정영어마을‘2026년 제6회 스펠링비 콘테스트’성료",
-      "snippet": "이민근 안산시장은 “이번 행사는 초등학생들의 영어 학습과 성장을 돕는 안산시의 대표적인 교육 행사”라며 “학생들이 영어에 대한 흥미와 자신감을 높이고 지속적으로 학습할 수 있도록 다양한 영어교육...",
-      "url": "https://www.siminilbo.co.kr/news/newsview.php?ncode=1160265779003196"
-    },
-    {
-      "source": "naver",
-      "press": "itbiznews.com",
-      "date": "2026.07.13",
-      "title": "동양솥밥, 안양 인덕원점 오픈",
-      "snippet": "동양솥밥은 직영점 운영을 통해 축적한 데이터를 기반으로 상권 분석과 운영 전략을 지원하고 있으며, 점포 개발부터 오픈 교육, 마케팅까지 가맹점 운영 지원 시스템을 운영하고 있다. 또한 안산 본점에서는 예비...",
-      "url": "https://www.itbiznews.com/news/articleView.html?idxno=218953"
-    },
-    {
-      "source": "naver",
-      "press": "shinailbo.co.kr",
-      "date": "2026.07.13",
-      "title": "안산교육지원청, 과학실 안전관리·미래형 수업 역량 강화 연수 운영",
-      "snippet": "경기 안산교육지원청이 안전한 과학실 운영과 미래형 과학교육 역량 강화를 위한 교직원 연수를 진행한다. 안산교육지원청은 지난 10일부터 오는 15일까지 관내 초·중·고·특수학교 교원과 과학 담당 행정실무사 등을...",
-      "url": "https://www.shinailbo.co.kr/news/articleView.html?idxno=5040472"
-    },
-    {
-      "source": "naver",
-      "press": "weeklytoday.com",
-      "date": "2026.07.13",
-      "title": "[위클리오늘] 경기도의회 더불어민주당 제12대 전반기 부대표단 임명장...",
-      "snippet": "또한 후반기에 새롭게 신설돼 경기도 및 교육청과의 협력업무를 담당하게 될 협치부대표단에는 한승훈... 한편 더불어민주당은 지난 6월 28일 총괄수석 장한별 의원(수원4), 정책위원장 김태희 의원(안산2), 수석대변인...",
-      "url": "http://www.weeklytoday.com/news/articleView.html?idxno=784992"
-    },
-    {
-      "source": "naver",
-      "press": "news.ifm.kr",
-      "date": "2026.07.13",
-      "title": "정부 감축 기조?…인천은 교사정원 확대 약속",
-      "snippet": "또 조직개편을 통해 특수교육과와 유아교육과를 본청에 두고, 현재 계양구 안산초등학교 한 개 층을 쓰는 특수교육지원센터는 '원' 단위로 확대하겠다는 약속도 덧붙였다. 도 교육감은 \"제2유아교육진흥원을 설립해...",
-      "url": "https://news.ifm.kr/news/articleView.html?idxno=474927"
-    },
-    {
-      "source": "naver",
-      "press": "kyeonggi.com",
-      "date": "2026.07.13",
-      "title": "분홍빛으로 물든 교정…안산국제비즈니스고, 핑크셔츠-데이 성료",
-      "snippet": "안산국제비즈니스고등학교 학생회는 일상 속에서 존중과 배려의 의미를 실천하기 위한 ‘핑크셔츠-데이’를... 이어 강당에서는 학교전담경찰관(SPO)이 나서 실제 사례 중심으로 학교폭력 예방교육이 진행됐다. 학생들은...",
-      "url": "https://www.kyeonggi.com/article/20260713580256"
-    },
-    {
-      "source": "naver",
-      "press": "m-i.kr",
-      "date": "2026.07.13",
-      "title": "경기도의회 더불어민주당, 제12대 전반기 부대표단 임명장 수여",
-      "snippet": "또한 후반기에 새롭게 신설돼 경기도 및 교육청과의 협력업무를 담당하게 될 협치부대표단에는 한승훈... 한편 더불어민주당은 지난달 28일 총괄수석 장한별 의원(수원4)·정책위원장 김태희 의원(안산2)·수석대변인...",
-      "url": "https://www.m-i.kr/news/articleView.html?idxno=1390955"
-    },
-    {
-      "source": "naver",
-      "press": "joongangenews.com",
-      "date": "2026.07.13",
-      "title": "[지방의회 24時] 경기도의회 민주당, 전반기 부대표단 인선 완료…'안광...",
-      "snippet": "특히, 이번 안광률 호의 인선은 도정 파트너인 경기도청·도교육청과의 정책 협조 체제를 공고히 하고, 의회... 정책위원장(안산2) ▲전자영 수석대변인(용인4) ▲유경현 정무수석(부천7) ▲이자형 기획수석(광주3)...",
-      "url": "https://www.joongangenews.com/news/articleView.html?idxno=532458"
-    },
-    {
-      "source": "naver",
-      "press": "ibabynews.com",
-      "date": "2026.07.13",
-      "title": "[건강뉴스] 쉬어도 풀리지 않는 피로, 몸이 보내는 '만성피로'의 경고 外",
-      "snippet": "특히 유기농 먹거리 지원에 그치지 않고, AI 기반의 건강평가, 지역의원 연계, 지속적인 건강교육과 참여자 실천활동, 정책제안 까지 연결한다는 점에서 의미가 있다. 이번 사업에는 총 201명의 안산시민이 신청하였으며...",
-      "url": "https://www.ibabynews.com/news/articleView.html?idxno=152862"
-    },
-    {
       "source": "google",
       "press": "timess.co.kr",
       "date": "2026.07.13",
       "title": "안산교육지원청, 안전한 과학실에서 미래형 과학수업을 열다",
       "snippet": "안산교육지원청, 안전한 과학실에서 미래형 과학수업을 열다 timess.co.kr",
       "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTFBtdmdUTjhGN3hoRGo1RGVPWVg2dW5USGZ2aW9vdTZpRkRLbU1XdWxVQ1E1SnRhM0RTalprN2RKRzlOOVpUaEdrN0t3VWwyeHA0X3dvd0lDUDhJRFRfT3NRd0JR?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "신아일보",
+      "date": "2026.07.13",
+      "title": "안산교육지원청, 과학실 안전관리·미래형 수업 역량 강화 연수 운영",
+      "snippet": "안산교육지원청, 과학실 안전관리·미래형 수업 역량 강화 연수 운영 신아일보",
+      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1UWjJCV2c0aGZKR0dOLWlCc0JoOTFTU0tVem5qQVlpTnhITVZLTTlZWnhDU2s0SXg5cG5nMFp2MlhxTXJvSUxuQVl0T0JFczRLVEhwNS1fMWpoRDZGbklfYVdQSEhPeUxSSURHNW5BQmc?oc=5"
     },
     {
       "source": "naver",
@@ -739,6 +763,14 @@
     },
     {
       "source": "google",
+      "press": "뉴시스",
+      "date": "2026.07.12",
+      "title": "안산교육지원청, 고교학점제·대입제도 설명회 마쳐",
+      "snippet": "안산교육지원청, 고교학점제·대입제도 설명회 마쳐 뉴시스",
+      "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE9DUk9Yc1VNeV9kSkhiRjl0Q0FzbE9DRkNGSzVZVEl4aVpJa0hxMmpEMlZfOVQxZlpFVWV3Qy1lb2g4RUJCVnppQmlQN2ExSHhCUXJLREZlVFdKVlIySHdiU9IBeEFVX3lxTFBwTTNuTmZqR2NVVEN1RngwSkhjUUFVUGV5RlZPVHhndE81b2c4OEZ1R2doTUFKWTJIb2FDUGRHeU9sWFFsYWN4THVxN2pRb2Y5d0JSMkFLUTZua183Tzh2dl9uNzBISTJBRTluSV9rQVYzUDdLVjNvUA?oc=5"
+    },
+    {
+      "source": "google",
       "press": "시사통신",
       "date": "2026.07.12",
       "title": "안산교육지원청, 느린학습자 맞춤지원 역량강화 연수 실시",
@@ -760,14 +792,6 @@
       "title": "안산교육지원청, '2027학년도 안산 맞춤형 대학입시 설명회' 성황리에 개최",
       "snippet": "안산교육지원청, '2027학년도 안산 맞춤형 대학입시 설명회' 성황리에 개최 mediatoday.asia",
       "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxOYkJlNFM2QkRnM3ktZnZOdDJQSnVVTFRNYnlqZHdxeFcwOFZWRVczQ1RGVXR1Y3pZTEVnX0JNVUdKemF5dkg4WUF2Yk5vUFZTcHYyRG5kc05rZmlYMUJrVWxmQTN5NEdmUUd1a2pWQXBXS1pYSVdiYXZpZ0NhRnpSSHlLVDhxRU1sZlFDSVAzeWhaSE1wN1lwcg?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "네이트",
-      "date": "2026.07.12",
-      "title": "안산교육지원청, 고교학점제·대입제도 설명회 마쳐",
-      "snippet": "안산교육지원청, 고교학점제·대입제도 설명회 마쳐 네이트",
-      "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE9RM1JnMDNGZEkzSHgwSk1BQm5SdEpQWTF6Rl9oWnBjUFR0a0c4N3ROam9kUS1MYXF6eDNfcjRZUmxaMU1Hc3M1N1c3SV9vUDRfdFNZ?oc=5"
     },
     {
       "source": "google",
@@ -867,27 +891,19 @@
     },
     {
       "source": "google",
-      "press": "안산신문",
-      "date": "2026.07.09",
-      "title": "안산문화재단, 교육콘텐츠 개발 교사지원단 ‘위촉’",
-      "snippet": "안산문화재단, 교육콘텐츠 개발 교사지원단 ‘위촉’ 안산신문",
-      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9fcm5jaS1xSXBRbExxemhKSUxtaF96VWUxOVNtRG1HSDJNUHdWY1NSakdRWWh4RWZHWVp2aG9RSVlVZnpPV2JLaEpmMlctNVZVOEhEcERRbVRVUUZhQkl5bE9yRGZtTnc?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "안산신문",
-      "date": "2026.07.09",
-      "title": "안산지속협, SDGs 교사워크숍",
-      "snippet": "안산지속협, SDGs 교사워크숍 안산신문",
-      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5JeXJlQUVUNFhCWjFHTUNKb21PMWRUYVU4NWthdG5Kd3BBMjFVTk1iUjAwbFRWa0hsUGw0RjUzaHZZcnJ3R185T2YtczFrblc3ZWNrVGdjWllGMlgyMHdFYUtISFFkMGM?oc=5"
-    },
-    {
-      "source": "google",
       "press": "반월신문",
       "date": "2026.07.08",
       "title": "더불어민주당 장윤정 경기도의원, \"초심 잃지 않고 주민 곁에서 실천으로 보답\"",
       "snippet": "더불어민주당 장윤정 경기도의원, \"초심 잃지 않고 주민 곁에서 실천으로 보답\" 반월신문",
       "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9ITFU4Um15Q3puTHU3eVQ0S1JjYXRuc0ZQY3RfUkhnZHVZZXhHS3pZQXdfelkzcnBTM2hwTmVHZDZWN3V5ZkdfYzdveEo0ZnZZVVVBNlJoYTk0TEZieE9maW1VUm83WHM?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "리버럴미디어",
+      "date": "2026.07.08",
+      "title": "안산시 자율방범대 상록연합대, 청소년 안심귀가를 위한 동행 첫걸음",
+      "snippet": "안산시 자율방범대 상록연합대, 청소년 안심귀가를 위한 동행 첫걸음 리버럴미디어",
+      "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE5jdzVxTklqNDAzc01xUWNxQXA2Mk4xSzlTeUY1MFl6ZGhBQUpTOFdmbGhJMURfRnhqN3lWNWsxb2hCQlJyMFY5bk1PYXktTURIZTJqdWl3ZmlmRjJ2d0VkVWloa2M?oc=5"
     },
     {
       "source": "google",
@@ -907,22 +923,6 @@
     },
     {
       "source": "google",
-      "press": "경인투데이뉴스",
-      "date": "2026.07.08",
-      "title": "안산교육지원청, 공동 성장을 위한 모든 유치원의 수업나눔으로 유치원 교사 교육역량 강화:경인투데이뉴스",
-      "snippet": "안산교육지원청, 공동 성장을 위한 모든 유치원의 수업나눔으로 유치원 교사 교육역량 강화:경인투데이뉴스 경인투데이뉴스",
-      "url": "https://news.google.com/rss/articles/CBMiQkFVX3lxTE5uczY4dy01aW15R0lMR0xHVnpfY2wyUWxUVHBra3FqenpWQUxndFR6WW9LejdOOTFUaU41aEtIdEJGd9IBX0FVX3lxTFA5RW1WYVRfSS0zSXI3SW10Z2M4cHpONWNiVlc2TGIxTExVdFExWk00OFlHSGxFSDBGdlRHS1VTR1NzSUpUekhGZGRpdHV4eGl6R0JQQjBzbHc3SlZqdzlN?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "수원인터넷뉴스",
-      "date": "2026.07.07",
-      "title": "안산시 자율방범대 상록연합대, 청소년 안심귀가를 위한 동행 첫걸음",
-      "snippet": "안산시 자율방범대 상록연합대, 청소년 안심귀가를 위한 동행 첫걸음 수원인터넷뉴스",
-      "url": "https://news.google.com/rss/articles/CBMiQ0FVX3lxTE0tVDd3b0FqalFrS3I0OUF3MUdHcURtYWZ0dmNVOUZuRkRNQlNtaUU3WkpKcDVEUmlGRzNFV2hVdkV3Qjg?oc=5"
-    },
-    {
-      "source": "google",
       "press": "v.daum.net",
       "date": "2026.07.07",
       "title": "안산교육지원청, AI·디지털 교육 성장 생태계 만든다",
@@ -936,14 +936,6 @@
       "title": "안산 상록구 요양병원 입원 환자, 전원 뒤 사망 유족, 한국의료분쟁조정중재원 조정 신청",
       "snippet": "안산 상록구 요양병원 입원 환자, 전원 뒤 사망 유족, 한국의료분쟁조정중재원 조정 신청 반월신문",
       "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE85eVlTS3RaN1RieDVLcEpwN1c5NWdfV0NOTVNHQWZ1a2hma0puNC15VGx2RThNYlFuSnllRU9YNFJSZGQzS2lZOE5OeHh4b0JtbGY5TnJoNW1MVUJoLXVkZkFqRnFFXzg?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "v.daum.net",
-      "date": "2026.07.02",
-      "title": "AI 시대 핵심은 문해력…안산교육지원청, 학부모 독서인문교육 실시",
-      "snippet": "AI 시대 핵심은 문해력…안산교육지원청, 학부모 독서인문교육 실시 v.daum.net",
-      "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE5NT3VBdkFpRVNRRW0xbnNEZjhjYUl6TnJjclV3Y1RFdjh2TzM4NXpoT1MzZndZaFQyR2xBME1hSlhKeHV0dGc?oc=5"
     },
     {
       "source": "naver",
