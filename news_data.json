@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-14 15:08 UTC",
+  "updated": "2026-07-14 16:45 UTC",
   "items": [
     {
       "source": "naver",
@@ -387,6 +387,14 @@
     },
     {
       "source": "google",
+      "press": "경기종합뉴스",
+      "date": "2026.07.14",
+      "title": "안산교육지원청, 블라디보스톡한국교육원과 국제교류협력 확대 논의",
+      "snippet": "안산교육지원청, 블라디보스톡한국교육원과 국제교류협력 확대 논의 경기종합뉴스",
+      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE1oTk83Y3BzQ3VqUzFDMHowbXBxMTBYaTY3eDZjZVkwS1prVG05eFZ4ZHJjSkJiNVhaLUFrYXA1VWdSR002UTFUcEpvd1dqMnBzQTFDUmxSdlk4VGxBdmxJRnU0N0FPSGRjeWlSOGhmdVpSOFND?oc=5"
+    },
+    {
+      "source": "google",
       "press": "newszoom.kr",
       "date": "2026.07.14",
       "title": "안산교육지원청, 학교를 넘어 함께 배우는 2026 안산교육지원청 학생자치 리더십캠프",
@@ -403,11 +411,11 @@
     },
     {
       "source": "google",
-      "press": "mediatoday.asia",
+      "press": "중앙뉴스타임스",
       "date": "2026.07.14",
       "title": "안산교육지원청, '2026 ANSAN Link+X 디지털 엔진리더 교원 아카데미' 1학기 운영 마무리",
-      "snippet": "안산교육지원청, '2026 ANSAN Link+X 디지털 엔진리더 교원 아카데미' 1학기 운영 마무리 mediatoday.asia",
-      "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTFBkcjFGUGhZVnFQX2gtdmdBeEV6SmZ6SkZUTEg0RmFqS3VMSHBFOV8xUHhNbmJYUnBSejFlN0U4N0pNcjRTbW9iR200SQ?oc=5"
+      "snippet": "안산교육지원청, '2026 ANSAN Link+X 디지털 엔진리더 교원 아카데미' 1학기 운영 마무리 중앙뉴스타임스",
+      "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE5VQmJwc3k5el8zNmN1THVZalZNNjkzRDZCZExsM2tVX3pZeDE2emNkbjdkM1RJZTZ6VVh2QUg2Y1NxLVUxWUVwX1Izcl9uZEg4ZUlCdUx4MThlMzVUUE8xUEhIZkw?oc=5"
     },
     {
       "source": "google",
@@ -648,14 +656,6 @@
       "title": "안산교육지원청, 안전한 과학실에서 미래형 과학수업을 열다",
       "snippet": "안산교육지원청, 안전한 과학실에서 미래형 과학수업을 열다 timess.co.kr",
       "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTFBtdmdUTjhGN3hoRGo1RGVPWVg2dW5USGZ2aW9vdTZpRkRLbU1XdWxVQ1E1SnRhM0RTalprN2RKRzlOOVpUaEdrN0t3VWwyeHA0X3dvd0lDUDhJRFRfT3NRd0JR?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "신아일보",
-      "date": "2026.07.13",
-      "title": "안산교육지원청, 과학실 안전관리·미래형 수업 역량 강화 연수 운영",
-      "snippet": "안산교육지원청, 과학실 안전관리·미래형 수업 역량 강화 연수 운영 신아일보",
-      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1UWjJCV2c0aGZKR0dOLWlCc0JoOTFTU0tVem5qQVlpTnhITVZLTTlZWnhDU2s0SXg5cG5nMFp2MlhxTXJvSUxuQVl0T0JFczRLVEhwNS1fMWpoRDZGbklfYVdQSEhPeUxSSURHNW5BQmc?oc=5"
     },
     {
       "source": "naver",
@@ -912,6 +912,14 @@
       "title": "안산교육지원청 “교복 지원 예산 일원화로 학교 행정업무 경감”",
       "snippet": "안산교육지원청 “교복 지원 예산 일원화로 학교 행정업무 경감” v.daum.net",
       "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE1DYV9WblRjb25POW5NSzA0MkFZbFhScVZKUWtzWGM5QkZwRnNoWVV6dTlKUVBmM3oyaWhuTGZFY2Q4YUlaWHc?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "v.daum.net",
+      "date": "2026.07.07",
+      "title": "안산교육지원청, AI·디지털 교육 성장 생태계 만든다",
+      "snippet": "안산교육지원청, AI·디지털 교육 성장 생태계 만든다 v.daum.net",
+      "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTFA0cnZIMW5SQ1FQcVV3cFFCZGU2LXJDNG5HZkxXSE5SQWdHbDZNcFpDa2hCLW4yZFdWTWVqanItZUZYdktqT1FmcWt0WXh2SkE?oc=5"
     },
     {
       "source": "google",
@@ -1826,14 +1834,6 @@
       "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxOVTNqZlM4UVR2YWs2NWxsbTRUYjJOUWdhcFJFc2dTMXhURWEwdW1SX0FURmpEWlJOLTR6VHpsMnNhYm9PaTg5TnRncXFNczF2b19YdlRHTU1TR3NUYlZLaVZ1OGZvZUFoSGg3ajZqc3A0a0JVb3M1ampTZ2NQNWg3eTdn?oc=5"
     },
     {
-      "source": "google",
-      "press": "더코리아",
-      "date": "2026.04.01",
-      "title": "장윤정 경기도의원 학교 기계설비유지관리자 처우 개선 논의 착수 > 뉴스",
-      "snippet": "장윤정 경기도의원 학교 기계설비유지관리자 처우 개선 논의 착수 > 뉴스 더코리아",
-      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9KcE9LRFByVGhnUFZWcFN0SlpjWmpmMzhzWjMzRHpnZjNfVHFuc3FqbTRRdWJxeUhDbHBmWWdnbFdmYzV3dl9UbEUxMXJOWGI0V0NtaUtaRnFDRmEtaTE5WUV2RnlWSW8xSG5PV3FyQXA?oc=5"
-    },
-    {
       "source": "naver",
       "press": "lawissue.co.kr",
       "date": "2026.04.01",
@@ -1850,6 +1850,14 @@
       "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE9HMDgyMldIY0JXYXpFM25ZOEp6NDB2N1JpbGJwTm91Y25QdFNOaDRRVDdrRjluTDdJejVUMkk5cURMN2tjSFhFME5tMEtvRm5oeGpDRm5BOEgxSm9HLWVUNUVDYzhCQQ?oc=5"
     },
     {
+      "source": "google",
+      "press": "더코리아",
+      "date": "2026.04.01",
+      "title": "장윤정 경기도의원 학교 기계설비유지관리자 처우 개선 논의 착수 > 뉴스",
+      "snippet": "장윤정 경기도의원 학교 기계설비유지관리자 처우 개선 논의 착수 > 뉴스 더코리아",
+      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9KcE9LRFByVGhnUFZWcFN0SlpjWmpmMzhzWjMzRHpnZjNfVHFuc3FqbTRRdWJxeUhDbHBmWWdnbFdmYzV3dl9UbEUxMXJOWGI0V0NtaUtaRnFDRmEtaTE5WUV2RnlWSW8xSG5PV3FyQXA?oc=5"
+    },
+    {
       "source": "naver",
       "press": "newsis.com",
       "date": "2026.03.26",
@@ -1859,19 +1867,19 @@
     },
     {
       "source": "naver",
+      "press": "kihoilbo.co.kr",
+      "date": "2026.03.26",
+      "title": "경기도의원 152명 중 112명 재산 늘어",
+      "snippet": "기호일보, KIHOILBO 경기도의회 전경.<경기도의회 제공> 올해 경기도 광역의원의 평균 재산은 12억6천383만... 가장 적은 재산을 보유한 도의원은 장윤정(민주·안산3) 의원으로 마이너스 2천490만 원을 신고했다....",
+      "url": "https://www.kihoilbo.co.kr/news/articleView.html?idxno=3017496"
+    },
+    {
+      "source": "naver",
       "press": "news1.kr",
       "date": "2026.03.26",
       "title": "[재산공개]김성수 경기도의원 324억 신고…4년 연속 도내 최고 자산가",
       "snippet": "김성수 경기도의회 의원(국민의힘·하남2)이 324억여 원의 재산을 보유해 4년 연속 도내 재산공개 대상... 반면, 장윤정 의원(민주·안산3)은 -2490만 원을 신고해 도의원 중 재산이 가장 적었다. 이어 정동혁(민주...",
       "url": "https://www.news1.kr/local/gyeonggi/6114090"
-    },
-    {
-      "source": "naver",
-      "press": "kgnews.co.kr",
-      "date": "2026.03.26",
-      "title": "[재산공개]경기도의원 74% 재산 증가…평균 12억6000만원",
-      "snippet": "반면 장윤정(민주·안산3) 의원은 마이너스 2400만 원을 신고해 재산이 가장 적었다. 장 의원은 예금이... 등의 순으로 재산 신고액이 적었다. [ 경기신문 = 장진우 기자 ] 경기도의회 전경 (사진=경기도의회 제공)",
-      "url": "https://www.kgnews.co.kr/news/article.html?no=888958"
     },
     {
       "source": "google",
