@@ -1,6 +1,14 @@
 {
-  "updated": "2026-07-15 18:38 UTC",
+  "updated": "2026-07-15 20:34 UTC",
   "items": [
+    {
+      "source": "naver",
+      "press": "newsis.com",
+      "date": "2026.07.16",
+      "title": "[오늘의 주요일정]경기남부(7월16일 목요일)",
+      "snippet": "◇경기도 ▲오전 9시30분, 도정현안회의, 집무실 ◇경기도교육청 ▲오전 10시, 안성 폰프리 스쿨 정책설명회, 안성시 소재 ◇수원시 ▲오후 2시, 글로벌문화관광축제위원회 발대식, 수원컨벤션센터 ◇안산시 ▲오전...",
+      "url": "https://www.newsis.com/view/NISX20260715_0003711188"
+    },
     {
       "source": "naver",
       "press": "ekn.kr",
@@ -195,19 +203,19 @@
     },
     {
       "source": "naver",
-      "press": "joongdo.co.kr",
-      "date": "2026.07.15",
-      "title": "[옅어진 대전 문인의 흔적] 박용래를 기억하는 대전의 씁쓸한 방식",
-      "snippet": "춘천 '김유정역', 안산 '상록수역', 서울 '낙성대(강감찬)역'처럼 지역의 인물과 문학을 시민 생활 속에 남긴... 충남대 국어교육과 박수연 교수는 \"대전은 오래된 문화유산이 많지 않은 도시인데 그마저도 제대로 남겨둔...",
-      "url": "https://www.joongdo.co.kr/web/view.php?key=20260715010004601"
-    },
-    {
-      "source": "naver",
       "press": "incheonilbo.com",
       "date": "2026.07.15",
       "title": "남양주시 평내동 바르게살기위원회, 환경 정화부터 안전 교육까지…지...",
       "snippet": "같은 날 위원회 회원 30명은 안산 대부도 해양안전체험관에서 진행된 '경기도 해양안전체험 교육'을 이수하며 안전의식을 고취하는 시간을 가졌다. 이번 교육은 예기치 못한 재난 상황에 대비해 주민들의 안전을...",
       "url": "https://www.incheonilbo.com/news/articleView.html?idxno=1327381"
+    },
+    {
+      "source": "naver",
+      "press": "joongdo.co.kr",
+      "date": "2026.07.15",
+      "title": "[옅어진 대전 문인의 흔적] 박용래를 기억하는 대전의 씁쓸한 방식",
+      "snippet": "춘천 '김유정역', 안산 '상록수역', 서울 '낙성대(강감찬)역'처럼 지역의 인물과 문학을 시민 생활 속에 남긴... 충남대 국어교육과 박수연 교수는 \"대전은 오래된 문화유산이 많지 않은 도시인데 그마저도 제대로 남겨둔...",
+      "url": "https://www.joongdo.co.kr/web/view.php?key=20260715010004601"
     },
     {
       "source": "naver",
@@ -323,19 +331,19 @@
     },
     {
       "source": "naver",
-      "press": "gukjenews.com",
-      "date": "2026.07.15",
-      "title": "충북자연과학교육원, 영재학생 160명 대상 창의공학 프로젝트 운영",
-      "snippet": "충북도교육청 자연과학교육원은 15일부터 16일까지 경기도 안산시 한양대학교 ERICA캠퍼스에서 영재교육원 학생 160명을 대상으로 창의공학 프로젝트를 실시했다고 밝혔다. 이번 행사는 학생들이 대학에서 제공하는...",
-      "url": "https://www.gukjenews.com/news/articleView.html?idxno=3636156"
-    },
-    {
-      "source": "naver",
       "press": "khan.co.kr",
       "date": "2026.07.15",
       "title": "오늘의 인사-통일부 외",
       "snippet": "■통일부 ◇고위공무원 전보 △국립평화통일민주교육원 교육운영부장 오미희 △북한인권기록센터장 정소운... 윤재성 △안산세관장 도기봉 △관세청 통관검사과장 박준성 △〃 전자상거래통관과장 류승하...",
       "url": "https://www.khan.co.kr/article/202607151502001"
+    },
+    {
+      "source": "naver",
+      "press": "gukjenews.com",
+      "date": "2026.07.15",
+      "title": "충북자연과학교육원, 영재학생 160명 대상 창의공학 프로젝트 운영",
+      "snippet": "충북도교육청 자연과학교육원은 15일부터 16일까지 경기도 안산시 한양대학교 ERICA캠퍼스에서 영재교육원 학생 160명을 대상으로 창의공학 프로젝트를 실시했다고 밝혔다. 이번 행사는 학생들이 대학에서 제공하는...",
+      "url": "https://www.gukjenews.com/news/articleView.html?idxno=3636156"
     },
     {
       "source": "naver",
@@ -426,20 +434,20 @@
       "url": "https://www.enetnews.co.kr/news/articleView.html?idxno=52448"
     },
     {
-      "source": "naver",
-      "press": "whosaeng.com",
+      "source": "google",
+      "press": "뉴스신",
       "date": "2026.07.15",
-      "title": "고려대병원, 세네갈 국립암센터 오픈에 힘 보태",
-      "snippet": "구로병원, 안산병원에서 진단검사의학과, 병리과, 정형외과, 마취통증의학과, 유방내분비외과, 산부인과, 방사선종양학과, 응급의학과, 영상의학과 등 다양한 분야의 교육을 받는다. 교육은 진료 참관과 케이스...",
-      "url": "http://www.whosaeng.com/172152"
+      "title": "안산교육지원청, '2026 ANSAN Link+X 디지털 엔진리더 교원 아카데미' 1학기 운영 마무리",
+      "snippet": "안산교육지원청, '2026 ANSAN Link+X 디지털 엔진리더 교원 아카데미' 1학기 운영 마무리 뉴스신",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE9aWW1IdFowSWhOblNyVkJYOTRhbElzaDVfdThFeERidWE0a2I3ZVdlejlxZEY5ZmRqdXAxV1hpTjZMOHlpcVJWUklLcDlKaGNiRUxlSGNYWFdNaFByaFRPd1hxM0htZTQwdXdWWGhlbWpsQdIBckFVX3lxTE9aWW1IdFowSWhOblNyVkJYOTRhbElzaDVfdThFeERidWE0a2I3ZVdlejlxZEY5ZmRqdXAxV1hpTjZMOHlpcVJWUklLcDlKaGNiRUxlSGNYWFdNaFByaFRPd1hxM0htZTQwdXdWWGhlbWpsQQ?oc=5"
     },
     {
       "source": "google",
-      "press": "중앙뉴스미디어",
+      "press": "newszoom.kr",
       "date": "2026.07.15",
       "title": "'위기는 예방으로, 마음은 긍정으로 채우다' 안산교육지원청 특수교육지원센터 관리자 대상 행동중재지원 연수 실시",
-      "snippet": "'위기는 예방으로, 마음은 긍정으로 채우다' 안산교육지원청 특수교육지원센터 관리자 대상 행동중재지원 연수 실시 중앙뉴스미디어",
-      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE15WHdjYWlSVnk0ajdIaEc3ZXF5bHhld19jU2hKVzJScGNLX0lIc1p1dEJoS2NLZ3hrMEZFRVZ4TGpxOXFnRG5ySjNidkFaR0t5YkR2anZ3a25JT1ky?oc=5"
+      "snippet": "'위기는 예방으로, 마음은 긍정으로 채우다' 안산교육지원청 특수교육지원센터 관리자 대상 행동중재지원 연수 실시 newszoom.kr",
+      "url": "https://news.google.com/rss/articles/CBMiREFVX3lxTE9LWHNsbWxTS004dE5UN3ozWFp4eXMweHViVVI5NWp2Q1NkOENWanJpbF9DVWFXY0dNVDlTVjBBS1dYZDYw?oc=5"
     },
     {
       "source": "google",
@@ -504,14 +512,6 @@
       "title": "안산교육지원청, 블라디보스톡한국교육원과 국제교류협력 확대 논의",
       "snippet": "안산교육지원청, 블라디보스톡한국교육원과 국제교류협력 확대 논의 문화매일신문",
       "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE5DQnhKc3d5Q2V6R1NKeUMwSHpVdW5BdkxybjZOdHBYT3BlTm9yR2hmeW5Dd0J6M2JvTURTd3owVnM1eUVVRXk4VFhWQQ?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "newszoom.kr",
-      "date": "2026.07.14",
-      "title": "안산교육지원청, '2026 ANSAN Link+X 디지털 엔진리더 교원 아카데미' 1학기 운영 마무리",
-      "snippet": "안산교육지원청, '2026 ANSAN Link+X 디지털 엔진리더 교원 아카데미' 1학기 운영 마무리 newszoom.kr",
-      "url": "https://news.google.com/rss/articles/CBMiREFVX3lxTFBuM1NKNmtLWHFTZHJrM0g0eU9LZ1Vvb2tqU3RnT1hST0w5Mkg5eG44TlZlbEY1cGpCcDZiQ2NRS29Cd3Q4?oc=5"
     },
     {
       "source": "google",
