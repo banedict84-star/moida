@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-16 21:34 UTC",
+  "updated": "2026-07-16 23:25 UTC",
   "items": [
     {
       "source": "naver",
@@ -971,22 +971,6 @@
     },
     {
       "source": "google",
-      "press": "경인일보",
-      "date": "2026.07.10",
-      "title": "안산교육지원청, 초·중등 진로교육 역량강화 직무연수",
-      "snippet": "안산교육지원청, 초·중등 진로교육 역량강화 직무연수 경인일보",
-      "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE84eTFYOFJPTDVwQkR0VU1CcURqempJMGhwaHluYkRSVldJZ2lreHpRZndFQ3loN3lZeEpEazFKWVZ0c0xoSXpFeDJGbFVHUWY5b3c?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "반월신문",
-      "date": "2026.07.08",
-      "title": "더불어민주당 장윤정 경기도의원, \"초심 잃지 않고 주민 곁에서 실천으로 보답\"",
-      "snippet": "더불어민주당 장윤정 경기도의원, \"초심 잃지 않고 주민 곁에서 실천으로 보답\" 반월신문",
-      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9ITFU4Um15Q3puTHU3eVQ0S1JjYXRuc0ZQY3RfUkhnZHVZZXhHS3pZQXdfelkzcnBTM2hwTmVHZDZWN3V5ZkdfYzdveEo0ZnZZVVVBNlJoYTk0TEZieE9maW1VUm83WHM?oc=5"
-    },
-    {
-      "source": "google",
       "press": "v.daum.net",
       "date": "2026.07.07",
       "title": "안산교육지원청, AI·디지털 교육 성장 생태계 만든다",
@@ -1000,6 +984,14 @@
       "title": "안산 상록구 요양병원 입원 환자, 전원 뒤 사망 유족, 한국의료분쟁조정중재원 조정 신청",
       "snippet": "안산 상록구 요양병원 입원 환자, 전원 뒤 사망 유족, 한국의료분쟁조정중재원 조정 신청 반월신문",
       "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE85eVlTS3RaN1RieDVLcEpwN1c5NWdfV0NOTVNHQWZ1a2hma0puNC15VGx2RThNYlFuSnllRU9YNFJSZGQzS2lZOE5OeHh4b0JtbGY5TnJoNW1MVUJoLXVkZkFqRnFFXzg?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "v.daum.net",
+      "date": "2026.07.02",
+      "title": "AI 시대 핵심은 문해력…안산교육지원청, 학부모 독서인문교육 실시",
+      "snippet": "AI 시대 핵심은 문해력…안산교육지원청, 학부모 독서인문교육 실시 v.daum.net",
+      "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE5NT3VBdkFpRVNRRW0xbnNEZjhjYUl6TnJjclV3Y1RFdjh2TzM4NXpoT1MzZndZaFQyR2xBME1hSlhKeHV0dGc?oc=5"
     },
     {
       "source": "naver",
@@ -1883,19 +1875,19 @@
     },
     {
       "source": "google",
-      "press": "twig24.com",
-      "date": "2026.04.01",
-      "title": "장윤정 경기도의원, 기계설비유지관리자 처우개선 논의",
-      "snippet": "장윤정 경기도의원, 기계설비유지관리자 처우개선 논의 twig24.com",
-      "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxOVTNqZlM4UVR2YWs2NWxsbTRUYjJOUWdhcFJFc2dTMXhURWEwdW1SX0FURmpEWlJOLTR6VHpsMnNhYm9PaTg5TnRncXFNczF2b19YdlRHTU1TR3NUYlZLaVZ1OGZvZUFoSGg3ajZqc3A0a0JVb3M1ampTZ2NQNWg3eTdn?oc=5"
-    },
-    {
-      "source": "google",
       "press": "더코리아",
       "date": "2026.04.01",
       "title": "장윤정 경기도의원 학교 기계설비유지관리자 처우 개선 논의 착수 > 뉴스",
       "snippet": "장윤정 경기도의원 학교 기계설비유지관리자 처우 개선 논의 착수 > 뉴스 더코리아",
       "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9KcE9LRFByVGhnUFZWcFN0SlpjWmpmMzhzWjMzRHpnZjNfVHFuc3FqbTRRdWJxeUhDbHBmWWdnbFdmYzV3dl9UbEUxMXJOWGI0V0NtaUtaRnFDRmEtaTE5WUV2RnlWSW8xSG5PV3FyQXA?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "twig24.com",
+      "date": "2026.04.01",
+      "title": "장윤정 경기도의원, 기계설비유지관리자 처우개선 논의",
+      "snippet": "장윤정 경기도의원, 기계설비유지관리자 처우개선 논의 twig24.com",
+      "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxOVTNqZlM4UVR2YWs2NWxsbTRUYjJOUWdhcFJFc2dTMXhURWEwdW1SX0FURmpEWlJOLTR6VHpsMnNhYm9PaTg5TnRncXFNczF2b19YdlRHTU1TR3NUYlZLaVZ1OGZvZUFoSGg3ajZqc3A0a0JVb3M1ampTZ2NQNWg3eTdn?oc=5"
     },
     {
       "source": "naver",
@@ -1923,19 +1915,19 @@
     },
     {
       "source": "naver",
+      "press": "kgnews.co.kr",
+      "date": "2026.03.26",
+      "title": "[재산공개]경기도의원 74% 재산 증가…평균 12억6000만원",
+      "snippet": "반면 장윤정(민주·안산3) 의원은 마이너스 2400만 원을 신고해 재산이 가장 적었다. 장 의원은 예금이... 등의 순으로 재산 신고액이 적었다. [ 경기신문 = 장진우 기자 ] 경기도의회 전경 (사진=경기도의회 제공)",
+      "url": "https://www.kgnews.co.kr/news/article.html?no=888958"
+    },
+    {
+      "source": "naver",
       "press": "kihoilbo.co.kr",
       "date": "2026.03.26",
       "title": "경기도의원 152명 중 112명 재산 늘어",
       "snippet": "기호일보, KIHOILBO 경기도의회 전경.<경기도의회 제공> 올해 경기도 광역의원의 평균 재산은 12억6천383만... 가장 적은 재산을 보유한 도의원은 장윤정(민주·안산3) 의원으로 마이너스 2천490만 원을 신고했다....",
       "url": "https://www.kihoilbo.co.kr/news/articleView.html?idxno=3017496"
-    },
-    {
-      "source": "naver",
-      "press": "news1.kr",
-      "date": "2026.03.26",
-      "title": "[재산공개]김성수 경기도의원 324억 신고…4년 연속 도내 최고 자산가",
-      "snippet": "김성수 경기도의회 의원(국민의힘·하남2)이 324억여 원의 재산을 보유해 4년 연속 도내 재산공개 대상... 반면, 장윤정 의원(민주·안산3)은 -2490만 원을 신고해 도의원 중 재산이 가장 적었다. 이어 정동혁(민주...",
-      "url": "https://www.news1.kr/local/gyeonggi/6114090"
     },
     {
       "source": "google",
@@ -2000,6 +1992,14 @@
       "title": "장윤정 경기도의원 “경기도형 환기설비 성능 전면 점검해야”",
       "snippet": "장윤정 경기도의원 “경기도형 환기설비 성능 전면 점검해야” twig24.com",
       "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxNNmxBWWJvNzdBWFAtTWp2TG9EWVZrcGYxSkZpS01CY0ZXd2F2NkhYX3B5a1BoczJ0Y0NNTFNVYlJrbk05bFluX1RrZXN4VlhxU0lHZkEtczhCczBEeWplNEkyZ3RVWDc0OF9tdkVzc2UwZ0JmSTZSaTNlUGI5bHNrRWVR?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "안산뉴스",
+      "date": "2026.01.04",
+      "title": "장윤정 도의원 지역발전 특교금 12억원 확보",
+      "snippet": "장윤정 도의원 지역발전 특교금 12억원 확보 안산뉴스",
+      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9KNFhBYkNfTVo1cHVTNU1WQk5Kc2VrWWhCSnJwdEhFeGo5M01UbUJKSC1zN2h5Q0F3R1lEQkZMNHFGVVdxQ0llQW9yX3hnRndBWkcwbnBFXzloZVRlNUR4Q2otblN0Vi1TWEg1Sg?oc=5"
     }
   ]
 }
