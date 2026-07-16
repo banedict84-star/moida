@@ -1,6 +1,14 @@
 {
-  "updated": "2026-07-16 14:33 UTC",
+  "updated": "2026-07-16 16:49 UTC",
   "items": [
+    {
+      "source": "naver",
+      "press": "topstarnews.net",
+      "date": "2026.07.17",
+      "title": "박하선, 화류비련극 '홍도' 전국투어 고양 공연 앞두고 근황",
+      "snippet": "대구, 안산, 포항, 부산, 밀양, 안성, 고양까지 4개월 대장정의 끝\"이라며 고양어울림누리 어울림극장에서... 아프리카 어린이들의 교육을 위해 1,000만 원을 기부하고 관련 방송에 출연해 기부의 뜻을 밝히는 등 선한...",
+      "url": "https://www.topstarnews.net/news/articleView.html?idxno=16137157"
+    },
     {
       "source": "naver",
       "press": "newsclaim.co.kr",
@@ -24,6 +32,22 @@
       "title": "[안산소식]이민근 시장, 직장어린이집 방문해 보육환경 점검 등",
       "snippet": "안산시는 시 본청과 상록구청, 단원구청에 1곳씩 직장어린이집 3곳을 운영하고 있다. ◇여름 휴가철 바가지요금 근절 캠페인 경기 안산시는 지난 15일 대부도 구봉도 일원에서 여름 휴가철 바가지요금 근절과 물가 안정을...",
       "url": "https://www.newsis.com/view/NISX20260716_0003711786"
+    },
+    {
+      "source": "naver",
+      "press": "newstown.co.kr",
+      "date": "2026.07.16",
+      "title": "안산시, '2026 e스포츠 페스티벌' 준비 착수…기관 협업 강화",
+      "snippet": "관계기관이 보유한 청소년 네트워크와 교육 현장을 활용해 축제 정보를 폭넓게 알리고, 가족 단위 방문객과 일반 시민도 자연스럽게 행사에 참여할 수 있는 운영환경을 조성한다는 구상이다. 안산시는 실무지원단을...",
+      "url": "http://www.newstown.co.kr/news/articleView.html?idxno=709478"
+    },
+    {
+      "source": "naver",
+      "press": "newstown.co.kr",
+      "date": "2026.07.16",
+      "title": "경기도의회, 고찬석 건설교통위원장 선출...\"협치로 도민 신뢰 높일 것...",
+      "snippet": "용인시의원으로 의정활동을 시작해 제10대 경기도의회 제1교육위원회 부위원장과 도시환경위원회 위원 등을... (민주·안산4), 윤순옥 의원(국민의힘·양평1), 이대한 의원(민주·남양주4), 조명자 의원(민주·수원10), 채명기...",
+      "url": "http://www.newstown.co.kr/news/articleView.html?idxno=709476"
     },
     {
       "source": "naver",
@@ -155,19 +179,19 @@
     },
     {
       "source": "naver",
-      "press": "kmaeil.com",
-      "date": "2026.07.16",
-      "title": "경기도의회, 상임위원장 선출 완료...더불어민주당 12개 상임위 맡아",
-      "snippet": "김동규(안산1), 건설교통위원장 고찬석(용인9), 도시환경위원장 이홍근(화성1), 미래과학협력위원장 김태형(화성5), 여성가족평생교육위원장 김용성(광명4), 교육기획위원장 국중범(성남4), 교육행정위원장 김성수(안양1)...",
-      "url": "https://www.kmaeil.com/news/articleView.html?idxno=645648"
-    },
-    {
-      "source": "naver",
       "press": "nspna.com",
       "date": "2026.07.16",
       "title": "경기도의회, 13개 상임위 위원장 선출",
       "snippet": "이어 ▲서광범(국힘·여주1) 농정해양위원장 ▲김동규(민주·안산1) 보건복지위원장 ▲고찬석(민주·용인9)... 또 ▲김용성(민주·광명4) 여성가족평생위원장 ▲국중범(민주·성남4) 교육기획위원장 ▲김성수(민주...",
       "url": "https://www.nspna.com/news/?mode=view&newsid=820987"
+    },
+    {
+      "source": "naver",
+      "press": "kmaeil.com",
+      "date": "2026.07.16",
+      "title": "경기도의회, 상임위원장 선출 완료...더불어민주당 12개 상임위 맡아",
+      "snippet": "김동규(안산1), 건설교통위원장 고찬석(용인9), 도시환경위원장 이홍근(화성1), 미래과학협력위원장 김태형(화성5), 여성가족평생교육위원장 김용성(광명4), 교육기획위원장 국중범(성남4), 교육행정위원장 김성수(안양1)...",
+      "url": "https://www.kmaeil.com/news/articleView.html?idxno=645648"
     },
     {
       "source": "naver",
@@ -378,28 +402,12 @@
       "url": "https://www.segye.com/newsView/20260716515090?OutUrl=naver"
     },
     {
-      "source": "naver",
-      "press": "shinailbo.co.kr",
+      "source": "google",
+      "press": "매일일보",
       "date": "2026.07.16",
-      "title": "경기TP, IP 창업기업 투자유치 지원",
-      "snippet": "IR 교육과 발표 멘토링, 맞춤형 컨설팅을 통해 투자유치 전략을 보완했다. 행사에서는 수도·강원권에서... 우수 창업기업이 투자와 사업화로 이어질 수 있도록 지원을 확대하겠다\"고 말했다. [신아일보] 안산",
-      "url": "https://www.shinailbo.co.kr/news/articleView.html?idxno=5041620"
-    },
-    {
-      "source": "naver",
-      "press": "pressian.com",
-      "date": "2026.07.16",
-      "title": "대전시, 국군사관학교 창설 맞춰 '국방혁신 중심도시' 조성 박차",
-      "snippet": "시는 기존 자운대 공간재창조사업을 국방교육과 AI 중심의 국가전략사업으로 확대하고, 국방과학연구소(ADD), 한국과학기술원(KAIST), 방위사업청, 안산 국방국가산업단지와 연계해 교육·연구·산업이 집약된 국방혁신...",
-      "url": "https://www.pressian.com/pages/articles/2026071613292171667?utm_source=naver&utm_medium=search"
-    },
-    {
-      "source": "naver",
-      "press": "m-i.kr",
-      "date": "2026.07.16",
-      "title": "안산교육지원청, '공존 시민 아카데미' 마무리",
-      "snippet": "사진=안산교육지원청 매일일보 = 송훈희 기자 | 안산교육지원청은 16일 '안산 공존 시민 아카데미: AI·디지털 기반 지속 가능 미래 프로젝트'의 하나로 운영한 2026학년도 1학기 오프라인 공동교육과정 '지속가능발전탐구...",
-      "url": "https://www.m-i.kr/news/articleView.html?idxno=1392316"
+      "title": "안산교육지원청, ‘공존 시민 아카데미’ 마무리",
+      "snippet": "안산교육지원청, ‘공존 시민 아카데미’ 마무리 매일일보",
+      "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE42TzdwVy1NU3UtdU5yYkZlckRPRDhrT09id0oyYnhnaU5OMFhHd3YwVnRlUUNiSnh6ZEZxaF9MRGp1aXBJM0s5akxHMWJsWDhMb0s4TUdiYThqZ2NsWDVsdm5tb1o?oc=5"
     },
     {
       "source": "google",
@@ -1915,11 +1923,11 @@
     },
     {
       "source": "naver",
-      "press": "kihoilbo.co.kr",
+      "press": "kgnews.co.kr",
       "date": "2026.03.26",
-      "title": "경기도의원 152명 중 112명 재산 늘어",
-      "snippet": "기호일보, KIHOILBO 경기도의회 전경.<경기도의회 제공> 올해 경기도 광역의원의 평균 재산은 12억6천383만... 가장 적은 재산을 보유한 도의원은 장윤정(민주·안산3) 의원으로 마이너스 2천490만 원을 신고했다....",
-      "url": "https://www.kihoilbo.co.kr/news/articleView.html?idxno=3017496"
+      "title": "[재산공개]경기도의원 74% 재산 증가…평균 12억6000만원",
+      "snippet": "반면 장윤정(민주·안산3) 의원은 마이너스 2400만 원을 신고해 재산이 가장 적었다. 장 의원은 예금이... 등의 순으로 재산 신고액이 적었다. [ 경기신문 = 장진우 기자 ] 경기도의회 전경 (사진=경기도의회 제공)",
+      "url": "https://www.kgnews.co.kr/news/article.html?no=888958"
     },
     {
       "source": "naver",
@@ -1963,14 +1971,6 @@
     },
     {
       "source": "google",
-      "press": "일간경기",
-      "date": "2026.03.08",
-      "title": "장윤정 도의원, 시곡중 오수관 파손 현장 긴급 점검 요청",
-      "snippet": "장윤정 도의원, 시곡중 오수관 파손 현장 긴급 점검 요청 일간경기",
-      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE9aU3pJMGpjb0p1cnlzcXhaSmR3NllhbEZSdWM1NVdlUHNHOEFPLUhqYXVSOHc4TTJ6MzNMX1h4bWZwSXg1eFVHdnlnclFqLWRmbnNtV1M3NlZXWXpCQ2Nwd0E0dDJQdTE2?oc=5"
-    },
-    {
-      "source": "google",
       "press": "한국미디어뉴스",
       "date": "2026.03.05",
       "title": "경기도의회 장윤정 의원, 안산 학교 환경개선에 87억 원 규모 예산 확보",
@@ -1987,11 +1987,11 @@
     },
     {
       "source": "google",
-      "press": "경기일보",
-      "date": "2026.02.10",
-      "title": "안산 상록구 도로서 차량 불…진화 완료",
-      "snippet": "안산 상록구 도로서 차량 불…진화 완료 경기일보",
-      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBtdUVNeG92LXpKaG9wYU4tdzREWHJ5eWNZbzNjVVh0eTY1QUM5M2dzY2t6bEpwMnNxS1N3VnBibC1EY05oN2dTeGRlc2dkaTBSWXE3alVpb3NnRVU?oc=5"
+      "press": "뉴스핌",
+      "date": "2026.02.11",
+      "title": "안산 상록구 부곡동서 차량 화재…인명피해 없어",
+      "snippet": "안산 상록구 부곡동서 차량 화재…인명피해 없어 뉴스핌",
+      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE9MazNlSlhmQndMMXh6RWFBWHNfZzJZRU9jQ0VYTUw1cVpUZkxla0JSVGhuRUFpeUR3a3loUF9hUTUyVnBPSGVqS1NVSzhoWUx6OWhTdkxrSmV0LXps?oc=5"
     },
     {
       "source": "google",
