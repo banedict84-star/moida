@@ -1,6 +1,14 @@
 {
-  "updated": "2026-07-16 12:04 UTC",
+  "updated": "2026-07-16 14:33 UTC",
   "items": [
+    {
+      "source": "naver",
+      "press": "newsclaim.co.kr",
+      "date": "2026.07.16",
+      "title": "안산 고려인센터 미르 경기도 정착지원사업 선정",
+      "snippet": "고려인센터미르 재공 안산시 상록구에 있는 고려인센터 미르가 '2026년 경기도 고려인동포 정착지원 사업' 보조사업자로 선정돼 고려인 동포의 안정적인 지역사회 정착을 위한 맞춤형 교육 프로그램을 운영한다고 16일...",
+      "url": "https://www.newsclaim.co.kr/news/articleView.html?idxno=3069678"
+    },
     {
       "source": "naver",
       "press": "siminilbo.co.kr",
@@ -19,11 +27,11 @@
     },
     {
       "source": "naver",
-      "press": "cnbizm.com",
+      "press": "newstown.co.kr",
       "date": "2026.07.16",
-      "title": "서대문구, 홍콩 중학생들을 위한 환경정화 및 목공체험 자원봉사 프로그...",
-      "snippet": "박운기 서대문구청장은 \"이번 활동은 숲을 둘러보는 데 그치지 않고 목공체험과 환경정화, 생태교육을 통해 자연보호를 실천한 뜻깊은 국제 교류였다\"고 말했다. 한편, 한국관광공사 대한민국구석구석에 따르면, 안산에는...",
-      "url": "https://www.cnbizm.com/news/articleView.html?idxno=308888"
+      "title": "[뉴스타운 심층인터뷰] 이민근 안산시장 \"민선 9기, 안산의 변화를 시민...",
+      "snippet": "이를 교육과 문화, 산업, 관광으로 연결한다면 안산이 대한민국을 대표하는 글로벌도시로 성장할 수 있다는 판단이다. 다문화 인재의 언어와 문화적 역량을 기업의 해외시장 진출과 연계하고, 다양한 문화 콘텐츠를 지역...",
+      "url": "http://www.newstown.co.kr/news/articleView.html?idxno=709469"
     },
     {
       "source": "naver",
@@ -31,7 +39,31 @@
       "date": "2026.07.16",
       "title": "대전 자운대에 국군사관학교 창설…“대기업 유치 이상 파급효과”",
       "snippet": "[리포트] 육·해·공군 대학을 비롯해 10여개 군 교육시설이 밀집한 대전 자운대. 국방부는 이곳에 육사와 해사... 또, 방위사업청과 안산 국방산단 등과 연계해 대전을 국방 혁신도시로 조성한다는 구상입니다. [허태정...",
-      "url": "https://news.kbs.co.kr/news/pc/view/view.do?ncd=8612873&ref=A"
+      "url": "https://news.kbs.co.kr/news/pc/view/view.do?ncd=8613046&ref=A"
+    },
+    {
+      "source": "naver",
+      "press": "ajunews.com",
+      "date": "2026.07.16",
+      "title": "이민근 시장 \"아이 키우는 일은 사회와 조직이 책임져야 할 시대적 과제...",
+      "snippet": "[사진=안산시] 이와 함께 \"보육시설 확충과 함께 돌봄서비스, 교육, 문화 등 아이 키우기 좋은 도시 기반이 함께 확대된다면 젊은 세대가 정착하는 안산으로 이어질 것\"이라며 가족친화 정책의 지속적인 추진을 기대하는...",
+      "url": "https://www.ajunews.com/view/20260716211114389"
+    },
+    {
+      "source": "naver",
+      "press": "ekn.kr",
+      "date": "2026.07.16",
+      "title": "[패트롤] 광명시-시흥시-부천시-안산시-안양시",
+      "snippet": "광명=에너지경제신문 강근주기자 광명시가 16일 신안산선 공사 현장 붕괴 사고에 대한 14개월간 자체 조사를... 의료, 교육 급여 수급권자 △차상위계층 △소외계층(주민등록등본상 65세 이상, 장애인복지법에서 규정하는...",
+      "url": "https://www.ekn.kr/web/view.php?key=20260716029023352"
+    },
+    {
+      "source": "naver",
+      "press": "cnbizm.com",
+      "date": "2026.07.16",
+      "title": "서대문구, 홍콩 중학생들을 위한 환경정화 및 목공체험 자원봉사 프로그...",
+      "snippet": "박운기 서대문구청장은 \"이번 활동은 숲을 둘러보는 데 그치지 않고 목공체험과 환경정화, 생태교육을 통해 자연보호를 실천한 뜻깊은 국제 교류였다\"고 말했다. 한편, 한국관광공사 대한민국구석구석에 따르면, 안산에는...",
+      "url": "https://www.cnbizm.com/news/articleView.html?idxno=308888"
     },
     {
       "source": "naver",
@@ -243,19 +275,19 @@
     },
     {
       "source": "naver",
-      "press": "kgnews.co.kr",
-      "date": "2026.07.16",
-      "title": "신안산대 평생교육원 AMP 총동문회, 지방선거 당선 동문에 기념패 전달",
-      "snippet": "15일 본관서 전달식 개최… 이민근 시장·한명훈 의장 등 동문 당선인 축하 신안산대학교 평생교육원 최고경영자과정(AMP) 총동문회는 지난 15일 신안산대학교 본관에서 '2026년 6·3 지방선거 당선인 기념패 전달식'을...",
-      "url": "https://www.kgnews.co.kr/news/article.html?no=904139"
-    },
-    {
-      "source": "naver",
       "press": "segye.com",
       "date": "2026.07.16",
       "title": "허태정 \"국군사관학교는 대기업 유치 이상 효과\" 환영…왜 대전 자운대...",
       "snippet": "대전시는 국군사관학교를 자운대 재창조사업의 거점으로 삼아 국방교육과 인공지능(AI) 중심의 국가전략 요충지로 조성할 계획이다. 허 시장은 “자운대를 국방과학연구소(ADD), 한국과학기술원(KAIST), 방위사업청, 안산...",
       "url": "https://www.segye.com/newsView/20260716517484?OutUrl=naver"
+    },
+    {
+      "source": "naver",
+      "press": "kgnews.co.kr",
+      "date": "2026.07.16",
+      "title": "신안산대 평생교육원 AMP 총동문회, 지방선거 당선 동문에 기념패 전달",
+      "snippet": "15일 본관서 전달식 개최… 이민근 시장·한명훈 의장 등 동문 당선인 축하 신안산대학교 평생교육원 최고경영자과정(AMP) 총동문회는 지난 15일 신안산대학교 본관에서 '2026년 6·3 지방선거 당선인 기념패 전달식'을...",
+      "url": "https://www.kgnews.co.kr/news/article.html?no=904139"
     },
     {
       "source": "naver",
@@ -370,44 +402,12 @@
       "url": "https://www.m-i.kr/news/articleView.html?idxno=1392316"
     },
     {
-      "source": "naver",
-      "press": "newsfreezone.co.kr",
-      "date": "2026.07.16",
-      "title": "국군사관학교 자운대 창설 본격화… 허태정 \"대기업 유치 이상 파급효과...",
-      "snippet": "특히 국방과학연구소(ADD), 한국과학기술원(KAIST), 방위사업청, 안산 국방국가산업단지 등 대전이 보유한 국방·과학기술 인프라와 연계될 경우 국방교육과 연구개발, 산업이 결합된 새로운 국방생태계 구축이 가능할...",
-      "url": "https://www.newsfreezone.co.kr/news/articleView.html?idxno=699827"
-    },
-    {
-      "source": "naver",
-      "press": "chungnamilbo.co.kr",
-      "date": "2026.07.16",
-      "title": "국군사관학교 대전 자운대 창설…국방교육 허브 구축 본격화",
-      "snippet": "또 이번 창설을 자운대 공간재창조사업의 전환점으로 삼아 국방교육과 인공지능 중심의 국가전략사업으로 확대할 계획이다. 국방과학연구소(ADD), 한국과학기술원(KAIST), 방위사업청, 안산 국방국가산업단지와 연계한...",
-      "url": "http://www.chungnamilbo.co.kr/news/articleView.html?idxno=899179"
-    },
-    {
-      "source": "naver",
-      "press": "daily.hankooki.com",
-      "date": "2026.07.16",
-      "title": "육·해·공 사관학교 대전으로…자운대, 국방교육 판 바꾼다",
-      "snippet": "대전시는 국군사관학교가 안산 첨단국방산업단지와 국방과학연구소 등 기존 국방 인프라와 연계되면 교육과 연구, 산업이 결합한 국방혁신 생태계를 구축할 수 있을 것으로 보고 있다. 드론과 우주, 양자기술 등 지역...",
-      "url": "https://daily.hankooki.com/news/articleView.html?idxno=1386633"
-    },
-    {
-      "source": "naver",
-      "press": "newsis.com",
+      "source": "google",
+      "press": "뉴시스",
       "date": "2026.07.16",
       "title": "\"원거리 통학 안돼\" 안산 해솔초 학부모들, 교육청 앞 집회",
-      "snippet": "학부모들은 16일 경기도안산교육지원청 앞에서 집회를 열고 내년도 해솔초 졸업예정자 전원을 안산해솔중으로 배정하라는 내용의 성명을 발표했다. 안산교육지원청은 앞서 지난 5월 인근 안산해솔중학교 과밀화를...",
-      "url": "https://www.newsis.com/view/NISX20260716_0003712165"
-    },
-    {
-      "source": "naver",
-      "press": "gocj.net",
-      "date": "2026.07.16",
-      "title": "'국군 사관 학교' 대전 자운대에 창설 '환영'",
-      "snippet": "국방 교육과 AI 중심 국가 전략 사업으로 확대 추진할 계획이다. 이와 함께 국방 과학 연구소(ADD), 한국 과학 기술원(KAIST), 방위 사업청, 안산 국방 국가 산업 단지와 연계한 국방 혁신 거점을 조성하고, 정부의 국방 혁신...",
-      "url": "http://www.gocj.net/news/articleView.html?idxno=150258"
+      "snippet": "\"원거리 통학 안돼\" 안산 해솔초 학부모들, 교육청 앞 집회 뉴시스",
+      "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE9aMmtkTkdaTk1Oby01VURtZXE4azNiaF9RUjV1eGY1N1VOeklQcFBKYWJGNmc2OG56MjFXV3lmVnRXTkxTZHV4bUI5TUtQNFhRQmJwbm9CR05ZcE9SNmNZM2VCX2VCT1JWRzRKY2owVHJZWHYyY3g0ZdIBeEFVX3lxTE9aMmtkTkdaTk1Oby01VURtZXE4azNiaF9RUjV1eGY1N1VOeklQcFBKYWJGNmc2OG56MjFXV3lmVnRXTkxTZHV4bUI5TUtQNFhRQmJwbm9CR05ZcE9SNmNZM2VCX2VCT1JWRzRKY2owVHJZWHYyY3g0ZQ?oc=5"
     },
     {
       "source": "google",
@@ -795,11 +795,11 @@
     },
     {
       "source": "google",
-      "press": "경기헤드뉴스",
+      "press": "경기매일",
       "date": "2026.07.13",
       "title": "안산교육지원청, 안전한 과학실에서 미래형 과학수업을 열다",
-      "snippet": "안산교육지원청, 안전한 과학실에서 미래형 과학수업을 열다 경기헤드뉴스",
-      "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE9QTjJBVlUtcDM5N0dqZ0pZcXlBVXE4RDlRSmozSmdTOWZuNzhrRHFGQUtWelhydmY1Wk1TZ0ctMHRaM3lncTItd2NNM3loNEdLdktDbndabTFROGo0aEVR?oc=5"
+      "snippet": "안산교육지원청, 안전한 과학실에서 미래형 과학수업을 열다 경기매일",
+      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBYdURVS0IzU3pQZ2JNQW5yMnM5WFc5TEx5Q3JjV3ZhSHA5MGRXd0k4aUVPU0ZKakYzY0dpT2ZfTF9aR3p0akhISUZTOUgwOGFFMkxfLVZ6VTladFk4VU5Za2NZMmJFUGs?oc=5"
     },
     {
       "source": "naver",
@@ -904,14 +904,6 @@
       "title": "안산 도금공장서 불… 한때 대응 1단계",
       "snippet": "12일 안산소방서 등에 따르면 이날 오전 9시14분께 안산시 상록구 팔곡이동 도금단지 인근에서 시커먼 연기가 치솟고 있다는 목격자 신고가 접수됐다. 신고를 받은 소방은 인력 103명과 장비 38대를 동원해 현장에 출동...",
       "url": "https://www.kyeonggi.com/article/20260712580042"
-    },
-    {
-      "source": "naver",
-      "press": "gukjenews.com",
-      "date": "2026.07.12",
-      "title": "[속보] 안산 팔곡이동 도금공장서 화재...차량 우회 '안내'",
-      "snippet": "12일 안산시에 따르면 이날 오전 9시 14분 경 안산시 상록구 팔곡이동에 위치한 도금공장에서 불이 났다. 이에 인근주민은 창문을 닫고, 차량들은 우회해달라고 전했다.",
-      "url": "https://www.gukjenews.com/news/articleView.html?idxno=3633345"
     },
     {
       "source": "google",
@@ -1923,11 +1915,11 @@
     },
     {
       "source": "naver",
-      "press": "kgnews.co.kr",
+      "press": "kihoilbo.co.kr",
       "date": "2026.03.26",
-      "title": "[재산공개]경기도의원 74% 재산 증가…평균 12억6000만원",
-      "snippet": "반면 장윤정(민주·안산3) 의원은 마이너스 2400만 원을 신고해 재산이 가장 적었다. 장 의원은 예금이... 등의 순으로 재산 신고액이 적었다. [ 경기신문 = 장진우 기자 ] 경기도의회 전경 (사진=경기도의회 제공)",
-      "url": "https://www.kgnews.co.kr/news/article.html?no=888958"
+      "title": "경기도의원 152명 중 112명 재산 늘어",
+      "snippet": "기호일보, KIHOILBO 경기도의회 전경.<경기도의회 제공> 올해 경기도 광역의원의 평균 재산은 12억6천383만... 가장 적은 재산을 보유한 도의원은 장윤정(민주·안산3) 의원으로 마이너스 2천490만 원을 신고했다....",
+      "url": "https://www.kihoilbo.co.kr/news/articleView.html?idxno=3017496"
     },
     {
       "source": "naver",
@@ -1995,11 +1987,19 @@
     },
     {
       "source": "google",
-      "press": "뉴스핌",
-      "date": "2026.02.11",
-      "title": "안산 상록구 부곡동서 차량 화재…인명피해 없어",
-      "snippet": "안산 상록구 부곡동서 차량 화재…인명피해 없어 뉴스핌",
-      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE9MazNlSlhmQndMMXh6RWFBWHNfZzJZRU9jQ0VYTUw1cVpUZkxla0JSVGhuRUFpeUR3a3loUF9hUTUyVnBPSGVqS1NVSzhoWUx6OWhTdkxrSmV0LXps?oc=5"
+      "press": "경기일보",
+      "date": "2026.02.10",
+      "title": "안산 상록구 도로서 차량 불…진화 완료",
+      "snippet": "안산 상록구 도로서 차량 불…진화 완료 경기일보",
+      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBtdUVNeG92LXpKaG9wYU4tdzREWHJ5eWNZbzNjVVh0eTY1QUM5M2dzY2t6bEpwMnNxS1N3VnBibC1EY05oN2dTeGRlc2dkaTBSWXE3alVpb3NnRVU?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "twig24.com",
+      "date": "2026.02.09",
+      "title": "장윤정 경기도의원 “경기도형 환기설비 성능 전면 점검해야”",
+      "snippet": "장윤정 경기도의원 “경기도형 환기설비 성능 전면 점검해야” twig24.com",
+      "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxNNmxBWWJvNzdBWFAtTWp2TG9EWVZrcGYxSkZpS01CY0ZXd2F2NkhYX3B5a1BoczJ0Y0NNTFNVYlJrbk05bFluX1RrZXN4VlhxU0lHZkEtczhCczBEeWplNEkyZ3RVWDc0OF9tdkVzc2UwZ0JmSTZSaTNlUGI5bHNrRWVR?oc=5"
     }
   ]
 }
