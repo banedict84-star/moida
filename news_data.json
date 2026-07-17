@@ -1,6 +1,54 @@
 {
-  "updated": "2026-07-16 23:25 UTC",
+  "updated": "2026-07-17 01:03 UTC",
   "items": [
+    {
+      "source": "naver",
+      "press": "hani.co.kr",
+      "date": "2026.07.17",
+      "title": "경기도의회 진통 끝 원구성 마무리…상임위원장 민주 12석, 국힘 1석",
+      "snippet": "김동규(안산1) △건설교통위원장 고찬석(용인9) △도시환경위원장 이홍근(화성1) △미래과학협력위원장 김태형(화성5) △여성가족평생교육위원장 김용성(광명4) △교육기획위원장 국중범(성남4) △교육행정위원장...",
+      "url": "https://www.hani.co.kr/arti/area/capital/1268696.html"
+    },
+    {
+      "source": "naver",
+      "press": "inews24.com",
+      "date": "2026.07.17",
+      "title": "교육청 \"과밀 우려\" vs 학부모 \"행정 실패\"… 안산서 중학교 배정 '마찰...",
+      "snippet": "17일 교육계 등에 따르면, 안산해솔초 학부모들은 이날 안산교육지원청 앞에서 집회를 열고 내년도 졸업 예정자 전원을 단지 인근 안산해솔중으로 배정할 것을 촉구하는 성명서를 발표했다. 해솔초가 위치한 안산...",
+      "url": "http://www.inews24.com/view/1986449"
+    },
+    {
+      "source": "naver",
+      "press": "dailian.co.kr",
+      "date": "2026.07.17",
+      "title": "경기도의회, 진통 끝 전반기 13개 상임위원장 선출...민주12·국힘1",
+      "snippet": "(민주당, 안산1) ▲건설교통위원회 고찬석(민주당, 용인9) ▲도시환경위원회 이홍근(민주당, 화성1) ▲미래과학협력위원회 김태형(민주당, 화성5) ▲여성가족평생교육위원회 김용성(민주당, 광명4) ▲교육기획위원회...",
+      "url": "https://www.dailian.co.kr/news/view/1668190/?sc=Naver"
+    },
+    {
+      "source": "naver",
+      "press": "yna.co.kr",
+      "date": "2026.07.17",
+      "title": "국민 75% '선감학원 역사박물관' 찬성…2029년 말 완공 목표",
+      "snippet": "박물관에서 기대하는 기능에 대해서는 '기록·스토리 전달'(28.4%), '인권·역사교육'(27.9%),'기억과 치유'(18.5%) 등을 꼽았다. 일제강점기인 1942년 안산시 단원구 선감로 101-19 일원에 설치돼 1982년까지 운영된...",
+      "url": "https://www.yna.co.kr/view/AKR20260716178800061?input=1195m"
+    },
+    {
+      "source": "naver",
+      "press": "nongmin.com",
+      "date": "2026.07.17",
+      "title": "더위 피하고, 숲도 살리고…‘씨드볼’ 만들어볼까",
+      "snippet": "경기도산림환경연구소는 7월31일까지 안산 대부도 바다향기수목원에서 산림 생태복원용 ‘씨드볼(Seed Ball)’을 만드는 체험 프로그램을 운영한다. 이번 프로그램은 ‘세계 수목원·식물원 교육의 날’을 기념해...",
+      "url": "https://www.nongmin.com/article/20260716500553"
+    },
+    {
+      "source": "naver",
+      "press": "news.kbs.co.kr",
+      "date": "2026.07.17",
+      "title": "대전 자운대에 국군사관학교 창설…“대기업 유치 이상 파급효과”",
+      "snippet": "[리포트] 육·해·공군 대학을 비롯해 10여개 군 교육시설이 밀집한 대전 자운대. 국방부는 이곳에 육사와 해사... 또, 방위사업청과 안산 국방산단 등과 연계해 대전을 국방 혁신도시로 조성한다는 구상입니다. [허태정...",
+      "url": "https://news.kbs.co.kr/news/pc/view/view.do?ncd=8613357&ref=A"
+    },
     {
       "source": "naver",
       "press": "topstarnews.net",
@@ -56,14 +104,6 @@
       "title": "[뉴스타운 심층인터뷰] 이민근 안산시장 \"민선 9기, 안산의 변화를 시민...",
       "snippet": "이를 교육과 문화, 산업, 관광으로 연결한다면 안산이 대한민국을 대표하는 글로벌도시로 성장할 수 있다는 판단이다. 다문화 인재의 언어와 문화적 역량을 기업의 해외시장 진출과 연계하고, 다양한 문화 콘텐츠를 지역...",
       "url": "http://www.newstown.co.kr/news/articleView.html?idxno=709469"
-    },
-    {
-      "source": "naver",
-      "press": "news.kbs.co.kr",
-      "date": "2026.07.16",
-      "title": "대전 자운대에 국군사관학교 창설…“대기업 유치 이상 파급효과”",
-      "snippet": "[리포트] 육·해·공군 대학을 비롯해 10여개 군 교육시설이 밀집한 대전 자운대. 국방부는 이곳에 육사와 해사... 또, 방위사업청과 안산 국방산단 등과 연계해 대전을 국방 혁신도시로 조성한다는 구상입니다. [허태정...",
-      "url": "https://news.kbs.co.kr/news/pc/view/view.do?ncd=8613046&ref=A"
     },
     {
       "source": "naver",
@@ -179,19 +219,19 @@
     },
     {
       "source": "naver",
-      "press": "nspna.com",
-      "date": "2026.07.16",
-      "title": "경기도의회, 13개 상임위 위원장 선출",
-      "snippet": "이어 ▲서광범(국힘·여주1) 농정해양위원장 ▲김동규(민주·안산1) 보건복지위원장 ▲고찬석(민주·용인9)... 또 ▲김용성(민주·광명4) 여성가족평생위원장 ▲국중범(민주·성남4) 교육기획위원장 ▲김성수(민주...",
-      "url": "https://www.nspna.com/news/?mode=view&newsid=820987"
-    },
-    {
-      "source": "naver",
       "press": "kmaeil.com",
       "date": "2026.07.16",
       "title": "경기도의회, 상임위원장 선출 완료...더불어민주당 12개 상임위 맡아",
       "snippet": "김동규(안산1), 건설교통위원장 고찬석(용인9), 도시환경위원장 이홍근(화성1), 미래과학협력위원장 김태형(화성5), 여성가족평생교육위원장 김용성(광명4), 교육기획위원장 국중범(성남4), 교육행정위원장 김성수(안양1)...",
       "url": "https://www.kmaeil.com/news/articleView.html?idxno=645648"
+    },
+    {
+      "source": "naver",
+      "press": "nspna.com",
+      "date": "2026.07.16",
+      "title": "경기도의회, 13개 상임위 위원장 선출",
+      "snippet": "이어 ▲서광범(국힘·여주1) 농정해양위원장 ▲김동규(민주·안산1) 보건복지위원장 ▲고찬석(민주·용인9)... 또 ▲김용성(민주·광명4) 여성가족평생위원장 ▲국중범(민주·성남4) 교육기획위원장 ▲김성수(민주...",
+      "url": "https://www.nspna.com/news/?mode=view&newsid=820987"
     },
     {
       "source": "naver",
@@ -235,19 +275,19 @@
     },
     {
       "source": "naver",
-      "press": "gukjenews.com",
-      "date": "2026.07.16",
-      "title": "경기도의회, 제12대 전반기 상임위원장단 선출... 민주당 12석, 국힘 1석",
-      "snippet": "김동규(안산1) △건설교통위 고찬석(용인9) △도시환경위원회 이홍근(화성1) △미래과학협력위 김태형(화성5) △여성가족평생교육위 김용성(광명4) △교육기획위 국중범(성남4) △교육행정위 김성수(안양1) 이다.",
-      "url": "https://www.gukjenews.com/news/articleView.html?idxno=3638198"
-    },
-    {
-      "source": "naver",
       "press": "kyeonggi.com",
       "date": "2026.07.16",
       "title": "'운영 장한별·기재 김창식' 경기도의회, 상임위 구성 마쳐…특위는 추...",
       "snippet": "(민주당·안산1), 건설교통위원장 고찬석(민주당·용인9), 도시환경위원장 이홍근(민주당·화성1), 미래과학협력위원장 김태형(민주당·화성5), 여성가족평생교육위원장 김용성(민주당·광명4), 교육기획위원장 국중범...",
       "url": "https://www.kyeonggi.com/article/20260716580381"
+    },
+    {
+      "source": "naver",
+      "press": "gukjenews.com",
+      "date": "2026.07.16",
+      "title": "경기도의회, 제12대 전반기 상임위원장단 선출... 민주당 12석, 국힘 1석",
+      "snippet": "김동규(안산1) △건설교통위 고찬석(용인9) △도시환경위원회 이홍근(화성1) △미래과학협력위 김태형(화성5) △여성가족평생교육위 김용성(광명4) △교육기획위 국중범(성남4) △교육행정위 김성수(안양1) 이다.",
+      "url": "https://www.gukjenews.com/news/articleView.html?idxno=3638198"
     },
     {
       "source": "naver",
@@ -299,19 +339,19 @@
     },
     {
       "source": "naver",
-      "press": "segye.com",
-      "date": "2026.07.16",
-      "title": "허태정 \"국군사관학교는 대기업 유치 이상 효과\" 환영…왜 대전 자운대...",
-      "snippet": "대전시는 국군사관학교를 자운대 재창조사업의 거점으로 삼아 국방교육과 인공지능(AI) 중심의 국가전략 요충지로 조성할 계획이다. 허 시장은 “자운대를 국방과학연구소(ADD), 한국과학기술원(KAIST), 방위사업청, 안산...",
-      "url": "https://www.segye.com/newsView/20260716517484?OutUrl=naver"
-    },
-    {
-      "source": "naver",
       "press": "kgnews.co.kr",
       "date": "2026.07.16",
       "title": "신안산대 평생교육원 AMP 총동문회, 지방선거 당선 동문에 기념패 전달",
       "snippet": "15일 본관서 전달식 개최… 이민근 시장·한명훈 의장 등 동문 당선인 축하 신안산대학교 평생교육원 최고경영자과정(AMP) 총동문회는 지난 15일 신안산대학교 본관에서 '2026년 6·3 지방선거 당선인 기념패 전달식'을...",
       "url": "https://www.kgnews.co.kr/news/article.html?no=904139"
+    },
+    {
+      "source": "naver",
+      "press": "segye.com",
+      "date": "2026.07.16",
+      "title": "허태정 \"국군사관학교는 대기업 유치 이상 효과\" 환영…왜 대전 자운대...",
+      "snippet": "대전시는 국군사관학교를 자운대 재창조사업의 거점으로 삼아 국방교육과 인공지능(AI) 중심의 국가전략 요충지로 조성할 계획이다. 허 시장은 “자운대를 국방과학연구소(ADD), 한국과학기술원(KAIST), 방위사업청, 안산...",
+      "url": "https://www.segye.com/newsView/20260716517484?OutUrl=naver"
     },
     {
       "source": "naver",
@@ -352,54 +392,6 @@
       "title": "경기도의회, 전반기 상임위원장 13명 선출...민주 12명·국힘 1명",
       "snippet": "보건복지위원장은 김동규(안산1) 의원, 건설교통위원장은 고찬석(용인9) 의원, 도시환경위원장은 이홍근(화성1) 의원, 미래과학협력위원장은 김태형(화성5)의원이 맡게 됐다. 여성가족평생교육위원장은 김용성(광명4)...",
       "url": "https://news.ifm.kr/news/articleView.html?idxno=475186"
-    },
-    {
-      "source": "naver",
-      "press": "greened.kr",
-      "date": "2026.07.16",
-      "title": "'6000명 유입' 국군사관학교 자운대 온다…대전, 국방혁신 거점 승부수",
-      "snippet": "국방과학연구소(ADD), 한국과학기술원(KAIST), 방위사업청, 안산 국방국가산업단지가 하나로 연결되면 교육부터 연구, 무기체계 개발, 기업 육성까지 원스톱으로 이어지는 강력한 시너지가 가능할 전망이다. 시가 추산한...",
-      "url": "https://www.greened.kr/news/articleView.html?idxno=345279"
-    },
-    {
-      "source": "naver",
-      "press": "dtnews24.com",
-      "date": "2026.07.16",
-      "title": "대전 여권 \"국군사관학교, 지역 내 시너지 기대\"",
-      "snippet": "박용갑 의원(민주당·대전 중구) 또한 \"인근 카이스트를 비롯한 국방과학연구소와 방위사업청 등 국내 최고 수준 연구기관이 모인 곳에 국군사관학교와 안산 첨단국방산업단지가 더해지면 교육과 연구, 산업이 연결되는...",
-      "url": "http://www.dtnews24.com/news/articleView.html?idxno=813328"
-    },
-    {
-      "source": "naver",
-      "press": "newsis.com",
-      "date": "2026.07.16",
-      "title": "경기도의회, 13개 상임위원장 선출…운영위원장 장한별",
-      "snippet": "(민주당·안산1) ▲건설교통위원회 고찬석(민주당·용인9) ▲도시환경위원회 이홍근(민주당·화성1) ▲미래과학협력위원회 김태형(민주당·화성5) ▲여성가족평생교육위원회 김용성(민주당·광명4) ▲교육기획위원회...",
-      "url": "https://www.newsis.com/view/NISX20260716_0003712319"
-    },
-    {
-      "source": "naver",
-      "press": "nongmin.com",
-      "date": "2026.07.16",
-      "title": "안산농협, 제9기 다문화여성대학 수료 기념 동화구연 봉사",
-      "snippet": "안산농협은 교육을 마친 수료생들이 지역사회 봉사활동에 참여하며 이웃과 교류하고 지역공동체의 구성원으로 자리 잡을 수 있도록 지원하고 있다. 박경식 조합장은 “수료생들이 배움에 그치지 않고 지역...",
-      "url": "https://www.nongmin.com/article/20260716500286"
-    },
-    {
-      "source": "naver",
-      "press": "news1.kr",
-      "date": "2026.07.16",
-      "title": "국군사관학교 예정지 대전 '자운대'…20여 기관 밀집한 군사교육기지",
-      "snippet": "국방교육과 인공지능(AI) 중심의 국가전략사업으로 확대할 계획이다. 아울러 국방과학연구소(ADD), 한국과학기술원(KAIST), 방위사업청, 안산 국방국가산업단지와 연계한 국방혁신 거점을 조성하고, 정부의 국방혁신...",
-      "url": "https://www.news1.kr/local/daejeon-chungnam/6230464"
-    },
-    {
-      "source": "naver",
-      "press": "segye.com",
-      "date": "2026.07.16",
-      "title": "법무부, 공무원 대상 외국인정책 교육 실시…“지방정부 건의 적극 반영...",
-      "snippet": "아울러 안산시와 김포시에서 지방정부의 재외동포 우수 정책·사업 사례를 발표했으며, 종합토론에서는 법무부와 지방정부 간의 동포정책·사업의 실효성 있는 구체적 협력 방안에 대해 논의했다. 법무부는 “이번 교육을...",
-      "url": "https://www.segye.com/newsView/20260716515090?OutUrl=naver"
     },
     {
       "source": "google",
@@ -803,11 +795,11 @@
     },
     {
       "source": "google",
-      "press": "경기매일",
+      "press": "경기헤드뉴스",
       "date": "2026.07.13",
       "title": "안산교육지원청, 안전한 과학실에서 미래형 과학수업을 열다",
-      "snippet": "안산교육지원청, 안전한 과학실에서 미래형 과학수업을 열다 경기매일",
-      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBYdURVS0IzU3pQZ2JNQW5yMnM5WFc5TEx5Q3JjV3ZhSHA5MGRXd0k4aUVPU0ZKakYzY0dpT2ZfTF9aR3p0akhISUZTOUgwOGFFMkxfLVZ6VTladFk4VU5Za2NZMmJFUGs?oc=5"
+      "snippet": "안산교육지원청, 안전한 과학실에서 미래형 과학수업을 열다 경기헤드뉴스",
+      "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE9QTjJBVlUtcDM5N0dqZ0pZcXlBVXE4RDlRSmozSmdTOWZuNzhrRHFGQUtWelhydmY1Wk1TZ0ctMHRaM3lncTItd2NNM3loNEdLdktDbndabTFROGo0aEVR?oc=5"
     },
     {
       "source": "naver",
@@ -960,14 +952,6 @@
       "title": "안산교육지원청, '2026 미래교육을 완성하는 중등 관리자 아카데미' 운영",
       "snippet": "안산교육지원청, '2026 미래교육을 완성하는 중등 관리자 아카데미' 운영 엔디엔뉴스",
       "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBPZnQyQXphXzFrZFBDdTkwcy0xODRzbGtxVGhrblJjaGk0VTRkYnBtQzBVQzBVazRkVHpQVVhFc01nSDBPX0s0a3V1YTIwMTFtQXMtV2Rfdkt3ckdFdTJzdFRCUmJwSnBRTW55bFNn0gFyQVVfeXFMUDRsWU9Pcmh1SUk5MmRKdEhGc2FKUkUyUndkVm9BM1doMHhBTXBwT1VCclRJZ2RFN085UFFMdURNcHl1YlFyY2VVNHl2dTI3R0V0dGxRMjc0Q05fU0RsaGtmdDNybktteHhvTXBGeUdRYmNR?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "한국대학신문",
-      "date": "2026.07.10",
-      "title": "안산대 산학협력단, 안산교육지원청 ‘다문화멘토링 사업’ 위탁 운영",
-      "snippet": "안산대 산학협력단, 안산교육지원청 ‘다문화멘토링 사업’ 위탁 운영 한국대학신문",
-      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE13NFlMMjVCZ2VVM2J0ZmhjZk9qUFlqM24wNXZxZHBzRkh1b19QamRlYzF4WW1WdEQ1QVQyaTZqY203OXI2NnVRZ3ZSX3ZyM3pfOTZ5TkNWUktkUnJlMm92WV95VEt3Zw?oc=5"
     },
     {
       "source": "google",
@@ -1811,14 +1795,6 @@
     },
     {
       "source": "google",
-      "press": "반월신문",
-      "date": "2026.04.08",
-      "title": "더불어민주당 장윤정 경기도의원, 안산 학교급식실 환기설비 운영 점검 나서",
-      "snippet": "더불어민주당 장윤정 경기도의원, 안산 학교급식실 환기설비 운영 점검 나서 반월신문",
-      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9NYmt6c3dLaEZYRnRFcjQ2WDg5SGRybGFuczk1TXRnb0UzdXV5dWdGS3JMUVI0bjBVREFkOVlfUGRIdXhTeTIyN1dmbGtzNWZtc2w3RE85SjczVTd5NE0wbExKWnB6aXc?oc=5"
-    },
-    {
-      "source": "google",
       "press": "안산뉴스",
       "date": "2026.04.07",
       "title": "장윤정 도의원 안산3선거구 재도전 공식선언",
@@ -1875,19 +1851,19 @@
     },
     {
       "source": "google",
-      "press": "더코리아",
-      "date": "2026.04.01",
-      "title": "장윤정 경기도의원 학교 기계설비유지관리자 처우 개선 논의 착수 > 뉴스",
-      "snippet": "장윤정 경기도의원 학교 기계설비유지관리자 처우 개선 논의 착수 > 뉴스 더코리아",
-      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9KcE9LRFByVGhnUFZWcFN0SlpjWmpmMzhzWjMzRHpnZjNfVHFuc3FqbTRRdWJxeUhDbHBmWWdnbFdmYzV3dl9UbEUxMXJOWGI0V0NtaUtaRnFDRmEtaTE5WUV2RnlWSW8xSG5PV3FyQXA?oc=5"
-    },
-    {
-      "source": "google",
       "press": "twig24.com",
       "date": "2026.04.01",
       "title": "장윤정 경기도의원, 기계설비유지관리자 처우개선 논의",
       "snippet": "장윤정 경기도의원, 기계설비유지관리자 처우개선 논의 twig24.com",
       "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxOVTNqZlM4UVR2YWs2NWxsbTRUYjJOUWdhcFJFc2dTMXhURWEwdW1SX0FURmpEWlJOLTR6VHpsMnNhYm9PaTg5TnRncXFNczF2b19YdlRHTU1TR3NUYlZLaVZ1OGZvZUFoSGg3ajZqc3A0a0JVb3M1ampTZ2NQNWg3eTdn?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "더코리아",
+      "date": "2026.04.01",
+      "title": "장윤정 경기도의원 학교 기계설비유지관리자 처우 개선 논의 착수 > 뉴스",
+      "snippet": "장윤정 경기도의원 학교 기계설비유지관리자 처우 개선 논의 착수 > 뉴스 더코리아",
+      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9KcE9LRFByVGhnUFZWcFN0SlpjWmpmMzhzWjMzRHpnZjNfVHFuc3FqbTRRdWJxeUhDbHBmWWdnbFdmYzV3dl9UbEUxMXJOWGI0V0NtaUtaRnFDRmEtaTE5WUV2RnlWSW8xSG5PV3FyQXA?oc=5"
     },
     {
       "source": "naver",
@@ -2000,6 +1976,30 @@
       "title": "장윤정 도의원 지역발전 특교금 12억원 확보",
       "snippet": "장윤정 도의원 지역발전 특교금 12억원 확보 안산뉴스",
       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9KNFhBYkNfTVo1cHVTNU1WQk5Kc2VrWWhCSnJwdEhFeGo5M01UbUJKSC1zN2h5Q0F3R1lEQkZMNHFGVVdxQ0llQW9yX3hnRndBWkcwbnBFXzloZVRlNUR4Q2otblN0Vi1TWEg1Sg?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "경기일보",
+      "date": "2026.01.01",
+      "title": "장윤정 경기도의원, 환경개선과 도시 기반 확충 위한 사업비 확보",
+      "snippet": "장윤정 경기도의원, 환경개선과 도시 기반 확충 위한 사업비 확보 경기일보",
+      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE5rMndfUE52aU8wNElIRHJ3bk5WRm1QaEJkV3R4WkJuYVJfN1VSQWszclZIS3FiUW5uRE1FWEZvS19kQjJSNC1keXpFLUZ6NUptczMxZjVmai12YjA?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "경인매일",
+      "date": "2025.12.29",
+      "title": "장윤정 경기도의원, ‘2025 지방의정대상’ 수상 영예",
+      "snippet": "장윤정 경기도의원, ‘2025 지방의정대상’ 수상 영예 경인매일",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5xQklJbUNlSHQ0bzlEQnhhYWp4Z0EweWlrVEdvWFQ2anRGdVJEWDc1WlktX25NenNCUmhqSkdpY0pZbk5JYnJ3bmlid21MMHNsbkFsSEE3OUNHeXlHa08tMmRxbHVBcUpG?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "전자신문",
+      "date": "2025.12.27",
+      "title": "장윤정 경기도의원 “정쟁 아닌 민생, 도민 삶 향한 정치 지켜야”",
+      "snippet": "장윤정 경기도의원 “정쟁 아닌 민생, 도민 삶 향한 정치 지켜야” 전자신문",
+      "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE9MYlE1UGl6dm9pT2FaUk54NUFXaU5wcWtVUFo1QmRtcWtNRl8wb05RUWJ1V1JUS3VTSWx5Y3pScEo2WWNCb0txR1FFbHN0dw?oc=5"
     }
   ]
 }
