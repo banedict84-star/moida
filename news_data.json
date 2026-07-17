@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-17 17:38 UTC",
+  "updated": "2026-07-17 19:40 UTC",
   "items": [
     {
       "source": "naver",
@@ -347,19 +347,19 @@
     },
     {
       "source": "naver",
-      "press": "nspna.com",
-      "date": "2026.07.16",
-      "title": "경기도의회, 13개 상임위 위원장 선출",
-      "snippet": "이어 ▲서광범(국힘·여주1) 농정해양위원장 ▲김동규(민주·안산1) 보건복지위원장 ▲고찬석(민주·용인9)... 또 ▲김용성(민주·광명4) 여성가족평생위원장 ▲국중범(민주·성남4) 교육기획위원장 ▲김성수(민주...",
-      "url": "https://www.nspna.com/news/?mode=view&newsid=820987"
-    },
-    {
-      "source": "naver",
       "press": "kmaeil.com",
       "date": "2026.07.16",
       "title": "경기도의회, 상임위원장 선출 완료...더불어민주당 12개 상임위 맡아",
       "snippet": "김동규(안산1), 건설교통위원장 고찬석(용인9), 도시환경위원장 이홍근(화성1), 미래과학협력위원장 김태형(화성5), 여성가족평생교육위원장 김용성(광명4), 교육기획위원장 국중범(성남4), 교육행정위원장 김성수(안양1)...",
       "url": "https://www.kmaeil.com/news/articleView.html?idxno=645648"
+    },
+    {
+      "source": "naver",
+      "press": "nspna.com",
+      "date": "2026.07.16",
+      "title": "경기도의회, 13개 상임위 위원장 선출",
+      "snippet": "이어 ▲서광범(국힘·여주1) 농정해양위원장 ▲김동규(민주·안산1) 보건복지위원장 ▲고찬석(민주·용인9)... 또 ▲김용성(민주·광명4) 여성가족평생위원장 ▲국중범(민주·성남4) 교육기획위원장 ▲김성수(민주...",
+      "url": "https://www.nspna.com/news/?mode=view&newsid=820987"
     },
     {
       "source": "naver",
@@ -795,11 +795,11 @@
     },
     {
       "source": "google",
-      "press": "경기매일",
+      "press": "경기헤드뉴스",
       "date": "2026.07.13",
       "title": "안산교육지원청, 안전한 과학실에서 미래형 과학수업을 열다",
-      "snippet": "안산교육지원청, 안전한 과학실에서 미래형 과학수업을 열다 경기매일",
-      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBYdURVS0IzU3pQZ2JNQW5yMnM5WFc5TEx5Q3JjV3ZhSHA5MGRXd0k4aUVPU0ZKakYzY0dpT2ZfTF9aR3p0akhISUZTOUgwOGFFMkxfLVZ6VTladFk4VU5Za2NZMmJFUGs?oc=5"
+      "snippet": "안산교육지원청, 안전한 과학실에서 미래형 과학수업을 열다 경기헤드뉴스",
+      "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE9QTjJBVlUtcDM5N0dqZ0pZcXlBVXE4RDlRSmozSmdTOWZuNzhrRHFGQUtWelhydmY1Wk1TZ0ctMHRaM3lncTItd2NNM3loNEdLdktDbndabTFROGo0aEVR?oc=5"
     },
     {
       "source": "naver",
@@ -1851,11 +1851,11 @@
     },
     {
       "source": "naver",
-      "press": "kgnews.co.kr",
+      "press": "kihoilbo.co.kr",
       "date": "2026.03.26",
-      "title": "[재산공개]경기도의원 74% 재산 증가…평균 12억6000만원",
-      "snippet": "반면 장윤정(민주·안산3) 의원은 마이너스 2400만 원을 신고해 재산이 가장 적었다. 장 의원은 예금이... 등의 순으로 재산 신고액이 적었다. [ 경기신문 = 장진우 기자 ] 경기도의회 전경 (사진=경기도의회 제공)",
-      "url": "https://www.kgnews.co.kr/news/article.html?no=888958"
+      "title": "경기도의원 152명 중 112명 재산 늘어",
+      "snippet": "기호일보, KIHOILBO 경기도의회 전경.<경기도의회 제공> 올해 경기도 광역의원의 평균 재산은 12억6천383만... 가장 적은 재산을 보유한 도의원은 장윤정(민주·안산3) 의원으로 마이너스 2천490만 원을 신고했다....",
+      "url": "https://www.kihoilbo.co.kr/news/articleView.html?idxno=3017496"
     },
     {
       "source": "google",
