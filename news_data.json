@@ -1,6 +1,14 @@
 {
-  "updated": "2026-07-17 19:40 UTC",
+  "updated": "2026-07-17 21:21 UTC",
   "items": [
+    {
+      "source": "naver",
+      "press": "newsis.com",
+      "date": "2026.07.18",
+      "title": "\"외출이 겁나요\"…파킨스병 환자 일상 바꾼 AI[빠정예진]",
+      "snippet": "연구팀은 삼성서울병원과 고려대안산병원 환자 396명의 데이터를 기반으로 AI 분석 모델을 구축했다. 분석... 개선하고 교육을 해주는 것 만으로도 낙상 위험 크게 줄어들 수 있다\"고 말했다. 윤 교수는 이 솔루션을...",
+      "url": "https://www.newsis.com/view/NISX20260714_0003709163"
+    },
     {
       "source": "naver",
       "press": "thereport.co.kr",
@@ -155,19 +163,19 @@
     },
     {
       "source": "naver",
-      "press": "yna.co.kr",
-      "date": "2026.07.17",
-      "title": "국민 75% '선감학원 역사박물관' 찬성…2029년 말 완공 목표",
-      "snippet": "박물관에서 기대하는 기능에 대해서는 '기록·스토리 전달'(28.4%), '인권·역사교육'(27.9%),'기억과 치유'(18.5%) 등을 꼽았다. 일제강점기인 1942년 안산시 단원구 선감로 101-19 일원에 설치돼 1982년까지 운영된...",
-      "url": "https://www.yna.co.kr/view/AKR20260716178800061?input=1195m"
-    },
-    {
-      "source": "naver",
       "press": "nongmin.com",
       "date": "2026.07.17",
       "title": "더위 피하고, 숲도 살리고…‘씨드볼’ 만들어볼까",
       "snippet": "경기도산림환경연구소는 7월31일까지 안산 대부도 바다향기수목원에서 산림 생태복원용 ‘씨드볼(Seed Ball)’을 만드는 체험 프로그램을 운영한다. 이번 프로그램은 ‘세계 수목원·식물원 교육의 날’을 기념해...",
       "url": "https://www.nongmin.com/article/20260716500553"
+    },
+    {
+      "source": "naver",
+      "press": "yna.co.kr",
+      "date": "2026.07.17",
+      "title": "국민 75% '선감학원 역사박물관' 찬성…2029년 말 완공 목표",
+      "snippet": "박물관에서 기대하는 기능에 대해서는 '기록·스토리 전달'(28.4%), '인권·역사교육'(27.9%),'기억과 치유'(18.5%) 등을 꼽았다. 일제강점기인 1942년 안산시 단원구 선감로 101-19 일원에 설치돼 1982년까지 운영된...",
+      "url": "https://www.yna.co.kr/view/AKR20260716178800061?input=1195m"
     },
     {
       "source": "naver",
@@ -347,19 +355,19 @@
     },
     {
       "source": "naver",
-      "press": "kmaeil.com",
-      "date": "2026.07.16",
-      "title": "경기도의회, 상임위원장 선출 완료...더불어민주당 12개 상임위 맡아",
-      "snippet": "김동규(안산1), 건설교통위원장 고찬석(용인9), 도시환경위원장 이홍근(화성1), 미래과학협력위원장 김태형(화성5), 여성가족평생교육위원장 김용성(광명4), 교육기획위원장 국중범(성남4), 교육행정위원장 김성수(안양1)...",
-      "url": "https://www.kmaeil.com/news/articleView.html?idxno=645648"
-    },
-    {
-      "source": "naver",
       "press": "nspna.com",
       "date": "2026.07.16",
       "title": "경기도의회, 13개 상임위 위원장 선출",
       "snippet": "이어 ▲서광범(국힘·여주1) 농정해양위원장 ▲김동규(민주·안산1) 보건복지위원장 ▲고찬석(민주·용인9)... 또 ▲김용성(민주·광명4) 여성가족평생위원장 ▲국중범(민주·성남4) 교육기획위원장 ▲김성수(민주...",
       "url": "https://www.nspna.com/news/?mode=view&newsid=820987"
+    },
+    {
+      "source": "naver",
+      "press": "kmaeil.com",
+      "date": "2026.07.16",
+      "title": "경기도의회, 상임위원장 선출 완료...더불어민주당 12개 상임위 맡아",
+      "snippet": "김동규(안산1), 건설교통위원장 고찬석(용인9), 도시환경위원장 이홍근(화성1), 미래과학협력위원장 김태형(화성5), 여성가족평생교육위원장 김용성(광명4), 교육기획위원장 국중범(성남4), 교육행정위원장 김성수(안양1)...",
+      "url": "https://www.kmaeil.com/news/articleView.html?idxno=645648"
     },
     {
       "source": "naver",
@@ -400,14 +408,6 @@
       "title": "대전시, 국군사관학교 자운대 추진... '국방혁신 중심도시' 도약",
       "snippet": "여기에 국방과학연구소(ADD), 한국과학기술원(KAIST), 방위사업청, 안산 국방국가산업단지와 연계한 국방혁신 거점 조성에도 속도를 낼 계획이다. 또 국군사관학교가 세계 최고 수준의 국방교육기관으로 자리잡을 수 있도록...",
       "url": "http://www.newsworker.co.kr/news/articleView.html?idxno=436978"
-    },
-    {
-      "source": "naver",
-      "press": "kyeonggi.com",
-      "date": "2026.07.16",
-      "title": "'운영 장한별·기재 김창식' 경기도의회, 상임위 구성 마쳐…특위는 추...",
-      "snippet": "(민주당·안산1), 건설교통위원장 고찬석(민주당·용인9), 도시환경위원장 이홍근(민주당·화성1), 미래과학협력위원장 김태형(민주당·화성5), 여성가족평생교육위원장 김용성(민주당·광명4), 교육기획위원장 국중범...",
-      "url": "https://www.kyeonggi.com/article/20260716580381"
     },
     {
       "source": "google",
@@ -560,14 +560,6 @@
       "title": "안산교육청·블라디보스톡 한국교육원 국제교류협력 논의",
       "snippet": "안산교육청·블라디보스톡 한국교육원 국제교류협력 논의 안산뉴스",
       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE1FVU1RZmU4b3ZBcUUtVFRyaUR3SFVUOGpKOXhGUGZ2T0VsVmVmOGRFR09GRG1fR0psTGFjSUdndFpiTG5JM0laX2RpdmFWRWdQdUxHRVFmUHM2X0FEcEtmSHZGRy1QakF5RzVEYw?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "안산뉴스",
-      "date": "2026.07.14",
-      "title": "청소년재단 이음한국어교실 수료식",
-      "snippet": "청소년재단 이음한국어교실 수료식 안산뉴스",
-      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBrSW5Ld1JFMEtZRUxmTVIwTHdQQk4xY0VMSURfX1RBVlNZbDFYeUM3VnJ0QnBEaWxOcUNnbjBmLXRkSzJYamdLZ3FRSXF3TnpmTWg3bnctRmQ2ZmZtQldXdXBIMHRoM1FSdngwdg?oc=5"
     },
     {
       "source": "naver",
@@ -920,6 +912,14 @@
       "title": "안산교육지원청, 고교학점제·대입제도 설명회 마쳐",
       "snippet": "안산교육지원청, 고교학점제·대입제도 설명회 마쳐 뉴시스",
       "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE9DUk9Yc1VNeV9kSkhiRjl0Q0FzbE9DRkNGSzVZVEl4aVpJa0hxMmpEMlZfOVQxZlpFVWV3Qy1lb2g4RUJCVnppQmlQN2ExSHhCUXJLREZlVFdKVlIySHdiU9IBeEFVX3lxTFBwTTNuTmZqR2NVVEN1RngwSkhjUUFVUGV5RlZPVHhndE81b2c4OEZ1R2doTUFKWTJIb2FDUGRHeU9sWFFsYWN4THVxN2pRb2Y5d0JSMkFLUTZua183Tzh2dl9uNzBISTJBRTluSV9rQVYzUDdLVjNvUA?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "한국대학신문",
+      "date": "2026.07.10",
+      "title": "안산대 산학협력단, 안산교육지원청 ‘다문화멘토링 사업’ 위탁 운영",
+      "snippet": "안산대 산학협력단, 안산교육지원청 ‘다문화멘토링 사업’ 위탁 운영 한국대학신문",
+      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE13NFlMMjVCZ2VVM2J0ZmhjZk9qUFlqM24wNXZxZHBzRkh1b19QamRlYzF4WW1WdEQ1QVQyaTZqY203OXI2NnVRZ3ZSX3ZyM3pfOTZ5TkNWUktkUnJlMm92WV95VEt3Zw?oc=5"
     },
     {
       "source": "google",
@@ -1851,11 +1851,11 @@
     },
     {
       "source": "naver",
-      "press": "kihoilbo.co.kr",
+      "press": "kgnews.co.kr",
       "date": "2026.03.26",
-      "title": "경기도의원 152명 중 112명 재산 늘어",
-      "snippet": "기호일보, KIHOILBO 경기도의회 전경.<경기도의회 제공> 올해 경기도 광역의원의 평균 재산은 12억6천383만... 가장 적은 재산을 보유한 도의원은 장윤정(민주·안산3) 의원으로 마이너스 2천490만 원을 신고했다....",
-      "url": "https://www.kihoilbo.co.kr/news/articleView.html?idxno=3017496"
+      "title": "[재산공개]경기도의원 74% 재산 증가…평균 12억6000만원",
+      "snippet": "반면 장윤정(민주·안산3) 의원은 마이너스 2400만 원을 신고해 재산이 가장 적었다. 장 의원은 예금이... 등의 순으로 재산 신고액이 적었다. [ 경기신문 = 장진우 기자 ] 경기도의회 전경 (사진=경기도의회 제공)",
+      "url": "https://www.kgnews.co.kr/news/article.html?no=888958"
     },
     {
       "source": "google",
@@ -1907,11 +1907,11 @@
     },
     {
       "source": "google",
-      "press": "경기일보",
-      "date": "2026.02.10",
-      "title": "안산 상록구 도로서 차량 불…진화 완료",
-      "snippet": "안산 상록구 도로서 차량 불…진화 완료 경기일보",
-      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBtdUVNeG92LXpKaG9wYU4tdzREWHJ5eWNZbzNjVVh0eTY1QUM5M2dzY2t6bEpwMnNxS1N3VnBibC1EY05oN2dTeGRlc2dkaTBSWXE3alVpb3NnRVU?oc=5"
+      "press": "뉴스핌",
+      "date": "2026.02.11",
+      "title": "안산 상록구 부곡동서 차량 화재…인명피해 없어",
+      "snippet": "안산 상록구 부곡동서 차량 화재…인명피해 없어 뉴스핌",
+      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE9MazNlSlhmQndMMXh6RWFBWHNfZzJZRU9jQ0VYTUw1cVpUZkxla0JSVGhuRUFpeUR3a3loUF9hUTUyVnBPSGVqS1NVSzhoWUx6OWhTdkxrSmV0LXps?oc=5"
     },
     {
       "source": "google",
