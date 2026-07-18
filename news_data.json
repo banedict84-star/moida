@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-17 23:24 UTC",
+  "updated": "2026-07-18 00:56 UTC",
   "items": [
     {
       "source": "naver",
@@ -557,14 +557,6 @@
       "source": "google",
       "press": "안산뉴스",
       "date": "2026.07.14",
-      "title": "안산교육청·블라디보스톡 한국교육원 국제교류협력 논의",
-      "snippet": "안산교육청·블라디보스톡 한국교육원 국제교류협력 논의 안산뉴스",
-      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE1FVU1RZmU4b3ZBcUUtVFRyaUR3SFVUOGpKOXhGUGZ2T0VsVmVmOGRFR09GRG1fR0psTGFjSUdndFpiTG5JM0laX2RpdmFWRWdQdUxHRVFmUHM2X0FEcEtmSHZGRy1QakF5RzVEYw?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "안산뉴스",
-      "date": "2026.07.14",
       "title": "청소년재단 이음한국어교실 수료식",
       "snippet": "청소년재단 이음한국어교실 수료식 안산뉴스",
       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBrSW5Ld1JFMEtZRUxmTVIwTHdQQk4xY0VMSURfX1RBVlNZbDFYeUM3VnJ0QnBEaWxOcUNnbjBmLXRkSzJYamdLZ3FRSXF3TnpmTWg3bnctRmQ2ZmZtQldXdXBIMHRoM1FSdngwdg?oc=5"
@@ -920,6 +912,14 @@
       "title": "안산교육지원청, 고교학점제·대입제도 설명회 마쳐",
       "snippet": "안산교육지원청, 고교학점제·대입제도 설명회 마쳐 뉴시스",
       "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE9DUk9Yc1VNeV9kSkhiRjl0Q0FzbE9DRkNGSzVZVEl4aVpJa0hxMmpEMlZfOVQxZlpFVWV3Qy1lb2g4RUJCVnppQmlQN2ExSHhCUXJLREZlVFdKVlIySHdiU9IBeEFVX3lxTFBwTTNuTmZqR2NVVEN1RngwSkhjUUFVUGV5RlZPVHhndE81b2c4OEZ1R2doTUFKWTJIb2FDUGRHeU9sWFFsYWN4THVxN2pRb2Y5d0JSMkFLUTZua183Tzh2dl9uNzBISTJBRTluSV9rQVYzUDdLVjNvUA?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "경인일보",
+      "date": "2026.07.10",
+      "title": "안산교육지원청, 초·중등 진로교육 역량강화 직무연수",
+      "snippet": "안산교육지원청, 초·중등 진로교육 역량강화 직무연수 경인일보",
+      "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE84eTFYOFJPTDVwQkR0VU1CcURqempJMGhwaHluYkRSVldJZ2lreHpRZndFQ3loN3lZeEpEazFKWVZ0c0xoSXpFeDJGbFVHUWY5b3c?oc=5"
     },
     {
       "source": "google",
@@ -1851,11 +1851,11 @@
     },
     {
       "source": "naver",
-      "press": "kihoilbo.co.kr",
+      "press": "news1.kr",
       "date": "2026.03.26",
-      "title": "경기도의원 152명 중 112명 재산 늘어",
-      "snippet": "기호일보, KIHOILBO 경기도의회 전경.<경기도의회 제공> 올해 경기도 광역의원의 평균 재산은 12억6천383만... 가장 적은 재산을 보유한 도의원은 장윤정(민주·안산3) 의원으로 마이너스 2천490만 원을 신고했다....",
-      "url": "https://www.kihoilbo.co.kr/news/articleView.html?idxno=3017496"
+      "title": "[재산공개]김성수 경기도의원 324억 신고…4년 연속 도내 최고 자산가",
+      "snippet": "김성수 경기도의회 의원(국민의힘·하남2)이 324억여 원의 재산을 보유해 4년 연속 도내 재산공개 대상... 반면, 장윤정 의원(민주·안산3)은 -2490만 원을 신고해 도의원 중 재산이 가장 적었다. 이어 정동혁(민주...",
+      "url": "https://www.news1.kr/local/gyeonggi/6114090"
     },
     {
       "source": "google",
