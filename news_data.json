@@ -1,6 +1,22 @@
 {
-  "updated": "2026-07-18 21:24 UTC",
+  "updated": "2026-07-18 22:24 UTC",
   "items": [
+    {
+      "source": "naver",
+      "press": "kbsm.net",
+      "date": "2026.07.19",
+      "title": "1233회 로또, 1등 31명 8억씩…전남서 수동 5장 '41억' 잭팟?",
+      "snippet": "(경기 안산시 상록구 광덕1로 326) ▲새수나다로또&씨스페이스치악산점(강원 원주시 행구로 357 1층) ▲대불로또판매점(전남 영암군 대불주거1로9길 3) ▲지에스25 진동에이스점(경남 창원시 마산합포구...",
+      "url": "https://www.kbsm.net/news/view.php?idx=527114"
+    },
+    {
+      "source": "naver",
+      "press": "kjdaily.com",
+      "date": "2026.07.19",
+      "title": "로또 당첨번호조회-1233회",
+      "snippet": "황금복권판매점 - 경기 안산시 상록구 광덕1로 326 102호/수동 19. 드림복권전문점 - 경기 평택시 평남로 651/반자동 20. 새수나다로또&씨스페이스치악산점 - 강원...",
+      "url": "http://www.kjdaily.com/article.php?aid=1784412941682583227"
+    },
     {
       "source": "naver",
       "press": "economytalk.kr",
@@ -32,6 +48,14 @@
       "title": "로또 당첨번호 지역 1233회",
       "snippet": "황금복권판매점, 수동, 경기 안산시 상록구 광덕1로 326 102호 19. 드림복권전문점, 반자동, 경기 평택시 평남로 651 20. 새수나다로또&씨스페이스치악산점, 수동, 강원 원주시 행구로 357 1층 21. 행운복권판매점...",
       "url": "https://www.bntnews.co.kr/article/view/bnt202607180138"
+    },
+    {
+      "source": "naver",
+      "press": "weekly.chosun.com",
+      "date": "2026.07.19",
+      "title": "발달장애 범죄의 현주소, 한계 부딪힌 돌봄이 비극 낳는다",
+      "snippet": "경기도의 30대 특수교사 A씨는 \"특수교육 대상 학생은 실제와 똑같은 자료를 활용할 때 교육 효과가... 안산보호관찰소에서 발달장애 소년 대상자 3명의 보호관찰을 맡고 있는 관찰관 B씨는 \"일반 대상자보다 집중력...",
+      "url": "http://weekly.chosun.com/news/articleView.html?idxno=53510"
     },
     {
       "source": "naver",
@@ -88,14 +112,6 @@
       "title": "1233회 로또 1등 무려 31명…영암 판매점서 ‘수동 5게임’ 당첨 대박",
       "snippet": "수동 선택 13곳은 ▲복권상회(대구 달성군) ▲행운미니슈퍼(인천 부평구) ▲로또방(대전 서구) ▲황금복권판매점(안산시 상록구) ▲슈퍼복권방(시흥시) ▲천하명당복권방(수원시 팔달구) ▲새수나다로또...",
       "url": "https://www.kyeonggi.com/article/20260718580092"
-    },
-    {
-      "source": "naver",
-      "press": "kjdaily.com",
-      "date": "2026.07.18",
-      "title": "로또 당첨번호조회-1233회",
-      "snippet": "황금복권판매점 - 경기 안산시 상록구 광덕1로 326 102호/수동 19. 드림복권전문점 - 경기 평택시 평남로 651/반자동 20. 새수나다로또&씨스페이스치악산점 - 강원 원주시...",
-      "url": "http://www.kjdaily.com/article.php?aid=1784374824682579227"
     },
     {
       "source": "naver",
@@ -514,14 +530,6 @@
       "url": "https://www.nspna.com/news/?mode=view&newsid=820987"
     },
     {
-      "source": "naver",
-      "press": "cnbizm.com",
-      "date": "2026.07.16",
-      "title": "신속한 사업 추진...서대문구, 현저동 1-5번지 일대 모아타운 가로주택...",
-      "snippet": "대상지는 독립문역에 인접하고 안산도시자연공원과 서대문독립공원 사이에 위치해 교통 및 생활환경이 양호하고 안산초, 한성과학고 등이 가까이 있어 교육환경도 우수하다. 하지만 노후 건축물 비율이 100...",
-      "url": "https://www.cnbizm.com/news/articleView.html?idxno=308873"
-    },
-    {
       "source": "google",
       "press": "매일일보",
       "date": "2026.07.16",
@@ -627,11 +635,11 @@
     },
     {
       "source": "google",
-      "press": "경기헤드뉴스",
+      "press": "엔디엔뉴스",
       "date": "2026.07.14",
       "title": "안산교육지원청, 학교를 넘어 함께 배우는 2026 안산교육지원청 학생자치 리더십캠프",
-      "snippet": "안산교육지원청, 학교를 넘어 함께 배우는 2026 안산교육지원청 학생자치 리더십캠프 경기헤드뉴스",
-      "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE4zWkxtQWFIeWZBM1FxdHFSUWxoS1IteE4tUFdxRG5Xdko0VUFlbFdGT09sa2tQMTZDODJKMHo3OTlVTzhnNUJZb1hIVmk3X1FFZUxnLWJfTVlZd0pEUWE0?oc=5"
+      "snippet": "안산교육지원청, 학교를 넘어 함께 배우는 2026 안산교육지원청 학생자치 리더십캠프 엔디엔뉴스",
+      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE02S0tUZW5haVZVcXhPcjNraG5hdlptRlBvbUQ0amNkQ2JvNkIweTdZS1BXMmxsR253dF9QcVdsNUpTTHUySzE0Rk0tck8xc3VtYlN3RE9jbDRsUHN4Q1YteGdERkRKMzd1TTc1bFFR0gFyQVVfeXFMTVVjdmo1ZGpBclJZNHVqSVd4aTVnOXFTYVR2RlJwcHdDengyVGxDU29Mb2daOGxCa2hEZVVreDVBeEtzRTNUenVxdG9TRElDYXZLTl83VzcwUDNOdmxUYTREeFdJYlNHOUIzWVRiblB1dzV3?oc=5"
     },
     {
       "source": "google",
@@ -640,14 +648,6 @@
       "title": "안산교육지원청, '2026 ANSAN Link+X 디지털 엔진리더 교원 아카데미' 1학기 운영 마무리",
       "snippet": "안산교육지원청, '2026 ANSAN Link+X 디지털 엔진리더 교원 아카데미' 1학기 운영 마무리 newszoom.kr",
       "url": "https://news.google.com/rss/articles/CBMiREFVX3lxTFBuM1NKNmtLWHFTZHJrM0g0eU9LZ1Vvb2tqU3RnT1hST0w5Mkg5eG44TlZlbEY1cGpCcDZiQ2NRS29Cd3Q4?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "안산뉴스",
-      "date": "2026.07.14",
-      "title": "청소년재단 이음한국어교실 수료식",
-      "snippet": "청소년재단 이음한국어교실 수료식 안산뉴스",
-      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBrSW5Ld1JFMEtZRUxmTVIwTHdQQk4xY0VMSURfX1RBVlNZbDFYeUM3VnJ0QnBEaWxOcUNnbjBmLXRkSzJYamdLZ3FRSXF3TnpmTWg3bnctRmQ2ZmZtQldXdXBIMHRoM1FSdngwdg?oc=5"
     },
     {
       "source": "naver",
@@ -811,14 +811,6 @@
     },
     {
       "source": "naver",
-      "press": "gukjenews.com",
-      "date": "2026.07.13",
-      "title": "안산시, 7월 재산세 807억 부과…7월 31까지 납부",
-      "snippet": "안산시는 2026년 7월 정기분 재산세로 34만7000여 건, 총 807억원을 부과했다고 13일 밝혔다. 단원구는 약 19만8000여 건에 579억원이 부과돼 지난해보다 약 4억7000만원(0.8%) 증가했다. 상록구는 약 14만9000여 건에...",
-      "url": "https://www.gukjenews.com/news/articleView.html?idxno=3633842"
-    },
-    {
-      "source": "naver",
       "press": "newspim.com",
       "date": "2026.07.13",
       "title": "안산 쓰레기 매립지, '새로숲' 정원으로 탈바꿈...슬로건·마크 공개",
@@ -827,27 +819,19 @@
     },
     {
       "source": "naver",
+      "press": "gukjenews.com",
+      "date": "2026.07.13",
+      "title": "안산시, 7월 재산세 807억 부과…7월 31까지 납부",
+      "snippet": "안산시는 2026년 7월 정기분 재산세로 34만7000여 건, 총 807억원을 부과했다고 13일 밝혔다. 단원구는 약 19만8000여 건에 579억원이 부과돼 지난해보다 약 4억7000만원(0.8%) 증가했다. 상록구는 약 14만9000여 건에...",
+      "url": "https://www.gukjenews.com/news/articleView.html?idxno=3633842"
+    },
+    {
+      "source": "naver",
       "press": "ttlnews.com",
       "date": "2026.07.13",
       "title": "경기도 '새로숲' 슬로건·마크 공개…2027년 준공 목표, 생태정원 거점...",
       "snippet": "경기도가 안산시 상록구 본오동 일원에 조성을 추진 중인 경기지방정원 '새로숲'의 정체성을 담은 대표 마크와 슬로건을 확정해 전격 발표했다. 이번에 확정된 시각 디자인과 브랜드 메시지는 향후 정원 조성 현장의...",
       "url": "http://www.ttlnews.com/news/articleView.html?idxno=3124900"
-    },
-    {
-      "source": "naver",
-      "press": "gukjenews.com",
-      "date": "2026.07.13",
-      "title": "경기지방정원 '세로 숲' 상징 마크, 슬로건 공개...\"재생과 회복\"",
-      "snippet": "제공=경기도청 경기도는 내년 12월 준공 목표로 안산시 상록구 본오동 옛 안산시화매립지 터에 조성중인 경기지방정원 '새로숲' 상징 마크와 슬로건을 13일 각각 공개했다. 도에 따르면 대표 마크는 나비의 형상을...",
-      "url": "https://www.gukjenews.com/news/articleView.html?idxno=3633776"
-    },
-    {
-      "source": "naver",
-      "press": "sidae.com",
-      "date": "2026.07.13",
-      "title": "쓰레기 매립지의 대변신…베일 벗은 경기지방정원 '새로숲'",
-      "snippet": "'새로운 숲'과 '다시 태어나는 자연'이라는 의미를 담은 새로숲은 안산시 상록구 본오동 일원에 조성되는 경기도의 대표적인 정원 조성 사업이다. 도는 총사업비 989억원을 투입해 45만㎡ 규모의 정원을 만들고 있으며...",
-      "url": "https://www.sidae.com/article/2026071307354196174"
     },
     {
       "source": "google",
@@ -867,11 +851,11 @@
     },
     {
       "source": "google",
-      "press": "경기일보",
+      "press": "v.daum.net",
       "date": "2026.07.12",
       "title": "안산교육지원청, ‘2027학년도 맞춤형 대학입시 설명회’ 개최",
-      "snippet": "안산교육지원청, ‘2027학년도 맞춤형 대학입시 설명회’ 개최 경기일보",
-      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE5JdUhkTVg2LUhaaDc0bU9uNWp1Z0Z1aC1BdGtTQkwyMUpGOEJkdVFPVGZCSFRhUGRPXzk2WjQ1T21Lcm9VSHh5TW5oakxubldDc3d0S2J2aUJwMkE?oc=5"
+      "snippet": "안산교육지원청, ‘2027학년도 맞춤형 대학입시 설명회’ 개최 v.daum.net",
+      "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTFAtdGFZbVBFWWJjd2c1a3p0M3hNWlZEd2wyUlJ6UmFKb283Y0twa3QzVEJ3b0R6dGh2SWlpVnc3UHRUaEU1QUprZV9VejB5bVU?oc=5"
     },
     {
       "source": "google",
@@ -1570,14 +1554,6 @@
       "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFB2cC1QVExwd1pxbGlKZFh2V1RLVHdndlZuMk5adUpqaUV3Z2g1eC1oa2N3VzdrMG8zVDczQ0kzSEZkV0N1ekhkNUVFMGQzYTF0WUhtV293Q0ZLOGs?oc=5"
     },
     {
-      "source": "google",
-      "press": "더리포트",
-      "date": "2026.05.05",
-      "title": "[6·3 지선] 장윤정 의원 \"안산 정치권 경선 개입 의혹 녹취 제보\"… 파장 확산",
-      "snippet": "[6·3 지선] 장윤정 의원 \"안산 정치권 경선 개입 의혹 녹취 제보\"… 파장 확산 더리포트",
-      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1FZkl4bzBBV1VKcGk2M2NNQm16WnpjUDU0VlZWVjRkc0pDQ0lCLXJPTUwxY2pILUZoT3ZTREJ4MWhkRjZaaWh5YUVBVVVGVW9GR0lGd2hDR1BLdXFBcl81dncxeHI3UGNmcl9CYXBB?oc=5"
-    },
-    {
       "source": "naver",
       "press": "thereport.co.kr",
       "date": "2026.05.05",
@@ -1592,6 +1568,14 @@
       "title": "[6·3 지방선거 이모저모] 경선 승복했지만… 장윤정 도의원 \"국회의원...",
       "snippet": "사진=본인제공 장윤정 경기도의원(더불어민주당·안산3)이 최근 제보받은 녹취파일을 근거로 지역 정치권의 경선개입 의혹을 제기하고 나서 파문이 일고 있다. 장 의원은 지난 4일 배포한 자료에서 \"국회의원과 지방의회...",
       "url": "https://www.joongboo.com/news/articleView.html?idxno=363724655"
+    },
+    {
+      "source": "google",
+      "press": "더리포트",
+      "date": "2026.05.05",
+      "title": "[6·3 지선] 장윤정 의원 \"안산 정치권 경선 개입 의혹 녹취 제보\"… 파장 확산",
+      "snippet": "[6·3 지선] 장윤정 의원 \"안산 정치권 경선 개입 의혹 녹취 제보\"… 파장 확산 더리포트",
+      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1FZkl4bzBBV1VKcGk2M2NNQm16WnpjUDU0VlZWVjRkc0pDQ0lCLXJPTUwxY2pILUZoT3ZTREJ4MWhkRjZaaWh5YUVBVVVGVW9GR0lGd2hDR1BLdXFBcl81dncxeHI3UGNmcl9CYXBB?oc=5"
     },
     {
       "source": "naver",
@@ -1632,6 +1616,14 @@
       "title": "경기 124교 점검한 환기시설 점검 TF… 당사자인 노조 '빠졌다'",
       "snippet": "경기도의회 의결을 거쳐 구성됐다. 경기도의원 4명, 외부 전문가 4명, 경기도교육청 관계자 4명 등 총 12명으로 꾸려졌으며 위원장은 장윤정 의원이 맡았다. TF는 지난 3월부터 이달까지 두 달간 운영되며, 경기도형...",
       "url": "https://www.kgnews.co.kr/news/article.html?no=893695"
+    },
+    {
+      "source": "google",
+      "press": "twig24.com",
+      "date": "2026.04.27",
+      "title": "장윤정 경기도의원, 학교 급식실 환기설비 개선 TF 후속 정담회 개최…현장 체감 개선 논의",
+      "snippet": "장윤정 경기도의원, 학교 급식실 환기설비 개선 TF 후속 정담회 개최…현장 체감 개선 논의 twig24.com",
+      "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxOcURBaGFXUDR4d3VsbHM2ZFp4bzJVS1lZLXgtSXlUYWp0ZlgzbmxzWUcyQmJEMER6a2wybFloRWN2d0lCcmt2c0lYZ2cyTUphV0Q5Uy00VjNaMEdTNDMteVFVNlNfbWpOTGVrWmFOajFjeVJFUkxxR1JWWmQ1Z2hKWFl3?oc=5"
     },
     {
       "source": "google",
@@ -1819,11 +1811,11 @@
     },
     {
       "source": "naver",
-      "press": "kihoilbo.co.kr",
+      "press": "news1.kr",
       "date": "2026.03.26",
-      "title": "경기도의원 152명 중 112명 재산 늘어",
-      "snippet": "기호일보, KIHOILBO 경기도의회 전경.<경기도의회 제공> 올해 경기도 광역의원의 평균 재산은 12억6천383만... 가장 적은 재산을 보유한 도의원은 장윤정(민주·안산3) 의원으로 마이너스 2천490만 원을 신고했다....",
-      "url": "https://www.kihoilbo.co.kr/news/articleView.html?idxno=3017496"
+      "title": "[재산공개]김성수 경기도의원 324억 신고…4년 연속 도내 최고 자산가",
+      "snippet": "김성수 경기도의회 의원(국민의힘·하남2)이 324억여 원의 재산을 보유해 4년 연속 도내 재산공개 대상... 반면, 장윤정 의원(민주·안산3)은 -2490만 원을 신고해 도의원 중 재산이 가장 적었다. 이어 정동혁(민주...",
+      "url": "https://www.news1.kr/local/gyeonggi/6114090"
     },
     {
       "source": "google",
