@@ -1,6 +1,22 @@
 {
-  "updated": "2026-07-18 12:32 UTC",
+  "updated": "2026-07-18 14:34 UTC",
   "items": [
+    {
+      "source": "naver",
+      "press": "kado.net",
+      "date": "2026.07.18",
+      "title": "로또 1등 전국 '31명'…전남 한 판매점서 수동 5게임 동시 1등",
+      "snippet": "서울대학로 △안산시 상록구 △평택시 평남로), 강원 1곳(△원주시 행구로), 충남 1곳(△금산군 하마전로), 전북 1곳(△전주시 완산구), 전남 2곳(△해남군 해남로 △영암군 대불주거1로), 경남 3곳(△진주시 남강로...",
+      "url": "https://www.kado.net/news/articleView.html?idxno=2061777"
+    },
+    {
+      "source": "naver",
+      "press": "namdonews.com",
+      "date": "2026.07.18",
+      "title": "[오늘 로또]1,233회 1등 5명 동시 배출 판매점은…동일인이면 '42억 잭팟...",
+      "snippet": "황금복권판매점(수동·경기 안산시 상록구 광덕1로 326 102호) 10.슈퍼복권방수동경기 시흥시 동서로 1070 9. 노다지복권(자동·경기 시흥시 서울대학로 77 1층 152호) 8.천하명당복권방(수동·경기 수원시 팔달구...",
+      "url": "https://www.namdonews.com/news/articleView.html?idxno=917232"
+    },
     {
       "source": "naver",
       "press": "kookje.co.kr",
@@ -29,9 +45,17 @@
       "source": "naver",
       "press": "topstarnews.net",
       "date": "2026.07.18",
-      "title": "로또 1등 31명 중 5명 아닌 '수동 5장'…한 사람이 샀다면 41억8980만원",
+      "title": "로또 1등 31명 중 한 곳에서 '수동 5장'…한 사람이 샀다면 41억8980만원",
       "snippet": "(경기 안산시 상록구 광덕1로 326 102호) ▲슈퍼복권방(경기 시흥시 동서로 1070) ▲천하명당복권방(경기 수원시 팔달구 매산로 2) ▲새수나다로또&씨스페이스치악산점(강원 원주시 행구로 357 1층)...",
       "url": "https://www.topstarnews.net/news/articleView.html?idxno=16138711"
+    },
+    {
+      "source": "naver",
+      "press": "kyeonggi.com",
+      "date": "2026.07.18",
+      "title": "1233회 로또 1등 무려 31명…영암 판매점서 ‘수동 5게임’ 당첨 대박",
+      "snippet": "수동 선택 13곳은 ▲복권상회(대구 달성군) ▲행운미니슈퍼(인천 부평구) ▲로또방(대전 서구) ▲황금복권판매점(안산시 상록구) ▲슈퍼복권방(시흥시) ▲천하명당복권방(수원시 팔달구) ▲새수나다로또...",
+      "url": "https://www.kyeonggi.com/article/20260718580092"
     },
     {
       "source": "naver",
@@ -251,19 +275,19 @@
     },
     {
       "source": "naver",
-      "press": "nongmin.com",
-      "date": "2026.07.17",
-      "title": "더위 피하고, 숲도 살리고…‘씨드볼’ 만들어볼까",
-      "snippet": "경기도산림환경연구소는 7월31일까지 안산 대부도 바다향기수목원에서 산림 생태복원용 ‘씨드볼(Seed Ball)’을 만드는 체험 프로그램을 운영한다. 이번 프로그램은 ‘세계 수목원·식물원 교육의 날’을 기념해...",
-      "url": "https://www.nongmin.com/article/20260716500553"
-    },
-    {
-      "source": "naver",
       "press": "yna.co.kr",
       "date": "2026.07.17",
       "title": "국민 75% '선감학원 역사박물관' 찬성…2029년 말 완공 목표",
       "snippet": "박물관에서 기대하는 기능에 대해서는 '기록·스토리 전달'(28.4%), '인권·역사교육'(27.9%),'기억과 치유'(18.5%) 등을 꼽았다. 일제강점기인 1942년 안산시 단원구 선감로 101-19 일원에 설치돼 1982년까지 운영된...",
       "url": "https://www.yna.co.kr/view/AKR20260716178800061?input=1195m"
+    },
+    {
+      "source": "naver",
+      "press": "nongmin.com",
+      "date": "2026.07.17",
+      "title": "더위 피하고, 숲도 살리고…‘씨드볼’ 만들어볼까",
+      "snippet": "경기도산림환경연구소는 7월31일까지 안산 대부도 바다향기수목원에서 산림 생태복원용 ‘씨드볼(Seed Ball)’을 만드는 체험 프로그램을 운영한다. 이번 프로그램은 ‘세계 수목원·식물원 교육의 날’을 기념해...",
+      "url": "https://www.nongmin.com/article/20260716500553"
     },
     {
       "source": "naver",
@@ -443,19 +467,19 @@
     },
     {
       "source": "naver",
-      "press": "nspna.com",
-      "date": "2026.07.16",
-      "title": "경기도의회, 13개 상임위 위원장 선출",
-      "snippet": "이어 ▲서광범(국힘·여주1) 농정해양위원장 ▲김동규(민주·안산1) 보건복지위원장 ▲고찬석(민주·용인9)... 또 ▲김용성(민주·광명4) 여성가족평생위원장 ▲국중범(민주·성남4) 교육기획위원장 ▲김성수(민주...",
-      "url": "https://www.nspna.com/news/?mode=view&newsid=820987"
-    },
-    {
-      "source": "naver",
       "press": "kmaeil.com",
       "date": "2026.07.16",
       "title": "경기도의회, 상임위원장 선출 완료...더불어민주당 12개 상임위 맡아",
       "snippet": "김동규(안산1), 건설교통위원장 고찬석(용인9), 도시환경위원장 이홍근(화성1), 미래과학협력위원장 김태형(화성5), 여성가족평생교육위원장 김용성(광명4), 교육기획위원장 국중범(성남4), 교육행정위원장 김성수(안양1)...",
       "url": "https://www.kmaeil.com/news/articleView.html?idxno=645648"
+    },
+    {
+      "source": "naver",
+      "press": "nspna.com",
+      "date": "2026.07.16",
+      "title": "경기도의회, 13개 상임위 위원장 선출",
+      "snippet": "이어 ▲서광범(국힘·여주1) 농정해양위원장 ▲김동규(민주·안산1) 보건복지위원장 ▲고찬석(민주·용인9)... 또 ▲김용성(민주·광명4) 여성가족평생위원장 ▲국중범(민주·성남4) 교육기획위원장 ▲김성수(민주...",
+      "url": "https://www.nspna.com/news/?mode=view&newsid=820987"
     },
     {
       "source": "naver",
@@ -568,14 +592,6 @@
       "title": "안산 반월동 주민총회 개최…2027년 마을사업 확정",
       "snippet": "안산시 상록구 반월동 주민자치회는 지난 11일 반월초등학교 강당에서 제4회 반월동 주민총회를 개최했다. 사진=안산시 매일일보 = 송훈희 기자 | 안산시 상록구 반월동 주민자치회는 지난 11일 반월초등학교 강당에서...",
       "url": "https://www.m-i.kr/news/articleView.html?idxno=1391203"
-    },
-    {
-      "source": "google",
-      "press": "안산뉴스",
-      "date": "2026.07.14",
-      "title": "본오1동 주민자치회 주민총회 성료",
-      "snippet": "본오1동 주민자치회 주민총회 성료 안산뉴스",
-      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE5xOFA0bkJ2YzBrVU5tV3NySDUxUXYwWm40eEh1SWdCN1VTSl9XME1DeEpPTGNoaTdTUExFWG9MeEYwUmtKZ183dVdfV2YxU1ZWbHVoeWRRSlhsTzFyUHBwdm1pNzZZc3RQcHU3RQ?oc=5"
     },
     {
       "source": "google",
@@ -819,14 +835,6 @@
     },
     {
       "source": "google",
-      "press": "경인매일",
-      "date": "2026.07.13",
-      "title": "안산시 본오1동 주민자치회, 2026년 제5회 주민총회 성료",
-      "snippet": "안산시 본오1동 주민자치회, 2026년 제5회 주민총회 성료 경인매일",
-      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5oNnQ0ZkpDQUg0VFBVR3ZDSEFhTHBYZXNkM2t2UDg3NGxaeml3dGxZeGNKZzRucEZ1XzRoYk9fRWRBNVh0VXZKZV9panFTTmFiOWJBTVdZQ1NLVUh1SGlVQjdlbGhCcXot?oc=5"
-    },
-    {
-      "source": "google",
       "press": "경기매일",
       "date": "2026.07.13",
       "title": "안산교육지원청, 안전한 과학실에서 미래형 과학수업을 열다",
@@ -848,30 +856,6 @@
       "title": "안산 도금공장서 불…한 때 대응 1단계 발령",
       "snippet": "12일 오전 9시 15분쯤 경기 안산시 상록구 팔곡이동의 한 도금공장에서 불이 나 한때 대응 1단계가 발령됐다. 소방 당국은 화재 직후 불이 번질 가능성에 대비해 대응 1단계를 발령했다가 30여분 만에 불길을 잡고 대응...",
       "url": "https://news.tvchosun.com/site/data/html_dir/2026/07/12/2026071290080.html"
-    },
-    {
-      "source": "naver",
-      "press": "news1.kr",
-      "date": "2026.07.12",
-      "title": "안산 도금공장 화재로 대응 1단계…50여분 만에 진화",
-      "snippet": "12일 오전 9시 14분께 경기 안산시 상록구 팔곡이동 도금공장에서 불이 나 50여 분 만에 꺼졌다. 소방 당국에 따르면 인명 피해는 없었다. 목격자 신고를 접수한 소방 당국은 연소 확대를 우려해 대응 1단계를 발령하고...",
-      "url": "https://www.news1.kr/local/gyeonggi/6225341"
-    },
-    {
-      "source": "naver",
-      "press": "obsnews.co.kr",
-      "date": "2026.07.12",
-      "title": "안산 팔곡이동 도금단지 공장서 화재",
-      "snippet": "오늘 오전 9시 15분쯤 경기 안산시 상록구 팔곡이동 도금단지내 한 공장에서 불이 났습니다. 현재까지 확인된 인명피해는 없지만 지상 4층, 연면적 1천400여㎡ 규모의 공장 건물이 일부 불에 탄 것으로 전해졌습니다....",
-      "url": "https://www.obsnews.co.kr/news/articleView.html?idxno=1530385"
-    },
-    {
-      "source": "naver",
-      "press": "yna.co.kr",
-      "date": "2026.07.12",
-      "title": "안산 팔곡이동 도금공장서 화재…인명피해 없어(종합)",
-      "snippet": "강영훈 김지원 기자 = 12일 오전 9시 14분께 경기 안산시 상록구 팔곡이동 도금공장에서 불이 나 50여분 만에 진화됐다. 인명피해는 없었다. 다만 지상 4층, 연면적 1천400여㎡ 규모의 공장 건물이 일부 불에 탄 것으로...",
-      "url": "https://www.yna.co.kr/view/AKR20260712018851061?input=1195m"
     },
     {
       "source": "google",
@@ -1818,6 +1802,14 @@
       "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE9HMDgyMldIY0JXYXpFM25ZOEp6NDB2N1JpbGJwTm91Y25QdFNOaDRRVDdrRjluTDdJejVUMkk5cURMN2tjSFhFME5tMEtvRm5oeGpDRm5BOEgxSm9HLWVUNUVDYzhCQQ?oc=5"
     },
     {
+      "source": "google",
+      "press": "경기종합뉴스",
+      "date": "2026.03.27",
+      "title": "한국공인중개사협회 안산 상록구지회, 회원 대상 '부동산 조세' 실무 교육 실시!",
+      "snippet": "한국공인중개사협회 안산 상록구지회, 회원 대상 '부동산 조세' 실무 교육 실시! 경기종합뉴스",
+      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE1sZFY0Q3hXVkFWS2JGT0V0ODBrdnZ3M1FTNjhpTTZTT0hXZl9WLU1MaWZLYUpyU25HcGc2VDUwa2FXU24yaG5pbjZ4OWVBUjFCS1kzdHpDS2hHaWdrNU5yR3BLTE1aQ0E3YXJXSzFBNVZZQUlP?oc=5"
+    },
+    {
       "source": "naver",
       "press": "newsis.com",
       "date": "2026.03.26",
@@ -1896,6 +1888,14 @@
       "title": "장윤정 경기도의원 “경기도형 환기설비 성능 전면 점검해야”",
       "snippet": "장윤정 경기도의원 “경기도형 환기설비 성능 전면 점검해야” twig24.com",
       "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxNNmxBWWJvNzdBWFAtTWp2TG9EWVZrcGYxSkZpS01CY0ZXd2F2NkhYX3B5a1BoczJ0Y0NNTFNVYlJrbk05bFluX1RrZXN4VlhxU0lHZkEtczhCczBEeWplNEkyZ3RVWDc0OF9tdkVzc2UwZ0JmSTZSaTNlUGI5bHNrRWVR?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "중앙신문",
+      "date": "2026.02.04",
+      "title": "안산 상록구 어린이집 화재…21분 만에 진화, 인명피해 없어",
+      "snippet": "안산 상록구 어린이집 화재…21분 만에 진화, 인명피해 없어 중앙신문",
+      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBnbUZ1QzJLb2E3OUNtb2FWSjJnMldkeGE1NlR4OEpTZ0p3dmExYXFvQmpOeVk2Mk4zQ0VlN2FnUmk5SGlSQWZ0eDVBTTItd1JYMGxmWmVRV2ZoaFNYdVFpbV9uV3FXeWdXcFE?oc=5"
     },
     {
       "source": "google",
