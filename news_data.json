@@ -1,6 +1,14 @@
 {
-  "updated": "2026-07-20 04:22 UTC",
+  "updated": "2026-07-20 07:41 UTC",
   "items": [
+    {
+      "source": "naver",
+      "press": "newsclaim.co.kr",
+      "date": "2026.07.20",
+      "title": "안산시 본오동 준공업지역 공영 노외주차장 준공",
+      "snippet": "안산시 제공 안산시가 상록구 본오동 준공업지역의 주차난 해소를 위해 추진한 공영 노외주차장 조성을 마무리하고 본격적인 운영 준비에 들어갔다. 시는 20일 상록구 본오동 728-3번지 일원에 추진한 '본오동 준공업지역...",
+      "url": "https://www.newsclaim.co.kr/news/articleView.html?idxno=3069757"
+    },
     {
       "source": "naver",
       "press": "jeonmae.co.kr",
@@ -40,14 +48,6 @@
       "title": "안산시 본오동 공영주차장 완공…이면도로 불법주차 줄인다",
       "snippet": "사진=안산시 안산시가 상록구 본오동 준공업지역의 고질적인 주차 문제를 해결하기 위해 추진한 공영주차장 조성사업을 마무리했다. 시는 총 8억원의 예산을 투입해 상록구 본오동 728-3 일원에 면적 3643㎡, 120면 규모의...",
       "url": "https://weekly.hankooki.com/news/articleView.html?idxno=7174869"
-    },
-    {
-      "source": "naver",
-      "press": "breaknews.com",
-      "date": "2026.07.20",
-      "title": "안산시, 본오동 준공업지역 공영 노외주차장 준공",
-      "snippet": "안산시가 본오동 준공업지역의 고질적인 주차난을 해결하기 위해 추진한 공영 노외주차장 조성사업을 마무리했다. 총사업비 8억 원이 투입되어 상록구 본오동...",
-      "url": "http://www.breaknews.com/1222655"
     },
     {
       "source": "naver",
@@ -155,6 +155,14 @@
     },
     {
       "source": "google",
+      "press": "안산뉴스",
+      "date": "2026.07.20",
+      "title": "진보당 박범수 상록구 지역위원장 연임 도전",
+      "snippet": "진보당 박범수 상록구 지역위원장 연임 도전 안산뉴스",
+      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE5FdW9XTjlkampPOENOUm1TOHFKN19Ya3JVMHprYlFsTGxtd2l6ZkVFbnl1QTBxc1FmTEVpSnBIUUdiMTgzQUlldmRuVzFHX29sR05Ib2JBNFUzWmMtWTM2RDdPQThvcWdmc0JGWg?oc=5"
+    },
+    {
+      "source": "google",
       "press": "투데이안산",
       "date": "2026.07.20",
       "title": "박범수 위원장, 진보당 4기 상록구 지역위원장 연임 도전",
@@ -168,6 +176,118 @@
       "title": "안산 본오동 ‘주차 전쟁’ 끝낸 120면 해법",
       "snippet": "안산 본오동 ‘주차 전쟁’ 끝낸 120면 해법 현대일보",
       "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBEUU5OZUVUWDdvS1BmbmNNUVBNN1BfOUhab0lVcmtmT0cxTVpQRUFXZnlDb2t3UkFlYktXZDk3ckdYU1UyVmYwNHIxaUtaVmJhcmR2dnpXLUhmVVhUVXFpYXoxaHFvME91ME1yb013?oc=5"
+    },
+    {
+      "source": "naver",
+      "press": "joseilbo.com",
+      "date": "2026.07.20",
+      "title": "[인사] 관세청 서기관 및 사무관 전보(147명)",
+      "snippet": "장윤희 (안산 통관지원과장) ▲인천공항 여행자정보분석과장 이재훈 (인천공항 특송통관1과장) ▲인천공항... 외] ▲인재원 교육지원과 강웅탁 (본청 원산지검증과) ▲인재원 인재개발과 장영민 (인재원 교육지원과)...",
+      "url": "http://www.joseilbo.com/news/news_read.php?uid=572231&class=8&grp="
+    },
+    {
+      "source": "naver",
+      "press": "siminilbo.co.kr",
+      "date": "2026.07.20",
+      "title": "안산시, 대부도 의료 취약지역 건강안전망 강화…응급처치·폭염 대응 ...",
+      "snippet": "건강교육을 운영했다. 안산시는 지난 16일 대부보건지소에서 주민 60여 명을 대상으로 심폐소생술(CPR), 자동심장충격기(AED) 사용법, 온열질환 예방법, 만성질환 관리 등을 주제로 맞춤형 건강강좌를 진행했다고 20일 밝혔다....",
+      "url": "https://www.siminilbo.co.kr/news/newsview.php?ncode=1160264367401853"
+    },
+    {
+      "source": "naver",
+      "press": "m-i.kr",
+      "date": "2026.07.20",
+      "title": "손민지 삼육대 교수, 심장대사질환 건강 격차 연구 착수",
+      "snippet": "(KoGES) '안산 코호트' 데이터를 활용할 계획이다. 이는 동일 참여자를 20년 이상 장기 추적 관찰하며 건강검진 결과뿐만 아니라 소득이나 교육 수준, 직업과 생활습관 및 결혼 상태 등 다양한 사회경제적 정보를 반복...",
+      "url": "https://www.m-i.kr/news/articleView.html?idxno=1393110"
+    },
+    {
+      "source": "naver",
+      "press": "siminilbo.co.kr",
+      "date": "2026.07.20",
+      "title": "안산시, 글로벌 교육교류 확대…美 대학생들과 다문화 공존 정책 현장 ...",
+      "snippet": "글로벌 교육 교류의 폭을 넓혔다. 안산시는 미국 네브래스카대학교 링컨캠퍼스 학생들이 지난 16일 한국 단기 교육 프로그램의 일환으로 외국인주민지원본부를 찾아 안산시의 외국인주민 정책과 지역사회 통합 사례를...",
+      "url": "https://www.siminilbo.co.kr/news/newsview.php?ncode=1160263664430117"
+    },
+    {
+      "source": "naver",
+      "press": "enewstoday.co.kr",
+      "date": "2026.07.20",
+      "title": "경기도의회 교육기획위 새 출발…위원장에 국중범 의원",
+      "snippet": "제12대 경기도의회 전반기 교육기획위원회를 이끌 위원장으로 국중범 의원(더불어민주당·성남4)이... (더불어민주당·안산6), 서혜진(더불어민주당·비례), 유병수(더불어민주당·남양주2), 이건한(더불어민주당·용인8)...",
+      "url": "http://www.enewstoday.co.kr/news/articleView.html?idxno=2450244"
+    },
+    {
+      "source": "naver",
+      "press": "veritas-a.com",
+      "date": "2026.07.20",
+      "title": "삼육대 손민지 교수 심장대사질환 건강격차 연구 착수.. 심장대사증후군...",
+      "snippet": "(KoGES) '안산 코호트' 데이터를 활용한다. 이 자료는 동일 참여자를 20년 이상 추적 관찰하며 건강검진 결과와 함께 소득, 교육 수준, 직업, 생활습관, 결혼 상태 등 다양한 사회경제적 정보를 반복 수집한 국내 대표 장기...",
+      "url": "https://www.veritas-a.com/news/articleView.html?idxno=619747"
+    },
+    {
+      "source": "naver",
+      "press": "seoul.co.kr",
+      "date": "2026.07.20",
+      "title": "제12대 경기도의회 전반기 교육기획위원회 국중범 위원장 선출",
+      "snippet": "< 제12대 전반기 교육기획위원회 명단(위원명 가나다순) > 김경옥(더민주, 평택 3), 김선희(국힘, 용인 6), 김영훈(더민주, 시흥 3), 김영희(더민주, 오산 1), 박순희(더민주, 부천 8), 박은경(더민주, 안산 6), 서혜진(더민주...",
+      "url": "https://www.seoul.co.kr/news/publicnews/local_govern/kyungki_do/2026/07/20/20260720500160?wlog_tag3=naver"
+    },
+    {
+      "source": "naver",
+      "press": "kpinews.kr",
+      "date": "2026.07.20",
+      "title": "남종섭 의장 등 신임 의장단, 현충탑 참배…\"민생현안 해결 총력\"",
+      "snippet": "김동규(안산1) 보건복지위원장, 고찬석(용인9) 건설교통위원장, 김태형(화성5) 미래과학협력위원장, 이홍근(화성1) 도시환경위원장, 김용성(광명4) 여성가족평생교육위원장, 국중범(성남4) 교육기획위원장, 김성수(안양1)...",
+      "url": "https://www.kpinews.kr/newsView/1065589143506369"
+    },
+    {
+      "source": "naver",
+      "press": "news2day.co.kr",
+      "date": "2026.07.20",
+      "title": "[7월 20일 고용24 채용정보] 케이피항공산업·현대하이텍·브니엘네이처...",
+      "snippet": "기숙사제공, 교육비제공 ■ 현대하이텍 프레스라인 생산직 모집 ▷지원자격 : 경력무관/학력무관... 경기도 안산시 ▷근무시간 : 오전 8시30분~오후 5시30분 ▷임금 : 연봉 3200만원~4500만원 ▷고용형태 : 기간의 정함이...",
+      "url": "https://www.news2day.co.kr/article/20260720500120"
+    },
+    {
+      "source": "naver",
+      "press": "kmaeil.com",
+      "date": "2026.07.20",
+      "title": "안산시, 약물 중독 예방 뮤지컬 '바티즌' 개최",
+      "snippet": "지난 16일, 안산시 중독관리통합지원센터가 시민 550여 명이 참석한 가운데 약물 중독 예방을 위한 뮤지컬... 앞으로도 청소년과 청년층을 비롯한 시민들이 중독 폐해 없이 건강한 삶을 누릴 수 있도록 예방교육과...",
+      "url": "https://www.kmaeil.com/news/articleView.html?idxno=645751"
+    },
+    {
+      "source": "naver",
+      "press": "kmaeil.com",
+      "date": "2026.07.20",
+      "title": "안산시, 대부도 주민 대상 맞춤형 건강강좌 열어",
+      "snippet": "지난 16일, 안산시가 대부도 주민 60여 명을 대상으로 심폐소생술과 온열질환 예방, 만성질환 관리 등을 다룬... 설명했으며, 교육 후에는 단원보건소와 대부보건지소, 보건진료소 관계자들이 의료 취약지역 공공보건기관의...",
+      "url": "https://www.kmaeil.com/news/articleView.html?idxno=645750"
+    },
+    {
+      "source": "naver",
+      "press": "newsclaim.co.kr",
+      "date": "2026.07.20",
+      "title": "안산시 미국 네브래스카대 학생들 정책 현장 견학",
+      "snippet": "안산시 제공 안산시는 지난 16일 미국 네브래스카대학교 링컨캠퍼스 학생들이 한국 단기 교육 프로그램의 일환으로 안산시 외국인주민지원본부를 방문해 외국인주민 지원 정책과 상호문화도시 정책을 살펴봤다고 20일...",
+      "url": "https://www.newsclaim.co.kr/news/articleView.html?idxno=3069759"
+    },
+    {
+      "source": "naver",
+      "press": "newsclaim.co.kr",
+      "date": "2026.07.20",
+      "title": "안산시 꿈드림 학교 밖 청소년 단체 건강검진 참여",
+      "snippet": "경기도학교밖청소년지원센터,청소년 단체 건강검진,안산시 지난 16일 학교 밖 청소년들이 광주시... 시는 학교 밖 청소년을 대상으로 상담과 교육, 자립 지원, 진로 설계뿐 아니라 건강관리까지 연계하는 맞춤형 지원을...",
+      "url": "https://www.newsclaim.co.kr/news/articleView.html?idxno=3069760"
+    },
+    {
+      "source": "naver",
+      "press": "dailysmart.co.kr",
+      "date": "2026.07.20",
+      "title": "\"같은 약 먹어도 소득 따라 예후 달랐다\"…손민지 삼육대 약학대학 교수...",
+      "snippet": "자산인 '안산 코호트' 데이터를 핵심 기반으로 활용한다. 이는 동일 참여자를 20년 이상 장기 관찰하며 건강검진 수치뿐만 아니라 소득, 교육, 직업, 생활습관, 결혼 상태 등 다각적인 사회경제적 변수를 반복 수집한...",
+      "url": "http://www.dailysmart.co.kr/news/articleView.html?idxno=127093"
     },
     {
       "source": "naver",
@@ -200,14 +320,6 @@
       "title": "프롬유코리아, 한생명복지재단에 영유아 프롬유 샤워핸들 50개 전달",
       "snippet": "한편, 경기도 안산시에 위치한 한생명복지재단은 한부모 가족이 안정적인 환경에서 자녀를 양육하고 자립할 수 있도록 생계 지원, 상담 및 교육, 주거 환경 개선 등 촘촘한 맞춤형 복지 서비스를 제공하며 지역사회 복지...",
       "url": "https://www.job-post.co.kr/news/articleView.html?idxno=221569"
-    },
-    {
-      "source": "naver",
-      "press": "dhnews.co.kr",
-      "date": "2026.07.20",
-      "title": "손민지 삼육대 교수, 심장대사질환 건강 격차 연구 착수",
-      "snippet": "(KoGES) ‘안산 코호트’ 데이터를 활용한다. 동일 참여자를 20년 이상 장기 추적 관찰하며 건강검진 결과뿐만 아니라 소득, 교육 수준, 직업, 생활습관, 결혼 상태 등 다양한 사회경제적 정보를 반복 수집한 방대한 자료다....",
-      "url": "https://dhnews.co.kr/news/view/1065577795440028"
     },
     {
       "source": "naver",
@@ -267,19 +379,19 @@
     },
     {
       "source": "naver",
-      "press": "inthenews.co.kr",
-      "date": "2026.07.20",
-      "title": "SK에코플랜트, 의왕역 SK VIEW 견본주택 1만8000명 방문",
-      "snippet": "위례 과천선 경기남부 연장과 신분당선 의왕 군포 안산 3기 신도시 연장 사업도 추진 단계에 있습니다. 교육시설로는 의왕덕성초등학교와 부곡중학교, 의왕고등학교가 도보권에 있습니다. 초등학교부터 고등학교까지...",
-      "url": "https://www.inthenews.co.kr/news/article.html?no=89476"
-    },
-    {
-      "source": "naver",
       "press": "fntoday.co.kr",
       "date": "2026.07.20",
       "title": "[빅데이터투데이] 전문대학 2026년 7월 브랜드평판 랭킹... 1위 경복대학...",
       "snippet": "전문대학은 고등교육법 제47조에 의거해 설립된 기술·직업 실무 중심의 고등교육기관으로, 중견 직업인... 광주보건대학교, 안산대학교, 백석문화대학교, 대림대학교, 유한대학교, 충청대학교...",
       "url": "https://www.fntoday.co.kr/news/articleView.html?idxno=388348"
+    },
+    {
+      "source": "naver",
+      "press": "inthenews.co.kr",
+      "date": "2026.07.20",
+      "title": "SK에코플랜트, 의왕역 SK VIEW 견본주택 1만8000명 방문",
+      "snippet": "위례 과천선 경기남부 연장과 신분당선 의왕 군포 안산 3기 신도시 연장 사업도 추진 단계에 있습니다. 교육시설로는 의왕덕성초등학교와 부곡중학교, 의왕고등학교가 도보권에 있습니다. 초등학교부터 고등학교까지...",
+      "url": "https://www.inthenews.co.kr/news/article.html?no=89476"
     },
     {
       "source": "naver",
@@ -539,102 +651,6 @@
     },
     {
       "source": "naver",
-      "press": "dynews.co.kr",
-      "date": "2026.07.19",
-      "title": "국군사관학교 '대전행'… 지역공동화 우려",
-      "snippet": "이번 결정은 단순한 교육기관 이전을 넘어 충청권의 국방 기능 재편과 지역 균형발전 논쟁의 새로운... 자운대와 국방과학연구소(ADD), 방위사업청, 안산 첨단국방산업단지, KAIST, 대덕연구개발특구를 하나로 연결하는 '국방...",
-      "url": "https://www.dynews.co.kr/news/articleView.html?idxno=858433"
-    },
-    {
-      "source": "naver",
-      "press": "kyeonggi.com",
-      "date": "2026.07.19",
-      "title": "김성경 한국농어촌공사 경기지역본부장 “안전은 타협할 수 없는 최우선...",
-      "snippet": "설계 교육을 통해 디지털 기반의 조직 혁신도 이어가겠다. Q. 경기지역의 특성을 반영한 사업과 청년농 유입... 화성·안산 등 서해안 도서지역은 어촌 환경을 보유하고 있어 지역별 특성에 맞춘 사업이 필요하다. 도시화...",
-      "url": "https://www.kyeonggi.com/article/20260719580090"
-    },
-    {
-      "source": "naver",
-      "press": "ccdn.co.kr",
-      "date": "2026.07.19",
-      "title": "박용갑 의원 \"국군사관학교 자운대 신설 환영\"",
-      "snippet": "국군사관학교와 안산 첨단국방산업단지가 조성되면 교육과 연구, 산업이 연계된 국방혁신 클러스터가 구축될 것으로 전망했다. 박 의원은 \"국군사관학교와 안산 첨단국방산업단지가 함께 추진되면 대전은 국방 인재를...",
-      "url": "https://www.ccdn.co.kr/news/articleView.html?idxno=1088949"
-    },
-    {
-      "source": "naver",
-      "press": "m-i.kr",
-      "date": "2026.07.19",
-      "title": "경기아트센터, 제11회 대한민국 청소년교향악축제 개최",
-      "snippet": "경기아트센터)와 (사)경기도음악협회가 오는 8월 1일부터 9월 5일까지 군포·화성·안산·이천·고양·수원... 단순한 연주회를 넘어 청소년들이 무대 경험을 쌓고 서로의 음악을 통해 성장하는 교육의 장으로 자리하고 있다....",
-      "url": "https://www.m-i.kr/news/articleView.html?idxno=1392632"
-    },
-    {
-      "source": "naver",
-      "press": "kgnews.co.kr",
-      "date": "2026.07.19",
-      "title": "경기도의회 전반기 원 구성 사실상 마무리…예결특위도 민주당 몫",
-      "snippet": "김동규(안산1), 건설교통위원회 고찬석(용인9), 도시환경위원회 이홍근(화성1), 미래과학협력위원회 김태형(화성5), 여성가족평생교육위원회 김용성(광명4), 교육기획위원회 국중범(성남4), 교육행정위원회 김성수(안양1)...",
-      "url": "https://www.kgnews.co.kr/news/article.html?no=904308"
-    },
-    {
-      "source": "naver",
-      "press": "joongdo.co.kr",
-      "date": "2026.07.19",
-      "title": "\"논쟁 휘둘려 기회 놓치면 안돼\"…연내 특별법 제정 역량결집 시급",
-      "snippet": "미래전 대비와 합동작전 강화를 위해 새로 출범할 통합 국군사관학교를 군사 교육·훈련 시설이 밀집한 대전... 시가 추진 중인 안산 첨단국방산업단지와도 연계해 인재 양성과 기술 실증, 방산 산업화가 모두 이뤄지는...",
-      "url": "https://www.joongdo.co.kr/web/view.php?key=20260719010005257"
-    },
-    {
-      "source": "naver",
-      "press": "joongdo.co.kr",
-      "date": "2026.07.19",
-      "title": "대전시 국방 과학수도 날개단다",
-      "snippet": "국방교육과 인공지능(AI) 중심의 국가전략사업으로 확대 추진할 기폭제가 될 수 있다. 국방과학연구소(ADD), 한국과학기술원(KAIST), 방위사업청, 안산 국방국가산업단지와 연계한 국방혁신 거점으로 거듭나도록 조성하고...",
-      "url": "https://www.joongdo.co.kr/web/view.php?key=20260719010005252"
-    },
-    {
-      "source": "naver",
-      "press": "ggilbo.com",
-      "date": "2026.07.19",
-      "title": "육·해·공사 통합하는 군사관학교 대전 자운대로",
-      "snippet": "대전시 제공 군사 교육·훈련시설이 밀집한 대전 자운대에 육·해·공군사관학교를 통합한 4년제... 관련 산업 활성화 차원에선 국방과학연구소(ADD), KAIST, 방위사업청, 안산국방국가산업단지와 연계한 국방혁신 거점을...",
-      "url": "https://www.ggilbo.com/news/articleView.html?idxno=1169955"
-    },
-    {
-      "source": "naver",
-      "press": "ccdn.co.kr",
-      "date": "2026.07.19",
-      "title": "국군사관학교 자운대 창설 시동…대전시, 국방과학도시 도약 가속",
-      "snippet": "국방과학연구소(ADD), 한국과학기술원(KAIST), 방위사업청, 안산 국방국가산업단지 등 지역의 국방·과학기술 인프라와 연계해 미래 국방교육과 첨단기술 융합의 중심축을 구축할 수 있을 것으로 기대했다. 국군사관학교가...",
-      "url": "https://www.ccdn.co.kr/news/articleView.html?idxno=1088849"
-    },
-    {
-      "source": "naver",
-      "press": "newsis.com",
-      "date": "2026.07.19",
-      "title": "안산시의회 의장단, 시민생활 직결 공공기관 방문 소통",
-      "snippet": "안산시의회는 한명훈 의장을 비롯해 의장단이 지난 15~16일 안산시청과 안산단원·상록경찰서, 안산소방서, 안산교육지원청, 안산문화원 등 유관기관 8곳을 방문했다고 19일 밝혔다. 이번 방문은 제10대 안산시 전반기...",
-      "url": "https://www.newsis.com/view/NISX20260719_0003714094"
-    },
-    {
-      "source": "naver",
-      "press": "ajunews.com",
-      "date": "2026.07.19",
-      "title": "안산시의회 새 의장단 \"현장 소통 강화·시민 체감 의정 시작\"",
-      "snippet": "19일 시의회에 따르면, 한명훈 의장을 비롯한 전반기 의장단이 지난 15~16일까지 양일 간 안산시청을 비롯해 안산단원경찰서, 안산상록경찰서, 안산소방서, 안산교육지원청 등 지역 유관기관 8곳을 방문했다. 이번 방문은...",
-      "url": "https://www.ajunews.com/view/20260719122024339"
-    },
-    {
-      "source": "naver",
-      "press": "asiatoday.co.kr",
-      "date": "2026.07.19",
-      "title": "이민근표 시정 방점은 '청년'...\"안산미래 함께 설계할 자산은 청년\"",
-      "snippet": "민선9기 안산시 시정은 청년이 지역과 함께 성장할 수 있는 여건을 만드는 데 방점이 찍혀 있다. 이민근... 분야별로는 주거·복지 18개 사업이 165억4200만원으로 가장 많았고 △일자리 18개 사업(59억8900만원) △교육...",
-      "url": "https://www.asiatoday.co.kr/kn/view.php?key=20260716010006012"
-    },
-    {
-      "source": "naver",
       "press": "kado.net",
       "date": "2026.07.18",
       "title": "로또 1등 전국 '31명'…전남 한 판매점서 수동 5게임 동시 1등",
@@ -850,14 +866,6 @@
       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFB4NVpKSzNPMGdIcEZfY0tYYzJGM0VjZXlHX1JaZkVsWFFhRDg1eDh6S0w2WEdYcnZweXRoWUt5X0JvbGpOTG9kQ0t6YV9XRTNOMG9GWnRndnVCQS16a2EyU2lvWkhHOEhTeUtEdQ?oc=5"
     },
     {
-      "source": "naver",
-      "press": "cbci.co.kr",
-      "date": "2026.07.14",
-      "title": "[속보] \"퇴근길 조심하세요\" 경기·인천 일부 지역 오후 6시 호우주의보...",
-      "snippet": "재난문자가 발송된 지역은 ▲경기 김포시 ▲시흥시 ▲평택시 ▲안산시 상록구 ▲안산시 단원구 ▲화성시 만세구 ▲화성시 효행구 ▲화성시 병점구 ▲화성시 동탄구와 ▲인천 강화군 ▲계양구 ▲미추홀구 ▲남동구...",
-      "url": "https://www.cbci.co.kr/news/articleView.html?idxno=589119"
-    },
-    {
       "source": "google",
       "press": "한국글로벌뉴스",
       "date": "2026.07.14",
@@ -872,14 +880,6 @@
       "title": "안산교육지원청, 학교를 넘어 함께 배우는 2026 안산교육지원청 학생자치 리더십캠프",
       "snippet": "안산교육지원청, 학교를 넘어 함께 배우는 2026 안산교육지원청 학생자치 리더십캠프 엔디엔뉴스",
       "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE02S0tUZW5haVZVcXhPcjNraG5hdlptRlBvbUQ0amNkQ2JvNkIweTdZS1BXMmxsR253dF9QcVdsNUpTTHUySzE0Rk0tck8xc3VtYlN3RE9jbDRsUHN4Q1YteGdERkRKMzd1TTc1bFFR0gFyQVVfeXFMTVVjdmo1ZGpBclJZNHVqSVd4aTVnOXFTYVR2RlJwcHdDengyVGxDU29Mb2daOGxCa2hEZVVreDVBeEtzRTNUenVxdG9TRElDYXZLTl83VzcwUDNOdmxUYTREeFdJYlNHOUIzWVRiblB1dzV3?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "gukjenews.com",
-      "date": "2026.07.12",
-      "title": "안산 상록구 도금공장서 화재...인명피해 없어",
-      "snippet": "안산 상록구 도금공장서 화재...인명피해 없어 gukjenews.com",
-      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFA0NHBPX2NuVFJvWDJES052VHI4ZVVHaVdRTHF5ZjFEcDZJbGRaRFByQzZPTXZ0UGZ2OHVpeThkVG1KT0lBNW01MW9wb0g0dmRZMW40TmRpVzFSZWg0SG5zbGVqZXRzNE1PdFpmWDNn?oc=5"
     },
     {
       "source": "google",
@@ -1056,6 +1056,14 @@
       "title": "경기도의회 장윤정 의원, 경기도교육청 예산유보 운영 점검…“절감보다 적기 집행이 중요”",
       "snippet": "경기도의회 장윤정 의원, 경기도교육청 예산유보 운영 점검…“절감보다 적기 집행이 중요” 성남포커스",
       "url": "https://news.google.com/rss/articles/CBMiQ0FVX3lxTE1fSTlRYlAtRVdYSTVVNXFFVk1OeFBwUlVfbW9MN3A1Ul9fM2x0el9vY2IzQk00QmVCdnlId1Z5NUFFLTQ?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "twig24.com",
+      "date": "2026.06.12",
+      "title": "장윤정 경기도의원, 경기도교육청 예산유보 운영 점검…“절감보다 적기 집행이 중요”",
+      "snippet": "장윤정 경기도의원, 경기도교육청 예산유보 운영 점검…“절감보다 적기 집행이 중요” twig24.com",
+      "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxPMzZhTjl2d0hTaXc5UUhhQnZPQzBaOHlZTXpVRG9aWHY5SjFYNzYteHVPMGpNdTQ2NkZWeHB4LTJxckZwQTVMSnYtTUc0Y1VCeHRxRDJyNjFZN2s4UVZqWnJUdHJEYTVXX05zdlh2NGhSUFIwenNicldVcUtLTnk4djVB?oc=5"
     },
     {
       "source": "naver",
@@ -1627,14 +1635,6 @@
     },
     {
       "source": "google",
-      "press": "twig24.com",
-      "date": "2026.04.27",
-      "title": "장윤정 경기도의원, 학교 급식실 환기설비 개선 TF 후속 정담회 개최…현장 체감 개선 논의",
-      "snippet": "장윤정 경기도의원, 학교 급식실 환기설비 개선 TF 후속 정담회 개최…현장 체감 개선 논의 twig24.com",
-      "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxOcURBaGFXUDR4d3VsbHM2ZFp4bzJVS1lZLXgtSXlUYWp0ZlgzbmxzWUcyQmJEMER6a2wybFloRWN2d0lCcmt2c0lYZ2cyTUphV0Q5Uy00VjNaMEdTNDMteVFVNlNfbWpOTGVrWmFOajFjeVJFUkxxR1JWWmQ1Z2hKWFl3?oc=5"
-    },
-    {
-      "source": "google",
       "press": "안산뉴스",
       "date": "2026.04.27",
       "title": "장윤정 도의원 교육기획위 부위원장 선임",
@@ -1684,6 +1684,14 @@
     {
       "source": "google",
       "press": "twig24.com",
+      "date": "2026.04.23",
+      "title": "장윤정 경기도의원, 학교 급식실 환기설비 개선 TF 결과 보고…냉난방 보완 설비 도입 필요",
+      "snippet": "장윤정 경기도의원, 학교 급식실 환기설비 개선 TF 결과 보고…냉난방 보완 설비 도입 필요 twig24.com",
+      "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxON1lqRUtyZTlZMmZRQjIwb1BtVklaRzQ4Y0N5SU0yQ3V1Q1g4NEFUTVZhR0ZDZDZkSmF4ZmJzYkh1Z1lJTGdUZGdQTEM3eEx1ekJGdGlXVVdSam44M29KcEx4dFREYnhmTXdyZ0NpX0Q1SG10MVNCQWF6RnMwb1Q0elBB?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "twig24.com",
       "date": "2026.04.22",
       "title": "장윤정 경기도의원, 교육기획위원회 부위원장 선임…책임 있는 마무리 이끌 것",
       "snippet": "장윤정 경기도의원, 교육기획위원회 부위원장 선임…책임 있는 마무리 이끌 것 twig24.com",
@@ -1715,11 +1723,11 @@
     },
     {
       "source": "google",
-      "press": "경기청소년신문",
-      "date": "2026.04.10",
-      "title": "경기도의회 장윤정 의원, 안산 학교급식실 환기설비 운영 점검 나서",
-      "snippet": "경기도의회 장윤정 의원, 안산 학교급식실 환기설비 운영 점검 나서 경기청소년신문",
-      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE44djc1dkZGWmdXYl9mZnVzWmc0TS1qdjFaVmhfOVgyalg0QjF3WVhUdDNRQzJENXp2WFkyRWJtX2xOdVZyRnVHUkdpRHlzXzRfNDg0MTQ5N25jWW9Oc2dwV2tJTnE4aXkt?oc=5"
+      "press": "반월신문",
+      "date": "2026.04.08",
+      "title": "더불어민주당 장윤정 경기도의원, 안산 학교급식실 환기설비 운영 점검 나서",
+      "snippet": "더불어민주당 장윤정 경기도의원, 안산 학교급식실 환기설비 운영 점검 나서 반월신문",
+      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9NYmt6c3dLaEZYRnRFcjQ2WDg5SGRybGFuczk1TXRnb0UzdXV5dWdGS3JMUVI0bjBVREFkOVlfUGRIdXhTeTIyN1dmbGtzNWZtc2w3RE85SjczVTd5NE0wbExKWnB6aXc?oc=5"
     },
     {
       "source": "google",
@@ -1802,14 +1810,6 @@
       "url": "https://news.google.com/rss/articles/CBMiQkFVX3lxTE93ZHlHbUFtYmwyb0dDMTc1NmFsNnZUNnZ6X2pMWGttbjdOc0lfYVhmVDh3SWxsVW5hZy1hNHVOeXQxUQ?oc=5"
     },
     {
-      "source": "google",
-      "press": "중앙신문",
-      "date": "2026.04.01",
-      "title": "장윤정 경기도의원, 경기도교육청 기계설비유지관리자 처우 개선 논의",
-      "snippet": "장윤정 경기도의원, 경기도교육청 기계설비유지관리자 처우 개선 논의 중앙신문",
-      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1SRXg0cnJNS0tmZ3F4cDFQLVp1N0xUTGw5cFpMektUTGJibnFsTU0wcXVKLTdFXy1WajdiTTJUNUROVzhoa3JkQTZHb1UxQklWWEVnWHRQeXBWZnJjZDdjMi1HYWx2MWdKVFE?oc=5"
-    },
-    {
       "source": "naver",
       "press": "newsis.com",
       "date": "2026.03.26",
@@ -1819,11 +1819,11 @@
     },
     {
       "source": "naver",
-      "press": "news1.kr",
+      "press": "kgnews.co.kr",
       "date": "2026.03.26",
-      "title": "[재산공개]김성수 경기도의원 324억 신고…4년 연속 도내 최고 자산가",
-      "snippet": "김성수 경기도의회 의원(국민의힘·하남2)이 324억여 원의 재산을 보유해 4년 연속 도내 재산공개 대상... 반면, 장윤정 의원(민주·안산3)은 -2490만 원을 신고해 도의원 중 재산이 가장 적었다. 이어 정동혁(민주...",
-      "url": "https://www.news1.kr/local/gyeonggi/6114090"
+      "title": "[재산공개]경기도의원 74% 재산 증가…평균 12억6000만원",
+      "snippet": "반면 장윤정(민주·안산3) 의원은 마이너스 2400만 원을 신고해 재산이 가장 적었다. 장 의원은 예금이... 등의 순으로 재산 신고액이 적었다. [ 경기신문 = 장진우 기자 ] 경기도의회 전경 (사진=경기도의회 제공)",
+      "url": "https://www.kgnews.co.kr/news/article.html?no=888958"
     },
     {
       "source": "google",
