@@ -1,6 +1,14 @@
 {
-  "updated": "2026-07-21 22:27 UTC",
+  "updated": "2026-07-21 23:32 UTC",
   "items": [
+    {
+      "source": "naver",
+      "press": "pointdaily.co.kr",
+      "date": "2026.07.22",
+      "title": "GH \"전세사기 피해자 보호 강화\"... 지원 현장 최일선 역량 키운다",
+      "snippet": "지난 6월과 7월 용인과 수원에서 두 차례 교육을 마쳤으며, 오는 9월에는 부천, 10월에는 안산에서 설명회를 이어갈 계획이다. GH는 앞으로도 경기도와 시·군, HUG, LH 등 관계 기관과의 협력을 강화해 전세사기 피해자가...",
+      "url": "https://www.pointdaily.co.kr/news/articleView.html?idxno=312656"
+    },
     {
       "source": "naver",
       "press": "ikld.kr",
@@ -107,6 +115,14 @@
     },
     {
       "source": "google",
+      "press": "서프라이즈뉴스",
+      "date": "2026.07.21",
+      "title": "장윤정 경기도의원, 경기도 사회적경제원 및 신용보증재단 현안 집중 질의",
+      "snippet": "장윤정 경기도의원, 경기도 사회적경제원 및 신용보증재단 현안 집중 질의 서프라이즈뉴스",
+      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1UVTY5bkNhUnNvdTlZWEV4Z1B5YnFtLXptRlM1Q2l2Vk1IUW1oTGxrdUN1TjVydThaOWJkZzF1QU9hdDVvQ3pYWnZEVlZEdW9UeE9Vd05tSnF3cmdqOVFNb2RxSkdqV0ZUWEIwTXFR?oc=5"
+    },
+    {
+      "source": "google",
       "press": "경기종합뉴스",
       "date": "2026.07.21",
       "title": "장윤정 경기도의원, 경제노동위원회 첫 업무보고에서 사회적 기업 지원 체계 및 공공 플랫폼 고객 지원 시스템 개선 촉구!",
@@ -152,14 +168,6 @@
       "title": "경기도의회 장윤정 의원, 경제노동위원회 부위원장 선임",
       "snippet": "경기도의회 장윤정 의원, 경제노동위원회 부위원장 선임 웹이코노미",
       "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5YeUp4dW93czdhWjNOcUk0QzNNX29qZFh3VFl6NXpDb0pING1ITmtpSmhCQ2lSMzlFZlVjMDUtZXhIeFp4UHNtakJqTlNLY085bWhEZ2ZLUmJBUzRhLUpMT1pob3RKZDMyN0ZJXzdFRzl3UQ?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "경기종합뉴스",
-      "date": "2026.07.21",
-      "title": "장윤정 경기도의원, 경기도 사회적경제원 및 신용보증재단 현안 집중 질의",
-      "snippet": "장윤정 경기도의원, 경기도 사회적경제원 및 신용보증재단 현안 집중 질의 경기종합뉴스",
-      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE5xS3VyRVF2ZFd0a2w3REpIYVBfWXBOQWpvdzl6Y0FYMmhpanRKR1NlT0l4Y1NSWjdIQVhGa0ctQTRBNnZrN0duNnlzYUhOVUM5OGFZcURfMEl1WmJOei1NSjZ2OFRzWE5IeXNRekxNZ2Z0bUNk?oc=5"
     },
     {
       "source": "google",
@@ -275,19 +283,19 @@
     },
     {
       "source": "naver",
-      "press": "sentv.co.kr",
-      "date": "2026.07.21",
-      "title": "[기획] 김천 율곡동, ‘2차 공공기관 이전’ 이끌 상생의 이정표 세우다",
-      "snippet": "안산공원을 찾은 시민들에게 ‘희망’과 ‘밝은 미래’라는 꽃말을 가진 오스테오스펄멈 화분을 전달하며... 이들의 상생의 노력은 미래 세대를 위한 교육으로도 이어지고 있다. 오는 8월에는 한국도로공사 드론동호회와...",
-      "url": "https://www.sentv.co.kr/article/view/sentv202607210135"
-    },
-    {
-      "source": "naver",
       "press": "etoday.co.kr",
       "date": "2026.07.21",
       "title": "GH, 31개 시·군 전세피해 담당자 총집결…\"보증금 3분의 1 국가보장\" 개...",
       "snippet": "함께 피해자 대상 '권리구제 법률교육'도 병행하고 있다. 올해 총 4회 설명회를 진행할 예정으로 6월과 7월에 각각 용인과 수원에서 2차례 교육을 마쳤으며, 9월에는 부천, 10월에는 안산에서 설명회를 이어갈 계획이다.",
       "url": "https://www.etoday.co.kr/news/view/2605856"
+    },
+    {
+      "source": "naver",
+      "press": "sentv.co.kr",
+      "date": "2026.07.21",
+      "title": "[기획] 김천 율곡동, ‘2차 공공기관 이전’ 이끌 상생의 이정표 세우다",
+      "snippet": "안산공원을 찾은 시민들에게 ‘희망’과 ‘밝은 미래’라는 꽃말을 가진 오스테오스펄멈 화분을 전달하며... 이들의 상생의 노력은 미래 세대를 위한 교육으로도 이어지고 있다. 오는 8월에는 한국도로공사 드론동호회와...",
+      "url": "https://www.sentv.co.kr/article/view/sentv202607210135"
     },
     {
       "source": "naver",
@@ -411,19 +419,19 @@
     },
     {
       "source": "naver",
-      "press": "kmaeil.com",
-      "date": "2026.07.21",
-      "title": "박은주 의원, 보육·아동에 90.9% 편중된 여가국 예산 구조 날카롭게 지...",
-      "snippet": "경기도의회 여성가족평생교육위원회 박은주 의원이 제392회 임시회 여성가족평생교육위원회 업무보고에서... 끝으로 박은주 의원은 \"안산, 파주, 김포, 화성 등 외국인 밀집지역에서 활동해 온 전문 민간단체를 중심으로...",
-      "url": "https://www.kmaeil.com/news/articleView.html?idxno=645999"
-    },
-    {
-      "source": "naver",
       "press": "shinailbo.co.kr",
       "date": "2026.07.21",
       "title": "안산대, 전문대학 혁신지원사업 성과평가 최고 등급 획득",
       "snippet": "안산대는 교육부와 한국연구재단이 실시한 '2025년 전문대학 혁신지원사업 3주기 1차년도 성과평가'에서 교육혁신과 자체 성과관리 전 분야 S등급을 받았다고 21일 밝혔다. 이번 평가는 대학의 교육혁신 전략 실행 성과와...",
       "url": "https://www.shinailbo.co.kr/news/articleView.html?idxno=5042983"
+    },
+    {
+      "source": "naver",
+      "press": "kmaeil.com",
+      "date": "2026.07.21",
+      "title": "박은주 의원, 보육·아동에 90.9% 편중된 여가국 예산 구조 날카롭게 지...",
+      "snippet": "경기도의회 여성가족평생교육위원회 박은주 의원이 제392회 임시회 여성가족평생교육위원회 업무보고에서... 끝으로 박은주 의원은 \"안산, 파주, 김포, 화성 등 외국인 밀집지역에서 활동해 온 전문 민간단체를 중심으로...",
+      "url": "https://www.kmaeil.com/news/articleView.html?idxno=645999"
     },
     {
       "source": "naver",
@@ -552,14 +560,6 @@
       "title": "경기아트센터, 경기도음악협회와 '제11회 대한민국 청소년 교향악축제'...",
       "snippet": "경기아트센터와 경기도음악협회는 다음달 1일부터 오는 9월 5일까지 군포·화성·안산·이천·고양·수원 등... 최근 클래식 음악계에서는 전문 연주 인력의 저변 확대와 청소년 예술교육의 중요성이 더욱 커지고 있다. 지역...",
       "url": "https://weekly.hankooki.com/news/articleView.html?idxno=7175089"
-    },
-    {
-      "source": "naver",
-      "press": "dkilbo.com",
-      "date": "2026.07.21",
-      "title": "【기획】김천시 2차 공공기관 이전 균형발전 완성 향해 총력전",
-      "snippet": "안산공원을 찾은 시민들에게 '희망'과 '밝은 미래'라는 꽃말을 가진 오스테오스펄멈 화분을 전달하며... 이들의 상생의 노력은 미래 세대를 위한 교육으로도 이어지고 있다. 오는 8월에는 한국도로공사 드론동호회와 율곡동...",
-      "url": "https://www.dkilbo.com/news/articleView.html?idxno=549100"
     },
     {
       "source": "google",
@@ -1026,14 +1026,6 @@
       "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE42TzdwVy1NU3UtdU5yYkZlckRPRDhrT09id0oyYnhnaU5OMFhHd3YwVnRlUUNiSnh6ZEZxaF9MRGp1aXBJM0s5akxHMWJsWDhMb0s4TUdiYThqZ2NsWDVsdm5tb1o?oc=5"
     },
     {
-      "source": "google",
-      "press": "B world",
-      "date": "2026.07.16",
-      "title": "\"집 앞 중학교 두고 원거리 배정?\"…안산 해양동 학부모들 반발",
-      "snippet": "\"집 앞 중학교 두고 원거리 배정?\"…안산 해양동 학부모들 반발 B world",
-      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9nLXlWSVAzYXdjY1gwMEhybEdzRW8yZlQ4REZEWm5ZM0o4Ynk1RVF5bVo2aHFQLXNIUTliYzN6MFNaZ0hPX1JDMkhPMDhYZXhhcVNBbFdYZVdaYURSUFY1X0s2QU0zMkZHRnd1WG1lZjg?oc=5"
-    },
-    {
       "source": "naver",
       "press": "topstarnews.net",
       "date": "2026.07.15",
@@ -1136,6 +1128,14 @@
       "title": "안산교육지원청, AI·디지털 교육 성장 생태계 만든다",
       "snippet": "안산교육지원청, AI·디지털 교육 성장 생태계 만든다 경기일보",
       "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE93Zm9aTm9mN1RYTWY3cUVZUnZqQmRMVm0yWVJBVi02S2Y5ZS1uTW9kWlBuT0I3bmhpcWJVUW9wTy1EaWtFQy1jTml6S19rbmV3VXZEbTRuVFpLU0U?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "매일일보",
+      "date": "2026.07.07",
+      "title": "안산교육지원청, '디지털 CO-LINK 네트워크' 개최",
+      "snippet": "안산교육지원청, '디지털 CO-LINK 네트워크' 개최 매일일보",
+      "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE51TUJlQzJ1LUNJaThNRmMwRlhxMVA3UmU0Q05DZWNMaWg1bTJ4YjB2dnFhYk5tR0VoSE91c1ZCbFhfOGVuVkx6Si1ob0QxN0hVMjlNOGhfYXQzM0lPd0MxSVl5aV8?oc=5"
     },
     {
       "source": "google",
@@ -1867,19 +1867,19 @@
     },
     {
       "source": "google",
-      "press": "경기인저널",
-      "date": "2026.03.23",
-      "title": "장윤정 경기도의원, 학교 급식실 환기설비 개선 TF 가동",
-      "snippet": "장윤정 경기도의원, 학교 급식실 환기설비 개선 TF 가동 경기인저널",
-      "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFBYR1pMeTQ2OWJXT1JGb045UG9Jb2xWaUtFV1diVFVzZHFMYXlUZTJ3a3NXV0RMb1dvZ0ZKMldHSmo0MzJtT3R6LVZOYUg0WnRwa3FFQnE5d0pRbHhhVFlneW9KY2Y?oc=5"
-    },
-    {
-      "source": "google",
       "press": "안산뉴스",
       "date": "2026.03.23",
       "title": "장윤정 도의원, 학교 급식실 소음·환기 개선 나선다",
       "snippet": "장윤정 도의원, 학교 급식실 소음·환기 개선 나선다 안산뉴스",
       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE8wMlZVRFNmNlNFR0E3T3BIVElKOVp2RHNDN1k1Mml4Z2dVX0xTT0RvUnJPc3gtMWpMUUhxaHc1Uk94eHpmeU9HamZQUmQtd1VJV1Fkdm5iOWFwbHhaYV95aE9Ra0pscDk3Q0ZISA?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "경기인저널",
+      "date": "2026.03.23",
+      "title": "장윤정 경기도의원, 학교 급식실 환기설비 개선 TF 가동",
+      "snippet": "장윤정 경기도의원, 학교 급식실 환기설비 개선 TF 가동 경기인저널",
+      "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFBYR1pMeTQ2OWJXT1JGb045UG9Jb2xWaUtFV1diVFVzZHFMYXlUZTJ3a3NXV0RMb1dvZ0ZKMldHSmo0MzJtT3R6LVZOYUg0WnRwa3FFQnE5d0pRbHhhVFlneW9KY2Y?oc=5"
     },
     {
       "source": "google",
@@ -1904,14 +1904,6 @@
       "title": "경기도의회 장윤정 의원, 안산 학교 환경개선에 87억 원 규모 예산 확보",
       "snippet": "경기도의회 장윤정 의원, 안산 학교 환경개선에 87억 원 규모 예산 확보 한국미디어뉴스",
       "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE5BMHFCVjZkaGFuNG42NmtvcmxCSVdWTVdQd083dWV5clhBTE5wT21UT25aM3o4OGVHWlV6dXZUYUVxaHl2cG9SQkFYcmxKOU1zMUpIQTV2dHJzalFWUl9qX1F3ci1SUQ?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "메트로신문",
-      "date": "2026.03.05",
-      "title": "경기도의회 장윤정 의원, \"학교 환경, 아이들 안전·학습권과 직결\"",
-      "snippet": "경기도의회 장윤정 의원, \"학교 환경, 아이들 안전·학습권과 직결\" 메트로신문",
-      "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE5LUk95T2RUay1oOU5rbC0ycEU0SWpWN0syU05HQUZLQ01UcTJ0S2dZaTBrZTJaUUZHWk4yOFlwZUs3NkcwaFNyQWw3ZnZsNmY5VUQyM2NZMkpoY251ampkVA?oc=5"
     },
     {
       "source": "google",
