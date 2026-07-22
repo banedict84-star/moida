@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-22 10:00 UTC",
+  "updated": "2026-07-22 12:12 UTC",
   "items": [
     {
       "source": "naver",
@@ -27,19 +27,19 @@
     },
     {
       "source": "google",
-      "press": "안산타임스",
-      "date": "2026.07.22",
-      "title": "장윤정 경기도의원, 경기도 사회적경제원 및 신용보증재단 현안 집중 질의",
-      "snippet": "장윤정 경기도의원, 경기도 사회적경제원 및 신용보증재단 현안 집중 질의 안산타임스",
-      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE9XVDBiT05zb0ZCN1ZBWm5zSVVIYnJ6NmFkNkdnU2NwVFZCaVVjd0Q4UkxDVHlUaXU4UHFraFVOb1BPSFdHOTZ1ZUwxcW1NRHZwOEt0MEtGcUNOUHhEN0pnTEJ4UGZYZHJCdmNrVFd6UdIBc0FVX3lxTE1FaE1RWXVHVlpUMFdOclpDaFhfa0dpa3lqbjd3VXdTd1dqN3Q2ZWxrWkY0V1VXRVBhbTBLNzdCLXdPR2pRbVcxWW9vT3V2VjhBZ0Zzd3RCckEwNEZUQkdfNTJZV2FYM0FET1doWGRDbEN2NDA?oc=5"
-    },
-    {
-      "source": "google",
       "press": "전국매일신문",
       "date": "2026.07.22",
       "title": "장윤정 경기도의원, 아동 돌봄 서비스와 계약직 인력 구조 문제 집중 질의",
       "snippet": "장윤정 경기도의원, 아동 돌봄 서비스와 계약직 인력 구조 문제 집중 질의 전국매일신문",
-      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFB5Tm9fUHZGTVlKbnJNWGRSS3lRMlZXc3hjUEtBMmtwZjJZTExNaWRxZk5uRGhKSEhUdHNIaHVLYUk1M1hfUHV5RGVIaEhxbURVODlvbldEMHFJVTFjVEZQX1hfbFlVYUNzamlhSTJB?oc=5"
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE45clVOazRkbGQ1WkVuRVNXRGkxSkNERDJoNEJBeVNrTzhBdVlUb1B2dXdXY3dkR184aF9oWHB2QXRRN29kb3VITHAzekZvTG9Ic2RvR3Eya09na0l0YjhqT1pQWXU1Uk1k?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "newspeak.kr",
+      "date": "2026.07.22",
+      "title": "장윤정 경기도의원 경기도 사회적경제원 및 신용보증재단 현안 집중 질의",
+      "snippet": "장윤정 경기도의원 경기도 사회적경제원 및 신용보증재단 현안 집중 질의 newspeak.kr",
+      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9aTEpyQ0RBNzN2RWlHUTRtUldpQUJ1VkdCWmJsZ0wxZTdtS3Y1ZENYZjRHZk11YXg1djJ6bjdGZ2dwV01kcVFNa0JqVTZ0Z29RbkhSaDZWYVVFYjNsWDgydm52Y3FOMkUwOEE?oc=5"
     },
     {
       "source": "google",
@@ -80,6 +80,14 @@
       "title": "안산시, 미용사회 상록·단원구지부 재능 나눔 봉사 실시",
       "snippet": "안산시, 미용사회 상록·단원구지부 재능 나눔 봉사 실시 이런뉴스",
       "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE4zUkwzcjUteHV1OERmWl9TbWY3SFVjSXB5QXhwTTVoZEV3bnVNTmtPTU9Eay14VjV0TGM3T2ppYnFNQ3F3VjRjaFRPeW9mRU1vMlBIbDYwMkZkUjc3VXc?oc=5"
+    },
+    {
+      "source": "naver",
+      "press": "joongboo.com",
+      "date": "2026.07.22",
+      "title": "경기도 31개 시군 '지역 숙제' 제시…북부는 규제·동부는 환경·남부는...",
+      "snippet": "이민근 안산시장은 안산사이언스밸리 경제자유구역을 기반으로 소부장 산업을 키우고 앵커기업을... 최원용 평택시장은 반도체 산업과 국가안보 기능이 공존하는 지역 여건을 고려해 교통·교육·의료 분야 지원을...",
+      "url": "https://www.joongboo.com/news/articleView.html?idxno=363732083"
     },
     {
       "source": "naver",
@@ -442,14 +450,6 @@
       "url": "https://view.asiae.co.kr/article/2026071721153124237"
     },
     {
-      "source": "naver",
-      "press": "kmaeil.com",
-      "date": "2026.07.22",
-      "title": "안산시, '회계·결산 담당 공무원 직무 역량 강화 교육' 진행",
-      "snippet": "지난 21일, 안산시가 각 부서 회계·결산 담당자와 산하기관 직원 등 100여 명을 대상으로 '회계·결산 담당 공무원 직무 역량 강화 교육'을 실시했다. 단원구청 단원홀에서 실시된 이번 교육은 회계 업무의 투명성과...",
-      "url": "https://www.kmaeil.com/news/articleView.html?idxno=646091"
-    },
-    {
       "source": "google",
       "press": "엔디엔뉴스",
       "date": "2026.07.22",
@@ -459,11 +459,19 @@
     },
     {
       "source": "google",
-      "press": "mediatoday.asia",
+      "press": "수원인터넷뉴스",
+      "date": "2026.07.22",
+      "title": "안산교육지원청 “다름이 자산이 되는 교실 이야기”",
+      "snippet": "안산교육지원청 “다름이 자산이 되는 교실 이야기” 수원인터넷뉴스",
+      "url": "https://news.google.com/rss/articles/CBMiQ0FVX3lxTE9zemRmZ3JsS0VNMVVyY0x0Mi14MjRZYjROSGE5c3RWNmdVWkc4dzE3MnhjMmgzLVd3bkRCTXVlbExQT0E?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "뉴스파노라마",
       "date": "2026.07.22",
       "title": "‘문화 체험으로 채우는 마음 회복’ 안산교육지원청, 교원 대상 '마음 쉼표 시네마' 운영",
-      "snippet": "‘문화 체험으로 채우는 마음 회복’ 안산교육지원청, 교원 대상 '마음 쉼표 시네마' 운영 mediatoday.asia",
-      "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxOa1hQR3B5c0ItZlk2MUNnZkprazlfd0RDc0ZGTWJwdDlnSjdOZVJIUl82bEFidS0tWmZUZ2lHQlNuNkpwelROcTlNVFF3VjBPMWJGTlFTblByeWZDSGx3NDRrcGtVeC1BaGdaMmtsc0w5M1oxRlc3bTFQQ0FlbEtiLTdHWjdaM2hsZHpSNHkxSHRKVEM4QWZnQQ?oc=5"
+      "snippet": "‘문화 체험으로 채우는 마음 회복’ 안산교육지원청, 교원 대상 '마음 쉼표 시네마' 운영 뉴스파노라마",
+      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE5pdFBKQXEybFZScHhNMGgwa1Znb3A1RkM4ZFF6N042WUN6VWg1Zk9vMFNtVG5nRU9VbmNtTktxb3M5cXBZR2RvU2hMaWdQOGZOY21ZS1kzMTZZVXIwSHhBb3d6S2V0SVFUSEZGOUhOWQ?oc=5"
     },
     {
       "source": "google",
@@ -472,14 +480,6 @@
       "title": "\"휴대폰 대신 독서·예술·체육을\" 안산교육청, 폰 OFF TF팀 가동",
       "snippet": "\"휴대폰 대신 독서·예술·체육을\" 안산교육청, 폰 OFF TF팀 가동 뉴시스",
       "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTFBaNUxoVnA3d1JSVHRzTngwVE1YRlFNeUtURlY0Z2N2LWE1WHNoYlZkQm9ZRFZvNVVDZTkxeTdnRXV0eG0wOWNENHMyN3dMcTU3cGE2bnVXVWRkbkRUYmtvT9IBeEFVX3lxTFBXZjRFNFFXaGZZUHFVdkhrNjNJT3NQR3pnR0NwZERpNlNSWFd5M2JmQ0xKTVJQdFQ2YkdHWkQwV0xPVUdmX2Jvdk5fMEhwN1FibkRjelNWd3h0MTRibUdLaHFFd1dBNkRNYnRaX3JtSmF1Vlhla28yTg?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "엔디엔뉴스",
-      "date": "2026.07.22",
-      "title": "안산교육지원청 “다름이 자산이 되는 교실 이야기”",
-      "snippet": "안산교육지원청 “다름이 자산이 되는 교실 이야기” 엔디엔뉴스",
-      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTFB0RnlLM0dNd1A0eWMtOE9wZGlZRmQ0YUwtUUZCU2Q4cTBGc1lDWHQ0cnlVN1VvcFJYV3NkWkZBTFRrZ3dNN2Uyb21LLVNYVWVmODFQcFRGUi1XSlFnekVGQnd6MlVaVTVRSllLamxiWmNkQdIBckFVX3lxTFB0RnlLM0dNd1A0eWMtOE9wZGlZRmQ0YUwtUUZCU2Q4cTBGc1lDWHQ0cnlVN1VvcFJYV3NkWkZBTFRrZ3dNN2Uyb21LLVNYVWVmODFQcFRGUi1XSlFnekVGQnd6MlVaVTVRSllLamxiWmNkQQ?oc=5"
     },
     {
       "source": "naver",
@@ -571,11 +571,11 @@
     },
     {
       "source": "google",
-      "press": "네이트",
+      "press": "서울신문",
       "date": "2026.07.21",
       "title": "장윤정 경기도의원, 경제노동위원회 부위원장으로 선임, 첫 업무보고부터 민생 현안 해결 박차",
-      "snippet": "장윤정 경기도의원, 경제노동위원회 부위원장으로 선임, 첫 업무보고부터 민생 현안 해결 박차 네이트",
-      "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTFBuY0x5R0xVa2xhRHA3ZW5TT2Zfa3I1amR1b2V5TWlMV0ZidjJ2UjZOMzRHclM1cEptMkhGUlVOajRpcktMYXdUYi1JbkJITFg5MTE0?oc=5"
+      "snippet": "장윤정 경기도의원, 경제노동위원회 부위원장으로 선임, 첫 업무보고부터 민생 현안 해결 박차 서울신문",
+      "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxQWkdIZlowVlJjbUtTeFNEbVhMZDVhektpTGEwZnpIYklJY2tmeEZYcmlyQXlQR0k5RFZyZDV5aE9pOFVKMC13UV9HTmNUekp1MFhkWF9MZzBtbjRMYy10SGQ0NDNOX1NlRnVLLWhOOGJ0UWZFN3EyMkJxT294Qi1fZHRXMC1nOGpzSjNQbzRvZjdCLUE?oc=5"
     },
     {
       "source": "google",
@@ -1135,7 +1135,7 @@
       "date": "2026.07.12",
       "title": "안산교육지원청, ‘2027학년도 맞춤형 대학입시 설명회’ 개최",
       "snippet": "안산교육지원청, ‘2027학년도 맞춤형 대학입시 설명회’ 개최 v.daum.net",
-      "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTFAtdGFZbVBFWWJjd2c1a3p0M3hNWlZEd2wyUlJ6UmFKb283Y0twa3QzVEJ3b0R6dGh2SWlpVnc3UHRUaEU1QUprZV9VejB5bVU?oc=5"
+      "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE5Dc3R4SjVTMy1Qb2dSWjhlbzRrY1VGbEM2ZDhETFd6SUxzRkZWaHlmd0U5U3I5UGVQSXJPNnlsbTFKQmtpeGc?oc=5"
     },
     {
       "source": "google",
@@ -1635,14 +1635,6 @@
     },
     {
       "source": "google",
-      "press": "v.daum.net",
-      "date": "2026.05.13",
-      "title": "안산 상록구 다세대 주택 화재…1명 사망·3명 부상",
-      "snippet": "안산 상록구 다세대 주택 화재…1명 사망·3명 부상 v.daum.net",
-      "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE1hLUp2SWhtWjM3VFJJdVV1WGhTaDk0SGVLa3Zia2NwS3lFZGdPbHI0YXpOSGhYZ3RhVFNwT0ppS0MxQVBTUVE?oc=5"
-    },
-    {
-      "source": "google",
       "press": "서울신문",
       "date": "2026.05.13",
       "title": "안산 상록구 다세대 주택 불…1명 사망·3명 부상",
@@ -1656,6 +1648,14 @@
       "title": "안산 상록구 다세대주택서 불…1명 사망·3명 중경상",
       "snippet": "안산 상록구 다세대주택서 불…1명 사망·3명 중경상 연합뉴스",
       "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE91T1VUTjFsVE1fVzdLbWhjdnUyZVh4blRVUmszcnVzT25IOHQ1T2J1Uk16SHM0UHFoeDlXUllVNWZmM19mX2pSaXliOU9jNmdfYVNkU3p3QUI2XzjSAWBBVV95cUxQRUVibk9OcUtnV0dqeEREMF80dmI3WUJONzVXTmY4UU9SNEtrczl4RU1XVnpKY3ZhSkFhLWN1NF9lVEx1aS1zTF9rdUNhWEUwMmlCV1p6RlV3dWNFSnVKOFg?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "경기일보",
+      "date": "2026.05.13",
+      "title": "안산 상록구 다세대 주택 화재…1명 사망·3명 부상",
+      "snippet": "안산 상록구 다세대 주택 화재…1명 사망·3명 부상 경기일보",
+      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE53M3hjTDY4NG44T0Q5TkNFaXJrSGZxNzdhM2h4Vjg5SzgyVEs0enRjRGNTa0NpaUxsSTBSRjdjaW42RmVabHdfVGlaakkwOTRFWnRZU0ZpTWFKZ0k?oc=5"
     },
     {
       "source": "naver",
