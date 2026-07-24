@@ -1,6 +1,14 @@
 {
-  "updated": "2026-07-24 15:13 UTC",
+  "updated": "2026-07-24 17:05 UTC",
   "items": [
+    {
+      "source": "naver",
+      "press": "gukjenews.com",
+      "date": "2026.07.25",
+      "title": "1234회 로또판매·추첨시간, 1233회 1등당첨지역 공개",
+      "snippet": "경기 안산시 상록구 광덕 수동 19 OO복권전문점 경기 평택시 평남로 반자동 20 OO씨스페이스치악산점 강원 원주시 행구로 수동 21 OO복권판매점 충남 금산군 하마전로 자동 22 OO복권 전북 전주시 완산구 중화산로...",
+      "url": "https://www.gukjenews.com/news/articleView.html?idxno=3645800"
+    },
     {
       "source": "naver",
       "press": "kjdaily.com",
@@ -459,19 +467,19 @@
     },
     {
       "source": "naver",
-      "press": "busan.com",
-      "date": "2026.07.23",
-      "title": "스토킹하던 중학생 후배 살해하려한 지적장애 10대, 파기환송심서 실형...",
-      "snippet": "A 군은 2024년 8월 19일 경기 안산시 상록구의 한 중학교 근처에서 등교하던 B(당시 14세) 양의 머리를 둔기로 내리치고 흉기를 휘둘러 다치게 한 혐의로 기소됐다. 그는 마침 현장을 지나던 시민에게 제압된 데 이어 신고를...",
-      "url": "https://www.busan.com/view/busan/view.php?code=2026072316234025206"
-    },
-    {
-      "source": "naver",
       "press": "mt.co.kr",
       "date": "2026.07.23",
       "title": "여중생 스토킹하다 살해하려 한 지적장애 10대…\"심신미약 아니었다\" 결...",
       "snippet": "A군은 2024년 8월19일 오전 8시20분쯤 경기 안산시 상록구 본오동 한 중학교 인근에서 등교하던 B양(당시 14세) 머리를 둔기로 내리친 뒤 흉기를 휘둘러 살해하려 한 혐의로 기소됐다. 당시 A군은 행인에게 제압돼 현행범...",
       "url": "https://www.mt.co.kr/society/2026/07/23/2026072316185096227"
+    },
+    {
+      "source": "naver",
+      "press": "busan.com",
+      "date": "2026.07.23",
+      "title": "스토킹하던 중학생 후배 살해하려한 지적장애 10대, 파기환송심서 실형...",
+      "snippet": "A 군은 2024년 8월 19일 경기 안산시 상록구의 한 중학교 근처에서 등교하던 B(당시 14세) 양의 머리를 둔기로 내리치고 흉기를 휘둘러 다치게 한 혐의로 기소됐다. 그는 마침 현장을 지나던 시민에게 제압된 데 이어 신고를...",
+      "url": "https://www.busan.com/view/busan/view.php?code=2026072316234025206"
     },
     {
       "source": "naver",
@@ -658,14 +666,6 @@
       "url": "https://news.google.com/rss/articles/CBMickFVX3lxTFB0QklTeWZnR3dtVENPWWJVYXlEV0JuMUdJQ29iUF80alBKZWc2dlVuekxQUWZoYTdvT0hERkxHWnlnMXFVX3Q4emp2MUI0TGlTWVBodWtoVHp6MnN4c3l4YzgyYklwUWJPSzNaVXVLQmZzZw?oc=5"
     },
     {
-      "source": "google",
-      "press": "일간경기",
-      "date": "2026.07.22",
-      "title": "장윤정 의원, 사회적경제원·경기신보에 현안 질의",
-      "snippet": "장윤정 의원, 사회적경제원·경기신보에 현안 질의 일간경기",
-      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE00RWZWa19fM2hSMmg2ZWl3YlN2SXY4Tl9ob2tsMDUzRThDaUU2dzhMTmxad2pNRzVaUTVZRWZqX25hU3BIeEpLYTN3M3l3aDhsTWI0U3FJaEZWamVjVFlqeTB1X1RsVkdN?oc=5"
-    },
-    {
       "source": "naver",
       "press": "siminilbo.co.kr",
       "date": "2026.07.22",
@@ -723,11 +723,11 @@
     },
     {
       "source": "google",
-      "press": "경기헤드뉴스",
+      "press": "엔디엔뉴스",
       "date": "2026.07.22",
       "title": "안산교육지원청 “다름이 자산이 되는 교실 이야기”",
-      "snippet": "안산교육지원청 “다름이 자산이 되는 교실 이야기” 경기헤드뉴스",
-      "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE1vVXg0cHgyOHFPQ01iY0ZPdVBzX09DS3BqeFdzT0RMdU95eEpFR0R3S3k1c2wtUlk3Wk1FdWJTUTBvVU4taGYtdVVMeWdjbFJFdmlEU2JxNUR0X2JzcWhv?oc=5"
+      "snippet": "안산교육지원청 “다름이 자산이 되는 교실 이야기” 엔디엔뉴스",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTFB0RnlLM0dNd1A0eWMtOE9wZGlZRmQ0YUwtUUZCU2Q4cTBGc1lDWHQ0cnlVN1VvcFJYV3NkWkZBTFRrZ3dNN2Uyb21LLVNYVWVmODFQcFRGUi1XSlFnekVGQnd6MlVaVTVRSllLamxiWmNkQdIBckFVX3lxTFB0RnlLM0dNd1A0eWMtOE9wZGlZRmQ0YUwtUUZCU2Q4cTBGc1lDWHQ0cnlVN1VvcFJYV3NkWkZBTFRrZ3dNN2Uyb21LLVNYVWVmODFQcFRGUi1XSlFnekVGQnd6MlVaVTVRSllLamxiWmNkQQ?oc=5"
     },
     {
       "source": "google",
@@ -1064,14 +1064,6 @@
       "title": "안산시, 본오동 준공업지역에 120면 규모 무료 공영 주차장 조성",
       "snippet": "경기 안산시는 상록구 본오동 준공업지역에 120면 규모의 공영 주차장 조성을 완료했다고 20일 밝혔다. 자동차 정비업체와 중소규모 제조업체 등이 밀집한 이 지역은 주차 공간이 부족해 이면도로 불법주차가 만연한...",
       "url": "https://www.yna.co.kr/view/AKR20260720039200061?input=1195m"
-    },
-    {
-      "source": "naver",
-      "press": "newsis.com",
-      "date": "2026.07.20",
-      "title": "안산시 본오동 준공업지역에 120면 공영주차장 준공",
-      "snippet": "경기 안산시가 상록구 본오동 준공업지역에 120면 규모의 공영주차장을 만들었다. 시는 자동차 정비업체와 제조업체가 밀집한 본오동 준공업지역의 부족한 주차공간 확보를 위해 경기도 특별조정교부금 5억원과...",
-      "url": "https://www.newsis.com/view/NISX20260720_0003714694"
     },
     {
       "source": "google",
@@ -1880,6 +1872,14 @@
       "title": "장윤정 경기도의원, 안산 제3선거구 재선 출마 선언",
       "snippet": "장윤정 경기도의원, 안산 제3선거구 재선 출마 선언 경기종합뉴스",
       "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTFBkWlpOOHVUNFFBMVRySTRaOU9vVlo5d0o0cG5IbEd1QXc4MGYxNnl2bGpfSzVfbXMzVWZQcHUxckNkT2hHVExjZmJLTXFaRHdZNHhpTkwyZHVLWk9hOFpyVlVDZzlYS1JJR2lMdVg2X3pBYXhJ?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "오토투데이",
+      "date": "2026.04.02",
+      "title": "장윤정·경기의회, 기계설비유지관리자 처우 개선 논의",
+      "snippet": "장윤정·경기의회, 기계설비유지관리자 처우 개선 논의 오토투데이",
+      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE41TnQ0TkpCdXd0Slo5QkI3RWRCZXp4T1lmVWxzSUg5ZzBueXBOa0FuclNydU5CZmF4bnNqektrZzE1a2xuOHBRTWJYNHhZaTlneXFBa3hGajVtdEp3eHVaVDhRRHMtT0xvZ0lPMnpB?oc=5"
     },
     {
       "source": "google",
