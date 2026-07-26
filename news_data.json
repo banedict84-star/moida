@@ -1,6 +1,54 @@
 {
-  "updated": "2026-07-26 04:06 UTC",
+  "updated": "2026-07-26 07:11 UTC",
   "items": [
+    {
+      "source": "naver",
+      "press": "kwnews.co.kr",
+      "date": "2026.07.26",
+      "title": "하늘내린인제 리틀야구대회 서울성동-남양주 첫승",
+      "snippet": "인제군유소년팀은 안산상록구리틀을 맞아 1회말 공격에서 이재하의 2루타와 상대에러 등을 엮어 2점을 올리고 선발 전상진이 2이닝 무실점하며 2대0으로 앞서 나갔으나 3회와 5회에 각각 2점씩 내주면서 4대2로 아쉽게...",
+      "url": "https://www.kwnews.co.kr/article/20260726500621"
+    },
+    {
+      "source": "naver",
+      "press": "tournews21.com",
+      "date": "2026.07.26",
+      "title": "호반건설, 경기 군포 금정3구역 재개발 수주…656세대 브랜드 단지 조성",
+      "snippet": "교육 여건도 눈에 띈다. 군포양정초·군포중·금정중·군포고가 인근에 자리하고 있고, 평촌·산본... 올해 들어서도 경기 안산 고잔연립6구역 재건축사업과 면목역6의3·4·5구역 가로주택정비사업을 잇따라 따내며 관련...",
+      "url": "https://www.tournews21.com/news/articleView.html?idxno=139394"
+    },
+    {
+      "source": "naver",
+      "press": "incheonilbo.com",
+      "date": "2026.07.26",
+      "title": "미래 클래식 주역들 '화합의 선율'",
+      "snippet": "화성, 안산, 이천, 고양, 수원 등 도내 6개 지역에서 '제11회 대한민국 청소년 교향악축제'를 연다. 대한민국... 성장하는 교육의 장으로 자리하고 있다. 참가자들은 다양한 지역의 연주자들과 교류하며 음악적 시야를...",
+      "url": "https://www.incheonilbo.com/news/articleView.html?idxno=1328061"
+    },
+    {
+      "source": "naver",
+      "press": "ajunews.com",
+      "date": "2026.07.26",
+      "title": "호반건설, 군포 금정3구역 재개발 수주…2300억원 규모 정비사업 확보",
+      "snippet": "교육 환경도 갖췄다. 군포양정초, 군포중, 금정중, 군포고 등이 인접해 있으며 평촌과 산본 학원가... 앞서 호반건설은 올해 경기 안산 고잔연립6구역 재건축사업과 서울 면목역6의3·4·5구역 가로주택정비사업 등을...",
+      "url": "https://www.ajunews.com/view/20260726140730898"
+    },
+    {
+      "source": "naver",
+      "press": "khan.co.kr",
+      "date": "2026.07.26",
+      "title": "오늘의 인사-재정경제부, 행정안전부, 문화체육관광부 외",
+      "snippet": "전보 △안산지청장 정원희 △부산고용센터소장 곽희경 △양산지청장 이종복 △통영지청장 남현주... 과학영재교육연구원장 이희승 △생명과학기술대학장 겸 융합인재학부장 김진우 △공과대학장 이태식 △AI대학장 겸...",
+      "url": "https://www.khan.co.kr/article/202607261402001"
+    },
+    {
+      "source": "naver",
+      "press": "shinailbo.co.kr",
+      "date": "2026.07.26",
+      "title": "안산대·광주시청소년수련관, 청소년 성장 지원 업무협약 체결",
+      "snippet": "안산대는 동물교감교육 분야의 전문성을 바탕으로 현장 중심 체험학습 기회를 제공해 청소년들의 역량 강화와 인성 함양을 지원할 방침이다. 또 가족 참여형 프로그램과 지역사회 연계사업을 확대해 청소년과 대학...",
+      "url": "https://www.shinailbo.co.kr/news/articleView.html?idxno=5044585"
+    },
     {
       "source": "naver",
       "press": "realty.chosun.com",
@@ -67,19 +115,19 @@
     },
     {
       "source": "naver",
-      "press": "kdfnews.com",
-      "date": "2026.07.26",
-      "title": "호반건설, 군포 금정3구역 수주...\"656가구 브랜드 단지 조성\"",
-      "snippet": "호반건설 경기 군포시 금정3구역 정비사업 투시도 교육시설로는 군포양정초와 군포중, 금정중, 군포고... 호반건설은 올해 경기 안산 고잔연립6구역 재건축과 서울 면목역6의3·4·5구역 가로주택정비사업을 수주한 바...",
-      "url": "http://www.kdfnews.com/news/articleView.html?idxno=185696"
-    },
-    {
-      "source": "naver",
       "press": "ikld.kr",
       "date": "2026.07.26",
       "title": "호반건설, 2300억 경기 군포 금정3구역 재개발사업 수주",
       "snippet": "교육과 생활 인프라도 우수하다. 군포양정초와 군포중, 금정중, 군포고가 인접해 있으며 평촌과 산본... 올해 경기 안산 고잔연립6구역 재건축사업을 비롯해 면목역6의3·4·5구역 가로주택정비사업을 잇달아 수주하며...",
       "url": "http://www.ikld.kr/news/articleView.html?idxno=338111"
+    },
+    {
+      "source": "naver",
+      "press": "kdfnews.com",
+      "date": "2026.07.26",
+      "title": "호반건설, 군포 금정3구역 수주...\"656가구 브랜드 단지 조성\"",
+      "snippet": "호반건설 경기 군포시 금정3구역 정비사업 투시도 교육시설로는 군포양정초와 군포중, 금정중, 군포고... 호반건설은 올해 경기 안산 고잔연립6구역 재건축과 서울 면목역6의3·4·5구역 가로주택정비사업을 수주한 바...",
+      "url": "http://www.kdfnews.com/news/articleView.html?idxno=185696"
     },
     {
       "source": "naver",
@@ -507,38 +555,6 @@
     },
     {
       "source": "naver",
-      "press": "sisunnews.co.kr",
-      "date": "2026.07.24",
-      "title": "의료법인더존의료재단 경희요양병원, 안산인재육성재단에 장학금 1,000만...",
-      "snippet": "의료법인더존의료재단 경희요양병원(이사장 이금자)이 지역사회 인재 양성과 교육 발전을 위해 뜻깊은 나눔을 실천했다. 경희요양병원은 지난 23일, 재단법인 안산인재육성재단에 안산동산고등학교 학생들을 위한...",
-      "url": "http://www.sisunnews.co.kr/news/articleView.html?idxno=243013"
-    },
-    {
-      "source": "naver",
-      "press": "health.chosun.com",
-      "date": "2026.07.24",
-      "title": "[병원계 이모저모] 고려대 안산병원, 권역모자의료센터 심포지엄 개최 ...",
-      "snippet": "■고려대 안산병원, 권역모자의료센터 심포지엄 개최 고려대학교 안산병원 권역모자의료센터가 고위험... 세브란스는 다양한 치료기기를 활용한 맞춤형 시술 경험을 축적하는 한편, 국내외 의료진을 대상으로 교육과...",
-      "url": "https://health.chosun.com/site/data/html_dir/2026/07/24/2026072401233.html"
-    },
-    {
-      "source": "naver",
-      "press": "gukjenews.com",
-      "date": "2026.07.24",
-      "title": "경기도교육청, 언어문화다양성 교육 시범기관 20곳 선정·운영",
-      "snippet": "지역별로는 수원·시흥·안산이 각 3곳, 부천·오산·포천 각 2곳, 군포·성남·안성·파주·평택 각 1곳씩이다. 이들 기관은 여건과 특성에 따라 누리과정과 연계한 생활, 예술, 놀이 범주를 선택해 언어문화 다양성 교육을...",
-      "url": "https://www.gukjenews.com/news/articleView.html?idxno=3644996"
-    },
-    {
-      "source": "naver",
-      "press": "medical-tribune.co.kr",
-      "date": "2026.07.24",
-      "title": "클래스병원, 안산시 파크골프협회와 업무협약",
-      "snippet": "이번 협약에 따라 클래스병원은 안산시 파크골프협회의 공식 지정병원으로서 협회 회원 및 가족들을 대상으로 무릎, 어깨 등 관절 및 근골격계 질환의 예방 교육과 신속한 의료 편의를 지원할 예정이다. 클래스병원...",
-      "url": "http://www.medical-tribune.co.kr/news/articleView.html?idxno=214614"
-    },
-    {
-      "source": "naver",
       "press": "kyeonggi.com",
       "date": "2026.07.23",
       "title": "경기도의회 예결특위 위원장에 백승기·이채명…윤리특위 위원장 유종상",
@@ -579,19 +595,19 @@
     },
     {
       "source": "naver",
-      "press": "mt.co.kr",
-      "date": "2026.07.23",
-      "title": "여중생 스토킹하다 살해하려 한 지적장애 10대…\"심신미약 아니었다\" 결...",
-      "snippet": "A군은 2024년 8월19일 오전 8시20분쯤 경기 안산시 상록구 본오동 한 중학교 인근에서 등교하던 B양(당시 14세) 머리를 둔기로 내리친 뒤 흉기를 휘둘러 살해하려 한 혐의로 기소됐다. 당시 A군은 행인에게 제압돼 현행범...",
-      "url": "https://www.mt.co.kr/society/2026/07/23/2026072316185096227"
-    },
-    {
-      "source": "naver",
       "press": "busan.com",
       "date": "2026.07.23",
       "title": "스토킹하던 중학생 후배 살해하려한 지적장애 10대, 파기환송심서 실형...",
       "snippet": "A 군은 2024년 8월 19일 경기 안산시 상록구의 한 중학교 근처에서 등교하던 B(당시 14세) 양의 머리를 둔기로 내리치고 흉기를 휘둘러 다치게 한 혐의로 기소됐다. 그는 마침 현장을 지나던 시민에게 제압된 데 이어 신고를...",
       "url": "https://www.busan.com/view/busan/view.php?code=2026072316234025206"
+    },
+    {
+      "source": "naver",
+      "press": "mt.co.kr",
+      "date": "2026.07.23",
+      "title": "여중생 스토킹하다 살해하려 한 지적장애 10대…\"심신미약 아니었다\" 결...",
+      "snippet": "A군은 2024년 8월19일 오전 8시20분쯤 경기 안산시 상록구 본오동 한 중학교 인근에서 등교하던 B양(당시 14세) 머리를 둔기로 내리친 뒤 흉기를 휘둘러 살해하려 한 혐의로 기소됐다. 당시 A군은 행인에게 제압돼 현행범...",
+      "url": "https://www.mt.co.kr/society/2026/07/23/2026072316185096227"
     },
     {
       "source": "naver",
@@ -704,6 +720,14 @@
       "title": "경기도의회 장윤정 의원, 경기도 사회적경제원 및 신용보증재단 현안 집중 질의",
       "snippet": "경기도의회 장윤정 의원, 경기도 사회적경제원 및 신용보증재단 현안 집중 질의 중부시사신문",
       "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTFBnRW9qeHgwM2dkRU9nOXI5anRjS2hNUEdrZmUwU2FmdlRESXVndjhfSl9abnZFOTZWUk1wTllZaHFPVVZubWRuZGdTamtlREt1NXJXQU03TTdlQ1g4TkEtNnNjRQ?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "일간경기",
+      "date": "2026.07.22",
+      "title": "장윤정 의원, 사회적경제원·경기신보에 현안 질의",
+      "snippet": "장윤정 의원, 사회적경제원·경기신보에 현안 질의 일간경기",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE00RWZWa19fM2hSMmg2ZWl3YlN2SXY4Tl9ob2tsMDUzRThDaUU2dzhMTmxad2pNRzVaUTVZRWZqX25hU3BIeEpLYTN3M3l3aDhsTWI0U3FJaEZWamVjVFlqeTB1X1RsVkdN?oc=5"
     },
     {
       "source": "naver",
@@ -1074,14 +1098,6 @@
       "url": "https://www.m-i.kr/news/articleView.html?idxno=1392798"
     },
     {
-      "source": "naver",
-      "press": "siminilbo.co.kr",
-      "date": "2026.07.20",
-      "title": "안산시 이동 지사협, 취약계층 여름나기 선풍기 지원",
-      "snippet": "경기 안산시(시장 이민근) 상록구 이동 지역사회보장협의체는 지난 16일 무더위에 취약한 저소득 홀몸 어르신 및 다자녀 가정 등 취약계층 23가구를 방문해 선풍기를 전달하고 안부를 확인했다고 20일 밝혔다. 이날 행사는...",
-      "url": "https://www.siminilbo.co.kr/news/newsview.php?ncode=1160265696285992"
-    },
-    {
       "source": "google",
       "press": "안산뉴스",
       "date": "2026.07.20",
@@ -1179,11 +1195,11 @@
     },
     {
       "source": "google",
-      "press": "경기일보",
+      "press": "v.daum.net",
       "date": "2026.07.07",
       "title": "안산교육지원청, AI·디지털 교육 성장 생태계 만든다",
-      "snippet": "안산교육지원청, AI·디지털 교육 성장 생태계 만든다 경기일보",
-      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE93Zm9aTm9mN1RYTWY3cUVZUnZqQmRMVm0yWVJBVi02S2Y5ZS1uTW9kWlBuT0I3bmhpcWJVUW9wTy1EaWtFQy1jTml6S19rbmV3VXZEbTRuVFpLU0U?oc=5"
+      "snippet": "안산교육지원청, AI·디지털 교육 성장 생태계 만든다 v.daum.net",
+      "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTFA0cnZIMW5SQ1FQcVV3cFFCZGU2LXJDNG5HZkxXSE5SQWdHbDZNcFpDa2hCLW4yZFdWTWVqanItZUZYdktqT1FmcWt0WXh2SkE?oc=5"
     },
     {
       "source": "google",
