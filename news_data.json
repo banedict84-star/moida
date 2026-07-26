@@ -1,6 +1,14 @@
 {
-  "updated": "2026-07-26 17:33 UTC",
+  "updated": "2026-07-26 19:44 UTC",
   "items": [
+    {
+      "source": "naver",
+      "press": "dnews.co.kr",
+      "date": "2026.07.27",
+      "title": "수도권 3단계 광역상수도 노후관 개량 내년 착공",
+      "snippet": "B-C구간은 공사비가 160억원이며 시흥시 계수동 175-1에서 인천 남동구 운영동 49-11까지 8.7㎞와 서울 금천구 시흥동 669에서 안산시 상록구 부곡동 산 21-3까지 10.4㎞다. 공법심의 1순위는 10.4㎞를, 2순위는 8.7㎞를...",
+      "url": "https://www.dnews.co.kr/uhtml/view.jsp?idxno=202607250040112670471"
+    },
     {
       "source": "naver",
       "press": "joongang.co.kr",
@@ -619,19 +627,19 @@
     },
     {
       "source": "naver",
-      "press": "busan.com",
-      "date": "2026.07.23",
-      "title": "스토킹하던 중학생 후배 살해하려한 지적장애 10대, 파기환송심서 실형...",
-      "snippet": "A 군은 2024년 8월 19일 경기 안산시 상록구의 한 중학교 근처에서 등교하던 B(당시 14세) 양의 머리를 둔기로 내리치고 흉기를 휘둘러 다치게 한 혐의로 기소됐다. 그는 마침 현장을 지나던 시민에게 제압된 데 이어 신고를...",
-      "url": "https://www.busan.com/view/busan/view.php?code=2026072316234025206"
-    },
-    {
-      "source": "naver",
       "press": "mt.co.kr",
       "date": "2026.07.23",
       "title": "여중생 스토킹하다 살해하려 한 지적장애 10대…\"심신미약 아니었다\" 결...",
       "snippet": "A군은 2024년 8월19일 오전 8시20분쯤 경기 안산시 상록구 본오동 한 중학교 인근에서 등교하던 B양(당시 14세) 머리를 둔기로 내리친 뒤 흉기를 휘둘러 살해하려 한 혐의로 기소됐다. 당시 A군은 행인에게 제압돼 현행범...",
       "url": "https://www.mt.co.kr/society/2026/07/23/2026072316185096227"
+    },
+    {
+      "source": "naver",
+      "press": "busan.com",
+      "date": "2026.07.23",
+      "title": "스토킹하던 중학생 후배 살해하려한 지적장애 10대, 파기환송심서 실형...",
+      "snippet": "A 군은 2024년 8월 19일 경기 안산시 상록구의 한 중학교 근처에서 등교하던 B(당시 14세) 양의 머리를 둔기로 내리치고 흉기를 휘둘러 다치게 한 혐의로 기소됐다. 그는 마침 현장을 지나던 시민에게 제압된 데 이어 신고를...",
+      "url": "https://www.busan.com/view/busan/view.php?code=2026072316234025206"
     },
     {
       "source": "naver",
@@ -803,11 +811,11 @@
     },
     {
       "source": "google",
-      "press": "수원인터넷뉴스",
+      "press": "엔디엔뉴스",
       "date": "2026.07.22",
       "title": "안산교육지원청 “다름이 자산이 되는 교실 이야기”",
-      "snippet": "안산교육지원청 “다름이 자산이 되는 교실 이야기” 수원인터넷뉴스",
-      "url": "https://news.google.com/rss/articles/CBMiQ0FVX3lxTE9zemRmZ3JsS0VNMVVyY0x0Mi14MjRZYjROSGE5c3RWNmdVWkc4dzE3MnhjMmgzLVd3bkRCTXVlbExQT0E?oc=5"
+      "snippet": "안산교육지원청 “다름이 자산이 되는 교실 이야기” 엔디엔뉴스",
+      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5uX0NnRlFrYVdVcmlWaGJOQmhldE9HSGFVSXVpTlh0VUlJTzBmMWxOb0hLbVBJb1N1MHZGT0xTSTh5Q1VhSkZKdl83aEZ1cXpwZFNmWHRUWWdMdC1xdEtJU1ZnM1pNMHdfSkNQYnpn0gFyQVVfeXFMUHRGeUszR013UDR5Yy04T3BkaVlGZDRhTC1RRkJTZDhxMEZzWUNYdDRyeVU3VW9wUlhXc2RaRkFMVGtnd003ZTJvbUstU1hVZWY4MVBwVEZSLVdKUWd6RUZCd3oyVVpVNVFKWUtqbGJaY2RB?oc=5"
     },
     {
       "source": "google",
@@ -816,6 +824,14 @@
       "title": "\"휴대폰 대신 독서·예술·체육을\" 안산교육청, 폰 OFF TF팀 가동",
       "snippet": "\"휴대폰 대신 독서·예술·체육을\" 안산교육청, 폰 OFF TF팀 가동 뉴시스",
       "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTFBaNUxoVnA3d1JSVHRzTngwVE1YRlFNeUtURlY0Z2N2LWE1WHNoYlZkQm9ZRFZvNVVDZTkxeTdnRXV0eG0wOWNENHMyN3dMcTU3cGE2bnVXVWRkbkRUYmtvT9IBeEFVX3lxTFBXZjRFNFFXaGZZUHFVdkhrNjNJT3NQR3pnR0NwZERpNlNSWFd5M2JmQ0xKTVJQdFQ2YkdHWkQwV0xPVUdmX2Jvdk5fMEhwN1FibkRjelNWd3h0MTRibUdLaHFFd1dBNkRNYnRaX3JtSmF1Vlhla28yTg?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "newszoom.kr",
+      "date": "2026.07.22",
+      "title": "‘문화 체험으로 채우는 마음 회복’ 안산교육지원청, 교원 대상 '마음 쉼표 시네마' 운영",
+      "snippet": "‘문화 체험으로 채우는 마음 회복’ 안산교육지원청, 교원 대상 '마음 쉼표 시네마' 운영 newszoom.kr",
+      "url": "https://news.google.com/rss/articles/CBMiREFVX3lxTE55S0JFRzZGZ2JwTkQtVU1IZmdJMm9Uc09OQkotVFR6RTdzVzctZzlBcnh2Q0hpS19qWExyOXlZeHdpZW51?oc=5"
     },
     {
       "source": "naver",
@@ -1104,14 +1120,6 @@
       "title": "안산시의회 제10대 전반기 의장단, 지역 기관 방문 완료",
       "snippet": "안산소방서, 안산교육지원청, 상록구 노인지회, 단원구 노인지회, 안산상록경찰서, 안산문화원을 차례로 방문했다. 이들은 각 기관에서 소관 업무 추진 상황과 애로 사항을 청취하고, 의회의 협조가 필요한 부분에 대해...",
       "url": "https://www.viva100.com/article/20260720500349"
-    },
-    {
-      "source": "naver",
-      "press": "fieldnews.kr",
-      "date": "2026.07.20",
-      "title": "이민근 안산시장 \"주차 불편 줄이고 안전한 교통환경 만들겠다\"",
-      "snippet": "안산시가 상록구 본오동 준공업지역의 만성적인 주차난 해소를 위해 120면 규모의 공영주차장을 조성하고 본격적인 운영에 들어간다. 20일 안산시에 따르면 시는 상록구 본오동 728-3번지 일원에 3천643㎡ 규모의 공영...",
-      "url": "http://www.fieldnews.kr/news/articleView.html?idxno=30054"
     },
     {
       "source": "google",
