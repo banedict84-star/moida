@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-27 15:59 UTC",
+  "updated": "2026-07-27 18:06 UTC",
   "items": [
     {
       "source": "naver",
@@ -35,19 +35,19 @@
     },
     {
       "source": "google",
+      "press": "안전신문",
+      "date": "2026.07.27",
+      "title": "장윤정 경기도의원, 교육청 예결특위 위원 선임…\"불필요한 예산 정비·학생 안전 투자 강화\"",
+      "snippet": "장윤정 경기도의원, 교육청 예결특위 위원 선임…\"불필요한 예산 정비·학생 안전 투자 강화\" 안전신문",
+      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE01XzVVU3hNNUVMc2dUUUJMZW8tS0VTTGpGOXBROUl5VW03WXlFQUZFRnVrU2ZIS19uYXBJYTNVeXFIdkhKNWd4R0hlbkxsSHFWUjV5b05ZX1hNZ1R6eFJHenZldTNsNGhBRXphQWJJYjY?oc=5"
+    },
+    {
+      "source": "google",
       "press": "천지일보",
       "date": "2026.07.27",
       "title": "장윤정 경기도의원, 경기도교육청 예결특위 위원 선임",
       "snippet": "장윤정 경기도의원, 경기도교육청 예결특위 위원 선임 천지일보",
       "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBhSjRyb3hjNWNtRFpLV0tGbFVFZzhNVnE0ZmpwMTd2RGhCM2lmSEVEcW1LZG4xd3lHVDNrN0NIMkRlS2hkeGdIX0ZoejFNVm1PcFB4NWRDMkFsbHdLMkUtR0ZDOWhCbVFyZHc?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "안전신문",
-      "date": "2026.07.27",
-      "title": "장윤정 경기도의원, 교육청 예결특위 위원 선임…\"불필요한 예산 정비·학생 안전 투자 강화\"",
-      "snippet": "장윤정 경기도의원, 교육청 예결특위 위원 선임…\"불필요한 예산 정비·학생 안전 투자 강화\" 안전신문",
-      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE1qaHpxYm5lbDlBQTBIaDBicUl1d1hfZG5lLVhnMXVWRDlVa195N182dHVXWUdKVW1NemlqYVRmZlJkRDJ5c3pkYVJPMTBNck5uY2MtRXZLcXdLTV9IbGdQeXoxaGxxMU1FN2xPTlpKYw?oc=5"
     },
     {
       "source": "google",
@@ -93,17 +93,17 @@
       "source": "naver",
       "press": "newstown.co.kr",
       "date": "2026.07.27",
-      "title": "[김병철 칼럼] 이민근 안산시장의 주민자치, 2만5천 명의 목소리를 어떻...",
-      "snippet": "안산시는 지난 6월 20일 상록구 사동 주민총회를 시작으로 7월 25일 단원구 신길동 주민총회까지 25개 동의 일정을 모두 마무리했다. 올해 주민총회는 '주민의 목소리를 모아, 마을의 퍼즐을 완성하다'를 주제로 진행됐다....",
-      "url": "http://www.newstown.co.kr/news/articleView.html?idxno=710507"
+      "title": "안산시 주민총회 역대 최대 2만5천 명 참여…풀뿌리 주민자치 확산",
+      "snippet": "안산시는 상록구 사동을 시작으로 단원구 신길동까지 36일간 관내 25개 동 주민총회를 진행했으며, 주민들은 자치계획사업과 주민참여예산사업 등 220여 건의 지역 의제를 놓고 사전·온라인·현장 투표를 통해 추진...",
+      "url": "http://www.newstown.co.kr/news/articleView.html?idxno=710506"
     },
     {
       "source": "naver",
       "press": "newstown.co.kr",
       "date": "2026.07.27",
-      "title": "안산시 주민총회 역대 최대 2만5천 명 참여…풀뿌리 주민자치 확산",
-      "snippet": "안산시는 상록구 사동을 시작으로 단원구 신길동까지 36일간 관내 25개 동 주민총회를 진행했으며, 주민들은 자치계획사업과 주민참여예산사업 등 220여 건의 지역 의제를 놓고 사전·온라인·현장 투표를 통해 추진...",
-      "url": "http://www.newstown.co.kr/news/articleView.html?idxno=710506"
+      "title": "[김병철 칼럼] 이민근 안산시장의 주민자치, 2만5천 명의 목소리를 어떻...",
+      "snippet": "안산시는 지난 6월 20일 상록구 사동 주민총회를 시작으로 7월 25일 단원구 신길동 주민총회까지 25개 동의 일정을 모두 마무리했다. 올해 주민총회는 '주민의 목소리를 모아, 마을의 퍼즐을 완성하다'를 주제로 진행됐다....",
+      "url": "http://www.newstown.co.kr/news/articleView.html?idxno=710507"
     },
     {
       "source": "naver",
@@ -187,11 +187,11 @@
     },
     {
       "source": "google",
-      "press": "엔디엔뉴스",
+      "press": "새한일보",
       "date": "2026.07.27",
       "title": "경기도의회 장윤정 의원, 도교육청 예결위원 선임...재정의 건전성과 효율성, 학생과 현장 중심의 예산 편성에 총력 다할 것",
-      "snippet": "경기도의회 장윤정 의원, 도교육청 예결위원 선임...재정의 건전성과 효율성, 학생과 현장 중심의 예산 편성에 총력 다할 것 엔디엔뉴스",
-      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5VZjNRcUlKUFpGWHp2aFJkX0hMZ1FiY0d5ajhnaGRUZ1N6OXBjNTAxQ3VHTnFWNFFhQXVHTFVmQjVLTGFIRGdJQnE0X1NNMlV5Wk5PMXBmZHNaUmFGVmZYTUIxOU1HcWJLcXhid3dncXk4UdIBckFVX3lxTE5VZjNRcUlKUFpGWHp2aFJkX0hMZ1FiY0d5ajhnaGRUZ1N6OXBjNTAxQ3VHTnFWNFFhQXVHTFVmQjVLTGFIRGdJQnE0X1NNMlV5Wk5PMXBmZHNaUmFGVmZYTUIxOU1HcWJLcXhid3dncXk4UQ?oc=5"
+      "snippet": "경기도의회 장윤정 의원, 도교육청 예결위원 선임...재정의 건전성과 효율성, 학생과 현장 중심의 예산 편성에 총력 다할 것 새한일보",
+      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTFAxbWhqN0hXZTJvMExsZGdWZV9SckltQlZIRFdTa2FLZ09RbzRWMEFmVGkyanZfb0xRc2ViWlR5WjhPeUVRa0tTeW8xamNXWFNlQWtPY2sySnBNbGxyR2Y4bWx6Qlg3Z9IBakFVX3lxTE4xQTg2WENPeHlSV1p0RmtKTmtDazBVTnRGd295VEQzbmExVjlhb1M5al9vb3E2SF9fLUNWY3I1ZmUtVGp5cldOVGZuTk5UTWJXdjFEYWtOdG9jMGRmcFI5S0l4T1FVU3ZOUUE?oc=5"
     },
     {
       "source": "naver",
@@ -339,19 +339,19 @@
     },
     {
       "source": "naver",
-      "press": "kmaeil.com",
-      "date": "2026.07.27",
-      "title": "안산시, 온라인 판매자 대상 '세법·공공조달 실무 교육' 진행",
-      "snippet": "지난 24일, 안산시가 온라인 판매자와 예비 창업자를 대상으로 '세법·공공조달 실무 교육'을 진행했다. 안산시청 대회의실에서 진행된 이번 교육은 온라인 판매 지원사업의 세 번째 교육과정으로 전자상거래(e-비즈니스)...",
-      "url": "https://www.kmaeil.com/news/articleView.html?idxno=646608"
-    },
-    {
-      "source": "naver",
       "press": "mt.co.kr",
       "date": "2026.07.27",
       "title": "\"아이디어가 자산이다\" 안산시 AI·빅데이터 창업 유망주 발굴",
       "snippet": "이어지는 대표 창업 축제로 자리매김하는 계기가 됐다\"면서 \"앞으로도 청년창업펀드와 청년큐브, 창업교육, 사업화 지원을 유기적으로 연계해 청년이 꿈을 실현하는 청년창업도시 안산을 만들어 가겠다\"고 말했다.",
       "url": "https://www.mt.co.kr/policy/2026/07/27/2026072710543693547"
+    },
+    {
+      "source": "naver",
+      "press": "kmaeil.com",
+      "date": "2026.07.27",
+      "title": "안산시, 온라인 판매자 대상 '세법·공공조달 실무 교육' 진행",
+      "snippet": "지난 24일, 안산시가 온라인 판매자와 예비 창업자를 대상으로 '세법·공공조달 실무 교육'을 진행했다. 안산시청 대회의실에서 진행된 이번 교육은 온라인 판매 지원사업의 세 번째 교육과정으로 전자상거래(e-비즈니스)...",
+      "url": "https://www.kmaeil.com/news/articleView.html?idxno=646608"
     },
     {
       "source": "naver",
@@ -488,14 +488,6 @@
       "title": "[브랜드평판] 강남구, 대한민국 기초자치단체 7월 1위···수원시·송파...",
       "snippet": "서구 ▲금천구 ▲안산시 ▲파주시 ▲은평구 ▲화성시 ▲구리시 ▲부산 북구 ▲노원구 ▲대전 중구... 재건축·재개발 이슈와 교육·생활 인프라에 대한 소비자 관심이 꾸준히 이어지는 가운데, 수원시의 9%대...",
       "url": "https://www.enetnews.co.kr/news/articleView.html?idxno=52782"
-    },
-    {
-      "source": "naver",
-      "press": "ajunews.com",
-      "date": "2026.07.27",
-      "title": "주민이 직접 지역 화학안전 챙긴다…경남·수도권서 '시민학교' 운영",
-      "snippet": "수도권 교육은 시흥시, 화섬식품노조, 수도권건강과생명을지키는사람들, 안산시흥비정규노동센터가 공동 주관하며 안산시가 후원한다. 교육은 권역별로 사흘간 진행된다. 화학물질 기본 개념에 관한 이론교육과...",
-      "url": "https://www.ajunews.com/view/20260726173829185"
     },
     {
       "source": "naver",
@@ -899,14 +891,6 @@
     },
     {
       "source": "google",
-      "press": "일간경기",
-      "date": "2026.07.22",
-      "title": "장윤정 의원, 사회적경제원·경기신보에 현안 질의",
-      "snippet": "장윤정 의원, 사회적경제원·경기신보에 현안 질의 일간경기",
-      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE00RWZWa19fM2hSMmg2ZWl3YlN2SXY4Tl9ob2tsMDUzRThDaUU2dzhMTmxad2pNRzVaUTVZRWZqX25hU3BIeEpLYTN3M3l3aDhsTWI0U3FJaEZWamVjVFlqeTB1X1RsVkdN?oc=5"
-    },
-    {
-      "source": "google",
       "press": "중부일보",
       "date": "2026.07.22",
       "title": "안산교육지원청, ‘폰 OFF·가족 RAS ON’ 인성캠프 운영",
@@ -931,19 +915,11 @@
     },
     {
       "source": "google",
-      "press": "뉴스후",
+      "press": "중앙뉴스미디어",
       "date": "2026.07.22",
       "title": "‘문화 체험으로 채우는 마음 회복’ 안산교육지원청, 교원 대상 '마음 쉼표 시네마' 운영",
-      "snippet": "‘문화 체험으로 채우는 마음 회복’ 안산교육지원청, 교원 대상 '마음 쉼표 시네마' 운영 뉴스후",
-      "url": "https://news.google.com/rss/articles/CBMiREFVX3lxTFAxS0FLb1puTTNzR3NfeWE5bUh4b3VrSWVXN3lNcXVTS2dYalFfeVdQM0hTa3RKVGFUM0kyYnBqRHpvYWdw?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "뉴시스",
-      "date": "2026.07.22",
-      "title": "\"휴대폰 대신 독서·예술·체육을\" 안산교육청, 폰 OFF TF팀 가동",
-      "snippet": "\"휴대폰 대신 독서·예술·체육을\" 안산교육청, 폰 OFF TF팀 가동 뉴시스",
-      "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTFBaNUxoVnA3d1JSVHRzTngwVE1YRlFNeUtURlY0Z2N2LWE1WHNoYlZkQm9ZRFZvNVVDZTkxeTdnRXV0eG0wOWNENHMyN3dMcTU3cGE2bnVXVWRkbkRUYmtvT9IBeEFVX3lxTFBXZjRFNFFXaGZZUHFVdkhrNjNJT3NQR3pnR0NwZERpNlNSWFd5M2JmQ0xKTVJQdFQ2YkdHWkQwV0xPVUdmX2Jvdk5fMEhwN1FibkRjelNWd3h0MTRibUdLaHFFd1dBNkRNYnRaX3JtSmF1Vlhla28yTg?oc=5"
+      "snippet": "‘문화 체험으로 채우는 마음 회복’ 안산교육지원청, 교원 대상 '마음 쉼표 시네마' 운영 중앙뉴스미디어",
+      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE80NFRKLWtzRi1QbXFzYjhTS2ZCWHlvc0YzRjJFQ2ltWVBXOUFzekFZSm5SY01iRnBIQXZ3cjFXVnRaSlFiWGhzM1htOTEzY0d0Vkk1d1VJZ2cyUHpD?oc=5"
     },
     {
       "source": "naver",
@@ -1099,11 +1075,11 @@
     },
     {
       "source": "google",
-      "press": "경기경제신문",
+      "press": "뉴스 따옴",
       "date": "2026.07.21",
       "title": "경기도의회 장윤정 의원, 경제노동위원회 첫 업무보고에서 사회적 기업 지원 체계 및 공공 플랫폼 고객 지원 시스템 개선 촉구",
-      "snippet": "경기도의회 장윤정 의원, 경제노동위원회 첫 업무보고에서 사회적 기업 지원 체계 및 공공 플랫폼 고객 지원 시스템 개선 촉구 경기경제신문",
-      "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFBoM29ydkZkQU82allCYklsVEk0SHZRWGdodXpsd1VoZmlMQUhJbUEySzFXQS0xQ2pMYnFrZ2ZQdEV5blh3dklPeTRDZXNQRGtOVnVFVTZia2l3eThlcGc?oc=5"
+      "snippet": "경기도의회 장윤정 의원, 경제노동위원회 첫 업무보고에서 사회적 기업 지원 체계 및 공공 플랫폼 고객 지원 시스템 개선 촉구 뉴스 따옴",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5hTThXU2NQNFg5eEdOTWh1V1hOTncxUFY1WHRtT3pHSkktYy1YOWtrVDZfLTVwMlZCdHVsOW94UVJ2dUtPMXZ1MVhHdTlMNW16RWNxYU9OVVVUeXc5TVZjS0JWRmJTWENtZnFTMzE0QUZrZ9IBckFVX3lxTE5hTThXU2NQNFg5eEdOTWh1V1hOTncxUFY1WHRtT3pHSkktYy1YOWtrVDZfLTVwMlZCdHVsOW94UVJ2dUtPMXZ1MVhHdTlMNW16RWNxYU9OVVVUeXc5TVZjS0JWRmJTWENtZnFTMzE0QUZrZw?oc=5"
     },
     {
       "source": "google",
@@ -1120,6 +1096,14 @@
       "title": "경기도의회 장윤정 의원, 사회적 기업 지원 확대 및 공공 플랫폼 개선 촉구",
       "snippet": "경기도의회 장윤정 의원, 사회적 기업 지원 확대 및 공공 플랫폼 개선 촉구 웹이코노미",
       "url": "https://news.google.com/rss/articles/CBMickFVX3lxTFB4ejlJaEQwS0tyTEhGaWhTUWRwNnpVU1Z6el8xSEhqZ2xtWGZ0MWFCUVloSEVVTHBuSGFsdFhLaXRFcERsTE0zVWtmUmZBQUt3cVgyUHQzNVA1ZTYwLVFsazhEUmhoR3h5MEVlVU8ySUpnQQ?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "웹이코노미",
+      "date": "2026.07.21",
+      "title": "경기도의회 장윤정 의원, 경제노동위원회 부위원장 선임",
+      "snippet": "경기도의회 장윤정 의원, 경제노동위원회 부위원장 선임 웹이코노미",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5YeUp4dW93czdhWjNOcUk0QzNNX29qZFh3VFl6NXpDb0pING1ITmtpSmhCQ2lSMzlFZlVjMDUtZXhIeFp4UHNtakJqTlNLY085bWhEZ2ZLUmJBUzRhLUpMT1pob3RKZDMyN0ZJXzdFRzl3UQ?oc=5"
     },
     {
       "source": "naver",
@@ -1211,19 +1195,11 @@
     },
     {
       "source": "google",
-      "press": "경기일보",
+      "press": "v.daum.net",
       "date": "2026.07.12",
       "title": "안산교육지원청, ‘2027학년도 맞춤형 대학입시 설명회’ 개최",
-      "snippet": "안산교육지원청, ‘2027학년도 맞춤형 대학입시 설명회’ 개최 경기일보",
-      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE5JdUhkTVg2LUhaaDc0bU9uNWp1Z0Z1aC1BdGtTQkwyMUpGOEJkdVFPVGZCSFRhUGRPXzk2WjQ1T21Lcm9VSHh5TW5oakxubldDc3d0S2J2aUJwMkE?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "경인일보",
-      "date": "2026.07.10",
-      "title": "안산교육지원청, 초·중등 진로교육 역량강화 직무연수",
-      "snippet": "안산교육지원청, 초·중등 진로교육 역량강화 직무연수 경인일보",
-      "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE84eTFYOFJPTDVwQkR0VU1CcURqempJMGhwaHluYkRSVldJZ2lreHpRZndFQ3loN3lZeEpEazFKWVZ0c0xoSXpFeDJGbFVHUWY5b3c?oc=5"
+      "snippet": "안산교육지원청, ‘2027학년도 맞춤형 대학입시 설명회’ 개최 v.daum.net",
+      "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE5Dc3R4SjVTMy1Qb2dSWjhlbzRrY1VGbEM2ZDhETFd6SUxzRkZWaHlmd0U5U3I5UGVQSXJPNnlsbTFKQmtpeGc?oc=5"
     },
     {
       "source": "google",
