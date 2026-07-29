@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-29 16:53 UTC",
+  "updated": "2026-07-29 18:32 UTC",
   "items": [
     {
       "source": "google",
@@ -451,10 +451,10 @@
     },
     {
       "source": "google",
-      "press": "서울신문",
+      "press": "seoul.co.kr",
       "date": "2026.07.28",
       "title": "장윤정 경기도의원, 도교육청 예결위원 선임… “학생·현장 중심 예산 편성 총력”",
-      "snippet": "장윤정 경기도의원, 도교육청 예결위원 선임… “학생·현장 중심 예산 편성 총력” 서울신문",
+      "snippet": "장윤정 경기도의원, 도교육청 예결위원 선임… “학생·현장 중심 예산 편성 총력” seoul.co.kr",
       "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPVk5XSnhCU1B1T2ZqbkFMcFowZkdnUDN3cVBabHV6dGdQWlJnenVTRzdZM1VmQkNWLU1obXU5RXNzQTBUZHFDMXVPd2dJUW1WYUQ5SEV0c3hfZWJiVGFEQm8tdXV2RF9nX29xUm1RZDhlYk1WMHJUSmxDT3dFZDVYcTJkbVIyXzdkUVA5QnFfZVVhbUU?oc=5"
     },
     {
@@ -523,19 +523,19 @@
     },
     {
       "source": "naver",
-      "press": "daily.hankooki.com",
-      "date": "2026.07.28",
-      "title": "경기도, 안산·용인에 약정형 매입임대주택 68호 착공",
-      "snippet": "착공 주택은 안산시 상록구 월피동 일원 오피스텔 32호, 용인시 처인구 김량장동 일원 오피스텔 및 아파트 36호다. 안산 월피동 주택은 내년 4월 준공 예정이며, 용인 김량장동 주택도 내년 12월 준공 예정이다. 준공 이후...",
-      "url": "https://daily.hankooki.com/news/articleView.html?idxno=1390220"
-    },
-    {
-      "source": "naver",
       "press": "incheonilbo.com",
       "date": "2026.07.28",
       "title": "안산 장애인주간이용시설, 연합 작품전 '나를 담다 우리를 잇다' 개최",
       "snippet": "▲ '나를 담다, 우리를 잇다' 전시회 포스터 /사진제공=경기도장애인주간이용시설협회 안산지부 경기도장애인주간이용시설협회 안산지부 소속 12개 장애인주간이용시설이 오는 8월13일까지 상록구청 혜안홀에서 연합...",
       "url": "https://www.incheonilbo.com/news/articleView.html?idxno=1328251"
+    },
+    {
+      "source": "naver",
+      "press": "daily.hankooki.com",
+      "date": "2026.07.28",
+      "title": "경기도, 안산·용인에 약정형 매입임대주택 68호 착공",
+      "snippet": "착공 주택은 안산시 상록구 월피동 일원 오피스텔 32호, 용인시 처인구 김량장동 일원 오피스텔 및 아파트 36호다. 안산 월피동 주택은 내년 4월 준공 예정이며, 용인 김량장동 주택도 내년 12월 준공 예정이다. 준공 이후...",
+      "url": "https://daily.hankooki.com/news/articleView.html?idxno=1390220"
     },
     {
       "source": "naver",
@@ -603,19 +603,19 @@
     },
     {
       "source": "naver",
-      "press": "metroseoul.co.kr",
-      "date": "2026.07.28",
-      "title": "경기도, 안산·용인 약정형 매입임대주택 68호 착공",
-      "snippet": "이번에 착공한 주택은 안산시 상록구 월피동 일원 오피스텔 32호와 용인시 처인구 김량장동 일원 오피스텔 및 아파트 36호다. 안산 월피동 주택은 2027년 4월, 용인 김량장동 주택은 2027년 12월 준공 예정이며, 준공 이후...",
-      "url": "http://www.metroseoul.co.kr/article/20260728500080"
-    },
-    {
-      "source": "naver",
       "press": "bizwork.co.kr",
       "date": "2026.07.28",
       "title": "경기도·GH, 안산·용인 약정형 매입임대 68가구 착공",
       "snippet": "사업지는 안산시 상록구 월피동과 용인시 처인구 김량장동 일원이다. 안산에는 오피스텔 32가구, 용인에는 오피스텔과 아파트 36가구가 각각 들어선다. 안산 월피동 주택은 2027년 4월, 용인 김량장동 주택은 같은 해 12월...",
       "url": "https://www.bizwork.co.kr/news/articleView.html?idxno=417672"
+    },
+    {
+      "source": "naver",
+      "press": "metroseoul.co.kr",
+      "date": "2026.07.28",
+      "title": "경기도, 안산·용인 약정형 매입임대주택 68호 착공",
+      "snippet": "이번에 착공한 주택은 안산시 상록구 월피동 일원 오피스텔 32호와 용인시 처인구 김량장동 일원 오피스텔 및 아파트 36호다. 안산 월피동 주택은 2027년 4월, 용인 김량장동 주택은 2027년 12월 준공 예정이며, 준공 이후...",
+      "url": "http://www.metroseoul.co.kr/article/20260728500080"
     },
     {
       "source": "naver",
@@ -720,14 +720,6 @@
       "title": "안산교육지원청, '질문하는 시민, 혁신하는 학교, 지속가능한 미래' 캠프 개최",
       "snippet": "안산교육지원청, '질문하는 시민, 혁신하는 학교, 지속가능한 미래' 캠프 개최 투데이안산",
       "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5ORVhiRTJNbktxcE1JRmcxM0stdHQwdmxHbXNDaWM2dE5VRTYtWkh5T2s2MEl5MnRMWjUxdDhjZU9xQkY1N3JWQTA1RGRCM1phM1d1VkFBWXh1ZnpkWGZCejZsb1ZyVG1QM0x4WXpyOHc4UdIBckFVX3lxTE5ORVhiRTJNbktxcE1JRmcxM0stdHQwdmxHbXNDaWM2dE5VRTYtWkh5T2s2MEl5MnRMWjUxdDhjZU9xQkY1N3JWQTA1RGRCM1phM1d1VkFBWXh1ZnpkWGZCejZsb1ZyVG1QM0x4WXpyOHc4UQ?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "참좋은뉴스",
-      "date": "2026.07.28",
-      "title": "안산단원경찰서, 다문화가정 보호자 교육 지원을 위한 관계기관 간담회 실시",
-      "snippet": "안산단원경찰서, 다문화가정 보호자 교육 지원을 위한 관계기관 간담회 실시 참좋은뉴스",
-      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE5Odk5LSVlraVc4Q3pNdTE1X1VkLTdpOGdVWFk2bXdGNF9icG82c1ZpMzlzazJmbndIWXhSSmUxZ3BnazVVeW9OQTNsQWVNbXNqTjZNYTVldkR4OXctWk4wdlJqdExjcmpGM25Hc0FMeUFETzA?oc=5"
     },
     {
       "source": "naver",
@@ -1075,10 +1067,10 @@
     },
     {
       "source": "google",
-      "press": "서울Pn",
+      "press": "go.seoul.co.kr",
       "date": "2026.07.22",
       "title": "장윤정 경기도의원, 경기도 사회적경제원 및 신용보증재단 현안 집중 질의",
-      "snippet": "장윤정 경기도의원, 경기도 사회적경제원 및 신용보증재단 현안 집중 질의 서울Pn",
+      "snippet": "장윤정 경기도의원, 경기도 사회적경제원 및 신용보증재단 현안 집중 질의 go.seoul.co.kr",
       "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1ZRlNLOFpLYkd1X0pSQk9Rc29mOW9OSE1UZkx6TkVlZml0Vm9VSkpwTnRrX296Y3dHX3RYQTlPMzZiWGVvcHZXX3Q3VUNQSWRGVlRQTXdOSlFCbnNoNFUzTjhZbzVXaDBaU2c?oc=5"
     },
     {
@@ -1179,18 +1171,18 @@
     },
     {
       "source": "google",
-      "press": "서울Pn",
+      "press": "go.seoul.co.kr",
       "date": "2026.07.21",
       "title": "장윤정 경기도의원 “사회적 기업 지원 현실화 및 공공 플랫폼 소통 체계 개선해야”",
-      "snippet": "장윤정 경기도의원 “사회적 기업 지원 현실화 및 공공 플랫폼 소통 체계 개선해야” 서울Pn",
+      "snippet": "장윤정 경기도의원 “사회적 기업 지원 현실화 및 공공 플랫폼 소통 체계 개선해야” go.seoul.co.kr",
       "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1qOUtHb3hmQm1CaGEyTW9yM2NPNTJza19KcXktQmhtR3gtaVZJaXIyb2prQ0QxRGEteWlNSkJyeVR5ZEJCOHlmNUQ0dlUyNnpZc0xGVE04LXpSWE1HanRnVDhHb00wcjBMZ1E?oc=5"
     },
     {
       "source": "google",
-      "press": "서울Pn",
+      "press": "go.seoul.co.kr",
       "date": "2026.07.21",
       "title": "장윤정 경기도의원, 경제노동위원회 부위원장으로 선임, 첫 업무보고부터 민생 현안 해결 박차",
-      "snippet": "장윤정 경기도의원, 경제노동위원회 부위원장으로 선임, 첫 업무보고부터 민생 현안 해결 박차 서울Pn",
+      "snippet": "장윤정 경기도의원, 경제노동위원회 부위원장으로 선임, 첫 업무보고부터 민생 현안 해결 박차 go.seoul.co.kr",
       "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE84X1dxNUxRanpXSThBT0MwaVFCUU95MTFuMUxyZk5rUHBsR0Z2WUM4UWhweWV2clpqRUF3Uy0yNm9jcFRmMWdDZ25HTGZjVVNGRkFNdF9kWVhzeE9sem1lQjdHa0dNc1VVb3c?oc=5"
     },
     {
@@ -1211,10 +1203,10 @@
     },
     {
       "source": "google",
-      "press": "뉴스 따옴",
+      "press": "newsttaom.co.kr",
       "date": "2026.07.21",
       "title": "경기도의회 장윤정 의원, 경제노동위원회 첫 업무보고에서 사회적 기업 지원 체계 및 공공 플랫폼 고객 지원 시스템 개선 촉구",
-      "snippet": "경기도의회 장윤정 의원, 경제노동위원회 첫 업무보고에서 사회적 기업 지원 체계 및 공공 플랫폼 고객 지원 시스템 개선 촉구 뉴스 따옴",
+      "snippet": "경기도의회 장윤정 의원, 경제노동위원회 첫 업무보고에서 사회적 기업 지원 체계 및 공공 플랫폼 고객 지원 시스템 개선 촉구 newsttaom.co.kr",
       "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1TcVdvWF9ibnlHLWYyRF9jNFBFTDI4QmpJcFdYeDhzUVdWUHZNeXMtUEozRV9UcTZQdURNUmFnQWZleFdpY0x0eWlSQ0IzLXJtd09va2NjMm9rRXVobkZ2WWd4Q0xSbnlCT3VraTl30gFyQVVfeXFMTmFNOFdTY1A0WDl4R05NaHVXWE5OdzFQVjVYdG1PekdKSS1jLVg5a2tUNl8tNXAyVkJ0dWw5b3hRUnZ1S08xdnUxWEd1OUw1bXpFY3FhT05VVVR5dzlNVmNLQlZGYlNYQ21mcVMzMTRBRmtn?oc=5"
     },
     {
@@ -1227,10 +1219,10 @@
     },
     {
       "source": "google",
-      "press": "kifuture.com",
+      "press": "경인미래신문",
       "date": "2026.07.19",
       "title": "안산 아파트의 두 얼굴... 단원구·상록구 양극화",
-      "snippet": "안산 아파트의 두 얼굴... 단원구·상록구 양극화 kifuture.com",
+      "snippet": "안산 아파트의 두 얼굴... 단원구·상록구 양극화 경인미래신문",
       "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE5PaXpKYS1zVWpLQ3NjcThfUW45Ymc3ejk3SGpiLTBGSC1XeVRsTGRGSTRpUUdzdG0yMWNaWFhCRF9CUmRTY1Q3bnFaZW5MV01MR1NUcDd0WlVNZlBDYWM1NXZn?oc=5"
     },
     {
@@ -1267,6 +1259,14 @@
     },
     {
       "source": "google",
+      "press": "한국글로벌뉴스",
+      "date": "2026.07.14",
+      "title": "안산교육지원청, '2026 ANSAN Link+X 디지털 엔진리더 교원 아카데미' 1학기 운영 마무리",
+      "snippet": "안산교육지원청, '2026 ANSAN Link+X 디지털 엔진리더 교원 아카데미' 1학기 운영 마무리 한국글로벌뉴스",
+      "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE1vY2JCRTRsRTNSMDNOc1RIcTZGVFJsRGJDbnpDUjdDa0xpYi1MaVZTaU5HZHdLSk0zNzJtS2hxVXJvVzAzUmRIMEo3UjNtajZWSEJVU3lFVmNZaEtjLWNZWQ?oc=5"
+    },
+    {
+      "source": "google",
       "press": "gukjenews.com",
       "date": "2026.07.12",
       "title": "안산 상록구 도금공장서 화재...인명피해 없어",
@@ -1299,14 +1299,6 @@
     },
     {
       "source": "google",
-      "press": "v.daum.net",
-      "date": "2026.07.08",
-      "title": "안산교육지원청 “교복 지원 예산 일원화로 학교 행정업무 경감”",
-      "snippet": "안산교육지원청 “교복 지원 예산 일원화로 학교 행정업무 경감” v.daum.net",
-      "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE5NeF9nOVY3b1NPMThWUDZhQnFhLTFLYkhzcGoyMzZxdkFLM18zNlRJaTk5NS1EMlRRTkNESFNuaW0wMFdTOWVscU1raw?oc=5"
-    },
-    {
-      "source": "google",
       "press": "경기일보",
       "date": "2026.07.07",
       "title": "안산교육지원청, AI·디지털 교육 성장 생태계 만든다",
@@ -1331,10 +1323,10 @@
     },
     {
       "source": "google",
-      "press": "참좋은뉴스",
+      "press": "xn--vg1b002adod2pbo4i.com",
       "date": "2026.07.01",
       "title": "폭우 예고 속 지하차도 침수 기준 ‘인천 5cm vs 안산 상록구 15cm’",
-      "snippet": "폭우 예고 속 지하차도 침수 기준 ‘인천 5cm vs 안산 상록구 15cm’ 참좋은뉴스",
+      "snippet": "폭우 예고 속 지하차도 침수 기준 ‘인천 5cm vs 안산 상록구 15cm’ xn--vg1b002adod2pbo4i.com",
       "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE56NDJ2QjZTYUFfOUFfX0tpalBVSVh4Q3drRmZQZmdVVWhfQmNwVDFmUnpsRkJrS0NpdHkyUDZhTmdkRlVHNWRHTEhiem16VkFqbHFpVm5PSk5KWFltLS1qbkkyZ0VoSGl3c25Eb24zWTJRMk0?oc=5"
     },
     {
@@ -1715,18 +1707,18 @@
     },
     {
       "source": "google",
-      "press": "서울신문",
+      "press": "seoul.co.kr",
       "date": "2026.05.13",
       "title": "안산 상록구 다세대 주택 불…1명 사망·3명 부상",
-      "snippet": "안산 상록구 다세대 주택 불…1명 사망·3명 부상 서울신문",
+      "snippet": "안산 상록구 다세대 주택 불…1명 사망·3명 부상 seoul.co.kr",
       "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9ERkxuNk5RRFVpQmNqRVMtalpDU05MNndSNGIzb1l0bmZvOUZNU0dYeUptT2NyNDlvN2ZyLW9neG8xZWRKb2FPMzl0STFERTNjYWpqVF9jc1NhWlhMTlNBNWUyMGttZEl4YkdYTFJ2ZkJrUWNtdmFkSDlhOA?oc=5"
     },
     {
       "source": "google",
-      "press": "경향신문",
+      "press": "khan.co.kr",
       "date": "2026.05.13",
       "title": "안산 상록구 다세대주택서 화재···1명 숨지고 3명 부상",
-      "snippet": "안산 상록구 다세대주택서 화재···1명 숨지고 3명 부상 경향신문",
+      "snippet": "안산 상록구 다세대주택서 화재···1명 숨지고 3명 부상 khan.co.kr",
       "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE94ZFJWc1liZGRLTWM0aVAxVjY5c0VSOE40bVN0RXA3QlRidXMzdVkwdFljWVIxTG5oOGNwLUtsMl9pT2NJY1VTOEh4OGRMRU02b3Bob0pwa3dSQdIBX0FVX3lxTE52SDdudTdHX3NXYVFOQkhjSnFLR2pmVW5hbmE0aEZYM3B6WXVLNGpoY09DY0xlMVpuZVEzYWIzZVFjY1h1TTYtRHFMVFdPR0RfQ05pWGVIRm5NUG16cTRN?oc=5"
     },
     {
@@ -1859,10 +1851,10 @@
     },
     {
       "source": "google",
-      "press": "경기종합뉴스",
+      "press": "ggoverallnews.co.kr",
       "date": "2026.04.06",
       "title": "장윤정 경기도의원, 안산 제3선거구 재선 출마 선언",
-      "snippet": "장윤정 경기도의원, 안산 제3선거구 재선 출마 선언 경기종합뉴스",
+      "snippet": "장윤정 경기도의원, 안산 제3선거구 재선 출마 선언 ggoverallnews.co.kr",
       "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTFBkWlpOOHVUNFFBMVRySTRaOU9vVlo5d0o0cG5IbEd1QXc4MGYxNnl2bGpfSzVfbXMzVWZQcHUxckNkT2hHVExjZmJLTXFaRHdZNHhpTkwyZHVLWk9hOFpyVlVDZzlYS1JJR2lMdVg2X3pBYXhJ?oc=5"
     },
     {
