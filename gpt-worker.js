@@ -5,6 +5,7 @@ import {
   normalizePlan,
   publicRun,
   safeJson,
+  selectTaskWorkers,
 } from "./agent-core.js";
 
 const PRODUCTION_ORIGIN = "https://banedict84-star.github.io";
@@ -365,14 +366,17 @@ JSON만 반환: {"tasks":[{"agent":"policy","title":"","instruction":"","depende
 }
 
 function workerPrompt(run, task, worker, prior, feedback) {
-  let hasLawResearch = false;
-  try { hasLawResearch = Boolean(JSON.parse(run.context_json || "{}").lawResearch); } catch {}
+  let context = {};
+  try { context = JSON.parse(run.context_json || "{}"); } catch {}
+  const hasLawResearch = Boolean(context.lawResearch);
+  const currentDate = context.today || new Date().toISOString().slice(0, 10);
   return {
     system: `너는 경기도의원실 ${TEAM_DEFS[task.agent].lead} 산하의 ${worker[1]} 담당 AI 팀원이다.
 전문 역할: ${worker[2]}
 맡은 범위만 구체적으로 수행하고, 외부 게시·발송·일정 확정·데이터 변경을 실행하지 않는다.
 확인되지 않은 내용은 반드시 '확인 필요'로 표시한다.
-${hasLawResearch ? "읽기 전용 참고 데이터의 lawResearch는 국가법령정보센터에서 방금 조회한 공식 자료다. 법령·조례를 언급할 때 법령명, 시행일자, sourceUrl을 근거로 표시하고 검색 결과에 없는 조문을 만들어내지 않는다." : ""}`,
+현재 날짜는 ${currentDate}이다. 다른 연도를 현재 시점으로 추정하지 않는다.
+${hasLawResearch ? "읽기 전용 참고 데이터의 lawResearch는 국가법령정보센터에서 방금 조회한 공식 자료다. enforcementDate는 제정일이나 개정일이 아니라 '시행일자'로만 표시한다. 법령·조례를 언급할 때 법령명, 시행일자, sourceUrl을 근거로 표시하고 검색 결과에 없는 조문을 만들어내지 않는다. checkedAt에 정상 조회된 공식 링크를 별도 근거 없이 무효라고 판단하지 않는다." : ""}`,
     user: `[의원 원지시]\n${run.instruction}\n\n[팀 담당 업무]\n${task.instruction}
 \n\n[읽기 전용 참고 데이터]\n${run.context_json || "{}"}
 \n\n[앞선 팀 결과]\n${prior || "없음"}${feedback ? `\n\n[팀장 재작업 요청]\n${feedback}` : ""}`,
@@ -380,7 +384,8 @@ ${hasLawResearch ? "읽기 전용 참고 데이터의 lawResearch는 국가법�
 }
 
 async function executeWorkers(env, run, task, prior, feedback = "") {
-  const workers = TEAM_DEFS[task.agent].workers;
+  const workers = selectTaskWorkers(task.agent,
+    `${run.instruction}\n${task.title}\n${task.instruction}`);
   const subtasks = workers.map((worker, index) => ({
     id: `${task.id}_worker_${index + 1}`, workerId: worker[0], name: worker[1],
     role: worker[2], status: feedback ? "reworking" : "running", result: "", error: "", updatedAt: Date.now(),
@@ -391,7 +396,9 @@ async function executeWorkers(env, run, task, prior, feedback = "") {
     lead_status: "monitoring",
     subtasks_json: JSON.stringify(subtasks),
   });
-  await addEvent(env, run, "team.started", `${TEAM_DEFS[task.agent].lead}이 팀원 3명에게 업무를 배정했습니다.`, task.agent);
+  const workerNames = workers.map((worker) => worker[1]).join("·");
+  await addEvent(env, run, "team.started",
+    `${TEAM_DEFS[task.agent].lead}이 ${workerNames} 담당 ${workers.length}명에게 업무를 배정했습니다.`, task.agent);
 
   const results = await Promise.all(workers.map(async (worker, index) => {
     const prompt = workerPrompt(run, task, worker, prior, feedback);
@@ -416,11 +423,17 @@ async function executeWorkers(env, run, task, prior, feedback = "") {
 }
 
 async function reviewTask(env, run, task, result) {
+  let context = {};
+  try { context = JSON.parse(run.context_json || "{}"); } catch {}
+  const currentDate = context.today || new Date().toISOString().slice(0, 10);
   const system = `너는 경기도의원실 ${TEAM_DEFS[task.agent].lead}이다.
 팀원 결과가 원지시를 충족하는지 검수한다. 사실 미확인, 과장, 누락, 외부 실행 허위 주장을 엄격히 찾는다.
+현재 날짜는 ${currentDate}이다. 2023년 등 다른 연도를 현재 시점으로 가정하지 않는다.
+lawResearch는 국가법령정보센터에서 조회한 공식 자료다. enforcementDate는 시행일자이며 제정일자·개정일자로 바꾸지 않는다.
+공식 자료의 시행일자가 현재 날짜보다 앞선다는 이유로 허위라고 판정하지 않고, sourceUrl이 제공되면 근거 없이 링크가 무효라고 판정하지 않는다.
 JSON만 반환: {"approved":true,"feedback":"","finalResult":""}`;
   const raw = await runModel(env, run.id, system,
-    `[원지시]\n${run.instruction}\n\n[담당 업무]\n${task.instruction}\n\n[팀원 결과]\n${result}`, true, 1200);
+    `[원지시]\n${run.instruction}\n\n[공식 조회 데이터]\n${run.context_json || "{}"}\n\n[담당 업무]\n${task.instruction}\n\n[팀원 결과]\n${result}`, true, 1200);
   const value = safeJson(raw) || {};
   const review = {
     approved: value.approved !== false,
@@ -518,14 +531,30 @@ async function processRun(env, runId, tenantId) {
 
   await updateRun(env, run.id, { status: "reviewing", lease_until: Date.now() + LEASE_MS });
   await addEvent(env, run, "run.reviewing", "AI 비서실장이 팀별 결과를 통합하고 있습니다.");
-  const summary = await runModel(env, run.id,
+  let finalContext = {};
+  try { finalContext = JSON.parse(run.context_json || "{}"); } catch {}
+  const currentDate = finalContext.today || new Date().toISOString().slice(0, 10);
+  const modelSummary = await runModel(env, run.id,
     `너는 경기도의원실 AI 비서실장이다. 팀장과 독립 검증팀이 승인한 결과만 통합한다.
 중복을 제거하고 사실확인 필요 사항과 의원 승인 필요 사항을 분리한다.
 실제로 실행하지 않은 게시·발송·일정 확정을 완료했다고 말하지 않는다.
+현재 날짜는 ${currentDate}이다. 2023년 등 다른 연도를 현재 시점으로 추정하지 않는다.
 국가법령정보센터 자료가 포함된 경우 '근거 법령' 항목에 법령·조례명, 시행일자, 공식 sourceUrl과 확인 시각을 빠뜨리지 않는다.
+enforcementDate는 '시행일자'로만 표기하며 제정일자나 개정일자로 바꾸지 않는다.
 검색 결과에 없는 조문이나 법적 결론을 만들어내지 않는다.
 형식: 결론, 팀별 결과, 확인 필요, 의원 승인 대기.`,
     `[원지시]\n${run.instruction}\n\n[공식 법령 조회 데이터]\n${run.context_json || "{}"}\n\n[검수 완료 보고]\n${prior}`, false, 1800);
+  let summary = modelSummary;
+  const research = finalContext.lawResearch;
+  if (Array.isArray(research?.sources) && research.sources.length) {
+    const evidence = research.sources.map((source) => {
+      const date = String(source.enforcementDate || "").replace(/^(\d{4})(\d{2})(\d{2})$/, "$1-$2-$3");
+      const organization = source.organization ? ` · ${source.organization}` : "";
+      const link = source.sourceUrl ? `[${source.title}](${source.sourceUrl})` : source.title;
+      return `- ${link}${organization}${date ? ` · 시행일자 ${date}` : ""}`;
+    }).join("\n");
+    summary = `${modelSummary}\n\n## 국가법령정보센터 공식 조회 결과\n조회 시각: ${research.checkedAt || "확인 필요"}\n${evidence}`;
+  }
   await updateRun(env, run.id, {
     status: "completed", summary, error: "", approval_status: "pending", lease_until: null,
   });

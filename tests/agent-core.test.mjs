@@ -6,6 +6,7 @@ import {
   normalizePlan,
   publicRun,
   safeJson,
+  selectTaskWorkers,
 } from "../agent-core.js";
 
 test("한국어 지시를 관련 팀으로 분류한다", () => {
@@ -16,6 +17,16 @@ test("한국어 지시를 관련 팀으로 분류한다", () => {
 test("법령과 조례 검토 지시는 정책팀으로 분류한다", () => {
   const plan = fallbackPlan("경기도 청소년 지원 조례와 관련 상위법을 찾아서 검토해줘");
   assert.deepEqual(plan.map((task) => task.agent), ["policy"]);
+});
+
+test("조례 검색은 조례검토 에이전트만 선택한다", () => {
+  const workers = selectTaskWorkers("policy", "경기도 청소년 조례와 상위법을 찾아서 검토해줘");
+  assert.deepEqual(workers.map((worker) => worker[0]), ["ordinance"]);
+});
+
+test("복합 정책 지시는 필요한 정책팀원만 선택한다", () => {
+  const workers = selectTaskWorkers("policy", "청소년 조례를 검토하고 정책 영향 분석과 도정질문을 작성해줘");
+  assert.deepEqual(workers.map((worker) => worker[0]), ["ordinance", "analysis", "speech"]);
 });
 
 test("허용되지 않은 팀을 제거하고 최대 8개로 제한한다", () => {

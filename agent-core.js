@@ -52,6 +52,22 @@ export const TEAM_DEFS = {
   ]},
 };
 
+export function selectTaskWorkers(agent, instruction) {
+  const workers = TEAM_DEFS[agent]?.workers || [];
+  const text = String(instruction || "");
+  if (agent !== "policy") return workers;
+
+  const selectedIds = [];
+  const add = (id) => { if (!selectedIds.includes(id)) selectedIds.push(id); };
+  if (/조례|법령|법률|시행령|시행규칙|자치법규|상위법|조문|판례/.test(text)) add("ordinance");
+  if (/정책\s*(분석|검토|평가|대안)|영향\s*분석|사업\s*(분석|평가)|공약\s*(분석|검토)/.test(text)) add("analysis");
+  if (/도정\s*질문|도정질문|자유\s*발언|발언문|질의서|질문서/.test(text)) add("speech");
+
+  return selectedIds.length
+    ? selectedIds.map((id) => workers.find((worker) => worker[0] === id)).filter(Boolean)
+    : workers;
+}
+
 export function createRunId(now = Date.now(), random = Math.random()) {
   return `run_${now.toString(36)}_${Math.floor(random * 0xffffff).toString(36).padStart(5, "0")}`;
 }
