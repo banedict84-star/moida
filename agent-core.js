@@ -55,17 +55,44 @@ export const TEAM_DEFS = {
 export function selectTaskWorkers(agent, instruction) {
   const workers = TEAM_DEFS[agent]?.workers || [];
   const text = String(instruction || "");
-  if (agent !== "policy") return workers;
-
   const selectedIds = [];
   const add = (id) => { if (!selectedIds.includes(id)) selectedIds.push(id); };
-  if (/조례|법령|법률|시행령|시행규칙|자치법규|상위법|조문|판례/.test(text)) add("ordinance");
-  if (/정책\s*(분석|검토|평가|대안)|영향\s*분석|사업\s*(분석|평가)|공약\s*(분석|검토)/.test(text)) add("analysis");
-  if (/도정\s*질문|도정질문|자유\s*발언|발언문|질의서|질문서/.test(text)) add("speech");
+  const rules = {
+    policy: [
+      ["ordinance", /조례|법령|법률|시행령|시행규칙|자치법규|상위법|조문|판례/],
+      ["analysis", /정책\s*(분석|검토|평가|대안)|영향\s*분석|사업\s*(분석|평가)|공약\s*(분석|검토)/],
+      ["speech", /도정\s*질문|도정질문|자유\s*발언|발언문|질의서|질문서/],
+    ],
+    schedule: [
+      ["calendar", /일정|시간|날짜|캘린더|충돌/], ["protocol", /의전|동선|수행|방문/], ["coordination", /연락|조율|참석자/],
+    ],
+    audit: [
+      ["budget", /예산|결산|금액|집행/], ["request", /요구자료|자료\s*목록/], ["question", /행감|행정사무감사|질의|질문/],
+    ],
+    civil: [
+      ["triage", /분류|긴급도|담당기관/], ["response", /답변|회신/], ["followup", /처리|추적|기한|현장\s*확인/],
+    ],
+    organization: [
+      ["contacts", /연락처|CRM|명부/], ["meeting", /간담회|회의/], ["opinion", /여론|주민\s*의견|현안/],
+    ],
+    assemblypr: [
+      ["briefing", /성과|브리핑|요약/], ["press", /보도자료|언론/], ["content", /SNS|게시글|콘텐츠|카드뉴스/],
+    ],
+    localpr: [
+      ["field", /현장|방문|행사|간담회/], ["solution", /민원|해결|성과/], ["channel", /SNS|게시글|커뮤니티|콘텐츠/],
+    ],
+    records: [
+      ["minutes", /회의록|간담회\s*기록/], ["documents", /공문|보고서|문서/], ["archive", /보관|아카이브|분류/],
+    ],
+    verification: [
+      ["legal", /조례|법령|법률|권한/], ["facts", /수치|통계|예산|날짜|인용|사실/], ["privacy", /개인정보|연락처|민감|표현/],
+    ],
+  };
+  (rules[agent] || []).forEach(([id, pattern]) => { if (pattern.test(text)) add(id); });
 
   return selectedIds.length
     ? selectedIds.map((id) => workers.find((worker) => worker[0] === id)).filter(Boolean)
-    : workers;
+    : workers.slice(0, 1);
 }
 
 export function createRunId(now = Date.now(), random = Math.random()) {

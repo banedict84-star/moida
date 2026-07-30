@@ -29,6 +29,16 @@ test("복합 정책 지시는 필요한 정책팀원만 선택한다", () => {
   assert.deepEqual(workers.map((worker) => worker[0]), ["ordinance", "analysis", "speech"]);
 });
 
+test("일정 확인은 일정관리 담당만 선택한다", () => {
+  const workers = selectTaskWorkers("schedule", "내일 일정을 확인해줘");
+  assert.deepEqual(workers.map((worker) => worker[0]), ["calendar"]);
+});
+
+test("법령 검증은 법률·조례검토 담당만 선택한다", () => {
+  const workers = selectTaskWorkers("verification", "조례와 상위법 충돌을 검증해줘");
+  assert.deepEqual(workers.map((worker) => worker[0]), ["legal"]);
+});
+
 test("허용되지 않은 팀을 제거하고 최대 8개로 제한한다", () => {
   const plan = normalizePlan({
     tasks: [

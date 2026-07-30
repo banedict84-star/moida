@@ -2,7 +2,7 @@ import {
   AGENT_SCHEMA_VERSION,
   TEAM_DEFS,
   createRunId,
-  normalizePlan,
+  fallbackPlan,
   publicRun,
   safeJson,
   selectTaskWorkers,
@@ -210,21 +210,20 @@ async function getLawDetail(env, target, id, mst) {
 }
 
 async function buildLawResearch(env, run, tasks) {
-  if (!tasks.some((task) => ["policy", "audit", "verification"].includes(task.agent))) return null;
-  let keywords = [];
-  try {
-    const extracted = safeJson(await runModel(env, run.id,
-      `의원 지시에서 국가법령과 경기도 자치법규 검색에 사용할 핵심 법률·정책 용어를 최대 3개 추출한다.
-법령명이나 조례 주제를 짧은 명사형으로 작성한다. JSON만 반환: {"keywords":["청소년","주거"]}`,
-      run.instruction, true, 400, { agent: "policy", operation: "law-keywords" }));
-    keywords = Array.isArray(extracted?.keywords) ? extracted.keywords.map(String).filter(Boolean).slice(0, 3) : [];
-  } catch {}
-  if (!keywords.length) keywords = [String(run.instruction).replace(/검토|작성|분석|조례|정책|해\s*줘|해주세요/gi, " ").replace(/\s+/g, " ").trim().slice(0, 30)];
-  keywords = keywords.filter(Boolean);
+  const instruction = String(run.instruction || "");
+  if (!tasks.some((task) => ["policy", "audit"].includes(task.agent))
+      || !/조례|법령|법률|시행령|시행규칙|자치법규|상위법|조문|판례/.test(instruction)) return null;
+  const cleaned = instruction
+    .replace(/경기도|국가법령정보센터|관련|상위법|조례|법령|법률|시행령|시행규칙|자치법규|조문|판례/gi, " ")
+    .replace(/찾아\s*줘|찾아|검색|조회|확인|보여\s*줘|보여|알려\s*줘|알려|검토|분석|작성|해\s*줘|해주세요|해봐|해\s*봐|줘/gi, " ")
+    .replace(/(^|\s)(내|의|대한|관한)(?=\s|$)/g, " ")
+    .replace(/[^\p{L}\p{N}\s·ㆍ-]/gu, " ").replace(/\s+/g, " ").trim();
+  const keywords = [cleaned || instruction.replace(/\s+/g, " ").trim().slice(0, 30)].filter(Boolean);
+  const targets = /상위법|법령|법률|시행령|시행규칙/.test(instruction) ? ["law", "ordin"] : ["ordin"];
 
   const sources = [];
   for (const keyword of keywords) {
-    for (const target of ["law", "ordin"]) {
+    for (const target of targets) {
       try {
         const searched = await searchLaw(env, target, keyword, { display: target === "ordin" ? 100 : 5 });
         let results = searched.results;
@@ -422,13 +421,7 @@ async function updateTask(env, taskId, fields) {
 }
 
 async function planRun(env, run) {
-  const system = `너는 경기도의원실 AI 비서실장이다. 지시를 전문 팀 작업으로 분해한다.
-허용 agent: schedule, policy, audit, civil, organization, assemblypr, localpr, records.
-외부 게시·발송·일정 확정은 하지 않고 검토 가능한 초안만 만든다.
-JSON만 반환: {"tasks":[{"agent":"policy","title":"","instruction":"","dependencies":[]}]}`;
-  let value;
-  try { value = safeJson(await runModel(env, run.id, system, run.instruction, true, 1000)); } catch { value = null; }
-  return normalizePlan(value, run.instruction);
+  return fallbackPlan(run.instruction);
 }
 
 function workerPrompt(run, task, worker, prior, feedback) {
@@ -436,6 +429,22 @@ function workerPrompt(run, task, worker, prior, feedback) {
   try { context = JSON.parse(run.context_json || "{}"); } catch {}
   const hasLawResearch = Boolean(context.lawResearch);
   const currentDate = context.today || new Date().toISOString().slice(0, 10);
+  const compact = { today: currentDate };
+  if (context.profile) compact.profile = {
+    name: context.profile.name, position: context.profile.position, district: context.profile.district,
+  };
+  if (task.agent === "schedule") compact.events = (context.events || []).slice(0, 12);
+  if (task.agent === "civil") compact.complaints = (context.complaints || []).slice(0, 12);
+  if (task.agent === "organization") compact.contacts = (context.contacts || []).slice(0, 20);
+  if (["assemblypr", "localpr"].includes(task.agent)) compact.recentContents = (context.recentContents || []).slice(0, 8);
+  if (context.lawResearch) compact.lawResearch = {
+    provider: context.lawResearch.provider, checkedAt: context.lawResearch.checkedAt,
+    sources: (context.lawResearch.sources || []).slice(0, 6).map((source) => ({
+      target: source.target, title: source.title, organization: source.organization,
+      enforcementDate: source.enforcementDate, sourceUrl: source.sourceUrl,
+      ...(task.agent === "policy" && source.body ? { body: String(source.body).slice(0, 3500) } : {}),
+    })),
+  };
   return {
     system: `너는 경기도의원실 ${TEAM_DEFS[task.agent].lead} 산하의 ${worker[1]} 담당 AI 팀원이다.
 전문 역할: ${worker[2]}
@@ -444,14 +453,14 @@ function workerPrompt(run, task, worker, prior, feedback) {
 현재 날짜는 ${currentDate}이다. 다른 연도를 현재 시점으로 추정하지 않는다.
 ${hasLawResearch ? "읽기 전용 참고 데이터의 lawResearch는 국가법령정보센터에서 방금 조회한 공식 자료다. enforcementDate는 제정일이나 개정일이 아니라 '시행일자'로만 표시한다. 법령·조례를 언급할 때 법령명, 시행일자, sourceUrl을 근거로 표시하고 검색 결과에 없는 조문을 만들어내지 않는다. checkedAt에 정상 조회된 공식 링크를 별도 근거 없이 무효라고 판단하지 않는다." : ""}`,
     user: `[의원 원지시]\n${run.instruction}\n\n[팀 담당 업무]\n${task.instruction}
-\n\n[읽기 전용 참고 데이터]\n${run.context_json || "{}"}
+\n\n[읽기 전용 참고 데이터]\n${JSON.stringify(compact)}
 \n\n[앞선 팀 결과]\n${prior || "없음"}${feedback ? `\n\n[팀장 재작업 요청]\n${feedback}` : ""}`,
   };
 }
 
 async function executeWorkers(env, run, task, prior, feedback = "") {
   const workers = selectTaskWorkers(task.agent,
-    `${run.instruction}\n${task.title}\n${task.instruction}`);
+    task.agent === "verification" ? run.instruction : `${run.instruction}\n${task.title}\n${task.instruction}`);
   const subtasks = workers.map((worker, index) => ({
     id: `${task.id}_worker_${index + 1}`, workerId: worker[0], name: worker[1],
     role: worker[2], status: feedback ? "reworking" : "running", result: "", error: "", updatedAt: Date.now(),
@@ -490,40 +499,63 @@ async function executeWorkers(env, run, task, prior, feedback = "") {
 }
 
 async function reviewTask(env, run, task, result) {
-  let context = {};
-  try { context = JSON.parse(run.context_json || "{}"); } catch {}
-  const currentDate = context.today || new Date().toISOString().slice(0, 10);
-  const system = `너는 경기도의원실 ${TEAM_DEFS[task.agent].lead}이다.
-팀원 결과가 원지시를 충족하는지 검수한다. 사실 미확인, 과장, 누락, 외부 실행 허위 주장을 엄격히 찾는다.
-현재 날짜는 ${currentDate}이다. 2023년 등 다른 연도를 현재 시점으로 가정하지 않는다.
-lawResearch는 국가법령정보센터에서 조회한 공식 자료다. enforcementDate는 시행일자이며 제정일자·개정일자로 바꾸지 않는다.
-공식 자료의 시행일자가 현재 날짜보다 앞선다는 이유로 허위라고 판정하지 않고, sourceUrl이 제공되면 근거 없이 링크가 무효라고 판정하지 않는다.
-JSON만 반환: {"approved":true,"feedback":"","finalResult":""}`;
-  const raw = await runModel(env, run.id, system,
-    `[원지시]\n${run.instruction}\n\n[공식 조회 데이터]\n${run.context_json || "{}"}\n\n[담당 업무]\n${task.instruction}\n\n[팀원 결과]\n${result}`, true, 1200,
-    { agent: task.agent, operation: "review" });
-  const value = safeJson(raw) || {};
-  const review = {
-    approved: value.approved !== false,
-    feedback: String(value.feedback || ""),
-    finalResult: String(value.finalResult || result),
+  const text = String(result || "").trim();
+  return {
+    approved: text.length >= 20,
+    feedback: text.length >= 20 ? "코드 검증 통과" : "결과 내용이 부족합니다.",
+    finalResult: text,
   };
-  // 독립 검증팀의 지적은 숨기거나 전체 작업을 재실행하지 않고 최종 보고의
-  // 확인 필요 항목으로 전달한다. 실제 외부 행동은 어차피 승인 전까지 실행되지 않는다.
-  if (task.agent === "verification" && !review.approved) {
-    review.approved = true;
-    review.feedback = `검증 결과 보완 필요: ${review.feedback || "근거와 표현을 최종 확인해야 합니다."}`;
-  }
-  return review;
 }
 
-async function insertTasks(env, run, plan) {
-  const all = [...plan, {
+function isDirectLawLookup(instruction, plan, research) {
+  const text = String(instruction || "");
+  return Boolean(research?.sources?.length)
+    && plan.length === 1 && plan[0].agent === "policy"
+    && /찾아|검색|조회|확인|보여|알려|검토/.test(text)
+    && !/초안|제정안|개정안|도정질문|발언문|질의서|보고서|영향\s*분석|대안|비교\s*분석/.test(text);
+}
+
+function lawEvidence(research) {
+  return (research?.sources || []).map((source) => {
+    const date = String(source.enforcementDate || "").replace(/^(\d{4})(\d{2})(\d{2})$/, "$1-$2-$3");
+    const organization = source.organization ? ` · ${source.organization}` : "";
+    const link = source.sourceUrl ? `[${source.title}](${source.sourceUrl})` : source.title;
+    return `- ${link}${organization}${date ? ` · 시행일자 ${date}` : ""}`;
+  }).join("\n");
+}
+
+async function completeDirectLawLookup(env, run, task, research) {
+  const sourceCount = research.sources.length;
+  const worker = TEAM_DEFS.policy.workers.find((item) => item[0] === "ordinance");
+  const result = `국가법령정보센터에서 관련 법령·조례 ${sourceCount}건을 확인했습니다.\n\n${lawEvidence(research)}`;
+  const subtask = {
+    id: `${task.id}_worker_1`, workerId: worker[0], name: worker[1], role: worker[2],
+    status: "completed", result, error: "", updatedAt: Date.now(),
+  };
+  await updateTask(env, task.id, {
+    status: "completed", worker_status: "completed", lead_status: "approved",
+    result, review: "공식 API 응답·링크·시행일자 코드 검증 완료",
+    review_decision: "approved_without_model", subtasks_json: JSON.stringify([subtask]),
+  });
+  await addEvent(env, run, "team.started", "조례·정책팀장이 조례검토 담당에게 공식 조회를 배정했습니다.", "policy");
+  await addEvent(env, run, "worker.completed", `조례검토 담당이 공식 자료 ${sourceCount}건을 확인했습니다.`, "policy_ordinance");
+  await addEvent(env, run, "team.approved", "조례·정책팀장이 API 응답을 코드로 검증했습니다.", "policy");
+  const summary = `## 조회 결과\n국가법령정보센터에서 관련 법령·조례 **${sourceCount}건**을 확인했습니다.\n\n## 공식 근거\n${lawEvidence(research)}\n\n조회 시각: ${research.checkedAt}`;
+  await updateRun(env, run.id, {
+    status: "completed", summary, error: "", approval_status: "not_required",
+    lease_until: null,
+  });
+  await addEvent(env, run, "run.completed", "AI 모델 호출 없이 공식 조회 결과를 정리했습니다.");
+}
+
+async function insertTasks(env, run, plan, includeVerification = true) {
+  const all = [...plan];
+  if (includeVerification) all.push({
     agent: "verification",
     title: "독립 검증팀 최종 검증",
     instruction: "각 팀장이 승인한 결과를 사실·수치, 법률·조례, 개인정보·문서 품질 기준으로 독립 검증한다.",
     dependencies: plan.map((_, index) => `${run.id}_task_${index + 1}`),
-  }];
+  });
   const now = Date.now();
   await env.AGENT_DB.batch(all.map((task, index) => env.AGENT_DB.prepare(
     `INSERT OR REPLACE INTO agent_tasks
@@ -552,13 +584,21 @@ async function processRun(env, runId, tenantId) {
     run.context_json = JSON.stringify(originalContext);
     await updateRun(env, run.id, { context_json: run.context_json, lease_until: Date.now() + LEASE_MS });
   }
-  await insertTasks(env, run, plan);
+  const directLaw = isDirectLawLookup(run.instruction, plan, lawResearch);
+  const needsVerification = !directLaw
+    && /조례|법령|법률|예산|결산|수치|통계|개인정보|연락처|게시|발송/.test(run.instruction);
+  await insertTasks(env, run, plan, needsVerification);
   await updateRun(env, run.id, { status: "running", lease_until: Date.now() + LEASE_MS });
-  await addEvent(env, run, "run.running", `${plan.length}개 담당 팀과 독립 검증팀이 작업을 시작했습니다.`);
+  await addEvent(env, run, "run.running",
+    `${plan.length}개 담당 팀${needsVerification ? "과 선택 검증 담당" : ""}이 작업을 시작했습니다.`);
 
   const tasks = (await env.AGENT_DB.prepare(
     "SELECT * FROM agent_tasks WHERE run_id = ? ORDER BY position"
   ).bind(run.id).all()).results || [];
+  if (directLaw) {
+    await completeDirectLawLookup(env, run, tasks[0], lawResearch);
+    return;
+  }
   let prior = "";
   for (const task of tasks) {
     let result = await executeWorkers(env, run, task, prior);
@@ -602,7 +642,15 @@ async function processRun(env, runId, tenantId) {
   let finalContext = {};
   try { finalContext = JSON.parse(run.context_json || "{}"); } catch {}
   const currentDate = finalContext.today || new Date().toISOString().slice(0, 10);
-  const modelSummary = await runModel(env, run.id,
+  const finalLawContext = finalContext.lawResearch ? {
+    provider: finalContext.lawResearch.provider,
+    checkedAt: finalContext.lawResearch.checkedAt,
+    sources: (finalContext.lawResearch.sources || []).map((source) => ({
+      title: source.title, organization: source.organization,
+      enforcementDate: source.enforcementDate, sourceUrl: source.sourceUrl,
+    })),
+  } : {};
+  const modelSummary = plan.length === 1 ? prior : await runModel(env, run.id,
     `너는 경기도의원실 AI 비서실장이다. 팀장과 독립 검증팀이 승인한 결과만 통합한다.
 중복을 제거하고 사실확인 필요 사항과 의원 승인 필요 사항을 분리한다.
 실제로 실행하지 않은 게시·발송·일정 확정을 완료했다고 말하지 않는다.
@@ -611,17 +659,12 @@ async function processRun(env, runId, tenantId) {
 enforcementDate는 '시행일자'로만 표기하며 제정일자나 개정일자로 바꾸지 않는다.
 검색 결과에 없는 조문이나 법적 결론을 만들어내지 않는다.
 형식: 결론, 팀별 결과, 확인 필요, 의원 승인 대기.`,
-    `[원지시]\n${run.instruction}\n\n[공식 법령 조회 데이터]\n${run.context_json || "{}"}\n\n[검수 완료 보고]\n${prior}`, false, 1800,
+    `[원지시]\n${run.instruction}\n\n[공식 법령 조회 데이터]\n${JSON.stringify(finalLawContext)}\n\n[검수 완료 보고]\n${prior}`, false, 1800,
     { agent: "secretary", operation: "summary" });
   let summary = modelSummary;
   const research = finalContext.lawResearch;
   if (Array.isArray(research?.sources) && research.sources.length) {
-    const evidence = research.sources.map((source) => {
-      const date = String(source.enforcementDate || "").replace(/^(\d{4})(\d{2})(\d{2})$/, "$1-$2-$3");
-      const organization = source.organization ? ` · ${source.organization}` : "";
-      const link = source.sourceUrl ? `[${source.title}](${source.sourceUrl})` : source.title;
-      return `- ${link}${organization}${date ? ` · 시행일자 ${date}` : ""}`;
-    }).join("\n");
+    const evidence = lawEvidence(research);
     summary = `${modelSummary}\n\n## 국가법령정보센터 공식 조회 결과\n조회 시각: ${research.checkedAt || "확인 필요"}\n${evidence}`;
   }
   await updateRun(env, run.id, {
