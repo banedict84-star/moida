@@ -227,13 +227,15 @@
   .vbtn{ display:inline-flex; align-items:center; gap:6px; padding:7px 13px; border:none; background:transparent; border-radius:8px; font-family:inherit; font-size:13px; font-weight:600; color:var(--ink-2); cursor:pointer; }
   .vbtn.active{ background:#fff; color:var(--primary); box-shadow:var(--shadow-sm); }
   .vbtn svg{ width:15px; height:15px; }
+  .birthday-toggle{ display:inline-flex; align-items:center; gap:6px; padding:7px 10px; border:1px solid var(--line); border-radius:9px; background:#fff; color:var(--ink-2); font-size:12.5px; font-weight:650; cursor:pointer; white-space:nowrap; user-select:none; }
+  .birthday-toggle input{ width:14px; height:14px; margin:0; accent-color:#d89b00; cursor:pointer; }
   .add-ev{ display:inline-flex; align-items:center; gap:6px; background:var(--primary); color:#fff; border:1px solid var(--primary); padding:9px 14px; border-radius:10px; font-family:inherit; font-size:13px; font-weight:700; cursor:pointer; box-shadow:0 4px 12px rgba(79,70,229,.24); }
   .add-ev svg{ width:15px; height:15px; }
   .sched-wrap{ display:grid; grid-template-columns:minmax(0,800px) 300px; justify-content:center; gap:60px; padding:18px 28px 30px; align-items:start; max-width:1216px; margin:0 auto; width:100%; box-sizing:border-box; }
   .sched-wrap.calmode{ display:block; max-width:none; padding-bottom:24px; }
   .sched-wrap.calmode .sched-main{ max-width:none; width:100% !important; }
   .sched-wrap.calmode .cal{ width:100% !important; display:flex; flex-direction:column; }
-  .sched-wrap.calmode .cal-grid{ flex:1; grid-template-rows:auto; grid-auto-rows:minmax(0,1fr); min-height:calc(100vh - 220px); }
+  .sched-wrap.calmode .cal-grid{ grid-template-rows:auto; grid-auto-rows:136px; min-height:0; }
   .sched-main{ min-width:0; max-width:800px; display:flex; flex-direction:column; gap:14px; }
   .compose{ display:flex; align-items:center; gap:14px; background:var(--surface); border:1px solid var(--line); border-radius:14px; box-shadow:var(--shadow-sm); padding:14px 16px; cursor:text; transition:border-color .14s, box-shadow .14s; }
   .compose:hover{ border-color:#cfd8e6; box-shadow:var(--shadow-md); }
@@ -338,7 +340,7 @@
   .cal-cell{ min-width:0; }
   .cal-dow{ background:#fafbfd; padding:8px; text-align:center; font-size:12px; font-weight:700; color:var(--ink-3); }
   .cal-dow.sun{ color:#dc2626; } .cal-dow.sat{ color:#2563eb; }
-  .cal-cell{ background:#fff; min-height:94px; padding:6px 7px; }
+  .cal-cell{ position:relative; background:#fff; height:136px; box-sizing:border-box; padding:6px 7px; }
   .cal-cell.off{ background:#fafbfd; }
   .cal-dnum{ font-size:12px; font-weight:600; color:var(--ink-2); margin-bottom:5px; }
   .cal-cell.sun .cal-dnum{ color:#dc2626; } .cal-cell.sat .cal-dnum{ color:#2563eb; }
@@ -346,6 +348,23 @@
   .cal-cell.today .cal-dnum{ color:var(--primary); font-weight:800; }
   .cal-ev{ font-size:11px; color:var(--ink-2); background:#e7f0fb; border-radius:5px; padding:2px 5px; margin-bottom:3px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; cursor:pointer; }
   .cal-ev:hover{ background:#d6e6fb; }
+  .cal-ev.birthday{ background:#fff3bf; color:#8a5a00; border:1px solid #f2d675; font-weight:700; }
+  .cal-ev.birthday:hover{ background:#ffe69a; }
+  .cal-birthday-row{ display:flex;align-items:center;gap:3px;margin-top:3px;min-width:0; }
+  .cal-birthday-row .cal-ev{ flex:1;min-width:0;margin:0; }
+  .cal-birthday-more{ flex-shrink:0;border:0;border-radius:5px;background:#fff3bf;color:#8a5a00;font:inherit;font-size:10px;font-weight:800;padding:2px 5px;cursor:pointer; }
+  .cal-birthday-more:hover{ background:#ffe69a; }
+  .cal-more{ display:block;margin-top:3px;padding:2px 5px;border:0;border-radius:5px;background:#f1f5f9;color:#526071;font:inherit;font-size:10.5px;font-weight:700;cursor:pointer; }
+  .cal-more:hover{ background:#e2e8f0;color:#1d3a6e; }
+  .cal-more-panel{ position:absolute;left:5px;right:5px;top:42px;z-index:30;padding:6px;border:1px solid #d7e0eb;border-radius:8px;background:#fff;box-shadow:0 8px 18px rgba(21,37,62,.16);max-height:176px;overflow-y:auto; }
+  .cal-more-panel .cal-ev{ margin-bottom:4px; }
+  .birthday-detail-ovl{ position:fixed;inset:0;z-index:1500;background:rgba(15,29,51,.34);display:flex;align-items:center;justify-content:center;padding:20px; }
+  .birthday-detail{ width:360px;max-width:100%;background:#fff;border-radius:15px;box-shadow:0 20px 48px rgba(15,29,51,.26);overflow:hidden; }
+  .birthday-detail-head{ display:flex;align-items:center;gap:9px;padding:16px 18px;background:#fff8dc;border-bottom:1px solid #f2e0a0;color:#805400;font-size:15px;font-weight:800; }
+  .birthday-detail-x{ margin-left:auto;width:28px;height:28px;border:0;border-radius:7px;background:transparent;color:#805400;font-size:20px;cursor:pointer; }
+  .birthday-detail-body{ padding:16px 18px 18px; }
+  .birthday-detail-row{ display:flex;gap:12px;padding:9px 0;border-bottom:1px solid #f1f3f5;font-size:13px; }
+  .birthday-detail-row:last-child{ border-bottom:0; }.birthday-detail-row b{ width:58px;color:#8a94a3;font-weight:700;flex-shrink:0; }
   .cal-ev .t{ color:var(--primary); font-weight:700; }
   .cal-ev.multi-s{ border-radius:5px 0 0 5px; margin-right:-8px; background:#c7dbf7; color:var(--primary-600); font-weight:700; }
   .cal-ev.multi-m{ border-radius:0; margin-left:-8px; margin-right:-8px; background:#c7dbf7; padding-left:2px; }
@@ -608,6 +627,12 @@ onAuthStateChanged(_auth, async function(user){
     try{ localStorage.setItem(KEY, JSON.stringify(fsEvents)); }catch(e){}
     if(window._reloadEventsFromFS) window._reloadEventsFromFS(fsEvents);
   }
+  // CRM 생일 데이터는 일정 목록에 넣지 않고, 달력 표시용으로만 불러온다.
+  var fsMembers = await window._fsLoad(fsUid, 'members');
+  if(fsMembers && Array.isArray(fsMembers)){
+    try{ localStorage.setItem('moida_members_'+fsUid, JSON.stringify(fsMembers)); }catch(e){}
+    if(window._reloadMembersFromFS) window._reloadMembersFromFS(fsMembers);
+  }
 });
 </script>
 </head>
@@ -652,6 +677,7 @@ onAuthStateChanged(_auth, async function(user){
           <button class="vbtn active" data-view="feed"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>목록</button>
           <button class="vbtn" data-view="cal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="4.5" width="17" height="16" rx="3"/><path d="M3.5 9h17M8 3v3M16 3v3"/></svg>캘린더</button>
         </div>
+        <label class="birthday-toggle" title="CRM 연락처 생일 표시"><input id="birthdayVisibility" type="checkbox" checked> 생일자 보기</label>
         <button class="add-ev" style="padding: 9px 14px; gap: 3px; flex-direction: row; align-items: center"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>일정 추가</button>
       </div>
     </div>
@@ -797,6 +823,18 @@ onAuthStateChanged(_auth, async function(user){
   var _myName = _authUser.displayName || _authUser.email || '나';
   const EV_KEY='moida_events_' + _uid;
   var events = JSON.parse(localStorage.getItem(EV_KEY)||'[]');
+  var birthdayMembers = JSON.parse(localStorage.getItem('moida_members_'+_uid)||'[]');
+  var BIRTHDAY_VISIBILITY_KEY='moida_show_birthdays_'+_uid;
+  var showBirthdays=localStorage.getItem(BIRTHDAY_VISIBILITY_KEY)!=='false';
+  var birthdayVisibility=document.getElementById('birthdayVisibility');
+  if(birthdayVisibility){
+    birthdayVisibility.checked=showBirthdays;
+    birthdayVisibility.addEventListener('change',function(){
+      showBirthdays=birthdayVisibility.checked;
+      localStorage.setItem(BIRTHDAY_VISIBILITY_KEY,String(showBirthdays));
+      if(window.renderCal)window.renderCal();
+    });
+  }
   function saveEvents(){
     localStorage.setItem(EV_KEY, JSON.stringify(events));
     if(window._fsSave && _uid && _uid!=='default') window._fsSave(_uid, 'events', events);
@@ -805,6 +843,11 @@ onAuthStateChanged(_auth, async function(user){
     events = fsEvents;
     localStorage.setItem(EV_KEY, JSON.stringify(events));
     renderFeed(); renderStats(); renderImp(); if(window.renderCal) window.renderCal();
+  };
+  window._reloadMembersFromFS = function(fsMembers){
+    birthdayMembers=Array.isArray(fsMembers)?fsMembers:[];
+    try{localStorage.setItem('moida_members_'+_uid,JSON.stringify(birthdayMembers));}catch(e){}
+    if(window.renderCal)window.renderCal();
   };
 
   const calIco = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="4.5" width="17" height="16" rx="3"/><path d="M3.5 9h17M8 3v3M16 3v3"/></svg>';
@@ -920,6 +963,7 @@ onAuthStateChanged(_auth, async function(user){
     const grid = document.getElementById('calGrid');
     const dows = ['일','월','화','수','목','금','토'];
     var calNow=new Date(), calY=calNow.getFullYear(), calM=calNow.getMonth();
+    var calItemsByDay={};
     function evDate(s){ var p=(s||'').split('-'); return p.length===3?{y:+p[0],m:+p[1]-1,d:+p[2]}:null; }
     function renderCal(){
       var titleEl=document.querySelector('.cal-title'); if(titleEl) titleEl.textContent=calY+'년 '+(calM+1)+'월';
@@ -960,24 +1004,45 @@ onAuthStateChanged(_auth, async function(user){
           cur.setDate(cur.getDate()+1);
         }
       });
+      // 생일은 CRM 연락처에서만 읽고, 일반 일정 목록·통계에는 포함하지 않는다.
+      if(showBirthdays) birthdayMembers.forEach(function(member){
+        var digits=String(member.birthday||member.birth||member.birthDate||member.dob||member.rrn||'').replace(/[^0-9]/g,'');
+        var md=digits.length>=8?digits.slice(4,8):(digits.length>=6?digits.slice(2,6):'');
+        if(md.length!==4)return;
+        var month=+md.slice(0,2)-1,day=+md.slice(2,4);
+        if(month!==calM||day<1||day>dim)return;
+        var title='🎂 '+String(member.name||'이름 미등록')+'님 생일';
+        (byDay[day]=byDay[day]||[]).push({birthday:true,title:title,birthdayKey:String(member.mid||member.name||'')});
+      });
       var _td=new Date(); var today=new Date(_td.getFullYear(),_td.getMonth(),_td.getDate());
+      calItemsByDay={};
+      function renderCalendarItem(item){
+        if(item.birthday)return '<div class="cal-ev birthday" data-birthday-key="'+encodeURIComponent(item.birthdayKey||'')+'" title="'+item.title.replace(/"/g,'&quot;')+'">'+item.title+'</div>';
+        var e=item.e, span=item.span;
+        var cls='cal-ev'+(span?' multi-'+span:'');
+        var inner=span==='m'?'&nbsp;':span==='e'?e.title:('<span class="t">'+e.time+'</span> '+e.title);
+        return '<div class="'+cls+'" data-title="'+e.title.replace(/"/g,'&quot;')+'">'+inner+'</div>';
+      }
       html += cells.map(function(c,i){
         var dow=i%7;
         var evs='';
         if(!c.off && byDay[c.n]){
           // render multi-day events first (sorted: s before m/e, then single)
           var items=byDay[c.n].slice().sort(function(a,b){ return (a.span?0:1)-(b.span?0:1); });
-          evs=items.map(function(item){
-            var e=item.e, span=item.span;
-            var cls='cal-ev'+(span?' multi-'+span:'');
-            var inner=span==='m'?'&nbsp;':span==='e'?e.title:('<span class="t">'+e.time+'</span> '+e.title);
-            return '<div class="'+cls+'" data-title="'+e.title.replace(/"/g,'&quot;')+'">'+inner+'</div>';
-          }).join('');
+          var dayKey=calY+'-'+String(calM+1).padStart(2,'0')+'-'+String(c.n).padStart(2,'0');
+          var scheduleItems=items.filter(function(item){return !item.birthday;}),birthdayItems=items.filter(function(item){return item.birthday;});
+          calItemsByDay[dayKey]={schedule:scheduleItems,birthday:birthdayItems};
+          if(birthdayItems.length){
+            evs+='<div class="cal-birthday-row">'+renderCalendarItem(birthdayItems[0])+(birthdayItems.length>1?'<button type="button" class="cal-birthday-more" data-cal-more="'+dayKey+'" data-cal-more-kind="birthday">+'+(birthdayItems.length-1)+'명</button>':'')+'</div>';
+          }
+          evs+=scheduleItems.slice(0,3).map(renderCalendarItem).join('');
+          if(scheduleItems.length>3)evs+='<button type="button" class="cal-more" data-cal-more="'+dayKey+'" data-cal-more-kind="schedule">+'+(scheduleItems.length-3)+'개 더보기</button>';
         }
         var isToday=(!c.off && calY===today.getFullYear() && calM===today.getMonth() && c.n===today.getDate());
         return '<div class="cal-cell '+(c.off?'off ':'')+(dow===0?'sun ':dow===6?'sat ':'')+(isToday?'today':'')+'"><div class="cal-dnum">'+c.n+'</div>'+evs+'</div>';
       }).join('');
       grid.innerHTML = html;
+      bindBirthdayClick(grid);
     }
     window.renderCal = renderCal;
     window.showTodayCalendar = function(){
@@ -994,7 +1059,52 @@ onAuthStateChanged(_auth, async function(user){
     var navs=document.querySelectorAll('.cal-nav');
     if(navs[0]) navs[0].addEventListener('click',function(){ calM--; if(calM<0){calM=11;calY--;} renderCal(); });
     if(navs[1]) navs[1].addEventListener('click',function(){ calM++; if(calM>11){calM=0;calY++;} renderCal(); });
+    function showBirthdayDetail(encodedKey){
+      var key='';try{key=decodeURIComponent(encodedKey||'');}catch(e){key=encodedKey||'';}
+      var member=birthdayMembers.find(function(item){return String(item.mid||item.name||'')===key;});
+      if(!member)return;
+      var old=document.getElementById('birthdayDetailOverlay');if(old)old.remove();
+      function esc(value){return String(value==null?'':value).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+      var birthday=member.birthday||member.birth||member.birthDate||member.dob||member.rrn||'미등록';
+      var overlay=document.createElement('div');overlay.id='birthdayDetailOverlay';overlay.className='birthday-detail-ovl';
+      overlay.innerHTML='<div class="birthday-detail" role="dialog" aria-modal="true"><div class="birthday-detail-head">🎂 '+esc(member.name||'이름 미등록')+'님 생일<button type="button" class="birthday-detail-x" aria-label="닫기">×</button></div><div class="birthday-detail-body"><div class="birthday-detail-row"><b>생일</b><span>'+esc(birthday)+'</span></div><div class="birthday-detail-row"><b>연락처</b><span>'+esc(member.phone||'미등록')+'</span></div><div class="birthday-detail-row"><b>유형</b><span>'+esc(member.type||'미등록')+'</span></div><div class="birthday-detail-row"><b>지역</b><span>'+esc(member.dong||member.addr||'미등록')+'</span></div></div></div>';
+      overlay.addEventListener('click',function(event){if(event.target===overlay||event.target.closest('.birthday-detail-x'))overlay.remove();});
+      document.body.appendChild(overlay);
+    }
+    function bindBirthdayClick(root){
+      root.querySelectorAll('[data-birthday-key]').forEach(function(node){
+        node.addEventListener('click',function(event){
+          event.preventDefault();event.stopPropagation();
+          showBirthdayDetail(node.getAttribute('data-birthday-key'));
+        });
+      });
+    }
     grid.addEventListener('click',function(e){
+      var more=e.target.closest('[data-cal-more]');
+      if(more){
+        e.stopPropagation();
+        var key=more.getAttribute('data-cal-more'),kind=more.getAttribute('data-cal-more-kind')||'schedule';
+        var old=grid.querySelector('.cal-more-panel');
+        if(old&&old.getAttribute('data-cal-more')===key&&old.getAttribute('data-cal-more-kind')===kind){old.remove();return;}
+        [].forEach.call(grid.querySelectorAll('.cal-more-panel'),function(panel){panel.remove();});
+        var dayItems=calItemsByDay[key]||{};
+        var items=dayItems[kind]||[];
+        var cell=more.closest('.cal-cell');
+        var skip=kind==='schedule'?4:1;
+        if(cell&&items.length>skip){
+          var panel=document.createElement('div');panel.className='cal-more-panel';panel.setAttribute('data-cal-more',key);panel.setAttribute('data-cal-more-kind',kind);
+          panel.innerHTML=items.slice(skip).map(function(item){
+            if(item.birthday)return '<div class="cal-ev birthday" data-birthday-key="'+encodeURIComponent(item.birthdayKey||'')+'" title="'+item.title.replace(/"/g,'&quot;')+'">'+item.title+'</div>';
+            var event=item.e,span=item.span,cls='cal-ev'+(span?' multi-'+span:''),inner=span==='m'?'&nbsp;':span==='e'?event.title:('<span class="t">'+event.time+'</span> '+event.title);
+            return '<div class="'+cls+'" data-title="'+event.title.replace(/"/g,'&quot;')+'">'+inner+'</div>';
+          }).join('');
+          cell.appendChild(panel);
+          bindBirthdayClick(panel);
+        }
+        return;
+      }
+      var birthday=e.target.closest('[data-birthday-key]');
+      if(birthday){showBirthdayDetail(birthday.getAttribute('data-birthday-key'));return;}
       var ce=e.target.closest('.cal-ev'); if(!ce) return;
       var t=ce.getAttribute('data-title');
       var rows=document.querySelectorAll('#feedView .ev');
