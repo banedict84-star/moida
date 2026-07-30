@@ -568,7 +568,7 @@ body.app-loading #sideAvatar{color:transparent!important;background:#243a5c!impo
                 <button id="googleCalendarDisconnect" style="display:none;height:34px;padding:0 11px;border:1px solid #e5e7eb;border-radius:8px;background:#fff;color:#9b4b52;font-size:10.5px;font-weight:800;cursor:pointer">해제</button>
               </div>
             </section>
-            <section class="control-panel"><div style="font-size:13px;font-weight:800">AGENT INSPECTOR</div><div id="agentInspector" class="agent-detail"><b>에이전트 노드를 선택하세요</b>현재 상태와 담당 업무가 여기에 표시됩니다.</div></section>
+            <section class="control-panel"><div style="display:flex;align-items:center;justify-content:space-between;gap:8px"><div style="font-size:13px;font-weight:800">AGENT INSPECTOR</div><button id="agentRoleEdit" type="button" disabled style="height:28px;padding:0 9px;border:1px solid #cbd9ed;border-radius:7px;background:#fff;color:#31527f;font-size:10px;font-weight:800;cursor:pointer">역할 수정</button></div><div id="agentInspector" class="agent-detail"><b>에이전트 노드를 선택하세요</b>현재 상태와 담당 업무가 여기에 표시됩니다.</div></section>
             <section class="control-panel"><div style="font-size:13px;font-weight:800">LIVE ACTIVITY</div><div id="officeActivity" class="office-feed"><div style="padding:24px 0;text-align:center;color:#607b94;font-size:11px">아직 업무 기록이 없습니다.</div></div></section>
           </aside>
         </div>
@@ -4080,6 +4080,22 @@ onAuthStateChanged(_auth, async function(user){
   var WORKER_NAMES={schedule:['일정관리','의전·동선','연락·조율'],policy:['조례검토','정책분석','도정질문·발언'],audit:['예산·결산','요구자료','행감질의'],civil:['민원분류','답변초안','처리추적'],organization:['연락처관리','간담회관리','지역여론'],assemblypr:['의정성과정리','의정보도자료','의정SNS'],localpr:['현장소식','민원해결홍보','지역채널'],records:['회의록','공문·보고서','자료보관'],verification:['사실·수치검증','법률·조례검토','개인정보·품질']};
   var ORG_GROUPS={officeLegislativeTeams:['policy','audit','assemblypr'],officeLocalTeams:['schedule','civil','organization','localpr'],officeDirectTeams:['records','verification']};
   var TEAM_COLORS={schedule:'#2563eb',policy:'#059669',audit:'#d97706',civil:'#dc5a66',organization:'#0f9f9a',assemblypr:'#7c3aed',localpr:'#db5b8b',records:'#64748b',verification:'#1d4ed8'};
+  var ROLE_DEFAULTS={
+    secretary:'의원실 전체 업무를 지휘하고, 우선순위를 정해 최종 보고를 통합합니다.',
+    schedule_lead:'일정·수행 업무를 배분하고 일정의 충돌·우선순위를 검토합니다.',schedule_calendar:'의원과 지역의 일정을 확인하고 등록·변경 초안을 정리합니다.',schedule_protocol:'행사 의전, 참석자, 준비사항을 점검합니다.',schedule_coordination:'기관·참석자와의 연락 및 동선 조율 사항을 정리합니다.',
+    policy_lead:'조례·정책 검토 업무를 지휘하고 검토 결과를 종합합니다.',policy_ordinance:'조례안의 핵심 내용, 쟁점, 유사 규정을 검토합니다.',policy_analysis:'정책의 효과·대상·예산 영향을 분석합니다.',policy_speech:'질의서와 발언문 초안을 작성합니다.',
+    audit_lead:'예산·행정사무감사 업무를 배분하고 검토합니다.',audit_budget:'예산안과 결산 자료의 핵심 수치를 분석합니다.',audit_request:'필요한 자료요구서 초안을 작성합니다.',audit_question:'행정사무감사 질의 쟁점을 정리합니다.',
+    civil_lead:'지역 현안과 민원 대응 업무를 관리합니다.',civil_triage:'접수된 민원을 유형과 긴급도에 따라 분류합니다.',civil_response:'민원 답변과 안내문 초안을 작성합니다.',civil_followup:'처리 경과와 후속 조치가 필요한 민원을 추적합니다.',
+    organization_lead:'지역 조직·CRM 관리 업무를 조율합니다.',organization_contacts:'연락처와 인물 정보를 정리·관리합니다.',organization_meeting:'간담회 대상과 참석자 정보를 준비합니다.',organization_opinion:'주민 의견과 관계자 요청을 정리합니다.',
+    assemblypr_lead:'의정활동 홍보의 방향과 결과물을 검토합니다.',assemblypr_briefing:'의정활동 성과와 핵심 메시지를 정리합니다.',assemblypr_press:'보도자료와 언론 대응 초안을 작성합니다.',assemblypr_content:'의정활동 SNS·콘텐츠 문안을 작성합니다.',
+    localpr_lead:'지역활동 홍보의 방향과 채널별 메시지를 관리합니다.',localpr_field:'현장 활동의 핵심 내용과 주민 목소리를 정리합니다.',localpr_solution:'지역 현안의 해결 과정과 성과를 홍보 문안으로 만듭니다.',localpr_channel:'카카오톡·페이스북 등 채널에 맞게 문안을 다듬습니다.',
+    records_lead:'회의·공문·보고 등 행정 기록을 관리합니다.',records_minutes:'회의록과 간담회 기록을 정리합니다.',records_documents:'공문·보고서 등 행정 문서를 작성·정리합니다.',records_archive:'자료를 분류하고 필요한 기록을 찾아 제공합니다.',
+    verification_lead:'최종 결과물의 정확성과 안전성을 검토합니다.',verification_facts:'사실관계와 수치·출처를 확인합니다.',verification_legal:'법률·조례 근거와 표현상 위험을 검토합니다.',verification_privacy:'개인정보와 민감정보 노출 여부를 점검합니다.'
+  };
+  var ROLE_STORAGE_KEY='moida_agent_roles_v1',roleOverrides={},selectedAgentType='';
+  try{roleOverrides=JSON.parse(localStorage.getItem(ROLE_STORAGE_KEY)||'{}')||{};}catch(e){roleOverrides={};}
+  function agentRole(type){return roleOverrides[type]||ROLE_DEFAULTS[type]||'담당 업무와 결과물을 실무적으로 정리합니다.';}
+  function saveAgentRole(type,role){roleOverrides[type]=role;try{localStorage.setItem(ROLE_STORAGE_KEY,JSON.stringify(roleOverrides));}catch(e){}}
   function buildOfficeOrganization(){
     Object.keys(ORG_GROUPS).forEach(function(boxId){
       var box=document.getElementById(boxId);if(!box)return;
@@ -4178,13 +4194,30 @@ onAuthStateChanged(_auth, async function(user){
     node.addEventListener('click',function(){
       var type=node.getAttribute('data-office-agent'),isLead=/_lead$/.test(type),baseType=isLead?type.replace('_lead',''):(type==='secretary'?'secretary':type.split('_')[0]),workerId=(!isLead&&type.indexOf('_')>0)?type.slice(type.indexOf('_')+1):'',runs=window.MOIDA_AGENT_RUNS||[],latest=runs[0]||{},task=(latest.tasks||[]).find(function(t){return t.agent===baseType;}),subtask=task&&workerId?(task.subtasks||[]).find(function(s){return s.workerId===workerId;}):null;
       var inspector=document.getElementById('agentInspector');if(!inspector)return;
+      selectedAgentType=type;
+      var roleButton=document.getElementById('agentRoleEdit');if(roleButton){roleButton.disabled=false;roleButton.textContent='역할 수정';roleButton.removeAttribute('data-editing');}
       document.querySelectorAll('[data-office-agent]').forEach(function(n){n.style.outline='';});
       node.style.outline='2px solid var(--node)';
       var name=type==='secretary'?'AI 비서실장':(NAMES[type]||'AI 에이전트');
       var state=type==='secretary'?(latest.status||'idle'):(workerId?(subtask?subtask.status:'idle'):(task&&(isLead?(task.leadStatus||task.status):(task.workerStatus||task.status))||'idle'));
       var detail=type==='secretary'?(latest.instruction||'새로운 지시를 대기하고 있습니다.'):(workerId?(subtask?(subtask.role||subtask.result||'전문 업무를 수행하고 있습니다.'):'현재 배정된 전문 업무가 없습니다.'):(task?(isLead?((task.review?'검수 의견: '+task.review:'팀원 3명의 업무를 배정하고 결과를 통합 검수합니다.')):(task.title||task.instruction||'배정 업무')):'현재 배정된 업무가 없습니다.'));
-      inspector.innerHTML='<b>'+esc(name)+' · '+esc(LABELS[state]||'대기')+'</b>'+esc(detail);
+      inspector.innerHTML='<b>'+esc(name)+' · '+esc(LABELS[state]||'대기')+'</b><div style="margin-top:10px;padding:9px 10px;border-radius:8px;background:#f4f7fb;color:#31527f;font-size:10.5px;line-height:1.55"><strong style="display:block;margin-bottom:3px;font-size:9px;letter-spacing:.06em;color:#6d819b">담당 역할</strong>'+esc(agentRole(type))+'</div><div style="margin-top:9px;color:#6b7585;font-size:10.5px;line-height:1.55">'+esc(detail)+'</div>';
     });
+  });
+  var agentRoleEdit=document.getElementById('agentRoleEdit');
+  if(agentRoleEdit)agentRoleEdit.addEventListener('click',function(){
+    if(!selectedAgentType)return;
+    var inspector=document.getElementById('agentInspector');if(!inspector)return;
+    if(this.getAttribute('data-editing')==='1'){
+      var input=document.getElementById('agentRoleInput'),next=input?input.value.trim():'';
+      if(next)saveAgentRole(selectedAgentType,next);
+      this.textContent='역할 수정';this.removeAttribute('data-editing');
+      var selected=document.querySelector('[data-office-agent="'+selectedAgentType+'"]');if(selected)selected.click();
+      return;
+    }
+    inspector.innerHTML='<b>담당 역할 수정</b><div style="margin-top:8px;color:#6b7585;font-size:10.5px;line-height:1.5">이 역할은 현재 브라우저에 저장되며, 해당 에이전트를 다시 선택하면 바로 확인할 수 있습니다.</div><textarea id="agentRoleInput" style="width:100%;min-height:96px;box-sizing:border-box;margin-top:10px;padding:9px;border:1px solid #bfd0e5;border-radius:8px;resize:vertical;font:11px/1.55 inherit;color:#334155">'+esc(agentRole(selectedAgentType))+'</textarea><div style="margin-top:7px;color:#7b8797;font-size:9.5px">수정 후 오른쪽 상단의 저장 버튼을 눌러주세요.</div>';
+    this.textContent='저장';this.setAttribute('data-editing','1');
+    var input=document.getElementById('agentRoleInput');if(input)input.focus();
   });
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){render(window.MOIDA_AGENT_RUNS||[]);});
   else render(window.MOIDA_AGENT_RUNS||[]);
