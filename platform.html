@@ -24,6 +24,15 @@ button{font-family:inherit}
 #sideBar.collapsed #sbToggleIco{transform:rotate(180deg)}
 #sideBar.collapsed .nav-item{justify-content:center;padding-left:0!important;padding-right:0!important}
 #sideBar.collapsed #profileCard{justify-content:center}
+.ai-history-item{position:relative;display:flex;align-items:center;gap:7px;width:100%;min-height:34px;padding:7px 30px 7px 10px;border:0;border-radius:8px;background:transparent;color:#394454;font-size:12.5px;text-align:left;cursor:pointer;transition:background .15s,color .15s}
+.ai-history-item:hover{background:#f1f3f6}
+.ai-history-item.active{background:#e9edf2;color:#172033;font-weight:600}
+.ai-history-title{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ai-history-delete{position:absolute;right:7px;top:50%;width:22px;height:22px;transform:translateY(-50%);display:none;align-items:center;justify-content:center;border:0;border-radius:6px;background:transparent;color:#9aa3b0;font-size:16px;line-height:1;cursor:pointer}
+.ai-history-item:hover .ai-history-delete,.ai-history-item.active .ai-history-delete{display:flex}
+.ai-history-delete:hover{background:#dde2e8;color:#d14343}
+@media(max-width:1180px){.secretary-grid{grid-template-columns:200px minmax(0,1fr)!important}.secretary-aside{display:none!important}}
+@media(max-width:860px){#aiHistoryPanel{display:none!important}.secretary-grid{grid-template-columns:minmax(0,1fr)!important}}
 </style>
 </head>
 <body>
@@ -256,7 +265,19 @@ button{font-family:inherit}
       </div>
 
       <div class="page" data-page="secretary">
-      <div class="pg" style="max-width:1320px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:16px;height:calc(100vh - 130px)">
+      <div class="pg secretary-grid" style="max-width:1540px;margin:0 auto;display:grid;grid-template-columns:220px minmax(0,1fr) 330px;gap:16px;height:calc(100vh - 130px)">
+        <aside id="aiHistoryPanel" style="background:#fff;border:1px solid #e9ecf1;border-radius:14px;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 1px 2px rgba(16,24,40,0.04)">
+          <div style="padding:16px 14px 12px;border-bottom:1px solid #eef1f5">
+            <button id="aiHistoryNew" style="width:100%;height:38px;display:flex;align-items:center;justify-content:center;gap:7px;border:1px solid #d7dde6;border-radius:9px;background:#fff;color:#263244;font-size:12.5px;font-weight:650;cursor:pointer">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+              새 대화
+            </button>
+          </div>
+          <div style="padding:16px 14px 7px;font-size:11.5px;font-weight:600;color:#9aa3b0">최근</div>
+          <div id="aiHistoryList" style="flex:1;overflow-y:auto;padding:0 8px 12px"></div>
+          <div id="aiHistoryStatus" style="padding:10px 14px;border-top:1px solid #f0f2f5;font-size:10.5px;color:#a3abb7">대화 기록 준비 중…</div>
+        </aside>
+
         <div id="aiPanel" style="position:relative;background:#fff;border:1px solid #e9ecf1;border-radius:14px;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 1px 2px rgba(16,24,40,0.04)">
           <div id="aiDrop" style="display:none;position:absolute;inset:0;z-index:30;background:rgba(29,58,110,0.07);backdrop-filter:blur(1px);border:2.5px dashed #1d3a6e;border-radius:14px;align-items:center;justify-content:center;flex-direction:column;gap:12px;color:#1d3a6e;pointer-events:none">
             <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5-5 5 5"/><path d="M12 5v12"/></svg>
@@ -290,7 +311,7 @@ button{font-family:inherit}
           </div>
         </div>
 
-        <div style="display:flex;flex-direction:column;gap:16px;overflow-y:auto">
+        <div class="secretary-aside" style="display:flex;flex-direction:column;gap:16px;overflow-y:auto">
           <div style="background:#fff;border:1px solid #e9ecf1;border-radius:14px;padding:18px;box-shadow:0 1px 2px rgba(16,24,40,0.04)">
             <div style="font-size:14px;font-weight:700;margin-bottom:14px">오늘의 할 일</div>
             <div id="aiTodo" style="display:flex;flex-direction:column;gap:10px"></div>
@@ -1592,7 +1613,7 @@ onAuthStateChanged(_auth, async function(user){
   var msgs=document.getElementById('aiMessages');
   var seed = msgs ? msgs.innerHTML : '';
   function scroll(){ if(msgs) msgs.scrollTop=msgs.scrollHeight; }
-  function addUser(t, atts){
+  function addUser(t, atts, noRecord){
     var att='';
     if(atts && atts.length){
       att='<div style="display:flex;flex-wrap:wrap;gap:6px;'+(t?'margin-top:9px;':'')+'justify-content:flex-end">'+atts.map(function(a){
@@ -1601,8 +1622,12 @@ onAuthStateChanged(_auth, async function(user){
       }).join('')+'</div>';
     }
     msgs.insertAdjacentHTML('beforeend','<div style="display:flex;justify-content:flex-end"><div style="background:#1d3a6e;color:#fff;border-radius:14px 4px 14px 14px;padding:13px 16px;font-size:13.5px;line-height:1.55;max-width:70%">'+(t?M.esc(t):'')+att+'</div></div>'); scroll();
+    if(!noRecord) recordChatMessage('user', t || (atts&&atts.length ? '[첨부파일] '+atts.map(function(a){return a.name;}).join(', ') : ''));
   }
-  function addAI(html){ msgs.insertAdjacentHTML('beforeend','<div style="display:flex;gap:11px;max-width:82%">'+AV+'<div style="background:#fff;border:1px solid #eef1f5;border-radius:4px 14px 14px 14px;padding:14px 16px;font-size:13.5px;line-height:1.6;color:#27313f;flex:1">'+html+'</div></div>'); scroll(); }
+  function addAI(html, raw, noRecord){
+    msgs.insertAdjacentHTML('beforeend','<div style="display:flex;gap:11px;max-width:82%">'+AV+'<div style="background:#fff;border:1px solid #eef1f5;border-radius:4px 14px 14px 14px;padding:14px 16px;font-size:13.5px;line-height:1.6;color:#27313f;flex:1">'+html+'</div></div>'); scroll();
+    if(!noRecord) recordChatMessage('assistant', raw || String(html||'').replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim());
+  }
   function pad(n){ return String(n).padStart(2,'0'); }
   function todayKey(){ var d=new Date(); return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate()); }
   function reply(text){
@@ -1688,6 +1713,95 @@ onAuthStateChanged(_auth, async function(user){
     ].join('\n');
   }
   var history=[];
+  var chatThreads=[], currentThreadId='', chatLoaded=false, chatSaveTimer=null;
+  var historyList=document.getElementById('aiHistoryList'), historyStatus=document.getElementById('aiHistoryStatus');
+  function chatOwner(){
+    var s={}; try{s=M.sessUser?M.sessUser():{};}catch(e){}
+    return (s&&s.effectiveUid)||M.uid||(s&&s.uid)||'local';
+  }
+  function chatStorageKey(){ return 'moida_ai_conversations_'+chatOwner(); }
+  function cleanThreads(rows){
+    if(!Array.isArray(rows)) return [];
+    return rows.filter(function(t){return t&&t.id;}).map(function(t){
+      return {id:String(t.id),title:String(t.title||'새 대화').slice(0,60),createdAt:+t.createdAt||Date.now(),updatedAt:+t.updatedAt||Date.now(),
+        messages:(Array.isArray(t.messages)?t.messages:[]).filter(function(m){return m&&(m.role==='user'||m.role==='assistant');}).slice(-80).map(function(m){return {role:m.role,content:String(m.content||'').slice(0,12000)};})};
+    }).sort(function(a,b){return b.updatedAt-a.updatedAt;}).slice(0,40);
+  }
+  function setChatStatus(text){ if(historyStatus) historyStatus.textContent=text; }
+  function renderChatThreads(){
+    if(!historyList) return;
+    if(!chatThreads.length){ historyList.innerHTML='<div style="padding:9px 10px;color:#b0b7c1;font-size:12px">대화 기록이 없습니다.</div>'; return; }
+    historyList.innerHTML=chatThreads.map(function(t){
+      return '<button class="ai-history-item'+(t.id===currentThreadId?' active':'')+'" data-chat-id="'+M.esc(t.id)+'" title="'+M.esc(t.title)+'"><span class="ai-history-title">'+M.esc(t.title)+'</span><span class="ai-history-delete" data-chat-delete="'+M.esc(t.id)+'" title="대화 삭제">×</span></button>';
+    }).join('');
+  }
+  function persistChats(){
+    chatThreads=cleanThreads(chatThreads);
+    try{ localStorage.setItem(chatStorageKey(),JSON.stringify(chatThreads)); }catch(e){}
+    renderChatThreads();
+    clearTimeout(chatSaveTimer);
+    chatSaveTimer=setTimeout(function(){
+      if(!M.db||!M.fs||!M.uid||window.MOIDA_READONLY){ setChatStatus('이 기기에 저장됨'); return; }
+      M.fs.setDoc(M.fs.doc(M.db,'moida_ai_chats',chatOwner()),{threads:JSON.stringify(chatThreads),updatedAt:Date.now()},{merge:true})
+        .then(function(){setChatStatus('계정에 저장됨');})
+        .catch(function(){setChatStatus('이 기기에 저장됨');});
+    },350);
+  }
+  function threadTitle(text){
+    var s=String(text||'새 대화').replace(/\s+/g,' ').trim();
+    return (s||'새 대화').slice(0,30);
+  }
+  function currentThread(createText){
+    var t=chatThreads.find(function(x){return x.id===currentThreadId;});
+    if(!t && createText!==undefined){
+      t={id:'chat_'+Date.now().toString(36)+'_'+Math.random().toString(36).slice(2,7),title:threadTitle(createText),createdAt:Date.now(),updatedAt:Date.now(),messages:[]};
+      currentThreadId=t.id; chatThreads.unshift(t);
+    }
+    return t;
+  }
+  function recordChatMessage(role,content){
+    content=String(content||'').trim(); if(!content) return;
+    var t=currentThread(content); if(!t) return;
+    t.messages.push({role:role,content:content.slice(0,12000)});
+    t.messages=t.messages.slice(-80); t.updatedAt=Date.now();
+    chatThreads.sort(function(a,b){return b.updatedAt-a.updatedAt;});
+    persistChats();
+  }
+  function resetChat(){
+    currentThreadId=''; history=[]; attachments=[]; renderAttach();
+    if(msgs){msgs.innerHTML=seed;scroll();}
+    renderChatThreads();
+    var inp=document.getElementById('aiInput'); if(inp) inp.focus();
+  }
+  function openChat(id){
+    var t=chatThreads.find(function(x){return x.id===id;}); if(!t||!msgs) return;
+    currentThreadId=id; msgs.innerHTML=seed; history=[{role:'system',content:sysPrompt()}];
+    t.messages.forEach(function(m){
+      if(m.role==='user'){addUser(m.content,null,true);history.push({role:'user',content:m.content});}
+      else{addAI(mdToHtml(m.content),m.content,true);history.push({role:'assistant',content:m.content});}
+    });
+    attachments=[];renderAttach();renderChatThreads();scroll();
+  }
+  function loadLocalChats(){
+    try{ chatThreads=cleanThreads(JSON.parse(localStorage.getItem(chatStorageKey())||'[]')); }catch(e){chatThreads=[];}
+    renderChatThreads(); setChatStatus(chatThreads.length?'이 기기의 기록 불러옴':'새 대화를 시작해 보세요');
+  }
+  function loadCloudChats(){
+    if(chatLoaded||!M.db||!M.fs||!M.uid) return;
+    chatLoaded=true;
+    M.fs.getDoc(M.fs.doc(M.db,'moida_ai_chats',chatOwner())).then(function(s){
+      if(s.exists()){
+        var remote=cleanThreads(JSON.parse((s.data()&&s.data().threads)||'[]'));
+        var map={}; chatThreads.concat(remote).forEach(function(t){if(!map[t.id]||map[t.id].updatedAt<t.updatedAt)map[t.id]=t;});
+        chatThreads=cleanThreads(Object.keys(map).map(function(k){return map[k];}));
+        try{localStorage.setItem(chatStorageKey(),JSON.stringify(chatThreads));}catch(e){}
+        renderChatThreads();
+      }
+      setChatStatus('계정에 저장됨');
+    }).catch(function(){setChatStatus('이 기기에 저장됨');});
+  }
+  loadLocalChats();
+  M.onData(function(){loadCloudChats();});
   function mdToHtml(s){
     s=M.esc(s);
     s=s.replace(/\*\*([^*]+)\*\*/g,'<b>$1</b>').replace(/`([^`]+)`/g,'<code style="background:#f1f3f7;padding:1px 5px;border-radius:5px">$1</code>').replace(/\n/g,'<br>');
@@ -2227,7 +2341,7 @@ onAuthStateChanged(_auth, async function(user){
           runLoop(typing, depth+1, 0);
         } else {
           if(typing) typing.remove();
-          addAI(mdToHtml(msg.content||''));
+          addAI(mdToHtml(msg.content||''), msg.content||'');
         }
       })
       .catch(function(e){
@@ -2246,7 +2360,23 @@ onAuthStateChanged(_auth, async function(user){
     var chip=e.target.closest('.ai-chip'); if(chip){ send(chip.textContent.trim()); }
   });
   document.querySelectorAll('.ai-quick').forEach(function(b){ b.addEventListener('click', function(){ location.hash='#secretary'; send(b.dataset.action); }); });
-  var nb=document.getElementById('aiNew'); if(nb) nb.addEventListener('click', function(){ if(msgs){ msgs.innerHTML=seed; history=[]; attachments=[]; renderAttach(); scroll(); } });
+  var nb=document.getElementById('aiNew'); if(nb) nb.addEventListener('click', resetChat);
+  var hnb=document.getElementById('aiHistoryNew'); if(hnb) hnb.addEventListener('click', resetChat);
+  if(historyList) historyList.addEventListener('click',function(e){
+    var del=e.target.closest('[data-chat-delete]');
+    if(del){
+      e.stopPropagation();
+      var did=del.getAttribute('data-chat-delete');
+      var target=chatThreads.find(function(t){return t.id===did;});
+      if(target&&confirm('"'+target.title+'" 대화를 삭제하시겠습니까?')){
+        chatThreads=chatThreads.filter(function(t){return t.id!==did;});
+        if(currentThreadId===did) resetChat();
+        persistChats();
+      }
+      return;
+    }
+    var item=e.target.closest('[data-chat-id]'); if(item) openChat(item.getAttribute('data-chat-id'));
+  });
 
   /* ── 파일 첨부 ─────────────────────────────────────────────────────── */
   var fileInput=document.getElementById('aiFile'), attachBtn=document.getElementById('aiAttachBtn'), attachBox=document.getElementById('aiAttach');
