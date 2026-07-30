@@ -256,6 +256,10 @@
   .db .att:hover{ border-color:var(--primary); color:var(--primary); }
   .db .att svg{ width:15px; height:15px; flex-shrink:0; color:var(--primary); }
 </style>
+<style>
+@media(max-width:700px){
+  html,body{overflow-x:hidden}.page-head{padding:14px 16px 0;gap:10px;flex-wrap:wrap}.page-head h1{font-size:20px}.toolbar{padding:12px 16px 0;gap:7px}.toolbar .search{order:10;flex:1 0 100%;min-width:0;max-width:none}.work{padding:12px}.table-foot{align-items:flex-start;gap:9px;flex-wrap:wrap;padding:11px 12px}.detail{border-radius:13px}.ncol{min-width:0}.db{overflow-x:auto}.field.row2{grid-template-columns:1fr}.field.row2 button{width:100%}}
+</style>
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
