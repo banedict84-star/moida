@@ -919,7 +919,7 @@ onAuthStateChanged(_auth, async function(user){
   (function(){
     const grid = document.getElementById('calGrid');
     const dows = ['일','월','화','수','목','금','토'];
-    var calY=2026, calM=5; // 0-indexed month (5=6월)
+    var calNow=new Date(), calY=calNow.getFullYear(), calM=calNow.getMonth();
     function evDate(s){ var p=(s||'').split('-'); return p.length===3?{y:+p[0],m:+p[1]-1,d:+p[2]}:null; }
     function renderCal(){
       var titleEl=document.querySelector('.cal-title'); if(titleEl) titleEl.textContent=calY+'년 '+(calM+1)+'월';
@@ -980,6 +980,16 @@ onAuthStateChanged(_auth, async function(user){
       grid.innerHTML = html;
     }
     window.renderCal = renderCal;
+    window.showTodayCalendar = function(){
+      var today=new Date();
+      calY=today.getFullYear();
+      calM=today.getMonth();
+      renderCal();
+      requestAnimationFrame(function(){
+        var cell=grid.querySelector('.cal-cell.today');
+        if(cell) cell.scrollIntoView({block:'center',inline:'center',behavior:'smooth'});
+      });
+    };
     renderCal();
     var navs=document.querySelectorAll('.cal-nav');
     if(navs[0]) navs[0].addEventListener('click',function(){ calM--; if(calM<0){calM=11;calY--;} renderCal(); });
@@ -1003,6 +1013,7 @@ onAuthStateChanged(_auth, async function(user){
     var stats=document.querySelector('.ev-stats'); if(stats) stats.style.display = isCal?'none':'grid';
     var parts=document.querySelector('.parts'); if(parts) parts.style.display = isCal?'none':'';
     var wrap=document.querySelector('.sched-wrap'); if(wrap) wrap.classList.toggle('calmode', isCal);
+    if(isCal && window.showTodayCalendar) window.showTodayCalendar();
     // view preference는 저장하지 않음 — 항상 목록으로 시작
   }
   document.querySelectorAll('.vbtn').forEach(function(b){ b.addEventListener('click',function(){ switchView(b.dataset.view); }); });
