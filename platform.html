@@ -2123,7 +2123,7 @@ onAuthStateChanged(_auth, async function(user){
       };})
     };
   }
-  function statusLabel(s){ return {planning:'계획 중',queued:'대기',delegating:'배정 중',monitoring:'진행 관리',reworking:'재작업',running:'작업 중',reviewing:'팀장 검수',approved:'검수 승인',completed:'완료',failed:'오류'}[s]||s; }
+  function statusLabel(s){ return {planning:'계획 중',queued:'대기',retrying:'자동 재시도',delegating:'배정 중',monitoring:'진행 관리',reworking:'재작업',running:'작업 중',reviewing:'팀장 검수',approved:'검수 승인',needs_attention:'보완 필요',completed:'완료',failed:'오류'}[s]||s; }
   function timeLabel(ts){ var d=new Date(+ts||Date.now()); return pad(d.getHours())+':'+pad(d.getMinutes()); }
   function renderAgentRuns(){
     if(!agentRunList) return;
@@ -2190,7 +2190,7 @@ onAuthStateChanged(_auth, async function(user){
     }).catch(function(){ renderAgentRuns(); });
   }
   try{loadAgentRuns();}catch(e){}
-  M.onData(function(){loadAgentRuns();});
+  M.onData(function(){loadAgentRuns();if(M.auth&&M.auth.currentUser&&!serverPollTimer)pollServerRuns();});
   function extractJson(s){
     s=String(s||'').trim().replace(/^```(?:json)?\s*/i,'').replace(/\s*```$/,'');
     try{return JSON.parse(s);}catch(e){}
@@ -2306,7 +2306,81 @@ onAuthStateChanged(_auth, async function(user){
       && /작성|만들|준비|기획|등록|정리|진행|검토|조사|분석|배정|계획|초안|처리|해줘|해 줘/.test(text)
     );
   }
+  var serverPollTimer=null, serverReported={};
+  function agentApi(path,options){
+    options=options||{};
+    var user=M.auth&&M.auth.currentUser;
+    if(!user) return Promise.reject(new Error('로그인이 필요합니다.'));
+    return user.getIdToken().then(function(token){
+      var headers=Object.assign({'Authorization':'Bearer '+token},options.headers||{});
+      return fetch(gptEndpoint().replace(/\/+$/,'')+path,Object.assign({},options,{headers:headers}));
+    }).then(function(response){
+      return response.text().then(function(text){
+        var data={};try{data=JSON.parse(text||'{}');}catch(e){}
+        if(!response.ok)throw new Error(data&&data.error&&data.error.message||('서버 HTTP '+response.status));
+        return data;
+      });
+    });
+  }
+  function agentServerContext(){
+    return {
+      profile:M.profile||{},today:todayKey(),
+      events:(M.events||[]).slice(0,20).map(function(e){return {title:e.title,date:e.date,time:e.time,location:e._location||''};}),
+      complaints:(M.complaints||[]).slice(0,20).map(function(c){return {title:c.title,field:c.field,status:c.status,priority:c.priority};}),
+      policies:(M.policies||[]).slice(0,15),recentContents:(M.pr||[]).slice(0,10)
+    };
+  }
+  function mergeServerRun(run){
+    run=cleanAgentRun(run);if(!run)return null;
+    var hasProgress=!!document.getElementById('agent_progress_'+run.id);
+    if(!/^(completed|failed)$/.test(run.status))serverReported[run.id]='watching';
+    var shouldReport=hasProgress||serverReported[run.id]==='watching';
+    var index=agentRuns.findIndex(function(item){return item.id===run.id;});
+    if(index<0)agentRuns.unshift(run);else agentRuns[index]=run;
+    saveAgentRunsLocal();paintRunProgress(run);
+    if(run.status==='completed'&&run.summary&&shouldReport&&serverReported[run.id]!==true){
+      serverReported[run.id]=true;
+      var progress=document.getElementById('agent_progress_'+run.id);if(progress)progress.remove();
+      addAI(mdToHtml(run.summary),run.summary);
+    }else if(run.status==='failed'&&shouldReport&&serverReported[run.id]!==true){
+      serverReported[run.id]=true;
+      addAI('서버 작업이 중단되었습니다: '+M.esc(run.error||'알 수 없는 오류'));
+    }
+    return run;
+  }
+  function pollServerRuns(){
+    clearTimeout(serverPollTimer);
+    agentApi('/agent-runs?limit=20',{method:'GET'}).then(function(data){
+      (data.runs||[]).forEach(mergeServerRun);
+      var active=(data.runs||[]).some(function(run){return !/^(completed|failed)$/.test(run.status);});
+      serverPollTimer=setTimeout(pollServerRuns,active?1800:12000);
+    }).catch(function(error){
+      console.warn('agent queue poll',error);
+      serverPollTimer=setTimeout(pollServerRuns,15000);
+    });
+  }
   function startAgentRun(text){
+    var key='web_'+Date.now().toString(36)+'_'+Math.random().toString(36).slice(2,10);
+    var placeholder={schemaVersion:4,id:'pending_'+key,tenantId:agentOwner(),instruction:text,status:'queued',
+      createdAt:Date.now(),updatedAt:Date.now(),summary:'',error:'',tasks:[],taskIds:[]};
+    agentRuns.unshift(placeholder);saveAgentRunsLocal();
+    msgs.insertAdjacentHTML('beforeend','<div id="agent_progress_'+placeholder.id+'" style="display:flex;gap:11px;max-width:82%">'+AV+progressHtml(placeholder)+'</div>');scroll();
+    return agentApi('/agent-runs',{
+      method:'POST',headers:{'Content-Type':'application/json','Idempotency-Key':key},
+      body:JSON.stringify({instruction:text,context:agentServerContext(),idempotencyKey:key})
+    }).then(function(data){
+      agentRuns=agentRuns.filter(function(run){return run.id!==placeholder.id;});
+      var old=document.getElementById('agent_progress_'+placeholder.id);
+      if(old&&data.run)old.id='agent_progress_'+data.run.id;
+      mergeServerRun(data.run);pollServerRuns();return data.run;
+    }).catch(function(error){
+      placeholder.status='failed';placeholder.error=String(error&&error.message||error);placeholder.updatedAt=Date.now();
+      saveAgentRunsLocal();paintRunProgress(placeholder);
+      addAI('서버 작업 큐에 지시를 등록하지 못했습니다: '+M.esc(placeholder.error));
+      return null;
+    });
+  }
+  function startBrowserAgentRun(text){
     var now=Date.now(), run={schemaVersion:3,id:'run_'+now.toString(36)+'_'+Math.random().toString(36).slice(2,6),
       tenantId:agentOwner(),instruction:text,status:'planning',createdAt:now,updatedAt:now,summary:'',error:'',tasks:[],taskIds:[]};
     agentRuns.unshift(run); saveAgentRunsLocal();

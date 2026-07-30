@@ -10,3 +10,27 @@ account_id = "0a43eeb2c6fe53d7e8e6f38d7ea96905"
 # 평문 변수(비밀 아님): AI Gateway 경유 OpenAI 엔드포인트
 [vars]
 OPENAI_BASE = "https://gateway.ai.cloudflare.com/v1/0a43eeb2c6fe53d7e8e6f38d7ea96905/moida/openai"
+FIREBASE_API_KEY = "AIzaSyAIjhvbCztHoF7YwP2IYIk2C6jCI64uFhs"
+AGENT_MODEL = "gpt-4o-mini"
+ALLOW_ORIGINS = "https://banedict84-star.github.io,http://127.0.0.1:4173,http://localhost:4173"
+
+[[d1_databases]]
+binding = "AGENT_DB"
+database_name = "moida-agent-queue"
+database_id = "ff423e24-10cd-40fb-9331-d13c803ba54d"
+migrations_dir = "migrations"
+
+[[queues.producers]]
+binding = "AGENT_QUEUE"
+queue = "moida-agent-jobs"
+
+[[queues.consumers]]
+queue = "moida-agent-jobs"
+max_batch_size = 1
+max_batch_timeout = 2
+max_retries = 3
+retry_delay = 30
+dead_letter_queue = "moida-agent-jobs-dlq"
+
+[triggers]
+crons = ["*/5 * * * *"]
