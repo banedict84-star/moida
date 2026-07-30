@@ -24,12 +24,15 @@ button{font-family:inherit}
 #sideBar.collapsed #sbToggleIco{transform:rotate(180deg)}
 #sideBar.collapsed .nav-item{justify-content:center;padding-left:0!important;padding-right:0!important}
 #sideBar.collapsed #profileCard{justify-content:center}
-.ai-history-item{position:relative;display:flex;align-items:center;gap:7px;width:100%;min-height:34px;padding:7px 30px 7px 10px;border:0;border-radius:8px;background:transparent;color:#394454;font-size:12.5px;text-align:left;cursor:pointer;transition:background .15s,color .15s}
+.ai-history-item{position:relative;display:flex;align-items:center;gap:7px;width:100%;min-height:34px;padding:7px 56px 7px 10px;border:0;border-radius:8px;background:transparent;color:#394454;font-size:12.5px;text-align:left;cursor:pointer;transition:background .15s,color .15s}
 .ai-history-item:hover{background:#f1f3f6}
 .ai-history-item.active{background:#e9edf2;color:#172033;font-weight:600}
 .ai-history-title{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.ai-history-delete{position:absolute;right:7px;top:50%;width:22px;height:22px;transform:translateY(-50%);display:none;align-items:center;justify-content:center;border:0;border-radius:6px;background:transparent;color:#9aa3b0;font-size:16px;line-height:1;cursor:pointer}
-.ai-history-item:hover .ai-history-delete,.ai-history-item.active .ai-history-delete{display:flex}
+.ai-history-action{position:absolute;top:50%;width:22px;height:22px;transform:translateY(-50%);display:none;align-items:center;justify-content:center;border:0;border-radius:6px;background:transparent;color:#9aa3b0;line-height:1;cursor:pointer}
+.ai-history-rename{right:29px;font-size:14px}
+.ai-history-delete{right:5px;font-size:16px}
+.ai-history-item:hover .ai-history-action,.ai-history-item.active .ai-history-action{display:flex}
+.ai-history-rename:hover{background:#dde2e8;color:#1d3a6e}
 .ai-history-delete:hover{background:#dde2e8;color:#d14343}
 @media(max-width:1180px){.secretary-grid{grid-template-columns:200px minmax(0,1fr)!important}.secretary-aside{display:none!important}}
 @media(max-width:860px){#aiHistoryPanel{display:none!important}.secretary-grid{grid-template-columns:minmax(0,1fr)!important}}
@@ -1732,7 +1735,7 @@ onAuthStateChanged(_auth, async function(user){
     if(!historyList) return;
     if(!chatThreads.length){ historyList.innerHTML='<div style="padding:9px 10px;color:#b0b7c1;font-size:12px">대화 기록이 없습니다.</div>'; return; }
     historyList.innerHTML=chatThreads.map(function(t){
-      return '<button class="ai-history-item'+(t.id===currentThreadId?' active':'')+'" data-chat-id="'+M.esc(t.id)+'" title="'+M.esc(t.title)+'"><span class="ai-history-title">'+M.esc(t.title)+'</span><span class="ai-history-delete" data-chat-delete="'+M.esc(t.id)+'" title="대화 삭제">×</span></button>';
+      return '<button class="ai-history-item'+(t.id===currentThreadId?' active':'')+'" data-chat-id="'+M.esc(t.id)+'" title="'+M.esc(t.title)+'"><span class="ai-history-title">'+M.esc(t.title)+'</span><span class="ai-history-action ai-history-rename" data-chat-rename="'+M.esc(t.id)+'" title="이름 변경">✎</span><span class="ai-history-action ai-history-delete" data-chat-delete="'+M.esc(t.id)+'" title="대화 삭제">×</span></button>';
     }).join('');
   }
   function persistChats(){
@@ -2363,6 +2366,23 @@ onAuthStateChanged(_auth, async function(user){
   var nb=document.getElementById('aiNew'); if(nb) nb.addEventListener('click', resetChat);
   var hnb=document.getElementById('aiHistoryNew'); if(hnb) hnb.addEventListener('click', resetChat);
   if(historyList) historyList.addEventListener('click',function(e){
+    var rename=e.target.closest('[data-chat-rename]');
+    if(rename){
+      e.stopPropagation();
+      var rid=rename.getAttribute('data-chat-rename');
+      var rt=chatThreads.find(function(t){return t.id===rid;});
+      if(rt){
+        var next=prompt('대화 이름을 입력하세요.',rt.title);
+        if(next!==null){
+          next=String(next).replace(/\s+/g,' ').trim();
+          if(!next){alert('대화 이름을 입력해 주세요.');return;}
+          rt.title=next.slice(0,60);rt.updatedAt=Date.now();
+          chatThreads.sort(function(a,b){return b.updatedAt-a.updatedAt;});
+          persistChats();
+        }
+      }
+      return;
+    }
     var del=e.target.closest('[data-chat-delete]');
     if(del){
       e.stopPropagation();
