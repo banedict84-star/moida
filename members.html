@@ -1010,6 +1010,7 @@ onAuthStateChanged(_auth, async function(user){
   var filters={ dong:[], type:[], ageb:[], sex:[] };
   var searchKw='';
   var dispMembers = members.slice();
+  var rowLimit=100;
   var memberSearchCache=new WeakMap();
   function memberSearchText(m){
     var cached=memberSearchCache.get(m); if(cached!=null) return cached;
@@ -1024,9 +1025,9 @@ onAuthStateChanged(_auth, async function(user){
         && (!filters.sex.length || filters.sex.indexOf(m.sex)>=0)
         && (!searchKw || memberSearchText(m).indexOf(searchKw)>=0);
     });
-    var isLimited=!!searchKw&&matchedRows.length>200;
-    var rows=isLimited?matchedRows.slice(0,200):matchedRows;
-    var tfLeft=document.getElementById('tfLeft'); if(tfLeft) tfLeft.innerHTML='조회 <b>'+matchedRows.length+'</b>명'+(isLimited?' · 상위 200명 표시':'')+' · 당원을 클릭하면 상세정보가 표시됩니다';
+    var isLimited=matchedRows.length>rowLimit;
+    var rows=isLimited?matchedRows.slice(0,rowLimit):matchedRows;
+    var tfLeft=document.getElementById('tfLeft'); if(tfLeft) tfLeft.innerHTML='조회 <b>'+matchedRows.length+'</b>명'+(isLimited?' · '+rowLimit+'명 표시':'')+' · 당원을 클릭하면 상세정보가 표시됩니다';
     tbody.innerHTML = rows.map(function(m,ri){ var i=members.indexOf(m); if(i<0) i=members.findIndex(function(x){ return x.mid&&x.mid===m.mid; }); return `
     <tr data-i="${i}">
       <td class="muted-cell">${ri+1}</td>
@@ -1047,9 +1048,10 @@ onAuthStateChanged(_auth, async function(user){
       <td class="gcell">${gauge('sm', m.smGrade)}</td>
       <td>${famDisplay(m)}</td>
       <td class="${(m.addr||"—")==="—"?"muted-cell":""}">${m.addr||"—"}</td>
-    </tr>`; }).join("");
+    </tr>`; }).join("")+(isLimited?'<tr><td colspan="18" style="padding:14px;text-align:center;background:#fafbfc"><button type="button" data-load-more style="border:1px solid #dbe3ee;border-radius:8px;background:#fff;color:#31527f;padding:7px 13px;font:inherit;font-size:12px;font-weight:700;cursor:pointer">100명 더 보기</button></td></tr>':'');
   }
   renderRows();
+  tbody.addEventListener('click',function(e){ var more=e.target.closest('[data-load-more]'); if(!more)return; e.stopImmediatePropagation(); rowLimit+=100; renderRows(); });
 
   // 당원구분 인라인 변경 팝업
   (function(){
@@ -1522,6 +1524,7 @@ onAuthStateChanged(_auth, async function(user){
 
   function resetAllFilters(){
     clearTimeout(_searchTimer);
+    rowLimit=100;
     ['dong','type','ageb','sex'].forEach(function(f){ if(filters[f]) filters[f].length=0; });
     [['dongSel','행정동'],['typeSel','당원구분'],['agebSel','연령구분'],['sexSel','성별구분']].forEach(function(p){
       var s=document.getElementById(p[0]); if(!s) return;
@@ -1540,6 +1543,7 @@ onAuthStateChanged(_auth, async function(user){
     clearTimeout(_searchTimer);
     _searchTimer=setTimeout(function(){
       searchKw=value.trim().toLowerCase().replace(/-/g,'');
+      rowLimit=100;
       renderRows();
     },180);
   });
