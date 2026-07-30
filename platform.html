@@ -251,12 +251,6 @@ body.app-loading #sideAvatar{color:transparent!important;background:#243a5c!impo
         <span>대시보드</span>
       </div>
 
-      <div class="nav-item" data-page="secretary" style="position:relative;display:flex;align-items:center;gap:11px;padding:10px 12px;border-radius:9px;font-size:13.5px;font-weight:500;cursor:pointer;transition:background .15s,color .15s" data-hover="background:rgba(255,255,255,0.06)">
-        <span class="nav-accent" style="position:absolute;left:-14px;top:9px;bottom:9px;width:3px;border-radius:0 3px 3px 0;background:#5b8cff"></span>
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.6L19.5 10l-5.6 1.9L12 17.5l-1.9-5.6L4.5 10l5.6-1.9z"/></svg>
-        <span>AI 비서실장</span>
-      </div>
-
       <div class="nav-item" data-page="notices" style="position:relative;display:flex;align-items:center;gap:11px;padding:10px 12px;border-radius:9px;font-size:13.5px;font-weight:500;cursor:pointer;transition:background .15s,color .15s" data-hover="background:rgba(255,255,255,0.06)">
         <span class="nav-accent" style="position:absolute;left:-14px;top:9px;bottom:9px;width:3px;border-radius:0 3px 3px 0;background:#5b8cff"></span>
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l13-4v10L3 13z"/><path d="M7 12.5V17a2 2 0 0 0 4 0v-3.2"/><path d="M19 9.5a3 3 0 0 1 0 5"/></svg>
@@ -305,6 +299,11 @@ body.app-loading #sideAvatar{color:transparent!important;background:#243a5c!impo
 
       <div class="sb-agent-section" style="margin-top:auto;display:flex;flex-direction:column;gap:2px">
         <div class="sb-label" style="font-size:10.5px;font-weight:700;letter-spacing:0.08em;color:#536683;padding:16px 12px 6px">AI 조직</div>
+        <div class="nav-item" data-page="secretary" style="position:relative;display:flex;align-items:center;gap:11px;padding:10px 12px;border-radius:9px;font-size:13.5px;font-weight:500;cursor:pointer;transition:background .15s,color .15s" data-hover="background:rgba(255,255,255,0.06)">
+          <span class="nav-accent" style="position:absolute;left:-14px;top:9px;bottom:9px;width:3px;border-radius:0 3px 3px 0;background:#5b8cff"></span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.6L19.5 10l-5.6 1.9L12 17.5l-1.9-5.6L4.5 10l5.6-1.9z"/></svg>
+          <span>AI 비서실장</span>
+        </div>
         <div class="nav-item" data-page="agents" style="position:relative;display:flex;align-items:center;gap:11px;padding:10px 12px;border-radius:9px;font-size:13.5px;font-weight:500;cursor:pointer;transition:background .15s,color .15s" data-hover="background:rgba(255,255,255,0.06)">
           <span class="nav-accent" style="position:absolute;left:-14px;top:9px;bottom:9px;width:3px;border-radius:0 3px 3px 0;background:#5b8cff"></span>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="9" width="18" height="11" rx="2"/><path d="M8 9V6h8v3M8 14h.01M12 14h.01M16 14h.01M7 20v-3M17 20v-3"/></svg>
@@ -500,9 +499,9 @@ body.app-loading #sideAvatar{color:transparent!important;background:#243a5c!impo
               <div id="aiGreet" style="background:#fff;border:1px solid #eef1f5;border-radius:4px 14px 14px 14px;padding:14px 16px;font-size:13.5px;line-height:1.6;color:#27313f">좋은 하루입니다. 의정활동을 도와드리겠습니다.</div>
             </div>
             <div style="display:flex;flex-wrap:wrap;gap:8px;margin-left:43px">
-              <button class="ai-chip" style="padding:8px 14px;background:#fff;border:1px solid #d6e0ee;border-radius:20px;font-size:12.5px;font-weight:600;color:#1d3a6e;cursor:pointer" data-hover="background:#eaf1fb">질의자료 요약 보여줘</button>
-              <button class="ai-chip" style="padding:8px 14px;background:#fff;border:1px solid #d6e0ee;border-radius:20px;font-size:12.5px;font-weight:600;color:#1d3a6e;cursor:pointer" data-hover="background:#eaf1fb">민원 답변 초안 작성</button>
-              <button class="ai-chip" style="padding:8px 14px;background:#fff;border:1px solid #d6e0ee;border-radius:20px;font-size:12.5px;font-weight:600;color:#1d3a6e;cursor:pointer" data-hover="background:#eaf1fb">보도자료 작성</button>
+              <button class="ai-chip" style="padding:8px 14px;background:#fff;border:1px solid #d6e0ee;border-radius:20px;font-size:12.5px;font-weight:600;color:#1d3a6e;cursor:pointer" data-hover="background:#eaf1fb">일정등록</button>
+              <button class="ai-chip" style="padding:8px 14px;background:#fff;border:1px solid #d6e0ee;border-radius:20px;font-size:12.5px;font-weight:600;color:#1d3a6e;cursor:pointer" data-hover="background:#eaf1fb">보도자료작성</button>
+              <button class="ai-chip" style="padding:8px 14px;background:#fff;border:1px solid #d6e0ee;border-radius:20px;font-size:12.5px;font-weight:600;color:#1d3a6e;cursor:pointer" data-hover="background:#eaf1fb">홍보글작성</button>
             </div>
           </div>
           <div style="padding:14px 16px;border-top:1px solid #eef1f5;background:#fff">
@@ -2141,6 +2140,14 @@ onAuthStateChanged(_auth, async function(user){
       '',
       '# 업무 범위',
       '①일정 관리 ②문서 작성 ③SNS 홍보 ④디자인 기획 ⑤사진/자료 분석 ⑥행사 기록 ⑦정책자료 조사 ⑧아이디어 제안 ⑨업무 자동화 ⑩프로젝트 관리. 필요하면 여러 업무를 동시에 수행한다.',
+      '일정 등록 요청은 제목과 날짜가 확인되어도 즉시 저장하지 말고 add_event 도구에 구조화된 정보를 담아 호출한다. 화면에서 사용자에게 최종 확인을 받은 뒤에만 실제 저장된다. 필요한 정보가 빠졌을 때만 누락된 항목을 짧게 질문한다.',
+      '일정 등록 완료 뒤에는 일정명·날짜·시간·장소와 MOIDA/Google Calendar 반영 여부만 간결하게 보고한다. SNS 글, 보도자료 등 관련 없는 후속 업무는 제안하지 않는다.',
+      '일정 등록 전에 사용자 확인이 필요한 경우 정보를 한 문장으로 이어 쓰지 않는다. 반드시 "일정을 확인했습니다." 다음 빈 줄, "**날짜 HH:MM · 일정명**", 다음 줄 "장소: 장소명", 다시 빈 줄, "이대로 일정을 등록할까요?" 순서로 줄을 나눠 표시한다.',
+      '기관·단체·모임 이름과 물리적 장소가 함께 나오면 기관·단체·모임 이름을 일정명으로, 실제 공간을 장소로 정리한다. 예를 들어 "배구협회에서 배구장 관련 일정"은 일정명 "배구협회", 장소 "배구장"으로 이해한다.',
+      '예: "일정을 확인했습니다.\n\n**오늘 18:00 · 배구협회**\n장소: 배구장\n\n이대로 일정을 등록할까요?"',
+      '사용자가 웹자보·포스터·행사 안내 이미지를 첨부해 일정 등록을 요청하면 이미지에서 일정명·날짜·시간·장소를 읽는다. 첫 응답에서는 add_event를 호출하지 말고 반드시 추출한 일정을 보기 좋게 정리해 사용자에게 등록 여부를 확인한다.',
+      '웹자보 일정 확인 형식: "일정을 확인했습니다." 다음 줄에 "**YYYY년 M월 D일 HH:MM · 일정명**", 그 다음 줄에 "장소: 장소명", 마지막에 "이대로 일정을 등록할까요?"라고 묻는다. 불명확하거나 빠진 항목은 추측하지 말고 그 항목만 질문한다.',
+      '사용자가 확인 답변으로 등록을 승인하면 앞서 이미지에서 추출한 정보를 사용해 add_event를 호출한다.',
       '',
       '# 핵심 행동원칙 — "질문 → 답변 → 다음 업무 제안"',
       '답변만 하지 않는다. 항상 "다음 해야 할 일"까지 제안한다.',
@@ -2158,6 +2165,8 @@ onAuthStateChanged(_auth, async function(user){
       '',
       '# 글쓰기',
       '글을 쓸 때 목적을 먼저 분석한다(SNS/보도자료/축사/격려사/회의자료/제안서/공문/카카오톡 등). 목적에 맞는 형식·톤으로 바로 쓸 수 있는 완성형으로 작성한다.',
+      '사용자 메시지에 [홍보글 작성 설정]이 있으면 해당 글자 수와 방향을 반드시 지킨다. 행사 후 활동보고용 홍보글로 작성하고, 확인되지 않은 성과·참석자·수치를 만들어내지 않는다. 사용자가 적은 행사 요지의 사실과 표현을 최대한 살려 자연스럽고 담백한 문장으로 쓴다.',
+      '홍보글에서는 "지역 사회의 결속력", "소통의 장", "뜻깊은 시간", "지속적인 협력"처럼 내용 없이 과장되거나 관공서식인 표현을 피한다. 행사에서 만난 사람, 나눈 이야기, 앞으로 챙길 일을 구체적으로 적고, 한 문단은 휴대폰 기준 3줄 정도(약 70자 이내)로 짧게 쓴다. 문단 사이는 반드시 한 줄을 비우고, 해시태그는 맨 마지막 줄에 따로 둔다. 카카오톡과 페이스북에 바로 붙여넣을 수 있도록 제목 없이 본문과 필요한 해시태그만 출력한다.',
       '',
       '# 문제 해결',
       '질문에는 ①질문의 의도 ②가장 좋은 해결책 ③더 좋은 대안 ④자동화 가능 여부까지 함께 제안한다.',
@@ -3098,16 +3107,15 @@ onAuthStateChanged(_auth, async function(user){
           if(type&&String(m.type||'').replace(/\s/g,'').toLowerCase().indexOf(type)<0)return false;
           if(dong&&String(m.dong||'').replace(/\s/g,'').toLowerCase().indexOf(dong)<0)return false;
           if(a.birthday_today){
-            var birth=String(m.birthday||m.birth||m.birthDate||'').replace(/\./g,'-').replace(/\//g,'-');
-            var parts=birth.split('-').filter(Boolean);if(parts.length<2)return false;
-            var bm=parts.length>=3?parts[parts.length-2]:parts[0], bd=parts[parts.length-1];
-            if(String(+bm).padStart(2,'0')!==mm||String(+bd).padStart(2,'0')!==dd)return false;
+            var birthdayDigits=String(m.birthday||m.birth||m.birthDate||m.dob||m.rrn||'').replace(/[^0-9]/g,'');
+            var birthdayMd=birthdayDigits.length>=8?birthdayDigits.slice(4,8):(birthdayDigits.length>=6?birthdayDigits.slice(2,6):'');
+            if(birthdayMd!==mm+dd)return false;
           }
           return true;
         });
         var lim=Math.max(1,Math.min(100,+a.limit||20));
         return {total:all.length,matched:rows.length,filters:{type:a.type||'',dong:a.dong||'',birthday_today:!!a.birthday_today},
-          contacts:rows.slice(0,lim).map(function(m){return {name:m.name,phone:M.formatPhone?M.formatPhone(m.phone):m.phone,type:m.type,dong:m.dong,rec:m.rec,birthday:m.birthday||m.birth||m.birthDate||'',score:m.score};}),
+          contacts:rows.slice(0,lim).map(function(m){return {name:m.name,phone:M.formatPhone?M.formatPhone(m.phone):m.phone,type:m.type,dong:m.dong,rec:m.rec,birthday:m.birthday||m.birth||m.birthDate||m.dob||m.rrn||'',score:m.score};}),
           truncated:rows.length>lim};
       }
       if(name==='search_contacts'){
@@ -3237,7 +3245,152 @@ onAuthStateChanged(_auth, async function(user){
       && /(만들|제작|생성|그려|디자인|해\s*줘|해주세요)/.test(text);
   }
   function isScheduleRegistrationRequest(text){
-    return /(일정|스케줄|캘린더|회의|행사|간담회|방문)/.test(text)&&/(등록|추가|잡아|넣어|기록|예약|올려)/.test(text);
+    var hasScheduleWord=/(일정|스케줄|캘린더|회의|미팅|모임|약속|면담|행사|간담회|방문|교육|상담)/.test(text);
+    var explicitAction=/(등록|추가|잡아|넣어|기록|예약|올려)/.test(text);
+    var hasDateOrTime=/(오늘|내일|모레|이번\s*주|다음\s*주|\d{1,2}\s*월\s*\d{1,2}\s*일|\d{4}[-./]\d{1,2}[-./]\d{1,2}|오전|오후|\d{1,2}\s*시|\d{1,2}:\d{2})/.test(text);
+    var hasPlaceHint=/(장소|에서|회관|회의실|교육청|학교|유치원|체육관|배구장|수련관|사무실)/.test(text);
+    return hasScheduleWord&&(explicitAction||hasDateOrTime)||(hasDateOrTime&&hasPlaceHint);
+  }
+  function scheduleRegistrationReply(args,result){
+    args=args||{};result=result||{};
+    var dateLabel=args.date===todayKey()?'오늘':String(args.date||result.date||'');
+    var timeLabel=args.all_day||!args.time?'종일':String(args.time||result.time||'');
+    var when=[dateLabel,timeLabel].filter(Boolean).join(' ');
+    var lines=['일정 등록했습니다.','','**'+when+' · '+String(args.title||result.added||'일정')+'**'];
+    if(args.location)lines.push('장소: '+String(args.location));
+    lines.push('');
+    if(result.duplicate)lines.push('같은 일정이 이미 등록되어 있어 중복으로 만들지 않았습니다.');
+    else if(result.googleSynced)lines.push('모이다와 Google Calendar에 모두 반영했습니다.');
+    else lines.push('모이다에는 등록했지만 Google Calendar 반영에 실패했습니다. 다시 연결한 뒤 동기화해 주세요.');
+    return lines.join('\n');
+  }
+  var pendingScheduleProposal=null,awaitingScheduleDetails=false;
+  function scheduleProposalReply(args){
+    args=args||{};
+    var dateLabel=args.date===todayKey()?'오늘':String(args.date||'');
+    var timeLabel=args.all_day||!args.time?'종일':String(args.time||'');
+    var when=[dateLabel,timeLabel].filter(Boolean).join(' ');
+    var title=String(args.title||'일정');
+    var raw='일정을 확인했습니다.\n\n**'+when+' · '+title+'**'+(args.location?'\n장소: '+String(args.location):'')+'\n\n이대로 일정을 등록할까요?';
+    var html='<div style="font-size:13px;color:#344054;line-height:1.6">일정을 확인했습니다.</div>'
+      +'<div style="margin-top:10px;font-size:14px;font-weight:750;color:#1f2b3d">'+M.esc(when+' · '+title)+'</div>'
+      +(args.location?'<div style="margin-top:3px;font-size:13px;color:#667085">장소: '+M.esc(String(args.location))+'</div>':'')
+      +'<div style="margin-top:12px;font-size:13px;color:#344054">이대로 일정을 등록할까요?</div>'
+      +'<div style="display:flex;gap:8px;margin-top:11px">'
+      +'<button type="button" data-schedule-confirm="register" style="height:34px;padding:0 16px;border:0;border-radius:8px;background:#1d3a6e;color:#fff;font-size:12.5px;font-weight:700;cursor:pointer">등록</button>'
+      +'<button type="button" data-schedule-confirm="edit" style="height:34px;padding:0 16px;border:1px solid #cfd8e6;border-radius:8px;background:#fff;color:#344054;font-size:12.5px;font-weight:700;cursor:pointer">수정</button>'
+      +'</div>';
+    return {raw:raw,html:html};
+  }
+  function showScheduleProposal(args,skipHistory){
+    pendingScheduleProposal=Object.assign({},args||{});
+    var proposal=scheduleProposalReply(pendingScheduleProposal);
+    if(!skipHistory)history.push({role:'assistant',content:proposal.raw});
+    addAI(proposal.html,proposal.raw);
+  }
+  function parseScheduleConfirmation(content){
+    content=String(content||'');
+    if(!/이대로\s*(?:일정을\s*)?등록할까요\?/.test(content))return null;
+    var headline=content.match(/\*\*([^*]+?)\s*·\s*([^*]+?)\*\*/);
+    if(!headline)return null;
+    var left=headline[1].trim(),title=headline[2].trim();
+    var timeMatch=left.match(/(\d{1,2}):?(\d{2})?\s*$/);
+    var time=timeMatch?(String(+timeMatch[1]).padStart(2,'0')+':'+String(+(timeMatch[2]||0)).padStart(2,'0')):'';
+    var dateText=timeMatch?left.slice(0,timeMatch.index).trim():left;
+    var date='';
+    if(dateText==='오늘')date=todayKey();
+    else if(dateText==='내일')date=addDays(todayKey(),1);
+    else if(dateText==='어제')date=addDays(todayKey(),-1);
+    else{
+      var dateMatch=dateText.match(/(\d{4})년\s*(\d{1,2})월\s*(\d{1,2})일/);
+      if(dateMatch)date=dateMatch[1]+'-'+String(+dateMatch[2]).padStart(2,'0')+'-'+String(+dateMatch[3]).padStart(2,'0');
+      else if(/^\d{4}-\d{2}-\d{2}$/.test(dateText))date=dateText;
+    }
+    var locationMatch=content.match(/(?:^|\n)장소:\s*([^\n]+)/);
+    if(!date||!title)return null;
+    return {title:title,date:date,time:time,location:locationMatch?locationMatch[1].trim():'',cat:'의정'};
+  }
+  function confirmPendingSchedule(){
+    if(!pendingScheduleProposal)return;
+    var args=pendingScheduleProposal;pendingScheduleProposal=null;
+    var typing=addTyping();
+    Promise.resolve(execTool('add_event',args)).then(function(result){
+      if(typing)typing.remove();
+      if(!result||!result.ok){addAI('일정을 등록하지 못했습니다. '+M.esc(String(result&&result.error||'다시 시도해 주세요.')));return;}
+      var reply=scheduleRegistrationReply(args,result);
+      history.push({role:'assistant',content:reply});
+      addAI(mdToHtml(reply),reply);
+    }).catch(function(error){if(typing)typing.remove();addAI('일정을 등록하지 못했습니다. '+M.esc(String(error&&error.message||error)));});
+  }
+  function showScheduleRegistrationGuide(){
+    awaitingScheduleDetails=true;
+    var raw='일정명 — 지역주민 간담회\n날짜 — 오늘 또는 8월 2일\n시간 — 오후 2시\n장소 — 청소년수련관\n입력 예시 — 오늘 오후 2시 지역주민 간담회, 청소년수련관';
+    var html='<div style="font-size:14px;font-weight:750;color:#1f2b3d;margin-bottom:10px">등록할 일정 정보를 알려주세요.</div>'
+      +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:12px">'
+      +'<div style="padding:8px 10px;border-radius:8px;background:#f5f7fa;color:#344054;font-size:12px"><b>일정명</b> — <span style="color:#667085">지역주민 간담회</span></div>'
+      +'<div style="padding:8px 10px;border-radius:8px;background:#f5f7fa;color:#344054;font-size:12px"><b>날짜</b> — <span style="color:#667085">오늘 또는 8월 2일</span></div>'
+      +'<div style="padding:8px 10px;border-radius:8px;background:#f5f7fa;color:#344054;font-size:12px"><b>시간</b> — <span style="color:#667085">오후 2시</span></div>'
+      +'<div style="padding:8px 10px;border-radius:8px;background:#f5f7fa;color:#344054;font-size:12px"><b>장소</b> — <span style="color:#667085">청소년수련관</span></div>'
+      +'</div>'
+      +'<div style="padding:10px 12px;border-left:3px solid #2f5fd0;border-radius:4px 8px 8px 4px;background:#f0f5ff;color:#29466f;font-size:12.5px;line-height:1.5"><b>입력 예시</b><br>오늘 오후 2시 지역주민 간담회, 청소년수련관</div>';
+    setTimeout(function(){addAI(html,raw);},180);
+  }
+  var promotionDraft={length:'',tone:''},awaitingPromotionContent=false,promotionPromptShown=false;
+  function promotionLengthGuide(){
+    return {짧게:'120~180자',중간:'300~450자',길게:'600~850자'}[promotionDraft.length]||'';
+  }
+  function showPromotionGuide(){
+    awaitingPromotionContent=false;promotionPromptShown=false;
+    promotionDraft={length:'',tone:''};
+    var raw='홍보글 설정\n글 길이와 글 방향을 선택해 주세요.';
+    var lengths=[['짧게','120~180자'],['중간','300~450자'],['길게','600~850자']];
+    var tones=['공감','응원','차분','현장기록','성과중심'];
+    function option(kind,value,label,selected){return '<button type="button" data-promotion-'+kind+'="'+value+'" style="height:34px;padding:0 11px;border:1px solid '+(selected?'#1d3a6e':'#d6e0ee')+';border-radius:8px;background:'+(selected?'#eaf1fb':'#fff')+';color:'+(selected?'#1d3a6e':'#526071')+';font-size:12px;font-weight:700;cursor:pointer">'+label+'</button>';}
+    var html='<div data-promotion-guide style="font-size:13px;color:#344054">'
+      +'<div style="font-size:14px;font-weight:750;color:#1f2b3d;margin-bottom:12px">홍보글 설정</div>'
+      +'<div style="font-size:12px;font-weight:700;color:#667085;margin-bottom:7px">글 길이</div><div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px">'
+      +lengths.map(function(item){return option('length',item[0],item[0]+' · '+item[1],promotionDraft.length===item[0]);}).join('')+'</div>'
+      +'<div style="font-size:12px;font-weight:700;color:#667085;margin-bottom:7px">글 방향</div><div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px">'
+      +tones.map(function(tone){return option('tone',tone,tone,promotionDraft.tone===tone);}).join('')+'</div>'
+      +'<div style="padding:10px 12px;border-left:3px solid #2f5fd0;border-radius:4px 8px 8px 4px;background:#f0f5ff;color:#29466f;font-size:12.5px;line-height:1.55">글 길이와 글 방향을 모두 선택하면 행사 요지 입력 단계로 넘어갑니다.</div></div>';
+    setTimeout(function(){addAI(html,raw);},180);
+  }
+  function showPromotionPrompt(){
+    if(promotionPromptShown||!promotionDraft.length||!promotionDraft.tone)return;
+    promotionPromptShown=true;awaitingPromotionContent=true;
+    var raw='행사 요지와 꼭 담고 싶은 메시지를 적어주세요.\n예: 주민 의견을 들은 간담회였고, 끝까지 챙기겠다는 내용을 따뜻하게 담아줘요.';
+    var html='<div style="font-size:13px;color:#344054;line-height:1.65"><b>행사 요지와 꼭 담고 싶은 메시지를 적어주세요.</b><br><span style="color:#667085">예: 주민 의견을 들은 간담회였고, 끝까지 챙기겠다는 내용을 따뜻하게 담아줘요.</span></div>';
+    var promptInput=document.getElementById('aiInput');
+    if(promptInput){promptInput.placeholder='행사 요지와 꼭 담고 싶은 메시지를 적어주세요…';promptInput.focus();}
+    setTimeout(function(){addAI(html,raw);},150);
+  }
+  var expectingPromotionCopy=false,promotionCopies={};
+  function formatPromotionCopy(text){
+    text=String(text||'').trim();
+    var hashMatch=text.match(/(?:^|\s)(#[^\n]+(?:\n[^\n]+)*)$/);
+    var tags='';
+    if(hashMatch){tags=hashMatch[0].trim().replace(/\s+/g,' ');text=text.slice(0,hashMatch.index).trim();}
+    var sentences=text.replace(/\s+/g,' ').match(/[^.!?]+[.!?]+|[^.!?]+$/g)||[];
+    sentences=sentences.map(function(sentence){return sentence.trim();}).filter(Boolean);
+    var paragraphs=[],current='';
+    sentences.forEach(function(sentence){
+      if(current&&current.length+1+sentence.length>70){paragraphs.push(current);current='';}
+      if(!current&&sentence.length>70){
+        var parts=sentence.match(/[^,，]+[,，]?\s*|[^,，]+$/g)||[];
+        if(parts.length>1){parts.forEach(function(part){if(current&&current.length+1+part.length>70){paragraphs.push(current);current='';}current+=(current?' ':'')+part;});return;}
+      }
+      current+=(current?' ':'')+sentence;
+    });
+    if(current)paragraphs.push(current);
+    if(!paragraphs.length)paragraphs=[text];
+    return paragraphs.concat(tags?[tags]:[]).filter(Boolean).join('\n\n');
+  }
+  function renderPromotionCopy(text){
+    var formatted=formatPromotionCopy(text),id='promotion-copy-'+Date.now();
+    promotionCopies[id]=formatted;
+    var html='<div style="white-space:normal;font-size:13px;line-height:1.75;color:#344054">'+M.esc(formatted).replace(/\n/g,'<br>')+'</div>'
+      +'<button type="button" data-promotion-copy="'+id+'" style="margin-top:13px;height:34px;padding:0 14px;border:1px solid #cfd8e6;border-radius:8px;background:#fff;color:#1d3a6e;font-size:12.5px;font-weight:700;cursor:pointer">복사</button>';
+    addAI(html,formatted);
   }
   function send(text){
     text=(text||'').trim();
@@ -3246,8 +3399,11 @@ onAuthStateChanged(_auth, async function(user){
     var _imgs=atts.filter(function(a){return a.kind==='image';});
     if(_imgs.length) lastPhotos=_imgs.map(function(f){return f.dataUrl;});
     addUser(text, atts);
+    if(!atts.length&&pendingScheduleProposal&&/^(등록|등록해|등록해줘|등록해주세요|네|예|응|확인)$/.test(text.replace(/\s+/g,''))){confirmPendingSchedule();return;}
+    if(!atts.length&&/^일정\s*등록$/.test(text)){showScheduleRegistrationGuide();return;}
+    if(!atts.length&&/^홍보글\s*작성$/.test(text)){showPromotionGuide();return;}
     if(!atts.length&&answerCrmRead(text))return;
-    if(shouldOrchestrate(text)&&!isPosterCreationRequest(text)&&!isScheduleRegistrationRequest(text)){
+    if(shouldOrchestrate(text)&&!awaitingScheduleDetails&&!awaitingPromotionContent&&!isPosterCreationRequest(text)&&!isScheduleRegistrationRequest(text)){
       startAgentRun(text);
       return;
     }
@@ -3255,6 +3411,14 @@ onAuthStateChanged(_auth, async function(user){
     if(!ep){ var r=reply(text); setTimeout(function(){ addAI(r); }, 350); return; }
     if(!history.length) history.push({role:'system', content:sysPrompt()});
     var fullText=text;
+    var usePromotionSettings=awaitingPromotionContent;
+    if(usePromotionSettings){
+      fullText+='\n\n[홍보글 작성 설정]\n글 길이: '+promotionDraft.length+' ('+promotionLengthGuide()+')\n글 방향: '+promotionDraft.tone+'\n행사 후 활동보고용 홍보글로 작성. 사용자가 적은 행사 요지의 사실만 활용하고, 추상적·관공서식 표현은 피한다. 만난 사람·나눈 이야기·앞으로 챙길 일을 담백하게 2~3문단으로 쓴다. 위 글자 수 범위를 지키고, 본문과 해시태그만 출력.';
+      awaitingPromotionContent=false;
+      expectingPromotionCopy=true;
+      var restorePromotionInput=document.getElementById('aiInput');
+      if(restorePromotionInput)restorePromotionInput.placeholder='비서실장에게 무엇이든 물어보세요…';
+    }
     atts.filter(function(a){return a.kind==='text';}).forEach(function(f){
       fullText += '\n\n[첨부파일: '+f.name+']\n```\n'+String(f.content||'').slice(0,8000)+(String(f.content||'').length>8000?'\n…(이하 생략)':'')+'\n```';
     });
@@ -3267,14 +3431,17 @@ onAuthStateChanged(_auth, async function(user){
     } else {
       history.push({role:'user', content:fullText});
     }
-    runLoop(addTyping(), 0, 0, isPosterCreationRequest(text));
+    var forceSchedule=!usePromotionSettings&&(awaitingScheduleDetails||isScheduleRegistrationRequest(text));
+    if(forceSchedule)awaitingScheduleDetails=false;
+    runLoop(addTyping(), 0, 0, isPosterCreationRequest(text), forceSchedule);
   }
-  function runLoop(typing, depth, retry, forcePoster){
+  function runLoop(typing, depth, retry, forcePoster, forceSchedule){
     retry=retry||0;
     if(depth>6){ if(typing) typing.remove(); addAI('처리 단계가 너무 많아 중단했습니다. 다시 시도해 주세요.'); return; }
     var _status=0;
     var payload={model:GPT_MODEL,messages:history,tools:TOOLS};
     if(forcePoster&&depth===0)payload.tool_choice={type:'function',function:{name:'create_poster'}};
+    else if(forceSchedule&&depth===0)payload.tool_choice={type:'function',function:{name:'add_event'}};
     aiFetch(gptEndpoint(), {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload)})
       .then(function(r){ _status=r.status; return r.text(); })
       .then(async function(txt){
@@ -3283,7 +3450,7 @@ onAuthStateChanged(_auth, async function(user){
         if(!msg){
           // 게이트웨이 일시 오류(502/503/504)는 자동 재시도
           if((_status===502||_status===503||_status===504||_status===429) && retry<2){
-            setTimeout(function(){ runLoop(typing, depth, retry+1, forcePoster); }, 900*(retry+1));
+            setTimeout(function(){ runLoop(typing, depth, retry+1, forcePoster, forceSchedule); }, 900*(retry+1));
             return;
           }
           if(typing) typing.remove();
@@ -3295,20 +3462,43 @@ onAuthStateChanged(_auth, async function(user){
         }
         history.push(msg);
         if(msg.tool_calls && msg.tool_calls.length){
+          var completedSchedule=null,proposedSchedule=null;
           for(var ti=0;ti<msg.tool_calls.length;ti++){
             var tc=msg.tool_calls[ti];
             var args={}; try{ args=JSON.parse((tc.function&&tc.function.arguments)||'{}'); }catch(e){}
+            if(tc.function&&tc.function.name==='add_event'){
+              proposedSchedule=args;
+              history.push({role:'tool',tool_call_id:tc.id,content:JSON.stringify({ok:true,requires_confirmation:true,message:'사용자 확인 대기 중'})});
+              continue;
+            }
             var result=await Promise.resolve(execTool(tc.function&&tc.function.name, args));
             history.push({role:'tool', tool_call_id:tc.id, content:JSON.stringify(result)});
+            if(tc.function&&tc.function.name==='add_event'&&result&&result.ok)completedSchedule={args:args,result:result};
           }
-          runLoop(typing, depth+1, 0, false);
+          if(proposedSchedule){
+            if(typing)typing.remove();
+            showScheduleProposal(proposedSchedule);
+            return;
+          }
+          if(completedSchedule){
+            if(typing)typing.remove();
+            var scheduleReply=scheduleRegistrationReply(completedSchedule.args,completedSchedule.result);
+            history.push({role:'assistant',content:scheduleReply});
+            addAI(mdToHtml(scheduleReply),scheduleReply);
+            return;
+          }
+          runLoop(typing, depth+1, 0, false, false);
         } else {
           if(typing) typing.remove();
-          addAI(mdToHtml(msg.content||''), msg.content||'');
+          var parsedProposal=parseScheduleConfirmation(msg.content||'');
+          if(parsedProposal)showScheduleProposal(parsedProposal,true);
+          else if(expectingPromotionCopy){expectingPromotionCopy=false;renderPromotionCopy(msg.content||'');}
+          else addAI(mdToHtml(msg.content||''), msg.content||'');
         }
       })
       .catch(function(e){
-        if(retry<2){ setTimeout(function(){ runLoop(typing, depth, retry+1, forcePoster); }, 900*(retry+1)); return; }
+        if(retry<2){ setTimeout(function(){ runLoop(typing, depth, retry+1, forcePoster, forceSchedule); }, 900*(retry+1)); return; }
+        expectingPromotionCopy=false;
         if(typing) typing.remove(); addAI('연결 오류: '+M.esc(e&&e.message||String(e)));
       });
   }
@@ -3316,6 +3506,40 @@ onAuthStateChanged(_auth, async function(user){
   if(sendBtn) sendBtn.addEventListener('click', function(){ if(input){ send(input.value); input.value=''; input.focus(); } });
   if(input) input.addEventListener('keydown', function(e){ if(e.key==='Enter'){ e.preventDefault(); send(input.value); input.value=''; } });
   if(msgs) msgs.addEventListener('click', function(e){
+    var promotionCopy=e.target.closest('[data-promotion-copy]');
+    if(promotionCopy){
+      var copyText=promotionCopies[promotionCopy.getAttribute('data-promotion-copy')]||'';
+      if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(copyText).then(function(){promotionCopy.textContent='복사됨';setTimeout(function(){promotionCopy.textContent='복사';},1200);});}
+      return;
+    }
+    var promotionLength=e.target.closest('[data-promotion-length]');
+    if(promotionLength){
+      promotionDraft.length=promotionLength.getAttribute('data-promotion-length');
+      var lengthGuide=promotionLength.closest('[data-promotion-guide]');
+      if(lengthGuide)lengthGuide.querySelectorAll('[data-promotion-length]').forEach(function(button){var selected=button.getAttribute('data-promotion-length')===promotionDraft.length;button.style.borderColor=selected?'#1d3a6e':'#d6e0ee';button.style.background=selected?'#eaf1fb':'#fff';button.style.color=selected?'#1d3a6e':'#526071';});
+      showPromotionPrompt();
+      return;
+    }
+    var promotionTone=e.target.closest('[data-promotion-tone]');
+    if(promotionTone){
+      promotionDraft.tone=promotionTone.getAttribute('data-promotion-tone');
+      var toneGuide=promotionTone.closest('[data-promotion-guide]');
+      if(toneGuide)toneGuide.querySelectorAll('[data-promotion-tone]').forEach(function(button){var selected=button.getAttribute('data-promotion-tone')===promotionDraft.tone;button.style.borderColor=selected?'#1d3a6e':'#d6e0ee';button.style.background=selected?'#eaf1fb':'#fff';button.style.color=selected?'#1d3a6e':'#526071';});
+      showPromotionPrompt();
+      return;
+    }
+    var scheduleAction=e.target.closest('[data-schedule-confirm]');
+    if(scheduleAction){
+      var action=scheduleAction.getAttribute('data-schedule-confirm');
+      if(action==='register'){
+        scheduleAction.parentNode.querySelectorAll('button').forEach(function(button){button.disabled=true;button.style.opacity='.55';});
+        addUser('등록');confirmPendingSchedule();
+      }else if(action==='edit'&&pendingScheduleProposal&&input){
+        input.value=[pendingScheduleProposal.date===todayKey()?'오늘':pendingScheduleProposal.date,pendingScheduleProposal.time,pendingScheduleProposal.title,pendingScheduleProposal.location].filter(Boolean).join(' ');
+        input.focus();
+      }
+      return;
+    }
     var pb=e.target.closest('[data-poster]');
     if(pb){ var svg=_posters[pb.getAttribute('data-poster')]; if(svg) downloadPoster(svg, pb.getAttribute('data-pname')||'웹자보'); return; }
     var pi=e.target.closest('[data-posterimg]');
