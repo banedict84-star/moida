@@ -1012,18 +1012,36 @@ onAuthStateChanged(_auth, async function(user){
   var dispMembers = members.slice();
   var rowLimit=100;
   var memberSearchCache=new WeakMap();
+  var memberById={}, searchWorker=null, searchResultIds=null, searchRequestId=0;
+  members.forEach(function(member){ memberById[String(member.mid||'')]=member; });
   function memberSearchText(m){
     var cached=memberSearchCache.get(m); if(cached!=null) return cached;
     var text=[m.name,m.phone,m.addr,m.rec,m.rec2,m.rec3,m.sub,m.third,m.dong,(m.orgs||[]).map(orgRepText).join(' ')].filter(function(v){return v!=null;}).join(' ').toLowerCase().replace(/-/g,'');
     memberSearchCache.set(m,text); return text;
   }
+  function initSearchWorker(){
+    if(!window.Worker) return;
+    try{
+      searchWorker=new Worker('members-search-worker.js');
+      searchWorker.onmessage=function(event){
+        var data=event.data||{};
+        if(data.type!=='result'||data.requestId!==searchRequestId) return;
+        searchResultIds=Array.isArray(data.ids)?data.ids:[];
+        renderRows();
+      };
+      searchWorker.onerror=function(){ searchWorker=null; searchResultIds=null; };
+      searchWorker.postMessage({type:'init',records:members.map(function(member){ return {id:String(member.mid||''),text:memberSearchText(member)}; })});
+    }catch(e){ searchWorker=null; }
+  }
+  initSearchWorker();
   function renderRows(){
-    var matchedRows = dispMembers.filter(function(m){
+    var source=(searchKw&&searchWorker)?(searchResultIds||[]).map(function(id){return memberById[id];}).filter(Boolean):dispMembers;
+    var matchedRows = source.filter(function(m){
       return (!filters.dong.length || filters.dong.indexOf(m.dong)>=0)
         && (!filters.type.length || filters.type.indexOf(m.type)>=0)
         && (!filters.ageb.length || filters.ageb.indexOf(m.ageb)>=0)
         && (!filters.sex.length || filters.sex.indexOf(m.sex)>=0)
-        && (!searchKw || memberSearchText(m).indexOf(searchKw)>=0);
+        && (!searchKw || searchWorker || memberSearchText(m).indexOf(searchKw)>=0);
     });
     var isLimited=matchedRows.length>rowLimit;
     var rows=isLimited?matchedRows.slice(0,rowLimit):matchedRows;
@@ -1544,6 +1562,11 @@ onAuthStateChanged(_auth, async function(user){
     _searchTimer=setTimeout(function(){
       searchKw=value.trim().toLowerCase().replace(/-/g,'');
       rowLimit=100;
+      if(searchWorker&&searchKw){
+        searchResultIds=null;
+        searchWorker.postMessage({type:'search',requestId:++searchRequestId,keyword:searchKw});
+        return;
+      }
       renderRows();
     },180);
   });
