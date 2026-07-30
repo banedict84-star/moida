@@ -1037,6 +1037,7 @@ async function googleCalendarCallback(request, env) {
   const profile = await googleApi(token.access_token, "https://openidconnect.googleapis.com/v1/userinfo");
   const encrypted = await encryptGoogleToken(env, token.refresh_token);
   const now = Date.now();
+  await ensureGoogleCalendarSchema(env);
   await env.AGENT_DB.prepare(
     `INSERT INTO google_calendar_connections
       (tenant_id, google_email, calendar_id, refresh_token_cipher, refresh_token_iv,
@@ -1156,23 +1157,23 @@ async function handleFetch(request, env) {
       return json({ ok: true, queue: Boolean(env.AGENT_QUEUE), database: Boolean(env.AGENT_DB), law: Boolean(env.LAW_OC), googleCalendar: Boolean(env.GOOGLE_CLIENT_ID && env.GOOGLE_CLIENT_SECRET), schemaVersion: AGENT_SCHEMA_VERSION }, 200, request, env);
     }
     if (path === GOOGLE_CALLBACK_PATH && request.method === "GET") {
-      return googleCalendarCallback(request, env);
+      return await googleCalendarCallback(request, env);
     }
     if (path === "/google/calendar/connect" && request.method === "GET") {
       const user = await verifyFirebaseUser(request, env);
-      return googleCalendarConnect(request, env, user);
+      return await googleCalendarConnect(request, env, user);
     }
     if (path === "/google/calendar/status" && request.method === "GET") {
       const user = await verifyFirebaseUser(request, env);
-      return googleCalendarStatus(request, env, user);
+      return await googleCalendarStatus(request, env, user);
     }
     if (path === "/google/calendar/events" && (request.method === "GET" || request.method === "POST")) {
       const user = await verifyFirebaseUser(request, env);
-      return googleCalendarEvents(request, env, user);
+      return await googleCalendarEvents(request, env, user);
     }
     if (path === "/google/calendar/disconnect") {
       const user = await verifyFirebaseUser(request, env);
-      return googleCalendarDisconnect(request, env, user);
+      return await googleCalendarDisconnect(request, env, user);
     }
     if (path === "/law/search" || path === "/law/detail") {
       await verifyFirebaseUser(request, env);
