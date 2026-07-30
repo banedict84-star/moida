@@ -14,6 +14,10 @@ button{font-family:inherit}
 ::-webkit-scrollbar-thumb:hover{background:#b3bbc7}
 @keyframes fadeUp{from{opacity:.3;transform:translateY(6px)}to{opacity:1;transform:none}}
 .pg{animation:fadeUp .24s ease both}
+body.app-loading #sideBar{transition:none!important}
+body.app-loading .pg{animation:none!important}
+body.app-loading .profile-loading{color:transparent!important;background:rgba(255,255,255,.1);border-radius:5px;min-height:12px}
+body.app-loading #sideAvatar{color:transparent!important;background:#243a5c!important}
 </style>
 <style>.page{display:none}.nav-accent{display:none}.nav-item.active .nav-accent{display:block}.nav-item.active{background:rgba(91,140,255,0.16);color:#fff}.nav-item.active svg{color:#fff}</style>
 <style>
@@ -34,11 +38,11 @@ button{font-family:inherit}
 .ai-history-item:hover .ai-history-action,.ai-history-item.active .ai-history-action{display:flex}
 .ai-history-rename:hover{background:#dde2e8;color:#1d3a6e}
 .ai-history-delete:hover{background:#dde2e8;color:#d14343}
-@media(max-width:1180px){.secretary-grid{grid-template-columns:200px minmax(0,1fr)!important}.secretary-aside{display:none!important}}
+@media(max-width:1180px){.secretary-grid{grid-template-columns:220px minmax(0,1fr)!important}.secretary-aside{display:none!important}}
 @media(max-width:860px){#aiHistoryPanel{display:none!important}.secretary-grid{grid-template-columns:minmax(0,1fr)!important}}
 </style>
 </head>
-<body>
+<body class="app-loading">
 <div style="display:flex;height:100vh;width:100%;font-family:'Pretendard',sans-serif;color:#1a2330;background:#f5f6f8;overflow:hidden">
 
   <aside id="sideBar" style="width:240px;flex-shrink:0;background:#0f1d33;display:flex;flex-direction:column;color:#9fb0c7;transition:width .2s ease">
@@ -47,7 +51,7 @@ button{font-family:inherit}
         <svg width="21" height="21" viewBox="0 0 48 48"><path d="M8 21 Q24 3 40 21 Z" fill="#fff"/><circle cx="24" cy="6.4" r="2.7" fill="#7fb0ff"/><rect x="6.5" y="20.3" width="35" height="3.2" rx="1.6" fill="#fff"/><rect x="11" y="25" width="3" height="12.6" rx="1.5" fill="#fff"/><rect x="19" y="25" width="3" height="12.6" rx="1.5" fill="#fff"/><rect x="27" y="25" width="3" height="12.6" rx="1.5" fill="#fff"/><rect x="35" y="25" width="3" height="12.6" rx="1.5" fill="#fff"/><rect x="5.5" y="38.6" width="37" height="3.4" rx="1.7" fill="#fff"/></svg>
       </div>
       <div class="sb-brandtext" style="min-width:0">
-        <div id="brandName" style="color:#fff;font-size:14.5px;font-weight:700;letter-spacing:-0.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">의원실</div>
+        <div id="brandName" class="profile-loading" style="color:#fff;font-size:14.5px;font-weight:700;letter-spacing:-0.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">&nbsp;</div>
         <div style="color:#6f84a0;font-size:11px;letter-spacing:0.02em;margin-top:1px;white-space:nowrap">AI 비서실 플랫폼</div>
       </div>
       <button id="sbToggle" title="사이드바 접기/펴기" aria-label="사이드바 접기/펴기" style="margin-left:auto;width:28px;height:28px;flex-shrink:0;border-radius:8px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.06);color:#9fb0c7;display:flex;align-items:center;justify-content:center;cursor:pointer" data-hover="background:rgba(255,255,255,0.13)">
@@ -93,7 +97,7 @@ button{font-family:inherit}
         <span class="nav-accent" style="position:absolute;left:-14px;top:9px;bottom:9px;width:3px;border-radius:0 3px 3px 0;background:#5b8cff"></span>
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7.5l9 6 9-6"/></svg>
         <span>민원</span>
-        <span id="mwBadge" style="margin-left:auto;background:#e5484d;color:#fff;font-size:10.5px;font-weight:700;min-width:19px;height:19px;border-radius:10px;display:flex;align-items:center;justify-content:center;padding:0 5px">0</span>
+        <span id="mwBadge" style="margin-left:auto;background:#e5484d;color:#fff;font-size:10.5px;font-weight:700;min-width:19px;height:19px;border-radius:10px;display:none;align-items:center;justify-content:center;padding:0 5px"></span>
       </div>
 
       <div class="nav-item" data-page="pr" style="position:relative;display:flex;align-items:center;gap:11px;padding:10px 12px;border-radius:9px;font-size:13.5px;font-weight:500;cursor:pointer;transition:background .15s,color .15s" data-hover="background:rgba(255,255,255,0.06)">
@@ -133,10 +137,10 @@ button{font-family:inherit}
 
     <div style="padding:14px;border-top:1px solid rgba(255,255,255,0.07)">
       <div id="profileCard" title="로그아웃" style="display:flex;align-items:center;gap:11px;padding:8px;border-radius:10px;cursor:pointer" data-hover="background:rgba(255,255,255,0.05)">
-        <div id="sideAvatar" style="width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,#3b6fd4,#5b8cff);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:15px;flex-shrink:0">·</div>
+        <div id="sideAvatar" style="width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,#3b6fd4,#5b8cff);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:15px;flex-shrink:0"></div>
         <div class="sb-profiletext" style="min-width:0;flex:1">
-          <div id="sideName" style="color:#fff;font-size:13px;font-weight:600">로그인 필요</div>
-          <div id="sideSub" style="color:#6f84a0;font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">—</div>
+          <div id="sideName" class="profile-loading" style="color:#fff;font-size:13px;font-weight:600">&nbsp;</div>
+          <div id="sideSub" class="profile-loading" style="color:#6f84a0;font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:3px">&nbsp;</div>
         </div>
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6f84a0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 9l4-4 4 4M8 15l4 4 4-4"/></svg>
       </div>
@@ -531,6 +535,7 @@ button{font-family:inherit}
   var pages = [].slice.call(document.querySelectorAll('.page'));
   var titleEl = document.getElementById('pageTitle');
   var subEl = document.getElementById('pageSub');
+  var navigationReady = false;
 
   function show(page){
     if(!META[page]) page = 'dashboard';
@@ -538,9 +543,13 @@ button{font-family:inherit}
     pages.forEach(function(p){ p.style.display = (p.getAttribute('data-page')===page) ? 'block' : 'none'; });
     titleEl.textContent = META[page][0];
     subEl.textContent = META[page][1];
-    /* 진입 페이드업 애니메이션 재실행 */
+    /* 최초 로딩에는 움직이지 않고, 사용자가 페이지를 이동할 때만 진입 애니메이션 */
     var pg = document.querySelector('.page[data-page="'+page+'"] .pg');
-    if(pg){ pg.style.animation='none'; void pg.offsetWidth; pg.style.animation=''; }
+    if(pg){
+      pg.style.animation='none';
+      if(navigationReady){ void pg.offsetWidth; pg.style.animation=''; }
+    }
+    navigationReady = true;
     if(('#'+page) !== location.hash) history.replaceState(null,'','#'+page);
   }
 
@@ -607,7 +616,7 @@ button{font-family:inherit}
     var ssub = document.getElementById('sideSub');
     if(brand && disp) brand.textContent = disp + ' 의원실';
     if(av){ if(p&&p.photo){ av.style.backgroundImage='url('+p.photo+')'; av.style.backgroundSize='cover'; av.style.backgroundPosition='center'; av.textContent=''; } else { av.style.backgroundImage=''; av.textContent = disp ? disp.charAt(0) : '·'; } }
-    if(snm) snm.textContent = disp || '로그인 필요';
+    if(snm) snm.textContent = disp || '';
     if(ssub) ssub.textContent = sub || '—';
   }
   M.paintProfile = paintProfile;
@@ -2452,16 +2461,35 @@ onAuthStateChanged(_auth, async function(user){
 
   /* 오늘의 할 일 */
   function tk(){ return 'moida_todo_'+M.uidOf(); }
-  var TASKS=['주간 회의 안건 정리','국토위 질의자료 최종 검토','민원 답변 6건 승인','청년단체 모임 축사 확인'];
-  var done;
-  function loadTodo(){ try{ done=JSON.parse(localStorage.getItem(tk())||'null'); }catch(e){ done=null; } if(!Array.isArray(done)) done=[true,false,false,false]; while(done.length<TASKS.length) done.push(false); }
+  var TASKS=[], done={};
+  function buildTasks(){
+    var today=_today();
+    var ev=(M.events||[]).filter(function(e){return e.date===today;}).length;
+    var open=(M.complaints||[]).filter(function(c){var s=c.status||'접수';return s!=='종결'&&s!=='답변완료';}).length;
+    var active=(M.policies||[]).filter(function(p){return (+p.progress||0)<100;}).length;
+    var drafts=(M.pr||[]).filter(function(p){var s=String(p.status||p.stage||'').toLowerCase();return s==='초안'||s==='draft';}).length;
+    TASKS=[];
+    if(ev) TASKS.push('오늘 일정 '+ev+'건 준비');
+    if(open) TASKS.push('미처리 민원 '+open+'건 확인');
+    if(active) TASKS.push('진행 중 정책 '+active+'건 점검');
+    if(drafts) TASKS.push('홍보 콘텐츠 초안 '+drafts+'건 검토');
+  }
+  function loadTodo(){
+    try{done=JSON.parse(localStorage.getItem(tk())||'{}');}catch(e){done={};}
+    if(!done||Array.isArray(done)||typeof done!=='object') done={};
+  }
   function renderTodo(){
     var box=document.getElementById('aiTodo'); if(!box) return;
-    box.innerHTML=TASKS.map(function(t,i){ var c=done[i];
+    buildTasks();
+    if(!TASKS.length){
+      box.innerHTML='<div style="padding:4px 0;font-size:12.5px;line-height:1.55;color:#9aa3b0">오늘 등록된 긴급 업무가 없습니다.</div>';
+      return;
+    }
+    box.innerHTML=TASKS.map(function(t,i){ var c=!!done[t];
       var chk='<span style="width:18px;height:18px;border-radius:6px;border:1.8px solid '+(c?'#16a34a':'#cbd5e1')+';'+(c?'background:#16a34a;':'')+'flex-shrink:0;display:flex;align-items:center;justify-content:center;margin-top:1px">'+(c?'<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>':'')+'</span>';
       return '<div class="todo-item" data-i="'+i+'" style="display:flex;gap:10px;align-items:flex-start;cursor:pointer">'+chk+'<span style="font-size:13px;color:'+(c?'#9aa3b0':'#27313f')+';'+(c?'text-decoration:line-through':'')+'">'+M.esc(t)+'</span></div>';
     }).join('');
-    box.querySelectorAll('.todo-item').forEach(function(el){ el.addEventListener('click', function(){ var i=+el.dataset.i; done[i]=!done[i]; try{ localStorage.setItem(tk(), JSON.stringify(done)); }catch(e){} renderTodo(); }); });
+    box.querySelectorAll('.todo-item').forEach(function(el){ el.addEventListener('click', function(){ var t=TASKS[+el.dataset.i]; done[t]=!done[t]; try{ localStorage.setItem(tk(), JSON.stringify(done)); }catch(e){} renderTodo(); }); });
   }
   loadTodo(); renderTodo();
   M.onData(function(){ loadTodo(); renderTodo(); });
@@ -2750,6 +2778,12 @@ onAuthStateChanged(_auth, async function(user){
   }
   if(document.readyState!=='loading') bindOnce(); else document.addEventListener('DOMContentLoaded', bindOnce);
 })();
+</script>
+<script>
+/* 초기 캐시·화면 집계가 모두 적용된 다음 전환 효과를 활성화 */
+requestAnimationFrame(function(){
+  requestAnimationFrame(function(){ document.body.classList.remove('app-loading'); });
+});
 </script>
 <script src="access-guard.js"></script>
 
