@@ -4200,7 +4200,7 @@ onAuthStateChanged(_auth, async function(user){
       node.style.outline='2px solid var(--node)';
       var name=type==='secretary'?'AI 비서실장':(NAMES[type]||'AI 에이전트');
       var state=type==='secretary'?(latest.status||'idle'):(workerId?(subtask?subtask.status:'idle'):(task&&(isLead?(task.leadStatus||task.status):(task.workerStatus||task.status))||'idle'));
-      var detail=type==='secretary'?(latest.instruction||'새로운 지시를 대기하고 있습니다.'):(workerId?(subtask?(subtask.role||subtask.result||'전문 업무를 수행하고 있습니다.'):'현재 배정된 전문 업무가 없습니다.'):(task?(isLead?((task.review?'검수 의견: '+task.review:'팀원 3명의 업무를 배정하고 결과를 통합 검수합니다.')):(task.title||task.instruction||'배정 업무')):'현재 배정된 업무가 없습니다.'));
+      var detail=type==='secretary'?(latest.instruction||'새로운 지시를 대기하고 있습니다.'):(workerId?(subtask?(subtask.role||subtask.result||'전문 업무를 수행하고 있습니다.'):'현재 대기 중입니다. 새 지시가 오면 위 역할을 수행합니다.'):(task?(isLead?((task.review?'검수 의견: '+task.review:'팀원 3명의 업무를 배정하고 결과를 통합 검수합니다.')):(task.title||task.instruction||'배정 업무')):'현재 대기 중입니다. 새 지시가 오면 위 역할을 수행합니다.'));
       inspector.innerHTML='<b>'+esc(name)+' · '+esc(LABELS[state]||'대기')+'</b><div style="margin-top:10px;padding:9px 10px;border-radius:8px;background:#f4f7fb;color:#31527f;font-size:10.5px;line-height:1.55"><strong style="display:block;margin-bottom:3px;font-size:9px;letter-spacing:.06em;color:#6d819b">담당 역할</strong>'+esc(agentRole(type))+'</div><div style="margin-top:9px;color:#6b7585;font-size:10.5px;line-height:1.55">'+esc(detail)+'</div>';
     });
   });
