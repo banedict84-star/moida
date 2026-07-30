@@ -85,7 +85,47 @@ async function openAI(env, body) {
   if (!response.ok || !data?.choices?.[0]?.message) {
     throw new Error(data?.error?.message || `OpenAI HTTP ${response.status}`);
   }
-  return data.choices[0].message.content || "";
+  return data;
+}
+
+function usageCostMicros(model, usage = {}) {
+  const rates = {
+    "gpt-4o-mini": { input: 0.15, cached: 0.075, output: 0.60 },
+    "gpt-4o": { input: 2.50, cached: 1.25, output: 10.00 },
+    "gpt-image-1": { input: 5.00, cached: 0, output: 40.00 },
+    "claude-sonnet-4": { input: 3.00, cached: 0.30, output: 15.00 },
+    "gemini-2.5-flash": { input: 0.30, cached: 0.03, output: 2.50 },
+  };
+  const rate = rates[model] || { input: 0, cached: 0, output: 0 };
+  const prompt = Number(usage.prompt_tokens ?? usage.input_tokens ?? 0);
+  const cached = Number(usage.prompt_tokens_details?.cached_tokens ?? usage.input_tokens_details?.cached_tokens ?? 0);
+  const completion = Number(usage.completion_tokens ?? usage.output_tokens ?? 0);
+  return Math.max(0, prompt - cached) * rate.input + cached * rate.cached + completion * rate.output;
+}
+
+function modelProvider(model) {
+  if (/^claude/i.test(model)) return "Anthropic";
+  if (/^gemini/i.test(model)) return "Google";
+  if (/^gpt|^o\d|^chatgpt/i.test(model)) return "OpenAI";
+  return "기타";
+}
+
+async function recordUsage(env, tenantId, details) {
+  if (!env.AGENT_DB || !tenantId) return;
+  const usage = details.usage || {};
+  const prompt = Number(usage.prompt_tokens ?? usage.input_tokens ?? 0);
+  const cached = Number(usage.prompt_tokens_details?.cached_tokens ?? usage.input_tokens_details?.cached_tokens ?? 0);
+  const completion = Number(usage.completion_tokens ?? usage.output_tokens ?? 0);
+  const total = Number(usage.total_tokens ?? usage.total_tokens ?? (prompt + completion));
+  await env.AGENT_DB.prepare(
+    `INSERT INTO ai_usage_events
+      (tenant_id, run_id, agent, model, operation, prompt_tokens, cached_tokens,
+       completion_tokens, total_tokens, image_count, cost_usd_micros, created_at)
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+  ).bind(tenantId, details.runId || "", details.agent || "secretary",
+    details.model || "unknown", details.operation || "chat", prompt, cached,
+    completion, total, Number(details.imageCount || 0),
+    usageCostMicros(details.model, usage), Date.now()).run();
 }
 
 function lawRequestHeaders(env) {
@@ -176,7 +216,7 @@ async function buildLawResearch(env, run, tasks) {
     const extracted = safeJson(await runModel(env, run.id,
       `의원 지시에서 국가법령과 경기도 자치법규 검색에 사용할 핵심 법률·정책 용어를 최대 3개 추출한다.
 법령명이나 조례 주제를 짧은 명사형으로 작성한다. JSON만 반환: {"keywords":["청소년","주거"]}`,
-      run.instruction, true, 400));
+      run.instruction, true, 400, { agent: "policy", operation: "law-keywords" }));
     keywords = Array.isArray(extracted?.keywords) ? extracted.keywords.map(String).filter(Boolean).slice(0, 3) : [];
   } catch {}
   if (!keywords.length) keywords = [String(run.instruction).replace(/검토|작성|분석|조례|정책|해\s*줘|해주세요/gi, " ").replace(/\s+/g, " ").trim().slice(0, 30)];
@@ -209,21 +249,30 @@ async function buildLawResearch(env, run, tasks) {
 
 async function legacyOpenAI(request, env, body, path) {
   if (!env.OPENAI_API_KEY) throw new HttpError(500, "OPENAI_API_KEY가 설정되지 않았습니다.");
+  let user = null;
+  if (request.headers.get("Authorization")) user = await verifyFirebaseUser(request, env);
   const base = String(env.OPENAI_BASE || "https://api.openai.com/v1").replace(/\/+$/, "");
   if (path.endsWith("/image")) {
+    const model = "gpt-image-1";
     const response = await fetch(`${base}/images/generations`, {
       method: "POST",
       headers: { "Content-Type": "application/json", "Authorization": `Bearer ${env.OPENAI_API_KEY}` },
-      body: JSON.stringify({ model: "gpt-image-1", size: "1024x1536", n: 1, quality: "high", ...body }),
+      body: JSON.stringify({ model, size: "1024x1536", n: 1, quality: "high", ...body }),
     });
-    return new Response(await response.text(), {
+    const raw = await response.text();
+    const data = safeJson(raw);
+    if (response.ok) await recordUsage(env, user?.uid, {
+      agent: "poster", model, operation: "image-generation", imageCount: 1, usage: data?.usage,
+    });
+    return new Response(raw, {
       status: response.status,
       headers: { ...corsHeaders(request, env), "Content-Type": "application/json; charset=utf-8" },
     });
   }
   if (path.endsWith("/image-edit")) {
+    const model = "gpt-image-1";
     const form = new FormData();
-    form.append("model", "gpt-image-1");
+    form.append("model", model);
     form.append("prompt", String(body.prompt || ""));
     form.append("size", String(body.size || "1024x1536"));
     form.append("quality", String(body.quality || "high"));
@@ -239,7 +288,12 @@ async function legacyOpenAI(request, env, body, path) {
       headers: { "Authorization": `Bearer ${env.OPENAI_API_KEY}` },
       body: form,
     });
-    return new Response(await response.text(), {
+    const raw = await response.text();
+    const data = safeJson(raw);
+    if (response.ok) await recordUsage(env, user?.uid, {
+      agent: "poster", model, operation: "image-edit", imageCount: 1, usage: data?.usage,
+    });
+    return new Response(raw, {
       status: response.status,
       headers: { ...corsHeaders(request, env), "Content-Type": "application/json; charset=utf-8" },
     });
@@ -251,7 +305,12 @@ async function legacyOpenAI(request, env, body, path) {
     headers: { "Content-Type": "application/json", "Authorization": `Bearer ${env.OPENAI_API_KEY}` },
     body: JSON.stringify(payload),
   });
-  return new Response(await response.text(), {
+  const raw = await response.text();
+  const data = safeJson(raw);
+  if (response.ok) await recordUsage(env, user?.uid, {
+    agent: "secretary", model: payload.model, operation: "chat", usage: data?.usage,
+  });
+  return new Response(raw, {
     status: response.status,
     headers: { ...corsHeaders(request, env), "Content-Type": "application/json; charset=utf-8" },
   });
@@ -330,15 +389,22 @@ async function reserveModelCall(env, runId, maxTokens) {
   if (!result.meta?.changes) throw new Error("이 작업의 AI 사용 한도를 초과했습니다.");
 }
 
-async function runModel(env, runId, system, user, jsonOnly = false, maxTokens = 1400) {
+async function runModel(env, runId, system, user, jsonOnly = false, maxTokens = 1400, usageMeta = {}) {
   await reserveModelCall(env, runId, maxTokens);
-  return openAI(env, {
-    model: env.AGENT_MODEL || "gpt-4o-mini",
+  const model = env.AGENT_MODEL || "gpt-4o-mini";
+  const data = await openAI(env, {
+    model,
     temperature: 0.25,
     max_tokens: maxTokens,
     ...(jsonOnly ? { response_format: { type: "json_object" } } : {}),
     messages: [{ role: "system", content: system }, { role: "user", content: user }],
   });
+  const run = await env.AGENT_DB.prepare("SELECT tenant_id FROM agent_runs WHERE id = ?").bind(runId).first();
+  await recordUsage(env, run?.tenant_id, {
+    runId, agent: usageMeta.agent || "secretary", model,
+    operation: usageMeta.operation || "agent", usage: data.usage,
+  });
+  return data.choices[0].message.content || "";
 }
 
 async function updateRun(env, runId, fields) {
@@ -403,7 +469,8 @@ async function executeWorkers(env, run, task, prior, feedback = "") {
   const results = await Promise.all(workers.map(async (worker, index) => {
     const prompt = workerPrompt(run, task, worker, prior, feedback);
     try {
-      const result = await runModel(env, run.id, prompt.system, prompt.user, false, 1200);
+      const result = await runModel(env, run.id, prompt.system, prompt.user, false, 1200,
+        { agent: task.agent, operation: "worker" });
       subtasks[index] = { ...subtasks[index], status: "completed", result, updatedAt: Date.now() };
       await updateTask(env, task.id, { subtasks_json: JSON.stringify(subtasks) });
       await addEvent(env, run, "worker.completed", `${worker[1]} 담당이 초안을 제출했습니다.`, `${task.agent}_${worker[0]}`);
@@ -433,7 +500,8 @@ lawResearch는 국가법령정보센터에서 조회한 공식 자료다. enforc
 공식 자료의 시행일자가 현재 날짜보다 앞선다는 이유로 허위라고 판정하지 않고, sourceUrl이 제공되면 근거 없이 링크가 무효라고 판정하지 않는다.
 JSON만 반환: {"approved":true,"feedback":"","finalResult":""}`;
   const raw = await runModel(env, run.id, system,
-    `[원지시]\n${run.instruction}\n\n[공식 조회 데이터]\n${run.context_json || "{}"}\n\n[담당 업무]\n${task.instruction}\n\n[팀원 결과]\n${result}`, true, 1200);
+    `[원지시]\n${run.instruction}\n\n[공식 조회 데이터]\n${run.context_json || "{}"}\n\n[담당 업무]\n${task.instruction}\n\n[팀원 결과]\n${result}`, true, 1200,
+    { agent: task.agent, operation: "review" });
   const value = safeJson(raw) || {};
   const review = {
     approved: value.approved !== false,
@@ -543,7 +611,8 @@ async function processRun(env, runId, tenantId) {
 enforcementDate는 '시행일자'로만 표기하며 제정일자나 개정일자로 바꾸지 않는다.
 검색 결과에 없는 조문이나 법적 결론을 만들어내지 않는다.
 형식: 결론, 팀별 결과, 확인 필요, 의원 승인 대기.`,
-    `[원지시]\n${run.instruction}\n\n[공식 법령 조회 데이터]\n${run.context_json || "{}"}\n\n[검수 완료 보고]\n${prior}`, false, 1800);
+    `[원지시]\n${run.instruction}\n\n[공식 법령 조회 데이터]\n${run.context_json || "{}"}\n\n[검수 완료 보고]\n${prior}`, false, 1800,
+    { agent: "secretary", operation: "summary" });
   let summary = modelSummary;
   const research = finalContext.lawResearch;
   if (Array.isArray(research?.sources) && research.sources.length) {
@@ -606,6 +675,61 @@ async function recoverStaleRuns(env) {
   }
 }
 
+async function usageSummary(request, env, user) {
+  const url = new URL(request.url);
+  const requested = url.searchParams.get("month") || new Date().toISOString().slice(0, 7);
+  if (!/^\d{4}-\d{2}$/.test(requested)) throw new HttpError(400, "month는 YYYY-MM 형식이어야 합니다.");
+  const start = Date.parse(`${requested}-01T00:00:00Z`);
+  const endDate = new Date(start);
+  endDate.setUTCMonth(endDate.getUTCMonth() + 1);
+  const end = endDate.getTime();
+  const rate = Number(env.KRW_PER_USD || 1400);
+  const rows = (await env.AGENT_DB.prepare(
+    `SELECT model, agent, operation,
+       SUM(prompt_tokens) prompt_tokens, SUM(cached_tokens) cached_tokens,
+       SUM(completion_tokens) completion_tokens, SUM(total_tokens) total_tokens,
+       SUM(image_count) image_count, SUM(cost_usd_micros) cost_usd_micros,
+       COUNT(*) calls
+     FROM ai_usage_events
+     WHERE tenant_id = ? AND created_at >= ? AND created_at < ?
+     GROUP BY model, agent, operation
+     ORDER BY cost_usd_micros DESC, total_tokens DESC`
+  ).bind(user.uid, start, end).all()).results || [];
+  const daily = (await env.AGENT_DB.prepare(
+    `SELECT strftime('%Y-%m-%d', created_at / 1000, 'unixepoch') day,
+       SUM(total_tokens) total_tokens, SUM(cost_usd_micros) cost_usd_micros
+     FROM ai_usage_events
+     WHERE tenant_id = ? AND created_at >= ? AND created_at < ?
+     GROUP BY day ORDER BY day`
+  ).bind(user.uid, start, end).all()).results || [];
+  const normalized = rows.map((row) => ({
+    ...row,
+    provider: modelProvider(row.model),
+    prompt_tokens: Number(row.prompt_tokens || 0),
+    cached_tokens: Number(row.cached_tokens || 0),
+    completion_tokens: Number(row.completion_tokens || 0),
+    total_tokens: Number(row.total_tokens || 0),
+    image_count: Number(row.image_count || 0),
+    calls: Number(row.calls || 0),
+    costUsd: Number(row.cost_usd_micros || 0) / 1_000_000,
+    costKrw: Number(row.cost_usd_micros || 0) / 1_000_000 * rate,
+  }));
+  const totals = normalized.reduce((sum, row) => ({
+    calls: sum.calls + row.calls,
+    tokens: sum.tokens + row.total_tokens,
+    images: sum.images + row.image_count,
+    costUsd: sum.costUsd + row.costUsd,
+    costKrw: sum.costKrw + row.costKrw,
+  }), { calls: 0, tokens: 0, images: 0, costUsd: 0, costKrw: 0 });
+  const pricingCatalog = [
+    { provider: "OpenAI", model: "gpt-4o-mini", input: 0.15, cached: 0.075, output: 0.60 },
+    { provider: "OpenAI", model: "gpt-4o", input: 2.50, cached: 1.25, output: 10.00 },
+    { provider: "Google", model: "gemini-2.5-flash", input: 0.30, cached: 0.03, output: 2.50 },
+    { provider: "Anthropic", model: "claude-sonnet-4", input: 3.00, cached: 0.30, output: 15.00 },
+  ];
+  return json({ ok: true, month: requested, krwPerUsd: rate, totals, rows: normalized, daily, pricingCatalog }, 200, request, env);
+}
+
 async function handleFetch(request, env) {
   if (request.method === "OPTIONS") return new Response(null, { status: 204, headers: corsHeaders(request, env) });
   const url = new URL(request.url);
@@ -632,6 +756,10 @@ async function handleFetch(request, env) {
       const target = url.searchParams.get("target") || "law";
       const body = await getLawDetail(env, target, url.searchParams.get("id"), url.searchParams.get("mst"));
       return json({ ok: true, target, body: safeJson(body) || body }, 200, request, env);
+    }
+    if (path === "/usage" && request.method === "GET") {
+      const user = await verifyFirebaseUser(request, env);
+      return usageSummary(request, env, user);
     }
     if (path === "/agent-runs" || path.startsWith("/agent-runs/")) {
       const user = await verifyFirebaseUser(request, env);

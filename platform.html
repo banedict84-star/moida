@@ -220,6 +220,8 @@ body.app-loading #sideAvatar{color:transparent!important;background:#243a5c!impo
   .page[data-page="policy"] .pg>div:last-child>div,
   .page[data-page="policy"] #policyRows,
   .page[data-page="admin"] .pg>div>div{min-width:680px}
+  .page[data-page="admin"] .usage-kpis{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  .page[data-page="admin"] .usage-card>div{min-width:0!important}
 }
 </style>
 </head>
@@ -630,6 +632,27 @@ body.app-loading #sideAvatar{color:transparent!important;background:#243a5c!impo
         <div style="background:#fff;border:1px solid #e9ecf1;border-radius:14px;box-shadow:0 1px 2px rgba(16,24,40,0.04);overflow:hidden;margin-bottom:18px">
           <div style="display:grid;grid-template-columns:2fr 1.3fr 1fr 1fr 0.6fr;padding:13px 20px;background:#fafbfc;border-bottom:1px solid #eef1f5;font-size:12px;font-weight:600;color:#8a94a3"><span>구성원</span><span>역할</span><span>최근 접속</span><span>상태</span><span></span></div>
           <div id="adminUsers"></div>
+        </div>
+
+        <div class="usage-card" style="background:#fff;border:1px solid #e9ecf1;border-radius:14px;padding:20px;box-shadow:0 1px 2px rgba(16,24,40,0.04);margin-bottom:18px">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:16px">
+            <div><div style="font-size:15px;font-weight:700">AI 사용량 및 예상 비용</div><div style="font-size:11.5px;color:#9aa3b0;margin-top:4px">모델·에이전트별 실제 토큰 사용량을 집계합니다.</div></div>
+            <input id="usageMonth" type="month" style="height:36px;border:1px solid #dce2ea;border-radius:8px;padding:0 10px;font:inherit;font-size:12px;color:#455266;background:#fff"/>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:16px" class="usage-kpis">
+            <div style="padding:14px;background:#f7f9fc;border:1px solid #edf0f4;border-radius:11px"><div style="font-size:11px;color:#8a94a3">총 토큰</div><b id="usageTokens" style="display:block;font-size:20px;margin-top:5px">0</b></div>
+            <div style="padding:14px;background:#f7f9fc;border:1px solid #edf0f4;border-radius:11px"><div style="font-size:11px;color:#8a94a3">AI 호출</div><b id="usageCalls" style="display:block;font-size:20px;margin-top:5px">0</b></div>
+            <div style="padding:14px;background:#f7f9fc;border:1px solid #edf0f4;border-radius:11px"><div style="font-size:11px;color:#8a94a3">이미지 생성</div><b id="usageImages" style="display:block;font-size:20px;margin-top:5px">0</b></div>
+            <div style="padding:14px;background:#eef4ff;border:1px solid #dce8fb;border-radius:11px"><div style="font-size:11px;color:#55739d">예상 이용료</div><b id="usageCost" style="display:block;font-size:20px;margin-top:5px;color:#1d3a6e">0원</b></div>
+          </div>
+          <div style="overflow-x:auto">
+            <div style="min-width:720px">
+              <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr .8fr 1fr 1fr;padding:11px 12px;background:#fafbfc;border:1px solid #edf0f4;border-radius:9px 9px 0 0;font-size:11.5px;font-weight:700;color:#7d8898"><span>모델</span><span>담당</span><span>작업</span><span>호출</span><span>사용량</span><span style="text-align:right">예상 비용</span></div>
+              <div id="usageRows" style="border:1px solid #edf0f4;border-top:0;border-radius:0 0 9px 9px"><div style="padding:24px;text-align:center;color:#9aa3b0;font-size:12px">사용량을 불러오는 중입니다.</div></div>
+            </div>
+          </div>
+          <div id="usagePricing" style="display:flex;flex-wrap:wrap;gap:6px;margin-top:10px"></div>
+          <div id="usageNotice" style="font-size:10.5px;color:#9aa3b0;margin-top:10px">표시 금액은 설정 환율과 공개 API 단가를 적용한 예상치입니다.</div>
         </div>
 
         <div style="background:#fff;border:1px solid #e9ecf1;border-radius:14px;padding:20px;box-shadow:0 1px 2px rgba(16,24,40,0.04)">
@@ -1509,6 +1532,46 @@ onAuthStateChanged(_auth, async function(user){
   M.onData(function(){ renderUsers(); loadStaff(); });
 })();
 </script>
+<script>
+(function(){
+  'use strict';
+  var M=window.MOIDA, month=document.getElementById('usageMonth'), loadedKey='';
+  if(!M||!month)return;
+  month.value=new Date().toISOString().slice(0,7);
+  function num(v){return Number(v||0).toLocaleString('ko-KR');}
+  function won(v){return Math.round(Number(v||0)).toLocaleString('ko-KR')+'원';}
+  function labelAgent(v){return {secretary:'AI 비서실장',policy:'조례·정책',audit:'예산·행감',schedule:'일정·수행',civil:'민원',organization:'조직',assemblypr:'의정홍보',localpr:'지역홍보',records:'기록',verification:'검증',poster:'웹자보'}[v]||v||'기타';}
+  function render(data){
+    document.getElementById('usageTokens').textContent=num(data.totals.tokens);
+    document.getElementById('usageCalls').textContent=num(data.totals.calls);
+    document.getElementById('usageImages').textContent=num(data.totals.images);
+    document.getElementById('usageCost').textContent=won(data.totals.costKrw);
+    var box=document.getElementById('usageRows'), rows=data.rows||[];
+    box.innerHTML=rows.length?rows.map(function(r){
+      var usage=r.image_count?num(r.image_count)+'장':num(r.total_tokens)+' 토큰';
+      return '<div style="display:grid;grid-template-columns:1.4fr 1fr 1fr .8fr 1fr 1fr;padding:12px;border-top:1px solid #f0f2f5;font-size:12px;align-items:center">'
+        +'<div><b style="font-size:12px">'+M.esc(r.model)+'</b><div style="font-size:10px;color:#9aa3b0;margin-top:2px">'+M.esc(r.provider||'')+'</div></div><span>'+M.esc(labelAgent(r.agent))+'</span><span style="color:#6f7b8c">'+M.esc(r.operation)+'</span><span>'+num(r.calls)+'</span><span>'+usage+'</span><b style="text-align:right;color:#1d3a6e">'+won(r.costKrw)+'</b></div>';
+    }).join(''):'<div style="padding:28px;text-align:center;color:#9aa3b0;font-size:12px">선택한 달의 기록이 없습니다. 적용 이후 사용량부터 집계됩니다.</div>';
+    document.getElementById('usagePricing').innerHTML=(data.pricingCatalog||[]).map(function(p){
+      return '<span style="padding:5px 8px;border-radius:7px;background:#f5f7fa;color:#647084;font-size:10.5px"><b>'+M.esc(p.provider)+'</b> '+M.esc(p.model)+' · 입력 $'+p.input+' / 출력 $'+p.output+'</span>';
+    }).join('');
+    document.getElementById('usageNotice').textContent='표시 금액은 1달러당 '+num(data.krwPerUsd)+'원과 공개 API 단가를 적용한 예상치입니다.';
+  }
+  function load(force){
+    if(!M.auth||!M.auth.currentUser)return;
+    var key=month.value;if(!force&&loadedKey===key)return;loadedKey=key;
+    M.auth.currentUser.getIdToken().then(function(token){
+      return fetch('https://moida-gpt.banedict84.workers.dev/usage?month='+encodeURIComponent(key),{headers:{Authorization:'Bearer '+token}});
+    }).then(function(r){return r.json().then(function(d){if(!r.ok)throw new Error(d&&d.error&&d.error.message||'사용량 조회 실패');return d;});})
+      .then(render).catch(function(e){loadedKey='';document.getElementById('usageRows').innerHTML='<div style="padding:24px;text-align:center;color:#dc5a66;font-size:12px">'+M.esc(e.message||String(e))+'</div>';});
+  }
+  month.addEventListener('change',function(){load(true);});
+  var adminNav=document.querySelector('.nav-item[data-page="admin"]');
+  if(adminNav)adminNav.addEventListener('click',function(){setTimeout(function(){load(true);},120);});
+  M.onData(function(){load(false);});
+  setTimeout(function(){load(false);},1200);
+})();
+</script>
 <!-- ── 민원 (칸반, moida_users/{uid}.complaints) ─────────────────────── -->
 <script>
 (function(){
@@ -1924,6 +1987,15 @@ onAuthStateChanged(_auth, async function(user){
   var GPT_ENDPOINT = 'https://moida-gpt.banedict84.workers.dev';  // Cloudflare Worker 프록시
   var GPT_MODEL    = 'gpt-4o';  // 디자인 프롬프트·브리핑 품질↑ (ChatGPT 수준). 비용 줄이려면 'gpt-4o-mini'
   function gptEndpoint(){ try{ return (localStorage.getItem('moida_gpt_endpoint')||GPT_ENDPOINT).trim(); }catch(e){ return GPT_ENDPOINT; } }
+  function aiFetch(url,options){
+    options=options||{};
+    var user=M.auth&&M.auth.currentUser;
+    if(!user)return fetch(url,options);
+    return user.getIdToken().then(function(token){
+      var headers=Object.assign({},options.headers||{},{Authorization:'Bearer '+token});
+      return fetch(url,Object.assign({},options,{headers:headers}));
+    });
+  }
   function sysPrompt(){
     var p=M.profile||{}; var nm=p.name||'의원';
     var pos=[p.position,p.district].filter(Boolean).join(' ');
@@ -2071,6 +2143,9 @@ onAuthStateChanged(_auth, async function(user){
   M.onData(function(){loadCloudChats();});
   function mdToHtml(s){
     s=M.esc(s);
+    s=s.replace(/\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g,'<a href="$2" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:4px;color:#2563eb;font-weight:700;text-decoration:none;border-bottom:1px solid #b8cef4">$1 <span aria-hidden="true">↗</span></a>');
+    s=s.replace(/^###\s+(.+)$/gm,'<b style="display:block;font-size:14px;margin:14px 0 5px">$1</b>')
+      .replace(/^##\s+(.+)$/gm,'<b style="display:block;font-size:15px;margin:16px 0 6px;color:#1d3a6e">$1</b>');
     s=s.replace(/\*\*([^*]+)\*\*/g,'<b>$1</b>').replace(/`([^`]+)`/g,'<code style="background:#f1f3f7;padding:1px 5px;border-radius:5px">$1</code>').replace(/\n/g,'<br>');
     return s;
   }
@@ -2199,7 +2274,7 @@ onAuthStateChanged(_auth, async function(user){
     return null;
   }
   function callAgentModel(system,user,jsonOnly){
-    return fetch(gptEndpoint(),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
+    return aiFetch(gptEndpoint(),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
       model:GPT_MODEL,temperature:0.25,max_tokens:jsonOnly?900:1400,
       response_format:jsonOnly?{type:'json_object'}:undefined,
       messages:[{role:'system',content:system},{role:'user',content:user}]
@@ -2665,7 +2740,7 @@ onAuthStateChanged(_auth, async function(user){
   /* ── 하이브리드: GPT 이미지 AI로 배경 생성 → 코드로 글자/로고 합성 ─────── */
   function aiImage(prompt){
     var ep=gptEndpoint().replace(/\/+$/,'')+'/image';
-    return fetch(ep, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prompt:prompt, size:'1024x1536'})})
+    return aiFetch(ep, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prompt:prompt, size:'1024x1536'})})
       .then(function(r){ return r.text().then(function(t){ return {s:r.status,t:t}; }); })
       .then(function(res){
         var d=null; try{ d=JSON.parse(res.t); }catch(e){}
@@ -2700,7 +2775,7 @@ onAuthStateChanged(_auth, async function(user){
   /* ── 전체 이미지 AI 포스터 (gpt-image-1이 포스터 전체를 생성) ─────────── */
   function aiImageEdit(prompt, images){
     var ep=gptEndpoint().replace(/\/+$/,'')+'/image-edit';
-    return fetch(ep,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prompt:prompt, images:images, size:'1024x1536'})})
+    return aiFetch(ep,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prompt:prompt, images:images, size:'1024x1536'})})
       .then(function(r){ return r.text().then(function(t){ return {s:r.status,t:t}; }); })
       .then(function(res){
         var d=null; try{ d=JSON.parse(res.t); }catch(e){}
@@ -3014,7 +3089,7 @@ onAuthStateChanged(_auth, async function(user){
     var _status=0;
     var payload={model:GPT_MODEL,messages:history,tools:TOOLS};
     if(forcePoster&&depth===0)payload.tool_choice={type:'function',function:{name:'create_poster'}};
-    fetch(gptEndpoint(), {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload)})
+    aiFetch(gptEndpoint(), {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload)})
       .then(function(r){ _status=r.status; return r.text(); })
       .then(function(txt){
         var d=null; try{ d=JSON.parse(txt); }catch(e){}

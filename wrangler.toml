@@ -16,6 +16,7 @@ ALLOW_ORIGINS = "https://banedict84-star.github.io,http://127.0.0.1:4173,http://
 LAW_OC = "moida"
 LAW_ORIGIN = "https://banedict84-star.github.io"
 LAW_LOCAL_GOV_CODE = "6410000"
+KRW_PER_USD = "1400"
 
 [[d1_databases]]
 binding = "AGENT_DB"

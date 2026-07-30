@@ -46,7 +46,7 @@ test("코드 펜스로 감싼 JSON을 읽는다", () => {
 
 test("D1 내부 필드를 공개 작업 형태로 변환한다", () => {
   const run = publicRun({
-    schema_version: 4, id: "run_1", tenant_id: "tenant_1", instruction: "검토해",
+    schema_version: 5, id: "run_1", tenant_id: "tenant_1", instruction: "검토해",
     status: "completed", summary: "완료", error: "", approval_status: "pending",
     created_at: 1, updated_at: 2,
   }, [{

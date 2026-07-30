@@ -1,4 +1,4 @@
-export const AGENT_SCHEMA_VERSION = 4;
+export const AGENT_SCHEMA_VERSION = 5;
 export const ALLOWED_AGENTS = new Set([
   "schedule", "policy", "audit", "civil", "organization",
   "assemblypr", "localpr", "records",
