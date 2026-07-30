@@ -52,7 +52,9 @@ body.app-loading #sideAvatar{color:transparent!important;background:#243a5c!impo
 .agent-run[data-status="completed"] .agent-run-dot{background:#16a34a}
 .agent-run[data-status="failed"] .agent-run-dot{background:#dc2626}
 .agent-run-title{min-width:0;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.agent-run-time{color:#9aa3b0;font-size:10px;font-weight:500}
+  .agent-run-time{color:#9aa3b0;font-size:10px;font-weight:500}
+  .agent-run-remove{flex-shrink:0;width:20px;height:20px;border:0;border-radius:6px;background:transparent;color:#a3abb7;font-size:16px;line-height:1;cursor:pointer;opacity:0;transition:background .15s,color .15s,opacity .15s}
+  .agent-run:hover .agent-run-remove{opacity:1}.agent-run-remove:hover{background:#feecec;color:#dc2626}
 .agent-run-agents{display:flex;flex-wrap:wrap;gap:5px;margin-top:9px}
 .agent-badge{display:inline-flex;align-items:center;gap:4px;padding:4px 6px;border-radius:6px;background:#fff;border:1px solid #e5eaf1;color:#64748b;font-size:10.5px;font-weight:600}
 .agent-badge.done{color:#15803d;background:#f0fdf4;border-color:#dcfce7}
@@ -519,7 +521,7 @@ body.app-loading #sideAvatar{color:transparent!important;background:#243a5c!impo
           <div style="background:#fff;border:1px solid #e9ecf1;border-radius:14px;padding:18px;box-shadow:0 1px 2px rgba(16,24,40,0.04)">
             <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:5px">
               <div style="font-size:14px;font-weight:700">AI 에이전트 작업실</div>
-              <span id="agentRunCount" style="font-size:10.5px;color:#2563eb;background:#eff6ff;padding:3px 7px;border-radius:10px;font-weight:700">0</span>
+              <div style="display:flex;align-items:center;gap:7px"><button id="agentRunClear" type="button" style="border:0;background:transparent;color:#8d99a8;font:inherit;font-size:10.5px;font-weight:700;cursor:pointer;padding:3px">전체 삭제</button><span id="agentRunCount" style="font-size:10.5px;color:#2563eb;background:#eff6ff;padding:3px 7px;border-radius:10px;font-weight:700">0</span></div>
             </div>
             <div style="font-size:11px;color:#9aa3b0;line-height:1.45;margin-bottom:12px">비서실장이 지시를 나누고 결과를 통합합니다.</div>
             <div id="agentRunList" style="display:flex;flex-direction:column;gap:8px">
@@ -2321,6 +2323,9 @@ onAuthStateChanged(_auth, async function(user){
   var agentRunList=document.getElementById('agentRunList'), agentRunCount=document.getElementById('agentRunCount');
   function agentOwner(){ return chatOwner(); }
   function agentRunKey(){ return 'moida_agent_runs_'+agentOwner(); }
+  function agentHiddenKey(){ return 'moida_hidden_agent_runs_'+agentOwner(); }
+  var hiddenAgentRuns=(function(){try{return JSON.parse(localStorage.getItem(agentHiddenKey())||'{}');}catch(e){return {};}})();
+  function saveHiddenAgentRuns(){try{localStorage.setItem(agentHiddenKey(),JSON.stringify(hiddenAgentRuns));}catch(e){}}
   function cleanAgentRun(r){
     if(!r||!r.id) return null;
     return {
@@ -2343,13 +2348,14 @@ onAuthStateChanged(_auth, async function(user){
   function renderAgentRuns(){
     if(!agentRunList) return;
     agentRuns=agentRuns.map(cleanAgentRun).filter(Boolean).sort(function(a,b){return b.updatedAt-a.updatedAt;}).slice(0,20);
-    window.MOIDA_AGENT_RUNS=agentRuns;
-    try{window.dispatchEvent(new CustomEvent('moida:agent-runs',{detail:agentRuns}));}catch(e){}
-    if(agentRunCount) agentRunCount.textContent=String(agentRuns.length);
-    if(!agentRuns.length){ agentRunList.innerHTML='<div style="padding:12px 4px;color:#a3abb7;font-size:11.5px;text-align:center">아직 배정된 작업이 없습니다.</div>'; return; }
-    agentRunList.innerHTML=agentRuns.slice(0,8).map(function(r){
+    var visibleRuns=agentRuns.filter(function(r){return !hiddenAgentRuns[r.id];});
+    window.MOIDA_AGENT_RUNS=visibleRuns;
+    try{window.dispatchEvent(new CustomEvent('moida:agent-runs',{detail:visibleRuns}));}catch(e){}
+    if(agentRunCount) agentRunCount.textContent=String(visibleRuns.length);
+    if(!visibleRuns.length){ agentRunList.innerHTML='<div style="padding:12px 4px;color:#a3abb7;font-size:11.5px;text-align:center">아직 배정된 작업이 없습니다.</div>'; return; }
+    agentRunList.innerHTML=visibleRuns.slice(0,8).map(function(r){
       return '<div class="agent-run" data-agent-run="'+M.esc(r.id)+'" data-status="'+M.esc(r.status)+'">'
-        +'<div class="agent-run-head"><span class="agent-run-dot"></span><span class="agent-run-title">'+M.esc(r.instruction||'새 지시')+'</span><span class="agent-run-time">'+timeLabel(r.updatedAt)+'</span></div>'
+        +'<div class="agent-run-head"><span class="agent-run-dot"></span><span class="agent-run-title">'+M.esc(r.instruction||'새 지시')+'</span><span class="agent-run-time">'+timeLabel(r.updatedAt)+'</span><button type="button" class="agent-run-remove" data-remove-agent-run="'+M.esc(r.id)+'" title="목록에서 삭제" aria-label="작업 기록 삭제">×</button></div>'
         +'<div class="agent-run-agents">'+(r.tasks||[]).map(function(t){var d=AGENT_DEFS[t.agent]||AGENT_DEFS.policy;var cls=t.status==='completed'?'done':t.status==='failed'?'fail':(t.status==='running'?'work':'');return '<span class="agent-badge '+cls+'">'+d.icon+' '+M.esc(d.name.replace(' 에이전트',''))+' · '+statusLabel(t.status)+'</span>';}).join('')+'</div>'
         +'</div>';
     }).join('');
@@ -2552,6 +2558,7 @@ onAuthStateChanged(_auth, async function(user){
   }
   function mergeServerRun(run){
     run=cleanAgentRun(run);if(!run)return null;
+    if(hiddenAgentRuns[run.id])return null;
     var hasProgress=!!document.getElementById('agent_progress_'+run.id);
     if(!/^(completed|failed)$/.test(run.status))serverReported[run.id]='watching';
     var shouldReport=hasProgress||serverReported[run.id]==='watching';
@@ -2666,6 +2673,8 @@ onAuthStateChanged(_auth, async function(user){
     });
   }
   if(agentRunList) agentRunList.addEventListener('click',function(e){
+    var remove=e.target.closest('[data-remove-agent-run]');
+    if(remove){var removeId=remove.getAttribute('data-remove-agent-run');hiddenAgentRuns[removeId]=true;saveHiddenAgentRuns();renderAgentRuns();return;}
     var el=e.target.closest('[data-agent-run]');if(!el)return;
     var r=agentRuns.find(function(x){return x.id===el.getAttribute('data-agent-run');});
     if(r&&r.summary){addAI(mdToHtml(r.summary),r.summary);}
@@ -3862,6 +3871,8 @@ onAuthStateChanged(_auth, async function(user){
     }catch(error){alert(error.message);}
     syncBtn.disabled=false;syncBtn.textContent='일정 확인';
   });
+  var agentRunClear=document.getElementById('agentRunClear');
+  if(agentRunClear)agentRunClear.addEventListener('click',function(){agentRuns.forEach(function(run){hiddenAgentRuns[run.id]=true;});saveHiddenAgentRuns();renderAgentRuns();});
   disconnectBtn.addEventListener('click',async function(){
     if(!confirm('Google Calendar 연결을 해제하시겠습니까?\\n기존 MOIDA 일정과 Google 일정은 삭제되지 않습니다.'))return;
     try{await api('/google/calendar/disconnect',{method:'POST',body:'{}'});paint({connected:false});}
