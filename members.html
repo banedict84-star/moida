@@ -1513,6 +1513,7 @@ onAuthStateChanged(_auth, async function(user){
   cf.querySelector('#cfYes').addEventListener('click', function(){ closeConfirm(); doSave(); });
 
   function resetAllFilters(){
+    clearTimeout(_searchTimer);
     ['dong','type','ageb','sex'].forEach(function(f){ if(filters[f]) filters[f].length=0; });
     [['dongSel','행정동'],['typeSel','당원구분'],['agebSel','연령구분'],['sexSel','성별구분']].forEach(function(p){
       var s=document.getElementById(p[0]); if(!s) return;
@@ -1525,7 +1526,15 @@ onAuthStateChanged(_auth, async function(user){
   }
   var _ra=document.getElementById('resetAll'); if(_ra) _ra.addEventListener('click',resetAllFilters);
   var _rb=document.getElementById('resetBtn'); if(_rb) _rb.addEventListener('click',resetAllFilters);
-  var _si=document.querySelector('.search input'); if(_si) _si.addEventListener('input',function(){ searchKw=this.value.trim().toLowerCase().replace(/-/g,''); renderRows(); });
+  var _searchTimer=null;
+  var _si=document.querySelector('.search input'); if(_si) _si.addEventListener('input',function(){
+    var value=this.value;
+    clearTimeout(_searchTimer);
+    _searchTimer=setTimeout(function(){
+      searchKw=value.trim().toLowerCase().replace(/-/g,'');
+      renderRows();
+    },180);
+  });
   (function(){ var qp=new URLSearchParams(location.search).get('q'); if(qp&&_si){ _si.value=qp; searchKw=qp.trim().toLowerCase().replace(/-/g,''); renderRows(); } })();
   document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{
     document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active')); t.classList.add('active');
