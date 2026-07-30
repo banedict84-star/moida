@@ -661,8 +661,8 @@ body.app-loading #sideAvatar{color:transparent!important;background:#243a5c!impo
             <div style="padding:14px;background:#eef4ff;border:1px solid #dce8fb;border-radius:11px"><div style="font-size:11px;color:#55739d">예상 이용료</div><b id="usageCost" style="display:block;font-size:20px;margin-top:5px;color:#1d3a6e">0원</b></div>
           </div>
           <div style="overflow-x:auto">
-            <div style="min-width:720px">
-              <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr .8fr 1fr 1fr;padding:11px 12px;background:#fafbfc;border:1px solid #edf0f4;border-radius:9px 9px 0 0;font-size:11.5px;font-weight:700;color:#7d8898"><span>모델</span><span>담당</span><span>작업</span><span>호출</span><span>사용량</span><span style="text-align:right">예상 비용</span></div>
+            <div style="min-width:540px">
+              <div style="display:grid;grid-template-columns:1.7fr .8fr 1.2fr 1fr;padding:11px 12px;background:#fafbfc;border:1px solid #edf0f4;border-radius:9px 9px 0 0;font-size:11.5px;font-weight:700;color:#7d8898"><span>모델</span><span>호출</span><span>사용량</span><span style="text-align:right">예상 비용</span></div>
               <div id="usageRows" style="border:1px solid #edf0f4;border-top:0;border-radius:0 0 9px 9px"><div style="padding:24px;text-align:center;color:#9aa3b0;font-size:12px">사용량을 불러오는 중입니다.</div></div>
             </div>
           </div>
@@ -1617,17 +1617,22 @@ onAuthStateChanged(_auth, async function(user){
   month.value=new Date().toISOString().slice(0,7);
   function num(v){return Number(v||0).toLocaleString('ko-KR');}
   function won(v){return Math.round(Number(v||0)).toLocaleString('ko-KR')+'원';}
-  function labelAgent(v){return {secretary:'AI 비서실장',policy:'조례·정책',audit:'예산·행감',schedule:'일정·수행',civil:'민원',organization:'조직',assemblypr:'의정홍보',localpr:'지역홍보',records:'기록',verification:'검증',poster:'웹자보'}[v]||v||'기타';}
   function render(data){
     document.getElementById('usageTokens').textContent=num(data.totals.tokens);
     document.getElementById('usageCalls').textContent=num(data.totals.calls);
     document.getElementById('usageImages').textContent=num(data.totals.images);
     document.getElementById('usageCost').textContent=won(data.totals.costKrw);
-    var box=document.getElementById('usageRows'), rows=data.rows||[];
+    var box=document.getElementById('usageRows'), byModel={};
+    (data.rows||[]).forEach(function(r){
+      var key=(r.provider||'')+'|'+(r.model||'');
+      var item=byModel[key]||(byModel[key]={provider:r.provider||'',model:r.model||'',calls:0,total_tokens:0,image_count:0,costKrw:0});
+      item.calls+=Number(r.calls||0);item.total_tokens+=Number(r.total_tokens||0);item.image_count+=Number(r.image_count||0);item.costKrw+=Number(r.costKrw||0);
+    });
+    var rows=Object.keys(byModel).map(function(key){return byModel[key];}).sort(function(a,b){return b.costKrw-a.costKrw;});
     box.innerHTML=rows.length?rows.map(function(r){
-      var usage=r.image_count?num(r.image_count)+'장':num(r.total_tokens)+' 토큰';
-      return '<div style="display:grid;grid-template-columns:1.4fr 1fr 1fr .8fr 1fr 1fr;padding:12px;border-top:1px solid #f0f2f5;font-size:12px;align-items:center">'
-        +'<div><b style="font-size:12px">'+M.esc(r.model)+'</b><div style="font-size:10px;color:#9aa3b0;margin-top:2px">'+M.esc(r.provider||'')+'</div></div><span>'+M.esc(labelAgent(r.agent))+'</span><span style="color:#6f7b8c">'+M.esc(r.operation)+'</span><span>'+num(r.calls)+'</span><span>'+usage+'</span><b style="text-align:right;color:#1d3a6e">'+won(r.costKrw)+'</b></div>';
+      var usage=(r.image_count?num(r.image_count)+'장 · ':'')+num(r.total_tokens)+' 토큰';
+      return '<div style="display:grid;grid-template-columns:1.7fr .8fr 1.2fr 1fr;padding:12px;border-top:1px solid #f0f2f5;font-size:12px;align-items:center">'
+        +'<div><b style="font-size:12px">'+M.esc(r.model)+'</b><div style="font-size:10px;color:#9aa3b0;margin-top:2px">'+M.esc(r.provider||'')+'</div></div><span>'+num(r.calls)+'</span><span>'+usage+'</span><b style="text-align:right;color:#1d3a6e">'+won(r.costKrw)+'</b></div>';
     }).join(''):'<div style="padding:28px;text-align:center;color:#9aa3b0;font-size:12px">선택한 달의 기록이 없습니다. 적용 이후 사용량부터 집계됩니다.</div>';
     document.getElementById('usagePricing').innerHTML=(data.pricingCatalog||[]).map(function(p){
       return '<span style="padding:5px 8px;border-radius:7px;background:#f5f7fa;color:#647084;font-size:10.5px"><b>'+M.esc(p.provider)+'</b> '+M.esc(p.model)+' · 입력 $'+p.input+' / 출력 $'+p.output+'</span>';
