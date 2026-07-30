@@ -162,6 +162,31 @@ function lawSearchRows(data, target) {
   };
 }
 
+function publicLawUrl(target, row) {
+  if (target === "ordin") {
+    const sequence = row["자치법규일련번호"];
+    return sequence
+      ? `https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=${encodeURIComponent(sequence)}`
+      : "https://www.law.go.kr/LSW/ordinInfoP.do";
+  }
+  const sequence = row["법령일련번호"];
+  const lawId = row["법령ID"];
+  if (sequence) return `https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=${encodeURIComponent(sequence)}`;
+  if (lawId) return `https://www.law.go.kr/LSW/lsInfoP.do?lsId=${encodeURIComponent(lawId)}`;
+  return "https://www.law.go.kr/LSW/lsInfoP.do";
+}
+
+function canonicalLawSourceUrl(source) {
+  const sequence = source?.mst;
+  if (source?.target === "ordin" && sequence) {
+    return `https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=${encodeURIComponent(sequence)}`;
+  }
+  if (source?.target === "law" && sequence) {
+    return `https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=${encodeURIComponent(sequence)}`;
+  }
+  return source?.sourceUrl || "";
+}
+
 function normalizeLawSearchRow(row, target) {
   if (target === "ordin") {
     return {
@@ -169,7 +194,7 @@ function normalizeLawSearchRow(row, target) {
       title: row["자치법규명"], organization: row["지자체기관명"],
       kind: row["자치법규종류"], promulgationDate: row["공포일자"],
       enforcementDate: row["시행일자"], revisionType: row["제개정구분명"],
-      sourceUrl: `https://www.law.go.kr${row["자치법규상세링크"] || ""}`,
+      sourceUrl: publicLawUrl(target, row),
     };
   }
   return {
@@ -177,7 +202,7 @@ function normalizeLawSearchRow(row, target) {
     title: row["법령명한글"], organization: row["소관부처명"],
     kind: row["법령구분명"], promulgationDate: row["공포일자"],
     enforcementDate: row["시행일자"], revisionType: row["제개정구분명"],
-    sourceUrl: `https://www.law.go.kr${row["법령상세링크"] || ""}`,
+    sourceUrl: publicLawUrl(target, row),
   };
 }
 
@@ -441,7 +466,7 @@ function workerPrompt(run, task, worker, prior, feedback) {
     provider: context.lawResearch.provider, checkedAt: context.lawResearch.checkedAt,
     sources: (context.lawResearch.sources || []).slice(0, 6).map((source) => ({
       target: source.target, title: source.title, organization: source.organization,
-      enforcementDate: source.enforcementDate, sourceUrl: source.sourceUrl,
+      enforcementDate: source.enforcementDate, sourceUrl: canonicalLawSourceUrl(source),
       ...(task.agent === "policy" && source.body ? { body: String(source.body).slice(0, 3500) } : {}),
     })),
   };
@@ -519,7 +544,8 @@ function lawEvidence(research) {
   return (research?.sources || []).map((source) => {
     const date = String(source.enforcementDate || "").replace(/^(\d{4})(\d{2})(\d{2})$/, "$1-$2-$3");
     const organization = source.organization ? ` · ${source.organization}` : "";
-    const link = source.sourceUrl ? `[${source.title}](${source.sourceUrl})` : source.title;
+    const sourceUrl = canonicalLawSourceUrl(source);
+    const link = sourceUrl ? `[${source.title}](${sourceUrl})` : source.title;
     return `- ${link}${organization}${date ? ` · 시행일자 ${date}` : ""}`;
   }).join("\n");
 }
@@ -647,7 +673,7 @@ async function processRun(env, runId, tenantId) {
     checkedAt: finalContext.lawResearch.checkedAt,
     sources: (finalContext.lawResearch.sources || []).map((source) => ({
       title: source.title, organization: source.organization,
-      enforcementDate: source.enforcementDate, sourceUrl: source.sourceUrl,
+      enforcementDate: source.enforcementDate, sourceUrl: canonicalLawSourceUrl(source),
     })),
   } : {};
   const modelSummary = plan.length === 1 ? prior : await runModel(env, run.id,
