@@ -334,7 +334,8 @@ body.app-loading #sideAvatar{color:transparent!important;background:#243a5c!impo
         <div id="sideAvatar" style="width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,#3b6fd4,#5b8cff);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:15px;flex-shrink:0"></div>
         <div class="sb-profiletext" style="min-width:0;flex:1">
           <div id="sideName" class="profile-loading" style="color:#fff;font-size:13px;font-weight:600">&nbsp;</div>
-          <div id="sideSub" class="profile-loading" style="color:#6f84a0;font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:3px">&nbsp;</div>
+          <div id="sidePosition" class="profile-loading" style="color:#8ca2bf;font-size:10.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:3px">&nbsp;</div>
+          <div id="sideDistrict" class="profile-loading" style="color:#6f84a0;font-size:10.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px">&nbsp;</div>
         </div>
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6f84a0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 9l4-4 4 4M8 15l4 4 4-4"/></svg>
       </div>
@@ -698,9 +699,9 @@ body.app-loading #sideAvatar{color:transparent!important;background:#243a5c!impo
           <div style="font-size:15px;font-weight:700;margin-bottom:18px">프로필</div>
           <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px">
             <div id="setAvatar" style="width:60px;height:60px;border-radius:16px;background:linear-gradient(135deg,#16305c,#3b6fd4);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:22px">·</div>
-            <div><div id="setName" style="font-size:16px;font-weight:700">—</div><div id="setSub" style="font-size:13px;color:#8a94a3;margin-top:2px">—</div><div style="font-size:11.5px;color:#9aa3b0;margin-top:4px">웹자보 인물 사진으로 사용됩니다</div></div>
+            <div><div id="setName" style="font-size:16px;font-weight:700">—</div><div id="setSub" style="font-size:13px;color:#8a94a3;margin-top:2px">—</div><div style="font-size:11.5px;color:#9aa3b0;margin-top:4px">사이드바와 계정 프로필에 사용됩니다</div></div>
             <input id="setPhotoFile" type="file" accept="image/png,image/jpeg,image/webp" style="display:none"/>
-            <button id="setPhotoBtn" style="margin-left:auto;height:36px;padding:0 14px;background:#fff;border:1px solid #d6dde6;border-radius:9px;font-size:12.5px;font-weight:600;color:#5b6675;cursor:pointer">의원 사진 등록</button>
+            <button id="setPhotoBtn" style="margin-left:auto;height:36px;padding:0 14px;background:#fff;border:1px solid #d6dde6;border-radius:9px;font-size:12.5px;font-weight:600;color:#5b6675;cursor:pointer">프로필 사진 등록</button>
           </div>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
             <div><div style="font-size:12.5px;color:#6b7585;font-weight:600;margin-bottom:6px">의원 성함</div><input id="setNameInput" placeholder="예: 장윤정" style="width:100%;height:40px;border:1px solid #e7eaef;border-radius:9px;padding:0 13px;font-size:13.5px;font-family:inherit;outline:none"/></div>
@@ -709,6 +710,30 @@ body.app-loading #sideAvatar{color:transparent!important;background:#243a5c!impo
             <div><div style="font-size:12.5px;color:#6b7585;font-weight:600;margin-bottom:6px">지역</div><input id="setDistInput" placeholder="예: 안산 상록구 · 일동·이동·성포동" style="width:100%;height:40px;border:1px solid #e7eaef;border-radius:9px;padding:0 13px;font-size:13.5px;font-family:inherit;outline:none"/></div>
           </div>
           <div style="text-align:right;margin-top:14px"><button id="setProfileSave" data-hover="background:#16305c" style="height:38px;padding:0 18px;background:#1d3a6e;color:#fff;border:none;border-radius:9px;font-size:13px;font-weight:600;cursor:pointer">프로필 저장</button></div>
+        </div>
+
+        <div style="background:#fff;border:1px solid #dbe5f3;border-radius:14px;padding:22px;box-shadow:0 1px 2px rgba(16,24,40,0.04)">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:16px">
+            <div>
+              <div style="display:flex;align-items:center;gap:8px"><div style="font-size:15px;font-weight:700">웹자보용 의원 사진</div><span style="font-size:10.5px;font-weight:700;color:#2563eb;background:#eff6ff;padding:3px 7px;border-radius:10px">웹자보 전용</span></div>
+              <div style="font-size:12.5px;color:#8a94a3;line-height:1.6;margin-top:6px">웹자보·카드뉴스 제작 시 기본 인물 사진으로 자동 사용됩니다. 의원 얼굴은 AI로 새로 만들지 않고 등록한 실제 사진을 사용합니다.</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap">
+            <div id="setPosterPhotoPreview" style="width:116px;height:146px;border-radius:13px;border:1px dashed #cbd7e8;background:#f8fafc;display:flex;align-items:center;justify-content:center;color:#9aa3b0;font-size:12px;font-weight:600;text-align:center;background-size:cover;background-position:center top">사진<br/>미등록</div>
+            <div style="min-width:220px;flex:1">
+              <div style="font-size:12.5px;color:#5b6675;line-height:1.7">
+                <div>· 권장: 정면 또는 상반신 사진</div>
+                <div>· 권장 형식: 배경이 제거된 PNG·WebP</div>
+                <div>· 밝고 선명한 원본 사진을 사용하세요</div>
+              </div>
+              <input id="setPosterPhotoFile" type="file" accept="image/png,image/jpeg,image/webp" style="display:none"/>
+              <div style="display:flex;gap:8px;margin-top:13px">
+                <button id="setPosterPhotoBtn" style="height:36px;padding:0 14px;background:#1d3a6e;color:#fff;border:none;border-radius:9px;font-size:12.5px;font-weight:600;cursor:pointer">웹자보용 사진 등록</button>
+                <button id="setPosterPhotoRemove" style="height:36px;padding:0 13px;background:#fff;color:#6b7585;border:1px solid #d6dde6;border-radius:9px;font-size:12.5px;font-weight:600;cursor:pointer">삭제</button>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div style="background:#fff;border:1px solid #e9ecf1;border-radius:14px;padding:22px;box-shadow:0 1px 2px rgba(16,24,40,0.04)">
@@ -874,15 +899,16 @@ body.app-loading #sideAvatar{color:transparent!important;background:#243a5c!impo
     var nm = (p&&p.name) || '';
     var u = M.sessUser();
     var disp = nm || u.displayName || (u.email||'').split('@')[0] || '';
-    var sub = (p && [p.position,p.district].filter(Boolean).join(' · ')) || u.email || '';
     var brand = document.getElementById('brandName');
     var av = document.getElementById('sideAvatar');
     var snm = document.getElementById('sideName');
-    var ssub = document.getElementById('sideSub');
+    var spos = document.getElementById('sidePosition');
+    var sdist = document.getElementById('sideDistrict');
     if(brand && disp) brand.textContent = disp + ' 의원실';
     if(av){ if(p&&p.photo){ av.style.backgroundImage='url('+p.photo+')'; av.style.backgroundSize='cover'; av.style.backgroundPosition='center'; av.textContent=''; } else { av.style.backgroundImage=''; av.textContent = disp ? disp.charAt(0) : '·'; } }
     if(snm) snm.textContent = disp || '';
-    if(ssub) ssub.textContent = sub || '—';
+    if(spos) spos.textContent = (p&&p.position) || '직함 미등록';
+    if(sdist) sdist.textContent = (p&&p.district) || '선거구 미등록';
   }
   M.paintProfile = paintProfile;
   try{
@@ -1908,6 +1934,11 @@ onAuthStateChanged(_auth, async function(user){
     set('setName', nm||'—'); set('setSub', sub); set('setEmailField', em||'—');
     setVal('setNameInput', p.name||''); setVal('setPosInput', p.position||''); setVal('setDistInput', p.district||'');
     var av=document.getElementById('setAvatar'); if(av){ if(p.photo){ av.style.backgroundImage='url('+p.photo+')'; av.style.backgroundSize='cover'; av.style.backgroundPosition='center'; av.textContent=''; } else { av.style.backgroundImage=''; av.textContent= nm?nm.charAt(0):'·'; } }
+    var posterPreview=document.getElementById('setPosterPhotoPreview');
+    if(posterPreview){
+      if(p.posterPhoto){ posterPreview.style.backgroundImage='url('+p.posterPhoto+')'; posterPreview.textContent=''; }
+      else { posterPreview.style.backgroundImage=''; posterPreview.innerHTML='사진<br/>미등록'; }
+    }
   }
   (function(){
     var btn=document.getElementById('setProfileSave'); if(!btn) return;
@@ -1956,6 +1987,55 @@ onAuthStateChanged(_auth, async function(user){
         img.src=String(rd.result||'');
       };
       rd.readAsDataURL(f);
+    });
+  })();
+  function savePosterPhoto(dataUrl){
+    M.profile = M.profile || {};
+    M.profile.posterPhoto = dataUrl || "";
+    try{ localStorage.setItem('moida_tenant_'+(M.uid||M.sessUser().uid||'default'), JSON.stringify(M.profile)); }catch(e){}
+    paint();
+    try{
+      if(M.db && M.uid && M.fs && !window.MOIDA_READONLY){
+        M.fs.setDoc(M.fs.doc(M.db,'tenants',M.uid), {posterPhoto:M.profile.posterPhoto}, {merge:true});
+      }
+    }catch(e){}
+    toast(dataUrl?'웹자보용 의원 사진이 등록되었습니다.':'웹자보용 의원 사진이 삭제되었습니다.');
+  }
+  (function(){
+    var btn=document.getElementById('setPosterPhotoBtn');
+    var file=document.getElementById('setPosterPhotoFile');
+    var remove=document.getElementById('setPosterPhotoRemove');
+    if(!btn||!file) return;
+    btn.addEventListener('click', function(){
+      if(window.MOIDA_READONLY){ alert('읽기 전용 상태입니다.'); return; }
+      file.click();
+    });
+    file.addEventListener('change', function(){
+      var f=file.files&&file.files[0]; if(!f) return; file.value='';
+      if(!/^image\//.test(f.type)){ alert('PNG, JPG, WebP 이미지 파일만 등록할 수 있습니다.'); return; }
+      var rd=new FileReader();
+      rd.onload=function(){
+        var img=new Image();
+        img.onload=function(){
+          var max=900,w=img.width,h=img.height;
+          if(w>max||h>max){var ratio=Math.min(max/w,max/h);w=Math.round(w*ratio);h=Math.round(h*ratio);}
+          var url=String(rd.result||'');
+          try{
+            var canvas=document.createElement('canvas');canvas.width=w;canvas.height=h;
+            canvas.getContext('2d').drawImage(img,0,0,w,h);
+            url=canvas.toDataURL('image/webp',0.86);
+          }catch(e){}
+          savePosterPhoto(url);
+        };
+        img.onerror=function(){savePosterPhoto(String(rd.result||''));};
+        img.src=String(rd.result||'');
+      };
+      rd.readAsDataURL(f);
+    });
+    if(remove) remove.addEventListener('click', function(){
+      if(window.MOIDA_READONLY){ alert('읽기 전용 상태입니다.'); return; }
+      if(!M.profile||!M.profile.posterPhoto) return;
+      if(confirm('웹자보용 의원 사진을 삭제할까요?')) savePosterPhoto('');
     });
   })();
   function toast(msg){
@@ -2642,7 +2722,7 @@ onAuthStateChanged(_auth, async function(user){
   /* 인물 사진형 자보 (사진 + 슬로건 + 번호·이름) */
   function posterPortrait(o){
     var W=480,H=600,e=M.esc;
-    var nm=profName(), photo=(o._photos&&o._photos[0])||(M.profile&&M.profile.photo)||'';
+    var nm=profName(), photo=(o._photos&&o._photos[0])||(M.profile&&(M.profile.posterPhoto||M.profile.photo))||'';
     var s=svgOpen('<defs><linearGradient id="pb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1f56e0"/><stop offset="1" stop-color="#143fb0"/></linearGradient></defs>');
     s+='<rect width="480" height="600" fill="url(#pb)"/>';
     s+=photoTag(photo,250,0,230,600);
@@ -2885,7 +2965,7 @@ onAuthStateChanged(_auth, async function(user){
       '<div style="background:#fff;border:1px solid #eef1f5;border-radius:4px 14px 14px 14px;padding:16px;flex:1;font-size:13px;color:#5b6675">🎨 AI가 포스터 전체를 생성하는 중입니다… (20~40초 소요)</div></div>');
     scroll();
     var scene=(o._photos&&o._photos.length)?o._photos.slice():[];
-    var portrait=(M.profile&&M.profile.photo)||'';
+    var portrait=(M.profile&&(M.profile.posterPhoto||M.profile.photo))||'';
     var imgs=scene.slice(); if(portrait) imgs.push(portrait); // 마지막 = 인물 참조
     var hasPortrait=!!portrait;
     var pr=imgs.length ? aiImageEdit(fullPosterPrompt(o, hasPortrait), imgs) : aiImage(fullPosterPrompt(o, false));
@@ -2906,7 +2986,7 @@ onAuthStateChanged(_auth, async function(user){
     var W=1080,H=1350,X=64,e=M.esc;
     var nm=profName(), pos=profPos(o);
     var scene=(o._photos&&o._photos[0])||'';
-    var portrait=(M.profile&&M.profile.photo)||(o._photos&&o._photos[1])||'';
+    var portrait=(M.profile&&(M.profile.posterPhoto||M.profile.photo))||(o._photos&&o._photos[1])||'';
     var region=(M.profile&&M.profile.district)||o.region||'';
     var s='<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1080 1350" width="1080" height="1350" style="width:100%;height:auto;display:block;font-family:Pretendard,\'Apple SD Gothic Neo\',\'Malgun Gothic\',sans-serif">';
     s+='<defs><linearGradient id="nv" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1b3aa0"/><stop offset="1" stop-color="#12277a"/></linearGradient>'
@@ -3073,7 +3153,7 @@ onAuthStateChanged(_auth, async function(user){
         if(!a.title) return {error:'제목이 필요합니다.'};
         a._photos = lastPhotos.slice();
         var hasScene = a._photos.length>0;
-        var hasPortrait = !!((M.profile&&M.profile.photo)||a._photos[1]);
+        var hasPortrait = !!((M.profile&&(M.profile.posterPhoto||M.profile.photo))||a._photos[1]);
         try{ renderTemplatePoster(a); }catch(e){ return {error:'웹자보 생성 실패: '+(e&&e.message||e)}; }
         return {ok:true, created:'웹자보(코드 템플릿)', title:a.title,
           background: hasScene?'첨부 사진 사용':'없음(빈 배경)',

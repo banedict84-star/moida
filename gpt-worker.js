@@ -240,13 +240,15 @@ async function buildLawResearch(env, run, tasks) {
       || !/조례|법령|법률|시행령|시행규칙|자치법규|상위법|조문|판례/.test(instruction)) return null;
   const municipalityMatch = instruction.match(/(?:경기도\s*)?([가-힣]{2,}(?:시|군|구))/);
   const requestedOrganization = municipalityMatch?.[1] || (/경기도/.test(instruction) ? "경기도" : "");
+  const wantsAll = /(?:^|\s)(?:다|모두|전부|전체)(?=\s|$)|빠짐없이/.test(instruction);
   const cleaned = instruction
     .replace(requestedOrganization, " ")
     .replace(/경기도|국가법령정보센터|관련|상위법|조례|법령|법률|시행령|시행규칙|자치법규|조문|판례/gi, " ")
     .replace(/도내|시내|군내|구내|관내|지역\s*내|내에서|내에|내의/gi, " ")
     .replace(/찾아\s*줘|찾아\s*봐|찾아|검색|조회|확인|보여\s*줘|보여|알려\s*줘|알려|검토|분석|작성|해\s*줘|해주세요|해봐|해\s*봐|줘|봐/gi, " ")
     .replace(/(^|\s)(내|의|대한|관한)(?=\s|$)/g, " ")
-    .replace(/[^\p{L}\p{N}\s·ㆍ-]/gu, " ").replace(/\s+/g, " ").trim();
+    .replace(/[^\p{L}\p{N}\s·ㆍ-]/gu, " ").replace(/\s+/g, " ").trim()
+    .split(" ").filter((token) => token && !["다", "모두", "전부", "전체", "빠짐없이"].includes(token)).join(" ");
   const keywords = [cleaned || instruction.replace(/\s+/g, " ").trim().slice(0, 30)].filter(Boolean);
   const targets = /상위법|법령|법률|시행령|시행규칙/.test(instruction) ? ["law", "ordin"] : ["ordin"];
 
@@ -268,7 +270,7 @@ async function buildLawResearch(env, run, tasks) {
             results = results.filter((item) =>
               String(item.organization || "").replace(/\s/g, "").includes(organizationKey));
           }
-          results = results.slice(0, 12);
+          results = results.slice(0, wantsAll ? 50 : 12);
         } else results = results.slice(0, 5);
         sources.push(...results.map((item) => ({ ...item, keyword })));
       } catch (error) {
@@ -276,7 +278,9 @@ async function buildLawResearch(env, run, tasks) {
       }
     }
   }
-  const unique = sources.filter((item, index, all) => all.findIndex((other) => other.target === item.target && other.id === item.id) === index).slice(0, 12);
+  const unique = sources.filter((item, index, all) =>
+    all.findIndex((other) => other.target === item.target && other.id === item.id) === index
+  ).slice(0, wantsAll ? 50 : 12);
   for (const source of unique.slice(0, 3)) {
     try { source.body = await getLawDetail(env, source.target, source.id, source.mst); }
     catch (error) { source.bodyError = error.message; }
