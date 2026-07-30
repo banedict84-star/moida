@@ -554,7 +554,6 @@ function isDirectLawLookup(instruction, plan, research) {
   const text = String(instruction || "");
   return Boolean(research?.sources?.length)
     && plan.length === 1 && plan[0].agent === "policy"
-    && /찾아|검색|조회|확인|보여|알려|검토/.test(text)
     && !/초안|제정안|개정안|도정질문|발언문|질의서|보고서|영향\s*분석|대안|비교\s*분석/.test(text);
 }
 

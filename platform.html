@@ -2414,6 +2414,7 @@ onAuthStateChanged(_auth, async function(user){
     renderAgentRuns(); scroll();
   }
   function shouldOrchestrate(text){
+    if(/조례|법령|법률|시행령|시행규칙|자치법규|조문|상위법|판례/.test(text)) return true;
     return /에이전트|멀티에이전트/.test(text)||(
       /일정|행사|홍보|보도|SNS|웹자보|정책|법안|조례|법령|법률|시행령|시행규칙|자치법규|조문|상위법|판례|질의|예산|결산|행감|행정사무감사|민원|지역현안|조직|CRM|간담회|회의록|공문|보고서|공약/.test(text)
       && /작성|만들|준비|기획|등록|정리|진행|검토|조사|분석|배정|계획|초안|처리|찾아|검색|알려|보여|확인|해줘|해 줘/.test(text)
