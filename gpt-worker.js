@@ -87,6 +87,125 @@ async function openAI(env, body) {
   return data.choices[0].message.content || "";
 }
 
+function lawRequestHeaders(env) {
+  const origin = env.LAW_ORIGIN || PRODUCTION_ORIGIN;
+  return {
+    "Accept": "application/json",
+    "Origin": origin,
+    "Referer": `${origin}/moida/`,
+    "User-Agent": "MOIDA-Law-Agent/1.0",
+  };
+}
+
+async function lawApi(env, path, params) {
+  if (!env.LAW_OC) throw new Error("LAW_OC가 설정되지 않았습니다.");
+  const query = new URLSearchParams({ OC: env.LAW_OC, type: "JSON", ...params });
+  const response = await fetch(`https://www.law.go.kr/DRF/${path}?${query}`, {
+    headers: lawRequestHeaders(env),
+    signal: AbortSignal.timeout(20000),
+  });
+  const raw = await response.text();
+  const data = safeJson(raw);
+  if (!response.ok || !data || data.result || data.resultCode === "99") {
+    throw new Error(data?.msg || data?.result || `국가법령정보 HTTP ${response.status}`);
+  }
+  return data;
+}
+
+function lawSearchRows(data, target) {
+  const root = target === "ordin" ? data?.OrdinSearch : data?.LawSearch;
+  const rows = root?.law;
+  return {
+    total: Number(root?.totalCnt || 0),
+    rows: Array.isArray(rows) ? rows : (rows ? [rows] : []),
+  };
+}
+
+function normalizeLawSearchRow(row, target) {
+  if (target === "ordin") {
+    return {
+      target, id: row["자치법규ID"], mst: row["자치법규일련번호"],
+      title: row["자치법규명"], organization: row["지자체기관명"],
+      kind: row["자치법규종류"], promulgationDate: row["공포일자"],
+      enforcementDate: row["시행일자"], revisionType: row["제개정구분명"],
+      sourceUrl: `https://www.law.go.kr${row["자치법규상세링크"] || ""}`,
+    };
+  }
+  return {
+    target, id: row["법령ID"], mst: row["법령일련번호"],
+    title: row["법령명한글"], organization: row["소관부처명"],
+    kind: row["법령구분명"], promulgationDate: row["공포일자"],
+    enforcementDate: row["시행일자"], revisionType: row["제개정구분명"],
+    sourceUrl: `https://www.law.go.kr${row["법령상세링크"] || ""}`,
+  };
+}
+
+async function searchLaw(env, target, query, options = {}) {
+  if (!["law", "ordin", "expc"].includes(target)) throw new Error("지원하지 않는 법령 검색 대상입니다.");
+  const params = {
+    target,
+    search: String(options.search === 2 ? 2 : 1),
+    query: String(query || "").trim(),
+    display: String(Math.min(100, Math.max(1, Number(options.display) || 10))),
+    page: String(Math.max(1, Number(options.page) || 1)),
+  };
+  if (target === "ordin") {
+    params.nw = "1";
+    params.org = options.org || env.LAW_LOCAL_GOV_CODE || "6410000";
+  }
+  const data = await lawApi(env, "lawSearch.do", params);
+  const found = lawSearchRows(data, target);
+  return { target, query: params.query, total: found.total, results: found.rows.map((row) => normalizeLawSearchRow(row, target)) };
+}
+
+async function getLawDetail(env, target, id, mst) {
+  if (!["law", "ordin"].includes(target)) throw new Error("지원하지 않는 법령 본문 대상입니다.");
+  const params = { target };
+  if (id) params.ID = String(id);
+  else if (mst) params.MST = String(mst);
+  else throw new Error("법령 ID 또는 MST가 필요합니다.");
+  const data = await lawApi(env, "lawService.do", params);
+  return JSON.stringify(data).slice(0, 8000);
+}
+
+async function buildLawResearch(env, run, tasks) {
+  if (!tasks.some((task) => ["policy", "audit", "verification"].includes(task.agent))) return null;
+  let keywords = [];
+  try {
+    const extracted = safeJson(await runModel(env, run.id,
+      `의원 지시에서 국가법령과 경기도 자치법규 검색에 사용할 핵심 법률·정책 용어를 최대 3개 추출한다.
+법령명이나 조례 주제를 짧은 명사형으로 작성한다. JSON만 반환: {"keywords":["청소년","주거"]}`,
+      run.instruction, true, 400));
+    keywords = Array.isArray(extracted?.keywords) ? extracted.keywords.map(String).filter(Boolean).slice(0, 3) : [];
+  } catch {}
+  if (!keywords.length) keywords = [String(run.instruction).replace(/검토|작성|분석|조례|정책|해\s*줘|해주세요/gi, " ").replace(/\s+/g, " ").trim().slice(0, 30)];
+  keywords = keywords.filter(Boolean);
+
+  const sources = [];
+  for (const keyword of keywords) {
+    for (const target of ["law", "ordin"]) {
+      try {
+        const searched = await searchLaw(env, target, keyword, { display: target === "ordin" ? 100 : 5 });
+        let results = searched.results;
+        if (target === "ordin") {
+          const exact = results.filter((item) => item.organization === "경기도");
+          results = exact.length ? exact : results.filter((item) => String(item.organization || "").startsWith("경기도")).slice(0, 5);
+        } else results = results.slice(0, 5);
+        sources.push(...results.map((item) => ({ ...item, keyword })));
+      } catch (error) {
+        await addEvent(env, run, "law.search_error", `${keyword} ${target} 검색 실패: ${error.message}`, "policy");
+      }
+    }
+  }
+  const unique = sources.filter((item, index, all) => all.findIndex((other) => other.target === item.target && other.id === item.id) === index).slice(0, 12);
+  for (const source of unique.slice(0, 3)) {
+    try { source.body = await getLawDetail(env, source.target, source.id, source.mst); }
+    catch (error) { source.bodyError = error.message; }
+  }
+  await addEvent(env, run, "law.research_completed", `국가법령·경기도 자치법규 근거 ${unique.length}건을 확인했습니다.`, "policy");
+  return { provider: "국가법령정보센터", checkedAt: new Date().toISOString(), keywords, sources: unique };
+}
+
 async function legacyOpenAI(request, env, body, path) {
   if (!env.OPENAI_API_KEY) throw new HttpError(500, "OPENAI_API_KEY가 설정되지 않았습니다.");
   const base = String(env.OPENAI_BASE || "https://api.openai.com/v1").replace(/\/+$/, "");
@@ -246,11 +365,14 @@ JSON만 반환: {"tasks":[{"agent":"policy","title":"","instruction":"","depende
 }
 
 function workerPrompt(run, task, worker, prior, feedback) {
+  let hasLawResearch = false;
+  try { hasLawResearch = Boolean(JSON.parse(run.context_json || "{}").lawResearch); } catch {}
   return {
     system: `너는 경기도의원실 ${TEAM_DEFS[task.agent].lead} 산하의 ${worker[1]} 담당 AI 팀원이다.
 전문 역할: ${worker[2]}
 맡은 범위만 구체적으로 수행하고, 외부 게시·발송·일정 확정·데이터 변경을 실행하지 않는다.
-확인되지 않은 내용은 반드시 '확인 필요'로 표시한다.`,
+확인되지 않은 내용은 반드시 '확인 필요'로 표시한다.
+${hasLawResearch ? "읽기 전용 참고 데이터의 lawResearch는 국가법령정보센터에서 방금 조회한 공식 자료다. 법령·조례를 언급할 때 법령명, 시행일자, sourceUrl을 근거로 표시하고 검색 결과에 없는 조문을 만들어내지 않는다." : ""}`,
     user: `[의원 원지시]\n${run.instruction}\n\n[팀 담당 업무]\n${task.instruction}
 \n\n[읽기 전용 참고 데이터]\n${run.context_json || "{}"}
 \n\n[앞선 팀 결과]\n${prior || "없음"}${feedback ? `\n\n[팀장 재작업 요청]\n${feedback}` : ""}`,
@@ -342,6 +464,13 @@ async function processRun(env, runId, tenantId) {
   const run = await env.AGENT_DB.prepare("SELECT * FROM agent_runs WHERE id = ?").bind(runId).first();
   await addEvent(env, run, "run.planning", "AI 비서실장이 지시를 분석하고 있습니다.");
   const plan = await planRun(env, run);
+  const lawResearch = await buildLawResearch(env, run, plan);
+  if (lawResearch) {
+    const originalContext = (() => { try { return JSON.parse(run.context_json || "{}"); } catch { return {}; } })();
+    originalContext.lawResearch = lawResearch;
+    run.context_json = JSON.stringify(originalContext);
+    await updateRun(env, run.id, { context_json: run.context_json, lease_until: Date.now() + LEASE_MS });
+  }
   await insertTasks(env, run, plan);
   await updateRun(env, run.id, { status: "running", lease_until: Date.now() + LEASE_MS });
   await addEvent(env, run, "run.running", `${plan.length}개 담당 팀과 독립 검증팀이 작업을 시작했습니다.`);
@@ -393,8 +522,10 @@ async function processRun(env, runId, tenantId) {
     `너는 경기도의원실 AI 비서실장이다. 팀장과 독립 검증팀이 승인한 결과만 통합한다.
 중복을 제거하고 사실확인 필요 사항과 의원 승인 필요 사항을 분리한다.
 실제로 실행하지 않은 게시·발송·일정 확정을 완료했다고 말하지 않는다.
+국가법령정보센터 자료가 포함된 경우 '근거 법령' 항목에 법령·조례명, 시행일자, 공식 sourceUrl과 확인 시각을 빠뜨리지 않는다.
+검색 결과에 없는 조문이나 법적 결론을 만들어내지 않는다.
 형식: 결론, 팀별 결과, 확인 필요, 의원 승인 대기.`,
-    `[원지시]\n${run.instruction}\n\n[검수 완료 보고]\n${prior}`, false, 1800);
+    `[원지시]\n${run.instruction}\n\n[공식 법령 조회 데이터]\n${run.context_json || "{}"}\n\n[검수 완료 보고]\n${prior}`, false, 1800);
   await updateRun(env, run.id, {
     status: "completed", summary, error: "", approval_status: "pending", lease_until: null,
   });
@@ -453,7 +584,25 @@ async function handleFetch(request, env) {
 
   try {
     if (path === "/health" && request.method === "GET") {
-      return json({ ok: true, queue: Boolean(env.AGENT_QUEUE), database: Boolean(env.AGENT_DB), schemaVersion: AGENT_SCHEMA_VERSION }, 200, request, env);
+      return json({ ok: true, queue: Boolean(env.AGENT_QUEUE), database: Boolean(env.AGENT_DB), law: Boolean(env.LAW_OC), schemaVersion: AGENT_SCHEMA_VERSION }, 200, request, env);
+    }
+    if (path === "/law/search" || path === "/law/detail") {
+      await verifyFirebaseUser(request, env);
+      if (request.method !== "GET") throw new HttpError(405, "GET 요청만 허용됩니다.");
+      if (path === "/law/search") {
+        const target = url.searchParams.get("target") || "law";
+        const query = url.searchParams.get("query") || "";
+        if (!query.trim()) throw new HttpError(400, "검색어가 필요합니다.");
+        const result = await searchLaw(env, target, query, {
+          search: Number(url.searchParams.get("search")) || 1,
+          display: Number(url.searchParams.get("display")) || 10,
+          page: Number(url.searchParams.get("page")) || 1,
+        });
+        return json({ ok: true, ...result }, 200, request, env);
+      }
+      const target = url.searchParams.get("target") || "law";
+      const body = await getLawDetail(env, target, url.searchParams.get("id"), url.searchParams.get("mst"));
+      return json({ ok: true, target, body: safeJson(body) || body }, 200, request, env);
     }
     if (path === "/agent-runs" || path.startsWith("/agent-runs/")) {
       const user = await verifyFirebaseUser(request, env);

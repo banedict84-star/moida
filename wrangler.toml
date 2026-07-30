@@ -13,6 +13,9 @@ OPENAI_BASE = "https://gateway.ai.cloudflare.com/v1/0a43eeb2c6fe53d7e8e6f38d7ea9
 FIREBASE_API_KEY = "AIzaSyAIjhvbCztHoF7YwP2IYIk2C6jCI64uFhs"
 AGENT_MODEL = "gpt-4o-mini"
 ALLOW_ORIGINS = "https://banedict84-star.github.io,http://127.0.0.1:4173,http://localhost:4173"
+LAW_OC = "moida"
+LAW_ORIGIN = "https://banedict84-star.github.io"
+LAW_LOCAL_GOV_CODE = "6410000"
 
 [[d1_databases]]
 binding = "AGENT_DB"

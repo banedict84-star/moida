@@ -13,6 +13,11 @@ test("한국어 지시를 관련 팀으로 분류한다", () => {
   assert.deepEqual(plan.map((task) => task.agent), ["schedule", "localpr"]);
 });
 
+test("법령과 조례 검토 지시는 정책팀으로 분류한다", () => {
+  const plan = fallbackPlan("경기도 청소년 지원 조례와 관련 상위법을 찾아서 검토해줘");
+  assert.deepEqual(plan.map((task) => task.agent), ["policy"]);
+});
+
 test("허용되지 않은 팀을 제거하고 최대 8개로 제한한다", () => {
   const plan = normalizePlan({
     tasks: [

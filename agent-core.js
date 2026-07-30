@@ -61,7 +61,7 @@ export function fallbackPlan(instruction) {
   const agents = [];
   const add = (name) => { if (!agents.includes(name)) agents.push(name); };
   if (/일정|행사|시간|장소|방문|회의/.test(text)) add("schedule");
-  if (/정책|법안|조례|질의|공약/.test(text)) add("policy");
+  if (/정책|법안|조례|질의|공약|법령|법률|시행령|시행규칙|자치법규|조문|상위법|판례/.test(text)) add("policy");
   if (/예산|결산|행정사무감사|행감|요구자료|피감기관/.test(text)) add("audit");
   if (/민원|지역현안|현장확인|처리기한|담당부서/.test(text)) add("civil");
   if (/조직|단체|연락처|CRM|간담회|지역여론/.test(text)) add("organization");

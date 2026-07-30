@@ -1952,7 +1952,7 @@ onAuthStateChanged(_auth, async function(user){
       '사용자는 여러 프로젝트를 동시 진행한다(예: 장윤정 의원 의정활동, 당원관리, CRM 개발, AI 비서실, 공예협회, 교육사업, 선거 등). 각 프로젝트 목적을 이해하고 서로 섞이지 않게 구분해 사고한다.',
       '',
       '# 디자인 요청 시',
-      '바로 이미지를 만들지 않는다. 먼저 기획·레이아웃·색상·폰트·문구·(필요시)이미지 프롬프트까지 설계하고, 사용자가 수정하기 쉬운 구조를 우선한다. 웹자보는 create_poster 도구 또는 "웹자보 편집기"를 활용하라.',
+      '사용자가 웹자보·포스터·행사 홍보 이미지를 만들어 달라고 명확히 요청하면 행사 이름과 내용만으로 부족한 제목·슬로건·분류를 보완하고 create_poster 도구를 즉시 호출한다. 추가 질문은 날짜·장소처럼 결과에 필수인 정보가 전혀 없을 때만 한다. 생성 뒤 PNG 저장과 웹자보 편집기 수정이 가능하다고 안내한다.',
       '',
       '# 글쓰기',
       '글을 쓸 때 목적을 먼저 분석한다(SNS/보도자료/축사/격려사/회의자료/제안서/공문/카카오톡 등). 목적에 맞는 형식·톤으로 바로 쓸 수 있는 완성형으로 작성한다.',
@@ -1974,6 +1974,7 @@ onAuthStateChanged(_auth, async function(user){
       '- 오늘 일정: '+evtxt,
       '- 미처리 민원: '+open+'건',
       '- 등록 연락처: '+((M.members||[]).length)+'명',
+      '- CRM 연락처는 현재 시스템에 연결되어 있다. 연락처 명부·인원·유형·지역·생일 확인 요청에는 반드시 list_contacts 또는 search_contacts 도구를 먼저 사용하고 조회하지 않은 내용을 추측하지 않는다.',
       '- 등록 법안/정책: '+pol+'건, 홍보 콘텐츠: '+prc+'건',
       '- 외부 공지(중앙당·경기도당·경기도의회): '+((M.notices||[]).length)+'건 적재됨 — 내용은 list_notices 도구로 조회'
     ].join('\n');
@@ -2302,8 +2303,8 @@ onAuthStateChanged(_auth, async function(user){
   }
   function shouldOrchestrate(text){
     return /에이전트|멀티에이전트/.test(text)||(
-      /일정|행사|홍보|보도|SNS|웹자보|정책|법안|조례|질의|예산|결산|행감|행정사무감사|민원|지역현안|조직|CRM|간담회|회의록|공문|보고서|공약/.test(text)
-      && /작성|만들|준비|기획|등록|정리|진행|검토|조사|분석|배정|계획|초안|처리|해줘|해 줘/.test(text)
+      /일정|행사|홍보|보도|SNS|웹자보|정책|법안|조례|법령|법률|시행령|시행규칙|자치법규|조문|상위법|판례|질의|예산|결산|행감|행정사무감사|민원|지역현안|조직|CRM|간담회|회의록|공문|보고서|공약/.test(text)
+      && /작성|만들|준비|기획|등록|정리|진행|검토|조사|분석|배정|계획|초안|처리|찾아|검색|알려|보여|확인|해줘|해 줘/.test(text)
     );
   }
   var serverPollTimer=null, serverReported={};
@@ -2327,7 +2328,11 @@ onAuthStateChanged(_auth, async function(user){
       profile:M.profile||{},today:todayKey(),
       events:(M.events||[]).slice(0,20).map(function(e){return {title:e.title,date:e.date,time:e.time,location:e._location||''};}),
       complaints:(M.complaints||[]).slice(0,20).map(function(c){return {title:c.title,field:c.field,status:c.status,priority:c.priority};}),
-      policies:(M.policies||[]).slice(0,15),recentContents:(M.pr||[]).slice(0,10)
+      policies:(M.policies||[]).slice(0,15),recentContents:(M.pr||[]).slice(0,10),
+      crm:{total:(M.members||[]).length,contacts:(M.members||[]).slice(0,100).map(function(m){return {
+        name:m.name||'',phone:m.phone||'',type:m.type||'',dong:m.dong||'',rec:m.rec||'',
+        birthday:m.birthday||m.birth||m.birthDate||'',memo:m.memo||m.note||'',score:+m.score||0
+      };})}
     };
   }
   function mergeServerRun(run){
@@ -2458,6 +2463,7 @@ onAuthStateChanged(_auth, async function(user){
   });
   /* ── 비서실 도구(함수 호출) — 플랫폼 데이터 조회/등록 ───────────────── */
   var TOOLS = [
+    {type:'function',function:{name:'list_contacts',description:'CRM에 등록된 연락처 명부와 인원수를 조회한다. 유형·행정동 필터와 오늘 생일 조회가 가능하다. CRM 관련 질문에는 추측하지 말고 이 도구를 사용한다.',parameters:{type:'object',properties:{type:{type:'string',description:'연락처 유형 필터'},dong:{type:'string',description:'행정동·지역 필터'},birthday_today:{type:'boolean',description:'오늘 생일인 연락처만 조회'},limit:{type:'number',description:'반환할 최대 인원(기본 20, 최대 100)'}}}}},
     {type:'function',function:{name:'search_contacts',description:'등록 연락처(지지자·당원·후원자)를 이름/연락처/행정동/추천인으로 검색',parameters:{type:'object',properties:{query:{type:'string',description:'검색어'}},required:['query']}}},
     {type:'function',function:{name:'add_contact',description:'새 연락처(당원/지지자)를 등록',parameters:{type:'object',properties:{name:{type:'string'},phone:{type:'string'},type:{type:'string',enum:['권리당원','일반당원','신규당원','탈당자','일반시민','기타']},dong:{type:'string',description:'행정동'},rec:{type:'string',description:'추천인'}},required:['name']}}},
     {type:'function',function:{name:'list_complaints',description:'민원 목록 조회(상태로 필터 가능)',parameters:{type:'object',properties:{status:{type:'string',enum:['접수','처리중','답변완료','종결']}}}}},
@@ -2855,6 +2861,25 @@ onAuthStateChanged(_auth, async function(user){
   function execTool(name, a){
     a=a||{};
     try{
+      if(name==='list_contacts'){
+        var all=(M.members||[]), type=String(a.type||'').replace(/\s/g,'').toLowerCase(), dong=String(a.dong||'').replace(/\s/g,'').toLowerCase();
+        var now=new Date(), mm=String(now.getMonth()+1).padStart(2,'0'), dd=String(now.getDate()).padStart(2,'0');
+        var rows=all.filter(function(m){
+          if(type&&String(m.type||'').replace(/\s/g,'').toLowerCase().indexOf(type)<0)return false;
+          if(dong&&String(m.dong||'').replace(/\s/g,'').toLowerCase().indexOf(dong)<0)return false;
+          if(a.birthday_today){
+            var birth=String(m.birthday||m.birth||m.birthDate||'').replace(/\./g,'-').replace(/\//g,'-');
+            var parts=birth.split('-').filter(Boolean);if(parts.length<2)return false;
+            var bm=parts.length>=3?parts[parts.length-2]:parts[0], bd=parts[parts.length-1];
+            if(String(+bm).padStart(2,'0')!==mm||String(+bd).padStart(2,'0')!==dd)return false;
+          }
+          return true;
+        });
+        var lim=Math.max(1,Math.min(100,+a.limit||20));
+        return {total:all.length,matched:rows.length,filters:{type:a.type||'',dong:a.dong||'',birthday_today:!!a.birthday_today},
+          contacts:rows.slice(0,lim).map(function(m){return {name:m.name,phone:m.phone,type:m.type,dong:m.dong,rec:m.rec,birthday:m.birthday||m.birth||m.birthDate||'',score:m.score};}),
+          truncated:rows.length>lim};
+      }
       if(name==='search_contacts'){
         var q=(a.query||'').replace(/\s|-/g,'').toLowerCase();
         var res=(M.members||[]).filter(function(m){return [m.name,m.phone,m.dong,m.type,m.rec].join('').replace(/\s|-/g,'').toLowerCase().indexOf(q)>=0;})
@@ -2929,6 +2954,30 @@ onAuthStateChanged(_auth, async function(user){
   }
   var attachments=[]; /* {name, kind:'text'|'image', content|dataUrl} */
   var lastPhotos=[]; /* 가장 최근 첨부한 이미지(웹자보 합성용) */
+  function answerCrmRead(text){
+    var asksCrm=/(CRM|씨알엠|명부|연락처)/i.test(text);
+    var asksRead=/(확인|조회|보여|알려|몇\s*명|인원|목록|생일)/.test(text);
+    if(!asksCrm||!asksRead)return false;
+    var birthdays=/오늘.{0,6}생일|생일.{0,6}오늘/.test(text);
+    var result=execTool('list_contacts',{birthday_today:birthdays,limit:100});
+    var showList=birthdays||/(명단|목록).{0,10}(보여|출력|알려)|(전체|전부).{0,10}(명단|목록|보여)/.test(text);
+    var title=birthdays?'오늘 생일인 CRM 연락처':'CRM 등록 명부';
+    var lines=(result.contacts||[]).map(function(m,i){
+      var meta=[m.type,m.dong,m.phone,m.birthday].filter(Boolean).join(' · ');
+      return (i+1)+'. **'+String(m.name||'이름 없음')+'**'+(meta?' — '+meta:'');
+    });
+    var raw=showList
+      ? '**'+title+'**\n\n'+(birthdays?'해당 인원: **'+result.matched+'명**':'전체 등록 인원: **'+result.total+'명**')
+        +(lines.length?'\n\n'+lines.join('\n'):'\n\n조회된 연락처가 없습니다.')
+        +(result.truncated?'\n\n※ 화면에는 앞의 100명만 표시했습니다.':'')
+      : '**CRM 명부 확인 완료**\n\n등록된 연락처 **'+result.total+'명**을 확인했습니다. 명단을 출력하지 않고 필요한 업무에 참고하겠습니다.';
+    setTimeout(function(){addAI(mdToHtml(raw),raw);},180);
+    return true;
+  }
+  function isPosterCreationRequest(text){
+    return /(웹자보|포스터|홍보\s*이미지|행사\s*이미지)/.test(text)
+      && /(만들|제작|생성|그려|디자인|해\s*줘|해주세요)/.test(text);
+  }
   function send(text){
     text=(text||'').trim();
     if(!text && !attachments.length) return;
@@ -2936,7 +2985,8 @@ onAuthStateChanged(_auth, async function(user){
     var _imgs=atts.filter(function(a){return a.kind==='image';});
     if(_imgs.length) lastPhotos=_imgs.map(function(f){return f.dataUrl;});
     addUser(text, atts);
-    if(shouldOrchestrate(text)){
+    if(!atts.length&&answerCrmRead(text))return;
+    if(shouldOrchestrate(text)&&!isPosterCreationRequest(text)){
       startAgentRun(text);
       return;
     }
@@ -2956,13 +3006,15 @@ onAuthStateChanged(_auth, async function(user){
     } else {
       history.push({role:'user', content:fullText});
     }
-    runLoop(addTyping(), 0, 0);
+    runLoop(addTyping(), 0, 0, isPosterCreationRequest(text));
   }
-  function runLoop(typing, depth, retry){
+  function runLoop(typing, depth, retry, forcePoster){
     retry=retry||0;
     if(depth>6){ if(typing) typing.remove(); addAI('처리 단계가 너무 많아 중단했습니다. 다시 시도해 주세요.'); return; }
     var _status=0;
-    fetch(gptEndpoint(), {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({model:GPT_MODEL, messages:history, tools:TOOLS})})
+    var payload={model:GPT_MODEL,messages:history,tools:TOOLS};
+    if(forcePoster&&depth===0)payload.tool_choice={type:'function',function:{name:'create_poster'}};
+    fetch(gptEndpoint(), {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload)})
       .then(function(r){ _status=r.status; return r.text(); })
       .then(function(txt){
         var d=null; try{ d=JSON.parse(txt); }catch(e){}
@@ -2970,7 +3022,7 @@ onAuthStateChanged(_auth, async function(user){
         if(!msg){
           // 게이트웨이 일시 오류(502/503/504)는 자동 재시도
           if((_status===502||_status===503||_status===504||_status===429) && retry<2){
-            setTimeout(function(){ runLoop(typing, depth, retry+1); }, 900*(retry+1));
+            setTimeout(function(){ runLoop(typing, depth, retry+1, forcePoster); }, 900*(retry+1));
             return;
           }
           if(typing) typing.remove();
@@ -2987,14 +3039,14 @@ onAuthStateChanged(_auth, async function(user){
             var result=execTool(tc.function&&tc.function.name, args);
             history.push({role:'tool', tool_call_id:tc.id, content:JSON.stringify(result)});
           });
-          runLoop(typing, depth+1, 0);
+          runLoop(typing, depth+1, 0, false);
         } else {
           if(typing) typing.remove();
           addAI(mdToHtml(msg.content||''), msg.content||'');
         }
       })
       .catch(function(e){
-        if(retry<2){ setTimeout(function(){ runLoop(typing, depth, retry+1); }, 900*(retry+1)); return; }
+        if(retry<2){ setTimeout(function(){ runLoop(typing, depth, retry+1, forcePoster); }, 900*(retry+1)); return; }
         if(typing) typing.remove(); addAI('연결 오류: '+M.esc(e&&e.message||String(e)));
       });
   }
