@@ -979,6 +979,18 @@ onAuthStateChanged(_auth, async function(user){
 (function(){
   'use strict';
   var M = window.MOIDA; if(!M) return;
+  M.formatPhone = M.formatPhone || function(value){
+    var digits=String(value||'').replace(/\D/g,'');
+    if(digits.length===10&&digits.charAt(0)==='1') digits='0'+digits;
+    if(digits.length===11) return digits.slice(0,3)+'-'+digits.slice(3,7)+'-'+digits.slice(7);
+    if(digits.length===10){
+      return digits.slice(0,2)==='02'
+        ? digits.slice(0,2)+'-'+digits.slice(2,6)+'-'+digits.slice(6)
+        : digits.slice(0,3)+'-'+digits.slice(3,6)+'-'+digits.slice(6);
+    }
+    if(digits.length===9&&digits.slice(0,2)==='02') return digits.slice(0,2)+'-'+digits.slice(2,5)+'-'+digits.slice(5);
+    return String(value||'').trim();
+  };
   var AVA = ['#e8f0fe|#2563eb','#e7f6ec|#16a34a','#eef0fb|#5b51d8','#fdf2e3|#d97706','#fdecec|#dc2626','#e0f2fe|#0891b2'];
   function typeBadge(t){
     t = t||'';
@@ -1007,6 +1019,12 @@ onAuthStateChanged(_auth, async function(user){
   function compute(){
     if(!document.getElementById('crmRows')) return; /* CRM이 iframe으로 대체된 경우 무시 */
     var ms = M.members||[];
+    var phoneChanged=false;
+    ms.forEach(function(member){
+      var formatted=M.formatPhone(member.phone);
+      if(formatted&&formatted!==member.phone){ member.phone=formatted; phoneChanged=true; }
+    });
+    if(phoneChanged&&M.save) M.save('members',ms);
     document.getElementById('crmKpiTotal').textContent = ms.length.toLocaleString();
     document.getElementById('crmKpiRight').textContent  = ms.filter(function(m){return /권리/.test(m.type||'');}).length.toLocaleString();
     document.getElementById('crmKpiNormal').textContent = ms.filter(function(m){return /일반/.test(m.type||'')&&!/시민/.test(m.type||'');}).length.toLocaleString();
@@ -1047,7 +1065,7 @@ onAuthStateChanged(_auth, async function(user){
         +'<div style="display:flex;align-items:center;gap:10px"><span style="width:32px;height:32px;border-radius:9px;background:'+col[0]+';color:'+col[1]+';display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px">'+M.esc((m.name||'·').slice(0,2))+'</span><div style="min-width:0"><div style="font-weight:600">'+M.esc(m.name||'(이름없음)')+'</div>'+(sub?'<div style="font-size:11.5px;color:#9aa3b0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+M.esc(sub)+'</div>':'')+'</div></div>'
         +'<span>'+typeBadge(m.type)+'</span>'
         +'<span style="color:#5b6675">'+M.esc(m.dong||'—')+'</span>'
-        +'<span style="color:#5b6675">'+M.esc(m.phone||'—')+'</span>'
+        +'<span style="color:#5b6675">'+M.esc(M.formatPhone(m.phone)||'—')+'</span>'
         +'<span>'+stars(m.score)+'</span>'
         +'<span style="color:#5b6675">'+M.esc(m.rec||'—')+'</span>'
         +'</div>';
@@ -1076,14 +1094,33 @@ onAuthStateChanged(_auth, async function(user){
     document.body.appendChild(ovl);
     ovl.querySelector('#c_cancel').onclick=function(){ ovl.remove(); };
     ovl.onclick=function(e){ if(e.target===ovl) ovl.remove(); };
+    ovl.querySelector('#c_phone').addEventListener('input',function(){
+      var formatted=M.formatPhone(this.value);
+      if(formatted!==this.value&&formatted.replace(/\D/g,'').length>=10) this.value=formatted;
+    });
     ovl.querySelector('#c_name').focus();
     ovl.querySelector('#c_save').onclick=function(){
       var name=ovl.querySelector('#c_name').value.trim();
       if(!name){ ovl.querySelector('#c_name').focus(); return; }
-      var m={ mid:'m'+Date.now()+Math.random().toString(36).slice(2,7), name:name,
-        phone:ovl.querySelector('#c_phone').value.trim(), type:ovl.querySelector('#c_type').value,
-        dong:ovl.querySelector('#c_dong').value.trim(), rec:ovl.querySelector('#c_rec').value.trim(), score:0 };
-      M.members = M.members||[]; M.members.unshift(m);
+      var phone=M.formatPhone(ovl.querySelector('#c_phone').value);
+      var phoneKey=phone.replace(/\D/g,'');
+      var nameKey=name.replace(/\s/g,'').toLowerCase();
+      M.members = M.members||[];
+      var existing=M.members.find(function(member){
+        var memberPhone=String(member.phone||'').replace(/\D/g,'');
+        var memberName=String(member.name||'').replace(/\s/g,'').toLowerCase();
+        return phoneKey&&nameKey&&memberPhone===phoneKey&&memberName===nameKey;
+      });
+      if(existing){
+        existing.name=name; existing.phone=phone||existing.phone;
+        existing.type=ovl.querySelector('#c_type').value;
+        existing.dong=ovl.querySelector('#c_dong').value.trim()||existing.dong;
+        existing.rec=ovl.querySelector('#c_rec').value.trim()||existing.rec;
+      }else{
+        M.members.unshift({ mid:'m'+Date.now()+Math.random().toString(36).slice(2,7), name:name,
+          phone:phone, type:ovl.querySelector('#c_type').value,
+          dong:ovl.querySelector('#c_dong').value.trim(), rec:ovl.querySelector('#c_rec').value.trim(), score:0 });
+      }
       M.save && M.save('members', M.members);
       compute(); ovl.remove();
     };
@@ -2405,7 +2442,7 @@ onAuthStateChanged(_auth, async function(user){
       complaints:(M.complaints||[]).slice(0,20).map(function(c){return {title:c.title,field:c.field,status:c.status,priority:c.priority};}),
       policies:(M.policies||[]).slice(0,15),recentContents:(M.pr||[]).slice(0,10),
       crm:{total:(M.members||[]).length,contacts:(M.members||[]).slice(0,100).map(function(m){return {
-        name:m.name||'',phone:m.phone||'',type:m.type||'',dong:m.dong||'',rec:m.rec||'',
+        name:m.name||'',phone:(M.formatPhone?M.formatPhone(m.phone):m.phone)||'',type:m.type||'',dong:m.dong||'',rec:m.rec||'',
         birthday:m.birthday||m.birth||m.birthDate||'',memo:m.memo||m.note||'',score:+m.score||0
       };})}
     };
@@ -2952,21 +2989,39 @@ onAuthStateChanged(_auth, async function(user){
         });
         var lim=Math.max(1,Math.min(100,+a.limit||20));
         return {total:all.length,matched:rows.length,filters:{type:a.type||'',dong:a.dong||'',birthday_today:!!a.birthday_today},
-          contacts:rows.slice(0,lim).map(function(m){return {name:m.name,phone:m.phone,type:m.type,dong:m.dong,rec:m.rec,birthday:m.birthday||m.birth||m.birthDate||'',score:m.score};}),
+          contacts:rows.slice(0,lim).map(function(m){return {name:m.name,phone:M.formatPhone?M.formatPhone(m.phone):m.phone,type:m.type,dong:m.dong,rec:m.rec,birthday:m.birthday||m.birth||m.birthDate||'',score:m.score};}),
           truncated:rows.length>lim};
       }
       if(name==='search_contacts'){
         var q=(a.query||'').replace(/\s|-/g,'').toLowerCase();
         var res=(M.members||[]).filter(function(m){return [m.name,m.phone,m.dong,m.type,m.rec].join('').replace(/\s|-/g,'').toLowerCase().indexOf(q)>=0;})
-          .slice(0,20).map(function(m){return {name:m.name,phone:m.phone,type:m.type,dong:m.dong,rec:m.rec,score:m.score};});
+          .slice(0,20).map(function(m){return {name:m.name,phone:M.formatPhone?M.formatPhone(m.phone):m.phone,type:m.type,dong:m.dong,rec:m.rec,score:m.score};});
         return {count:res.length, contacts:res};
       }
       if(name==='add_contact'){
         if(window.MOIDA_READONLY) return {error:'읽기 전용 상태입니다.'};
         if(!a.name) return {error:'이름이 필요합니다.'};
-        var m={mid:'m'+Date.now()+Math.random().toString(36).slice(2,6),name:a.name,phone:a.phone||'',type:a.type||'일반시민',dong:a.dong||'',rec:a.rec||'',score:0};
-        M.members=M.members||[]; M.members.unshift(m); M.save&&M.save('members',M.members); refreshUI(); reloadCrm();
-        return {ok:true, added:m.name};
+        M.members=M.members||[];
+        var phone=M.formatPhone?M.formatPhone(a.phone):a.phone||'';
+        var phoneKey=String(phone||'').replace(/\D/g,'');
+        var nameKey=String(a.name||'').replace(/\s/g,'').toLowerCase();
+        var existing=M.members.find(function(member){
+          var memberPhone=String(member.phone||'').replace(/\D/g,'');
+          var memberName=String(member.name||'').replace(/\s/g,'').toLowerCase();
+          return phoneKey&&nameKey&&memberPhone===phoneKey&&memberName===nameKey;
+        });
+        if(existing){
+          existing.name=a.name||existing.name;
+          if(phone) existing.phone=phone;
+          if(a.type) existing.type=a.type;
+          if(a.dong) existing.dong=a.dong;
+          if(a.rec) existing.rec=a.rec;
+          M.save&&M.save('members',M.members); refreshUI(); reloadCrm();
+          return {ok:true,action:'updated',updated:existing.name,phone:existing.phone};
+        }
+        var m={mid:'m'+Date.now()+Math.random().toString(36).slice(2,6),name:a.name,phone:phone,type:a.type||'일반시민',dong:a.dong||'',rec:a.rec||'',score:0};
+        M.members.unshift(m); M.save&&M.save('members',M.members); refreshUI(); reloadCrm();
+        return {ok:true,action:'created',added:m.name,phone:m.phone};
       }
       if(name==='list_complaints'){
         var list=(M.complaints||[]).filter(function(c){return !a.status||(c.status||'접수')===a.status;})

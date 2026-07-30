@@ -692,6 +692,7 @@ onAuthStateChanged(_auth, async function(user){
   }
   window._reloadMembersFromFS = function(fsData){
     members = fsData;
+    var _phoneChanged=false;
     var D={rrn:'—',dong:'—',org:'—',rec:'—',rec2:'—',rec3:'—',sub:'—',third:'—',addr:'—',addrDetail:'',family:null,age:'',ageb:'—',sex:'—',vote:'미확인',voteK:'err',katalk:'—',type:'일반당원',typeK:'old',krGrade:0,smGrade:0,photo:'',orgs:[]};
     members.forEach(function(m){
       Object.keys(D).forEach(function(k){ if(m[k]===undefined||m[k]===null&&k!=='family') m[k]=D[k]; });
@@ -699,6 +700,8 @@ onAuthStateChanged(_auth, async function(user){
       if(!m.type||m.type==='undefined') m.type=D.type;
       if(!m.ageb||m.ageb==='undefined') m.ageb=D.ageb;
       if(!m.sex||m.sex==='undefined') m.sex=D.sex;
+      var _formattedPhone=formatPhone(m.phone);
+      if(_formattedPhone&&_formattedPhone!==m.phone){ m.phone=_formattedPhone; _phoneChanged=true; }
       if(m.addr&&m.addr!=='—'){
         var _dm=m.addr.match(/\(([가-힣]+[동읍면리])[,)]/); if(!_dm) _dm=m.addr.match(/([가-힣]+[동읍면리])\s*\d/); if(!_dm) _dm=m.addr.match(/([가-힣]+[동읍면리])[\s,)]/);
         if(_dm) m.dong=_dm[1];
@@ -712,6 +715,7 @@ onAuthStateChanged(_auth, async function(user){
     var _rc=JSON.parse(localStorage.getItem('moida_rec_chains_'+_uid)||'{}');
     members.forEach(function(m){ var c=_rc[m.mid]||_rc[m.name]; if(c){ m.rec=c[0]||'—'; m.sub=c[1]||'—'; m.third=c[2]||'—'; m.rec2=m.sub; m.rec3=m.third; } });
     localStorage.setItem(_MEM_KEY, JSON.stringify(members));
+    if(_phoneChanged) saveMembers();
     dispMembers = members.slice();
     if(window._orgStore) members.forEach(function(m){ if(Array.isArray(window._orgStore[m.mid])) m.orgs=window._orgStore[m.mid]; if(!Array.isArray(m.orgs)) m.orgs=(m.org&&m.org!=='—')?[{cat:'단체',name:m.org,title:'',rep:true}]:[]; var _r=orgRep(m); m.org=_r?orgRepText(_r):'—'; });
     recalcScores(); renderRows();
@@ -726,6 +730,7 @@ onAuthStateChanged(_auth, async function(user){
       if(!m.type||m.type==='undefined') m.type=D.type;
       if(!m.ageb||m.ageb==='undefined') m.ageb=D.ageb;
       if(!m.sex||m.sex==='undefined') m.sex=D.sex;
+      m.phone=formatPhone(m.phone);
       // 행정동 자동 추출 — 주소가 있으면 항상 재추출
       if(m.addr&&m.addr!=='—'){
         var _dm=m.addr.match(/\(([가-힣]+[동읍면리])[,)]/); if(!_dm) _dm=m.addr.match(/([가-힣]+[동읍면리])\s*\d/); if(!_dm) _dm=m.addr.match(/([가-힣]+[동읍면리])[\s,)]/);
@@ -1019,7 +1024,7 @@ onAuthStateChanged(_auth, async function(user){
       <td class="muted-cell">${ri+1}</td>
       <td><span class="score ${scoreCls(m.score)}">${m.score}</span></td>
       <td class="nm-cell">${m.photo?'<span class="photo-dot" title="사진 등록됨"></span>':''}${m.name}</td>
-      <td>${m.phone}</td>
+      <td>${formatPhone(m.phone)}</td>
       <td class="muted-cell">${m.rrn}</td>
       <td>${m.dong}</td>
       <td class="type-cell" data-i="${i}">${(!m.type||m.type==='—')?'<span class="muted-cell type-pick">—</span>':'<span class="tag '+typeCls(m.type)+' type-pick"><span class="d" style="background:currentColor"></span>'+m.type+'</span>'}</td>
