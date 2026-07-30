@@ -243,7 +243,8 @@ async function buildLawResearch(env, run, tasks) {
   const cleaned = instruction
     .replace(requestedOrganization, " ")
     .replace(/경기도|국가법령정보센터|관련|상위법|조례|법령|법률|시행령|시행규칙|자치법규|조문|판례/gi, " ")
-    .replace(/찾아\s*줘|찾아|검색|조회|확인|보여\s*줘|보여|알려\s*줘|알려|검토|분석|작성|해\s*줘|해주세요|해봐|해\s*봐|줘/gi, " ")
+    .replace(/도내|시내|군내|구내|관내|지역\s*내|내에서|내에|내의/gi, " ")
+    .replace(/찾아\s*줘|찾아\s*봐|찾아|검색|조회|확인|보여\s*줘|보여|알려\s*줘|알려|검토|분석|작성|해\s*줘|해주세요|해봐|해\s*봐|줘|봐/gi, " ")
     .replace(/(^|\s)(내|의|대한|관한)(?=\s|$)/g, " ")
     .replace(/[^\p{L}\p{N}\s·ㆍ-]/gu, " ").replace(/\s+/g, " ").trim();
   const keywords = [cleaned || instruction.replace(/\s+/g, " ").trim().slice(0, 30)].filter(Boolean);
@@ -259,6 +260,9 @@ async function buildLawResearch(env, run, tasks) {
         });
         let results = searched.results;
         if (target === "ordin") {
+          if (keyword === "공예") {
+            results = results.filter((item) => /(^|[^공])공예/.test(String(item.title || "")));
+          }
           if (requestedOrganization) {
             const organizationKey = requestedOrganization.replace(/\s/g, "");
             results = results.filter((item) =>
