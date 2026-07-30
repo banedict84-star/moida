@@ -2326,8 +2326,10 @@ onAuthStateChanged(_auth, async function(user){
   function agentOwner(){ return chatOwner(); }
   function agentRunKey(){ return 'moida_agent_runs_'+agentOwner(); }
   function agentHiddenKey(){ return 'moida_hidden_agent_runs_'+agentOwner(); }
+  var hiddenAgentOwner=agentOwner();
   var hiddenAgentRuns=(function(){try{return JSON.parse(localStorage.getItem(agentHiddenKey())||'{}');}catch(e){return {};}})();
-  function saveHiddenAgentRuns(){try{localStorage.setItem(agentHiddenKey(),JSON.stringify(hiddenAgentRuns));}catch(e){}}
+  function refreshHiddenAgentRuns(){var owner=agentOwner();if(owner===hiddenAgentOwner)return;hiddenAgentOwner=owner;try{hiddenAgentRuns=JSON.parse(localStorage.getItem(agentHiddenKey())||'{}');if(owner!=='default'){var legacy=JSON.parse(localStorage.getItem('moida_hidden_agent_runs_default')||'{}');Object.keys(legacy||{}).forEach(function(id){if(legacy[id])hiddenAgentRuns[id]=true;});localStorage.setItem(agentHiddenKey(),JSON.stringify(hiddenAgentRuns));}}catch(e){hiddenAgentRuns={};}}
+  function saveHiddenAgentRuns(){refreshHiddenAgentRuns();try{localStorage.setItem(agentHiddenKey(),JSON.stringify(hiddenAgentRuns));}catch(e){}}
   function cleanAgentRun(r){
     if(!r||!r.id) return null;
     return {
@@ -2349,6 +2351,7 @@ onAuthStateChanged(_auth, async function(user){
   function timeLabel(ts){ var d=new Date(+ts||Date.now()); return pad(d.getHours())+':'+pad(d.getMinutes()); }
   function renderAgentRuns(){
     if(!agentRunList) return;
+    refreshHiddenAgentRuns();
     agentRuns=agentRuns.map(cleanAgentRun).filter(Boolean).sort(function(a,b){return b.updatedAt-a.updatedAt;}).slice(0,20);
     var visibleRuns=agentRuns.filter(function(r){return !hiddenAgentRuns[r.id];});
     window.MOIDA_AGENT_RUNS=visibleRuns;
