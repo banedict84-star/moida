@@ -217,7 +217,7 @@ async function searchLaw(env, target, query, options = {}) {
   };
   if (target === "ordin") {
     params.nw = "1";
-    params.org = options.org || env.LAW_LOCAL_GOV_CODE || "6410000";
+    if (!options.allOrganizations) params.org = options.org || env.LAW_LOCAL_GOV_CODE || "6410000";
   }
   const data = await lawApi(env, "lawSearch.do", params);
   const found = lawSearchRows(data, target);
@@ -238,7 +238,10 @@ async function buildLawResearch(env, run, tasks) {
   const instruction = String(run.instruction || "");
   if (!tasks.some((task) => ["policy", "audit"].includes(task.agent))
       || !/조례|법령|법률|시행령|시행규칙|자치법규|상위법|조문|판례/.test(instruction)) return null;
+  const municipalityMatch = instruction.match(/(?:경기도\s*)?([가-힣]{2,}(?:시|군|구))/);
+  const requestedOrganization = municipalityMatch?.[1] || (/경기도/.test(instruction) ? "경기도" : "");
   const cleaned = instruction
+    .replace(requestedOrganization, " ")
     .replace(/경기도|국가법령정보센터|관련|상위법|조례|법령|법률|시행령|시행규칙|자치법규|조문|판례/gi, " ")
     .replace(/찾아\s*줘|찾아|검색|조회|확인|보여\s*줘|보여|알려\s*줘|알려|검토|분석|작성|해\s*줘|해주세요|해봐|해\s*봐|줘/gi, " ")
     .replace(/(^|\s)(내|의|대한|관한)(?=\s|$)/g, " ")
@@ -250,11 +253,18 @@ async function buildLawResearch(env, run, tasks) {
   for (const keyword of keywords) {
     for (const target of targets) {
       try {
-        const searched = await searchLaw(env, target, keyword, { display: target === "ordin" ? 100 : 5 });
+        const searched = await searchLaw(env, target, keyword, {
+          display: target === "ordin" ? 100 : 5,
+          allOrganizations: target === "ordin" && Boolean(requestedOrganization) && requestedOrganization !== "경기도",
+        });
         let results = searched.results;
         if (target === "ordin") {
-          const exact = results.filter((item) => item.organization === "경기도");
-          results = exact.length ? exact : results.filter((item) => String(item.organization || "").startsWith("경기도")).slice(0, 5);
+          if (requestedOrganization) {
+            const organizationKey = requestedOrganization.replace(/\s/g, "");
+            results = results.filter((item) =>
+              String(item.organization || "").replace(/\s/g, "").includes(organizationKey));
+          }
+          results = results.slice(0, 12);
         } else results = results.slice(0, 5);
         sources.push(...results.map((item) => ({ ...item, keyword })));
       } catch (error) {
@@ -267,8 +277,12 @@ async function buildLawResearch(env, run, tasks) {
     try { source.body = await getLawDetail(env, source.target, source.id, source.mst); }
     catch (error) { source.bodyError = error.message; }
   }
-  await addEvent(env, run, "law.research_completed", `국가법령·경기도 자치법규 근거 ${unique.length}건을 확인했습니다.`, "policy");
-  return { provider: "국가법령정보센터", checkedAt: new Date().toISOString(), keywords, sources: unique };
+  await addEvent(env, run, "law.research_completed",
+    `국가법령·${requestedOrganization || "전국"} 자치법규 근거 ${unique.length}건을 확인했습니다.`, "policy");
+  return {
+    provider: "국가법령정보센터", checkedAt: new Date().toISOString(),
+    requestedOrganization, keywords, sources: unique,
+  };
 }
 
 async function legacyOpenAI(request, env, body, path) {
