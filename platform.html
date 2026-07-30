@@ -30,7 +30,7 @@ body.app-loading #sideAvatar{color:transparent!important;background:#243a5c!impo
 #sideBar.collapsed .nav-item{justify-content:flex-start;padding-left:12px!important;padding-right:0!important}
 #sideBar.collapsed #profileCard{justify-content:center;background:linear-gradient(135deg,#16305c,#2f5fd0);box-shadow:0 4px 12px rgba(22,48,92,.32)}
 #sideBar.collapsed #sideAvatar{background:transparent!important;background-image:none!important}
-#sideBar.collapsed .sb-system{margin-top:auto}
+#sideBar.collapsed .sb-agent-section{margin-top:auto}#sideBar.collapsed .sb-system{margin-top:0}
 #sideBar.collapsed .nav-item:hover::after{content:attr(data-label);position:absolute;left:58px;top:50%;transform:translateY(-50%);z-index:40;padding:7px 10px;border-radius:7px;background:#162943;color:#fff;font-size:12px;font-weight:600;line-height:1;white-space:nowrap;box-shadow:0 4px 14px rgba(8,18,34,.24);pointer-events:none}
 #sideBar.collapsed .nav-item:hover::before{content:"";position:absolute;left:52px;top:50%;transform:translateY(-50%);z-index:41;border-width:5px 6px 5px 0;border-style:solid;border-color:transparent #162943 transparent transparent;pointer-events:none}
 .ai-history-item{position:relative;display:flex;align-items:center;gap:7px;width:100%;min-height:34px;padding:7px 56px 7px 10px;border:0;border-radius:8px;background:transparent;color:#394454;font-size:12.5px;text-align:left;cursor:pointer;transition:background .15s,color .15s}
@@ -43,6 +43,121 @@ body.app-loading #sideAvatar{color:transparent!important;background:#243a5c!impo
 .ai-history-item:hover .ai-history-action,.ai-history-item.active .ai-history-action{display:flex}
 .ai-history-rename:hover{background:#dde2e8;color:#1d3a6e}
 .ai-history-delete:hover{background:#dde2e8;color:#d14343}
+.agent-run{border:1px solid #e7ebf1;border-radius:11px;background:#fafbfc;padding:11px;cursor:pointer;transition:border-color .15s,background .15s}
+.agent-run:hover{border-color:#cbd7e8;background:#f5f8fc}
+.agent-run.active{border-color:#9db6dc;background:#eef4fc}
+.agent-run-head{display:flex;align-items:center;gap:7px;font-size:12px;font-weight:700;color:#263244}
+.agent-run-dot{width:7px;height:7px;border-radius:50%;background:#94a3b8;flex-shrink:0}
+.agent-run[data-status="planning"] .agent-run-dot,.agent-run[data-status="running"] .agent-run-dot,.agent-run[data-status="reviewing"] .agent-run-dot{background:#2563eb;box-shadow:0 0 0 3px #dbeafe}
+.agent-run[data-status="completed"] .agent-run-dot{background:#16a34a}
+.agent-run[data-status="failed"] .agent-run-dot{background:#dc2626}
+.agent-run-title{min-width:0;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.agent-run-time{color:#9aa3b0;font-size:10px;font-weight:500}
+.agent-run-agents{display:flex;flex-wrap:wrap;gap:5px;margin-top:9px}
+.agent-badge{display:inline-flex;align-items:center;gap:4px;padding:4px 6px;border-radius:6px;background:#fff;border:1px solid #e5eaf1;color:#64748b;font-size:10.5px;font-weight:600}
+.agent-badge.done{color:#15803d;background:#f0fdf4;border-color:#dcfce7}
+.agent-badge.work{color:#1d4ed8;background:#eff6ff;border-color:#dbeafe}
+.agent-badge.fail{color:#b91c1c;background:#fef2f2;border-color:#fee2e2}
+.agent-progress{border:1px solid #dbe5f2;background:#f7faff;border-radius:12px;padding:13px 14px;color:#334155}
+.agent-progress-title{font-weight:700;color:#1d3a6e;margin-bottom:9px}
+.agent-progress-row{display:flex;align-items:center;gap:8px;padding:5px 0;font-size:12px}
+.agent-progress-state{margin-left:auto;color:#8a94a3;font-size:11px}
+.agent-room-toggle{display:none;height:34px;padding:0 11px;border:1px solid #dbe3ee;border-radius:8px;background:#f7f9fc;color:#1d3a6e;font-size:12px;font-weight:700;cursor:pointer}
+.agent-office-layout{display:grid;grid-template-columns:minmax(640px,1fr) 320px;gap:16px;max-width:1440px;margin:0 auto}
+.agent-office-card{background:#fff;border:1px solid #e6eaf0;border-radius:16px;box-shadow:0 2px 8px rgba(15,29,51,.05);overflow:hidden}
+.agent-office-head{display:flex;align-items:center;gap:12px;padding:17px 20px;border-bottom:1px solid #edf0f4}
+.agent-office-live{display:inline-flex;align-items:center;gap:6px;margin-left:auto;padding:5px 9px;border-radius:20px;background:#ecfdf3;color:#168044;font-size:11px;font-weight:700}
+.agent-office-live::before{content:"";width:7px;height:7px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 4px rgba(34,197,94,.12);animation:officePulse 1.8s infinite}
+.pixel-office-wrap{padding:18px;background:#e8edf3;overflow:auto}
+.pixel-office{position:relative;min-width:650px;min-height:560px;border:5px solid #172a45;border-radius:8px;background-color:#c89861;background-image:linear-gradient(rgba(104,65,35,.11) 1px,transparent 1px),linear-gradient(90deg,rgba(104,65,35,.11) 1px,transparent 1px);background-size:28px 28px;box-shadow:inset 0 0 0 4px rgba(255,255,255,.16);overflow:hidden}
+.office-zone{position:absolute;border:4px solid #172a45;background-color:#d7e1e8;background-image:linear-gradient(rgba(38,62,84,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(38,62,84,.08) 1px,transparent 1px);background-size:24px 24px}
+.office-zone.manager{top:0;right:0;width:39%;height:45%}
+.office-zone.meeting{right:0;bottom:0;width:39%;height:55%;background-color:#688da2}
+.office-title{position:absolute;z-index:5;padding:5px 8px;border:2px solid #172a45;background:#fff9e8;color:#172a45;font-size:10px;font-weight:800;letter-spacing:.02em;box-shadow:3px 3px 0 rgba(23,42,69,.25)}
+.office-title.staff{left:14px;top:14px}.office-title.manager{right:14px;top:14px}.office-title.meeting{right:14px;top:calc(45% + 14px)}
+.pixel-desk{position:absolute;width:128px;height:58px;border:4px solid #53341f;background:#a76231;box-shadow:0 7px 0 #70411f}
+.pixel-desk::before{content:"";position:absolute;left:35px;top:-30px;width:54px;height:32px;border:4px solid #27374b;background:#84b7df;box-shadow:inset 0 0 0 5px #d8f1ff}
+.pixel-desk::after{content:"";position:absolute;right:10px;top:9px;width:15px;height:15px;border:3px solid #5c3c24;border-radius:50%;background:#f7ead0}
+.desk-schedule{left:38px;top:145px}.desk-promotion{left:220px;top:145px}.desk-policy{left:128px;top:375px}
+.manager-desk{position:absolute;right:50px;top:112px;width:144px;height:58px;border:4px solid #53341f;background:#a76231;box-shadow:0 7px 0 #70411f}
+.meeting-table{position:absolute;right:54px;bottom:92px;width:150px;height:74px;border:4px solid #493220;border-radius:10px;background:#b47a48;box-shadow:0 7px 0 #5b3e27}
+.pixel-agent{--agent:#2563eb;position:absolute;z-index:6;width:46px;height:70px;transition:left .45s ease,top .45s ease,filter .2s}
+.pixel-agent .head{position:absolute;left:11px;top:2px;width:26px;height:25px;border:3px solid #172a45;background:#efbb8c}
+.pixel-agent .hair{position:absolute;left:8px;top:0;width:31px;height:12px;border:3px solid #172a45;border-bottom:0;background:#3c2a24}
+.pixel-agent .body{position:absolute;left:7px;top:28px;width:34px;height:29px;border:3px solid #172a45;background:var(--agent)}
+.pixel-agent .legs{position:absolute;left:10px;top:55px;width:28px;height:13px;border-left:8px solid #172a45;border-right:8px solid #172a45}
+.pixel-agent .nameplate{position:absolute;left:50%;top:72px;transform:translateX(-50%);min-width:76px;padding:4px 6px;border-radius:5px;background:#172a45;color:#fff;font-size:9px;font-weight:700;text-align:center;white-space:nowrap}
+.pixel-agent .speech{display:none;position:absolute;left:36px;bottom:50px;width:138px;padding:7px 8px;border:2px solid #172a45;border-radius:7px;background:#fff;color:#263244;font-size:10px;font-weight:650;line-height:1.35;box-shadow:3px 3px 0 rgba(23,42,69,.18)}
+.pixel-agent .speech::after{content:"";position:absolute;left:-8px;bottom:8px;border-width:5px 7px 5px 0;border-style:solid;border-color:transparent #172a45 transparent transparent}
+.pixel-agent[data-status="running"]{animation:agentWork .72s steps(2,end) infinite}
+.pixel-agent[data-status="running"] .speech,.pixel-agent[data-status="reviewing"] .speech,.pixel-agent[data-status="completed"] .speech,.pixel-agent[data-status="failed"] .speech{display:block}
+.pixel-agent[data-status="queued"]{filter:saturate(.55);opacity:.8}
+.pixel-agent[data-status="completed"] .body{box-shadow:0 0 0 4px rgba(34,197,94,.28)}
+.pixel-agent[data-status="failed"] .body{box-shadow:0 0 0 4px rgba(239,68,68,.3)}
+.agent-secretary{--agent:#193d7b;right:96px;top:70px}.agent-schedule{--agent:#2563eb;left:80px;top:225px}.agent-promotion{--agent:#7c3aed;left:263px;top:225px}.agent-policy{--agent:#059669;left:170px;top:455px}
+.office-plant{position:absolute;width:28px;height:40px;border-bottom:17px solid #a76231}
+.office-plant::before{content:"";position:absolute;left:5px;top:0;width:18px;height:25px;background:#1f9d62;clip-path:polygon(50% 0,68% 36%,100% 16%,78% 64%,88% 100%,50% 72%,14% 100%,24% 62%,0 18%,34% 38%)}
+.plant-a{left:14px;bottom:14px}.plant-b{right:14px;bottom:14px}
+.office-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:14px 18px;border-top:1px solid #edf0f4}
+.office-stat{padding:10px;border-radius:10px;background:#f6f8fb}.office-stat b{display:block;font-size:18px;color:#172a45}.office-stat span{font-size:10.5px;color:#8791a0}
+.office-side{display:flex;flex-direction:column;gap:16px}
+.office-panel{padding:18px;background:#fff;border:1px solid #e6eaf0;border-radius:14px;box-shadow:0 2px 8px rgba(15,29,51,.04)}
+.office-run-title{margin-top:10px;font-size:13px;font-weight:700;line-height:1.45;color:#263244}
+.office-progress{height:7px;margin-top:13px;border-radius:5px;background:#e9edf3;overflow:hidden}.office-progress>span{display:block;height:100%;border-radius:5px;background:linear-gradient(90deg,#2563eb,#22c55e);transition:width .35s}
+.office-feed{display:flex;flex-direction:column;margin-top:8px}.office-feed-item{display:flex;gap:10px;padding:11px 0;border-bottom:1px solid #f0f2f5}.office-feed-item:last-child{border-bottom:0}.office-feed-dot{width:8px;height:8px;margin-top:5px;border-radius:50%;background:#94a3b8;flex-shrink:0}.office-feed-dot.work{background:#2563eb;box-shadow:0 0 0 4px #dbeafe}.office-feed-dot.done{background:#22c55e}.office-feed-text{font-size:11.5px;line-height:1.45;color:#536071}.office-feed-text b{display:block;color:#27313f;font-size:12px}
+@keyframes officePulse{50%{opacity:.45;transform:scale(.8)}}@keyframes agentWork{50%{transform:translateY(-3px)}}
+.agent-control-layout{display:grid;grid-template-columns:minmax(680px,1fr) 330px;gap:16px;max-width:1480px;margin:0 auto}
+.control-deck{position:relative;min-height:690px;overflow:hidden;border:1px solid #1e3350;border-radius:16px;background:#07111f;color:#dcecff;box-shadow:0 18px 45px rgba(6,15,29,.18)}
+.control-deck::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(54,103,144,.09) 1px,transparent 1px),linear-gradient(90deg,rgba(54,103,144,.09) 1px,transparent 1px),radial-gradient(circle at 50% 42%,rgba(13,148,136,.13),transparent 38%);background-size:32px 32px,32px 32px,auto;pointer-events:none}
+.control-head{position:relative;z-index:4;display:flex;align-items:center;gap:12px;padding:18px 20px;border-bottom:1px solid rgba(125,171,211,.14);background:rgba(8,22,40,.78);backdrop-filter:blur(10px)}
+.control-logo{width:39px;height:39px;border:1px solid #1e7494;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#63e6d2;background:rgba(13,148,136,.13);box-shadow:inset 0 0 18px rgba(34,211,179,.08)}
+.control-live{display:inline-flex;align-items:center;gap:6px;margin-left:auto;color:#50e3a4;font-size:10.5px;font-weight:750;letter-spacing:.06em}.control-live::before{content:"";width:7px;height:7px;border-radius:50%;background:#2ee58d;box-shadow:0 0 10px #2ee58d;animation:officePulse 1.5s infinite}
+.control-metrics{position:relative;z-index:3;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;padding:14px 16px}
+.control-metric{padding:11px 12px;border:1px solid rgba(94,145,187,.16);border-radius:9px;background:rgba(14,34,57,.7)}.control-metric span{display:block;color:#6f8ba6;font-size:9.5px;font-weight:700;letter-spacing:.08em}.control-metric b{display:block;margin-top:4px;color:#eaf5ff;font-size:19px}.control-metric b.green{color:#42e59b}.control-metric b.cyan{color:#53d9ff}
+.agent-network{position:relative;z-index:2;height:505px;margin:0 16px 16px;border:1px solid rgba(78,137,181,.18);border-radius:12px;background:rgba(5,17,31,.68);overflow:hidden}
+.agent-network::after{content:"AI ORCHESTRATION NETWORK";position:absolute;left:15px;bottom:12px;color:rgba(103,143,177,.32);font-size:9px;font-weight:800;letter-spacing:.2em}
+.network-lines{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}.network-line{fill:none;stroke:#174765;stroke-width:1.4;stroke-dasharray:5 6}.network-line.active{stroke:#1cd6b4;filter:drop-shadow(0 0 4px #1cd6b4);animation:networkFlow 1.2s linear infinite}
+.network-signal{fill:#71ffe1;filter:drop-shadow(0 0 5px #20d4b2);opacity:0}.network-signal.active{opacity:1}
+.agent-node{--node:#2684ff;position:absolute;width:142px;min-height:116px;padding:12px 10px 10px;border:1px solid color-mix(in srgb,var(--node) 48%,#23415c);border-radius:12px;background:linear-gradient(145deg,rgba(20,43,68,.95),rgba(8,24,42,.96));color:#dcecff;text-align:center;cursor:pointer;box-shadow:inset 0 0 24px rgba(57,132,185,.05),0 10px 25px rgba(0,0,0,.18);transition:transform .2s,border-color .2s,box-shadow .2s}
+.agent-node:hover{transform:translateY(-3px);border-color:var(--node);box-shadow:0 0 25px color-mix(in srgb,var(--node) 24%,transparent)}
+.agent-node-core{position:relative;width:46px;height:46px;margin:0 auto 8px;border:1px solid var(--node);transform:rotate(30deg);border-radius:14px;background:rgba(7,17,31,.9);box-shadow:inset 0 0 0 6px color-mix(in srgb,var(--node) 12%,transparent),0 0 14px color-mix(in srgb,var(--node) 30%,transparent)}
+.agent-node-core::before{content:"";position:absolute;inset:12px;border-radius:50%;background:var(--node);box-shadow:0 0 12px var(--node);animation:nodeBreath 2.2s ease-in-out infinite}
+.agent-node-core svg{position:absolute;left:13px;top:13px;transform:rotate(-30deg);z-index:2;color:#06121f}
+.agent-node-name{font-size:11.5px;font-weight:800}.agent-node-role{margin-top:3px;color:#6f8ba6;font-size:9.5px}.agent-node-status{display:inline-flex;align-items:center;gap:4px;margin-top:8px;padding:3px 7px;border-radius:8px;background:rgba(71,101,129,.17);color:#8fa8bd;font-size:9px;font-weight:800;letter-spacing:.04em}.agent-node-status::before{content:"";width:5px;height:5px;border-radius:50%;background:currentColor}
+.agent-node .speech{display:none}
+.agent-node[data-status="running"],.agent-node[data-status="reviewing"]{border-color:var(--node);box-shadow:0 0 28px color-mix(in srgb,var(--node) 28%,transparent)}.agent-node[data-status="running"] .agent-node-status{color:#4cf0ad;background:rgba(29,205,132,.1)}.agent-node[data-status="running"] .agent-node-status::after{content:"ACTIVE"}.agent-node[data-status="reviewing"] .agent-node-status{color:#f5b942}.agent-node[data-status="reviewing"] .agent-node-status::after{content:"REVIEW"}
+.agent-node[data-status="completed"] .agent-node-status{color:#53d9ff}.agent-node[data-status="completed"] .agent-node-status::after{content:"DONE"}.agent-node[data-status="queued"] .agent-node-status::after,.agent-node[data-status="idle"] .agent-node-status::after{content:"STANDBY"}.agent-node[data-status="failed"] .agent-node-status{color:#ff6b7a}.agent-node[data-status="failed"] .agent-node-status::after{content:"ERROR"}
+.agent-node[data-status="delegating"] .agent-node-status,.agent-node[data-status="monitoring"] .agent-node-status{color:#4cf0ad}.agent-node[data-status="delegating"] .agent-node-status::after{content:"ASSIGN"}.agent-node[data-status="monitoring"] .agent-node-status::after{content:"MANAGE"}.agent-node[data-status="approved"] .agent-node-status{color:#53d9ff}.agent-node[data-status="approved"] .agent-node-status::after{content:"APPROVED"}.agent-node[data-status="reworking"] .agent-node-status{color:#f5b942}.agent-node[data-status="reworking"] .agent-node-status::after{content:"REWORK"}
+.node-secretary{--node:#27dfbd;left:50%;top:170px;transform:translateX(-50%);width:162px}.node-secretary:hover{transform:translateX(-50%) translateY(-3px)}.node-schedule{--node:#3292ff;left:7%;top:350px}.node-promotion{--node:#a467ff;left:calc(50% - 71px);top:360px}.node-policy{--node:#35d58a;right:7%;top:350px}
+.agent-network.hierarchy{height:700px}.hierarchy .node-secretary{top:35px}.team-lead-node{width:126px;min-height:108px}.worker-node{width:128px;min-height:68px;padding:7px;opacity:.92}.worker-node .agent-node-core{width:25px;height:25px;margin-bottom:4px}.worker-node .agent-node-core::before{inset:7px}.worker-node .agent-node-name{font-size:9.5px}.worker-node .agent-node-role{display:none}.worker-node .agent-node-status{margin-top:4px}.node-schedule-lead{--node:#3292ff;left:8%;top:220px}.node-promotion-lead{--node:#a467ff;left:calc(50% - 63px);top:220px}.node-policy-lead{--node:#35d58a;right:8%;top:220px}.schedule-worker{--node:#3292ff;left:8%}.promotion-worker{--node:#a467ff;left:calc(50% - 64px)}.policy-worker{--node:#35d58a;right:8%}.worker-slot-1{top:410px}.worker-slot-2{top:500px}.worker-slot-3{top:590px}.hierarchy-label{position:absolute;color:#4f718d;font-size:8.5px;font-weight:800;letter-spacing:.16em}.hierarchy-label.command{top:12px;left:15px}.hierarchy-label.leads{top:190px;left:15px}.hierarchy-label.workers{top:380px;left:15px}
+.control-side{display:flex;flex-direction:column;gap:14px}.control-panel{padding:17px;background:#0c192a;border:1px solid #1b314a;border-radius:14px;color:#dbeaf7;box-shadow:0 12px 28px rgba(9,19,32,.12)}.control-panel .office-run-title{color:#e3eef8}.control-panel .office-progress{background:#172b42}.control-panel .office-feed-item{border-color:#192e45}.control-panel .office-feed-text{color:#7892aa}.control-panel .office-feed-text b{color:#cde0ef}.control-panel .office-feed-dot{background:#526d84}.control-panel .office-feed-dot.work{background:#22d3b6;box-shadow:0 0 0 4px rgba(34,211,182,.12),0 0 10px #22d3b6}.control-panel .office-feed-dot.done{background:#38bdf8}
+.agent-detail{min-height:132px;margin-top:12px;padding:12px;border:1px solid #19334c;border-radius:10px;background:#081522;color:#8ca5ba;font-size:11.5px;line-height:1.55}.agent-detail b{display:block;margin-bottom:5px;color:#d5e7f5;font-size:12px}
+@keyframes nodeBreath{50%{transform:scale(.72);opacity:.65}}@keyframes networkFlow{to{stroke-dashoffset:-22}}
+@media(max-width:1180px){.agent-control-layout{grid-template-columns:minmax(0,1fr)}.control-side{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:760px){.agent-control-layout{display:block}.control-side{display:block}.control-panel{margin-top:12px}.control-head{padding:14px}.control-head>div:nth-child(2){min-width:0}.control-head>div:nth-child(2)>div{white-space:normal}.control-live{font-size:8.5px}.control-metrics{grid-template-columns:repeat(2,minmax(0,1fr));padding:10px}.agent-network,.agent-network.hierarchy{height:690px;margin:0 10px 10px;overflow:hidden}.agent-network-inner{position:relative;width:100%;height:100%}.agent-node,.team-lead-node{width:94px;min-height:96px;padding:8px 4px}.agent-node-core{width:36px;height:36px;margin-bottom:5px}.agent-node-core::before{inset:9px}.agent-node-core svg{left:8px;top:8px}.agent-node-name{font-size:9.5px}.agent-node-role{font-size:7.5px}.hierarchy .node-secretary{width:108px;left:50%;top:30px}.node-schedule-lead{left:1%;top:185px}.node-promotion-lead{left:calc(50% - 47px);top:185px}.node-policy-lead{right:1%;top:185px}.worker-node{width:94px;min-height:62px;padding:6px 3px}.schedule-worker{left:1%}.promotion-worker{left:calc(50% - 47px)}.policy-worker{right:1%}.worker-slot-1{top:385px}.worker-slot-2{top:475px}.worker-slot-3{top:565px}.hierarchy-label.leads{top:155px}.hierarchy-label.workers{top:355px}.network-lines{height:100%}}
+/* 밝은 MOIDA 관제센터 테마 */
+.control-deck{border-color:#e2e8f0;background:#f8fafc;color:#243146;box-shadow:0 2px 10px rgba(16,24,40,.05)}
+.control-deck::before{background-image:linear-gradient(rgba(74,106,145,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(74,106,145,.055) 1px,transparent 1px),radial-gradient(circle at 50% 38%,rgba(59,130,246,.07),transparent 38%)}
+.control-head{border-color:#e8edf3;background:rgba(255,255,255,.92)}.control-logo{border-color:#c9d8ee;background:#edf4ff;color:#2458a6;box-shadow:none}.control-live{color:#16a34a}.control-live::before{background:#22c55e;box-shadow:0 0 0 4px rgba(34,197,94,.1)}
+.control-metric{border-color:#e4eaf1;background:#fff;box-shadow:0 1px 2px rgba(16,24,40,.03)}.control-metric span{color:#8a97a8}.control-metric b{color:#1e293b}.control-metric b.green{color:#16a34a}.control-metric b.cyan{color:#2563eb}
+.agent-network{border-color:#e1e8f0;background:rgba(255,255,255,.7)}.agent-network::after{color:rgba(54,89,132,.22)}
+.network-line{stroke:#c3d2e4}.network-line.active{stroke:#2563eb;filter:drop-shadow(0 0 3px rgba(37,99,235,.5))}.network-signal{fill:#2563eb;filter:drop-shadow(0 0 4px #60a5fa)}
+.agent-node{border-color:color-mix(in srgb,var(--node) 35%,#dbe4ef);background:linear-gradient(145deg,#fff,#f6f9fd);color:#253247;box-shadow:0 5px 14px rgba(22,43,71,.08)}
+.agent-node:hover{box-shadow:0 8px 22px color-mix(in srgb,var(--node) 15%,transparent)}.agent-node-core{background:#fff}.agent-node-name{color:#243146}.agent-node-role{color:#91a0b2}.agent-node-status{background:#edf2f7;color:#8291a3}.hierarchy-label{color:#8090a3}
+.control-side{gap:12px}.control-panel{border-color:#e2e8f0;background:#fff;color:#263244;box-shadow:0 2px 8px rgba(16,24,40,.04)}.control-panel .office-run-title{color:#263244}.control-panel .office-progress{background:#e8edf3}.control-panel .office-feed-item{border-color:#eef1f5}.control-panel .office-feed-text{color:#7b8796}.control-panel .office-feed-text b{color:#344054}.control-panel .office-feed-dot{background:#94a3b8}.control-panel .office-feed-dot.work{background:#2563eb;box-shadow:0 0 0 4px #dbeafe}.control-panel .office-feed-dot.done{background:#22c55e}
+.agent-detail{border-color:#e5eaf0;background:#f8fafc;color:#7b8796}.agent-detail b{color:#344054}
+.execution-list{display:flex;flex-direction:column;gap:7px;margin-top:10px}.execution-item{display:flex;align-items:center;gap:9px;padding:9px 10px;border:1px solid #e7ebf1;border-radius:9px;background:#f8fafc}.execution-icon{width:25px;height:25px;border-radius:7px;display:flex;align-items:center;justify-content:center;background:#eaf1fb;color:#2563eb;font-size:11px;font-weight:800;flex-shrink:0}.execution-main{min-width:0;flex:1}.execution-name{font-size:11.5px;font-weight:700;color:#344054;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.execution-task{margin-top:2px;font-size:9.5px;color:#8d99a8;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.execution-state{font-size:9px;font-weight:800;color:#6f7f91;white-space:nowrap}.execution-item.active{border-color:#bfdbfe;background:#eff6ff}.execution-item.active .execution-state{color:#2563eb}.execution-item.active .execution-icon{animation:executionSpin 1.2s linear infinite}.execution-item.review{border-color:#fde3a7;background:#fffbeb}.execution-item.review .execution-state{color:#d97706}.execution-item.done{border-color:#d7f3df;background:#f0fdf4}.execution-item.done .execution-state{color:#16a34a}
+@keyframes executionSpin{to{transform:rotate(360deg)}}
+.agent-network.org-mode{height:auto;min-height:700px;padding:18px;overflow:visible}.org-secretary{--node:#19bca2;position:relative;left:auto;top:auto;width:170px;min-height:108px;margin:0 auto 28px}.org-secretary:hover{transform:translateY(-3px)}
+.org-division{margin-top:14px;padding:14px;border:1px solid #e2e8f0;border-radius:13px;background:rgba(255,255,255,.78)}.org-division-head{display:flex;align-items:center;gap:9px;margin-bottom:12px}.org-division-head b{font-size:13px;color:#253247}.org-division-head span{font-size:10px;color:#94a0af}.org-division-head::before{content:"";width:4px;height:18px;border-radius:3px;background:#2563eb}.org-division.local .org-division-head::before{background:#16a34a}.org-division.direct .org-division-head::before{background:#7c3aed}
+.org-team-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.org-division.local .org-team-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.org-division.direct .org-team-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.org-team-card{--team:#2563eb;padding:10px;border:1px solid color-mix(in srgb,var(--team) 24%,#e2e8f0);border-radius:11px;background:#fff;box-shadow:0 2px 7px rgba(16,24,40,.04)}.org-team-lead{display:flex;align-items:center;gap:7px;padding-bottom:8px;border-bottom:1px solid #eef1f5;cursor:pointer}.org-team-orb{width:25px;height:25px;border:1px solid var(--team);border-radius:8px;background:color-mix(in srgb,var(--team) 9%,#fff);box-shadow:inset 0 0 0 6px color-mix(in srgb,var(--team) 5%,transparent);flex-shrink:0}.org-team-name{min-width:0;flex:1;font-size:10.5px;font-weight:800;color:#344054;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.org-team-state{font-size:7.5px;font-weight:800;color:#8a97a8}.org-team-workers{display:flex;flex-direction:column;gap:5px;padding-top:8px}.org-worker{display:flex;align-items:center;gap:6px;padding:5px 6px;border-radius:7px;background:#f8fafc;cursor:pointer}.org-worker::before{content:"";width:6px;height:6px;border-radius:50%;background:#aab5c2}.org-worker-name{min-width:0;flex:1;font-size:9px;color:#596679;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.org-worker-status{font-size:7px;font-weight:800;color:#98a3b1}.org-team-card[data-status="running"],.org-team-card[data-status="reviewing"],.org-team-card[data-status="monitoring"]{border-color:var(--team);box-shadow:0 0 0 3px color-mix(in srgb,var(--team) 9%,transparent)}.org-team-card[data-status="running"] .org-team-orb,.org-team-card[data-status="reviewing"] .org-team-orb{animation:nodeBreath 1.3s ease-in-out infinite}.org-worker[data-status="running"],.org-worker[data-status="reworking"]{background:color-mix(in srgb,var(--team) 8%,#fff)}.org-worker[data-status="running"]::before,.org-worker[data-status="reworking"]::before{background:var(--team);box-shadow:0 0 7px var(--team)}.org-worker[data-status="completed"]::before{background:#22c55e}
+.org-team-workers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;padding-top:9px}.org-worker{position:relative;display:block;min-width:0;min-height:72px;padding:8px 3px 5px;border:1px solid #edf1f5;border-radius:9px;background:#fafbfd;text-align:center;animation:agentIdle 3.2s ease-in-out infinite;animation-delay:var(--delay,0s);transition:border-color .2s,background .2s,box-shadow .2s}.org-worker::before{display:none}.org-worker-avatar{position:relative;display:block;width:25px;height:25px;margin:0 auto 5px;border:1px solid color-mix(in srgb,var(--team) 45%,#dbe5ef);border-radius:8px;background:#fff;box-shadow:inset 0 0 0 5px color-mix(in srgb,var(--team) 6%,transparent)}.org-worker-avatar::before{content:"";position:absolute;inset:7px;border-radius:50%;background:#aab5c2}.org-worker-avatar::after{content:"";position:absolute;left:50%;top:50%;width:34px;height:1px;transform:translate(-50%,-50%);background:transparent}.org-worker-name{display:block;font-size:8.5px;font-weight:700;line-height:1.15;white-space:normal;word-break:keep-all}.org-worker-status{display:block;margin-top:3px;font-size:6.8px}.org-worker[data-status="running"],.org-worker[data-status="reworking"]{border-color:color-mix(in srgb,var(--team) 45%,#dbe5ef);box-shadow:0 5px 12px color-mix(in srgb,var(--team) 12%,transparent);animation:agentWorking .72s ease-in-out infinite}.org-worker[data-status="running"] .org-worker-avatar::before,.org-worker[data-status="reworking"] .org-worker-avatar::before{background:var(--team);box-shadow:0 0 8px var(--team)}.org-worker[data-status="running"] .org-worker-avatar::after,.org-worker[data-status="reworking"] .org-worker-avatar::after{background:linear-gradient(90deg,transparent,var(--team),transparent);animation:agentScan 1s linear infinite}.org-worker[data-status="reviewing"]{border-color:#f2c66d;background:#fffaf0;animation:agentReview 1.4s ease-in-out infinite}.org-worker[data-status="completed"]{background:#f2fcf5;animation:none}.org-worker[data-status="completed"] .org-worker-avatar::before{background:#22c55e;box-shadow:0 0 7px rgba(34,197,94,.4)}.org-worker[data-status="failed"]{border-color:#fecaca;background:#fff5f5;animation:agentError .35s linear 2}
+@keyframes agentIdle{0%,100%{transform:translateY(0)}50%{transform:translateY(-2px)}}@keyframes agentWorking{0%,100%{transform:translate(-1px,-1px)}50%{transform:translate(2px,1px)}}@keyframes agentScan{0%{transform:translate(-50%,-13px)}100%{transform:translate(-50%,13px)}}@keyframes agentReview{50%{box-shadow:0 0 0 4px rgba(245,185,66,.13)}}@keyframes agentError{25%{transform:translateX(-2px)}75%{transform:translateX(2px)}}
+.org-team-lead{border-radius:8px;transition:background .18s,transform .18s}.org-team-lead:hover{background:color-mix(in srgb,var(--team) 6%,#fff);transform:translateY(-2px)}.org-team-lead:hover .org-team-orb{animation:leadHover .75s ease-in-out infinite;box-shadow:0 0 12px color-mix(in srgb,var(--team) 30%,transparent),inset 0 0 0 6px color-mix(in srgb,var(--team) 8%,transparent)}.org-worker:hover{z-index:2;border-color:var(--team);background:color-mix(in srgb,var(--team) 7%,#fff);box-shadow:0 7px 15px color-mix(in srgb,var(--team) 16%,transparent);animation:workerHover .62s ease-in-out infinite}.org-worker:hover .org-worker-avatar{animation:workerCoreHover .62s ease-in-out infinite}.org-worker:hover .org-worker-avatar::before{background:var(--team);box-shadow:0 0 7px color-mix(in srgb,var(--team) 55%,transparent)}
+@keyframes leadHover{0%,100%{transform:rotate(0) scale(1)}50%{transform:rotate(12deg) scale(1.1)}}@keyframes workerHover{0%,100%{transform:translateY(-2px) rotate(-.5deg)}50%{transform:translateY(-5px) rotate(.5deg)}}@keyframes workerCoreHover{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(8deg) scale(1.08)}}
+@media(max-width:1180px){.org-team-grid,.org-division.local .org-team-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:760px){.agent-network.org-mode{height:auto;min-height:0;padding:10px}.org-secretary{width:140px}.org-team-grid,.org-division.local .org-team-grid,.org-division.direct .org-team-grid{grid-template-columns:minmax(0,1fr)}.org-division-head{align-items:flex-start;flex-wrap:wrap}.org-division-head span{width:100%;padding-left:13px}}
 .secretary-grid{max-width:none!important;margin:0!important}
 .dashboard-kpis>div[data-go="schedule"]{order:1}
 .dashboard-kpis>div[data-go="crm"]{order:2}
@@ -50,8 +165,11 @@ body.app-loading #sideAvatar{color:transparent!important;background:#243a5c!impo
 .dashboard-kpis>div[data-go="minwon"]{order:4}
 #mobileMenuBtn,#mobileSideOverlay{display:none}
 @media(max-width:1180px){
+  .agent-office-layout{grid-template-columns:minmax(0,1fr)}.office-side{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
   .secretary-grid{grid-template-columns:220px minmax(0,1fr)!important}
   .secretary-aside{display:none!important}
+  .secretary-aside.open{display:flex!important;position:fixed;z-index:70;right:18px;top:76px;bottom:18px;width:320px;padding:2px;background:#f5f6f8;border-radius:14px;box-shadow:0 18px 48px rgba(8,18,34,.28)}
+  .agent-room-toggle{display:inline-flex;align-items:center}
   .page[data-page="dashboard"] .pg>div[style*="grid-template-columns:repeat(4"],
   .page[data-page="pr"] .pg>div[style*="grid-template-columns:repeat(4"],
   .page[data-page="policy"] .pg>div[style*="grid-template-columns:repeat(4"]{grid-template-columns:repeat(2,minmax(0,1fr))!important}
@@ -64,6 +182,7 @@ body.app-loading #sideAvatar{color:transparent!important;background:#243a5c!impo
   #dashNews{grid-template-columns:minmax(0,1fr)!important}
 }
 @media(max-width:760px){
+  .agent-office-layout{display:block}.office-side{display:block}.office-panel{margin-top:12px}.pixel-office-wrap{padding:10px}.pixel-office{min-height:520px;transform-origin:top left}.agent-office-head{padding:14px}.office-summary{grid-template-columns:repeat(3,minmax(0,1fr));padding:12px}.office-stat{padding:8px}.office-stat b{font-size:16px}
   #sideBar,#sideBar.collapsed{position:fixed!important;inset:0 auto 0 0;width:min(280px,84vw)!important;height:100dvh;z-index:60;transform:translateX(-105%);overflow:hidden;transition:transform .22s ease!important;box-shadow:8px 0 28px rgba(8,18,34,.24)}
   #sideBar.mobile-open,#sideBar.collapsed.mobile-open{transform:translateX(0)}
   #sideBar.collapsed .sb-brandtext,#sideBar.collapsed .sb-profiletext,#sideBar.collapsed .nav-item>span:not(.nav-accent),#sideBar.collapsed #profileCard>svg{display:block!important}
@@ -88,6 +207,7 @@ body.app-loading #sideAvatar{color:transparent!important;background:#243a5c!impo
   #aiPanel{border-radius:10px!important}
   #aiMessages{padding:16px 12px!important}
   #aiMessages>div{max-width:94%!important}
+  .secretary-aside.open{left:12px;right:12px;top:70px;bottom:12px;width:auto}
   .page iframe{height:calc(100dvh - 86px)!important;border-radius:10px!important}
   .page[data-page="dashboard"] .pg>div[style*="grid-template-columns:repeat(4"],
   .page[data-page="pr"] .pg>div[style*="grid-template-columns:repeat(4"],
@@ -181,7 +301,16 @@ body.app-loading #sideAvatar{color:transparent!important;background:#243a5c!impo
 
       
 
-      <div class="sb-system" style="margin-top:auto;display:flex;flex-direction:column;gap:2px">
+      <div class="sb-agent-section" style="margin-top:auto;display:flex;flex-direction:column;gap:2px">
+        <div class="sb-label" style="font-size:10.5px;font-weight:700;letter-spacing:0.08em;color:#536683;padding:16px 12px 6px">AI 조직</div>
+        <div class="nav-item" data-page="agents" style="position:relative;display:flex;align-items:center;gap:11px;padding:10px 12px;border-radius:9px;font-size:13.5px;font-weight:500;cursor:pointer;transition:background .15s,color .15s" data-hover="background:rgba(255,255,255,0.06)">
+          <span class="nav-accent" style="position:absolute;left:-14px;top:9px;bottom:9px;width:3px;border-radius:0 3px 3px 0;background:#5b8cff"></span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="9" width="18" height="11" rx="2"/><path d="M8 9V6h8v3M8 14h.01M12 14h.01M16 14h.01M7 20v-3M17 20v-3"/></svg>
+          <span>AI 에이전트 사무실</span>
+        </div>
+      </div>
+
+      <div class="sb-system" style="display:flex;flex-direction:column;gap:2px">
       <div class="sb-label" style="font-size:10.5px;font-weight:700;letter-spacing:0.08em;color:#536683;padding:16px 12px 6px">시스템</div>
 
       <div class="nav-item" data-page="admin" style="position:relative;display:flex;align-items:center;gap:11px;padding:10px 12px;border-radius:9px;font-size:13.5px;font-weight:500;cursor:pointer;transition:background .15s,color .15s" data-hover="background:rgba(255,255,255,0.06)">
@@ -358,6 +487,7 @@ body.app-loading #sideAvatar{color:transparent!important;background:#243a5c!impo
           <div style="display:flex;align-items:center;gap:11px;padding:16px 20px;border-bottom:1px solid #eef1f5">
             <div style="width:40px;height:40px;border-radius:11px;background:linear-gradient(135deg,#16305c,#3b6fd4);display:flex;align-items:center;justify-content:center;color:#fff"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.6L19.5 10l-5.6 1.9L12 17.5l-1.9-5.6L4.5 10l5.6-1.9z"/></svg></div>
             <div style="flex:1"><div style="font-size:15px;font-weight:700">AI 비서실장</div><div style="font-size:12px;color:#16a34a;display:flex;align-items:center;gap:5px;margin-top:1px"><span style="width:7px;height:7px;border-radius:50%;background:#16a34a"></span>의정활동 데이터 연동됨</div></div>
+            <button id="agentRoomToggle" class="agent-room-toggle" type="button" aria-expanded="false">작업실</button>
             <button id="aiNew" style="height:34px;padding:0 13px;background:#f3f5f8;border:1px solid #e7eaef;border-radius:8px;font-size:12.5px;font-weight:600;color:#5b6675;cursor:pointer">새 대화</button>
           </div>
           <div id="aiMessages" style="flex:1;overflow-y:auto;padding:22px 20px;display:flex;flex-direction:column;gap:18px;background:#fafbfc">
@@ -384,6 +514,16 @@ body.app-loading #sideAvatar{color:transparent!important;background:#243a5c!impo
 
         <div class="secretary-aside" style="display:flex;flex-direction:column;gap:16px;overflow-y:auto">
           <div style="background:#fff;border:1px solid #e9ecf1;border-radius:14px;padding:18px;box-shadow:0 1px 2px rgba(16,24,40,0.04)">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:5px">
+              <div style="font-size:14px;font-weight:700">AI 에이전트 작업실</div>
+              <span id="agentRunCount" style="font-size:10.5px;color:#2563eb;background:#eff6ff;padding:3px 7px;border-radius:10px;font-weight:700">0</span>
+            </div>
+            <div style="font-size:11px;color:#9aa3b0;line-height:1.45;margin-bottom:12px">비서실장이 지시를 나누고 결과를 통합합니다.</div>
+            <div id="agentRunList" style="display:flex;flex-direction:column;gap:8px">
+              <div style="padding:12px 4px;color:#a3abb7;font-size:11.5px;text-align:center">아직 배정된 작업이 없습니다.</div>
+            </div>
+          </div>
+          <div style="background:#fff;border:1px solid #e9ecf1;border-radius:14px;padding:18px;box-shadow:0 1px 2px rgba(16,24,40,0.04)">
             <div style="font-size:14px;font-weight:700;margin-bottom:14px">오늘의 할 일</div>
             <div id="aiTodo" style="display:flex;flex-direction:column;gap:10px"></div>
           </div>
@@ -397,6 +537,27 @@ body.app-loading #sideAvatar{color:transparent!important;background:#243a5c!impo
           </div>
         </div>
       </div>
+      </div>
+
+      <div class="page" data-page="agents">
+        <div class="pg agent-control-layout">
+          <section class="control-deck">
+            <div class="control-head"><div class="control-logo"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M19.1 4.9l-2.8 2.8M7.7 16.3l-2.8 2.8"/></svg></div><div><div style="font-size:15px;font-weight:800">MOIDA AI CONTROL CENTER</div><div style="margin-top:2px;color:#68849e;font-size:10.5px;letter-spacing:.05em">MULTI-AGENT ORCHESTRATION SYSTEM</div></div><span class="control-live">SYSTEM ONLINE</span></div>
+            <div class="control-metrics"><div class="control-metric"><span>TOTAL RUNS</span><b id="officeTotalRuns">0</b></div><div class="control-metric"><span>ACTIVE</span><b id="officeWorkingCount" class="green">0</b></div><div class="control-metric"><span>COMPLETED</span><b id="officeDoneCount" class="cyan">0</b></div><div class="control-metric"><span>AGENTS ONLINE</span><b class="green">37</b></div></div>
+            <div class="agent-network org-mode">
+              <div class="org-secretary agent-node" data-office-agent="secretary" data-status="idle"><div class="agent-node-core"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l1.9 5.6L19.5 10l-5.6 1.9L12 17.5l-1.9-5.6L4.5 10l5.6-1.9z"/></svg></div><div class="agent-node-name">AI 비서실장</div><div class="agent-node-role">전체 지휘·최종 보고</div><span class="agent-node-status"></span><span class="speech"></span></div>
+              <div class="org-division legislative"><div class="org-division-head"><b>의정활동 본부</b><span>조례·예산·행감·의정성과</span></div><div id="officeLegislativeTeams" class="org-team-grid"></div></div>
+              <div class="org-division local"><div class="org-division-head"><b>지역활동 본부</b><span>현장·민원·조직·지역홍보</span></div><div id="officeLocalTeams" class="org-team-grid"></div></div>
+              <div class="org-division direct"><div class="org-division-head"><b>비서실장 직속</b><span>행정기록·독립 검증</span></div><div id="officeDirectTeams" class="org-team-grid"></div></div>
+            </div>
+          </section>
+          <aside class="control-side">
+            <section class="control-panel"><div style="display:flex;align-items:center;justify-content:space-between"><b style="font-size:13px">CURRENT MISSION</b><span id="officeRunStatus" style="font-size:9.5px;font-weight:800;color:#2563eb;background:#eff6ff;padding:4px 7px;border-radius:8px">대기</span></div><div id="officeRunTitle" class="office-run-title">비서실장에게 지시하면 에이전트가 활성화됩니다.</div><div class="office-progress"><span id="officeProgressBar" style="width:0"></span></div><div id="officeProgressText" style="margin-top:7px;font-size:10.5px;color:#8a94a3">배정된 작업 없음</div><button data-go="secretary" style="width:100%;height:36px;margin-top:14px;border:0;border-radius:8px;background:#1d3a6e;color:#fff;font-size:11px;font-weight:800;cursor:pointer">새 지시 입력 →</button></section>
+            <section class="control-panel"><div style="display:flex;align-items:center;justify-content:space-between"><b style="font-size:13px">실시간 실행 현황</b><span id="officeActiveCount" style="font-size:10px;color:#2563eb;font-weight:800">0명 실행 중</span></div><div id="officeActiveAgents" class="execution-list"><div style="padding:18px 0;text-align:center;color:#a0a9b5;font-size:11px">현재 실행 중인 에이전트가 없습니다.</div></div></section>
+            <section class="control-panel"><div style="font-size:13px;font-weight:800">AGENT INSPECTOR</div><div id="agentInspector" class="agent-detail"><b>에이전트 노드를 선택하세요</b>현재 상태와 담당 업무가 여기에 표시됩니다.</div></section>
+            <section class="control-panel"><div style="font-size:13px;font-weight:800">LIVE ACTIVITY</div><div id="officeActivity" class="office-feed"><div style="padding:24px 0;text-align:center;color:#607b94;font-size:11px">아직 업무 기록이 없습니다.</div></div></section>
+          </aside>
+        </div>
       </div>
 
       <div class="page" data-page="crm"><iframe src="members.html?embed=1" title="조직관리" style="display:block;border:1px solid #e9ecf1;border-radius:12px;background:#fff;width:100%;height:calc(100vh - 130px)"></iframe></div>
@@ -584,6 +745,7 @@ body.app-loading #sideAvatar{color:transparent!important;background:#243a5c!impo
   var META = {
     dashboard:['대시보드','의원실 업무를 한눈에'],
     secretary:['AI 비서실장','AI가 정리한 브리핑과 할 일'],
+    agents:['AI 에이전트 사무실','AI 직원들의 업무 현황과 협업'],
     crm:['CRM','지지자·후원자·단체 관계 관리'],
     minwon:['민원','민원 접수부터 종결까지'],
     schedule:['일정·행사','의정활동과 지역 일정 관리'],
@@ -1915,6 +2077,311 @@ onAuthStateChanged(_auth, async function(user){
     msgs.insertAdjacentHTML('beforeend','<div style="display:flex;gap:11px;max-width:82%">'+AV+'<div style="background:#fff;border:1px solid #eef1f5;border-radius:4px 14px 14px 14px;padding:14px 16px;font-size:13.5px;color:#9aa3b0">생각하는 중…</div></div>');
     scroll(); return msgs.lastElementChild;
   }
+  /* ── 멀티에이전트 1단계: 별도 작업 컬렉션 + 초안 실행/통합 ─────────── */
+  var AGENT_DEFS={
+    schedule:{name:'지역 일정·수행 에이전트',leadName:'일정·수행팀장',icon:'📅',color:'#2563eb',role:'지역 일정·수행 실무담당'},
+    policy:{name:'조례·정책 실무 에이전트',leadName:'조례·정책팀장',icon:'📘',color:'#059669',role:'조례·정책 실무담당'},
+    audit:{name:'예산·행감 실무 에이전트',leadName:'예산·행감팀장',icon:'🔎',color:'#d97706',role:'예산·행정사무감사 실무담당'},
+    civil:{name:'지역현안·민원 실무 에이전트',leadName:'민원팀장',icon:'✉️',color:'#dc5a66',role:'지역현안·민원 실무담당'},
+    organization:{name:'지역조직·CRM 실무 에이전트',leadName:'조직팀장',icon:'👥',color:'#0f9f9a',role:'지역조직·CRM 실무담당'},
+    assemblypr:{name:'의정활동 홍보 에이전트',leadName:'의정홍보팀장',icon:'🏛️',color:'#7c3aed',role:'의정활동 홍보 실무담당'},
+    localpr:{name:'지역활동 홍보 에이전트',leadName:'지역홍보팀장',icon:'📣',color:'#db5b8b',role:'지역활동 홍보 실무담당'},
+    promotion:{name:'기존 홍보 실무 에이전트',leadName:'홍보팀장',icon:'📣',color:'#7c3aed',role:'기존 기록 호환용 홍보담당'},
+    records:{name:'행정·기록 실무 에이전트',leadName:'기록팀장',icon:'🗂️',color:'#64748b',role:'행정·기록 실무담당'},
+    verification:{name:'직속 검증 에이전트',leadName:'검증팀장',icon:'🛡️',color:'#1d4ed8',role:'사실·법률·보안 검증담당'}
+  };
+  var TEAM_WORKERS={
+    schedule:[{id:'calendar',name:'일정관리',role:'날짜·시간·장소와 일정 충돌을 정리한다.'},{id:'protocol',name:'의전·동선',role:'행사 의전, 이동 동선, 준비사항을 점검한다.'},{id:'coordination',name:'연락·조율',role:'관계자 연락과 확인·조율 항목을 정리한다.'}],
+    policy:[{id:'ordinance',name:'조례검토',role:'조례안과 상위법·유사 조례를 비교한다.'},{id:'analysis',name:'정책분석',role:'정책 쟁점, 영향, 대안을 분석한다.'},{id:'speech',name:'도정질문·발언',role:'도정질문, 5분 자유발언, 건의안 초안을 작성한다.'}],
+    audit:[{id:'budget',name:'예산·결산',role:'경기도 예산과 결산 수치를 분석한다.'},{id:'request',name:'요구자료',role:'행정사무감사 요구자료 목록과 목적을 작성한다.'},{id:'question',name:'행감질의',role:'기관 실적과 과거 지적사항을 바탕으로 질의서를 작성한다.'}],
+    civil:[{id:'triage',name:'민원분류',role:'민원 분야·긴급도·담당기관을 분류한다.'},{id:'response',name:'답변초안',role:'민원인에게 전달할 답변 초안을 작성한다.'},{id:'followup',name:'처리추적',role:'현장 확인과 담당 부서 처리기한을 추적한다.'}],
+    organization:[{id:'contacts',name:'연락처관리',role:'주민·단체·기관 연락처와 관계 이력을 정리한다.'},{id:'meeting',name:'간담회관리',role:'간담회 대상·의제·후속조치를 관리한다.'},{id:'opinion',name:'지역여론',role:'지역별 현안과 주민 의견을 요약한다.'}],
+    assemblypr:[{id:'briefing',name:'의정성과정리',role:'조례·예산·행감·도정질문 성과를 정리한다.'},{id:'press',name:'의정보도자료',role:'의정활동 중심의 보도자료를 작성한다.'},{id:'content',name:'의정SNS',role:'본회의·위원회 활동을 SNS 콘텐츠로 구성한다.'}],
+    localpr:[{id:'field',name:'현장소식',role:'현장방문·간담회·지역행사 소식을 작성한다.'},{id:'solution',name:'민원해결홍보',role:'민원 해결 과정과 성과를 주민 관점으로 정리한다.'},{id:'channel',name:'지역채널',role:'지역 커뮤니티와 SNS에 맞는 콘텐츠를 작성한다.'}],
+    promotion:[{id:'press',name:'기존 보도자료',role:'기존 작업 기록을 호환한다.'},{id:'social',name:'기존 SNS',role:'기존 작업 기록을 호환한다.'},{id:'monitoring',name:'기존 모니터링',role:'기존 작업 기록을 호환한다.'}],
+    records:[{id:'minutes',name:'회의록',role:'회의와 간담회 내용을 구조화해 기록한다.'},{id:'documents',name:'공문·보고서',role:'공문과 내부 보고서 초안을 작성한다.'},{id:'archive',name:'자료보관',role:'업무 결과와 근거자료의 분류·보관 기준을 정리한다.'}],
+    verification:[{id:'facts',name:'사실·수치검증',role:'근거, 날짜, 수치, 인용의 정확성을 검증한다.'},{id:'legal',name:'법률·조례검토',role:'법률·조례 충돌과 권한 범위를 점검한다.'},{id:'privacy',name:'개인정보·품질',role:'개인정보 노출, 표현 위험, 문서 품질을 최종 확인한다.'}]
+  };
+  var agentRuns=[], agentLocalLoaded=false, agentCloudLoaded=false;
+  var agentRunList=document.getElementById('agentRunList'), agentRunCount=document.getElementById('agentRunCount');
+  function agentOwner(){ return chatOwner(); }
+  function agentRunKey(){ return 'moida_agent_runs_'+agentOwner(); }
+  function cleanAgentRun(r){
+    if(!r||!r.id) return null;
+    return {
+      schemaVersion:+r.schemaVersion||1,id:String(r.id),tenantId:String(r.tenantId||agentOwner()),instruction:String(r.instruction||''),
+      status:String(r.status||'planning'),createdAt:+r.createdAt||Date.now(),updatedAt:+r.updatedAt||Date.now(),
+      summary:String(r.summary||''),error:String(r.error||''),taskIds:Array.isArray(r.taskIds)?r.taskIds.map(String):[],
+      tasks:(Array.isArray(r.tasks)?r.tasks:[]).map(function(t){return {
+        schemaVersion:+t.schemaVersion||1,id:String(t.id||''),runId:String(t.runId||r.id),agent:String(t.agent||'policy'),
+        title:String(t.title||'작업'),instruction:String(t.instruction||''),status:String(t.status||'queued'),
+        result:String(t.result||''),review:String(t.review||''),reviewFeedback:String(t.reviewFeedback||''),
+        reviewDecision:String(t.reviewDecision||''),workerStatus:String(t.workerStatus||''),leadStatus:String(t.leadStatus||''),
+        subtasks:(Array.isArray(t.subtasks)?t.subtasks:[]).map(function(s){return {id:String(s.id||''),workerId:String(s.workerId||''),name:String(s.name||''),role:String(s.role||''),status:String(s.status||'queued'),result:String(s.result||''),error:String(s.error||''),updatedAt:+s.updatedAt||Date.now()};}),
+        reworkCount:+t.reworkCount||0,error:String(t.error||''),createdAt:+t.createdAt||r.createdAt||Date.now(),
+        updatedAt:+t.updatedAt||Date.now(),dependencies:Array.isArray(t.dependencies)?t.dependencies.map(String):[]
+      };})
+    };
+  }
+  function statusLabel(s){ return {planning:'계획 중',queued:'대기',delegating:'배정 중',monitoring:'진행 관리',reworking:'재작업',running:'작업 중',reviewing:'팀장 검수',approved:'검수 승인',completed:'완료',failed:'오류'}[s]||s; }
+  function timeLabel(ts){ var d=new Date(+ts||Date.now()); return pad(d.getHours())+':'+pad(d.getMinutes()); }
+  function renderAgentRuns(){
+    if(!agentRunList) return;
+    agentRuns=agentRuns.map(cleanAgentRun).filter(Boolean).sort(function(a,b){return b.updatedAt-a.updatedAt;}).slice(0,20);
+    window.MOIDA_AGENT_RUNS=agentRuns;
+    try{window.dispatchEvent(new CustomEvent('moida:agent-runs',{detail:agentRuns}));}catch(e){}
+    if(agentRunCount) agentRunCount.textContent=String(agentRuns.length);
+    if(!agentRuns.length){ agentRunList.innerHTML='<div style="padding:12px 4px;color:#a3abb7;font-size:11.5px;text-align:center">아직 배정된 작업이 없습니다.</div>'; return; }
+    agentRunList.innerHTML=agentRuns.slice(0,8).map(function(r){
+      return '<div class="agent-run" data-agent-run="'+M.esc(r.id)+'" data-status="'+M.esc(r.status)+'">'
+        +'<div class="agent-run-head"><span class="agent-run-dot"></span><span class="agent-run-title">'+M.esc(r.instruction||'새 지시')+'</span><span class="agent-run-time">'+timeLabel(r.updatedAt)+'</span></div>'
+        +'<div class="agent-run-agents">'+(r.tasks||[]).map(function(t){var d=AGENT_DEFS[t.agent]||AGENT_DEFS.policy;var cls=t.status==='completed'?'done':t.status==='failed'?'fail':(t.status==='running'?'work':'');return '<span class="agent-badge '+cls+'">'+d.icon+' '+M.esc(d.name.replace(' 에이전트',''))+' · '+statusLabel(t.status)+'</span>';}).join('')+'</div>'
+        +'</div>';
+    }).join('');
+  }
+  function saveAgentRunsLocal(){
+    try{ localStorage.setItem(agentRunKey(),JSON.stringify(agentRuns.slice(0,20))); }catch(e){}
+    renderAgentRuns();
+  }
+  function persistAgentRun(run){
+    run.updatedAt=Date.now();
+    var i=agentRuns.findIndex(function(x){return x.id===run.id;});
+    if(i<0) agentRuns.unshift(run); else agentRuns[i]=run;
+    saveAgentRunsLocal();
+    if(!M.db||!M.fs||!M.uid||window.MOIDA_READONLY) return Promise.resolve(false);
+    var owner=agentOwner();
+    var runDoc={schemaVersion:+run.schemaVersion||3,id:run.id,tenantId:owner,instruction:run.instruction,status:run.status,
+      createdAt:run.createdAt,updatedAt:run.updatedAt,summary:run.summary||'',error:run.error||'',
+      taskIds:(run.tasks||[]).map(function(t){return t.id;})};
+    var writes=[M.fs.setDoc(M.fs.doc(M.db,'tenants',owner,'agent_runs',run.id),runDoc,{merge:true})];
+    (run.tasks||[]).forEach(function(t){
+      writes.push(M.fs.setDoc(M.fs.doc(M.db,'tenants',owner,'agent_tasks',t.id),{
+        schemaVersion:+t.schemaVersion||3,id:t.id,runId:run.id,tenantId:owner,agent:t.agent,title:t.title,instruction:t.instruction,
+        status:t.status,result:t.result||'',review:t.review||'',reviewFeedback:t.reviewFeedback||'',
+        reviewDecision:t.reviewDecision||'',workerStatus:t.workerStatus||'',leadStatus:t.leadStatus||'',
+        reworkCount:+t.reworkCount||0,subtasks:t.subtasks||[],error:t.error||'',dependencies:t.dependencies||[],
+        createdAt:t.createdAt,updatedAt:t.updatedAt
+      },{merge:true}));
+    });
+    return Promise.all(writes).then(function(){return true;}).catch(function(e){console.warn('agent save fallback',e);return false;});
+  }
+  function loadAgentRuns(){
+    if(!agentLocalLoaded){
+      agentLocalLoaded=true;
+      try{ agentRuns=JSON.parse(localStorage.getItem(agentRunKey())||'[]')||[]; }catch(e){agentRuns=[];}
+      renderAgentRuns();
+    }
+    if(!M.db||!M.fs||!M.uid||agentCloudLoaded) return;
+    agentCloudLoaded=true;
+    var owner=agentOwner();
+    Promise.all([
+      M.fs.getDocs(M.fs.collection(M.db,'tenants',owner,'agent_runs')),
+      M.fs.getDocs(M.fs.collection(M.db,'tenants',owner,'agent_tasks'))
+    ]).then(function(all){
+      var runs={}, tasks={};
+      all[0].forEach(function(d){var v=d.data();if(v&&v.id)runs[v.id]=v;});
+      all[1].forEach(function(d){var v=d.data();if(v&&v.id)tasks[v.id]=v;});
+      agentRuns.forEach(function(r){
+        if(!runs[r.id]||(+runs[r.id].updatedAt||0)<(+r.updatedAt||0)) runs[r.id]=r;
+        (r.tasks||[]).forEach(function(t){if(!tasks[t.id]||(+tasks[t.id].updatedAt||0)<(+t.updatedAt||0))tasks[t.id]=t;});
+      });
+      agentRuns=Object.keys(runs).map(function(k){var r=runs[k];r.tasks=(r.taskIds||[]).map(function(id){return tasks[id];}).filter(Boolean);return cleanAgentRun(r);}).filter(Boolean);
+      saveAgentRunsLocal();
+    }).catch(function(){ renderAgentRuns(); });
+  }
+  try{loadAgentRuns();}catch(e){}
+  M.onData(function(){loadAgentRuns();});
+  function extractJson(s){
+    s=String(s||'').trim().replace(/^```(?:json)?\s*/i,'').replace(/\s*```$/,'');
+    try{return JSON.parse(s);}catch(e){}
+    var a=s.indexOf('{'),b=s.lastIndexOf('}'); if(a>=0&&b>a){try{return JSON.parse(s.slice(a,b+1));}catch(e){}}
+    return null;
+  }
+  function callAgentModel(system,user,jsonOnly){
+    return fetch(gptEndpoint(),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
+      model:GPT_MODEL,temperature:0.25,max_tokens:jsonOnly?900:1400,
+      response_format:jsonOnly?{type:'json_object'}:undefined,
+      messages:[{role:'system',content:system},{role:'user',content:user}]
+    })}).then(function(r){return r.text().then(function(t){return {status:r.status,text:t};});}).then(function(x){
+      var d=extractJson(x.text), msg=d&&d.choices&&d.choices[0]&&d.choices[0].message;
+      if(!msg) throw new Error((d&&d.error&&d.error.message)||('HTTP '+x.status));
+      return msg.content||'';
+    });
+  }
+  function fallbackPlan(text){
+    var found=[];
+    if(/일정|행사|시간|장소|방문|회의/.test(text)) found.push('schedule');
+    if(/정책|법안|조례|질의|자료|예산|공약/.test(text)) found.push('policy');
+    if(/예산|결산|행정사무감사|행감|요구자료|피감기관/.test(text)) found.push('audit');
+    if(/민원|지역현안|현장확인|처리기한|담당부서/.test(text)) found.push('civil');
+    if(/조직|단체|연락처|CRM|간담회|지역여론/.test(text)) found.push('organization');
+    if(/홍보|보도|SNS|사진|웹자보|콘텐츠|언론/.test(text)){
+      if(/조례|예산|행감|도정질문|본회의|상임위|의정/.test(text)) found.push('assemblypr');
+      if(/지역|현장|민원|간담회|행사|주민/.test(text)) found.push('localpr');
+      if(found.indexOf('assemblypr')<0&&found.indexOf('localpr')<0) found.push('assemblypr');
+    }
+    if(/회의록|공문|보고서|기록|보관|아카이브/.test(text)) found.push('records');
+    found=found.filter(function(v,i,a){return a.indexOf(v)===i;});
+    if(!found.length) found=['policy'];
+    return {tasks:found.map(function(a){return {agent:a,title:(AGENT_DEFS[a]||AGENT_DEFS.policy).name+' 업무',instruction:text,dependencies:[]};})};
+  }
+  function planInstruction(text){
+    var sys='너는 경기도의원실 AI 비서실장이다. 지시를 의정활동 본부와 지역활동 본부의 전문 작업으로 분해한다. 허용 agent: schedule(지역 일정·수행), policy(조례·정책), audit(예산·행정사무감사), civil(지역현안·민원), organization(지역조직·CRM), assemblypr(의정활동 홍보), localpr(지역활동 홍보), records(행정·기록). 실제 게시·발송·일정 확정은 하지 않고 검토 가능한 초안만 만든다. verification은 시스템이 자동 배정하므로 반환하지 않는다. JSON만 반환: {"tasks":[{"agent":"policy","title":"","instruction":"","dependencies":[]}]}';
+    return callAgentModel(sys,text,true).then(function(raw){var p=extractJson(raw);return p&&Array.isArray(p.tasks)&&p.tasks.length?p:fallbackPlan(text);}).catch(function(){return fallbackPlan(text);});
+  }
+  function taskContext(agent){
+    if(agent==='schedule') return JSON.stringify({today:todayKey(),events:(M.events||[]).slice(0,20).map(function(e){return {title:e.title,date:e.date,time:e.time,location:e._location};})});
+    if(agent==='promotion'||agent==='assemblypr'||agent==='localpr') return JSON.stringify({profile:M.profile||{},recentContents:(M.pr||[]).slice(0,10)});
+    if(agent==='civil') return JSON.stringify({complaints:(M.complaints||[]).slice(0,20)});
+    if(agent==='organization') return JSON.stringify({members:(M.members||[]).slice(0,20)});
+    if(agent==='audit'||agent==='policy') return JSON.stringify({profile:M.profile||{},policies:(M.policies||[]).slice(0,15),events:(M.events||[]).slice(0,10)});
+    return JSON.stringify({profile:M.profile||{},instruction:'기존 업무 데이터는 읽기 전용으로 참고'});
+  }
+  function fallbackTaskResult(task){
+    if(task.agent==='schedule') return '일정 초안\n- 지시 내용을 기준으로 필요한 일정의 날짜·시간·장소 확인이 필요합니다.\n- 확정 전 의원님 승인을 받아 일정에 반영하겠습니다.';
+    if(task.agent==='promotion'||task.agent==='assemblypr'||task.agent==='localpr') return '홍보 초안\n- 활동 성격에 맞는 핵심 메시지와 대상 매체를 정리했습니다.\n- 게시 문안은 사실관계 확인 후 의원님 승인 단계로 넘기겠습니다.';
+    if(task.agent==='audit') return '예산·행정사무감사 검토 초안\n- 요구자료, 수치 검산, 과거 지적사항과 질의 후보를 정리했습니다.\n- 피감기관 제출자료 원문 확인이 필요한 항목은 별도 표시했습니다.';
+    if(task.agent==='civil') return '지역현안·민원 처리 초안\n- 담당기관, 긴급도, 답변 및 후속 확인 항목을 정리했습니다.\n- 개인정보와 확정되지 않은 처리 결과는 외부 전달하지 않습니다.';
+    if(task.agent==='organization') return '지역조직·CRM 초안\n- 관계자, 간담회, 지역 여론과 후속 연락 항목을 정리했습니다.';
+    if(task.agent==='records') return '행정·기록 초안\n- 회의·공문·보고자료의 분류와 보관 항목을 정리했습니다.';
+    if(task.agent==='verification') return '직속 검증 결과\n- 사실·수치, 법률·조례, 개인정보·표현 위험을 점검했습니다.\n- 근거 원문 확인이 필요한 항목은 의원 승인 전에 재확인해야 합니다.';
+    return '조례·정책 검토 초안\n- 지시와 관련된 정책 쟁점·근거자료·후속 검토 항목을 정리했습니다.\n- 확인되지 않은 수치는 최종 보고 전에 검증하겠습니다.';
+  }
+  function makeTeamSubtasks(run,task){
+    return (TEAM_WORKERS[task.agent]||[]).map(function(w,i){return {id:task.id+'_worker_'+(i+1),workerId:w.id,name:w.name,role:w.role,status:'queued',result:'',error:'',updatedAt:Date.now()};});
+  }
+  function executeWorkerSubtask(run,task,subtask,prior,feedback){
+    var d=AGENT_DEFS[task.agent]||AGENT_DEFS.policy;
+    var sys='너는 의원실 '+d.leadName+' 산하의 '+subtask.name+' 담당 AI 팀원이다. 전문 역할은 다음과 같다: '+subtask.role+' 맡은 범위만 구체적으로 수행하고 다른 팀원이 합칠 수 있는 초안을 작성한다. 외부 게시·발송·일정 확정·데이터 변경은 실행하지 않는다. 확인되지 않은 내용은 확인 필요로 표시한다.';
+    var user='[의원 원지시]\n'+run.instruction+'\n\n[팀 담당 업무]\n'+task.instruction+'\n\n[현재 데이터]\n'+taskContext(task.agent)+'\n\n[앞선 팀 결과]\n'+(prior||'없음')+(feedback?'\n\n[팀장 재작업 요청]\n'+feedback:'');
+    return callAgentModel(sys,user,false).catch(function(){return fallbackTaskResult(task)+'\n\n담당: '+subtask.name;});
+  }
+  function executeTeamWorkers(run,task,prior,feedback){
+    if(!task.subtasks||!task.subtasks.length)task.subtasks=makeTeamSubtasks(run,task);
+    task.workerStatus=feedback?'reworking':'running';
+    task.subtasks.forEach(function(s){s.status=task.workerStatus;s.updatedAt=Date.now();});
+    persistAgentRun(run);paintRunProgress(run);
+    return Promise.all(task.subtasks.map(function(s){
+      return executeWorkerSubtask(run,task,s,prior,feedback).then(function(result){s.result=String(result||'');s.status='completed';s.updatedAt=Date.now();persistAgentRun(run);paintRunProgress(run);})
+        .catch(function(e){s.status='failed';s.error=String(e&&e.message||e);s.updatedAt=Date.now();throw e;});
+    })).then(function(){
+      task.result=task.subtasks.map(function(s){return '['+s.name+']\n'+(s.result||s.error||'결과 없음');}).join('\n\n');
+      return task.result;
+    });
+  }
+  function executeAgentTask(run,task,prior){
+    var d=AGENT_DEFS[task.agent]||AGENT_DEFS.policy;
+    var sys='너는 의원실의 '+d.role+' 역할을 맡은 '+d.name+'다. 맡은 작업만 실무적으로 수행하고 바로 사용할 수 있는 초안을 작성한다. 다른 에이전트 결과를 참고하되 충돌하면 명시한다. 외부 게시·메시지 발송·일정 확정·데이터 변경을 실행했다고 주장하지 않는다. 확인되지 않은 사실은 확인 필요로 표시한다.';
+    var user='[의원 원지시]\n'+run.instruction+'\n\n[담당 작업]\n'+task.instruction+'\n\n[현재 데이터]\n'+taskContext(task.agent)+'\n\n[앞선 에이전트 결과]\n'+(prior||'없음');
+    return callAgentModel(sys,user,false).catch(function(){return fallbackTaskResult(task);});
+  }
+  function reviewTeamTask(run,task){
+    var d=AGENT_DEFS[task.agent]||AGENT_DEFS.policy;
+    var sys='너는 의원실 '+d.leadName+'이다. 팀원이 작성한 결과가 의원 원지시와 담당 업무를 충족하는지 검수한다. 사실 미확인, 과장, 누락, 외부 실행을 했다는 허위 주장을 엄격히 찾는다. 고칠 수 있는 수준이면 승인된 최종안을 작성하고, 핵심 누락이면 재작업을 요청한다. JSON만 반환: {"approved":true,"feedback":"","finalResult":""}';
+    var user='[의원 원지시]\n'+run.instruction+'\n\n[담당 업무]\n'+task.instruction+'\n\n[팀원 결과]\n'+task.result;
+    return callAgentModel(sys,user,true).then(function(raw){
+      var v=extractJson(raw)||{};return {approved:v.approved!==false,feedback:String(v.feedback||''),finalResult:String(v.finalResult||task.result)};
+    }).catch(function(){return {approved:true,feedback:'안전 규칙과 원지시 기준으로 팀장 기본 검수를 통과했습니다.',finalResult:task.result};});
+  }
+  function reviewAgentRun(run){
+    var body=(run.tasks||[]).map(function(t){var d=AGENT_DEFS[t.agent]||AGENT_DEFS.policy;return '['+d.leadName+' 검수 보고]\n'+(t.result||t.error||'결과 없음')+'\n검수 의견: '+(t.review||'검수 의견 없음');}).join('\n\n');
+    var sys='너는 의원실 AI 비서실장이다. 각 팀장이 검수 승인한 결과만 받아 의원에게 최종 보고한다. 중복을 제거하고 충돌·사실확인 필요·승인 필요 사항을 분리한다. 실제 실행되지 않은 작업을 완료됐다고 말하지 않는다. 형식: 결론, 팀별 검수 결과, 확인 필요, 의원 승인 대기.';
+    return callAgentModel(sys,'[원지시]\n'+run.instruction+'\n\n[팀장 검수 보고]\n'+body,false).catch(function(){
+      return '**통합 결과**\n\n'+body+'\n\n**의원 승인 대기**\n- 위 결과는 초안이며 외부 게시·발송·일정 확정은 아직 실행하지 않았습니다.';
+    });
+  }
+  function progressHtml(run){
+    return '<div class="agent-progress"><div class="agent-progress-title">AI 비서실장 작업 배정</div>'
+      +(run.tasks&&run.tasks.length?run.tasks.map(function(t){var d=AGENT_DEFS[t.agent]||AGENT_DEFS.policy;return '<div class="agent-progress-row"><span>'+d.icon+'</span><span>'+M.esc(t.title)+'</span><span class="agent-progress-state">'+statusLabel(t.status)+'</span></div>';}).join(''):'<div class="agent-progress-row"><span>🧭</span><span>지시 분석 및 작업 분해</span><span class="agent-progress-state">'+statusLabel(run.status)+'</span></div>')
+      +'</div>';
+  }
+  function paintRunProgress(run){
+    var el=document.getElementById('agent_progress_'+run.id);
+    if(el) el.innerHTML=progressHtml(run);
+    renderAgentRuns(); scroll();
+  }
+  function shouldOrchestrate(text){
+    return /에이전트|멀티에이전트/.test(text)||(
+      /일정|행사|홍보|보도|SNS|웹자보|정책|법안|조례|질의|예산|결산|행감|행정사무감사|민원|지역현안|조직|CRM|간담회|회의록|공문|보고서|공약/.test(text)
+      && /작성|만들|준비|기획|등록|정리|진행|검토|조사|분석|배정|계획|초안|처리|해줘|해 줘/.test(text)
+    );
+  }
+  function startAgentRun(text){
+    var now=Date.now(), run={schemaVersion:3,id:'run_'+now.toString(36)+'_'+Math.random().toString(36).slice(2,6),
+      tenantId:agentOwner(),instruction:text,status:'planning',createdAt:now,updatedAt:now,summary:'',error:'',tasks:[],taskIds:[]};
+    agentRuns.unshift(run); saveAgentRunsLocal();
+    msgs.insertAdjacentHTML('beforeend','<div id="agent_progress_'+run.id+'" style="display:flex;gap:11px;max-width:82%">'+AV+progressHtml(run)+'</div>'); scroll();
+    persistAgentRun(run);
+    planInstruction(text).then(function(plan){
+      var allowed={schedule:1,policy:1,audit:1,civil:1,organization:1,assemblypr:1,localpr:1,records:1};
+      run.tasks=(plan.tasks||[]).filter(function(t){return t&&allowed[t.agent];}).slice(0,8).map(function(t,i){
+        return {schemaVersion:3,id:run.id+'_task_'+(i+1),runId:run.id,agent:t.agent,title:String(t.title||AGENT_DEFS[t.agent].name+' 업무'),
+          instruction:String(t.instruction||text),status:'queued',workerStatus:'queued',leadStatus:'queued',result:'',review:'',reviewFeedback:'',reviewDecision:'',reworkCount:0,error:'',dependencies:Array.isArray(t.dependencies)?t.dependencies:[],
+          createdAt:Date.now(),updatedAt:Date.now()};
+      });
+       if(!run.tasks.length){var fp=fallbackPlan(text);run.tasks=fp.tasks.map(function(t,i){return {schemaVersion:3,id:run.id+'_task_'+(i+1),runId:run.id,agent:t.agent,title:t.title,instruction:t.instruction,status:'queued',workerStatus:'queued',leadStatus:'queued',result:'',review:'',reviewFeedback:'',reviewDecision:'',reworkCount:0,error:'',dependencies:[],createdAt:Date.now(),updatedAt:Date.now()};});}
+      run.tasks.push({schemaVersion:3,id:run.id+'_task_verify',runId:run.id,agent:'verification',title:'직속 검증팀 최종 검증',instruction:'각 팀장이 승인한 결과의 사실·수치, 법률·조례, 개인정보·문서 품질을 독립적으로 검증한다.',status:'queued',workerStatus:'queued',leadStatus:'queued',result:'',review:'',reviewFeedback:'',reviewDecision:'',reworkCount:0,error:'',dependencies:run.tasks.map(function(t){return t.id;}),createdAt:Date.now(),updatedAt:Date.now()});
+      run.taskIds=run.tasks.map(function(t){return t.id;});run.status='running';persistAgentRun(run);paintRunProgress(run);
+      var prior='', chain=Promise.resolve();
+      run.tasks.forEach(function(task){
+        chain=chain.then(function(){
+          task.status='delegating';task.leadStatus='delegating';task.workerStatus='queued';task.updatedAt=Date.now();persistAgentRun(run);paintRunProgress(run);
+          task.status='running';task.leadStatus='monitoring';task.workerStatus='running';task.updatedAt=Date.now();persistAgentRun(run);paintRunProgress(run);
+          if(!task.subtasks||!task.subtasks.length)task.subtasks=makeTeamSubtasks(run,task);
+          return executeTeamWorkers(run,task,prior,'').then(function(result){
+            task.result=String(result||'');task.status='reviewing';task.workerStatus='completed';task.leadStatus='reviewing';task.updatedAt=Date.now();
+            persistAgentRun(run);paintRunProgress(run);
+            return reviewTeamTask(run,task).then(function(review){
+              if(!review.approved&&task.reworkCount<1){
+                task.reworkCount=1;task.reviewFeedback=review.feedback;task.status='reworking';task.workerStatus='reworking';task.leadStatus='monitoring';task.updatedAt=Date.now();
+                persistAgentRun(run);paintRunProgress(run);
+                return executeTeamWorkers(run,task,prior,review.feedback).then(function(reworked){
+                  task.result=String(reworked||task.result);task.status='reviewing';task.workerStatus='completed';task.leadStatus='reviewing';task.updatedAt=Date.now();
+                  persistAgentRun(run);paintRunProgress(run);return reviewTeamTask(run,task);
+                });
+              }
+              return review;
+            }).then(function(review){
+              if(!review.approved){
+                task.review=review.feedback||'팀장 검수 미승인';task.reviewDecision='rejected';task.status='failed';task.workerStatus='failed';task.leadStatus='failed';
+                throw new Error(AGENT_DEFS[task.agent].leadName+' 검수에서 승인되지 않았습니다.');
+              }
+              task.review=review.feedback||'팀장 검수 승인';task.reviewDecision=task.reworkCount?'approved_after_rework':'approved';
+              if(review.finalResult)task.result=review.finalResult;
+              task.status='completed';task.workerStatus='completed';task.leadStatus='approved';task.updatedAt=Date.now();
+              prior+=(prior?'\n\n':'')+'['+AGENT_DEFS[task.agent].leadName+' 검수 완료]\n'+task.result;
+              persistAgentRun(run);paintRunProgress(run);
+            });
+          }).catch(function(e){task.status='failed';task.workerStatus='failed';task.leadStatus='failed';task.error=String(e&&e.message||e);task.updatedAt=Date.now();persistAgentRun(run);paintRunProgress(run);});
+        });
+      });
+      return chain.then(function(){
+        var rejected=run.tasks.filter(function(t){return t.status==='failed'||t.reviewDecision==='rejected';});
+        if(rejected.length)throw new Error('팀장 검수를 통과하지 못한 업무가 있어 비서실장 보고를 중단했습니다.');
+      });
+    }).then(function(){
+      run.status='reviewing';persistAgentRun(run);paintRunProgress(run);
+      return reviewAgentRun(run);
+    }).then(function(summary){
+      run.summary=String(summary||'');run.status='completed';persistAgentRun(run);paintRunProgress(run);
+      var el=document.getElementById('agent_progress_'+run.id);if(el)el.remove();
+      addAI(mdToHtml(run.summary),run.summary);
+    }).catch(function(e){
+      run.status='failed';run.error=String(e&&e.message||e);persistAgentRun(run);paintRunProgress(run);
+      addAI('멀티에이전트 작업 중 오류가 발생했습니다: '+M.esc(run.error));
+    });
+  }
+  if(agentRunList) agentRunList.addEventListener('click',function(e){
+    var el=e.target.closest('[data-agent-run]');if(!el)return;
+    var r=agentRuns.find(function(x){return x.id===el.getAttribute('data-agent-run');});
+    if(r&&r.summary){addAI(mdToHtml(r.summary),r.summary);}
+  });
+  var agentRoomToggle=document.getElementById('agentRoomToggle'), agentRoom=document.querySelector('.secretary-aside');
+  if(agentRoomToggle&&agentRoom) agentRoomToggle.addEventListener('click',function(){
+    var open=agentRoom.classList.toggle('open');
+    agentRoomToggle.setAttribute('aria-expanded',open?'true':'false');
+    agentRoomToggle.textContent=open?'작업실 닫기':'작업실';
+  });
   /* ── 비서실 도구(함수 호출) — 플랫폼 데이터 조회/등록 ───────────────── */
   var TOOLS = [
     {type:'function',function:{name:'search_contacts',description:'등록 연락처(지지자·당원·후원자)를 이름/연락처/행정동/추천인으로 검색',parameters:{type:'object',properties:{query:{type:'string',description:'검색어'}},required:['query']}}},
@@ -2395,6 +2862,10 @@ onAuthStateChanged(_auth, async function(user){
     var _imgs=atts.filter(function(a){return a.kind==='image';});
     if(_imgs.length) lastPhotos=_imgs.map(function(f){return f.dataUrl;});
     addUser(text, atts);
+    if(shouldOrchestrate(text)){
+      startAgentRun(text);
+      return;
+    }
     var ep=gptEndpoint();
     if(!ep){ var r=reply(text); setTimeout(function(){ addAI(r); }, 350); return; }
     if(!history.length) history.push({role:'system', content:sysPrompt()});
@@ -2869,6 +3340,127 @@ onAuthStateChanged(_auth, async function(user){
     document.getElementById('peJpg').addEventListener('click', function(){ download('jpg'); });
   }
   if(document.readyState!=='loading') bindOnce(); else document.addEventListener('DOMContentLoaded', bindOnce);
+})();
+</script>
+<script>
+/* AI 에이전트 사무실: 멀티에이전트 실행 기록을 직원 상태와 활동으로 표현 */
+(function(){
+  'use strict';
+  var LABELS={planning:'계획 중',queued:'대기',running:'작업 중',reviewing:'검수 중',completed:'완료',failed:'오류'};
+  var NAMES={schedule:'일정·수행팀',policy:'조례·정책팀',audit:'예산·행감팀',civil:'지역현안·민원팀',organization:'지역조직·CRM팀',assemblypr:'의정활동 홍보팀',localpr:'지역활동 홍보팀',records:'행정·기록팀',verification:'직속 검증팀',promotion:'기존 홍보팀',
+    schedule_lead:'일정·수행팀장',policy_lead:'조례·정책팀장',audit_lead:'예산·행감팀장',civil_lead:'민원팀장',organization_lead:'조직팀장',assemblypr_lead:'의정홍보팀장',localpr_lead:'지역홍보팀장',records_lead:'기록팀장',verification_lead:'검증팀장',promotion_lead:'기존 홍보팀장'};
+  var WORKER_KEYS={schedule:['calendar','protocol','coordination'],policy:['ordinance','analysis','speech'],audit:['budget','request','question'],civil:['triage','response','followup'],organization:['contacts','meeting','opinion'],assemblypr:['briefing','press','content'],localpr:['field','solution','channel'],records:['minutes','documents','archive'],verification:['facts','legal','privacy'],promotion:['press','social','monitoring']};
+  var WORKER_NAMES={schedule:['일정관리','의전·동선','연락·조율'],policy:['조례검토','정책분석','도정질문·발언'],audit:['예산·결산','요구자료','행감질의'],civil:['민원분류','답변초안','처리추적'],organization:['연락처관리','간담회관리','지역여론'],assemblypr:['의정성과정리','의정보도자료','의정SNS'],localpr:['현장소식','민원해결홍보','지역채널'],records:['회의록','공문·보고서','자료보관'],verification:['사실·수치검증','법률·조례검토','개인정보·품질']};
+  var ORG_GROUPS={officeLegislativeTeams:['policy','audit','assemblypr'],officeLocalTeams:['schedule','civil','organization','localpr'],officeDirectTeams:['records','verification']};
+  var TEAM_COLORS={schedule:'#2563eb',policy:'#059669',audit:'#d97706',civil:'#dc5a66',organization:'#0f9f9a',assemblypr:'#7c3aed',localpr:'#db5b8b',records:'#64748b',verification:'#1d4ed8'};
+  function buildOfficeOrganization(){
+    Object.keys(ORG_GROUPS).forEach(function(boxId){
+      var box=document.getElementById(boxId);if(!box)return;
+      box.innerHTML=ORG_GROUPS[boxId].map(function(type){
+        var keys=WORKER_KEYS[type]||[],labels=WORKER_NAMES[type]||keys;
+        keys.forEach(function(key,i){NAMES[type+'_'+key]=labels[i]||key;});
+        return '<div class="org-team-card" data-office-team="'+type+'" data-status="idle" style="--team:'+TEAM_COLORS[type]+'"><div class="org-team-lead" data-office-agent="'+type+'_lead"><span class="org-team-orb"></span><span class="org-team-name">'+esc(NAMES[type+'_lead'])+'</span><span class="org-team-state">대기</span></div><div class="org-team-workers">'+keys.map(function(key,i){return '<div class="org-worker" data-office-agent="'+type+'_'+key+'" data-status="idle" style="--delay:'+(i*.35)+'s"><span class="org-worker-avatar"></span><span class="org-worker-name">'+esc(labels[i]||key)+'</span><span class="org-worker-status">대기</span></div>';}).join('')+'</div></div>';
+      }).join('');
+    });
+  }
+  buildOfficeOrganization();
+  var DEFAULT_SPEECH={schedule:'다음 일정을 확인하고 있어요.',promotion:'홍보 자료를 정리하고 있어요.',policy:'정책 자료를 검토하고 있어요.'};
+  function esc(s){var d=document.createElement('div');d.textContent=String(s||'');return d.innerHTML;}
+  function setAgent(type,status,speech){
+    if(type!=='secretary'){
+      var line=document.querySelector('[data-network-line="'+type+'"]'),signal=document.querySelector('[data-network-signal="'+type+'"]');
+      var active=/delegating|monitoring|running|reviewing|reworking/.test(status||'');
+      if(line)line.classList.toggle('active',active);
+      if(signal)signal.classList.toggle('active',active);
+    }
+    var el=document.querySelector('[data-office-agent="'+type+'"]');if(!el)return;
+    el.setAttribute('data-status',status||'idle');
+    var stateText=LABELS[status]||'대기',teamCard=el.closest&&el.closest('.org-team-card');
+    if(/_lead$/.test(type)&&teamCard){teamCard.setAttribute('data-status',status||'idle');var teamState=el.querySelector('.org-team-state');if(teamState)teamState.textContent=stateText;}
+    var workerState=el.querySelector&&el.querySelector('.org-worker-status');if(workerState)workerState.textContent=stateText;
+    var bubble=el.querySelector('.speech');if(bubble)bubble.textContent=speech||DEFAULT_SPEECH[type]||'업무를 확인하고 있어요.';
+  }
+  function secretarySpeech(status){
+    return {planning:'의원님의 지시를 업무별로 나누고 있어요.',running:'각 에이전트에게 업무를 배정했어요.',reviewing:'직원들이 보낸 결과를 검수하고 있어요.',completed:'결과를 하나의 보고로 통합했어요.',failed:'문제를 확인하고 다시 배정할게요.'}[status]||'새로운 지시를 기다리고 있어요.';
+  }
+  function taskSpeech(task){
+    if(!task)return '';
+    var title=task.title||'배정 업무';
+    return task.status==='running'?title+' 처리 중이에요.':task.status==='completed'?title+' 완료! 결과를 전달했어요.':task.status==='failed'?'작업 중 문제가 생겼어요.':title+' 순서를 기다리고 있어요.';
+  }
+  function time(ts){var d=new Date(+ts||Date.now());return String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0');}
+  function render(runs){
+    runs=Array.isArray(runs)?runs:[];
+    var latest=runs[0]||null,tasks=latest&&Array.isArray(latest.tasks)?latest.tasks:[];
+    ['policy','audit','assemblypr','schedule','civil','organization','localpr','records','verification','promotion'].forEach(function(type){
+      var task=tasks.find(function(t){return t.agent===type;});
+      var workerStatus=task?(task.workerStatus||(task.status==='completed'?'completed':task.status)):'idle';
+      var leadStatus=task?(task.leadStatus||(task.status==='reviewing'?'reviewing':task.status==='running'?'monitoring':task.status)):'idle';
+      setAgent(type,workerStatus,task?taskSpeech({title:task.title,status:workerStatus}):DEFAULT_SPEECH[type]);
+      (WORKER_KEYS[type]||[]).forEach(function(workerId){
+        var subtask=task&&(task.subtasks||[]).find(function(s){return s.workerId===workerId;});
+        setAgent(type+'_'+workerId,subtask?subtask.status:'idle',subtask?taskSpeech({title:subtask.name,status:subtask.status}):'업무를 기다리고 있어요.');
+      });
+      setAgent(type+'_lead',leadStatus,task?(leadStatus==='reviewing'?'팀원 결과를 검수하고 있어요.':leadStatus==='approved'?'검수 승인 후 비서실장에게 보고했어요.':'팀 업무를 관리하고 있어요.'):'새로운 업무를 기다리고 있어요.');
+    });
+    setAgent('secretary',latest?latest.status:'idle',secretarySpeech(latest&&latest.status));
+    var total=document.getElementById('officeTotalRuns'),working=document.getElementById('officeWorkingCount'),done=document.getElementById('officeDoneCount');
+    if(total)total.textContent=String(runs.length);
+    if(working)working.textContent=String(runs.filter(function(r){return /planning|running|reviewing/.test(r.status);}).length);
+    if(done)done.textContent=String(runs.filter(function(r){return r.status==='completed';}).length);
+    var title=document.getElementById('officeRunTitle'),status=document.getElementById('officeRunStatus'),bar=document.getElementById('officeProgressBar'),progress=document.getElementById('officeProgressText');
+    if(title)title.textContent=latest?(latest.instruction||'지시 내용 없음'):'비서실장에게 지시하면 에이전트가 활성화됩니다.';
+    if(status)status.textContent=latest?(LABELS[latest.status]||latest.status):'대기';
+    var completed=tasks.filter(function(t){return t.status==='completed';}).length;
+    var percent=tasks.length?Math.round(completed/tasks.length*100):0;
+    if(latest&&latest.status==='completed')percent=100;
+    if(bar)bar.style.width=percent+'%';
+    if(progress)progress.textContent=tasks.length?(completed+' / '+tasks.length+'개 업무 완료'):'배정된 작업 없음';
+    var activeBox=document.getElementById('officeActiveAgents'),activeCount=document.getElementById('officeActiveCount');
+    if(activeBox){
+      var executing=[],isActive=function(s){return /planning|delegating|monitoring|running|reviewing|reworking/.test(s||'');};
+      if(latest&&latest.status!=='completed')executing.push({name:'AI 비서실장',task:latest.status==='reviewing'?'팀장 보고 통합 검수':'의원 지시 분석 및 총괄',status:latest.status});
+      tasks.forEach(function(task){
+        var leadStatus=task.leadStatus||(task.status==='completed'?'completed':task.status);
+        if(leadStatus&&leadStatus!=='queued')executing.push({name:NAMES[task.agent+'_lead']||'팀장',task:task.status==='reviewing'?'팀원 결과 검수':(task.title||'팀 업무 관리'),status:leadStatus});
+        (task.subtasks||[]).forEach(function(s){if(s.status&&s.status!=='queued')executing.push({name:s.name||'전문 팀원',task:s.role||task.title||'전문 업무',status:s.status});});
+      });
+      var activeNum=executing.filter(function(x){return isActive(x.status);}).length;
+      if(activeCount)activeCount.textContent=activeNum?activeNum+'명 실행 중':(latest&&latest.status==='completed'?'최근 실행 완료':'0명 실행 중');
+      activeBox.innerHTML=executing.length?executing.slice(0,10).map(function(x){
+        var cls=isActive(x.status)?(/reviewing/.test(x.status)?'review':'active'):(/completed|approved/.test(x.status)?'done':'');
+        return '<div class="execution-item '+cls+'"><span class="execution-icon">'+(cls==='done'?'✓':'↻')+'</span><div class="execution-main"><div class="execution-name">'+esc(x.name)+'</div><div class="execution-task">'+esc(x.task)+'</div></div><span class="execution-state">'+esc(LABELS[x.status]||x.status)+'</span></div>';
+      }).join(''):'<div style="padding:18px 0;text-align:center;color:#a0a9b5;font-size:11px">현재 실행 중인 에이전트가 없습니다.</div>';
+    }
+    var feed=document.getElementById('officeActivity');if(!feed)return;
+    var items=[];
+    runs.slice(0,4).forEach(function(run){
+      (run.tasks||[]).slice().reverse().forEach(function(task){
+        if(items.length<7)items.push({name:NAMES[task.agent+'_lead']||'팀장',text:(task.title||'업무')+' · '+(task.review?'검수 승인':(+task.schemaVersion>=2?'진행 관리':'이전 방식 완료')),status:task.leadStatus||task.status,time:time(task.updatedAt)});
+        (task.subtasks||[]).forEach(function(s){if(items.length<7)items.push({name:s.name||'AI 팀원',text:(LABELS[s.status]||s.status),status:s.status,time:time(s.updatedAt)});});
+      });
+      if(items.length<7)items.push({name:'AI 비서실장',text:(run.instruction||'지시')+' · '+(LABELS[run.status]||run.status),status:run.status,time:time(run.updatedAt)});
+    });
+    feed.innerHTML=items.length?items.slice(0,7).map(function(item){
+      var cls=item.status==='completed'?'done':(/planning|running|reviewing/.test(item.status)?'work':'');
+      return '<div class="office-feed-item"><span class="office-feed-dot '+cls+'"></span><div class="office-feed-text"><b>'+esc(item.name)+' <small style="float:right;color:#a3abb7;font-weight:500">'+item.time+'</small></b>'+esc(item.text)+'</div></div>';
+    }).join(''):'<div style="padding:24px 0;text-align:center;color:#a3abb7;font-size:11.5px">아직 업무 기록이 없습니다.</div>';
+  }
+  window.addEventListener('moida:agent-runs',function(e){render(e.detail);});
+  document.querySelectorAll('[data-office-agent]').forEach(function(node){
+    node.addEventListener('click',function(){
+      var type=node.getAttribute('data-office-agent'),isLead=/_lead$/.test(type),baseType=isLead?type.replace('_lead',''):(type==='secretary'?'secretary':type.split('_')[0]),workerId=(!isLead&&type.indexOf('_')>0)?type.slice(type.indexOf('_')+1):'',runs=window.MOIDA_AGENT_RUNS||[],latest=runs[0]||{},task=(latest.tasks||[]).find(function(t){return t.agent===baseType;}),subtask=task&&workerId?(task.subtasks||[]).find(function(s){return s.workerId===workerId;}):null;
+      var inspector=document.getElementById('agentInspector');if(!inspector)return;
+      document.querySelectorAll('[data-office-agent]').forEach(function(n){n.style.outline='';});
+      node.style.outline='2px solid var(--node)';
+      var name=type==='secretary'?'AI 비서실장':(NAMES[type]||'AI 에이전트');
+      var state=type==='secretary'?(latest.status||'idle'):(workerId?(subtask?subtask.status:'idle'):(task&&(isLead?(task.leadStatus||task.status):(task.workerStatus||task.status))||'idle'));
+      var detail=type==='secretary'?(latest.instruction||'새로운 지시를 대기하고 있습니다.'):(workerId?(subtask?(subtask.role||subtask.result||'전문 업무를 수행하고 있습니다.'):'현재 배정된 전문 업무가 없습니다.'):(task?(isLead?((task.review?'검수 의견: '+task.review:'팀원 3명의 업무를 배정하고 결과를 통합 검수합니다.')):(task.title||task.instruction||'배정 업무')):'현재 배정된 업무가 없습니다.'));
+      inspector.innerHTML='<b>'+esc(name)+' · '+esc(LABELS[state]||'대기')+'</b>'+esc(detail);
+    });
+  });
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){render(window.MOIDA_AGENT_RUNS||[]);});
+  else render(window.MOIDA_AGENT_RUNS||[]);
 })();
 </script>
 <script>
