@@ -1010,15 +1010,23 @@ onAuthStateChanged(_auth, async function(user){
   var filters={ dong:[], type:[], ageb:[], sex:[] };
   var searchKw='';
   var dispMembers = members.slice();
+  var memberSearchCache=new WeakMap();
+  function memberSearchText(m){
+    var cached=memberSearchCache.get(m); if(cached!=null) return cached;
+    var text=[m.name,m.phone,m.addr,m.rec,m.rec2,m.rec3,m.sub,m.third,m.dong,(m.orgs||[]).map(orgRepText).join(' ')].filter(function(v){return v!=null;}).join(' ').toLowerCase().replace(/-/g,'');
+    memberSearchCache.set(m,text); return text;
+  }
   function renderRows(){
-    var rows = dispMembers.filter(function(m){
+    var matchedRows = dispMembers.filter(function(m){
       return (!filters.dong.length || filters.dong.indexOf(m.dong)>=0)
         && (!filters.type.length || filters.type.indexOf(m.type)>=0)
         && (!filters.ageb.length || filters.ageb.indexOf(m.ageb)>=0)
         && (!filters.sex.length || filters.sex.indexOf(m.sex)>=0)
-        && (!searchKw || [m.name,m.phone,m.addr,m.rec,m.rec2,m.rec3,m.sub,m.third,m.dong,(m.orgs||[]).map(orgRepText).join(' ')].some(function(v){ return v!=null && String(v).toLowerCase().replace(/-/g,'').indexOf(searchKw)>=0; }));
+        && (!searchKw || memberSearchText(m).indexOf(searchKw)>=0);
     });
-    var tfLeft=document.getElementById('tfLeft'); if(tfLeft) tfLeft.innerHTML='조회 <b>'+rows.length+'</b>명 · 당원을 클릭하면 상세정보가 표시됩니다';
+    var isLimited=!!searchKw&&matchedRows.length>200;
+    var rows=isLimited?matchedRows.slice(0,200):matchedRows;
+    var tfLeft=document.getElementById('tfLeft'); if(tfLeft) tfLeft.innerHTML='조회 <b>'+matchedRows.length+'</b>명'+(isLimited?' · 상위 200명 표시':'')+' · 당원을 클릭하면 상세정보가 표시됩니다';
     tbody.innerHTML = rows.map(function(m,ri){ var i=members.indexOf(m); if(i<0) i=members.findIndex(function(x){ return x.mid&&x.mid===m.mid; }); return `
     <tr data-i="${i}">
       <td class="muted-cell">${ri+1}</td>
