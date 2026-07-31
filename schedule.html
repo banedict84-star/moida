@@ -358,6 +358,20 @@
   .cal-more:hover{ background:#e2e8f0;color:#1d3a6e; }
   .cal-more-panel{ position:absolute;left:5px;right:5px;top:42px;z-index:30;padding:6px;border:1px solid #d7e0eb;border-radius:8px;background:#fff;box-shadow:0 8px 18px rgba(21,37,62,.16);max-height:176px;overflow-y:auto; }
   .cal-more-panel .cal-ev{ margin-bottom:4px; }
+  .cal-mobile-list{ display:none; }
+  .cal-mobile-day{ display:grid; grid-template-columns:52px minmax(0,1fr); gap:11px; padding:12px 0; border-bottom:1px solid var(--line-soft); }
+  .cal-mobile-day:last-child{ border-bottom:0; }
+  .cal-mobile-date{ width:52px; height:52px; border-radius:13px; background:#f3f6fb; color:var(--ink-2); display:flex; flex-direction:column; align-items:center; justify-content:center; }
+  .cal-mobile-date.today{ background:var(--primary); color:#fff; box-shadow:0 5px 13px rgba(47,95,208,.24); }
+  .cal-mobile-date .day{ font-size:20px; font-weight:800; line-height:1; }
+  .cal-mobile-date .dow{ margin-top:4px; font-size:10.5px; font-weight:700; opacity:.76; }
+  .cal-mobile-items{ display:flex; flex-direction:column; gap:6px; min-width:0; justify-content:center; }
+  .cal-mobile-item{ display:flex; align-items:flex-start; gap:8px; width:100%; min-width:0; padding:9px 10px; border:0; border-radius:10px; background:#eef4fd; color:var(--ink); font:inherit; text-align:left; cursor:pointer; }
+  .cal-mobile-item .time{ flex:0 0 auto; color:var(--primary); font-size:12px; font-weight:800; }
+  .cal-mobile-item .title{ min-width:0; font-size:12.5px; font-weight:700; line-height:1.4; word-break:keep-all; overflow-wrap:anywhere; }
+  .cal-mobile-item.birthday{ background:#fff7d6; color:#805400; border:1px solid #f2dda0; }
+  .cal-mobile-item.birthday .time{ color:#a66d00; }
+  .cal-mobile-empty{ padding:38px 12px; text-align:center; color:var(--ink-3); font-size:13px; font-weight:600; }
   .birthday-detail-ovl{ position:fixed;inset:0;z-index:1500;background:rgba(15,29,51,.34);display:flex;align-items:center;justify-content:center;padding:20px; }
   .birthday-detail{ width:360px;max-width:100%;background:#fff;border-radius:15px;box-shadow:0 20px 48px rgba(15,29,51,.26);overflow:hidden; }
   .birthday-detail-head{ display:flex;align-items:center;gap:9px;padding:16px 18px;background:#fff8dc;border-bottom:1px solid #f2e0a0;color:#805400;font-size:15px;font-weight:800; }
@@ -623,9 +637,11 @@
   .ev-meta{font-size:11.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .ev-date{grid-column:2;grid-row:2;font-size:12.5px;line-height:1.3;white-space:normal}
   .ev-star{grid-column:3;grid-row:1 / 3}
-  .cal{padding:12px;overflow-x:auto}
-  .cal-head{position:sticky;left:0;width:max-content}
-  .cal-grid{min-width:630px}
+  .cal{padding:12px;overflow:visible}
+  .cal-head{position:static;width:100%;justify-content:center;margin-bottom:6px}
+  .cal-title{min-width:112px;text-align:center;font-size:16px}
+  .cal-grid{display:none}
+  .cal-mobile-list{display:flex;flex-direction:column}
   .parts{margin-top:14px}
   .parts-foot{grid-template-columns:1fr}
   .ev-modal-overlay{padding:12px}
@@ -794,6 +810,7 @@ onAuthStateChanged(_auth, async function(user){
         <div id="calView" class="cal" hidden>
           <div class="cal-head"><button class="cal-nav">‹</button><div class="cal-title">2026년 6월</div><button class="cal-nav">›</button></div>
           <div class="cal-grid" id="calGrid"></div>
+          <div class="cal-mobile-list" id="calMobileList"></div>
         </div>
       </div>
       <aside class="parts">
@@ -1056,6 +1073,7 @@ onAuthStateChanged(_auth, async function(user){
 
   (function(){
     const grid = document.getElementById('calGrid');
+    const mobileList = document.getElementById('calMobileList');
     const dows = ['일','월','화','수','목','금','토'];
     var calNow=new Date(), calY=calNow.getFullYear(), calM=calNow.getMonth();
     var calItemsByDay={};
@@ -1138,6 +1156,25 @@ onAuthStateChanged(_auth, async function(user){
       }).join('');
       grid.innerHTML = html;
       bindBirthdayClick(grid);
+      function calEsc(value){return String(value==null?'':value).replace(/[&<>"']/g,function(ch){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch];});}
+      var mobileDays=[];
+      for(var mobileDay=1;mobileDay<=dim;mobileDay++){
+        var mobileItems=byDay[mobileDay]||[];
+        if(!mobileItems.length)continue;
+        var mobileDate=new Date(calY,calM,mobileDay);
+        var mobileToday=mobileDate.getTime()===today.getTime();
+        var mobileKey=calY+'-'+String(calM+1).padStart(2,'0')+'-'+String(mobileDay).padStart(2,'0');
+        var mobileEvents=mobileItems.map(function(item){
+          if(item.birthday){
+            return '<button type="button" class="cal-mobile-item birthday" data-birthday-key="'+encodeURIComponent(item.birthdayKey||'')+'"><span class="time">생일</span><span class="title">'+calEsc(item.title.replace(/^🎂\s*/,''))+'</span></button>';
+          }
+          var event=item.e;
+          return '<button type="button" class="cal-mobile-item" data-title="'+calEsc(event.title)+'"><span class="time">'+calEsc(event.time||'종일')+'</span><span class="title">'+calEsc(event.title)+'</span></button>';
+        }).join('');
+        mobileDays.push('<div class="cal-mobile-day" data-cal-day="'+mobileKey+'"><div class="cal-mobile-date '+(mobileToday?'today':'')+'"><span class="day">'+mobileDay+'</span><span class="dow">'+dows[mobileDate.getDay()]+'요일</span></div><div class="cal-mobile-items">'+mobileEvents+'</div></div>');
+      }
+      mobileList.innerHTML=mobileDays.length?mobileDays.join(''):'<div class="cal-mobile-empty">이달에 등록된 일정이나 생일이 없습니다.</div>';
+      bindBirthdayClick(mobileList);
     }
     window.renderCal = renderCal;
     window.showTodayCalendar = function(){
@@ -1204,6 +1241,14 @@ onAuthStateChanged(_auth, async function(user){
       var t=ce.getAttribute('data-title');
       var rows=document.querySelectorAll('#feedView .ev');
       for(var i=0;i<rows.length;i++){ if(rows[i].querySelector('.ev-t').textContent.trim()===t){ rows[i].click(); break; } }
+    });
+    mobileList.addEventListener('click',function(e){
+      var birthday=e.target.closest('[data-birthday-key]');
+      if(birthday){showBirthdayDetail(birthday.getAttribute('data-birthday-key'));return;}
+      var item=e.target.closest('[data-title]');if(!item)return;
+      var title=item.getAttribute('data-title');
+      var rows=document.querySelectorAll('#feedView .ev');
+      for(var i=0;i<rows.length;i++){if(rows[i].querySelector('.ev-t').textContent.trim()===title){rows[i].click();break;}}
     });
   })();
 
