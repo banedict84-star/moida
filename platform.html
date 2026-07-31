@@ -4145,6 +4145,44 @@ onAuthStateChanged(_auth, async function(user){
 })();
 </script>
 <script>
+/* 에이전트 조직도 안전 초기화: 주 실행 초기화가 지연되어도 명단을 먼저 표시 */
+(function(){
+  'use strict';
+  var GROUPS={
+    officeLegislativeTeams:[
+      ['policy','조례·정책팀장',['조례검토','정책분석','도정질문·발언'],'#059669'],
+      ['audit','예산·행감팀장',['예산·결산','요구자료','행감질의'],'#d97706'],
+      ['assemblypr','의정홍보팀장',['의정성과정리','의정보도자료','의정SNS'],'#7c3aed']
+    ],
+    officeLocalTeams:[
+      ['schedule','일정·수행팀장',['일정관리','의전·동선','연락·조율'],'#2563eb'],
+      ['civil','민원팀장',['민원분류','답변초안','처리추적'],'#dc5a66'],
+      ['organization','조직팀장',['연락처관리','간담회관리','지역여론'],'#0f9f9a'],
+      ['localpr','지역홍보팀장',['현장소식','민원해결홍보','지역채널'],'#db5b8b']
+    ],
+    officeDirectTeams:[
+      ['records','기록팀장',['회의록','공문·보고서','자료보관'],'#64748b'],
+      ['verification','검증팀장',['사실·수치검증','법률·조례검토','개인정보·품질'],'#1d4ed8']
+    ]
+  };
+  var KEYS={policy:['ordinance','analysis','speech'],audit:['budget','request','question'],assemblypr:['briefing','press','content'],schedule:['calendar','protocol','coordination'],civil:['triage','response','followup'],organization:['contacts','meeting','opinion'],localpr:['field','solution','channel'],records:['minutes','documents','archive'],verification:['facts','legal','privacy']};
+  function safe(s){ var d=document.createElement('div'); d.textContent=String(s||''); return d.innerHTML; }
+  function paint(){
+    Object.keys(GROUPS).forEach(function(id){
+      var box=document.getElementById(id); if(!box||box.children.length) return;
+      box.innerHTML=GROUPS[id].map(function(team){
+        return '<div class="org-team-card" data-office-team="'+team[0]+'" data-status="idle" style="--team:'+team[3]+'"><div class="org-team-lead" data-office-agent="'+team[0]+'_lead"><span class="org-team-orb"></span><span class="org-team-name">'+safe(team[1])+'</span><span class="org-team-state">대기</span></div><div class="org-team-workers">'+team[2].map(function(name,i){return '<div class="org-worker" data-office-agent="'+team[0]+'_'+KEYS[team[0]][i]+'" data-status="idle" style="--delay:'+(i*.35)+'s"><span class="org-worker-avatar"></span><span class="org-worker-name">'+safe(name)+'</span><span class="org-worker-status">대기</span></div>';}).join('')+'</div></div>';
+      }).join('');
+    });
+  }
+  window.__ensureAgentRoster=paint;
+  paint();
+  document.addEventListener('DOMContentLoaded',paint);
+  window.addEventListener('hashchange',function(){ if(location.hash==='#agents') paint(); });
+  setTimeout(paint,500);
+})();
+</script>
+<script>
 /* AI 에이전트 사무실: 멀티에이전트 실행 기록을 직원 상태와 활동으로 표현 */
 (function(){
   'use strict';
