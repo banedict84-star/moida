@@ -66,10 +66,12 @@ test("Gemini 웹자보 문구를 인증 후 구조화해 반환한다", async ()
 });
 
 test("Gemini 웹자보 이미지를 데이터 URL로 반환한다", async () => {
-  globalThis.fetch = async (url) => {
+  let geminiBody;
+  globalThis.fetch = async (url, options) => {
     if (String(url).includes("identitytoolkit.googleapis.com")) {
       return Response.json({ users: [{ localId: "member-1" }] });
     }
+    geminiBody = JSON.parse(options.body);
     return Response.json({
       status: "completed",
       steps: [{
@@ -82,6 +84,8 @@ test("Gemini 웹자보 이미지를 데이터 URL로 반환한다", async () => 
 
   const response = await worker.fetch(request("/gemini/poster-image", {
     title: "복지관 현장 방문",
+    message: "현장에서 듣고 정책으로 답하겠습니다",
+    category: "현장소통",
     ratio: "4:5",
   }), env());
   const data = await response.json();
@@ -89,6 +93,8 @@ test("Gemini 웹자보 이미지를 데이터 URL로 반환한다", async () => 
   assert.equal(response.status, 200);
   assert.equal(data.ok, true);
   assert.equal(data.image, "data:image/jpeg;base64,aW1hZ2U=");
+  assert.match(geminiBody.input[0].text, /현장에서 듣고 정책으로 답하겠습니다/);
+  assert.match(geminiBody.input[0].text, /현장소통/);
 });
 
 test("Gemini 키가 없으면 설정 방법을 알린다", async () => {
