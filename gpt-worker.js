@@ -534,7 +534,7 @@ function assemblyHeaders(referer, cookie = "") {
     "Accept": "text/html,application/xhtml+xml",
     "Accept-Language": "ko-KR,ko;q=0.9",
     "Referer": referer,
-    "User-Agent": "Mozilla/5.0 (compatible; MOIDA/1.0; +https://banedict84-star.github.io/moida/)",
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
   };
   if (cookie) headers.Cookie = cookie;
   return headers;
