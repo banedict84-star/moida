@@ -27,13 +27,24 @@ test("classifies the member as representative sponsor and reads result", () => {
       <tr><th>소관위원회</th><td>여성가족평생교육위원회</td><th>제안일</th><td>2025-07-07</td></tr>
       <tr><th>발의구분</th><td>공동발의</td></tr>
       <tr><th>대표발의</th><td><a>장윤정</a></td></tr>
+      <tr><th>공동발의</th><td>김동희 김영희 김옥순</td></tr>
+      <tr><th>제안회기</th><td>제 11 대 - 385회</td></tr>
       <tr><th>처리결과</th><td>원안가결</td></tr>
-    </table>`;
+    </table>
+    <h3>의안요지</h3><p>가족센터의 안정적인 설치와 운영에 필요한 근거를 마련한다.</p>
+    <div>원안파일 <a href="/site/agendaif/file/download/uu/example">2029. 조례안.hwpx</a></div>`;
   const result = parseAssemblyBillDetail(html, { sourceUrl: "https://example.com" }, "장윤정");
   assert.equal(result.kind, "대표발의");
   assert.equal(result.stage, "원안가결");
   assert.equal(result.progress, 100);
   assert.equal(result.billNo, "2029");
+  assert.equal(result.proposalSession, "제 11 대 - 385회");
+  assert.equal(result.coSponsors, "김동희 김영희 김옥순");
+  assert.match(result.summary, /가족센터/);
+  assert.deepEqual(result.files, [{
+    name: "2029. 조례안.hwpx",
+    url: "https://www.ggc.go.kr/site/agendaif/file/download/uu/example",
+  }]);
 });
 
 test("keeps one-person proposals separate", () => {
