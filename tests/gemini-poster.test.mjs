@@ -1,5 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 import worker from "../gpt-worker.js";
 
 const originalFetch = globalThis.fetch;
@@ -39,12 +40,12 @@ test("Gemini 웹자보 문구를 인증 후 구조화해 반환한다", async ()
       candidates: [{
         content: {
           parts: [{
-            text: JSON.stringify({
+            text: "```json\n" + JSON.stringify({
               title: "현장에서 답을 찾겠습니다",
               message: "주민의 목소리를 정책으로 잇겠습니다",
               body: "현장의 의견을 꼼꼼히 듣고 의정활동에 반영하겠습니다.",
               category: "현장소통",
-            }),
+            }) + "\n```",
           }],
         },
       }],
@@ -95,6 +96,18 @@ test("Gemini 웹자보 이미지를 데이터 URL로 반환한다", async () => 
   assert.equal(data.image, "data:image/jpeg;base64,aW1hZ2U=");
   assert.match(geminiBody.input[0].text, /현장에서 듣고 정책으로 답하겠습니다/);
   assert.match(geminiBody.input[0].text, /현장소통/);
+});
+
+test("비서실장 웹자보는 단계별 질문 후 최종 확인에서 생성한다", () => {
+  const html = readFileSync(new URL("../platform.html", import.meta.url), "utf8");
+  assert.match(html, /1\/5 · 웹자보 내용/);
+  assert.match(html, /2\/5 · 날짜와 시간/);
+  assert.match(html, /3\/5 · 장소/);
+  assert.match(html, /4\/5 · 핵심 메시지/);
+  assert.match(html, /5\/5 · 디자인 분위기/);
+  assert.match(html, /웹자보 생성 전 확인/);
+  assert.match(html, /if\(posterWizard\)\{answerPosterWizard\(text\);return;\}/);
+  assert.match(html, /if\(isPosterCreationRequest\(text\)\)\{startPosterWizard\(\);return;\}/);
 });
 
 test("Gemini 키가 없으면 설정 방법을 알린다", async () => {
