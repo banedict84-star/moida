@@ -224,6 +224,22 @@ body.app-loading #sideAvatar{color:transparent!important;background:#243a5c!impo
   .page[data-page="admin"] .pg>div>div{min-width:680px}
   .page[data-page="admin"] .usage-kpis{grid-template-columns:repeat(2,minmax(0,1fr))!important}
   .page[data-page="admin"] .usage-card>div{min-width:0!important}
+  .page[data-page="dashboard"] .dashboard-intro{align-items:stretch;margin-bottom:14px!important}
+  .page[data-page="dashboard"] .dashboard-intro>div{width:100%}
+  .page[data-page="dashboard"] .dashboard-intro button{width:100%;justify-content:center;height:44px!important}
+  .page[data-page="dashboard"] #dashGreet{font-size:21px!important}
+  .page[data-page="dashboard"] .dashboard-kpis{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:9px!important;margin-bottom:10px!important}
+  .page[data-page="dashboard"] .dashboard-kpis>div{padding:13px!important;border-radius:12px!important}
+  .page[data-page="dashboard"] .dashboard-kpis>div>div:nth-child(2){margin-top:9px!important}
+  .page[data-page="dashboard"] .dashboard-kpis [id^="kpi"]{font-size:25px!important}
+  .page[data-page="dashboard"] .dashboard-grid{grid-template-columns:minmax(0,1fr)!important;gap:10px!important}
+  .page[data-page="dashboard"] .dashboard-card{padding:16px!important;border-radius:12px!important}
+  .page[data-page="dashboard"] .dashboard-brief{order:-1;padding:17px!important}
+  .page[data-page="dashboard"] .dashboard-brief>div:first-child{align-items:flex-start!important;flex-wrap:wrap}
+  .page[data-page="dashboard"] .dashboard-brief>div:first-child>span:last-child{margin-left:39px!important;margin-top:-4px}
+  .page[data-page="dashboard"] .dashboard-brief button{width:100%;justify-content:center;margin-top:14px!important}
+  .page[data-page="dashboard"] .dashboard-news-card{padding:16px!important;margin-top:10px!important;border-radius:12px!important}
+  .page[data-page="dashboard"] #dashNews{grid-template-columns:minmax(0,1fr)!important;gap:8px!important}
 }
 </style>
 </head>
@@ -381,7 +397,7 @@ body.app-loading #sideAvatar{color:transparent!important;background:#243a5c!impo
 
       <div class="page" data-page="dashboard">
       <div class="pg" style="max-width:1320px;margin:0 auto">
-        <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:12px">
+        <div class="dashboard-intro" style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:12px">
           <div>
             <div id="dashGreet" style="font-size:22px;font-weight:700;letter-spacing:-0.02em;color:#16202e">안녕하세요</div>
             <div id="dashGreetSub" style="font-size:13.5px;color:#7a8593;margin-top:4px">오늘의 업무 현황입니다.</div>
@@ -428,7 +444,7 @@ body.app-loading #sideAvatar{color:transparent!important;background:#243a5c!impo
         </div>
 
         <div class="dashboard-grid" style="display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);gap:16px;align-items:stretch">
-            <div style="height:100%;background:linear-gradient(135deg,#16305c,#22487f);border-radius:14px;padding:22px;color:#fff;box-shadow:0 4px 16px rgba(22,48,92,0.25)">
+            <div class="dashboard-card dashboard-brief" style="height:100%;background:linear-gradient(135deg,#16305c,#22487f);border-radius:14px;padding:22px;color:#fff;box-shadow:0 4px 16px rgba(22,48,92,0.25)">
               <div style="display:flex;align-items:center;gap:9px;margin-bottom:14px">
                 <span style="width:30px;height:30px;border-radius:8px;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.6L19.5 10l-5.6 1.9L12 17.5l-1.9-5.6L4.5 10l5.6-1.9z"/></svg></span>
                 <div><div style="font-size:14.5px;font-weight:700">AI 비서실장 브리핑</div><div style="font-size:11.5px;color:#a9c1e6;margin-top:1px">오전 8:00 자동 업데이트</div></div>
@@ -441,13 +457,13 @@ body.app-loading #sideAvatar{color:transparent!important;background:#243a5c!impo
               </button>
             </div>
 
-            <div data-go="minwon" style="height:100%;background:#fff;border:1px solid #e9ecf1;border-radius:14px;padding:20px;box-shadow:0 1px 2px rgba(16,24,40,0.04);cursor:pointer;transition:border-color .15s,box-shadow .15s" data-hover="border-color:#c7d4ea;box-shadow:0 4px 14px rgba(16,24,40,0.08)">
+            <div class="dashboard-card" data-go="minwon" style="height:100%;background:#fff;border:1px solid #e9ecf1;border-radius:14px;padding:20px;box-shadow:0 1px 2px rgba(16,24,40,0.04);cursor:pointer;transition:border-color .15s,box-shadow .15s" data-hover="border-color:#c7d4ea;box-shadow:0 4px 14px rgba(16,24,40,0.08)">
               <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px"><span style="font-size:15px;font-weight:700;letter-spacing:-0.01em">민원 처리 현황</span><span style="font-size:12.5px;color:#2563eb;font-weight:600">전체</span></div>
               <div id="dashMwBar" style="display:flex;height:12px;border-radius:6px;overflow:hidden;margin-bottom:14px;background:#eef1f5"></div>
               <div id="dashMwLegend" style="display:flex;flex-direction:column;gap:9px"></div>
             </div>
 
-            <div style="height:100%;background:#fff;border:1px solid #e9ecf1;border-radius:14px;padding:20px;box-shadow:0 1px 2px rgba(16,24,40,0.04)">
+            <div class="dashboard-card" style="height:100%;background:#fff;border:1px solid #e9ecf1;border-radius:14px;padding:20px;box-shadow:0 1px 2px rgba(16,24,40,0.04)">
               <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
                 <span style="font-size:15px;font-weight:700;letter-spacing:-0.01em">다가오는 일정</span>
                 <span data-go="schedule" style="font-size:12.5px;color:#2563eb;font-weight:600;cursor:pointer">전체 보기</span>
@@ -455,13 +471,13 @@ body.app-loading #sideAvatar{color:transparent!important;background:#243a5c!impo
               <div id="dashToday" style="display:flex;flex-direction:column"></div>
             </div>
 
-            <div style="height:100%;background:#fff;border:1px solid #e9ecf1;border-radius:14px;padding:20px;box-shadow:0 1px 2px rgba(16,24,40,0.04)">
+            <div class="dashboard-card" style="height:100%;background:#fff;border:1px solid #e9ecf1;border-radius:14px;padding:20px;box-shadow:0 1px 2px rgba(16,24,40,0.04)">
               <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px"><span style="font-size:15px;font-weight:700;letter-spacing:-0.01em">정책 추진 현황</span><span data-go="policy" style="font-size:12.5px;color:#2563eb;font-weight:600;cursor:pointer">전체</span></div>
               <div id="dashPolicy" style="display:flex;flex-direction:column;gap:15px"></div>
             </div>
         </div>
 
-        <div style="background:#fff;border:1px solid #e9ecf1;border-radius:14px;padding:20px;box-shadow:0 1px 2px rgba(16,24,40,0.04);margin-top:16px">
+        <div class="dashboard-news-card" style="background:#fff;border:1px solid #e9ecf1;border-radius:14px;padding:20px;box-shadow:0 1px 2px rgba(16,24,40,0.04);margin-top:16px">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px"><span style="font-size:15px;font-weight:700;letter-spacing:-0.01em">뉴스·언론 모니터링</span><span data-go="news" style="font-size:12.5px;color:#2563eb;font-weight:600;cursor:pointer">전체 보기</span></div>
           <div id="dashNews" style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px"></div>
         </div>
