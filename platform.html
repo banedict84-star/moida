@@ -4099,6 +4099,7 @@ onAuthStateChanged(_auth, async function(user){
   try{roleOverrides=JSON.parse(localStorage.getItem(ROLE_STORAGE_KEY)||'{}')||{};}catch(e){roleOverrides={};}
   function agentRole(type){return roleOverrides[type]||ROLE_DEFAULTS[type]||'담당 업무와 결과물을 실무적으로 정리합니다.';}
   function saveAgentRole(type,role){roleOverrides[type]=role;try{localStorage.setItem(ROLE_STORAGE_KEY,JSON.stringify(roleOverrides));}catch(e){}}
+  function esc(s){var d=document.createElement('div');d.textContent=String(s||'');return d.innerHTML;}
   function buildOfficeOrganization(){
     Object.keys(ORG_GROUPS).forEach(function(boxId){
       var box=document.getElementById(boxId);if(!box)return;
@@ -4111,7 +4112,6 @@ onAuthStateChanged(_auth, async function(user){
   }
   buildOfficeOrganization();
   var DEFAULT_SPEECH={schedule:'다음 일정을 확인하고 있어요.',promotion:'홍보 자료를 정리하고 있어요.',policy:'정책 자료를 검토하고 있어요.'};
-  function esc(s){var d=document.createElement('div');d.textContent=String(s||'');return d.innerHTML;}
   function setAgent(type,status,speech){
     if(type!=='secretary'){
       var line=document.querySelector('[data-network-line="'+type+'"]'),signal=document.querySelector('[data-network-signal="'+type+'"]');
