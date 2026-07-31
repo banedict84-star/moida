@@ -218,6 +218,8 @@
   .ncard .new-dot{ width:7px; height:7px; border-radius:50%; background:#ef4444; flex-shrink:0; }
   .ncard .nmeta{ font-size:12.5px; color:var(--ink-2); font-weight:600; margin-top:9px; display:flex; align-items:center; gap:8px; }
   .ncard .nprev{ font-size:13px; color:var(--ink-3); margin-top:9px; line-height:1.55; display:-webkit-box; -webkit-line-clamp:1; -webkit-box-orient:vertical; overflow:hidden; }
+  .ncard .nsource-action{ display:inline-flex; align-items:center; gap:5px; margin-top:10px; color:var(--primary); font-size:11.5px; font-weight:700; }
+  .ncard .nsource-action svg{ width:13px; height:13px; }
   .author-pill{ display:inline-flex; align-items:center; gap:5px; padding:2px 9px; border-radius:20px; background:#15182a; color:#fff; font-size:11px; font-weight:700; white-space:nowrap; }
   .author-pill.central{ background:var(--primary); }
   .author-pill.gyeonggi{ background:#0d9488; }
@@ -257,6 +259,11 @@
   .db .att{ display:inline-flex; align-items:center; gap:8px; padding:9px 12px; border:1px solid var(--line); border-radius:10px; background:var(--bg); color:var(--ink-2); font-size:12.5px; font-weight:600; text-decoration:none; }
   .db .att:hover{ border-color:var(--primary); color:var(--primary); }
   .db .att svg{ width:15px; height:15px; flex-shrink:0; color:var(--primary); }
+  .external-notice{ margin-top:6px; padding:18px; border:1px solid var(--line); border-radius:13px; background:#f8fafc; text-align:center; }
+  .external-notice .ext-icon{ width:40px; height:40px; margin:0 auto 11px; border-radius:12px; display:flex; align-items:center; justify-content:center; background:var(--primary-soft); color:var(--primary); }
+  .external-notice .ext-title{ font-size:14px; font-weight:800; color:var(--ink); }
+  .external-notice .ext-desc{ margin-top:6px; font-size:12.5px; line-height:1.6; color:var(--ink-3); }
+  .external-notice .src-link{ margin-top:14px; background:#fff; }
 </style>
 <style>
 @media(max-width:700px){
@@ -288,6 +295,7 @@
   .ncard .new-dot{margin-top:6px}
   .ncard .nmeta{display:grid;grid-template-columns:auto auto auto minmax(0,1fr);align-items:center;justify-content:start;gap:5px 7px;margin-top:8px;font-size:11px}
   .ncard .nprev{font-size:11.8px;line-height:1.5;margin-top:7px;-webkit-line-clamp:2}
+  .ncard .nsource-action{margin-top:9px;font-size:11px}
   .author-pill,.cat-pill,.imp-pill,.recent-pill{font-size:10px;padding:2px 7px}
   .nviews{justify-self:end;margin-left:0;white-space:nowrap}
   .ndetail{display:none;position:fixed;inset:0;z-index:1800;overflow-y:auto;padding:62px 16px calc(28px + env(safe-area-inset-bottom));border:0;border-radius:0;box-shadow:none}
@@ -345,7 +353,7 @@
       </div>
     </div>
 
-    <div class="ro-banner"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>공지사항은 총관리자가 작성하며, 의원 페이지에서는 열람만 가능합니다.</div>
+    <div class="ro-banner"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>MOIDA 공지는 총관리자가 작성하며, 외부 기관 공지는 원문으로 연결됩니다.</div>
 
 
 
@@ -615,12 +623,17 @@ c1|2026.03.10|2,051|경기도의회 의정모니터단 모집 공고`;
       var rest = filtered.filter(function(n){ return !n.imp; }).sort(function(a,b){ return dnum(b.date)-dnum(a.date); });
       items = imp.concat(rest);
     }
-    nlist.innerHTML = items.map((n)=>`
+    nlist.innerHTML = items.map((n)=>{
+      var generic=/공지사항입니다\.[\s\S]*자세한 내용/.test(n.body||'');
+      var hasPreview=!!(n.bodyHtml || (n.body && !generic));
+      var preview=hasPreview?`<div class="nprev">${esc((n.body||'').replace(/\s+/g,' ').trim())}</div>`:'';
+      var sourceAction=(!hasPreview && n.link)?`<span class="nsource-action">원문에서 내용 확인 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 5h5v5"/><path d="M10 14 19 5"/><path d="M19 13v6H5V5h6"/></svg></span>`:'';
+      return `
       <div class="ncard${n.imp?' imp':''}" data-id="${n.id}" data-src="${n.src}">
         <div class="nt">${n.isNew?'<span class="new-dot"></span>':''}<span class="nt-text">${esc(n.title)}</span></div>
         <div class="nmeta">${srcPill(n)}<span>${n.date}</span>${isRecent(n.date)?'<span class="recent-pill">최근</span>':''}${n.views?'<span class="nviews">'+n.views+'회</span>':''}</div>
-        <div class="nprev">${esc(n.body.replace(/\s+/g,' ').trim())}</div>
-      </div>`).join('') || '<div style="padding:40px 4px;color:var(--ink-4);font-size:14px;">해당 출처의 공지가 없습니다.</div>';
+        ${preview}${sourceAction}
+      </div>`;}).join('') || '<div style="padding:40px 4px;color:var(--ink-4);font-size:14px;">해당 출처의 공지가 없습니다.</div>';
     nlist.querySelectorAll('.ncard').forEach(c=>c.addEventListener('click',()=>selectNotice(c.dataset.id,true)));
     // counts
     document.querySelector('[data-c="all"]').textContent = notices.length;
@@ -649,8 +662,9 @@ c1|2026.03.10|2,051|경기도의회 의정모니터단 모집 공고`;
       ndBody.className = 'db';
       ndBody.innerHTML = n.bodyHtml + atts + (srcLink? '<div class="atts">'+srcLink+'</div>' : '');
     } else if((n.src==='central'||n.src==='gyeonggi'||n.src==='council') && n.link){
-      ndBody.className = 'db plain';
-      ndBody.innerHTML = n.body.replace(/</g,'&lt;').replace(/\n/g,'<br>') + '<br><br>' + srcLink;
+      var sourceName=n.src==='central'?'민주당 중앙당':(n.src==='gyeonggi'?'민주당 경기도당':'경기도의회');
+      ndBody.className = 'db';
+      ndBody.innerHTML = '<div class="external-notice"><div class="ext-icon"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14 5h5v5"/><path d="M10 14 19 5"/><path d="M19 13v6H5V5h6"/></svg></div><div class="ext-title">'+sourceName+' 공지</div><div class="ext-desc">이 공지는 제목과 게시일을 연동해 제공하고 있습니다.<br>세부 내용과 첨부파일은 출처의 원문에서 확인해 주세요.</div>'+srcLink+'</div>';
     } else {
       ndBody.className = 'db plain';
       ndBody.textContent = n.body;
