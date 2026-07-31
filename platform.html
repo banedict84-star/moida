@@ -252,6 +252,20 @@ body.app-loading #sideAvatar{color:transparent!important;background:#243a5c!impo
   .page[data-page="admin"] .pg>div>div{min-width:680px}
   .page[data-page="admin"] .usage-kpis{grid-template-columns:repeat(2,minmax(0,1fr))!important}
   .page[data-page="admin"] .usage-card>div{min-width:0!important}
+  .page[data-page="admin"] .usage-card{padding:14px!important;overflow:visible!important}
+  .page[data-page="admin"] .usage-table-scroll{overflow:visible!important}
+  .page[data-page="admin"] .usage-table{min-width:0!important}
+  .page[data-page="admin"] .usage-table-head{display:none!important}
+  .page[data-page="admin"] #usageRows{display:flex;flex-direction:column;gap:8px;padding:8px;border:0!important;background:#f7f9fc;border-radius:11px!important}
+  .page[data-page="admin"] .usage-model-row{display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;gap:7px 12px;padding:12px!important;border:1px solid #e8ecf2!important;border-radius:10px;background:#fff;font-size:11.5px!important}
+  .page[data-page="admin"] .usage-model-name{grid-column:1;grid-row:1;min-width:0}
+  .page[data-page="admin"] .usage-model-name b{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .page[data-page="admin"] .usage-model-cost{grid-column:2;grid-row:1;white-space:nowrap;font-size:13px}
+  .page[data-page="admin"] .usage-model-calls{grid-column:1;grid-row:2;color:#697587}
+  .page[data-page="admin"] .usage-model-amount{grid-column:2;grid-row:2;color:#697587;text-align:right;white-space:nowrap}
+  .page[data-page="admin"] .usage-model-calls::before{content:"호출 ";color:#9aa3b0}
+  .page[data-page="admin"] #usagePricing{display:grid!important;grid-template-columns:1fr!important}
+  .page[data-page="admin"] #usagePricing>span{display:block;min-width:0!important;line-height:1.45;overflow-wrap:anywhere}
 }
 @media(max-width:390px){
   .dashboard-welcome{display:block!important}
@@ -693,9 +707,9 @@ body.app-loading #sideAvatar{color:transparent!important;background:#243a5c!impo
             <div style="padding:14px;background:#f7f9fc;border:1px solid #edf0f4;border-radius:11px"><div style="font-size:11px;color:#8a94a3">이미지 생성</div><b id="usageImages" style="display:block;font-size:20px;margin-top:5px">0</b></div>
             <div style="padding:14px;background:#eef4ff;border:1px solid #dce8fb;border-radius:11px"><div style="font-size:11px;color:#55739d">예상 이용료</div><b id="usageCost" style="display:block;font-size:20px;margin-top:5px;color:#1d3a6e">0원</b></div>
           </div>
-          <div style="overflow-x:auto">
-            <div style="min-width:540px">
-              <div style="display:grid;grid-template-columns:1.7fr .8fr 1.2fr 1fr;padding:11px 12px;background:#fafbfc;border:1px solid #edf0f4;border-radius:9px 9px 0 0;font-size:11.5px;font-weight:700;color:#7d8898"><span>모델</span><span>호출</span><span>사용량</span><span style="text-align:right">예상 비용</span></div>
+          <div class="usage-table-scroll" style="overflow-x:auto">
+            <div class="usage-table" style="min-width:540px">
+              <div class="usage-table-head" style="display:grid;grid-template-columns:1.7fr .8fr 1.2fr 1fr;padding:11px 12px;background:#fafbfc;border:1px solid #edf0f4;border-radius:9px 9px 0 0;font-size:11.5px;font-weight:700;color:#7d8898"><span>모델</span><span>호출</span><span>사용량</span><span style="text-align:right">예상 비용</span></div>
               <div id="usageRows" style="border:1px solid #edf0f4;border-top:0;border-radius:0 0 9px 9px"><div style="padding:24px;text-align:center;color:#9aa3b0;font-size:12px">사용량을 불러오는 중입니다.</div></div>
             </div>
           </div>
@@ -1664,8 +1678,8 @@ onAuthStateChanged(_auth, async function(user){
     var rows=Object.keys(byModel).map(function(key){return byModel[key];}).sort(function(a,b){return b.costKrw-a.costKrw;});
     box.innerHTML=rows.length?rows.map(function(r){
       var usage=(r.image_count?num(r.image_count)+'장 · ':'')+num(r.total_tokens)+' 토큰';
-      return '<div style="display:grid;grid-template-columns:1.7fr .8fr 1.2fr 1fr;padding:12px;border-top:1px solid #f0f2f5;font-size:12px;align-items:center">'
-        +'<div><b style="font-size:12px">'+M.esc(r.model)+'</b><div style="font-size:10px;color:#9aa3b0;margin-top:2px">'+M.esc(r.provider||'')+'</div></div><span>'+num(r.calls)+'</span><span>'+usage+'</span><b style="text-align:right;color:#1d3a6e">'+won(r.costKrw)+'</b></div>';
+      return '<div class="usage-model-row" style="display:grid;grid-template-columns:1.7fr .8fr 1.2fr 1fr;padding:12px;border-top:1px solid #f0f2f5;font-size:12px;align-items:center">'
+        +'<div class="usage-model-name"><b style="font-size:12px">'+M.esc(r.model)+'</b><div style="font-size:10px;color:#9aa3b0;margin-top:2px">'+M.esc(r.provider||'')+'</div></div><span class="usage-model-calls">'+num(r.calls)+'</span><span class="usage-model-amount">'+usage+'</span><b class="usage-model-cost" style="text-align:right;color:#1d3a6e">'+won(r.costKrw)+'</b></div>';
     }).join(''):'<div style="padding:28px;text-align:center;color:#9aa3b0;font-size:12px">선택한 달의 기록이 없습니다. 적용 이후 사용량부터 집계됩니다.</div>';
     document.getElementById('usagePricing').innerHTML=(data.pricingCatalog||[]).map(function(p){
       return '<span style="padding:5px 8px;border-radius:7px;background:#f5f7fa;color:#647084;font-size:10.5px"><b>'+M.esc(p.provider)+'</b> '+M.esc(p.model)+' · 입력 $'+p.input+' / 출력 $'+p.output+'</span>';
@@ -4150,125 +4164,4 @@ onAuthStateChanged(_auth, async function(user){
   function esc(s){var d=document.createElement('div');d.textContent=String(s||'');return d.innerHTML;}
   function setAgent(type,status,speech){
     if(type!=='secretary'){
-      var line=document.querySelector('[data-network-line="'+type+'"]'),signal=document.querySelector('[data-network-signal="'+type+'"]');
-      var active=/delegating|monitoring|running|reviewing|reworking/.test(status||'');
-      if(line)line.classList.toggle('active',active);
-      if(signal)signal.classList.toggle('active',active);
-    }
-    var el=document.querySelector('[data-office-agent="'+type+'"]');if(!el)return;
-    el.setAttribute('data-status',status||'idle');
-    var stateText=LABELS[status]||'대기',teamCard=el.closest&&el.closest('.org-team-card');
-    if(/_lead$/.test(type)&&teamCard){teamCard.setAttribute('data-status',status||'idle');var teamState=el.querySelector('.org-team-state');if(teamState)teamState.textContent=stateText;}
-    var workerState=el.querySelector&&el.querySelector('.org-worker-status');if(workerState)workerState.textContent=stateText;
-    var bubble=el.querySelector('.speech');if(bubble)bubble.textContent=speech||DEFAULT_SPEECH[type]||'업무를 확인하고 있어요.';
-  }
-  function secretarySpeech(status){
-    return {planning:'의원님의 지시를 업무별로 나누고 있어요.',running:'각 에이전트에게 업무를 배정했어요.',reviewing:'직원들이 보낸 결과를 검수하고 있어요.',completed:'결과를 하나의 보고로 통합했어요.',failed:'문제를 확인하고 다시 배정할게요.'}[status]||'새로운 지시를 기다리고 있어요.';
-  }
-  function taskSpeech(task){
-    if(!task)return '';
-    var title=task.title||'배정 업무';
-    return task.status==='running'?title+' 처리 중이에요.':task.status==='completed'?title+' 완료! 결과를 전달했어요.':task.status==='failed'?'작업 중 문제가 생겼어요.':title+' 순서를 기다리고 있어요.';
-  }
-  function time(ts){var d=new Date(+ts||Date.now());return String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0');}
-  function render(runs){
-    runs=Array.isArray(runs)?runs:[];
-    var latest=runs[0]||null,tasks=latest&&Array.isArray(latest.tasks)?latest.tasks:[];
-    ['policy','audit','assemblypr','schedule','civil','organization','localpr','records','verification','promotion'].forEach(function(type){
-      var task=tasks.find(function(t){return t.agent===type;});
-      var workerStatus=task?(task.workerStatus||(task.status==='completed'?'completed':task.status)):'idle';
-      var leadStatus=task?(task.leadStatus||(task.status==='reviewing'?'reviewing':task.status==='running'?'monitoring':task.status)):'idle';
-      setAgent(type,workerStatus,task?taskSpeech({title:task.title,status:workerStatus}):DEFAULT_SPEECH[type]);
-      (WORKER_KEYS[type]||[]).forEach(function(workerId){
-        var subtask=task&&(task.subtasks||[]).find(function(s){return s.workerId===workerId;});
-        setAgent(type+'_'+workerId,subtask?subtask.status:'idle',subtask?taskSpeech({title:subtask.name,status:subtask.status}):'업무를 기다리고 있어요.');
-      });
-      setAgent(type+'_lead',leadStatus,task?(leadStatus==='reviewing'?'팀원 결과를 검수하고 있어요.':leadStatus==='approved'?'검수 승인 후 비서실장에게 보고했어요.':'팀 업무를 관리하고 있어요.'):'새로운 업무를 기다리고 있어요.');
-    });
-    setAgent('secretary',latest?latest.status:'idle',secretarySpeech(latest&&latest.status));
-    var total=document.getElementById('officeTotalRuns'),working=document.getElementById('officeWorkingCount'),done=document.getElementById('officeDoneCount');
-    if(total)total.textContent=String(runs.length);
-    if(working)working.textContent=String(runs.filter(function(r){return /planning|running|reviewing/.test(r.status);}).length);
-    if(done)done.textContent=String(runs.filter(function(r){return r.status==='completed';}).length);
-    var title=document.getElementById('officeRunTitle'),status=document.getElementById('officeRunStatus'),bar=document.getElementById('officeProgressBar'),progress=document.getElementById('officeProgressText');
-    if(title)title.textContent=latest?(latest.instruction||'지시 내용 없음'):'비서실장에게 지시하면 에이전트가 활성화됩니다.';
-    if(status)status.textContent=latest?(LABELS[latest.status]||latest.status):'대기';
-    var completed=tasks.filter(function(t){return t.status==='completed';}).length;
-    var percent=tasks.length?Math.round(completed/tasks.length*100):0;
-    if(latest&&latest.status==='completed')percent=100;
-    if(bar)bar.style.width=percent+'%';
-    if(progress)progress.textContent=tasks.length?(completed+' / '+tasks.length+'개 업무 완료'):'배정된 작업 없음';
-    var activeBox=document.getElementById('officeActiveAgents'),activeCount=document.getElementById('officeActiveCount');
-    if(activeBox){
-      var executing=[],isActive=function(s){return /planning|delegating|monitoring|running|reviewing|reworking/.test(s||'');};
-      if(latest&&latest.status!=='completed')executing.push({name:'AI 비서실장',task:latest.status==='reviewing'?'팀장 보고 통합 검수':'의원 지시 분석 및 총괄',status:latest.status});
-      tasks.forEach(function(task){
-        var leadStatus=task.leadStatus||(task.status==='completed'?'completed':task.status);
-        if(leadStatus&&leadStatus!=='queued')executing.push({name:NAMES[task.agent+'_lead']||'팀장',task:task.status==='reviewing'?'팀원 결과 검수':(task.title||'팀 업무 관리'),status:leadStatus});
-        (task.subtasks||[]).forEach(function(s){if(s.status&&s.status!=='queued')executing.push({name:s.name||'전문 팀원',task:s.role||task.title||'전문 업무',status:s.status});});
-      });
-      var activeNum=executing.filter(function(x){return isActive(x.status);}).length;
-      if(activeCount)activeCount.textContent=activeNum?activeNum+'명 실행 중':(latest&&latest.status==='completed'?'최근 실행 완료':'0명 실행 중');
-      activeBox.innerHTML=executing.length?executing.slice(0,10).map(function(x){
-        var cls=isActive(x.status)?(/reviewing/.test(x.status)?'review':'active'):(/completed|approved/.test(x.status)?'done':'');
-        return '<div class="execution-item '+cls+'"><span class="execution-icon">'+(cls==='done'?'✓':'↻')+'</span><div class="execution-main"><div class="execution-name">'+esc(x.name)+'</div><div class="execution-task">'+esc(x.task)+'</div></div><span class="execution-state">'+esc(LABELS[x.status]||x.status)+'</span></div>';
-      }).join(''):'<div style="padding:18px 0;text-align:center;color:#a0a9b5;font-size:11px">현재 실행 중인 에이전트가 없습니다.</div>';
-    }
-    var feed=document.getElementById('officeActivity');if(!feed)return;
-    var items=[];
-    runs.slice(0,4).forEach(function(run){
-      (run.tasks||[]).slice().reverse().forEach(function(task){
-        if(items.length<7)items.push({name:NAMES[task.agent+'_lead']||'팀장',text:(task.title||'업무')+' · '+(task.review?'검수 승인':(+task.schemaVersion>=2?'진행 관리':'이전 방식 완료')),status:task.leadStatus||task.status,time:time(task.updatedAt)});
-        (task.subtasks||[]).forEach(function(s){if(items.length<7)items.push({name:s.name||'AI 팀원',text:(LABELS[s.status]||s.status),status:s.status,time:time(s.updatedAt)});});
-      });
-      if(items.length<7)items.push({name:'AI 비서실장',text:(run.instruction||'지시')+' · '+(LABELS[run.status]||run.status),status:run.status,time:time(run.updatedAt)});
-    });
-    feed.innerHTML=items.length?items.slice(0,7).map(function(item){
-      var cls=item.status==='completed'?'done':(/planning|running|reviewing/.test(item.status)?'work':'');
-      return '<div class="office-feed-item"><span class="office-feed-dot '+cls+'"></span><div class="office-feed-text"><b>'+esc(item.name)+' <small style="float:right;color:#a3abb7;font-weight:500">'+item.time+'</small></b>'+esc(item.text)+'</div></div>';
-    }).join(''):'<div style="padding:24px 0;text-align:center;color:#a3abb7;font-size:11.5px">아직 업무 기록이 없습니다.</div>';
-  }
-  window.addEventListener('moida:agent-runs',function(e){render(e.detail);});
-  document.querySelectorAll('[data-office-agent]').forEach(function(node){
-    node.addEventListener('click',function(){
-      var type=node.getAttribute('data-office-agent'),isLead=/_lead$/.test(type),baseType=isLead?type.replace('_lead',''):(type==='secretary'?'secretary':type.split('_')[0]),workerId=(!isLead&&type.indexOf('_')>0)?type.slice(type.indexOf('_')+1):'',runs=window.MOIDA_AGENT_RUNS||[],latest=runs[0]||{},task=(latest.tasks||[]).find(function(t){return t.agent===baseType;}),subtask=task&&workerId?(task.subtasks||[]).find(function(s){return s.workerId===workerId;}):null;
-      var inspector=document.getElementById('agentInspector');if(!inspector)return;
-      selectedAgentType=type;
-      var roleButton=document.getElementById('agentRoleEdit');if(roleButton){roleButton.disabled=false;roleButton.textContent='역할 수정';roleButton.removeAttribute('data-editing');}
-      document.querySelectorAll('[data-office-agent]').forEach(function(n){n.style.outline='';});
-      node.style.outline='2px solid var(--node)';
-      var name=type==='secretary'?'AI 비서실장':(NAMES[type]||'AI 에이전트');
-      var state=type==='secretary'?(latest.status||'idle'):(workerId?(subtask?subtask.status:'idle'):(task&&(isLead?(task.leadStatus||task.status):(task.workerStatus||task.status))||'idle'));
-      var detail=type==='secretary'?(latest.instruction||''):(workerId?(subtask?(subtask.role||subtask.result||'전문 업무를 수행하고 있습니다.'):''):(task?(isLead?((task.review?'검수 의견: '+task.review:'팀원 3명의 업무를 배정하고 결과를 통합 검수합니다.')):(task.title||task.instruction||'배정 업무')):''));
-      inspector.innerHTML='<b>'+esc(name)+' · '+esc(LABELS[state]||'대기')+'</b><div style="margin-top:10px;padding:9px 10px;border-radius:8px;background:#f4f7fb;color:#31527f;font-size:10.5px;line-height:1.55"><strong style="display:block;margin-bottom:3px;font-size:9px;letter-spacing:.06em;color:#6d819b">담당 역할</strong>'+esc(agentRole(type))+'</div>'+(detail?'<div style="margin-top:9px;color:#6b7585;font-size:10.5px;line-height:1.55">'+esc(detail)+'</div>':'');
-    });
-  });
-  var agentRoleEdit=document.getElementById('agentRoleEdit');
-  if(agentRoleEdit)agentRoleEdit.addEventListener('click',function(){
-    if(!selectedAgentType)return;
-    var inspector=document.getElementById('agentInspector');if(!inspector)return;
-    if(this.getAttribute('data-editing')==='1'){
-      var input=document.getElementById('agentRoleInput'),next=input?input.value.trim():'';
-      if(next)saveAgentRole(selectedAgentType,next);
-      this.textContent='역할 수정';this.removeAttribute('data-editing');
-      var selected=document.querySelector('[data-office-agent="'+selectedAgentType+'"]');if(selected)selected.click();
-      return;
-    }
-    inspector.innerHTML='<b>담당 역할 수정</b><div style="margin-top:8px;color:#6b7585;font-size:10.5px;line-height:1.5">이 역할은 현재 브라우저에 저장되며, 해당 에이전트를 다시 선택하면 바로 확인할 수 있습니다.</div><textarea id="agentRoleInput" style="width:100%;min-height:96px;box-sizing:border-box;margin-top:10px;padding:9px;border:1px solid #bfd0e5;border-radius:8px;resize:vertical;font:11px/1.55 inherit;color:#334155">'+esc(agentRole(selectedAgentType))+'</textarea><div style="margin-top:7px;color:#7b8797;font-size:9.5px">수정 후 오른쪽 상단의 저장 버튼을 눌러주세요.</div>';
-    this.textContent='저장';this.setAttribute('data-editing','1');
-    var input=document.getElementById('agentRoleInput');if(input)input.focus();
-  });
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){render(window.MOIDA_AGENT_RUNS||[]);});
-  else render(window.MOIDA_AGENT_RUNS||[]);
-})();
-</script>
-<script>
-/* 초기 캐시·화면 집계가 모두 적용된 다음 전환 효과를 활성화 */
-requestAnimationFrame(function(){
-  requestAnimationFrame(function(){ document.body.classList.remove('app-loading'); });
-});
-</script>
-<script src="access-guard.js"></script>
-
-</body>
-</html>
+      var line=document.querySelector('[data-network-line="'+type+'"]'),signal=document.querySelector('[data-network-signal="'+type+'"]
