@@ -610,7 +610,8 @@ async function fetchAssemblyBills(memberPage, memberName) {
 
 async function assemblyBills(request, env, url) {
   if (request.method !== "GET") throw new HttpError(405, "GET 요청만 허용됩니다.");
-  await verifyFirebaseUser(request, env);
+  // 경기도의회 공개 의안은 계정별 정보가 아니므로 로그인 없이도 조회한다.
+  // 이렇게 해야 웹 화면과 서버 진단이 같은 수집 결과를 사용한다.
   const memberPage = String(url.searchParams.get("memberPage") || "11017");
   const memberName = String(url.searchParams.get("memberName") || "장윤정").slice(0, 30);
   if (!/^\d{4,8}$/.test(memberPage)) throw new HttpError(400, "올바른 의원 페이지 번호가 아닙니다.");
