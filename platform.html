@@ -3967,21 +3967,38 @@ onAuthStateChanged(_auth, async function(user){
   setTimeout(loadStatus,1200);
 })();
 </script>
+<style>
+#posterEditor .pe-ai-button{height:36px;padding:0 14px;background:#eef2fb;border:1px solid #d6e0ee;border-radius:9px;font-size:12.5px;font-weight:700;color:#1d3a6e;cursor:pointer;white-space:nowrap}
+#posterEditor .pe-ai-button:disabled{opacity:.58;cursor:wait}
+@media(max-width:760px){
+  #posterEditor .pe-header{height:auto!important;min-height:58px;padding:9px 12px!important;gap:7px!important;flex-wrap:wrap}
+  #posterEditor .pe-header-sub{display:none}
+  #posterEditor .pe-header-spacer{display:none}
+  #posterEditor .pe-header-title{width:100%;font-size:14px!important}
+  #posterEditor .pe-ai-button,#posterEditor .pe-save-button,#posterEditor #peClose{height:34px!important;padding:0 10px!important;font-size:11.5px!important}
+  #posterEditor .pe-layout{display:flex!important;flex-direction:column;overflow-y:auto}
+  #posterEditor .pe-form-panel{overflow:visible!important;border-right:0!important;border-bottom:1px solid #e3e8ef;padding:14px!important}
+  #posterEditor .pe-preview-panel{overflow:visible!important;padding:14px!important;min-height:420px}
+  #posterEditor #pePreview{width:100%;max-width:520px}
+  #posterEditor #pePreview svg{width:100%!important;max-height:none!important}
+}
+</style>
 <div id="posterEditor" style="display:none;position:fixed;inset:0;z-index:400;background:#eef1f5;flex-direction:column">
-  <header style="height:58px;flex-shrink:0;background:#fff;border-bottom:1px solid #e3e8ef;display:flex;align-items:center;gap:12px;padding:0 20px">
-    <span style="font-size:15px;font-weight:800;color:#16202e">웹자보 편집기</span>
-    <span style="font-size:12px;color:#9aa3b0">사진·문구를 바꾸면 미리보기가 즉시 갱신됩니다</span>
-    <div style="flex:1"></div>
-    <button id="peGpt" style="height:36px;padding:0 14px;background:#eef2fb;border:1px solid #d6e0ee;border-radius:9px;font-size:12.5px;font-weight:700;color:#1d3a6e;cursor:pointer">✨ GPT로 문구 채우기</button>
-    <button id="pePng" style="height:36px;padding:0 14px;background:#1d3a6e;border:none;border-radius:9px;font-size:12.5px;font-weight:700;color:#fff;cursor:pointer">PNG 저장</button>
-    <button id="peJpg" style="height:36px;padding:0 14px;background:#16305c;border:none;border-radius:9px;font-size:12.5px;font-weight:700;color:#fff;cursor:pointer">JPG 저장</button>
+  <header class="pe-header" style="height:58px;flex-shrink:0;background:#fff;border-bottom:1px solid #e3e8ef;display:flex;align-items:center;gap:12px;padding:0 20px">
+    <span class="pe-header-title" style="font-size:15px;font-weight:800;color:#16202e">웹자보 편집기</span>
+    <span class="pe-header-sub" style="font-size:12px;color:#9aa3b0">Gemini가 초안을 만들고 편집기가 정확한 문구를 합성합니다</span>
+    <div class="pe-header-spacer" style="flex:1"></div>
+    <button id="peGeminiCopy" class="pe-ai-button">✨ Gemini 문구</button>
+    <button id="peGeminiImage" class="pe-ai-button">🎨 Gemini 이미지</button>
+    <button id="pePng" class="pe-save-button" style="height:36px;padding:0 14px;background:#1d3a6e;border:none;border-radius:9px;font-size:12.5px;font-weight:700;color:#fff;cursor:pointer">PNG 저장</button>
+    <button id="peJpg" class="pe-save-button" style="height:36px;padding:0 14px;background:#16305c;border:none;border-radius:9px;font-size:12.5px;font-weight:700;color:#fff;cursor:pointer">JPG 저장</button>
     <button id="peClose" style="height:36px;padding:0 14px;background:#fff;border:1px solid #d6dde6;border-radius:9px;font-size:12.5px;font-weight:600;color:#5b6675;cursor:pointer">닫기</button>
   </header>
-  <div style="flex:1;display:grid;grid-template-columns:400px 1fr;min-height:0">
-    <div style="overflow-y:auto;background:#fff;border-right:1px solid #e3e8ef;padding:20px">
+  <div class="pe-layout" style="flex:1;display:grid;grid-template-columns:400px 1fr;min-height:0">
+    <div class="pe-form-panel" style="overflow-y:auto;background:#fff;border-right:1px solid #e3e8ef;padding:20px">
       <div id="peForm"></div>
     </div>
-    <div style="overflow:auto;display:flex;align-items:flex-start;justify-content:center;padding:28px;background:#dfe4ec">
+    <div class="pe-preview-panel" style="overflow:auto;display:flex;align-items:flex-start;justify-content:center;padding:28px;background:#dfe4ec">
       <div id="pePreview" style="box-shadow:0 10px 40px rgba(16,24,40,.2);background:#fff"></div>
     </div>
   </div>
@@ -3992,6 +4009,19 @@ onAuthStateChanged(_auth, async function(user){
   var M = window.MOIDA; if(!M) return;
   var GPT_ENDPOINT='https://moida-gpt.banedict84.workers.dev';
   function gptEndpoint(){ try{ return (localStorage.getItem('moida_gpt_endpoint')||GPT_ENDPOINT).trim(); }catch(e){ return GPT_ENDPOINT; } }
+  function geminiApi(path,body){
+    var user=M.auth&&M.auth.currentUser;
+    if(!user) return Promise.reject(new Error('로그인 후 이용해 주세요.'));
+    return user.getIdToken().then(function(token){
+      return fetch(gptEndpoint()+path,{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+token},body:JSON.stringify(body||{})});
+    }).then(function(r){
+      return r.text().then(function(t){
+        var d=null; try{d=JSON.parse(t);}catch(e){}
+        if(!r.ok||!d||d.ok===false) throw new Error(d&&d.error&&d.error.message||'Gemini 요청에 실패했습니다.');
+        return d;
+      });
+    });
+  }
   function esc(s){ return M.esc(s); }
   function profName(){ return (M.profile&&M.profile.name)||'의원'; }
   function profPos(){ return [(M.profile&&M.profile.position),(M.profile&&M.profile.district)].filter(Boolean).join(' · '); }
@@ -4058,7 +4088,7 @@ onAuthStateChanged(_auth, async function(user){
       +'<div style="border-top:1px solid #eef1f5;margin:14px 0 12px"></div>'
       +'<label style="display:block;font-size:12px;font-weight:700;color:#5b6675;margin-bottom:7px">사진 (1~3장 · 클릭해서 교체)</label>'
       +'<div id="pe_photos" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px"></div>'
-      +'<div style="font-size:11.5px;color:#9aa3b0;margin-top:8px">의원 성함·직함은 설정 프로필에서 자동으로 들어갑니다.</div>';
+      +'<div style="font-size:11.5px;color:#9aa3b0;margin-top:8px;line-height:1.5">Gemini 이미지는 첫 번째 사진 칸에 들어갑니다. 의원 성함·직함은 설정 프로필에서 자동으로 들어갑니다.</div>';
     document.getElementById('pe_ratio').value=pe.ratio;
     renderPhotoSlots();
     bindForm();
@@ -4112,20 +4142,24 @@ onAuthStateChanged(_auth, async function(user){
       c.toBlob(function(b){ if(!b){ alert('저장 실패'); return; } var a=document.createElement('a'); a.href=URL.createObjectURL(b); a.download=(pe.title||'웹자보')+'.'+type; document.body.appendChild(a); a.click(); a.remove(); }, mime, 0.92);
     });
   }
-  function gptFill(){
-    var btn=document.getElementById('peGpt'); var old=btn.textContent; btn.textContent='작성 중…'; btn.disabled=true;
-    var sys='너는 정치인 SNS 웹자보 카피라이터다. 이것은 선거 홍보물이 아니라 당선 이후 의정활동 기록·현장소통용이다. 과한 구호·선거 느낌 금지, 신뢰감 있고 따뜻한 톤. 입력 정보로 제목·핵심메시지(슬로건 한 줄)·본문(2~3문장)·분류배지를 작성하라. 반드시 JSON만 출력: {"title":"","message":"","body":"","category":""}';
-    var usr='행사명: '+pe.title+'\n날짜: '+pe.date+'\n장소: '+pe.place+'\n톤앤매너: '+pe.tone+'\n기존 핵심메시지: '+pe.message;
-    fetch(gptEndpoint(),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'gpt-4o',messages:[{role:'system',content:sys},{role:'user',content:usr}]})})
-      .then(function(r){ return r.text(); }).then(function(t){
-        var d=null; try{ d=JSON.parse(t); }catch(e){}
-        var content=d&&d.choices&&d.choices[0]&&d.choices[0].message&&d.choices[0].message.content;
-        if(!content) throw new Error((d&&d.error&&d.error.message)||'응답 없음');
-        var j=null; try{ j=JSON.parse(content.replace(/```json|```/g,'').trim()); }catch(e){ var m=content.match(/\{[\s\S]*\}/); if(m) j=JSON.parse(m[0]); }
-        if(!j) throw new Error('형식 오류');
+  function geminiCopy(){
+    var btn=document.getElementById('peGeminiCopy'); var old=btn.textContent; btn.textContent='문구 작성 중…'; btn.disabled=true;
+    geminiApi('/gemini/poster-copy',{title:pe.title,date:pe.date,place:pe.place,tone:pe.tone,message:pe.message})
+      .then(function(d){
+        var j=d.result||{};
         if(j.title) pe.title=j.title; if(j.message) pe.message=j.message; if(j.body) pe.body=j.body; if(j.category) pe.category=j.category;
         buildForm(); render();
-      }).catch(function(err){ alert('GPT 문구 생성 실패: '+(err&&err.message||err)); })
+      }).catch(function(err){ alert('Gemini 문구 생성 실패: '+(err&&err.message||err)); })
+      .finally(function(){ btn.textContent=old; btn.disabled=false; });
+  }
+  function geminiImage(){
+    if(!pe.title&&!pe.place){ alert('행사명이나 장소를 먼저 입력해 주세요.'); return; }
+    var btn=document.getElementById('peGeminiImage'); var old=btn.textContent; btn.textContent='이미지 생성 중…'; btn.disabled=true;
+    geminiApi('/gemini/poster-image',{title:pe.title,place:pe.place,tone:pe.tone,ratio:pe.ratio})
+      .then(function(d){
+        if(!d.image) throw new Error('이미지가 없습니다.');
+        pe.photos[0]=d.image; renderPhotoSlots(); render();
+      }).catch(function(err){ alert('Gemini 이미지 생성 실패: '+(err&&err.message||err)); })
       .finally(function(){ btn.textContent=old; btn.disabled=false; });
   }
   function open(){
@@ -4137,7 +4171,8 @@ onAuthStateChanged(_auth, async function(user){
   function bindOnce(){
     var o=document.getElementById('peOpenBtn'); if(o) o.addEventListener('click', open);
     var c=document.getElementById('peClose'); if(c) c.addEventListener('click', close);
-    var g=document.getElementById('peGpt'); if(g) g.addEventListener('click', gptFill);
+    var gc=document.getElementById('peGeminiCopy'); if(gc) gc.addEventListener('click', geminiCopy);
+    var gi=document.getElementById('peGeminiImage'); if(gi) gi.addEventListener('click', geminiImage);
     document.getElementById('pePng').addEventListener('click', function(){ download('png'); });
     document.getElementById('peJpg').addEventListener('click', function(){ download('jpg'); });
   }
