@@ -90,6 +90,151 @@ async function openAI(env, body) {
   return data;
 }
 
+function geminiUsage(usage = {}) {
+  return {
+    input_tokens: Number(usage.total_input_tokens ?? usage.promptTokenCount ?? 0),
+    output_tokens: Number(usage.total_output_tokens ?? usage.candidatesTokenCount ?? 0),
+    total_tokens: Number(usage.total_tokens ?? usage.totalTokenCount ?? 0),
+    input_tokens_details: {
+      cached_tokens: Number(usage.total_cached_tokens ?? usage.cachedContentTokenCount ?? 0),
+    },
+  };
+}
+
+async function geminiRequest(env, path, body, timeout = 90000) {
+  if (!env.GEMINI_API_KEY) {
+    throw new HttpError(503, "Gemini API 키가 아직 연결되지 않았습니다. Cloudflare Worker 시크릿 GEMINI_API_KEY를 설정해 주세요.");
+  }
+  const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/${path}`, {
+    method: "POST",
+    signal: AbortSignal.timeout(timeout),
+    headers: {
+      "Content-Type": "application/json",
+      "x-goog-api-key": env.GEMINI_API_KEY,
+    },
+    body: JSON.stringify(body),
+  });
+  const raw = await response.text();
+  const data = safeJson(raw);
+  if (!response.ok || !data) {
+    throw new HttpError(response.status || 502, data?.error?.message || `Gemini HTTP ${response.status}`);
+  }
+  return data;
+}
+
+function geminiText(data) {
+  return (data?.candidates?.[0]?.content?.parts || [])
+    .map((part) => part?.text || "")
+    .join("")
+    .trim();
+}
+
+function interactionImage(value) {
+  if (!value) return null;
+  if (Array.isArray(value)) {
+    for (const item of value) {
+      const found = interactionImage(item);
+      if (found) return found;
+    }
+    return null;
+  }
+  if (typeof value !== "object") return null;
+  const mimeType = String(value.mime_type || value.mimeType || value.inline_data?.mime_type
+    || value.inlineData?.mimeType || "");
+  const data = value.data || value.inline_data?.data || value.inlineData?.data;
+  if (data && (value.type === "image" || mimeType.startsWith("image/"))) {
+    return { data, mimeType: mimeType || "image/png" };
+  }
+  for (const child of Object.values(value)) {
+    const found = interactionImage(child);
+    if (found) return found;
+  }
+  return null;
+}
+
+async function geminiPosterCopy(request, env, user) {
+  const body = await requestBody(request);
+  const model = String(env.GEMINI_TEXT_MODEL || "gemini-3.6-flash");
+  const title = String(body.title || "").slice(0, 160);
+  const prompt = [
+    `행사명: ${title || "미입력"}`,
+    `날짜: ${String(body.date || "").slice(0, 80) || "미입력"}`,
+    `장소: ${String(body.place || "").slice(0, 120) || "미입력"}`,
+    `원하는 분위기: ${String(body.tone || "").slice(0, 120) || "따뜻하고 신뢰감 있는"}`,
+    `기존 핵심 메시지: ${String(body.message || "").slice(0, 240) || "없음"}`,
+  ].join("\n");
+  const data = await geminiRequest(env, `models/${encodeURIComponent(model)}:generateContent`, {
+    systemInstruction: {
+      parts: [{
+        text: "당선 이후 의정활동과 현장 소통을 알리는 한국어 웹자보 카피를 작성한다. 선거운동처럼 과장하지 말고, 확인되지 않은 사실이나 수치도 만들지 않는다. 제목은 26자, message는 34자, body는 120자, category는 8자 이내로 간결하게 쓴다.",
+      }],
+    },
+    contents: [{ role: "user", parts: [{ text: prompt }] }],
+    generationConfig: {
+      temperature: 0.6,
+      maxOutputTokens: 700,
+      responseMimeType: "application/json",
+      responseSchema: {
+        type: "OBJECT",
+        properties: {
+          title: { type: "STRING" },
+          message: { type: "STRING" },
+          body: { type: "STRING" },
+          category: { type: "STRING" },
+        },
+        required: ["title", "message", "body", "category"],
+      },
+    },
+  });
+  const result = safeJson(geminiText(data));
+  if (!result || typeof result !== "object") throw new HttpError(502, "Gemini 문구 응답 형식을 확인할 수 없습니다.");
+  const clean = {
+    title: String(result.title || title).trim().slice(0, 80),
+    message: String(result.message || "").trim().slice(0, 100),
+    body: String(result.body || "").trim().slice(0, 300),
+    category: String(result.category || "의정활동").trim().slice(0, 20),
+  };
+  await recordUsage(env, user.uid, {
+    agent: "poster", model, operation: "poster-copy", usage: geminiUsage(data.usageMetadata),
+  });
+  return json({ ok: true, model, result: clean }, 200, request, env);
+}
+
+async function geminiPosterImage(request, env, user) {
+  const body = await requestBody(request);
+  const model = String(env.GEMINI_IMAGE_MODEL || "gemini-3.1-flash-image");
+  const ratio = ["3:4", "4:5", "1:1"].includes(body.ratio) ? body.ratio : "3:4";
+  const prompt = [
+    "Create one premium editorial background image for a Korean elected official's public-service activity poster.",
+    `Event: ${String(body.title || "community public service activity").slice(0, 160)}.`,
+    `Place or context: ${String(body.place || "local community").slice(0, 120)}.`,
+    `Mood: ${String(body.tone || "warm, trustworthy, calm").slice(0, 120)}.`,
+    "Use refined navy, soft blue, ivory and warm beige colors with natural documentary lighting.",
+    "Keep a clean central subject area and enough negative space. No people, faces, politicians, flags, party logos, seals, letters, numbers, captions, watermarks, UI, frames or borders.",
+    "The image will be cropped inside a separate Korean typography layout, so generate visual background only.",
+  ].join(" ");
+  const data = await geminiRequest(env, "interactions", {
+    model,
+    input: [{ type: "text", text: prompt }],
+    response_format: {
+      type: "image",
+      mime_type: "image/jpeg",
+      aspect_ratio: ratio,
+      image_size: "1K",
+    },
+  }, 120000);
+  const image = interactionImage(data);
+  if (!image?.data) throw new HttpError(502, "Gemini 이미지 응답을 확인할 수 없습니다.");
+  await recordUsage(env, user.uid, {
+    agent: "poster", model, operation: "poster-image", imageCount: 1, usage: geminiUsage(data.usage),
+  });
+  return json({
+    ok: true,
+    model,
+    image: `data:${image.mimeType};base64,${image.data}`,
+  }, 200, request, env);
+}
+
 function base64UrlEncode(bytes) {
   let binary = "";
   for (const byte of bytes) binary += String.fromCharCode(byte);
@@ -1154,7 +1299,7 @@ async function handleFetch(request, env) {
 
   try {
     if (path === "/health" && request.method === "GET") {
-      return json({ ok: true, queue: Boolean(env.AGENT_QUEUE), database: Boolean(env.AGENT_DB), law: Boolean(env.LAW_OC), googleCalendar: Boolean(env.GOOGLE_CLIENT_ID && env.GOOGLE_CLIENT_SECRET), schemaVersion: AGENT_SCHEMA_VERSION }, 200, request, env);
+      return json({ ok: true, queue: Boolean(env.AGENT_QUEUE), database: Boolean(env.AGENT_DB), law: Boolean(env.LAW_OC), gemini: Boolean(env.GEMINI_API_KEY), googleCalendar: Boolean(env.GOOGLE_CLIENT_ID && env.GOOGLE_CLIENT_SECRET), schemaVersion: AGENT_SCHEMA_VERSION }, 200, request, env);
     }
     if (path === GOOGLE_CALLBACK_PATH && request.method === "GET") {
       return await googleCalendarCallback(request, env);
@@ -1196,6 +1341,14 @@ async function handleFetch(request, env) {
     if (path === "/usage" && request.method === "GET") {
       const user = await verifyFirebaseUser(request, env);
       return usageSummary(request, env, user);
+    }
+    if (path === "/gemini/poster-copy" && request.method === "POST") {
+      const user = await verifyFirebaseUser(request, env);
+      return await geminiPosterCopy(request, env, user);
+    }
+    if (path === "/gemini/poster-image" && request.method === "POST") {
+      const user = await verifyFirebaseUser(request, env);
+      return await geminiPosterImage(request, env, user);
     }
     if (path === "/agent-runs" || path.startsWith("/agent-runs/")) {
       const user = await verifyFirebaseUser(request, env);
