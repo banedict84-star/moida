@@ -475,7 +475,8 @@ const _auth = getAuth(_app);
 const _db = getFirestore(_app);
 
 window._fsSave = async function(uid, key, data){
-  try{ await setDoc(doc(_db,'moida_users',uid), {[key]: JSON.stringify(data)}, {merge:true}); }catch(e){ console.warn('fs save err',e); }
+  try{ await setDoc(doc(_db,'moida_users',uid), {[key]: JSON.stringify(data)}, {merge:true}); return true; }
+  catch(e){ console.warn('fs save err',e); throw e; }
 };
 window._fsLoad = async function(uid, key){
   try{ var snap=await getDoc(doc(_db,'moida_users',uid)); if(snap.exists()&&snap.data()[key]) return JSON.parse(snap.data()[key]); }catch(e){ console.warn('fs load err',e); } return null;
@@ -497,7 +498,8 @@ onAuthStateChanged(_auth, async function(user){
   }
   // Firestore에서 구성원 데이터 로드 후 화면 갱신
   var fsData = await window._fsLoad(user.uid, 'members');
-  if(Array.isArray(fsData)){
+  if(window._finishMembersCloudSync) await window._finishMembersCloudSync(user.uid, fsData);
+  else if(Array.isArray(fsData)){
     try{ localStorage.setItem('moida_members_'+user.uid, JSON.stringify(fsData)); }catch(e){}
     if(window._reloadMembersFromFS) window._reloadMembersFromFS(fsData);
   }
@@ -758,12 +760,83 @@ onAuthStateChanged(_auth, async function(user){
   var _authUser = JSON.parse(sessionStorage.getItem('moida_auth_user')||'{}');
   var _uid = _authUser.uid || 'default';
   var _MEM_KEY = 'moida_members_' + _uid;
+  var _membersCloudReady=false;
+  var _membersPendingSave=false;
+  var _membersSaveChain=Promise.resolve();
+  var _membersSaveVersion=0;
+  function pendingKey(uid){ return 'moida_members_pending_'+uid; }
+  function showSyncWarning(){
+    var el=document.getElementById('memberSyncWarning');
+    if(!el){
+      el=document.createElement('div'); el.id='memberSyncWarning';
+      el.style.cssText='position:fixed;left:50%;bottom:18px;z-index:4000;transform:translateX(-50%);max-width:calc(100vw - 28px);padding:10px 14px;border-radius:10px;background:#fff1f2;border:1px solid #fecdd3;color:#b42318;font-size:12px;font-weight:700;box-shadow:0 8px 24px rgba(22,26,45,.18);text-align:center';
+      document.body.appendChild(el);
+    }
+    el.textContent='서버 저장이 지연되고 있습니다. 인터넷 연결 후 자동으로 다시 저장합니다.';
+    el.style.display='block';
+  }
+  function hideSyncWarning(){ var el=document.getElementById('memberSyncWarning'); if(el) el.style.display='none'; }
   function loadMembers(){ try{ var d=JSON.parse(localStorage.getItem(_MEM_KEY)); return Array.isArray(d)?d:[]; }catch(e){ return []; } }
   function saveMembers(){
     localStorage.setItem(_MEM_KEY, JSON.stringify(members));
-    if(window._fsSave && _uid && _uid!=='default') return window._fsSave(_uid, 'members', members);
-    return Promise.resolve();
+    if(!_membersCloudReady || !window._fsSave || !_uid || _uid==='default'){
+      _membersPendingSave=true;
+      if(_uid && _uid!=='default') localStorage.setItem(pendingKey(_uid),'1');
+      return Promise.resolve(false);
+    }
+    var saveUid=_uid;
+    var snapshot=JSON.parse(JSON.stringify(members));
+    var saveVersion=++_membersSaveVersion;
+    localStorage.setItem(pendingKey(saveUid),'1');
+    _membersSaveChain=_membersSaveChain.catch(function(){ return false; }).then(function(){
+      return window._fsSave(saveUid,'members',snapshot);
+    }).then(function(){
+      if(saveVersion===_membersSaveVersion){
+        _membersPendingSave=false;
+        localStorage.removeItem(pendingKey(saveUid));
+        hideSyncWarning();
+      }
+      return true;
+    }).catch(function(e){
+      _membersPendingSave=true;
+      localStorage.setItem(pendingKey(saveUid),'1');
+      showSyncWarning();
+      console.warn('member save deferred',e);
+      return false;
+    });
+    return _membersSaveChain;
   }
+  window._finishMembersCloudSync=async function(uid,fsData){
+    var previousUid=_uid;
+    var currentBeforeSync=members;
+    _uid=uid;
+    _MEM_KEY='moida_members_'+uid;
+    var cached=[];
+    try{ var raw=JSON.parse(localStorage.getItem(_MEM_KEY)); if(Array.isArray(raw)) cached=raw; }catch(e){}
+    var hasPending=_membersPendingSave || localStorage.getItem(pendingKey(uid))==='1';
+    _membersCloudReady=true;
+    if(hasPending){
+      members=(previousUid===uid && currentBeforeSync.length)?currentBeforeSync:(cached.length?cached:currentBeforeSync);
+      dispMembers=members.slice();
+      localStorage.setItem(_MEM_KEY,JSON.stringify(members));
+      recalcScores(); renderRows();
+      await saveMembers();
+      return;
+    }
+    if(Array.isArray(fsData)){
+      localStorage.setItem(_MEM_KEY,JSON.stringify(fsData));
+      window._reloadMembersFromFS(fsData);
+      return;
+    }
+    members=cached.length?cached:((previousUid===uid)?currentBeforeSync:[]);
+    dispMembers=members.slice();
+    localStorage.setItem(_MEM_KEY,JSON.stringify(members));
+    recalcScores(); renderRows();
+    if(members.length) await saveMembers();
+  };
+  window.addEventListener('online',function(){
+    if(_membersCloudReady && (_membersPendingSave || localStorage.getItem(pendingKey(_uid))==='1')) saveMembers();
+  });
   window._reloadMembersFromFS = function(fsData){
     members = fsData;
     var _cloudChanged=false;
