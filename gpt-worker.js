@@ -498,9 +498,9 @@ export function parseAssemblyBillDetail(html, summary = {}, memberName = "") {
   const isLead = Boolean(normalizedMember && htmlText(leadSponsor) === normalizedMember);
   const coSponsors = fieldAfterLabel(html, "공동발의");
   const isCoSponsor = Boolean(normalizedMember && coSponsors.includes(normalizedMember));
+  // 1인발의는 대표발의의 한 형태이므로 정책 화면에서는 대표발의로 통합한다.
   let kind = "공동발의";
-  if (/1인발의/.test(officialKind) && isLead) kind = "1인발의";
-  else if (isLead) kind = "대표발의";
+  if (isLead) kind = "대표발의";
   const results = billResultValues(html);
   const result = results.at(-1) || results[0] || "";
   const sentDate = fieldAfterLabel(html, "집행기관 이송일");
@@ -518,6 +518,7 @@ export function parseAssemblyBillDetail(html, summary = {}, memberName = "") {
     leadSponsor,
     coSponsors,
     belongsToMember: !normalizedMember || isLead || isCoSponsor,
+    isSoloProposal: /1인발의/.test(officialKind),
     proposalSession: fieldAfterLabel(html, "제안회기"),
     committeeResult: results[0] || "",
     plenaryResult: results.length > 1 ? results.at(-1) : "",
