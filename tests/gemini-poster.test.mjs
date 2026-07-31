@@ -96,6 +96,7 @@ test("Gemini 웹자보 이미지를 데이터 URL로 반환한다", async () => 
   assert.equal(data.image, "data:image/jpeg;base64,aW1hZ2U=");
   assert.match(geminiBody.input[0].text, /현장에서 듣고 정책으로 답하겠습니다/);
   assert.match(geminiBody.input[0].text, /현장소통/);
+  assert.match(geminiBody.input[0].text, /public-institution architecture/i);
 });
 
 test("비서실장 웹자보는 단계별 질문 후 최종 확인에서 생성한다", () => {
@@ -108,6 +109,9 @@ test("비서실장 웹자보는 단계별 질문 후 최종 확인에서 생성�
   assert.match(html, /웹자보 생성 전 확인/);
   assert.match(html, /if\(posterWizard\)\{answerPosterWizard\(text\);return;\}/);
   assert.match(html, /if\(isPosterCreationRequest\(text\)\)\{startPosterWizard\(\);return;\}/);
+  assert.match(html, /더 가까이, 도민 곁에서!/);
+  assert.match(html, /id="portraitMask"/);
+  assert.match(html, /o\._sourcePhotos=\(o\._photos\|\|\[\]\)\.slice\(\)/);
 });
 
 test("Gemini 키가 없으면 설정 방법을 알린다", async () => {
