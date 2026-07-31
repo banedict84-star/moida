@@ -366,6 +366,198 @@ async function recordUsage(env, tenantId, details) {
     usageCostMicros(details.model, usage), Date.now()).run();
 }
 
+const GGC_ORIGIN = "https://www.ggc.go.kr";
+const GGC_BILL_PATH = "/site/lwmkr/blog/app/motionBillList";
+
+function decodeHtml(value = "") {
+  return String(value)
+    .replace(/&nbsp;|&#160;/gi, " ")
+    .replace(/&amp;/gi, "&").replace(/&lt;/gi, "<").replace(/&gt;/gi, ">")
+    .replace(/&quot;|&#34;/gi, '"').replace(/&#39;|&apos;/gi, "'")
+    .replace(/&#(\d+);/g, (_m, code) => String.fromCharCode(Number(code)))
+    .replace(/&#x([0-9a-f]+);/gi, (_m, code) => String.fromCharCode(parseInt(code, 16)));
+}
+
+function htmlText(value = "") {
+  return decodeHtml(String(value)
+    .replace(/<script[\s\S]*?<\/script>/gi, " ")
+    .replace(/<style[\s\S]*?<\/style>/gi, " ")
+    .replace(/<br\s*\/?>/gi, " ")
+    .replace(/<[^>]+>/g, " "))
+    .replace(/\s+/g, " ").trim();
+}
+
+function absoluteGgcUrl(value = "") {
+  try { return new URL(decodeHtml(value), GGC_ORIGIN).href; } catch { return ""; }
+}
+
+function fieldAfterLabel(html, label) {
+  const escaped = label.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const patterns = [
+    new RegExp(`<t[hd][^>]*>\\s*(?:<[^>]+>\\s*)*${escaped}(?:\\s*<\\/[^>]+>)*\\s*<\\/t[hd]>\\s*<t[hd][^>]*>([\\s\\S]*?)<\\/t[hd]>`, "i"),
+    new RegExp(`<d[td][^>]*>\\s*(?:<[^>]+>\\s*)*${escaped}(?:\\s*<\\/[^>]+>)*\\s*<\\/d[td]>\\s*<d[td][^>]*>([\\s\\S]*?)<\\/d[td]>`, "i"),
+  ];
+  for (const pattern of patterns) {
+    const match = html.match(pattern);
+    if (match) return htmlText(match[1]);
+  }
+  return "";
+}
+
+export function parseAssemblyBillList(html) {
+  const rows = [];
+  const rowPattern = /<tr\b[^>]*>([\s\S]*?)<\/tr>/gi;
+  let rowMatch;
+  while ((rowMatch = rowPattern.exec(String(html)))) {
+    const row = rowMatch[1];
+    const link = row.match(/href=["']([^"']*motionBillList\/DetailView\/\d+\/\d+[^"']*)["'][^>]*>([\s\S]*?)<\/a>/i);
+    if (!link) continue;
+    const cells = [];
+    const cellPattern = /<t[dh]\b[^>]*>([\s\S]*?)<\/t[dh]>/gi;
+    let cell;
+    while ((cell = cellPattern.exec(row))) cells.push(htmlText(cell[1]));
+    const dates = cells.filter((value) => /^\d{4}[-./]\d{2}[-./]\d{2}$/.test(value));
+    const billNo = cells.find((value) => /^\d{1,5}$/.test(value) && !/^1[01]$/.test(value)) || "";
+    const title = htmlText(link[2]) || cells.find((value) => value.length > 8) || "";
+    const committee = cells.find((value) => /위원회$/.test(value)) || "";
+    rows.push({
+      id: link[1].match(/\/(\d+)(?:[?#]|$)/)?.[1] || billNo,
+      billNo,
+      name: title,
+      committee,
+      proposedAt: dates.at(-1)?.replace(/[./]/g, "-") || "",
+      sourceUrl: absoluteGgcUrl(link[1]),
+    });
+  }
+  return rows;
+}
+
+function billResultValues(html) {
+  const values = [];
+  const pattern = /<t[hd][^>]*>\s*(?:<[^>]+>\s*)*처리결과(?:\s*<\/[^>]+>)*\s*<\/t[hd]>\s*<t[hd][^>]*>([\s\S]*?)<\/t[hd]>/gi;
+  let match;
+  while ((match = pattern.exec(String(html)))) {
+    const value = htmlText(match[1]);
+    if (value) values.push(value);
+  }
+  return values;
+}
+
+export function parseAssemblyBillDetail(html, summary = {}, memberName = "") {
+  const title = htmlText(html.match(/<h2\b[^>]*>([\s\S]*?)<\/h2>/i)?.[1] || "") || summary.name || "";
+  const leadSponsor = fieldAfterLabel(html, "대표발의");
+  const officialKind = fieldAfterLabel(html, "발의구분");
+  let kind = "공동발의";
+  if (/1인발의/.test(officialKind)) kind = "1인발의";
+  else if (leadSponsor && htmlText(leadSponsor) === htmlText(memberName)) kind = "대표발의";
+  const results = billResultValues(html);
+  const result = results.at(-1) || results[0] || "";
+  const sentDate = fieldAfterLabel(html, "집행기관 이송일");
+  let stage = result;
+  if (!stage && sentDate) stage = "본회의 통과";
+  if (!stage) stage = "계류";
+  const progress = /가결|통과|공포|이송/.test(stage) ? 100 : /폐기|부결|철회/.test(stage) ? 100 : /상정|심사/.test(stage) ? 60 : 30;
+  return {
+    ...summary,
+    name: title,
+    billNo: fieldAfterLabel(html, "의안번호") || summary.billNo || "",
+    committee: fieldAfterLabel(html, "소관위원회") || summary.committee || "",
+    proposedAt: (fieldAfterLabel(html, "제안일") || summary.proposedAt || "").replace(/[./]/g, "-"),
+    kind,
+    leadSponsor,
+    stage,
+    progress,
+    source: "ggc",
+  };
+}
+
+function cookieHeader(response) {
+  const raw = response.headers.get("set-cookie") || "";
+  return raw.split(/,(?=\s*[^;,=\s]+=[^;,]+)/)
+    .map((part) => part.split(";")[0].trim()).filter(Boolean).join("; ");
+}
+
+function assemblyHeaders(referer, cookie = "") {
+  const headers = {
+    "Accept": "text/html,application/xhtml+xml",
+    "Accept-Language": "ko-KR,ko;q=0.9",
+    "Referer": referer,
+    "User-Agent": "Mozilla/5.0 (compatible; MOIDA/1.0; +https://banedict84-star.github.io/moida/)",
+  };
+  if (cookie) headers.Cookie = cookie;
+  return headers;
+}
+
+async function fetchGgcHtml(url, headers) {
+  const response = await fetch(url, { headers, redirect: "follow", signal: AbortSignal.timeout(20000) });
+  const html = await response.text();
+  if (!response.ok) throw new HttpError(502, `경기도의회 HTTP ${response.status}`);
+  return { response, html };
+}
+
+async function fetchAssemblyBills(memberPage, memberName) {
+  const homeUrl = `${GGC_ORIGIN}/site/lwmkr/blog/${memberPage}/11`;
+  const bootstrap = await fetchGgcHtml(homeUrl, assemblyHeaders(GGC_ORIGIN));
+  const cookie = cookieHeader(bootstrap.response);
+  const listHeaders = assemblyHeaders(homeUrl, cookie);
+  const summaries = [];
+  const seen = new Set();
+  for (let page = 1; page <= 3; page += 1) {
+    const query = page === 1 ? "" : `?pageIndex=${page}`;
+    const { html } = await fetchGgcHtml(`${GGC_ORIGIN}${GGC_BILL_PATH}${query}`, listHeaders);
+    const rows = parseAssemblyBillList(html);
+    let added = 0;
+    for (const row of rows) {
+      const key = row.sourceUrl || row.id;
+      if (!key || seen.has(key)) continue;
+      seen.add(key); summaries.push(row); added += 1;
+    }
+    if (!rows.length || (page > 1 && !added)) break;
+  }
+  if (!summaries.length) {
+    for (const row of parseAssemblyBillList(bootstrap.html)) {
+      const key = row.sourceUrl || row.id;
+      if (key && !seen.has(key)) { seen.add(key); summaries.push(row); }
+    }
+  }
+  if (!summaries.length) throw new HttpError(502, "경기도의회 발의의안 목록을 확인할 수 없습니다.");
+  const bills = [];
+  for (let index = 0; index < summaries.length; index += 5) {
+    const batch = summaries.slice(index, index + 5);
+    const parsed = await Promise.all(batch.map(async (summary) => {
+      try {
+        const { html } = await fetchGgcHtml(summary.sourceUrl, listHeaders);
+        return parseAssemblyBillDetail(html, summary, memberName);
+      } catch {
+        return { ...summary, kind: "공동발의", stage: "처리현황 확인 중", progress: 30, source: "ggc" };
+      }
+    }));
+    bills.push(...parsed);
+  }
+  return bills.sort((a, b) => String(b.proposedAt).localeCompare(String(a.proposedAt)));
+}
+
+async function assemblyBills(request, env, url) {
+  if (request.method !== "GET") throw new HttpError(405, "GET 요청만 허용됩니다.");
+  await verifyFirebaseUser(request, env);
+  const memberPage = String(url.searchParams.get("memberPage") || "11017");
+  const memberName = String(url.searchParams.get("memberName") || "장윤정").slice(0, 30);
+  if (!/^\d{4,8}$/.test(memberPage)) throw new HttpError(400, "올바른 의원 페이지 번호가 아닙니다.");
+  const refresh = url.searchParams.get("refresh") === "1";
+  const cacheUrl = new URL(request.url);
+  cacheUrl.searchParams.delete("refresh");
+  const cacheKey = new Request(cacheUrl.toString(), { method: "GET" });
+  if (!refresh && typeof caches !== "undefined") {
+    const cached = await caches.default.match(cacheKey);
+    if (cached) return new Response(cached.body, { status: cached.status, headers: { ...Object.fromEntries(cached.headers), ...corsHeaders(request, env) } });
+  }
+  const bills = await fetchAssemblyBills(memberPage, memberName);
+  const response = json({ ok: true, memberName, memberPage, source: `${GGC_ORIGIN}${GGC_BILL_PATH}`, fetchedAt: new Date().toISOString(), bills }, 200, request, env);
+  response.headers.set("Cache-Control", "public, max-age=1800");
+  if (typeof caches !== "undefined") await caches.default.put(cacheKey, response.clone());
+  return response;
+}
+
 function lawRequestHeaders(env) {
   const origin = env.LAW_ORIGIN || PRODUCTION_ORIGIN;
   return {
@@ -1376,6 +1568,9 @@ async function handleFetch(request, env) {
     if (path === "/usage" && request.method === "GET") {
       const user = await verifyFirebaseUser(request, env);
       return usageSummary(request, env, user);
+    }
+    if (path === "/assembly/bills") {
+      return await assemblyBills(request, env, url);
     }
     if (path === "/gemini/poster-copy" && request.method === "POST") {
       const user = await verifyFirebaseUser(request, env);
