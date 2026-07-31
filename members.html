@@ -761,7 +761,8 @@ onAuthStateChanged(_auth, async function(user){
   function loadMembers(){ try{ var d=JSON.parse(localStorage.getItem(_MEM_KEY)); return Array.isArray(d)?d:[]; }catch(e){ return []; } }
   function saveMembers(){
     localStorage.setItem(_MEM_KEY, JSON.stringify(members));
-    if(window._fsSave && _uid && _uid!=='default') window._fsSave(_uid, 'members', members);
+    if(window._fsSave && _uid && _uid!=='default') return window._fsSave(_uid, 'members', members);
+    return Promise.resolve();
   }
   window._reloadMembersFromFS = function(fsData){
     members = fsData;
@@ -1523,7 +1524,7 @@ onAuthStateChanged(_auth, async function(user){
       wrap.style.display='block';
       inp.value='';
       okBtn.disabled=true; okBtn.style.opacity='0.45';
-      inp.oninput=function(){ var ok=inp.value===needConfirm; okBtn.disabled=!ok; okBtn.style.opacity=ok?'':'0.45'; };
+      inp.oninput=function(){ var ok=inp.value.trim()===needConfirm; okBtn.disabled=!ok; okBtn.style.opacity=ok?'':'0.45'; };
     } else {
       wrap.style.display='none';
       inp.oninput=null;
@@ -1540,10 +1541,26 @@ onAuthStateChanged(_auth, async function(user){
   var _delBtn=document.querySelector('.dt-foot .btn.del');
   if(_delBtn) _delBtn.addEventListener('click', function(){
     if(curEditIdx==null) return;
-    var nm=members[curEditIdx]&&members[curEditIdx].name||'이 당원';
+    var target=members[curEditIdx];
+    if(!target) return;
+    var nm=target.name||'이 당원';
     moidaConfirm({ title:'구성원 삭제', desc:'<b>'+nm+'</b> 을(를) 삭제합니다.<br>삭제한 구성원은 복구할 수 없어요.', ok:'삭제', confirmWord:'삭제' }, function(){
-      members.splice(curEditIdx,1);
+      var targetKey=target.mid||target.name;
+      var deleteIdx=members.indexOf(target);
+      if(deleteIdx<0 && target.mid) deleteIdx=members.findIndex(function(m){ return m.mid===target.mid; });
+      if(deleteIdx<0) return;
+      members.splice(deleteIdx,1);
       dispMembers=members.slice();
+      if(target.mid) delete memberById[String(target.mid)];
+      memberSearchCache.delete(target);
+      searchResultIds=null;
+      if(searchWorker) searchWorker.postMessage({type:'init',records:members.map(function(member){ return {id:String(member.mid||''),text:memberSearchText(member)}; })});
+      delete voteStore[targetKey]; saveVoteStore();
+      delete memoStore[targetKey]; localStorage.setItem(MEMO_KEY,JSON.stringify(memoStore));
+      ['moida_orgs_','moida_rec_chains_'].forEach(function(prefix){
+        try{ var key=prefix+_uid, store=JSON.parse(localStorage.getItem(key)||'{}'); delete store[targetKey]; localStorage.setItem(key,JSON.stringify(store)); }catch(e){}
+      });
+      curEditIdx=null;
       saveMembers(); recalcScores(); renderRows(); closeDetail();
     });
   });
