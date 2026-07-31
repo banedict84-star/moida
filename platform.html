@@ -1900,7 +1900,7 @@ onAuthStateChanged(_auth, async function(user){
   var M = window.MOIDA; if(!M) return;
   var ENDPOINT='https://moida-gpt.banedict84.workers.dev';
   var CACHE_KEY='moida_assembly_bills_11017_v1';
-  var remoteBills=[], activeFilter='all', loading=false, loaded=false;
+  var remoteBills=[], activeFilter='all', loading=false, loaded=false, cacheSavedAt=0;
   function counts(list){
     return {
       total:list.length,
@@ -1958,7 +1958,7 @@ onAuthStateChanged(_auth, async function(user){
   function readCache(){
     try{
       var data=JSON.parse(localStorage.getItem(CACHE_KEY)||'null');
-      if(data&&Array.isArray(data.bills)){remoteBills=data.bills;loaded=true;setSource('경기도의회 자료 · '+new Date(data.savedAt).toLocaleString('ko-KR')+' 기준');}
+      if(data&&Array.isArray(data.bills)){remoteBills=data.bills;loaded=true;cacheSavedAt=Number(data.savedAt)||0;setSource('경기도의회 자료 · '+new Date(data.savedAt).toLocaleString('ko-KR')+' 기준');}
     }catch(e){}
   }
   function loadOfficialCache(){
@@ -1969,7 +1969,7 @@ onAuthStateChanged(_auth, async function(user){
       var bills=Array.isArray(data)?data:data&&data.bills;
       if(!Array.isArray(bills)||!bills.length) throw new Error('공개자료 캐시에 의안이 없습니다.');
       remoteBills=bills;loaded=true;
-      try{localStorage.setItem(CACHE_KEY,JSON.stringify({bills:remoteBills,savedAt:Date.now()}));}catch(e){}
+      cacheSavedAt=Date.now();try{localStorage.setItem(CACHE_KEY,JSON.stringify({bills:remoteBills,savedAt:cacheSavedAt}));}catch(e){}
       setSource('경기도의회 공개자료 캐시 · '+remoteBills.length+'건 · '+(data.updatedAt||'최근 갱신')+' 기준');
       return bills;
     });
@@ -1985,7 +1985,7 @@ onAuthStateChanged(_auth, async function(user){
     }).then(function(r){return r.json().then(function(d){if(!r.ok||!d.ok)throw new Error(d&&d.error&&d.error.message||'의안 조회 실패');return d;});})
       .then(function(data){
         remoteBills=Array.isArray(data.bills)?data.bills:[];loaded=true;
-        try{localStorage.setItem(CACHE_KEY,JSON.stringify({bills:remoteBills,savedAt:Date.now()}));}catch(e){}
+        cacheSavedAt=Date.now();try{localStorage.setItem(CACHE_KEY,JSON.stringify({bills:remoteBills,savedAt:cacheSavedAt}));}catch(e){}
         setSource('경기도의회 공식 자료 · '+remoteBills.length+'건 · 방금 갱신');
       }).catch(function(e){
         return loadOfficialCache().catch(function(){setSource('공식 자료를 불러오지 못했습니다. '+(e.message||e),true);});
@@ -2027,9 +2027,10 @@ onAuthStateChanged(_auth, async function(user){
   window.__policyRefresh = render;
   readCache();
   render();
-  M.onData(function(){render();if(!loaded&&!loading)sync(false);});
+  function shouldSync(){return !loaded||!cacheSavedAt||Date.now()-cacheSavedAt>5*60*1000;}
+  M.onData(function(){render();if(shouldSync()&&!loading)sync(false);});
   var policyNav=document.querySelector('.nav-item[data-page="policy"]');
-  if(policyNav)policyNav.addEventListener('click',function(){setTimeout(function(){if(!loaded&&!loading)sync(false);},100);});
+  if(policyNav)policyNav.addEventListener('click',function(){setTimeout(function(){if(shouldSync()&&!loading)sync(false);},100);});
 })();
 </script>
 
