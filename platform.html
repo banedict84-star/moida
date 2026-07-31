@@ -168,6 +168,36 @@ body.app-loading #sideAvatar{color:transparent!important;background:#243a5c!impo
 .dashboard-kpis>div[data-go="news"]{order:3}
 .dashboard-kpis>div[data-go="minwon"]{order:4}
 #mobileMenuBtn,#mobileSideOverlay{display:none}
+.policy-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:18px}
+.policy-kpi{min-width:0;background:#fff;border:1px solid #e9ecf1;border-radius:13px;padding:16px 18px;box-shadow:0 1px 2px rgba(16,24,40,.04)}
+.policy-kpi-label{font-size:12.5px;color:#6b7585;font-weight:500}
+.policy-kpi-value{margin-top:6px;font-size:25px;font-weight:700}
+.policy-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+.policy-source{display:flex;align-items:center;gap:9px;min-width:0;color:#6b7585;font-size:12px}
+.policy-source-dot{width:8px;height:8px;border-radius:50%;background:#16a34a;box-shadow:0 0 0 4px #e9f8ef;flex:0 0 auto}
+.policy-actions{display:flex;gap:8px;flex:0 0 auto}
+.policy-btn{display:inline-flex;height:38px;align-items:center;justify-content:center;gap:6px;padding:0 14px;border-radius:9px;font-size:13px;font-weight:650;cursor:pointer}
+.policy-btn-primary{border:0;background:#1d3a6e;color:#fff}.policy-btn-primary:hover{background:#16305c}
+.policy-btn-secondary{border:1px solid #d6dde6;background:#fff;color:#5b6675}.policy-btn-secondary:hover{background:#f7f9fc}
+.policy-tabs{display:flex;gap:7px;padding:5px;margin-bottom:12px;border:1px solid #e7ebf1;border-radius:12px;background:#eef1f5;overflow-x:auto}
+.policy-tab{min-width:max-content;height:34px;padding:0 15px;border:0;border-radius:9px;background:transparent;color:#6b7585;font-size:12.5px;font-weight:650;cursor:pointer}
+.policy-tab.active{background:#fff;color:#1d3a6e;box-shadow:0 1px 3px rgba(16,24,40,.09)}
+.policy-list{display:flex;flex-direction:column;gap:10px}
+.policy-card{position:relative;padding:17px 18px;border:1px solid #e7ebf1;border-radius:14px;background:#fff;box-shadow:0 2px 6px rgba(16,24,40,.04);transition:border-color .15s,box-shadow .15s,transform .15s}
+.policy-card:hover{border-color:#b9c9df;box-shadow:0 6px 16px rgba(16,24,40,.07);transform:translateY(-1px)}
+.policy-card-head{display:flex;align-items:flex-start;gap:12px}
+.policy-bill-no{flex:0 0 auto;min-width:57px;padding:6px 8px;border-radius:9px;background:#f1f5fb;color:#315a97;font-size:11px;font-weight:750;text-align:center}
+.policy-card-main{min-width:0;flex:1}
+.policy-card-title{color:#202a39;font-size:14px;font-weight:700;line-height:1.48;word-break:keep-all}
+.policy-card-meta{display:flex;align-items:center;flex-wrap:wrap;gap:7px;margin-top:10px;color:#758092;font-size:11.5px}
+.policy-pill{display:inline-flex;align-items:center;padding:4px 8px;border-radius:7px;font-size:10.5px;font-weight:700}
+.policy-pill.lead{background:#fdecec;color:#d14343}.policy-pill.solo{background:#f3eefe;color:#7546c8}.policy-pill.co{background:#e8f0fe;color:#2563eb}
+.policy-stage{display:inline-flex;align-items:center;gap:5px;padding:4px 8px;border-radius:7px;background:#edf8f1;color:#168044;font-size:10.5px;font-weight:700}
+.policy-card-footer{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:13px;padding-top:12px;border-top:1px solid #f0f2f5}
+.policy-card-committee{min-width:0;color:#5d6878;font-size:11.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.policy-original{flex:0 0 auto;color:#2563eb;font-size:11.5px;font-weight:650;text-decoration:none}
+.policy-empty{padding:48px 20px;border:1px dashed #dce2ea;border-radius:14px;background:#fff;color:#9aa3b0;font-size:13px;text-align:center}
+.policy-loading{padding:42px 20px;border:1px solid #e7ebf1;border-radius:14px;background:#fff;color:#718096;font-size:13px;text-align:center}
 @media(max-width:1180px){
   .agent-office-layout{grid-template-columns:minmax(0,1fr)}.office-side{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
   .secretary-grid{grid-template-columns:220px minmax(0,1fr)!important}
@@ -264,12 +294,16 @@ body.app-loading #sideAvatar{color:transparent!important;background:#243a5c!impo
   .page[data-page="pr"] .pg>div[style*="grid-template-columns:repeat(4"],
   .page[data-page="policy"] .pg>div[style*="grid-template-columns:repeat(4"],
   #mwBoard,#prGrid{grid-template-columns:minmax(0,1fr)!important}
+  .policy-kpis{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-bottom:12px}
+  .policy-kpi{padding:13px 14px;border-radius:12px}.policy-kpi-value{font-size:22px}
+  .policy-toolbar{align-items:flex-start;flex-direction:column}
+  .policy-actions{display:grid;width:100%;grid-template-columns:1fr 1fr}
+  .policy-tabs{width:100%;margin-bottom:10px}.policy-tab{flex:1}
+  .policy-card{padding:14px}.policy-card-head{gap:9px}.policy-bill-no{min-width:50px;padding:5px 6px}
+  .policy-card-title{font-size:13.5px}.policy-card-footer{align-items:flex-start}
   .page[data-page="settings"] .pg>div>div[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:minmax(0,1fr)!important}
   .page[data-page="settings"] .pg>div>div[style*="align-items:center"]{flex-wrap:wrap}
-  .page[data-page="policy"] .pg>div:last-child,
   .page[data-page="admin"] .pg>div{overflow-x:auto!important}
-  .page[data-page="policy"] .pg>div:last-child>div,
-  .page[data-page="policy"] #policyRows,
   .page[data-page="admin"] .pg>div>div{min-width:680px}
   .page[data-page="admin"] .usage-kpis{grid-template-columns:repeat(2,minmax(0,1fr))!important}
   .page[data-page="admin"] .usage-card>div{min-width:0!important}
@@ -691,19 +725,27 @@ body.app-loading #sideAvatar{color:transparent!important;background:#243a5c!impo
 
       <div class="page" data-page="policy">
       <div class="pg" style="max-width:1320px;margin:0 auto">
-        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:18px">
-          <div style="background:#fff;border:1px solid #e9ecf1;border-radius:13px;padding:16px 18px;box-shadow:0 1px 2px rgba(16,24,40,0.04)"><div style="font-size:12.5px;color:#6b7585;font-weight:500">발의 법안</div><div id="policyKpiTotal" style="font-size:25px;font-weight:700;margin-top:6px">0</div></div>
-          <div style="background:#fff;border:1px solid #e9ecf1;border-radius:13px;padding:16px 18px;box-shadow:0 1px 2px rgba(16,24,40,0.04)"><div style="font-size:12.5px;color:#6b7585;font-weight:500">심사 중</div><div id="policyKpiReview" style="font-size:25px;font-weight:700;margin-top:6px;color:#d97706">0</div></div>
-          <div style="background:#fff;border:1px solid #e9ecf1;border-radius:13px;padding:16px 18px;box-shadow:0 1px 2px rgba(16,24,40,0.04)"><div style="font-size:12.5px;color:#6b7585;font-weight:500">본회의 통과</div><div id="policyKpiPass" style="font-size:25px;font-weight:700;margin-top:6px;color:#16a34a">0</div></div>
-          <div style="background:#fff;border:1px solid #e9ecf1;border-radius:13px;padding:16px 18px;box-shadow:0 1px 2px rgba(16,24,40,0.04)"><div style="font-size:12.5px;color:#6b7585;font-weight:500">대표발의 비율</div><div id="policyKpiRatio" style="font-size:25px;font-weight:700;margin-top:6px;color:#2563eb">0%</div></div>
+        <div class="policy-kpis">
+          <div class="policy-kpi"><div class="policy-kpi-label">전체 발의</div><div id="policyKpiTotal" class="policy-kpi-value">0</div></div>
+          <div class="policy-kpi"><div class="policy-kpi-label">대표발의</div><div id="policyKpiLead" class="policy-kpi-value" style="color:#d14343">0</div></div>
+          <div class="policy-kpi"><div class="policy-kpi-label">공동발의</div><div id="policyKpiCo" class="policy-kpi-value" style="color:#2563eb">0</div></div>
+          <div class="policy-kpi"><div class="policy-kpi-label">가결·통과</div><div id="policyKpiPass" class="policy-kpi-value" style="color:#16a34a">0</div></div>
         </div>
 
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px"><div style="font-size:15px;font-weight:700">발의 법안·정책</div><button id="policyAddBtn" data-hover="background:#16305c" style="display:flex;align-items:center;gap:6px;height:38px;padding:0 15px;background:#1d3a6e;color:#fff;border:none;border-radius:9px;font-size:13px;font-weight:600;cursor:pointer"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>법안 추가</button></div>
-
-        <div style="background:#fff;border:1px solid #e9ecf1;border-radius:14px;box-shadow:0 1px 2px rgba(16,24,40,0.04);overflow:hidden">
-          <div style="display:grid;grid-template-columns:2.4fr 1fr 1.4fr 1fr;padding:13px 20px;background:#fafbfc;border-bottom:1px solid #eef1f5;font-size:12px;font-weight:600;color:#8a94a3"><span>법안·정책명</span><span>구분</span><span>추진 단계</span><span>소관 위원회</span></div>
-          <div id="policyRows"></div>
+        <div class="policy-toolbar">
+          <div class="policy-source"><span class="policy-source-dot"></span><span id="policySourceStatus">경기도의회 장윤정 의원 발의의안과 연결됩니다.</span></div>
+          <div class="policy-actions">
+            <button id="policySyncBtn" class="policy-btn policy-btn-primary"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8.1 8.1 0 0 0-15.5-2M4 4v5h5"/><path d="M4 13a8.1 8.1 0 0 0 15.5 2M20 20v-5h-5"/></svg>최신 의안 불러오기</button>
+            <button id="policyAddBtn" class="policy-btn policy-btn-secondary"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>직접 추가</button>
+          </div>
         </div>
+        <div class="policy-tabs" role="tablist" aria-label="발의 구분">
+          <button class="policy-tab active" data-policy-filter="all">전체 <span id="policyTabAll">0</span></button>
+          <button class="policy-tab" data-policy-filter="대표발의">대표발의 <span id="policyTabLead">0</span></button>
+          <button class="policy-tab" data-policy-filter="1인발의">1인발의 <span id="policyTabSolo">0</span></button>
+          <button class="policy-tab" data-policy-filter="공동발의">공동발의 <span id="policyTabCo">0</span></button>
+        </div>
+        <div id="policyRows" class="policy-list"></div>
       </div>
       </div>
 
@@ -1849,32 +1891,81 @@ onAuthStateChanged(_auth, async function(user){
 (function(){
   'use strict';
   var M = window.MOIDA; if(!M) return;
-  var STAGE = { '상임위 심사':'#d97706','발의·접수':'#2563eb','본회의 통과':'#16a34a','법사위 계류':'#5b51d8','공포':'#16a34a' };
-  function stageColor(s){ for(var k in STAGE){ if((s||'').indexOf(k.slice(0,2))>=0) return STAGE[k]; } return '#2563eb'; }
-  var KIND = { '대표발의':{fg:'#dc2626',bg:'#fdecec'}, '공동발의':{fg:'#2563eb',bg:'#e8f0fe'} };
+  var ENDPOINT='https://moida-gpt.banedict84.workers.dev';
+  var CACHE_KEY='moida_assembly_bills_11017_v1';
+  var remoteBills=[], activeFilter='all', loading=false, loaded=false;
+  function counts(list){
+    return {
+      total:list.length,
+      lead:list.filter(function(p){return p.kind==='대표발의';}).length,
+      solo:list.filter(function(p){return p.kind==='1인발의';}).length,
+      co:list.filter(function(p){return p.kind==='공동발의';}).length,
+      pass:list.filter(function(p){return /가결|통과|공포/.test(p.stage||'');}).length
+    };
+  }
+  function allBills(){
+    if(remoteBills.length) return remoteBills;
+    return (M.policies||[]).map(function(p){
+      return Object.assign({source:'manual',billNo:'직접',proposedAt:'',sourceUrl:''},p);
+    });
+  }
+  function setText(id,value){var el=document.getElementById(id);if(el)el.textContent=value;}
+  function kindClass(kind){return kind==='대표발의'?'lead':kind==='1인발의'?'solo':'co';}
+  function statusText(text){return text||'처리현황 확인 중';}
   function render(){
     var box = document.getElementById('policyRows'); if(!box) return;
-    var list = M.policies||[];
-    var total = list.length;
-    var review = list.filter(function(p){ return /심사|계류|접수|발의/.test(p.stage||'') && (+p.progress||0)<100; }).length;
-    var pass = list.filter(function(p){ return /통과|공포/.test(p.stage||'') || (+p.progress||0)>=100; }).length;
-    var lead = list.filter(function(p){ return (p.kind||'')==='대표발의'; }).length;
-    var set=function(id,v){ var e=document.getElementById(id); if(e) e.textContent=v; };
-    set('policyKpiTotal', total); set('policyKpiReview', review); set('policyKpiPass', pass);
-    set('policyKpiRatio', (total? Math.round(lead/total*100):0)+'%');
-    if(!list.length){ box.innerHTML='<div style="padding:40px 20px;text-align:center;color:#9aa3b0;font-size:13.5px">등록된 법안·정책이 없습니다. “법안 추가”로 시작하세요.</div>'; return; }
-    box.innerHTML = list.map(function(p,i){
-      var k = KIND[p.kind]||KIND['공동발의']; var sc = stageColor(p.stage); var prog = Math.max(0,Math.min(100,+p.progress||0));
-      var last = i===list.length-1;
-      return '<div style="padding:16px 20px;'+(last?'':'border-bottom:1px solid #f2f4f7;')+'" data-hover="background:#fafbfc">'
-        +'<div style="display:grid;grid-template-columns:2.4fr 1fr 1.4fr 1fr;align-items:center">'
-        +'<div><div style="font-size:13.5px;font-weight:600">'+M.esc(p.name||'(제목 없음)')+'</div>'+(p.sub?'<div style="font-size:11.5px;color:#9aa3b0;margin-top:2px">'+M.esc(p.sub)+'</div>':'')+'</div>'
-        +'<span><span style="font-size:11px;font-weight:600;color:'+k.fg+';background:'+k.bg+';padding:3px 9px;border-radius:6px">'+M.esc(p.kind||'공동발의')+'</span></span>'
-        +'<div style="padding-right:20px"><div style="display:flex;justify-content:space-between;font-size:11px;color:'+sc+';font-weight:600;margin-bottom:5px"><span>'+M.esc(p.stage||'')+'</span><span>'+prog+'%</span></div><div style="height:6px;border-radius:4px;background:#eef1f5;overflow:hidden"><div style="width:'+prog+'%;height:100%;background:'+sc+'"></div></div></div>'
-        +'<span style="font-size:12.5px;color:#5b6675">'+M.esc(p.committee||'—')+'</span></div></div>';
+    var all=allBills(), c=counts(all);
+    setText('policyKpiTotal',c.total);setText('policyKpiLead',c.lead);setText('policyKpiCo',c.co);setText('policyKpiPass',c.pass);
+    setText('policyTabAll',c.total);setText('policyTabLead',c.lead);setText('policyTabSolo',c.solo);setText('policyTabCo',c.co);
+    var list=activeFilter==='all'?all:all.filter(function(p){return p.kind===activeFilter;});
+    if(loading&&!all.length){box.innerHTML='<div class="policy-loading">경기도의회 최신 의안을 불러오고 있습니다…</div>';return;}
+    if(!list.length){box.innerHTML='<div class="policy-empty">'+(all.length?'해당 구분의 발의의안이 없습니다.':'불러온 의안이 없습니다. 최신 의안 불러오기를 눌러 주세요.')+'</div>';return;}
+    box.innerHTML=list.map(function(p){
+      var link=p.sourceUrl?'<a class="policy-original" href="'+M.esc(p.sourceUrl)+'" target="_blank" rel="noopener">경기도의회 원문 ↗</a>':'<span class="policy-original" style="color:#9aa3b0">직접 등록</span>';
+      var date=p.proposedAt?'<span>제안일 '+M.esc(p.proposedAt)+'</span>':'';
+      var sponsor=p.leadSponsor&&p.kind==='공동발의'?'<span>대표 '+M.esc(p.leadSponsor)+'</span>':'';
+      return '<article class="policy-card">'
+        +'<div class="policy-card-head"><span class="policy-bill-no">의안 '+M.esc(p.billNo||'—')+'</span><div class="policy-card-main">'
+        +'<div class="policy-card-title">'+M.esc(p.name||'(제목 없음)')+'</div>'
+        +'<div class="policy-card-meta"><span class="policy-pill '+kindClass(p.kind)+'">'+M.esc(p.kind||'공동발의')+'</span><span class="policy-stage">'+M.esc(statusText(p.stage))+'</span>'+date+sponsor+'</div>'
+        +'</div></div><div class="policy-card-footer"><span class="policy-card-committee">'+M.esc(p.committee||'소관위원회 미정')+'</span>'+link+'</div></article>';
     }).join('');
-    if(window.__bindHover) box.querySelectorAll('[data-hover]').forEach(window.__bindHover);
   }
+  function setSource(message,error){
+    var el=document.getElementById('policySourceStatus'),dot=document.querySelector('.policy-source-dot');
+    if(el)el.textContent=message;
+    if(dot){dot.style.background=error?'#d97706':'#16a34a';dot.style.boxShadow=error?'0 0 0 4px #fdf2e3':'0 0 0 4px #e9f8ef';}
+  }
+  function readCache(){
+    try{
+      var data=JSON.parse(localStorage.getItem(CACHE_KEY)||'null');
+      if(data&&Array.isArray(data.bills)){remoteBills=data.bills;loaded=true;setSource('경기도의회 자료 · '+new Date(data.savedAt).toLocaleString('ko-KR')+' 기준');}
+    }catch(e){}
+  }
+  function sync(force){
+    if(loading)return;
+    var user=M.auth&&M.auth.currentUser;
+    if(!user){setSource('로그인 후 경기도의회 의안을 불러올 수 있습니다.',true);return;}
+    loading=true;render();
+    var btn=document.getElementById('policySyncBtn');if(btn){btn.disabled=true;btn.style.opacity='.65';}
+    user.getIdToken().then(function(token){
+      return fetch(ENDPOINT+'/assembly/bills?memberPage=11017&memberName='+encodeURIComponent('장윤정')+(force?'&refresh=1':''),{headers:{Authorization:'Bearer '+token}});
+    }).then(function(r){return r.json().then(function(d){if(!r.ok||!d.ok)throw new Error(d&&d.error&&d.error.message||'의안 조회 실패');return d;});})
+      .then(function(data){
+        remoteBills=Array.isArray(data.bills)?data.bills:[];loaded=true;
+        try{localStorage.setItem(CACHE_KEY,JSON.stringify({bills:remoteBills,savedAt:Date.now()}));}catch(e){}
+        setSource('경기도의회 공식 자료 · '+remoteBills.length+'건 · 방금 갱신');
+      }).catch(function(e){setSource('공식 자료를 불러오지 못했습니다. '+(e.message||e),true);})
+      .finally(function(){loading=false;if(btn){btn.disabled=false;btn.style.opacity='';}render();});
+  }
+  document.querySelectorAll('[data-policy-filter]').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      activeFilter=btn.getAttribute('data-policy-filter')||'all';
+      document.querySelectorAll('[data-policy-filter]').forEach(function(x){x.classList.toggle('active',x===btn);});
+      render();
+    });
+  });
+  var syncBtn=document.getElementById('policySyncBtn');if(syncBtn)syncBtn.addEventListener('click',function(){sync(true);});
   function fld(label,inner){ return '<div style="margin-bottom:12px"><label style="display:block;font-size:12px;font-weight:600;color:#5b6675;margin-bottom:5px">'+label+'</label>'+inner+'</div>'; }
   function inp(id,ph){ return '<input id="'+id+'" placeholder="'+(ph||'')+'" style="width:100%;height:38px;border:1px solid #e7eaef;border-radius:9px;padding:0 11px;font-size:13.5px;font-family:inherit;outline:none"/>'; }
   var addBtn=document.getElementById('policyAddBtn');
@@ -1885,7 +1976,7 @@ onAuthStateChanged(_auth, async function(user){
     ovl.innerHTML='<div style="background:#fff;border-radius:16px;width:440px;max-width:94vw;padding:24px;box-shadow:0 20px 60px rgba(16,24,40,0.3)">'
       +'<div style="font-size:16px;font-weight:700;margin-bottom:16px">법안 추가</div>'
       +fld('법안·정책명', inp('p_name','법안 이름'))
-      +'<div style="display:flex;gap:10px">'+fld('구분','<select id="p_kind" style="width:100%;height:38px;border:1px solid #e7eaef;border-radius:9px;padding:0 11px;font-size:13.5px;font-family:inherit;background:#fff"><option>대표발의</option><option>공동발의</option></select>')+fld('소관 위원회', inp('p_comm','예: 국토교통위'))+'</div>'
+      +'<div style="display:flex;gap:10px">'+fld('구분','<select id="p_kind" style="width:100%;height:38px;border:1px solid #e7eaef;border-radius:9px;padding:0 11px;font-size:13.5px;font-family:inherit;background:#fff"><option>대표발의</option><option>1인발의</option><option>공동발의</option></select>')+fld('소관 위원회', inp('p_comm','예: 교육기획위원회'))+'</div>'
       +'<div style="display:flex;gap:10px">'+fld('추진 단계','<select id="p_stage" style="width:100%;height:38px;border:1px solid #e7eaef;border-radius:9px;padding:0 11px;font-size:13.5px;font-family:inherit;background:#fff"><option>발의·접수</option><option>상임위 심사</option><option>법사위 계류</option><option>본회의 통과</option></select>')+fld('진행률(%)', inp('p_prog','0~100'))+'</div>'
       +'<div style="display:flex;justify-content:flex-end;gap:8px;margin-top:8px"><button id="p_cancel" style="height:38px;padding:0 16px;background:#fff;border:1px solid #d6dde6;border-radius:9px;font-size:13px;font-weight:600;color:#5b6675;cursor:pointer">취소</button><button id="p_save" style="height:38px;padding:0 18px;background:#1d3a6e;color:#fff;border:none;border-radius:9px;font-size:13px;font-weight:600;cursor:pointer">추가</button></div></div>';
     document.body.appendChild(ovl);
@@ -1900,8 +1991,11 @@ onAuthStateChanged(_auth, async function(user){
     };
   });
   window.__policyRefresh = render;
+  readCache();
   render();
-  M.onData(function(){ render(); });
+  M.onData(function(){render();if(!loaded&&!loading)sync(false);});
+  var policyNav=document.querySelector('.nav-item[data-page="policy"]');
+  if(policyNav)policyNav.addEventListener('click',function(){setTimeout(function(){if(!loaded&&!loading)sync(false);},100);});
 })();
 </script>
 
