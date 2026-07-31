@@ -207,6 +207,8 @@ async function geminiPosterImage(request, env, user) {
   const prompt = [
     "Create one premium editorial background image for a Korean elected official's public-service activity poster.",
     `Event: ${String(body.title || "community public service activity").slice(0, 160)}.`,
+    `Core message: ${String(body.message || "listening to residents and serving the community").slice(0, 180)}.`,
+    `Activity category: ${String(body.category || "public service activity").slice(0, 80)}.`,
     `Place or context: ${String(body.place || "local community").slice(0, 120)}.`,
     `Mood: ${String(body.tone || "warm, trustworthy, calm").slice(0, 120)}.`,
     "Use refined navy, soft blue, ivory and warm beige colors with natural documentary lighting.",
