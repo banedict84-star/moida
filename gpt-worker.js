@@ -432,6 +432,31 @@ export function parseAssemblyBillList(html) {
   return rows;
 }
 
+export function parseAssemblyBillLinks(html) {
+  const rows = [];
+  const seen = new Set();
+  const pattern = /<a\b[^>]*href=["']([^"']*motionBillList\/DetailView\/\d+\/\d+[^"']*)["'][^>]*>([\s\S]*?)<\/a>/gi;
+  let match;
+  while ((match = pattern.exec(String(html)))) {
+    const sourceUrl = absoluteGgcUrl(match[1]);
+    if (!sourceUrl || seen.has(sourceUrl)) continue;
+    const name = htmlText(match[2]);
+    if (!name || name.length < 4) continue;
+    const nearby = htmlText(String(html).slice(Math.max(0, match.index - 260), match.index + 520));
+    const date = nearby.match(/20\d{2}[./-]\d{1,2}[./-]\d{1,2}/)?.[0] || "";
+    seen.add(sourceUrl);
+    rows.push({
+      id: match[1].match(/\/(\d+)(?:[?#]|$)/)?.[1] || "",
+      billNo: "",
+      name,
+      committee: "",
+      proposedAt: date.replace(/[./]/g, "-"),
+      sourceUrl,
+    });
+  }
+  return rows;
+}
+
 function billResultValues(html) {
   const values = [];
   const pattern = /<t[hd][^>]*>\s*(?:<[^>]+>\s*)*처리결과(?:\s*<\/[^>]+>)*\s*<\/t[hd]>\s*<t[hd][^>]*>([\s\S]*?)<\/t[hd]>/gi;
@@ -530,9 +555,14 @@ async function fetchAssemblyBills(memberPage, memberName) {
   const summaries = [];
   const seen = new Set();
   for (let page = 1; page <= 3; page += 1) {
-    const query = page === 1 ? "" : `?pageIndex=${page}`;
-    const { html } = await fetchGgcHtml(`${GGC_ORIGIN}${GGC_BILL_PATH}${query}`, listHeaders);
-    const rows = parseAssemblyBillList(html);
+    let rows = [];
+    try {
+      const query = page === 1 ? "" : `?pageIndex=${page}`;
+      const { html } = await fetchGgcHtml(`${GGC_ORIGIN}${GGC_BILL_PATH}${query}`, listHeaders);
+      rows = parseAssemblyBillList(html);
+    } catch {
+      break;
+    }
     let added = 0;
     for (const row of rows) {
       const key = row.sourceUrl || row.id;
@@ -542,7 +572,7 @@ async function fetchAssemblyBills(memberPage, memberName) {
     if (!rows.length || (page > 1 && !added)) break;
   }
   if (!summaries.length) {
-    for (const row of parseAssemblyBillList(bootstrap.html)) {
+    for (const row of [...parseAssemblyBillList(bootstrap.html), ...parseAssemblyBillLinks(bootstrap.html)]) {
       const key = row.sourceUrl || row.id;
       if (key && !seen.has(key)) { seen.add(key); summaries.push(row); }
     }
