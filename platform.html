@@ -984,11 +984,13 @@ body.app-loading #sideAvatar{color:transparent!important;background:#243a5c!impo
     var snm = document.getElementById('sideName');
     var spos = document.getElementById('sidePosition');
     var sdist = document.getElementById('sideDistrict');
-    if(brand && disp) brand.textContent = disp + ' 의원실';
+    if(brand) brand.textContent = disp ? (disp + ' 의원실') : '의원실';
     if(av){ if(p&&p.photo){ av.style.backgroundImage='url('+p.photo+')'; av.style.backgroundSize='cover'; av.style.backgroundPosition='center'; av.textContent=''; } else { av.style.backgroundImage=''; av.textContent = disp ? disp.charAt(0) : '·'; } }
-    if(snm) snm.textContent = disp || '';
+    if(snm) snm.textContent = disp || '사용자';
     if(spos) spos.textContent = (p&&p.position) || '직함 미등록';
     if(sdist) sdist.textContent = (p&&p.district) || '선거구 미등록';
+    [brand,snm,spos,sdist].forEach(function(el){ if(el) el.classList.remove('profile-loading'); });
+    document.body.classList.remove('app-loading');
   }
   M.paintProfile = paintProfile;
   try{
@@ -996,7 +998,8 @@ body.app-loading #sideAvatar{color:transparent!important;background:#243a5c!impo
     var cached = JSON.parse(localStorage.getItem('moida_tenant_'+(u0.uid||'default'))||'null');
     if(cached) { M.profile = cached; paintProfile(cached); }
     else if(u0.displayName||u0.email) paintProfile(null);
-  }catch(e){}
+    else paintProfile(null);
+  }catch(e){ paintProfile(null); }
 
   /* 즉시 로컬 캐시에서 데이터 로드 (Firestore 도착 전 빠른 렌더) */
   try{
