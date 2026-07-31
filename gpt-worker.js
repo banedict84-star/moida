@@ -494,9 +494,13 @@ export function parseAssemblyBillDetail(html, summary = {}, memberName = "") {
   const title = htmlText(html.match(/<h2\b[^>]*>([\s\S]*?)<\/h2>/i)?.[1] || "") || summary.name || "";
   const leadSponsor = fieldAfterLabel(html, "대표발의");
   const officialKind = fieldAfterLabel(html, "발의구분");
+  const normalizedMember = htmlText(memberName);
+  const isLead = Boolean(normalizedMember && htmlText(leadSponsor) === normalizedMember);
+  const coSponsors = fieldAfterLabel(html, "공동발의");
+  const isCoSponsor = Boolean(normalizedMember && coSponsors.includes(normalizedMember));
   let kind = "공동발의";
-  if (/1인발의/.test(officialKind)) kind = "1인발의";
-  else if (leadSponsor && htmlText(leadSponsor) === htmlText(memberName)) kind = "대표발의";
+  if (/1인발의/.test(officialKind) && isLead) kind = "1인발의";
+  else if (isLead) kind = "대표발의";
   const results = billResultValues(html);
   const result = results.at(-1) || results[0] || "";
   const sentDate = fieldAfterLabel(html, "집행기관 이송일");
@@ -512,7 +516,8 @@ export function parseAssemblyBillDetail(html, summary = {}, memberName = "") {
     proposedAt: (fieldAfterLabel(html, "제안일") || summary.proposedAt || "").replace(/[./]/g, "-"),
     kind,
     leadSponsor,
-    coSponsors: fieldAfterLabel(html, "공동발의"),
+    coSponsors,
+    belongsToMember: !normalizedMember || isLead || isCoSponsor,
     proposalSession: fieldAfterLabel(html, "제안회기"),
     committeeResult: results[0] || "",
     plenaryResult: results.length > 1 ? results.at(-1) : "",
@@ -566,10 +571,12 @@ async function fetchAssemblyBills(memberPage, memberName) {
       const key = row.sourceUrl || row.id;
       if (key && !seen.has(key)) { seen.add(key); summaries.push(row); }
     }
-    for (let page = 1; page <= 12; page += 1) {
+    // 공식 목록은 화면처럼 페이지당 10건이며, 현재 최대 17페이지까지 있다.
+    // 여유를 두어 25페이지까지 읽고, 이후 상세 페이지에서 의원명을 정확히 판별한다.
+    for (let page = 1; page <= 25; page += 1) {
       let rows = [];
       try {
-        const query = new URLSearchParams({ pageIndex: String(page), lawmakerId: memberPage });
+        const query = new URLSearchParams({ pageIndex: String(page) });
         const { html } = await fetchGgcHtml(`${origin}${GGC_BILL_PATH}?${query}`, listHeaders);
         rows = parseAssemblyBillList(html);
       } catch { break; }
@@ -596,7 +603,8 @@ async function fetchAssemblyBills(memberPage, memberName) {
     }));
     bills.push(...parsed);
   }
-  return bills.sort((a, b) => String(b.proposedAt).localeCompare(String(a.proposedAt)));
+  return bills.filter((bill) => bill.belongsToMember)
+    .sort((a, b) => String(b.proposedAt).localeCompare(String(a.proposedAt)));
 }
 
 async function assemblyBills(request, env, url) {
