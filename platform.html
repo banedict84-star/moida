@@ -205,13 +205,60 @@ body.app-loading #sideAvatar{color:transparent!important;background:#243a5c!impo
   #pageSub{font-size:10.5px!important;max-width:48vw;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   #roleSelect{height:36px!important;max-width:82px;padding-left:9px!important}
   #appContent{padding:14px 12px 24px!important}
+  .page[data-page="dashboard"] .pg{width:100%;min-width:0}
+  .dashboard-welcome{position:relative;display:grid!important;grid-template-columns:minmax(0,1fr) auto;align-items:center!important;margin-bottom:12px!important;gap:12px!important;padding:16px;border:0!important;border-radius:17px;background:linear-gradient(135deg,#16305c 0%,#28558f 100%);box-shadow:0 8px 22px rgba(22,48,92,.18);overflow:hidden}
+  .dashboard-welcome::after{content:"";position:absolute;right:-34px;top:-54px;width:150px;height:150px;border-radius:50%;background:rgba(255,255,255,.07);pointer-events:none}
+  .dashboard-welcome-copy{width:100%;min-width:0}
+  #dashGreet{position:relative;z-index:1;color:#fff!important;font-size:18px!important;line-height:1.3;word-break:keep-all;overflow-wrap:anywhere}
+  #dashGreetSub{position:relative;z-index:1;color:#c8d8ec!important;font-size:11.5px!important;line-height:1.45;word-break:keep-all;overflow-wrap:anywhere;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .dashboard-brief-button{position:relative;z-index:1;height:36px!important;padding:0 12px!important;background:#fff!important;color:#16305c!important;box-shadow:none!important;white-space:nowrap}
+  .dashboard-kpis{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important;margin-bottom:12px!important}
+  .dashboard-kpis>div{min-width:0;min-height:116px;padding:12px!important;border-radius:15px!important;box-shadow:0 2px 8px rgba(16,24,40,.045)!important}
+  .dashboard-kpis>div[data-go="schedule"]{background:linear-gradient(145deg,#fff,#f4f8ff)!important}
+  .dashboard-kpis>div[data-go="crm"]{background:linear-gradient(145deg,#fff,#f3fbf7)!important}
+  .dashboard-kpis>div[data-go="news"]{background:linear-gradient(145deg,#fff,#f7f5ff)!important}
+  .dashboard-kpis>div[data-go="minwon"]{background:linear-gradient(145deg,#fff,#fff7f7)!important}
+  .dashboard-kpis>div>div:first-child{gap:8px}
+  .dashboard-kpis>div>div:first-child>span:first-child{min-width:0;font-size:11.5px!important;line-height:1.3;word-break:keep-all}
+  .dashboard-kpis>div>div:first-child>span:last-child{width:28px!important;height:28px!important;flex-shrink:0}
+  .dashboard-kpis>div>div:nth-child(2){margin-top:8px!important;gap:4px!important}
+  .dashboard-kpis>div>div:nth-child(2)>span:first-child{font-size:24px!important;line-height:1}
+  .dashboard-kpis>div>div:nth-child(2)>span:last-child{font-size:11px!important}
+  .dashboard-kpis>div>div:nth-child(3){min-width:0;display:block!important;font-size:10px!important;line-height:1.35;margin-top:7px!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .dashboard-kpis>div>div:nth-child(3)>span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .dashboard-grid{display:flex!important;flex-direction:column;gap:10px!important}
+  .dashboard-grid>div{height:auto!important;min-width:0;padding:15px!important;border-radius:15px!important}
+  .dashboard-ai-card{order:1}
+  .dashboard-schedule-card{order:2}
+  .dashboard-minwon-card{order:3}
+  .dashboard-policy-card{order:4}
+  .dashboard-ai-head{display:grid!important;grid-template-columns:30px minmax(0,1fr);align-items:center!important;gap:8px!important}
+  .dashboard-ai-head>span:last-child{grid-column:1 / -1;margin:2px 0 0!important;width:max-content}
+  #dashBrief{gap:9px!important}
+  #dashBrief>div{font-size:12.5px!important;line-height:1.45!important}
+  .dashboard-ai-card>button{width:100%;margin:14px 0 0!important;justify-content:center}
+  .dashboard-schedule-card>div:first-child,.dashboard-minwon-card>div:first-child,.dashboard-policy-card>div:first-child,.dashboard-news-card>div:first-child{margin-bottom:11px!important}
+  #dashToday>div{gap:8px!important}
+  #dashToday>div>div:first-child{width:76px!important;font-size:11px!important}
+  #dashToday>div>span:last-child{display:none}
+  .dashboard-news-card{margin-top:10px!important;padding:15px!important;border-radius:15px!important}
+  #dashNews{grid-template-columns:minmax(0,1fr)!important;gap:8px!important}
+  #dashNews>a{padding:10px!important}
   .secretary-grid{height:calc(100dvh - 86px)!important;gap:10px!important}
   #aiPanel{border-radius:10px!important}
+  .ai-panel-head{display:grid!important;grid-template-columns:40px minmax(0,1fr);align-items:center!important;gap:10px!important;padding:13px 12px!important}
+  .ai-panel-avatar{grid-column:1;grid-row:1}
+  .ai-panel-identity{grid-column:2;grid-row:1;min-width:0}
+  .ai-panel-identity>div:first-child{white-space:nowrap}
+  .ai-panel-status{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .ai-panel-actions{grid-column:1 / -1;grid-row:2;display:grid!important;grid-template-columns:minmax(0,1fr) auto auto;width:100%;gap:8px}
+  #secretaryGoogleCalendarConnect{min-width:0;width:100%;justify-content:center;padding:0 9px!important}
+  #secretaryGoogleCalendarLabel{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  #agentRoomToggle,#aiNew{flex-shrink:0;white-space:nowrap}
   #aiMessages{padding:16px 12px!important}
   #aiMessages>div{max-width:94%!important}
   .secretary-aside.open{left:12px;right:12px;top:70px;bottom:12px;width:auto}
   .page iframe{height:calc(100dvh - 86px)!important;border-radius:10px!important}
-  .page[data-page="dashboard"] .pg>div[style*="grid-template-columns:repeat(4"],
   .page[data-page="pr"] .pg>div[style*="grid-template-columns:repeat(4"],
   .page[data-page="policy"] .pg>div[style*="grid-template-columns:repeat(4"],
   #mwBoard,#prGrid{grid-template-columns:minmax(0,1fr)!important}
@@ -224,6 +271,26 @@ body.app-loading #sideAvatar{color:transparent!important;background:#243a5c!impo
   .page[data-page="admin"] .pg>div>div{min-width:680px}
   .page[data-page="admin"] .usage-kpis{grid-template-columns:repeat(2,minmax(0,1fr))!important}
   .page[data-page="admin"] .usage-card>div{min-width:0!important}
+  .page[data-page="admin"] .usage-card{padding:14px!important;overflow:visible!important}
+  .page[data-page="admin"] .usage-table-scroll{overflow:visible!important}
+  .page[data-page="admin"] .usage-table{min-width:0!important}
+  .page[data-page="admin"] .usage-table-head{display:none!important}
+  .page[data-page="admin"] #usageRows{display:flex;flex-direction:column;gap:8px;padding:8px;border:0!important;background:#f7f9fc;border-radius:11px!important}
+  .page[data-page="admin"] .usage-model-row{display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;gap:7px 12px;padding:12px!important;border:1px solid #e8ecf2!important;border-radius:10px;background:#fff;font-size:11.5px!important}
+  .page[data-page="admin"] .usage-model-name{grid-column:1;grid-row:1;min-width:0}
+  .page[data-page="admin"] .usage-model-name b{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .page[data-page="admin"] .usage-model-cost{grid-column:2;grid-row:1;white-space:nowrap;font-size:13px}
+  .page[data-page="admin"] .usage-model-calls{grid-column:1;grid-row:2;color:#697587}
+  .page[data-page="admin"] .usage-model-amount{grid-column:2;grid-row:2;color:#697587;text-align:right;white-space:nowrap}
+  .page[data-page="admin"] .usage-model-calls::before{content:"호출 ";color:#9aa3b0}
+  .page[data-page="admin"] #usagePricing{display:grid!important;grid-template-columns:1fr!important}
+  .page[data-page="admin"] #usagePricing>span{display:block;min-width:0!important;line-height:1.45;overflow-wrap:anywhere}
+}
+@media(max-width:390px){
+  .dashboard-welcome{grid-template-columns:minmax(0,1fr)!important}
+  .dashboard-brief-button{width:100%;justify-content:center}
+  .dashboard-kpis>div{padding:12px!important}
+  .dashboard-kpis>div>div:nth-child(2)>span:first-child{font-size:23px!important}
 }
 </style>
 </head>
@@ -236,7 +303,7 @@ body.app-loading #sideAvatar{color:transparent!important;background:#243a5c!impo
         <svg width="21" height="21" viewBox="0 0 48 48"><path d="M8 21 Q24 3 40 21 Z" fill="#fff"/><circle cx="24" cy="6.4" r="2.7" fill="#7fb0ff"/><rect x="6.5" y="20.3" width="35" height="3.2" rx="1.6" fill="#fff"/><rect x="11" y="25" width="3" height="12.6" rx="1.5" fill="#fff"/><rect x="19" y="25" width="3" height="12.6" rx="1.5" fill="#fff"/><rect x="27" y="25" width="3" height="12.6" rx="1.5" fill="#fff"/><rect x="35" y="25" width="3" height="12.6" rx="1.5" fill="#fff"/><rect x="5.5" y="38.6" width="37" height="3.4" rx="1.7" fill="#fff"/></svg>
       </div>
       <div class="sb-brandtext" style="min-width:0">
-        <div id="brandName" style="color:#fff;font-size:14.5px;font-weight:700;letter-spacing:-0.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">MOIDA</div>
+        <div id="brandName" class="profile-loading" style="color:#fff;font-size:14.5px;font-weight:700;letter-spacing:-0.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">&nbsp;</div>
         <div style="color:#6f84a0;font-size:11px;letter-spacing:0.02em;margin-top:1px;white-space:nowrap">AI 비서실</div>
       </div>
       <button id="sbToggle" title="사이드바 접기/펴기" aria-label="사이드바 접기/펴기" style="margin-left:auto;width:28px;height:28px;flex-shrink:0;border-radius:8px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.06);color:#9fb0c7;display:flex;align-items:center;justify-content:center;cursor:pointer" data-hover="background:rgba(255,255,255,0.13)">
@@ -334,9 +401,9 @@ body.app-loading #sideAvatar{color:transparent!important;background:#243a5c!impo
       <div id="profileCard" title="로그아웃" style="display:flex;align-items:center;gap:11px;padding:8px;border-radius:10px;cursor:pointer" data-hover="background:rgba(255,255,255,0.05)">
         <div id="sideAvatar" style="width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,#3b6fd4,#5b8cff);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:15px;flex-shrink:0"></div>
         <div class="sb-profiletext" style="min-width:0;flex:1">
-          <div id="sideName" style="color:#fff;font-size:13px;font-weight:600">사용자</div>
-          <div id="sidePosition" style="color:#8ca2bf;font-size:10.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:3px">계정 확인 중</div>
-          <div id="sideDistrict" style="color:#6f84a0;font-size:10.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px"></div>
+          <div id="sideName" class="profile-loading" style="color:#fff;font-size:13px;font-weight:600">&nbsp;</div>
+          <div id="sidePosition" class="profile-loading" style="color:#8ca2bf;font-size:10.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:3px">&nbsp;</div>
+          <div id="sideDistrict" class="profile-loading" style="color:#6f84a0;font-size:10.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px">&nbsp;</div>
         </div>
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6f84a0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 9l4-4 4 4M8 15l4 4 4-4"/></svg>
       </div>
@@ -381,12 +448,12 @@ body.app-loading #sideAvatar{color:transparent!important;background:#243a5c!impo
 
       <div class="page" data-page="dashboard">
       <div class="pg" style="max-width:1320px;margin:0 auto">
-        <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:12px">
-          <div>
+        <div class="dashboard-welcome" style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:12px">
+          <div class="dashboard-welcome-copy">
             <div id="dashGreet" style="font-size:22px;font-weight:700;letter-spacing:-0.02em;color:#16202e">안녕하세요</div>
             <div id="dashGreetSub" style="font-size:13.5px;color:#7a8593;margin-top:4px">오늘의 업무 현황입니다.</div>
           </div>
-          <button data-go="secretary" style="display:flex;align-items:center;gap:8px;height:40px;padding:0 18px;background:#1d3a6e;color:#fff;border:none;border-radius:10px;font-size:13.5px;font-weight:600;cursor:pointer;box-shadow:0 1px 2px rgba(16,24,40,0.1)" data-hover="background:#16305c">
+          <button class="dashboard-brief-button" data-go="secretary" style="display:flex;align-items:center;gap:8px;height:40px;padding:0 18px;background:#1d3a6e;color:#fff;border:none;border-radius:10px;font-size:13.5px;font-weight:600;cursor:pointer;box-shadow:0 1px 2px rgba(16,24,40,0.1)" data-hover="background:#16305c">
             <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.6L19.5 10l-5.6 1.9L12 17.5l-1.9-5.6L4.5 10l5.6-1.9z"/></svg>
             AI 브리핑 받기
           </button>
@@ -428,8 +495,8 @@ body.app-loading #sideAvatar{color:transparent!important;background:#243a5c!impo
         </div>
 
         <div class="dashboard-grid" style="display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);gap:16px;align-items:stretch">
-            <div style="height:100%;background:linear-gradient(135deg,#16305c,#22487f);border-radius:14px;padding:22px;color:#fff;box-shadow:0 4px 16px rgba(22,48,92,0.25)">
-              <div style="display:flex;align-items:center;gap:9px;margin-bottom:14px">
+            <div class="dashboard-ai-card" style="height:100%;background:linear-gradient(135deg,#16305c,#22487f);border-radius:14px;padding:22px;color:#fff;box-shadow:0 4px 16px rgba(22,48,92,0.25)">
+              <div class="dashboard-ai-head" style="display:flex;align-items:center;gap:9px;margin-bottom:14px">
                 <span style="width:30px;height:30px;border-radius:8px;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.6L19.5 10l-5.6 1.9L12 17.5l-1.9-5.6L4.5 10l5.6-1.9z"/></svg></span>
                 <div><div style="font-size:14.5px;font-weight:700">AI 비서실장 브리핑</div><div style="font-size:11.5px;color:#a9c1e6;margin-top:1px">오전 8:00 자동 업데이트</div></div>
                 <span style="margin-left:auto;font-size:11px;background:rgba(255,255,255,0.14);padding:4px 10px;border-radius:20px;font-weight:600">오늘의 핵심 4가지</span>
@@ -441,13 +508,13 @@ body.app-loading #sideAvatar{color:transparent!important;background:#243a5c!impo
               </button>
             </div>
 
-            <div data-go="minwon" style="height:100%;background:#fff;border:1px solid #e9ecf1;border-radius:14px;padding:20px;box-shadow:0 1px 2px rgba(16,24,40,0.04);cursor:pointer;transition:border-color .15s,box-shadow .15s" data-hover="border-color:#c7d4ea;box-shadow:0 4px 14px rgba(16,24,40,0.08)">
+            <div class="dashboard-minwon-card" data-go="minwon" style="height:100%;background:#fff;border:1px solid #e9ecf1;border-radius:14px;padding:20px;box-shadow:0 1px 2px rgba(16,24,40,0.04);cursor:pointer;transition:border-color .15s,box-shadow .15s" data-hover="border-color:#c7d4ea;box-shadow:0 4px 14px rgba(16,24,40,0.08)">
               <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px"><span style="font-size:15px;font-weight:700;letter-spacing:-0.01em">민원 처리 현황</span><span style="font-size:12.5px;color:#2563eb;font-weight:600">전체</span></div>
               <div id="dashMwBar" style="display:flex;height:12px;border-radius:6px;overflow:hidden;margin-bottom:14px;background:#eef1f5"></div>
               <div id="dashMwLegend" style="display:flex;flex-direction:column;gap:9px"></div>
             </div>
 
-            <div style="height:100%;background:#fff;border:1px solid #e9ecf1;border-radius:14px;padding:20px;box-shadow:0 1px 2px rgba(16,24,40,0.04)">
+            <div class="dashboard-schedule-card" style="height:100%;background:#fff;border:1px solid #e9ecf1;border-radius:14px;padding:20px;box-shadow:0 1px 2px rgba(16,24,40,0.04)">
               <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
                 <span style="font-size:15px;font-weight:700;letter-spacing:-0.01em">다가오는 일정</span>
                 <span data-go="schedule" style="font-size:12.5px;color:#2563eb;font-weight:600;cursor:pointer">전체 보기</span>
@@ -455,13 +522,13 @@ body.app-loading #sideAvatar{color:transparent!important;background:#243a5c!impo
               <div id="dashToday" style="display:flex;flex-direction:column"></div>
             </div>
 
-            <div style="height:100%;background:#fff;border:1px solid #e9ecf1;border-radius:14px;padding:20px;box-shadow:0 1px 2px rgba(16,24,40,0.04)">
+            <div class="dashboard-policy-card" style="height:100%;background:#fff;border:1px solid #e9ecf1;border-radius:14px;padding:20px;box-shadow:0 1px 2px rgba(16,24,40,0.04)">
               <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px"><span style="font-size:15px;font-weight:700;letter-spacing:-0.01em">정책 추진 현황</span><span data-go="policy" style="font-size:12.5px;color:#2563eb;font-weight:600;cursor:pointer">전체</span></div>
               <div id="dashPolicy" style="display:flex;flex-direction:column;gap:15px"></div>
             </div>
         </div>
 
-        <div style="background:#fff;border:1px solid #e9ecf1;border-radius:14px;padding:20px;box-shadow:0 1px 2px rgba(16,24,40,0.04);margin-top:16px">
+        <div class="dashboard-news-card" style="background:#fff;border:1px solid #e9ecf1;border-radius:14px;padding:20px;box-shadow:0 1px 2px rgba(16,24,40,0.04);margin-top:16px">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px"><span style="font-size:15px;font-weight:700;letter-spacing:-0.01em">뉴스·언론 모니터링</span><span data-go="news" style="font-size:12.5px;color:#2563eb;font-weight:600;cursor:pointer">전체 보기</span></div>
           <div id="dashNews" style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px"></div>
         </div>
@@ -488,12 +555,14 @@ body.app-loading #sideAvatar{color:transparent!important;background:#243a5c!impo
             <div style="font-size:15px;font-weight:700">파일을 놓아 첨부하세요</div>
             <div style="font-size:12px;color:#5b6675">텍스트·이미지 파일 (최대 6MB)</div>
           </div>
-          <div style="display:flex;align-items:center;gap:11px;padding:16px 20px;border-bottom:1px solid #eef1f5">
-            <div style="width:40px;height:40px;border-radius:11px;background:linear-gradient(135deg,#16305c,#3b6fd4);display:flex;align-items:center;justify-content:center;color:#fff"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.6L19.5 10l-5.6 1.9L12 17.5l-1.9-5.6L4.5 10l5.6-1.9z"/></svg></div>
-            <div style="flex:1"><div style="font-size:15px;font-weight:700">AI 비서실장</div><div style="font-size:12px;color:#16a34a;display:flex;align-items:center;gap:5px;margin-top:1px"><span style="width:7px;height:7px;border-radius:50%;background:#16a34a"></span>의정활동 데이터 연동됨</div></div>
-            <button id="secretaryGoogleCalendarConnect" type="button" title="Google Calendar 계정 연결" style="height:34px;padding:0 11px;display:flex;align-items:center;gap:7px;background:#fff;border:1px solid #d7dde6;border-radius:8px;font-size:11.5px;font-weight:700;color:#34445a;cursor:pointer;white-space:nowrap"><span style="font-size:15px;color:#4285f4">G</span><span id="secretaryGoogleCalendarLabel">캘린더 연결</span><span id="secretaryGoogleCalendarBadge" style="width:7px;height:7px;border-radius:50%;background:#94a3b8"></span></button>
-            <button id="agentRoomToggle" class="agent-room-toggle" type="button" aria-expanded="false">작업실</button>
-            <button id="aiNew" style="height:34px;padding:0 13px;background:#f3f5f8;border:1px solid #e7eaef;border-radius:8px;font-size:12.5px;font-weight:600;color:#5b6675;cursor:pointer">새 대화</button>
+          <div class="ai-panel-head" style="display:flex;align-items:center;gap:11px;padding:16px 20px;border-bottom:1px solid #eef1f5">
+            <div class="ai-panel-avatar" style="width:40px;height:40px;border-radius:11px;background:linear-gradient(135deg,#16305c,#3b6fd4);display:flex;align-items:center;justify-content:center;color:#fff"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.6L19.5 10l-5.6 1.9L12 17.5l-1.9-5.6L4.5 10l5.6-1.9z"/></svg></div>
+            <div class="ai-panel-identity" style="flex:1"><div style="font-size:15px;font-weight:700">AI 비서실장</div><div class="ai-panel-status" style="font-size:12px;color:#16a34a;display:flex;align-items:center;gap:5px;margin-top:1px"><span style="width:7px;height:7px;border-radius:50%;background:#16a34a;flex-shrink:0"></span>의정활동 데이터 연동됨</div></div>
+            <div class="ai-panel-actions" style="display:flex;align-items:center;gap:8px">
+              <button id="secretaryGoogleCalendarConnect" type="button" title="Google Calendar 계정 연결" style="height:34px;padding:0 11px;display:flex;align-items:center;gap:7px;background:#fff;border:1px solid #d7dde6;border-radius:8px;font-size:11.5px;font-weight:700;color:#34445a;cursor:pointer;white-space:nowrap"><span style="font-size:15px;color:#4285f4">G</span><span id="secretaryGoogleCalendarLabel">캘린더 연결</span><span id="secretaryGoogleCalendarBadge" style="width:7px;height:7px;border-radius:50%;background:#94a3b8;flex-shrink:0"></span></button>
+              <button id="agentRoomToggle" class="agent-room-toggle" type="button" aria-expanded="false">작업실</button>
+              <button id="aiNew" style="height:34px;padding:0 13px;background:#f3f5f8;border:1px solid #e7eaef;border-radius:8px;font-size:12.5px;font-weight:600;color:#5b6675;cursor:pointer">새 대화</button>
+            </div>
           </div>
           <div id="aiMessages" style="flex:1;overflow-y:auto;padding:22px 20px;display:flex;flex-direction:column;gap:18px;background:#fafbfc">
             <div style="display:flex;gap:11px;max-width:78%">
@@ -657,9 +726,9 @@ body.app-loading #sideAvatar{color:transparent!important;background:#243a5c!impo
             <div style="padding:14px;background:#f7f9fc;border:1px solid #edf0f4;border-radius:11px"><div style="font-size:11px;color:#8a94a3">이미지 생성</div><b id="usageImages" style="display:block;font-size:20px;margin-top:5px">0</b></div>
             <div style="padding:14px;background:#eef4ff;border:1px solid #dce8fb;border-radius:11px"><div style="font-size:11px;color:#55739d">예상 이용료</div><b id="usageCost" style="display:block;font-size:20px;margin-top:5px;color:#1d3a6e">0원</b></div>
           </div>
-          <div style="overflow-x:auto">
-            <div style="min-width:540px">
-              <div style="display:grid;grid-template-columns:1.7fr .8fr 1.2fr 1fr;padding:11px 12px;background:#fafbfc;border:1px solid #edf0f4;border-radius:9px 9px 0 0;font-size:11.5px;font-weight:700;color:#7d8898"><span>모델</span><span>호출</span><span>사용량</span><span style="text-align:right">예상 비용</span></div>
+          <div class="usage-table-scroll" style="overflow-x:auto">
+            <div class="usage-table" style="min-width:540px">
+              <div class="usage-table-head" style="display:grid;grid-template-columns:1.7fr .8fr 1.2fr 1fr;padding:11px 12px;background:#fafbfc;border:1px solid #edf0f4;border-radius:9px 9px 0 0;font-size:11.5px;font-weight:700;color:#7d8898"><span>모델</span><span>호출</span><span>사용량</span><span style="text-align:right">예상 비용</span></div>
               <div id="usageRows" style="border:1px solid #edf0f4;border-top:0;border-radius:0 0 9px 9px"><div style="padding:24px;text-align:center;color:#9aa3b0;font-size:12px">사용량을 불러오는 중입니다.</div></div>
             </div>
           </div>
@@ -1628,8 +1697,8 @@ onAuthStateChanged(_auth, async function(user){
     var rows=Object.keys(byModel).map(function(key){return byModel[key];}).sort(function(a,b){return b.costKrw-a.costKrw;});
     box.innerHTML=rows.length?rows.map(function(r){
       var usage=(r.image_count?num(r.image_count)+'장 · ':'')+num(r.total_tokens)+' 토큰';
-      return '<div style="display:grid;grid-template-columns:1.7fr .8fr 1.2fr 1fr;padding:12px;border-top:1px solid #f0f2f5;font-size:12px;align-items:center">'
-        +'<div><b style="font-size:12px">'+M.esc(r.model)+'</b><div style="font-size:10px;color:#9aa3b0;margin-top:2px">'+M.esc(r.provider||'')+'</div></div><span>'+num(r.calls)+'</span><span>'+usage+'</span><b style="text-align:right;color:#1d3a6e">'+won(r.costKrw)+'</b></div>';
+      return '<div class="usage-model-row" style="display:grid;grid-template-columns:1.7fr .8fr 1.2fr 1fr;padding:12px;border-top:1px solid #f0f2f5;font-size:12px;align-items:center">'
+        +'<div class="usage-model-name"><b style="font-size:12px">'+M.esc(r.model)+'</b><div style="font-size:10px;color:#9aa3b0;margin-top:2px">'+M.esc(r.provider||'')+'</div></div><span class="usage-model-calls">'+num(r.calls)+'</span><span class="usage-model-amount">'+usage+'</span><b class="usage-model-cost" style="text-align:right;color:#1d3a6e">'+won(r.costKrw)+'</b></div>';
     }).join(''):'<div style="padding:28px;text-align:center;color:#9aa3b0;font-size:12px">선택한 달의 기록이 없습니다. 적용 이후 사용량부터 집계됩니다.</div>';
     document.getElementById('usagePricing').innerHTML=(data.pricingCatalog||[]).map(function(p){
       return '<span style="padding:5px 8px;border-radius:7px;background:#f5f7fa;color:#647084;font-size:10.5px"><b>'+M.esc(p.provider)+'</b> '+M.esc(p.model)+' · 입력 $'+p.input+' / 출력 $'+p.output+'</span>';
@@ -4099,7 +4168,6 @@ onAuthStateChanged(_auth, async function(user){
   try{roleOverrides=JSON.parse(localStorage.getItem(ROLE_STORAGE_KEY)||'{}')||{};}catch(e){roleOverrides={};}
   function agentRole(type){return roleOverrides[type]||ROLE_DEFAULTS[type]||'담당 업무와 결과물을 실무적으로 정리합니다.';}
   function saveAgentRole(type,role){roleOverrides[type]=role;try{localStorage.setItem(ROLE_STORAGE_KEY,JSON.stringify(roleOverrides));}catch(e){}}
-  function esc(s){var d=document.createElement('div');d.textContent=String(s||'');return d.innerHTML;}
   function buildOfficeOrganization(){
     Object.keys(ORG_GROUPS).forEach(function(boxId){
       var box=document.getElementById(boxId);if(!box)return;
@@ -4112,127 +4180,7 @@ onAuthStateChanged(_auth, async function(user){
   }
   buildOfficeOrganization();
   var DEFAULT_SPEECH={schedule:'다음 일정을 확인하고 있어요.',promotion:'홍보 자료를 정리하고 있어요.',policy:'정책 자료를 검토하고 있어요.'};
+  function esc(s){var d=document.createElement('div');d.textContent=String(s||'');return d.innerHTML;}
   function setAgent(type,status,speech){
     if(type!=='secretary'){
-      var line=document.querySelector('[data-network-line="'+type+'"]'),signal=document.querySelector('[data-network-signal="'+type+'"]');
-      var active=/delegating|monitoring|running|reviewing|reworking/.test(status||'');
-      if(line)line.classList.toggle('active',active);
-      if(signal)signal.classList.toggle('active',active);
-    }
-    var el=document.querySelector('[data-office-agent="'+type+'"]');if(!el)return;
-    el.setAttribute('data-status',status||'idle');
-    var stateText=LABELS[status]||'대기',teamCard=el.closest&&el.closest('.org-team-card');
-    if(/_lead$/.test(type)&&teamCard){teamCard.setAttribute('data-status',status||'idle');var teamState=el.querySelector('.org-team-state');if(teamState)teamState.textContent=stateText;}
-    var workerState=el.querySelector&&el.querySelector('.org-worker-status');if(workerState)workerState.textContent=stateText;
-    var bubble=el.querySelector('.speech');if(bubble)bubble.textContent=speech||DEFAULT_SPEECH[type]||'업무를 확인하고 있어요.';
-  }
-  function secretarySpeech(status){
-    return {planning:'의원님의 지시를 업무별로 나누고 있어요.',running:'각 에이전트에게 업무를 배정했어요.',reviewing:'직원들이 보낸 결과를 검수하고 있어요.',completed:'결과를 하나의 보고로 통합했어요.',failed:'문제를 확인하고 다시 배정할게요.'}[status]||'새로운 지시를 기다리고 있어요.';
-  }
-  function taskSpeech(task){
-    if(!task)return '';
-    var title=task.title||'배정 업무';
-    return task.status==='running'?title+' 처리 중이에요.':task.status==='completed'?title+' 완료! 결과를 전달했어요.':task.status==='failed'?'작업 중 문제가 생겼어요.':title+' 순서를 기다리고 있어요.';
-  }
-  function time(ts){var d=new Date(+ts||Date.now());return String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0');}
-  function render(runs){
-    runs=Array.isArray(runs)?runs:[];
-    var latest=runs[0]||null,tasks=latest&&Array.isArray(latest.tasks)?latest.tasks:[];
-    ['policy','audit','assemblypr','schedule','civil','organization','localpr','records','verification','promotion'].forEach(function(type){
-      var task=tasks.find(function(t){return t.agent===type;});
-      var workerStatus=task?(task.workerStatus||(task.status==='completed'?'completed':task.status)):'idle';
-      var leadStatus=task?(task.leadStatus||(task.status==='reviewing'?'reviewing':task.status==='running'?'monitoring':task.status)):'idle';
-      setAgent(type,workerStatus,task?taskSpeech({title:task.title,status:workerStatus}):DEFAULT_SPEECH[type]);
-      (WORKER_KEYS[type]||[]).forEach(function(workerId){
-        var subtask=task&&(task.subtasks||[]).find(function(s){return s.workerId===workerId;});
-        setAgent(type+'_'+workerId,subtask?subtask.status:'idle',subtask?taskSpeech({title:subtask.name,status:subtask.status}):'업무를 기다리고 있어요.');
-      });
-      setAgent(type+'_lead',leadStatus,task?(leadStatus==='reviewing'?'팀원 결과를 검수하고 있어요.':leadStatus==='approved'?'검수 승인 후 비서실장에게 보고했어요.':'팀 업무를 관리하고 있어요.'):'새로운 업무를 기다리고 있어요.');
-    });
-    setAgent('secretary',latest?latest.status:'idle',secretarySpeech(latest&&latest.status));
-    var total=document.getElementById('officeTotalRuns'),working=document.getElementById('officeWorkingCount'),done=document.getElementById('officeDoneCount');
-    if(total)total.textContent=String(runs.length);
-    if(working)working.textContent=String(runs.filter(function(r){return /planning|running|reviewing/.test(r.status);}).length);
-    if(done)done.textContent=String(runs.filter(function(r){return r.status==='completed';}).length);
-    var title=document.getElementById('officeRunTitle'),status=document.getElementById('officeRunStatus'),bar=document.getElementById('officeProgressBar'),progress=document.getElementById('officeProgressText');
-    if(title)title.textContent=latest?(latest.instruction||'지시 내용 없음'):'비서실장에게 지시하면 에이전트가 활성화됩니다.';
-    if(status)status.textContent=latest?(LABELS[latest.status]||latest.status):'대기';
-    var completed=tasks.filter(function(t){return t.status==='completed';}).length;
-    var percent=tasks.length?Math.round(completed/tasks.length*100):0;
-    if(latest&&latest.status==='completed')percent=100;
-    if(bar)bar.style.width=percent+'%';
-    if(progress)progress.textContent=tasks.length?(completed+' / '+tasks.length+'개 업무 완료'):'배정된 작업 없음';
-    var activeBox=document.getElementById('officeActiveAgents'),activeCount=document.getElementById('officeActiveCount');
-    if(activeBox){
-      var executing=[],isActive=function(s){return /planning|delegating|monitoring|running|reviewing|reworking/.test(s||'');};
-      if(latest&&latest.status!=='completed')executing.push({name:'AI 비서실장',task:latest.status==='reviewing'?'팀장 보고 통합 검수':'의원 지시 분석 및 총괄',status:latest.status});
-      tasks.forEach(function(task){
-        var leadStatus=task.leadStatus||(task.status==='completed'?'completed':task.status);
-        if(leadStatus&&leadStatus!=='queued')executing.push({name:NAMES[task.agent+'_lead']||'팀장',task:task.status==='reviewing'?'팀원 결과 검수':(task.title||'팀 업무 관리'),status:leadStatus});
-        (task.subtasks||[]).forEach(function(s){if(s.status&&s.status!=='queued')executing.push({name:s.name||'전문 팀원',task:s.role||task.title||'전문 업무',status:s.status});});
-      });
-      var activeNum=executing.filter(function(x){return isActive(x.status);}).length;
-      if(activeCount)activeCount.textContent=activeNum?activeNum+'명 실행 중':(latest&&latest.status==='completed'?'최근 실행 완료':'0명 실행 중');
-      activeBox.innerHTML=executing.length?executing.slice(0,10).map(function(x){
-        var cls=isActive(x.status)?(/reviewing/.test(x.status)?'review':'active'):(/completed|approved/.test(x.status)?'done':'');
-        return '<div class="execution-item '+cls+'"><span class="execution-icon">'+(cls==='done'?'✓':'↻')+'</span><div class="execution-main"><div class="execution-name">'+esc(x.name)+'</div><div class="execution-task">'+esc(x.task)+'</div></div><span class="execution-state">'+esc(LABELS[x.status]||x.status)+'</span></div>';
-      }).join(''):'<div style="padding:18px 0;text-align:center;color:#a0a9b5;font-size:11px">현재 실행 중인 에이전트가 없습니다.</div>';
-    }
-    var feed=document.getElementById('officeActivity');if(!feed)return;
-    var items=[];
-    runs.slice(0,4).forEach(function(run){
-      (run.tasks||[]).slice().reverse().forEach(function(task){
-        if(items.length<7)items.push({name:NAMES[task.agent+'_lead']||'팀장',text:(task.title||'업무')+' · '+(task.review?'검수 승인':(+task.schemaVersion>=2?'진행 관리':'이전 방식 완료')),status:task.leadStatus||task.status,time:time(task.updatedAt)});
-        (task.subtasks||[]).forEach(function(s){if(items.length<7)items.push({name:s.name||'AI 팀원',text:(LABELS[s.status]||s.status),status:s.status,time:time(s.updatedAt)});});
-      });
-      if(items.length<7)items.push({name:'AI 비서실장',text:(run.instruction||'지시')+' · '+(LABELS[run.status]||run.status),status:run.status,time:time(run.updatedAt)});
-    });
-    feed.innerHTML=items.length?items.slice(0,7).map(function(item){
-      var cls=item.status==='completed'?'done':(/planning|running|reviewing/.test(item.status)?'work':'');
-      return '<div class="office-feed-item"><span class="office-feed-dot '+cls+'"></span><div class="office-feed-text"><b>'+esc(item.name)+' <small style="float:right;color:#a3abb7;font-weight:500">'+item.time+'</small></b>'+esc(item.text)+'</div></div>';
-    }).join(''):'<div style="padding:24px 0;text-align:center;color:#a3abb7;font-size:11.5px">아직 업무 기록이 없습니다.</div>';
-  }
-  window.addEventListener('moida:agent-runs',function(e){render(e.detail);});
-  document.querySelectorAll('[data-office-agent]').forEach(function(node){
-    node.addEventListener('click',function(){
-      var type=node.getAttribute('data-office-agent'),isLead=/_lead$/.test(type),baseType=isLead?type.replace('_lead',''):(type==='secretary'?'secretary':type.split('_')[0]),workerId=(!isLead&&type.indexOf('_')>0)?type.slice(type.indexOf('_')+1):'',runs=window.MOIDA_AGENT_RUNS||[],latest=runs[0]||{},task=(latest.tasks||[]).find(function(t){return t.agent===baseType;}),subtask=task&&workerId?(task.subtasks||[]).find(function(s){return s.workerId===workerId;}):null;
-      var inspector=document.getElementById('agentInspector');if(!inspector)return;
-      selectedAgentType=type;
-      var roleButton=document.getElementById('agentRoleEdit');if(roleButton){roleButton.disabled=false;roleButton.textContent='역할 수정';roleButton.removeAttribute('data-editing');}
-      document.querySelectorAll('[data-office-agent]').forEach(function(n){n.style.outline='';});
-      node.style.outline='2px solid var(--node)';
-      var name=type==='secretary'?'AI 비서실장':(NAMES[type]||'AI 에이전트');
-      var state=type==='secretary'?(latest.status||'idle'):(workerId?(subtask?subtask.status:'idle'):(task&&(isLead?(task.leadStatus||task.status):(task.workerStatus||task.status))||'idle'));
-      var detail=type==='secretary'?(latest.instruction||''):(workerId?(subtask?(subtask.role||subtask.result||'전문 업무를 수행하고 있습니다.'):''):(task?(isLead?((task.review?'검수 의견: '+task.review:'팀원 3명의 업무를 배정하고 결과를 통합 검수합니다.')):(task.title||task.instruction||'배정 업무')):''));
-      inspector.innerHTML='<b>'+esc(name)+' · '+esc(LABELS[state]||'대기')+'</b><div style="margin-top:10px;padding:9px 10px;border-radius:8px;background:#f4f7fb;color:#31527f;font-size:10.5px;line-height:1.55"><strong style="display:block;margin-bottom:3px;font-size:9px;letter-spacing:.06em;color:#6d819b">담당 역할</strong>'+esc(agentRole(type))+'</div>'+(detail?'<div style="margin-top:9px;color:#6b7585;font-size:10.5px;line-height:1.55">'+esc(detail)+'</div>':'');
-    });
-  });
-  var agentRoleEdit=document.getElementById('agentRoleEdit');
-  if(agentRoleEdit)agentRoleEdit.addEventListener('click',function(){
-    if(!selectedAgentType)return;
-    var inspector=document.getElementById('agentInspector');if(!inspector)return;
-    if(this.getAttribute('data-editing')==='1'){
-      var input=document.getElementById('agentRoleInput'),next=input?input.value.trim():'';
-      if(next)saveAgentRole(selectedAgentType,next);
-      this.textContent='역할 수정';this.removeAttribute('data-editing');
-      var selected=document.querySelector('[data-office-agent="'+selectedAgentType+'"]');if(selected)selected.click();
-      return;
-    }
-    inspector.innerHTML='<b>담당 역할 수정</b><div style="margin-top:8px;color:#6b7585;font-size:10.5px;line-height:1.5">이 역할은 현재 브라우저에 저장되며, 해당 에이전트를 다시 선택하면 바로 확인할 수 있습니다.</div><textarea id="agentRoleInput" style="width:100%;min-height:96px;box-sizing:border-box;margin-top:10px;padding:9px;border:1px solid #bfd0e5;border-radius:8px;resize:vertical;font:11px/1.55 inherit;color:#334155">'+esc(agentRole(selectedAgentType))+'</textarea><div style="margin-top:7px;color:#7b8797;font-size:9.5px">수정 후 오른쪽 상단의 저장 버튼을 눌러주세요.</div>';
-    this.textContent='저장';this.setAttribute('data-editing','1');
-    var input=document.getElementById('agentRoleInput');if(input)input.focus();
-  });
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){render(window.MOIDA_AGENT_RUNS||[]);});
-  else render(window.MOIDA_AGENT_RUNS||[]);
-})();
-</script>
-<script>
-/* 초기 캐시·화면 집계가 모두 적용된 다음 전환 효과를 활성화 */
-requestAnimationFrame(function(){
-  requestAnimationFrame(function(){ document.body.classList.remove('app-loading'); });
-});
-</script>
-<script src="access-guard.js"></script>
-
-</body>
-</html>
+      var line=document.querySelector('[data-network-line="'+type+'"]'),signal=document.querySelector('[data-network-signal="'+type+'"]
