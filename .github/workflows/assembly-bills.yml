@@ -1,0 +1,89 @@
+name: 경기도의회 발의의안 수집
+
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/assembly-bills.yml']
+  schedule:
+    - cron: '20 3 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: 브라우저 설치
+        run: |
+          pip install beautifulsoup4 lxml playwright
+          python3 -m playwright install chromium --with-deps
+      - name: 장윤정 의원 대표·공동발의 수집
+        run: |
+          python3 - <<'PY'
+          import json, re, time
+          from datetime import datetime, timezone
+          from urllib.parse import urljoin
+          from bs4 import BeautifulSoup
+          from playwright.sync_api import sync_playwright
+
+          BASE='https://www.ggc.go.kr'
+          LIST=BASE+'/site/lwmkr/blog/app/motionBillList'
+          MEMBER='장윤정'
+
+          def text(node): return node.get_text(' ', strip=True) if node else ''
+          def value(soup, label):
+              for tag in soup.find_all(['th','dt']):
+                  if text(tag)==label:
+                      nxt=tag.find_next_sibling(['td','dd'])
+                      return text(nxt)
+              return ''
+
+          bills, seen = [], set()
+          with sync_playwright() as pw:
+              browser=pw.chromium.launch(headless=True)
+              ctx=browser.new_context(locale='ko-KR', viewport={'width':1280,'height':900}, user_agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/124.0.0.0 Safari/537.36')
+              page=ctx.new_page()
+              # 의원 페이지를 먼저 열어 목록 세션을 만든다.
+              page.goto('https://m.ggc.go.kr/site/lwmkr/blog/11017/11', wait_until='networkidle', timeout=45000)
+              for no in range(1, 26):
+                  page.goto(LIST+('?pageIndex='+str(no) if no>1 else ''), wait_until='networkidle', timeout=45000)
+                  soup=BeautifulSoup(page.content(),'lxml')
+                  links=[]
+                  for a in soup.select('a[href*="motionBillList/DetailView/"]'):
+                      href=urljoin(LIST,a.get('href',''))
+                      if href not in seen: seen.add(href); links.append(href)
+                  if not links: break
+                  for href in links:
+                      page.goto(href, wait_until='domcontentloaded', timeout=45000)
+                      detail=BeautifulSoup(page.content(),'lxml')
+                      lead=value(detail,'대표발의')
+                      co=value(detail,'공동발의')
+                      if MEMBER not in lead and MEMBER not in co: continue
+                      bill_no=value(detail,'의안번호')
+                      kind='대표발의' if MEMBER in lead else '공동발의'
+                      results=[]
+                      for tag in detail.find_all(['th','dt']):
+                          if text(tag)=='처리결과':
+                              results.append(text(tag.find_next_sibling(['td','dd'])))
+                      title=text(detail.find(['h2','h3'])) or text(detail.select_one('title'))
+                      source=re.search(r'DetailView/\\d+/(\\d+)',href)
+                      bills.append({'id':source.group(1) if source else bill_no,'billNo':bill_no,'name':title,'kind':kind,'leadSponsor':lead,'coSponsors':co,'committee':value(detail,'소관위원회'),'proposedAt':value(detail,'제안일').replace('.','-').replace('/','-'),'proposalSession':value(detail,'제안회기'),'committeeResult':results[0] if results else '','plenaryResult':results[-1] if len(results)>1 else '','stage':results[-1] if results else '처리현황 확인 중','progress':100 if results and re.search('가결|통과|공포',results[-1]) else 30,'source':'ggc','sourceUrl':href})
+                  time.sleep(.2)
+              browser.close()
+          if not bills:
+              raise SystemExit('의안 수집 결과가 없어 기존 자료를 보존합니다.')
+          bills.sort(key=lambda x:x.get('proposedAt',''), reverse=True)
+          with open('bills_data.json','w',encoding='utf-8') as f:
+              json.dump({'updatedAt':datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC'),'bills':bills},f,ensure_ascii=False,indent=2)
+          print('수집 완료:',len(bills),'건')
+          PY
+      - name: 자료 반영
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add bills_data.json
+          git diff --cached --quiet || git commit -m 'chore: 발의의안 자료 업데이트'
+          git push
