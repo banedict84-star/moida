@@ -750,7 +750,6 @@ body.app-loading #sideAvatar{color:transparent!important;background:#243a5c!impo
         <div class="policy-tabs" role="tablist" aria-label="발의 구분">
           <button class="policy-tab active" data-policy-filter="all">전체 <span id="policyTabAll">0</span></button>
           <button class="policy-tab" data-policy-filter="대표발의">대표발의 <span id="policyTabLead">0</span></button>
-          <button class="policy-tab" data-policy-filter="1인발의">1인발의 <span id="policyTabSolo">0</span></button>
           <button class="policy-tab" data-policy-filter="공동발의">공동발의 <span id="policyTabCo">0</span></button>
         </div>
         <div id="policyRows" class="policy-list"></div>
@@ -1906,7 +1905,6 @@ onAuthStateChanged(_auth, async function(user){
     return {
       total:list.length,
       lead:list.filter(function(p){return p.kind==='대표발의';}).length,
-      solo:list.filter(function(p){return p.kind==='1인발의';}).length,
       co:list.filter(function(p){return p.kind==='공동발의';}).length,
       pass:list.filter(function(p){return /가결|통과|공포/.test(p.stage||'');}).length
     };
@@ -1918,13 +1916,13 @@ onAuthStateChanged(_auth, async function(user){
     });
   }
   function setText(id,value){var el=document.getElementById(id);if(el)el.textContent=value;}
-  function kindClass(kind){return kind==='대표발의'?'lead':kind==='1인발의'?'solo':'co';}
+  function kindClass(kind){return kind==='대표발의'?'lead':'co';}
   function statusText(text){return text||'처리현황 확인 중';}
   function render(){
     var box = document.getElementById('policyRows'); if(!box) return;
     var all=allBills(), c=counts(all);
     setText('policyKpiTotal',c.total);setText('policyKpiLead',c.lead);setText('policyKpiCo',c.co);setText('policyKpiPass',c.pass);
-    setText('policyTabAll',c.total);setText('policyTabLead',c.lead);setText('policyTabSolo',c.solo);setText('policyTabCo',c.co);
+    setText('policyTabAll',c.total);setText('policyTabLead',c.lead);setText('policyTabCo',c.co);
     var list=activeFilter==='all'?all:all.filter(function(p){return p.kind===activeFilter;});
     if(loading&&!all.length){box.innerHTML='<div class="policy-loading">경기도의회 최신 의안을 불러오고 있습니다…</div>';return;}
     if(!list.length){box.innerHTML='<div class="policy-empty">'+(all.length?'해당 구분의 발의의안이 없습니다.':'불러온 의안이 없습니다. 최신 의안 불러오기를 눌러 주세요.')+'</div>';return;}
@@ -2012,7 +2010,7 @@ onAuthStateChanged(_auth, async function(user){
     ovl.innerHTML='<div style="background:#fff;border-radius:16px;width:440px;max-width:94vw;padding:24px;box-shadow:0 20px 60px rgba(16,24,40,0.3)">'
       +'<div style="font-size:16px;font-weight:700;margin-bottom:16px">법안 추가</div>'
       +fld('법안·정책명', inp('p_name','법안 이름'))
-      +'<div style="display:flex;gap:10px">'+fld('구분','<select id="p_kind" style="width:100%;height:38px;border:1px solid #e7eaef;border-radius:9px;padding:0 11px;font-size:13.5px;font-family:inherit;background:#fff"><option>대표발의</option><option>1인발의</option><option>공동발의</option></select>')+fld('소관 위원회', inp('p_comm','예: 교육기획위원회'))+'</div>'
+      +'<div style="display:flex;gap:10px">'+fld('구분','<select id="p_kind" style="width:100%;height:38px;border:1px solid #e7eaef;border-radius:9px;padding:0 11px;font-size:13.5px;font-family:inherit;background:#fff"><option>대표발의</option><option>공동발의</option></select>')+fld('소관 위원회', inp('p_comm','예: 교육기획위원회'))+'</div>'
       +'<div style="display:flex;gap:10px">'+fld('추진 단계','<select id="p_stage" style="width:100%;height:38px;border:1px solid #e7eaef;border-radius:9px;padding:0 11px;font-size:13.5px;font-family:inherit;background:#fff"><option>발의·접수</option><option>상임위 심사</option><option>법사위 계류</option><option>본회의 통과</option></select>')+fld('진행률(%)', inp('p_prog','0~100'))+'</div>'
       +'<div style="display:flex;justify-content:flex-end;gap:8px;margin-top:8px"><button id="p_cancel" style="height:38px;padding:0 16px;background:#fff;border:1px solid #d6dde6;border-radius:9px;font-size:13px;font-weight:600;color:#5b6675;cursor:pointer">취소</button><button id="p_save" style="height:38px;padding:0 18px;background:#1d3a6e;color:#fff;border:none;border-radius:9px;font-size:13px;font-weight:600;cursor:pointer">추가</button></div></div>';
     document.body.appendChild(ovl);
