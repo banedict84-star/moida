@@ -367,6 +367,7 @@ async function recordUsage(env, tenantId, details) {
 }
 
 const GGC_ORIGIN = "https://www.ggc.go.kr";
+const GGC_MOBILE_ORIGIN = "https://m.ggc.go.kr";
 const GGC_BILL_PATH = "/site/lwmkr/blog/app/motionBillList";
 
 function decodeHtml(value = "") {
@@ -548,33 +549,37 @@ async function fetchGgcHtml(url, headers) {
 }
 
 async function fetchAssemblyBills(memberPage, memberName) {
-  const homeUrl = `${GGC_ORIGIN}/site/lwmkr/blog/${memberPage}/11`;
-  const bootstrap = await fetchGgcHtml(homeUrl, assemblyHeaders(GGC_ORIGIN));
-  const cookie = cookieHeader(bootstrap.response);
-  const listHeaders = assemblyHeaders(homeUrl, cookie);
   const summaries = [];
   const seen = new Set();
-  for (let page = 1; page <= 3; page += 1) {
-    let rows = [];
-    try {
-      const query = page === 1 ? "" : `?pageIndex=${page}`;
-      const { html } = await fetchGgcHtml(`${GGC_ORIGIN}${GGC_BILL_PATH}${query}`, listHeaders);
-      rows = parseAssemblyBillList(html);
-    } catch {
-      break;
-    }
-    let added = 0;
-    for (const row of rows) {
-      const key = row.sourceUrl || row.id;
-      if (!key || seen.has(key)) continue;
-      seen.add(key); summaries.push(row); added += 1;
-    }
-    if (!rows.length || (page > 1 && !added)) break;
-  }
-  if (!summaries.length) {
+  let detailHeaders = assemblyHeaders(GGC_ORIGIN);
+  // 의원 전용 화면은 m.ggc.go.kr에서 목록 권한을 세션에 저장한다.
+  // 일반(www) 목록부터 열면 '페이지 오류'가 나므로, 모바일 의원 화면을 먼저 연다.
+  const sources = [GGC_MOBILE_ORIGIN, GGC_ORIGIN];
+  for (const origin of sources) {
+    const homeUrl = `${origin}/site/lwmkr/blog/${memberPage}/11`;
+    let bootstrap;
+    try { bootstrap = await fetchGgcHtml(homeUrl, assemblyHeaders(origin)); } catch { continue; }
+    const cookie = cookieHeader(bootstrap.response);
+    const listHeaders = assemblyHeaders(homeUrl, cookie);
+    detailHeaders = listHeaders;
     for (const row of [...parseAssemblyBillList(bootstrap.html), ...parseAssemblyBillLinks(bootstrap.html)]) {
       const key = row.sourceUrl || row.id;
       if (key && !seen.has(key)) { seen.add(key); summaries.push(row); }
+    }
+    for (let page = 1; page <= 12; page += 1) {
+      let rows = [];
+      try {
+        const query = new URLSearchParams({ pageIndex: String(page), lawmakerId: memberPage });
+        const { html } = await fetchGgcHtml(`${origin}${GGC_BILL_PATH}?${query}`, listHeaders);
+        rows = parseAssemblyBillList(html);
+      } catch { break; }
+      let added = 0;
+      for (const row of rows) {
+        const key = row.sourceUrl || row.id;
+        if (!key || seen.has(key)) continue;
+        seen.add(key); summaries.push(row); added += 1;
+      }
+      if (!rows.length || (page > 1 && !added)) break;
     }
   }
   if (!summaries.length) throw new HttpError(502, "경기도의회 발의의안 목록을 확인할 수 없습니다.");
@@ -583,7 +588,7 @@ async function fetchAssemblyBills(memberPage, memberName) {
     const batch = summaries.slice(index, index + 5);
     const parsed = await Promise.all(batch.map(async (summary) => {
       try {
-        const { html } = await fetchGgcHtml(summary.sourceUrl, listHeaders);
+        const { html } = await fetchGgcHtml(summary.sourceUrl, detailHeaders);
         return parseAssemblyBillDetail(html, summary, memberName);
       } catch {
         return { ...summary, kind: "공동발의", stage: "처리현황 확인 중", progress: 30, source: "ggc" };
