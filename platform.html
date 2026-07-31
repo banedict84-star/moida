@@ -228,10 +228,11 @@ body.app-loading #sideAvatar{color:transparent!important;background:#243a5c!impo
   .page[data-page="dashboard"] .dashboard-intro>div{width:100%}
   .page[data-page="dashboard"] .dashboard-intro button{width:100%;justify-content:center;height:44px!important}
   .page[data-page="dashboard"] #dashGreet{font-size:21px!important}
-  .page[data-page="dashboard"] .dashboard-kpis{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:9px!important;margin-bottom:10px!important}
-  .page[data-page="dashboard"] .dashboard-kpis>div{padding:13px!important;border-radius:12px!important}
+  .page[data-page="dashboard"] .pg .dashboard-kpis{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:9px!important;margin-bottom:10px!important}
+  .page[data-page="dashboard"] .dashboard-kpis>div{min-width:0;padding:13px!important;border-radius:12px!important}
   .page[data-page="dashboard"] .dashboard-kpis>div>div:nth-child(2){margin-top:9px!important}
-  .page[data-page="dashboard"] .dashboard-kpis [id^="kpi"]{font-size:25px!important}
+  .page[data-page="dashboard"] #kpiMinwon,.page[data-page="dashboard"] #kpiToday,.page[data-page="dashboard"] #kpiMembers,.page[data-page="dashboard"] #kpiNews{font-size:25px!important}
+  .page[data-page="dashboard"] #kpiMinwonMeta,.page[data-page="dashboard"] #kpiTodayMeta,.page[data-page="dashboard"] #kpiMembersMeta,.page[data-page="dashboard"] #kpiNewsMeta{font-size:11px!important;line-height:1.35!important;white-space:normal!important}
   .page[data-page="dashboard"] .dashboard-grid{grid-template-columns:minmax(0,1fr)!important;gap:10px!important}
   .page[data-page="dashboard"] .dashboard-card{padding:16px!important;border-radius:12px!important}
   .page[data-page="dashboard"] .dashboard-brief{order:-1;padding:17px!important}
