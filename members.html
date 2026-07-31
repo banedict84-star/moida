@@ -497,7 +497,7 @@ onAuthStateChanged(_auth, async function(user){
   }
   // Firestore에서 구성원 데이터 로드 후 화면 갱신
   var fsData = await window._fsLoad(user.uid, 'members');
-  if(fsData && Array.isArray(fsData) && fsData.length > 0){
+  if(Array.isArray(fsData)){
     try{ localStorage.setItem('moida_members_'+user.uid, JSON.stringify(fsData)); }catch(e){}
     if(window._reloadMembersFromFS) window._reloadMembersFromFS(fsData);
   }
@@ -766,16 +766,16 @@ onAuthStateChanged(_auth, async function(user){
   }
   window._reloadMembersFromFS = function(fsData){
     members = fsData;
-    var _phoneChanged=false;
+    var _cloudChanged=false;
     var D={rrn:'—',dong:'—',org:'—',rec:'—',rec2:'—',rec3:'—',sub:'—',third:'—',addr:'—',addrDetail:'',family:null,age:'',ageb:'—',sex:'—',vote:'미확인',voteK:'err',katalk:'—',type:'일반당원',typeK:'old',krGrade:0,smGrade:0,photo:'',orgs:[]};
     members.forEach(function(m){
       Object.keys(D).forEach(function(k){ if(m[k]===undefined||m[k]===null&&k!=='family') m[k]=D[k]; });
-      if(!m.mid){ m.mid='m'+Date.now()+Math.random().toString(36).slice(2,7); }
+      if(!m.mid){ m.mid='m'+Date.now()+Math.random().toString(36).slice(2,7); _cloudChanged=true; }
       if(!m.type||m.type==='undefined') m.type=D.type;
       if(!m.ageb||m.ageb==='undefined') m.ageb=D.ageb;
       if(!m.sex||m.sex==='undefined') m.sex=D.sex;
       var _formattedPhone=formatPhone(m.phone);
-      if(_formattedPhone&&_formattedPhone!==m.phone){ m.phone=_formattedPhone; _phoneChanged=true; }
+      if(_formattedPhone&&_formattedPhone!==m.phone){ m.phone=_formattedPhone; _cloudChanged=true; }
       if(m.addr&&m.addr!=='—'){
         var _dm=m.addr.match(/\(([가-힣]+[동읍면리])[,)]/); if(!_dm) _dm=m.addr.match(/([가-힣]+[동읍면리])\s*\d/); if(!_dm) _dm=m.addr.match(/([가-힣]+[동읍면리])[\s,)]/);
         if(_dm) m.dong=_dm[1];
@@ -789,9 +789,14 @@ onAuthStateChanged(_auth, async function(user){
     var _rc=JSON.parse(localStorage.getItem('moida_rec_chains_'+_uid)||'{}');
     members.forEach(function(m){ var c=_rc[m.mid]||_rc[m.name]; if(c){ m.rec=c[0]||'—'; m.sub=c[1]||'—'; m.third=c[2]||'—'; m.rec2=m.sub; m.rec3=m.third; } });
     localStorage.setItem(_MEM_KEY, JSON.stringify(members));
-    if(_phoneChanged) saveMembers();
     dispMembers = members.slice();
+    memberById={};
+    memberSearchCache=new WeakMap();
+    members.forEach(function(member){ memberById[String(member.mid||'')]=member; });
+    searchResultIds=null;
+    if(searchWorker) searchWorker.postMessage({type:'init',records:members.map(function(member){ return {id:String(member.mid||''),text:memberSearchText(member)}; })});
     if(window._orgStore) members.forEach(function(m){ if(Array.isArray(window._orgStore[m.mid])) m.orgs=window._orgStore[m.mid]; if(!Array.isArray(m.orgs)) m.orgs=(m.org&&m.org!=='—')?[{cat:'단체',name:m.org,title:'',rep:true}]:[]; var _r=orgRep(m); m.org=_r?orgRepText(_r):'—'; });
+    if(_cloudChanged) saveMembers();
     recalcScores(); renderRows();
   };
   var members = loadMembers();
@@ -813,7 +818,9 @@ onAuthStateChanged(_auth, async function(user){
       // 주민번호에서 나이·연령대·성별 자동 파생
       if(m.rrn&&m.rrn!=='—'){ var _d=deriveFromRrn(m.rrn); if(_d){ if(!m.age||m.age==='') m.age=_d.age; if(!m.ageb||m.ageb==='—') m.ageb=_d.ageb; if(!m.sex||m.sex==='—') m.sex=_d.sex; } }
     });
-    saveMembers();
+    // 기기 캐시의 오래된 명부가 로그인 직후 Firestore를 덮어쓰지 않도록
+    // 초기 보정값은 로컬에만 저장하고, 서버 데이터를 먼저 불러온다.
+    localStorage.setItem(_MEM_KEY, JSON.stringify(members));
   })();
   const avaColors = ["#3b82f6","#10b981","#f59e0b","#8b5cf6","#ec4899","#06b6d4","#ef4444","#6366f1","#14b8a6","#f97316","#a855f7"];
   const scoreCls = s => s>=18?"sc-hi":s>=11?"sc-mid":"sc-lo";
