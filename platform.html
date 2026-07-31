@@ -3091,52 +3091,61 @@ onAuthStateChanged(_auth, async function(user){
     return '<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" fill="#dde3ec"/>'
       +'<text x="'+(x+w/2)+'" y="'+(y+h/2)+'" text-anchor="middle" fill="#9aa3b0" font-size="30" font-weight="700">사진을 첨부하세요</text>';
   }
-  /* 템플릿: 더불어민주당 네이비 스타일 (현장사진+인물+정보+로고), 1080x1350 */
+  /* 템플릿: 기관 배경 + 대형 인물 + 편집형 타이포그래피, 1080x1350 */
   function tplNavy(o){
     var W=1080,H=1350,X=64,e=M.esc;
     var nm=profName(), pos=profPos(o);
     var scene=(o._photos&&o._photos[0])||'';
-    var portrait=(M.profile&&(M.profile.posterPhoto||M.profile.photo))||(o._photos&&o._photos[1])||'';
+    var detail=(o._sourcePhotos&&o._sourcePhotos[0])||scene;
+    var portrait=(M.profile&&(M.profile.posterPhoto||M.profile.photo))||(o._sourcePhotos&&o._sourcePhotos[1])||'';
     var region=(M.profile&&M.profile.district)||o.region||'';
     var s='<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1080 1350" width="1080" height="1350" style="width:100%;height:auto;display:block;font-family:Pretendard,\'Apple SD Gothic Neo\',\'Malgun Gothic\',sans-serif">';
-    s+='<defs><linearGradient id="nv" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1b3aa0"/><stop offset="1" stop-color="#12277a"/></linearGradient>'
-      +'<linearGradient id="shade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0a1430" stop-opacity="0"/><stop offset="1" stop-color="#0a1430" stop-opacity="0.6"/></linearGradient></defs>';
-    s+='<rect width="1080" height="1350" fill="#ffffff"/>';
-    // 상단 헤더(네이비)
-    s+='<rect width="1080" height="372" fill="url(#nv)"/>';
-    s+='<circle cx="1010" cy="40" r="180" fill="#ffffff" opacity="0.06"/>';
-    // 분류 배지 + 정당
-    var cat=o.category||'의정활동', bw=cat.length*30+56;
-    s+='<rect x="'+X+'" y="56" width="'+bw+'" height="56" rx="28" fill="rgba(255,255,255,0.16)"/>';
-    s+='<text x="'+(X+bw/2)+'" y="93" text-anchor="middle" fill="#fff" font-size="27" font-weight="700">'+e(cat)+'</text>';
-    s+='<text x="'+(W-X)+'" y="84" text-anchor="end" fill="#fff" font-size="30" font-weight="900" letter-spacing="-1">더불어민주당</text>';
-    // 제목(대형)
-    var tl=wrapText(o.title,13).slice(0,2), ty=tl.length>1?215:250;
-    tl.forEach(function(l){ s+='<text x="'+X+'" y="'+ty+'" fill="#fff" font-size="74" font-weight="900" letter-spacing="-2">'+e(l)+'</text>'; ty+=82; });
-    // 슬로건 리본
-    if(o.message){ s+='<rect x="'+X+'" y="300" width="'+(W-2*X)+'" height="56" rx="10" fill="rgba(255,255,255,0.14)"/>';
-      s+='<text x="'+(W/2)+'" y="338" text-anchor="middle" fill="#fff" font-size="27" font-weight="700">'+e(wrapText(o.message,34)[0])+'</text>'; }
-    // 사진 영역
-    s+=bigPhoto(scene,0,372,1080,640);
-    if(portrait){ s+='<rect x="600" y="372" width="480" height="640" fill="url(#shade)"/>'; s+=bigPhoto(portrait,600,372,480,640); }
-    // 정보 박스(흰색 둥근)
-    var info=[]; if(o.date) info.push(['cal',o.date]); if(o.place) info.push(['pin',o.place]); if(o.host) info.push(['ppl',o.host]); if(o.phone) info.push(['tel',o.phone]);
-    if(info.length){
-      var ih=info.length*64+44, iy=1012-ih-24;
-      s+='<rect x="'+X+'" y="'+iy+'" width="560" height="'+ih+'" rx="22" fill="#ffffff" opacity="0.96"/>';
-      var ICO={cal:'<rect x="0.5" y="2" width="19" height="17" rx="3"/><path d="M0.5 7.5h19M5.5 0v4M14.5 0v4"/>',pin:'<path d="M10 19s7-6 7-11A7 7 0 0 0 3 8c0 5 7 11 7 11z"/><circle cx="10" cy="8" r="2.5"/>',ppl:'<circle cx="7" cy="6" r="3.2"/><path d="M1 19c0-4 2.7-6 6-6s6 2 6 6"/><circle cx="15" cy="7" r="2.6"/>',tel:'<path d="M4 3h4l2 5-3 2a12 12 0 0 0 6 6l2-3 5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 2 5a2 2 0 0 1 2-2z"/>'};
-      var ry=iy+52;
-      info.forEach(function(it){ s+='<g transform="translate('+(X+34)+','+(ry-19)+')" fill="none" stroke="#1b3aa0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'+ICO[it[0]]+'</g>';
-        s+='<text x="'+(X+78)+'" y="'+ry+'" fill="#1c2738" font-size="31" font-weight="700">'+e(it[1])+'</text>'; ry+=64; });
+    s+='<defs>'
+      +'<linearGradient id="sky" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#edf7ff"/><stop offset="0.55" stop-color="#cfe7ff"/><stop offset="1" stop-color="#8dbcf7"/></linearGradient>'
+      +'<linearGradient id="leftFade" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#eff8ff" stop-opacity="1"/><stop offset="0.48" stop-color="#eaf5ff" stop-opacity="0.94"/><stop offset="0.77" stop-color="#d8ebff" stop-opacity="0.24"/><stop offset="1" stop-color="#d8ebff" stop-opacity="0"/></linearGradient>'
+      +'<linearGradient id="bottomFade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d7ebff" stop-opacity="0"/><stop offset="1" stop-color="#0c2460" stop-opacity="0.8"/></linearGradient>'
+      +'<linearGradient id="navyBand" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#09215b"/><stop offset="0.6" stop-color="#0c2d79"/><stop offset="1" stop-color="#071b50"/></linearGradient>'
+      +'<linearGradient id="portraitFade" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset="0.16" stop-color="#fff" stop-opacity="0.75"/><stop offset="0.3" stop-color="#fff"/></linearGradient>'
+      +'<mask id="portraitMask"><rect x="430" y="340" width="650" height="800" fill="url(#portraitFade)"/></mask>'
+      +'<pattern id="dots" width="18" height="18" patternUnits="userSpaceOnUse"><circle cx="3" cy="3" r="2.2" fill="#fff" opacity="0.55"/></pattern>'
+      +'</defs>';
+    s+='<rect width="'+W+'" height="'+H+'" fill="url(#sky)"/>';
+    if(scene)s+='<image x="270" y="0" width="810" height="1135" preserveAspectRatio="xMidYMid slice" opacity="0.72" href="'+scene+'" xlink:href="'+scene+'"/>';
+    s+='<rect x="0" y="0" width="850" height="1135" fill="url(#leftFade)"/>';
+    s+='<path d="M520 0 Q760 130 1080 90" fill="none" stroke="#ffffff" stroke-width="3" opacity="0.5"/>';
+    s+='<path d="M560 0 Q790 115 1080 68" fill="none" stroke="#ffffff" stroke-width="1.5" opacity="0.45"/>';
+    s+='<rect x="0" y="760" width="320" height="260" fill="url(#dots)" opacity="0.45"/>';
+    // 상단 슬로건·정당
+    s+='<text x="'+X+'" y="96" fill="#0d47bb" font-size="39" font-weight="800" font-style="italic" letter-spacing="-1.4">더 가까이, 도민 곁에서!</text>';
+    s+='<path d="M62 118 Q280 92 515 104 Q310 124 70 132" fill="none" stroke="#1459d9" stroke-width="5" stroke-linecap="round"/>';
+    s+='<text x="'+(W-X)+'" y="62" text-anchor="end" fill="#1261ca" font-size="21" font-weight="800">더불어</text>';
+    s+='<text x="'+(W-X)+'" y="105" text-anchor="end" fill="#082d78" font-size="50" font-weight="950" letter-spacing="-3">민주당</text>';
+    // 날짜·분류
+    if(o.date)s+='<text x="'+X+'" y="204" fill="#15366f" font-size="34" font-weight="800">'+e(o.date)+'</text><rect x="'+X+'" y="220" width="'+Math.min(200,String(o.date).length*21)+'" height="3" fill="#9fc4ed"/>';
+    var cat=o.category||'의정활동';
+    s+='<text x="'+X+'" y="286" fill="#173c79" font-size="34" font-weight="800">'+e(cat)+'</text>';
+    // 대형 제목
+    var tl=wrapText(o.title,11).slice(0,3),ty=365;
+    tl.forEach(function(l,i){s+='<text x="'+X+'" y="'+ty+'" fill="'+(i===0?'#0b55d4':'#08265f')+'" font-size="70" font-weight="950" letter-spacing="-3">'+e(l)+'</text>';ty+=78;});
+    s+='<rect x="'+X+'" y="'+(ty+2)+'" width="62" height="7" rx="3.5" fill="#d6aa2d"/>';
+    // 핵심 메시지
+    var ml=wrapText(o.message||'도민의 목소리를 꼼꼼히 살피겠습니다.',21).slice(0,4),my=ty+64;
+    ml.forEach(function(l){s+='<text x="'+X+'" y="'+my+'" fill="#17356d" font-size="29" font-weight="650" letter-spacing="-0.7">'+e(l)+'</text>';my+=40;});
+    if(o.place)s+='<g transform="translate('+X+','+(my+12)+')" fill="none" stroke="#1655b7" stroke-width="3"><path d="M12 29s10-9 10-18A10 10 0 0 0 2 11c0 9 10 18 10 18z"/><circle cx="12" cy="11" r="3.5"/></g><text x="'+(X+38)+'" y="'+(my+39)+'" fill="#315789" font-size="25" font-weight="700">'+e(o.place)+'</text>';
+    // 하단 왼쪽 현장 사진 콜라주
+    if(detail){
+      s+='<image x="0" y="835" width="545" height="300" preserveAspectRatio="xMidYMid slice" href="'+detail+'" xlink:href="'+detail+'"/>';
+      s+='<rect x="0" y="835" width="545" height="300" fill="url(#bottomFade)"/>';
     }
-    // 하단 띠(네이비) — 좌: 정당 / 우: 직함+이름(+의회 인장)
-    s+='<rect x="0" y="1218" width="1080" height="132" fill="url(#nv)"/>';
-    s+='<text x="'+X+'" y="1284" fill="#fff" font-size="36" font-weight="900" letter-spacing="-1">더불어민주당</text>';
-    if(region) s+='<text x="'+X+'" y="1318" fill="rgba(255,255,255,0.72)" font-size="21" font-weight="600">'+e(region)+'</text>';
-    if(pos) s+='<text x="'+(W-X)+'" y="1266" text-anchor="end" fill="rgba(255,255,255,0.85)" font-size="22" font-weight="600">'+e(pos)+'</text>';
-    var sealX=(W-X)-(nm.length*48)-46;
-    s+='<circle cx="'+sealX+'" cy="1301" r="27" fill="#edc15a" opacity="0.2"/><circle cx="'+sealX+'" cy="1301" r="27" fill="none" stroke="#edc15a" stroke-width="3"/><text x="'+sealX+'" y="1310" text-anchor="middle" fill="#edc15a" font-size="22" font-weight="800">의회</text>';
-    s+='<text x="'+(W-X)+'" y="1315" text-anchor="end" fill="#fff" font-size="48" font-weight="900" letter-spacing="-1.5">'+e(nm)+'</text>';
+    // 실제 의원 사진을 크게 배치
+    if(portrait)s+='<image x="430" y="340" width="650" height="800" preserveAspectRatio="xMidYMax meet" mask="url(#portraitMask)" href="'+portrait+'" xlink:href="'+portrait+'"/>';
+    // 하단 이름 띠
+    s+='<rect x="0" y="1120" width="1080" height="230" fill="url(#navyBand)"/>';
+    s+='<circle cx="92" cy="1237" r="48" fill="#f2ca43"/><circle cx="92" cy="1237" r="38" fill="#ffd951" stroke="#fff2a8" stroke-width="4"/><text x="92" y="1248" text-anchor="middle" fill="#8b6812" font-size="28" font-weight="900">의회</text>';
+    var pl=wrapText(pos||'경기도의원',18).slice(0,2),py=1188;
+    pl.forEach(function(l){s+='<text x="162" y="'+py+'" fill="rgba(255,255,255,.9)" font-size="27" font-weight="650">'+e(l)+'</text>';py+=34;});
+    if(region)s+='<text x="162" y="1304" fill="#b9d3ff" font-size="21" font-weight="650">'+e(region)+'</text>';
+    s+='<text x="'+(W-X)+'" y="1290" text-anchor="end" fill="#fff" font-size="'+(nm.length>4?74:94)+'" font-weight="950" letter-spacing="-4">'+e(nm)+'</text>';
     s+='</svg>'; return s;
   }
   var POSTER_TEMPLATES = { navy: tplNavy }; /* 교체·추가 가능 */
@@ -3165,6 +3174,7 @@ onAuthStateChanged(_auth, async function(user){
       })
       .then(function(image){
         if(!image||!image.image)throw new Error('Gemini 이미지가 없습니다.');
+        o._sourcePhotos=(o._photos||[]).slice();
         o._photos=(o._photos||[]).slice();
         o._photos[0]=image.image;
         return svgToPng(fn(o), 1080, 1350);
