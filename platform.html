@@ -228,7 +228,7 @@ body.app-loading #sideAvatar{color:transparent!important;background:#243a5c!impo
   .page[data-page="dashboard"] .dashboard-intro>div{width:100%}
   .page[data-page="dashboard"] .dashboard-intro button{width:100%;justify-content:center;height:44px!important}
   .page[data-page="dashboard"] #dashGreet{font-size:21px!important}
-  .page[data-page="dashboard"] .pg .dashboard-kpis{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:9px!important;margin-bottom:10px!important}
+  #dashboardKpis{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:9px!important;margin-bottom:10px!important}
   .page[data-page="dashboard"] .dashboard-kpis>div{min-width:0;padding:13px!important;border-radius:12px!important}
   .page[data-page="dashboard"] .dashboard-kpis>div>div:nth-child(2){margin-top:9px!important}
   .page[data-page="dashboard"] #kpiMinwon,.page[data-page="dashboard"] #kpiToday,.page[data-page="dashboard"] #kpiMembers,.page[data-page="dashboard"] #kpiNews{font-size:25px!important}
@@ -409,7 +409,7 @@ body.app-loading #sideAvatar{color:transparent!important;background:#243a5c!impo
           </button>
         </div>
 
-        <div class="dashboard-kpis" style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:16px">
+        <div id="dashboardKpis" class="dashboard-kpis" style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:16px">
           <div data-go="minwon" style="background:#fff;border:1px solid #e9ecf1;border-radius:14px;padding:18px 20px;box-shadow:0 1px 2px rgba(16,24,40,0.04);cursor:pointer;transition:border-color .15s,box-shadow .15s,transform .15s" data-hover="border-color:#c7d4ea;box-shadow:0 4px 14px rgba(16,24,40,0.08);transform:translateY(-2px)">
             <div style="display:flex;align-items:center;justify-content:space-between">
               <span style="font-size:13px;color:#6b7585;font-weight:500">미처리 민원</span>
