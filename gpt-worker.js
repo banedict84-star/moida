@@ -219,8 +219,9 @@ async function geminiPosterImage(request, env, user) {
     `Activity category: ${String(body.category || "public service activity").slice(0, 80)}.`,
     `Place or context: ${String(body.place || "local community").slice(0, 120)}.`,
     `Mood: ${String(body.tone || "warm, trustworthy, calm").slice(0, 120)}.`,
-    "Use refined navy, soft blue, ivory and warm beige colors with natural documentary lighting.",
-    "Keep a clean central subject area and enough negative space. No people, faces, politicians, flags, party logos, seals, letters, numbers, captions, watermarks, UI, frames or borders.",
+    "Create a sophisticated layered civic editorial collage: pale sky-blue atmosphere, modern Korean public-institution architecture across the upper and right side, and a related public meeting or council interior detail toward the lower left.",
+    "Use refined navy, vivid Democratic-style blue, soft blue and white with natural documentary lighting. Keep generous bright negative space on the left for a large Korean headline and reserve the bottom area for a dark navy identity band.",
+    "No people, faces, politicians, flags, party logos, seals, letters, numbers, captions, watermarks, UI, frames or borders.",
     "The image will be cropped inside a separate Korean typography layout, so generate visual background only.",
   ].join(" ");
   const data = await geminiRequest(env, "interactions", {
