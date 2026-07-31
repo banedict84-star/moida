@@ -323,15 +323,18 @@ function safeAppOrigin(value, env) {
   return allowedOrigin(origin, env) === origin ? origin : PRODUCTION_ORIGIN;
 }
 
+const USAGE_MODEL_RATES = {
+  "gpt-4o-mini": { input: 0.15, cached: 0.075, output: 0.60 },
+  "gpt-4o": { input: 2.50, cached: 1.25, output: 10.00 },
+  "gpt-image-1": { input: 5.00, cached: 0, output: 40.00 },
+  "claude-sonnet-4": { input: 3.00, cached: 0.30, output: 15.00 },
+  "gemini-2.5-flash": { input: 0.30, cached: 0.03, output: 2.50 },
+  "gemini-3.6-flash": { input: 1.50, cached: 0.15, output: 7.50 },
+  "gemini-3.1-flash-image": { input: 0.50, cached: 0, output: 60.00 },
+};
+
 function usageCostMicros(model, usage = {}) {
-  const rates = {
-    "gpt-4o-mini": { input: 0.15, cached: 0.075, output: 0.60 },
-    "gpt-4o": { input: 2.50, cached: 1.25, output: 10.00 },
-    "gpt-image-1": { input: 5.00, cached: 0, output: 40.00 },
-    "claude-sonnet-4": { input: 3.00, cached: 0.30, output: 15.00 },
-    "gemini-2.5-flash": { input: 0.30, cached: 0.03, output: 2.50 },
-  };
-  const rate = rates[model] || { input: 0, cached: 0, output: 0 };
+  const rate = USAGE_MODEL_RATES[model] || { input: 0, cached: 0, output: 0 };
   const prompt = Number(usage.prompt_tokens ?? usage.input_tokens ?? 0);
   const cached = Number(usage.prompt_tokens_details?.cached_tokens ?? usage.input_tokens_details?.cached_tokens ?? 0);
   const completion = Number(usage.completion_tokens ?? usage.output_tokens ?? 0);
@@ -1020,25 +1023,45 @@ async function usageSummary(request, env, user) {
      GROUP BY model, agent, operation
      ORDER BY cost_usd_micros DESC, total_tokens DESC`
   ).bind(user.uid, start, end).all()).results || [];
-  const daily = (await env.AGENT_DB.prepare(
-    `SELECT strftime('%Y-%m-%d', created_at / 1000, 'unixepoch') day,
-       SUM(total_tokens) total_tokens, SUM(cost_usd_micros) cost_usd_micros
+  const dailyRows = (await env.AGENT_DB.prepare(
+    `SELECT strftime('%Y-%m-%d', created_at / 1000, 'unixepoch') day, model,
+       SUM(prompt_tokens) prompt_tokens, SUM(cached_tokens) cached_tokens,
+       SUM(completion_tokens) completion_tokens, SUM(total_tokens) total_tokens,
+       SUM(cost_usd_micros) cost_usd_micros
      FROM ai_usage_events
      WHERE tenant_id = ? AND created_at >= ? AND created_at < ?
-     GROUP BY day ORDER BY day`
+     GROUP BY day, model ORDER BY day`
   ).bind(user.uid, start, end).all()).results || [];
-  const normalized = rows.map((row) => ({
-    ...row,
-    provider: modelProvider(row.model),
-    prompt_tokens: Number(row.prompt_tokens || 0),
-    cached_tokens: Number(row.cached_tokens || 0),
-    completion_tokens: Number(row.completion_tokens || 0),
-    total_tokens: Number(row.total_tokens || 0),
-    image_count: Number(row.image_count || 0),
-    calls: Number(row.calls || 0),
-    costUsd: Number(row.cost_usd_micros || 0) / 1_000_000,
-    costKrw: Number(row.cost_usd_micros || 0) / 1_000_000 * rate,
-  }));
+  const normalized = rows.map((row) => {
+    const costMicros = USAGE_MODEL_RATES[row.model]
+      ? usageCostMicros(row.model, row)
+      : Number(row.cost_usd_micros || 0);
+    return {
+      ...row,
+      provider: modelProvider(row.model),
+      prompt_tokens: Number(row.prompt_tokens || 0),
+      cached_tokens: Number(row.cached_tokens || 0),
+      completion_tokens: Number(row.completion_tokens || 0),
+      total_tokens: Number(row.total_tokens || 0),
+      image_count: Number(row.image_count || 0),
+      calls: Number(row.calls || 0),
+      costUsd: costMicros / 1_000_000,
+      costKrw: costMicros / 1_000_000 * rate,
+    };
+  });
+  const dailyByDay = {};
+  dailyRows.forEach((row) => {
+    const item = dailyByDay[row.day] || (dailyByDay[row.day] = {
+      day: row.day,
+      total_tokens: 0,
+      cost_usd_micros: 0,
+    });
+    item.total_tokens += Number(row.total_tokens || 0);
+    item.cost_usd_micros += USAGE_MODEL_RATES[row.model]
+      ? usageCostMicros(row.model, row)
+      : Number(row.cost_usd_micros || 0);
+  });
+  const daily = Object.values(dailyByDay).sort((a, b) => String(a.day).localeCompare(String(b.day)));
   const totals = normalized.reduce((sum, row) => ({
     calls: sum.calls + row.calls,
     tokens: sum.tokens + row.total_tokens,
@@ -1049,7 +1072,8 @@ async function usageSummary(request, env, user) {
   const pricingCatalog = [
     { provider: "OpenAI", model: "gpt-4o-mini", input: 0.15, cached: 0.075, output: 0.60 },
     { provider: "OpenAI", model: "gpt-4o", input: 2.50, cached: 1.25, output: 10.00 },
-    { provider: "Google", model: "gemini-2.5-flash", input: 0.30, cached: 0.03, output: 2.50 },
+    { provider: "Google", model: "gemini-3.6-flash", input: 1.50, cached: 0.15, output: 7.50 },
+    { provider: "Google", model: "gemini-3.1-flash-image", input: 0.50, output: 60.00, image1k: 0.067 },
     { provider: "Anthropic", model: "claude-sonnet-4", input: 3.00, cached: 0.30, output: 15.00 },
   ];
   return json({ ok: true, month: requested, krwPerUsd: rate, totals, rows: normalized, daily, pricingCatalog }, 200, request, env);
