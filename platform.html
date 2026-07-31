@@ -1704,7 +1704,8 @@ onAuthStateChanged(_auth, async function(user){
         +'<div class="usage-model-name"><b style="font-size:12px">'+M.esc(r.model)+'</b><div style="font-size:10px;color:#9aa3b0;margin-top:2px">'+M.esc(r.provider||'')+'</div></div><span class="usage-model-calls">'+num(r.calls)+'</span><span class="usage-model-amount">'+usage+'</span><b class="usage-model-cost" style="text-align:right;color:#1d3a6e">'+won(r.costKrw)+'</b></div>';
     }).join(''):'<div style="padding:28px;text-align:center;color:#9aa3b0;font-size:12px">선택한 달의 기록이 없습니다. 적용 이후 사용량부터 집계됩니다.</div>';
     document.getElementById('usagePricing').innerHTML=(data.pricingCatalog||[]).map(function(p){
-      return '<span style="padding:5px 8px;border-radius:7px;background:#f5f7fa;color:#647084;font-size:10.5px"><b>'+M.esc(p.provider)+'</b> '+M.esc(p.model)+' · 입력 $'+p.input+' / 출력 $'+p.output+'</span>';
+      var imagePrice=p.image1k?' · 1K 이미지 약 $'+p.image1k:'';
+      return '<span style="padding:5px 8px;border-radius:7px;background:#f5f7fa;color:#647084;font-size:10.5px"><b>'+M.esc(p.provider)+'</b> '+M.esc(p.model)+' · 입력 $'+p.input+' / 출력 $'+p.output+imagePrice+'</span>';
     }).join('');
     document.getElementById('usageNotice').textContent='표시 금액은 1달러당 '+num(data.krwPerUsd)+'원과 공개 API 단가를 적용한 예상치입니다.';
   }
