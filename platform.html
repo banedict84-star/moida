@@ -2322,14 +2322,15 @@ onAuthStateChanged(_auth, async function(user){
     persistChats();
   }
   function resetChat(){
-    currentThreadId=''; history=[]; attachments=[]; renderAttach();
+    currentThreadId=''; history=[]; attachments=[]; posterWizard=null; renderAttach();
     if(msgs){msgs.innerHTML=seed;scroll();}
     renderChatThreads();
-    var inp=document.getElementById('aiInput'); if(inp) inp.focus();
+    var inp=document.getElementById('aiInput'); if(inp){inp.placeholder='비서실장에게 무엇이든 물어보세요…';inp.focus();}
   }
   function openChat(id){
     var t=chatThreads.find(function(x){return x.id===id;}); if(!t||!msgs) return;
-    currentThreadId=id; msgs.innerHTML=seed; history=[{role:'system',content:sysPrompt()}];
+    currentThreadId=id; posterWizard=null; msgs.innerHTML=seed; history=[{role:'system',content:sysPrompt()}];
+    var inp=document.getElementById('aiInput');if(inp)inp.placeholder='비서실장에게 무엇이든 물어보세요…';
     t.messages.forEach(function(m){
       if(m.role==='user'){addUser(m.content,null,true);history.push({role:'user',content:m.content});}
       else{addAI(mdToHtml(m.content),m.content,true);history.push({role:'assistant',content:m.content});}
@@ -3345,6 +3346,73 @@ onAuthStateChanged(_auth, async function(user){
     return /(웹자보|포스터|홍보\s*이미지|행사\s*이미지)/.test(text)
       && /(만들|제작|생성|그려|디자인|해\s*줘|해주세요)/.test(text);
   }
+  var posterWizard=null;
+  function posterInputHint(text){
+    var el=document.getElementById('aiInput');
+    if(el){el.placeholder=text||'비서실장에게 무엇이든 물어보세요…';el.focus();}
+  }
+  function posterChoice(value,label,primary){
+    return '<button type="button" data-poster-wizard="'+M.esc(value)+'" style="height:34px;padding:0 12px;border:'+(primary?'0':'1px solid #d6e0ee')+';border-radius:8px;background:'+(primary?'#1d3a6e':'#fff')+';color:'+(primary?'#fff':'#465568')+';font-size:12px;font-weight:700;cursor:pointer">'+M.esc(label||value)+'</button>';
+  }
+  function askPosterWizard(){
+    if(!posterWizard)return;
+    var step=posterWizard.step,html='',raw='';
+    if(step==='topic'){
+      raw='어떤 행사나 활동을 알릴 웹자보인가요?';
+      html='<b>1/5 · 웹자보 내용</b><br><span style="color:#667085">어떤 행사나 활동을 알릴 웹자보인가요?</span><div style="margin-top:8px;font-size:12px;color:#98a2b3">예: 지역주민 간담회, 복지관 현장 방문</div>';
+      posterInputHint('행사명이나 활동 내용을 입력해 주세요…');
+    }else if(step==='date'){
+      raw='날짜와 시간은 언제인가요? 날짜가 정해지지 않았다면 날짜 미정이라고 답해 주세요.';
+      html='<b>2/5 · 날짜와 시간</b><br><span style="color:#667085">행사 날짜와 시간을 알려주세요.</span><div style="display:flex;gap:7px;margin-top:11px">'+posterChoice('날짜 미정','날짜 미정')+'</div>';
+      posterInputHint('예: 8월 3일 오후 2시…');
+    }else if(step==='place'){
+      raw='장소는 어디인가요? 정해지지 않았다면 장소 미정이라고 답해 주세요.';
+      html='<b>3/5 · 장소</b><br><span style="color:#667085">행사가 열리는 장소를 알려주세요.</span><div style="display:flex;gap:7px;margin-top:11px">'+posterChoice('장소 미정','장소 미정')+'</div>';
+      posterInputHint('예: 상록구청 대회의실…');
+    }else if(step==='message'){
+      raw='웹자보에서 가장 강조할 메시지를 알려주세요. Gemini 추천을 선택해도 됩니다.';
+      html='<b>4/5 · 핵심 메시지</b><br><span style="color:#667085">꼭 넣고 싶은 말이나 강조점을 알려주세요.</span><div style="display:flex;gap:7px;margin-top:11px;flex-wrap:wrap">'+posterChoice('Gemini 추천','Gemini에게 추천받기')+'</div>';
+      posterInputHint('예: 주민의 목소리를 정책으로 잇겠습니다…');
+    }else if(step==='tone'){
+      raw='마지막으로 원하는 분위기를 선택해 주세요.';
+      html='<b>5/5 · 디자인 분위기</b><br><span style="color:#667085">웹자보의 전체 분위기를 선택해 주세요.</span><div style="display:flex;gap:7px;margin-top:11px;flex-wrap:wrap">'
+        +posterChoice('따뜻하고 신뢰감 있는','따뜻하고 신뢰감')+posterChoice('현장감 있고 생동감 있는','현장감 있게')
+        +posterChoice('차분하고 정책 중심인','정책 중심')+posterChoice('밝고 활기찬','밝고 활기차게')+'</div>';
+      posterInputHint('원하는 분위기를 직접 입력해도 됩니다…');
+    }else{
+      var d=posterWizard;
+      raw='웹자보 내용을 확인해 주세요. 생성, 수정, 취소 중 선택할 수 있습니다.';
+      html='<b>웹자보 생성 전 확인</b><div style="margin-top:10px;padding:11px 12px;border-radius:9px;background:#f6f8fb;font-size:12.5px;line-height:1.7;color:#465568">'
+        +'<div><b>내용</b> · '+M.esc(d.title)+'</div><div><b>일시</b> · '+M.esc(d.date)+'</div><div><b>장소</b> · '+M.esc(d.place)+'</div>'
+        +'<div><b>메시지</b> · '+M.esc(d.message||'Gemini 추천')+'</div><div><b>분위기</b> · '+M.esc(d.tone)+'</div></div>'
+        +'<div style="display:flex;gap:7px;margin-top:11px;flex-wrap:wrap">'+posterChoice('생성','이대로 생성',true)+posterChoice('수정','처음부터 수정')+posterChoice('취소','취소')+'</div>';
+      posterInputHint('생성, 수정 또는 취소라고 입력해도 됩니다…');
+    }
+    addAI(html,raw);
+  }
+  function startPosterWizard(){
+    posterWizard={step:'topic',title:'',date:'',place:'',message:'',tone:'따뜻하고 신뢰감 있는',category:'의정활동',photos:lastPhotos.slice()};
+    askPosterWizard();
+  }
+  function finishPosterWizard(){
+    var draft=posterWizard;if(!draft)return;
+    posterWizard=null;posterInputHint();
+    renderTemplatePoster({title:draft.title,date:draft.date,place:draft.place,message:draft.message,category:draft.category,tone:draft.tone,_photos:draft.photos});
+  }
+  function answerPosterWizard(value){
+    if(!posterWizard)return;
+    value=String(value||'').trim();if(!value)return;
+    if(posterWizard.step==='topic'){posterWizard.title=value;posterWizard.step='date';}
+    else if(posterWizard.step==='date'){posterWizard.date=value;posterWizard.step='place';}
+    else if(posterWizard.step==='place'){posterWizard.place=value;posterWizard.step='message';}
+    else if(posterWizard.step==='message'){posterWizard.message=value==='Gemini 추천'?'':value;posterWizard.step='tone';}
+    else if(posterWizard.step==='tone'){posterWizard.tone=value;posterWizard.step='confirm';}
+    else if(/^(생성|만들어줘|이대로생성)$/.test(value.replace(/\s+/g,''))){finishPosterWizard();return;}
+    else if(/^(수정|처음부터수정)$/.test(value.replace(/\s+/g,''))){startPosterWizard();return;}
+    else if(/^(취소|그만)$/.test(value.replace(/\s+/g,''))){posterWizard=null;posterInputHint();addAI('웹자보 만들기를 취소했습니다.','웹자보 만들기를 취소했습니다.');return;}
+    else{askPosterWizard();return;}
+    askPosterWizard();
+  }
   function isScheduleRegistrationRequest(text){
     var hasScheduleWord=/(일정|스케줄|캘린더|회의|미팅|모임|약속|면담|행사|간담회|방문|교육|상담)/.test(text);
     var explicitAction=/(등록|추가|잡아|넣어|기록|예약|올려)/.test(text);
@@ -3500,6 +3568,8 @@ onAuthStateChanged(_auth, async function(user){
     var _imgs=atts.filter(function(a){return a.kind==='image';});
     if(_imgs.length) lastPhotos=_imgs.map(function(f){return f.dataUrl;});
     addUser(text, atts);
+    if(posterWizard){answerPosterWizard(text);return;}
+    if(isPosterCreationRequest(text)){startPosterWizard();return;}
     if(!atts.length&&pendingScheduleProposal&&/^(등록|등록해|등록해줘|등록해주세요|네|예|응|확인)$/.test(text.replace(/\s+/g,''))){confirmPendingSchedule();return;}
     if(!atts.length&&/^일정\s*등록$/.test(text)){showScheduleRegistrationGuide();return;}
     if(!atts.length&&/^홍보글\s*작성$/.test(text)){showPromotionGuide();return;}
@@ -3607,6 +3677,13 @@ onAuthStateChanged(_auth, async function(user){
   if(sendBtn) sendBtn.addEventListener('click', function(){ if(input){ send(input.value); input.value=''; input.focus(); } });
   if(input) input.addEventListener('keydown', function(e){ if(e.key==='Enter'){ e.preventDefault(); send(input.value); input.value=''; } });
   if(msgs) msgs.addEventListener('click', function(e){
+    var posterWizardChoice=e.target.closest('[data-poster-wizard]');
+    if(posterWizardChoice){
+      var posterWizardValue=posterWizardChoice.getAttribute('data-poster-wizard')||'';
+      addUser(posterWizardChoice.textContent.trim());
+      answerPosterWizard(posterWizardValue);
+      return;
+    }
     var promotionCopy=e.target.closest('[data-promotion-copy]');
     if(promotionCopy){
       var copyText=promotionCopies[promotionCopy.getAttribute('data-promotion-copy')]||'';
