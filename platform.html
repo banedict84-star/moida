@@ -196,6 +196,13 @@ body.app-loading #sideAvatar{color:transparent!important;background:#243a5c!impo
 .policy-card-footer{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:13px;padding-top:12px;border-top:1px solid #f0f2f5}
 .policy-card-committee{min-width:0;color:#5d6878;font-size:11.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .policy-original{flex:0 0 auto;color:#2563eb;font-size:11.5px;font-weight:650;text-decoration:none}
+.policy-detail-toggle{display:inline-flex;align-items:center;gap:5px;border:0;background:transparent;color:#536071;font-size:11.5px;font-weight:650;cursor:pointer}
+.policy-detail-toggle::after{content:"⌄";font-size:14px;transition:transform .16s}.policy-card.open .policy-detail-toggle::after{transform:rotate(180deg)}
+.policy-card-detail{display:none;margin-top:13px;padding:14px;border-radius:11px;background:#f7f9fc;border:1px solid #e8edf3}.policy-card.open .policy-card-detail{display:block}
+.policy-detail-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.policy-detail-item{min-width:0}.policy-detail-label{display:block;margin-bottom:4px;color:#8a94a3;font-size:10px;font-weight:650}.policy-detail-value{color:#465264;font-size:11.5px;line-height:1.55;word-break:keep-all}
+.policy-summary{margin-top:11px;padding-top:11px;border-top:1px solid #e4e9ef;color:#4f5b6c;font-size:11.5px;line-height:1.65;white-space:pre-line}
+.policy-files{display:flex;flex-wrap:wrap;gap:7px;margin-top:11px}.policy-file{display:inline-flex;align-items:center;gap:5px;padding:7px 9px;border:1px solid #dce4ef;border-radius:8px;background:#fff;color:#315a97;font-size:10.5px;font-weight:650;text-decoration:none}
 .policy-empty{padding:48px 20px;border:1px dashed #dce2ea;border-radius:14px;background:#fff;color:#9aa3b0;font-size:13px;text-align:center}
 .policy-loading{padding:42px 20px;border:1px solid #e7ebf1;border-radius:14px;background:#fff;color:#718096;font-size:13px;text-align:center}
 @media(max-width:1180px){
@@ -301,6 +308,7 @@ body.app-loading #sideAvatar{color:transparent!important;background:#243a5c!impo
   .policy-tabs{width:100%;margin-bottom:10px}.policy-tab{flex:1}
   .policy-card{padding:14px}.policy-card-head{gap:9px}.policy-bill-no{min-width:50px;padding:5px 6px}
   .policy-card-title{font-size:13.5px}.policy-card-footer{align-items:flex-start}
+  .policy-detail-grid{grid-template-columns:minmax(0,1fr)}.policy-card-detail{padding:12px}
   .page[data-page="settings"] .pg>div>div[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:minmax(0,1fr)!important}
   .page[data-page="settings"] .pg>div>div[style*="align-items:center"]{flex-wrap:wrap}
   .page[data-page="admin"] .pg>div{overflow-x:auto!important}
@@ -1924,12 +1932,25 @@ onAuthStateChanged(_auth, async function(user){
       var link=p.sourceUrl?'<a class="policy-original" href="'+M.esc(p.sourceUrl)+'" target="_blank" rel="noopener">경기도의회 원문 ↗</a>':'<span class="policy-original" style="color:#9aa3b0">직접 등록</span>';
       var date=p.proposedAt?'<span>제안일 '+M.esc(p.proposedAt)+'</span>':'';
       var sponsor=p.leadSponsor&&p.kind==='공동발의'?'<span>대표 '+M.esc(p.leadSponsor)+'</span>':'';
-      return '<article class="policy-card">'
+      var detail='<div class="policy-card-detail"><div class="policy-detail-grid">'
+        +'<div class="policy-detail-item"><span class="policy-detail-label">제안회기</span><div class="policy-detail-value">'+M.esc(p.proposalSession||'공식 페이지에서 확인')+'</div></div>'
+        +'<div class="policy-detail-item"><span class="policy-detail-label">대표발의</span><div class="policy-detail-value">'+M.esc(p.leadSponsor||'—')+'</div></div>'
+        +'<div class="policy-detail-item"><span class="policy-detail-label">위원회 처리</span><div class="policy-detail-value">'+M.esc(p.committeeResult||p.stage||'계류')+'</div></div>'
+        +'<div class="policy-detail-item"><span class="policy-detail-label">본회의 처리</span><div class="policy-detail-value">'+M.esc(p.plenaryResult||'아직 처리 정보 없음')+'</div></div>'
+        +'</div>'
+        +(p.coSponsors?'<div class="policy-summary"><b>공동발의자</b><br>'+M.esc(p.coSponsors)+'</div>':'')
+        +'<div class="policy-summary"><b>의안요지</b><br>'+M.esc(p.summary||'경기도의회 상세 페이지에 별도 의안요지가 제공되지 않았습니다. 아래 원안파일에서 전체 내용을 확인할 수 있습니다.')+'</div>'
+        +((p.files||[]).length?'<div class="policy-files">'+p.files.map(function(file){return '<a class="policy-file" href="'+M.esc(file.url)+'" target="_blank" rel="noopener">📄 '+M.esc(file.name)+'</a>';}).join('')+'</div>':'')
+        +'</div>';
+      return '<article class="policy-card" data-policy-id="'+M.esc(p.id||p.billNo||'')+'">'
         +'<div class="policy-card-head"><span class="policy-bill-no">의안 '+M.esc(p.billNo||'—')+'</span><div class="policy-card-main">'
         +'<div class="policy-card-title">'+M.esc(p.name||'(제목 없음)')+'</div>'
         +'<div class="policy-card-meta"><span class="policy-pill '+kindClass(p.kind)+'">'+M.esc(p.kind||'공동발의')+'</span><span class="policy-stage">'+M.esc(statusText(p.stage))+'</span>'+date+sponsor+'</div>'
-        +'</div></div><div class="policy-card-footer"><span class="policy-card-committee">'+M.esc(p.committee||'소관위원회 미정')+'</span>'+link+'</div></article>';
+        +'</div></div><div class="policy-card-footer"><span class="policy-card-committee">'+M.esc(p.committee||'소관위원회 미정')+'</span><span style="display:flex;align-items:center;gap:12px"><button class="policy-detail-toggle" type="button">내용 보기</button>'+link+'</span></div>'+detail+'</article>';
     }).join('');
+    box.querySelectorAll('.policy-detail-toggle').forEach(function(button){
+      button.addEventListener('click',function(){var card=button.closest('.policy-card');card.classList.toggle('open');button.textContent=card.classList.contains('open')?'내용 닫기':'내용 보기';});
+    });
   }
   function setSource(message,error){
     var el=document.getElementById('policySourceStatus'),dot=document.querySelector('.policy-source-dot');
