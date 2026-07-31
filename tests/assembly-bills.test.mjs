@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { parseAssemblyBillList, parseAssemblyBillDetail } from "../gpt-worker.js";
+import { parseAssemblyBillList, parseAssemblyBillLinks, parseAssemblyBillDetail } from "../gpt-worker.js";
 
 test("parses Gyeonggi Assembly bill list rows", () => {
   const html = `
@@ -16,6 +16,14 @@ test("parses Gyeonggi Assembly bill list rows", () => {
     committee: "여성가족평생교육위원회",
     proposedAt: "2025-07-07",
     sourceUrl: "https://www.ggc.go.kr/site/lwmkr/blog/app/motionBillList/DetailView/11033/9492",
+  }]);
+});
+
+test("parses bill links from the member home page fallback", () => {
+  const html = '<ul><li><a href="/site/lwmkr/blog/app/motionBillList/DetailView/11017/9492">경기도 건강가정 기본 조례 일부개정조례안</a><span>2025.07.07</span></li></ul>';
+  assert.deepEqual(parseAssemblyBillLinks(html), [{
+    id: "9492", billNo: "", name: "경기도 건강가정 기본 조례 일부개정조례안", committee: "",
+    proposedAt: "2025-07-07", sourceUrl: "https://www.ggc.go.kr/site/lwmkr/blog/app/motionBillList/DetailView/11017/9492",
   }]);
 });
 
