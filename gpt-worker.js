@@ -129,6 +129,14 @@ function geminiText(data) {
     .trim();
 }
 
+function geminiJson(data) {
+  const text = geminiText(data).replace(/```(?:json)?|```/gi, "").trim();
+  const direct = safeJson(text);
+  if (direct && typeof direct === "object") return direct;
+  const match = text.match(/\{[\s\S]*\}/);
+  return match ? safeJson(match[0]) : null;
+}
+
 function interactionImage(value) {
   if (!value) return null;
   if (Array.isArray(value)) {
@@ -186,18 +194,18 @@ async function geminiPosterCopy(request, env, user) {
       },
     },
   });
-  const result = safeJson(geminiText(data));
-  if (!result || typeof result !== "object") throw new HttpError(502, "Gemini 문구 응답 형식을 확인할 수 없습니다.");
+  const result = geminiJson(data);
+  const fallback = !result || typeof result !== "object";
   const clean = {
-    title: String(result.title || title).trim().slice(0, 80),
-    message: String(result.message || "").trim().slice(0, 100),
-    body: String(result.body || "").trim().slice(0, 300),
-    category: String(result.category || "의정활동").trim().slice(0, 20),
+    title: String(result?.title || title || "의정활동 소식").trim().slice(0, 80),
+    message: String(result?.message || body.message || "현장에서 듣고, 의정활동으로 답하겠습니다").trim().slice(0, 100),
+    body: String(result?.body || "").trim().slice(0, 300),
+    category: String(result?.category || body.category || "의정활동").trim().slice(0, 20),
   };
   await recordUsage(env, user.uid, {
     agent: "poster", model, operation: "poster-copy", usage: geminiUsage(data.usageMetadata),
   });
-  return json({ ok: true, model, result: clean }, 200, request, env);
+  return json({ ok: true, model, result: clean, fallback }, 200, request, env);
 }
 
 async function geminiPosterImage(request, env, user) {
