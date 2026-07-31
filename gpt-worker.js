@@ -443,6 +443,27 @@ function billResultValues(html) {
   return values;
 }
 
+function originalBillFiles(html) {
+  const files = [];
+  const pattern = /<a\b[^>]*href=["']([^"']*(?:\/file\/download\/|\.hwpx?(?:[?#]|["']))[^"']*)["'][^>]*>([\s\S]*?)<\/a>/gi;
+  let match;
+  while ((match = pattern.exec(String(html)))) {
+    const name = htmlText(match[2]);
+    const url = absoluteGgcUrl(match[1]);
+    if (url && name && !files.some((file) => file.url === url)) files.push({ name, url });
+  }
+  return files;
+}
+
+function billSummary(html) {
+  const match = String(html).match(/<h[2-5]\b[^>]*>\s*(?:<[^>]+>\s*)*의안요지(?:\s*<\/[^>]+>)*\s*<\/h[2-5]>([\s\S]*?)(?=<h[2-5]\b|원안파일|<footer\b)/i);
+  if (!match) return "";
+  const text = htmlText(match[1])
+    .replace(/^(집행기관 이송일|공포번호|공포일|철회일자)(\s|$)/g, "")
+    .trim();
+  return text.length > 12 ? text.slice(0, 1600) : "";
+}
+
 export function parseAssemblyBillDetail(html, summary = {}, memberName = "") {
   const title = htmlText(html.match(/<h2\b[^>]*>([\s\S]*?)<\/h2>/i)?.[1] || "") || summary.name || "";
   const leadSponsor = fieldAfterLabel(html, "대표발의");
@@ -465,6 +486,12 @@ export function parseAssemblyBillDetail(html, summary = {}, memberName = "") {
     proposedAt: (fieldAfterLabel(html, "제안일") || summary.proposedAt || "").replace(/[./]/g, "-"),
     kind,
     leadSponsor,
+    coSponsors: fieldAfterLabel(html, "공동발의"),
+    proposalSession: fieldAfterLabel(html, "제안회기"),
+    committeeResult: results[0] || "",
+    plenaryResult: results.length > 1 ? results.at(-1) : "",
+    summary: billSummary(html),
+    files: originalBillFiles(html),
     stage,
     progress,
     source: "ggc",
