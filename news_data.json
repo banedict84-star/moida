@@ -1,6 +1,14 @@
 {
-  "updated": "2026-08-01 07:03 UTC",
+  "updated": "2026-08-01 09:32 UTC",
   "items": [
+    {
+      "source": "naver",
+      "press": "cbci.co.kr",
+      "date": "2026.08.01",
+      "title": "안산의 산업 유산을 탐험하는 여름날 가볼 만한 곳",
+      "snippet": "상록구 성포동에 위치한 노적봉인공폭포공원은 안산 시내로 들어서는 길목에 있는 도시자연공원이다. 노적봉 정상에 오르면 안산시의 전경이 시원하게 펼쳐지며, 특히 서해 낙조가 아름답다. 산의 형상이 노적가리를 쌓아...",
+      "url": "https://www.cbci.co.kr/news/articleView.html?idxno=593625"
+    },
     {
       "source": "naver",
       "press": "kyeongin.com",
@@ -691,6 +699,14 @@
     },
     {
       "source": "naver",
+      "press": "siminilbo.co.kr",
+      "date": "2026.07.28",
+      "title": "안산시 주민총회 성료…2만5천 시민 참여로 마을 미래 설계",
+      "snippet": "25개 동서 220여 건 생활밀착형 의제 선정…주민 제안, 정책과 예산 반영 본격화 ▲ 이민근 안산시장(앞줄... 지난 6월 20일 상록구 사동을 시작으로 7월 25일 단원구 신길동까지 36일간 이어진 이번 주민총회에서는...",
+      "url": "https://www.siminilbo.co.kr/news/newsview.php?ncode=1160264235340215"
+    },
+    {
+      "source": "naver",
       "press": "incheonilbo.com",
       "date": "2026.07.28",
       "title": "안산 장애인주간이용시설, 연합 작품전 '나를 담다 우리를 잇다' 개최",
@@ -704,14 +720,6 @@
       "title": "경기도, 안산·용인에 약정형 매입임대주택 68호 착공",
       "snippet": "착공 주택은 안산시 상록구 월피동 일원 오피스텔 32호, 용인시 처인구 김량장동 일원 오피스텔 및 아파트 36호다. 안산 월피동 주택은 내년 4월 준공 예정이며, 용인 김량장동 주택도 내년 12월 준공 예정이다. 준공 이후...",
       "url": "https://daily.hankooki.com/news/articleView.html?idxno=1390220"
-    },
-    {
-      "source": "naver",
-      "press": "siminilbo.co.kr",
-      "date": "2026.07.28",
-      "title": "안산시 주민총회 성료…2만5천 시민 참여로 마을 미래 설계",
-      "snippet": "25개 동서 220여 건 생활밀착형 의제 선정…주민 제안, 정책과 예산 반영 본격화 ▲ 이민근 안산시장(앞줄... 지난 6월 20일 상록구 사동을 시작으로 7월 25일 단원구 신길동까지 36일간 이어진 이번 주민총회에서는...",
-      "url": "https://www.siminilbo.co.kr/news/newsview.php?ncode=1160264235340215"
     },
     {
       "source": "naver",
@@ -779,19 +787,19 @@
     },
     {
       "source": "naver",
-      "press": "bizwork.co.kr",
-      "date": "2026.07.28",
-      "title": "경기도·GH, 안산·용인 약정형 매입임대 68가구 착공",
-      "snippet": "사업지는 안산시 상록구 월피동과 용인시 처인구 김량장동 일원이다. 안산에는 오피스텔 32가구, 용인에는 오피스텔과 아파트 36가구가 각각 들어선다. 안산 월피동 주택은 2027년 4월, 용인 김량장동 주택은 같은 해 12월...",
-      "url": "https://www.bizwork.co.kr/news/articleView.html?idxno=417672"
-    },
-    {
-      "source": "naver",
       "press": "metroseoul.co.kr",
       "date": "2026.07.28",
       "title": "경기도, 안산·용인 약정형 매입임대주택 68호 착공",
       "snippet": "이번에 착공한 주택은 안산시 상록구 월피동 일원 오피스텔 32호와 용인시 처인구 김량장동 일원 오피스텔 및 아파트 36호다. 안산 월피동 주택은 2027년 4월, 용인 김량장동 주택은 2027년 12월 준공 예정이며, 준공 이후...",
       "url": "http://www.metroseoul.co.kr/article/20260728500080"
+    },
+    {
+      "source": "naver",
+      "press": "bizwork.co.kr",
+      "date": "2026.07.28",
+      "title": "경기도·GH, 안산·용인 약정형 매입임대 68가구 착공",
+      "snippet": "사업지는 안산시 상록구 월피동과 용인시 처인구 김량장동 일원이다. 안산에는 오피스텔 32가구, 용인에는 오피스텔과 아파트 36가구가 각각 들어선다. 안산 월피동 주택은 2027년 4월, 용인 김량장동 주택은 같은 해 12월...",
+      "url": "https://www.bizwork.co.kr/news/articleView.html?idxno=417672"
     },
     {
       "source": "naver",
@@ -811,19 +819,19 @@
     },
     {
       "source": "naver",
-      "press": "news.tf.co.kr",
-      "date": "2026.07.28",
-      "title": "GH, 안산시·용인시에 약정형 공공임대 68호 공급…시세 30% 수준",
-      "snippet": "안산시 상록구 월피동 일대 오피스텔 32호, 용인시 처인구 김량장동 일대 오피스텔과 아파트 36호이다. 안산시 월피동 주택은 내년 4월, 용인시 김량장동 주택은 내년 12월 준공한다. GH는 준공 뒤 매입 절차를 거쳐...",
-      "url": "https://news.tf.co.kr/read/national/2347637.htm"
-    },
-    {
-      "source": "naver",
       "press": "beyondpost.co.kr",
       "date": "2026.07.28",
       "title": "경기도, 안산·용인 약정형 매입임대주택 68호 착공…무주택자 주거안정...",
       "snippet": "도는 28일 경기주택도시공사와 함께 추진하는 약정형 매입임대주택 사업으로 안산시 상록구 월피동과 용인시 처인구 김량장동에서 총 68호를 착공했다고 밝혔다. 이번 사업은 안산 월피동 오피스텔 32호와 용인 김량장동...",
       "url": "http://www.beyondpost.co.kr/view.php?ud=2026072809171175444c878f8fa1_30"
+    },
+    {
+      "source": "naver",
+      "press": "news.tf.co.kr",
+      "date": "2026.07.28",
+      "title": "GH, 안산시·용인시에 약정형 공공임대 68호 공급…시세 30% 수준",
+      "snippet": "안산시 상록구 월피동 일대 오피스텔 32호, 용인시 처인구 김량장동 일대 오피스텔과 아파트 36호이다. 안산시 월피동 주택은 내년 4월, 용인시 김량장동 주택은 내년 12월 준공한다. GH는 준공 뒤 매입 절차를 거쳐...",
+      "url": "https://news.tf.co.kr/read/national/2347637.htm"
     },
     {
       "source": "naver",
@@ -848,14 +856,6 @@
       "title": "경기도·GH, 안산·용인에 약정형 매입임대 68호 공급",
       "snippet": "도는 안산시 상록구 월피동 일원 오피스텔 32호와 용인시 처인구 김량장동 일원 오피스텔 및 아파트 36호 등을 7월과 8월 각각 착공한다고 28일 밝혔다. 안산 월피동 주택은 2027년 4월 준공 예정이며, 용인 김량장동 주택은...",
       "url": "https://www.sidae.com/article/2026072807564858983"
-    },
-    {
-      "source": "naver",
-      "press": "discoverynews.kr",
-      "date": "2026.07.28",
-      "title": "경기도, 안산·용인 공공임대주택 68호 착공…2027년부터 공급",
-      "snippet": "이번 사업은 안산시 상록구 월피동에 오피스텔 32가구, 용인시 처인구 김량장동에 오피스텔과 아파트를 포함한 36가구를 조성하는 내용이다. 안산은 2027년 4월, 용인은 같은 해 12월 준공을 목표로 공사가 진행된다. 준공...",
-      "url": "https://www.discoverynews.kr/news/articleView.html?idxno=1097151"
     },
     {
       "source": "google",
@@ -931,10 +931,10 @@
     },
     {
       "source": "google",
-      "press": "사회적경제뉴스",
+      "press": "senews.kr",
       "date": "2026.07.27",
       "title": "경기도의회 장윤정 의원, 최혜경 의원 의정 활동 소식",
-      "snippet": "경기도의회 장윤정 의원, 최혜경 의원 의정 활동 소식 사회적경제뉴스",
+      "snippet": "경기도의회 장윤정 의원, 최혜경 의원 의정 활동 소식 senews.kr",
       "url": "https://news.google.com/rss/articles/CBMiTEFVX3lxTFA0N1E0MG1Qc3U3UkNlLUhkdkFEbDJSSXJxdEVMa09Tb1Z1MDBtRjktdG1oMndrVG1hbkctQU93OGhIYUN3V2NJOVA3SWo?oc=5"
     },
     {
@@ -968,14 +968,6 @@
       "title": "안산교육지원청, AI 활용 재무행정 콘텐츠 제작…학교 업무부담 경감",
       "snippet": "안산교육지원청, AI 활용 재무행정 콘텐츠 제작…학교 업무부담 경감 v.daum.net",
       "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE9HWm9hV2xPaXdUTkdGNVIyMDZQNlVSU3VHV3NYRjAyeDZhMk5Bakh6SnNyRmw0X3U0ZjFlLWc2RXFxWmFRcVVTdEFzMXVtQzg?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "mnewstime.newsa.kr",
-      "date": "2026.07.27",
-      "title": "안산교육지원청-학교-지역이 함께하는 한국어마스터 공유학교 개설로 이주배경학생 미래를 키운다",
-      "snippet": "안산교육지원청-학교-지역이 함께하는 한국어마스터 공유학교 개설로 이주배경학생 미래를 키운다 mnewstime.newsa.kr",
-      "url": "https://news.google.com/rss/articles/CBMiR0FVX3lxTE5VU3RUcGhURDF3ZldWdTZxNHZYMHoxeG5sSzhoUjkzaW9xN2hnam95ZFdINGpCVFR4NGpDbjhMeWRBUlpOSkQ0?oc=5"
     },
     {
       "source": "naver",
@@ -1040,6 +1032,14 @@
       "title": "안산교육지원청, 다문화 영유아 대상 ‘세계테마여행 음악회’ 개최",
       "snippet": "안산교육지원청, 다문화 영유아 대상 ‘세계테마여행 음악회’ 개최 v.daum.net",
       "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE9nbXZpLUhXajlGMFNoNUVLY1Ayalk5ZElWTDFrVmNzNks5MndWNmRSQ1VCSTZ6OGhEZlJSckRMbVR5bFIwbkpDQWZsOXFSQWc?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "안산뉴스",
+      "date": "2026.07.23",
+      "title": "안산교육청 다문화가정 학부모 교육 운영 협력 간담회",
+      "snippet": "안산교육청 다문화가정 학부모 교육 운영 협력 간담회 안산뉴스",
+      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBnVlZLOG8wbzlMZ2phYVJkbkpOVmVPQ2I0WExhS0w2ZmRvdFlhR0czdmhZX1hiWDVMN1llWnBPTmNqMkExOC1HbmNyMEg1QmxLR05Vb2J3WVk0bzhiaUd0eVJDQk5BblpkTDF1cQ?oc=5"
     },
     {
       "source": "google",
@@ -1296,6 +1296,14 @@
       "title": "안산시 자율방범대 상록연합대, 청소년 안심귀가를 위한 동행 첫걸음",
       "snippet": "안산시 자율방범대 상록연합대, 청소년 안심귀가를 위한 동행 첫걸음 리버럴미디어",
       "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE5jdzVxTklqNDAzc01xUWNxQXA2Mk4xSzlTeUY1MFl6ZGhBQUpTOFdmbGhJMURfRnhqN3lWNWsxb2hCQlJyMFY5bk1PYXktTURIZTJqdWl3ZmlmRjJ2d0VkVWloa2M?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "경기일보",
+      "date": "2026.07.07",
+      "title": "안산교육지원청, AI·디지털 교육 성장 생태계 만든다",
+      "snippet": "안산교육지원청, AI·디지털 교육 성장 생태계 만든다 경기일보",
+      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE93Zm9aTm9mN1RYTWY3cUVZUnZqQmRMVm0yWVJBVi02S2Y5ZS1uTW9kWlBuT0I3bmhpcWJVUW9wTy1EaWtFQy1jTml6S19rbmV3VXZEbTRuVFpLU0U?oc=5"
     },
     {
       "source": "google",
@@ -1707,10 +1715,10 @@
     },
     {
       "source": "google",
-      "press": "khan.co.kr",
+      "press": "경향신문",
       "date": "2026.05.13",
       "title": "안산 상록구 다세대주택서 화재···1명 숨지고 3명 부상",
-      "snippet": "안산 상록구 다세대주택서 화재···1명 숨지고 3명 부상 khan.co.kr",
+      "snippet": "안산 상록구 다세대주택서 화재···1명 숨지고 3명 부상 경향신문",
       "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE94ZFJWc1liZGRLTWM0aVAxVjY5c0VSOE40bVN0RXA3QlRidXMzdVkwdFljWVIxTG5oOGNwLUtsMl9pT2NJY1VTOEh4OGRMRU02b3Bob0pwa3dSQdIBX0FVX3lxTE52SDdudTdHX3NXYVFOQkhjSnFLR2pmVW5hbmE0aEZYM3B6WXVLNGpoY09DY0xlMVpuZVEzYWIzZVFjY1h1TTYtRHFMVFdPR0RfQ05pWGVIRm5NUG16cTRN?oc=5"
     },
     {
@@ -1899,19 +1907,19 @@
     },
     {
       "source": "google",
-      "press": "경인매일",
-      "date": "2025.12.29",
-      "title": "장윤정 경기도의원, ‘2025 지방의정대상’ 수상 영예",
-      "snippet": "장윤정 경기도의원, ‘2025 지방의정대상’ 수상 영예 경인매일",
-      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5xQklJbUNlSHQ0bzlEQnhhYWp4Z0EweWlrVEdvWFQ2anRGdVJEWDc1WlktX25NenNCUmhqSkdpY0pZbk5JYnJ3bmlid21MMHNsbkFsSEE3OUNHeXlHa08tMmRxbHVBcUpG?oc=5"
+      "press": "경기일보",
+      "date": "2026.01.01",
+      "title": "장윤정 경기도의원, 환경개선과 도시 기반 확충 위한 사업비 확보",
+      "snippet": "장윤정 경기도의원, 환경개선과 도시 기반 확충 위한 사업비 확보 경기일보",
+      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE5rMndfUE52aU8wNElIRHJ3bk5WRm1QaEJkV3R4WkJuYVJfN1VSQWszclZIS3FiUW5uRE1FWEZvS19kQjJSNC1keXpFLUZ6NUptczMxZjVmai12YjA?oc=5"
     },
     {
       "source": "google",
-      "press": "안산뉴스",
-      "date": "2025.11.28",
-      "title": "장윤정 도의원 ‘민주당 당대표 청년특보’ 임명",
-      "snippet": "장윤정 도의원 ‘민주당 당대표 청년특보’ 임명 안산뉴스",
-      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFAxdTJ2bWJiQUIwZ1ZVZW4zaV9GRGo5TEFiMGlJeDRBQ0lwbkZudGVFVUxJeEdQLVM2RFZwYzhhMjBIdEQ2NWRYZTB0SGRNY0xLd3BaSEtpRzdmMFJZX2MwVkgtYW94TDBaY3Fidg?oc=5"
+      "press": "kmaeil.com",
+      "date": "2025.12.29",
+      "title": "장윤정 경기도의원, ‘2025 지방의정대상’ 수상 영예",
+      "snippet": "장윤정 경기도의원, ‘2025 지방의정대상’ 수상 영예 kmaeil.com",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5xQklJbUNlSHQ0bzlEQnhhYWp4Z0EweWlrVEdvWFQ2anRGdVJEWDc1WlktX25NenNCUmhqSkdpY0pZbk5JYnJ3bmlid21MMHNsbkFsSEE3OUNHeXlHa08tMmRxbHVBcUpG?oc=5"
     }
   ]
 }
