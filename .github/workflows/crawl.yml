@@ -1,8 +1,11 @@
 name: 공지사항 크롤링
 
 on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/crawl.yml']
   schedule:
-    - cron: '0 * * * *'  # 매 시간마다 (하루 24회)
+    - cron: '*/5 * * * *'  # 5분마다 최신 자료 확인
   workflow_dispatch:      # 수동 실행 가능
 
 permissions:
