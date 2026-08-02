@@ -87,3 +87,5 @@ jobs:
           git add bills_data.json
           git diff --cached --quiet || git commit -m 'chore: 발의의안 자료 업데이트'
           git push
+
+# Browser collector enabled for automatic policy refresh.
