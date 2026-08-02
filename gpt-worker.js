@@ -568,24 +568,31 @@ async function fetchAssemblyBills(memberPage, memberName) {
     const cookie = cookieHeader(bootstrap.response);
     const listHeaders = assemblyHeaders(homeUrl, cookie);
     detailHeaders = listHeaders;
-    for (const row of [...parseAssemblyBillList(bootstrap.html), ...parseAssemblyBillLinks(bootstrap.html)]) {
+    const homeRows = [...parseAssemblyBillList(bootstrap.html), ...parseAssemblyBillLinks(bootstrap.html)];
+    for (const row of homeRows) {
       const key = row.sourceUrl || row.id;
-      if (key && !seen.has(key)) { seen.add(key); summaries.push(row); }
+      if (key && !seen.has(key)) { seen.add(key); summaries.push({ ...row, _headers: listHeaders, _memberScoped: true }); }
     }
-    // 공식 목록은 화면처럼 페이지당 10건이며, 현재 최대 17페이지까지 있다.
-    // 여유를 두어 25페이지까지 읽고, 이후 상세 페이지에서 의원명을 정확히 판별한다.
-    for (let page = 1; page <= 25; page += 1) {
+    // 홈페이지가 생성한 실제 목록 링크를 사용해야 의원 세션이 유지된다.
+    const listMatch = bootstrap.html.match(/href=["']([^"']*motionBillList(?!\/DetailView)[^"']*)["']/i);
+    let listUrl = `${origin}${GGC_BILL_PATH}`;
+    if (listMatch) {
+      try { listUrl = new URL(decodeHtml(listMatch[1]), origin).href; } catch {}
+    }
+    // 공식 목록 전체를 페이지 순회하고 상세 페이지에서 대표·공동발의를 판별한다.
+    for (let page = 1; page <= 50; page += 1) {
       let rows = [];
       try {
-        const query = new URLSearchParams({ pageIndex: String(page) });
-        const { html } = await fetchGgcHtml(`${origin}${GGC_BILL_PATH}?${query}`, listHeaders);
-        rows = parseAssemblyBillList(html);
+        const pageUrl = new URL(listUrl);
+        pageUrl.searchParams.set("pageIndex", String(page));
+        const { html } = await fetchGgcHtml(pageUrl.href, listHeaders);
+        rows = [...parseAssemblyBillList(html), ...parseAssemblyBillLinks(html)];
       } catch { break; }
       let added = 0;
       for (const row of rows) {
         const key = row.sourceUrl || row.id;
         if (!key || seen.has(key)) continue;
-        seen.add(key); summaries.push(row); added += 1;
+        seen.add(key); summaries.push({ ...row, _headers: listHeaders, _memberScoped: true }); added += 1;
       }
       if (!rows.length || (page > 1 && !added)) break;
     }
@@ -596,10 +603,10 @@ async function fetchAssemblyBills(memberPage, memberName) {
     const batch = summaries.slice(index, index + 5);
     const parsed = await Promise.all(batch.map(async (summary) => {
       try {
-        const { html } = await fetchGgcHtml(summary.sourceUrl, detailHeaders);
+        const { html } = await fetchGgcHtml(summary.sourceUrl, summary._headers || detailHeaders);
         return parseAssemblyBillDetail(html, summary, memberName);
       } catch {
-        return { ...summary, kind: "공동발의", stage: "처리현황 확인 중", progress: 30, source: "ggc" };
+        return { ...summary, belongsToMember: Boolean(summary._memberScoped), kind: "공동발의", stage: "처리현황 확인 중", progress: 30, source: "ggc" };
       }
     }));
     bills.push(...parsed);
@@ -625,7 +632,7 @@ async function assemblyBills(request, env, url) {
   }
   const bills = await fetchAssemblyBills(memberPage, memberName);
   const response = json({ ok: true, memberName, memberPage, source: `${GGC_ORIGIN}${GGC_BILL_PATH}`, fetchedAt: new Date().toISOString(), bills }, 200, request, env);
-  response.headers.set("Cache-Control", "public, max-age=1800");
+  response.headers.set("Cache-Control", "public, max-age=300");
   if (typeof caches !== "undefined") await caches.default.put(cacheKey, response.clone());
   return response;
 }
