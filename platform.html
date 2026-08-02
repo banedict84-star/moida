@@ -1899,7 +1899,7 @@ onAuthStateChanged(_auth, async function(user){
   'use strict';
   var M = window.MOIDA; if(!M) return;
   var ENDPOINT='https://moida-gpt.banedict84.workers.dev';
-  var CACHE_KEY='moida_assembly_bills_11017_v3';
+  var CACHE_KEY='moida_assembly_bills_11017_v4';
   var remoteBills=[], activeFilter='all', loading=false, loaded=false, cacheSavedAt=0;
   function counts(list){
     return {
@@ -1962,7 +1962,7 @@ onAuthStateChanged(_auth, async function(user){
     }catch(e){}
   }
   function loadOfficialCache(){
-    return fetch('bills_data.json?v=20260802c',{cache:'no-store'}).then(function(r){
+    return fetch('bills_data.json?v=20260802d',{cache:'no-store'}).then(function(r){
       if(!r.ok) throw new Error('공개자료 캐시를 찾을 수 없습니다.');
       return r.json();
     }).then(function(data){
@@ -1976,13 +1976,10 @@ onAuthStateChanged(_auth, async function(user){
   }
   function sync(force){
     if(loading)return;
-    var user=M.auth&&M.auth.currentUser;
-    if(!user){setSource('로그인 후 경기도의회 의안을 불러올 수 있습니다.',true);return;}
     loading=true;render();
     var btn=document.getElementById('policySyncBtn');if(btn){btn.disabled=true;btn.style.opacity='.65';}
-    user.getIdToken().then(function(token){
-      return fetch(ENDPOINT+'/assembly/bills?memberPage=11017&memberName='+encodeURIComponent('장윤정')+(force?'&refresh=1':''),{headers:{Authorization:'Bearer '+token}});
-    }).then(function(r){return r.json().then(function(d){if(!r.ok||!d.ok)throw new Error(d&&d.error&&d.error.message||'의안 조회 실패');return d;});})
+    fetch(ENDPOINT+'/assembly/bills?memberPage=11017&memberName='+encodeURIComponent('장윤정')+(force?'&refresh=1':''))
+      .then(function(r){return r.json().then(function(d){if(!r.ok||!d.ok)throw new Error(d&&d.error&&d.error.message||'의안 조회 실패');return d;});})
       .then(function(data){
         var incoming=Array.isArray(data.bills)?data.bills:[];
         // 일시적인 크롤링 오류로 1~2건만 온 경우 정상 전체 자료를 덮어쓰지 않는다.
@@ -2043,6 +2040,8 @@ onAuthStateChanged(_auth, async function(user){
   M.onData(function(){render();if(shouldSync()&&!loading)sync(false);});
   var policyNav=document.querySelector('.nav-item[data-page="policy"]');
   if(policyNav)policyNav.addEventListener('click',function(){setTimeout(function(){if(shouldSync()&&!loading)sync(false);},100);});
+  // 정책 페이지를 열어 둔 동안에도 5분마다 경기도의회 최신 자료를 확인한다.
+  setInterval(function(){if(!document.hidden&&!loading)sync(false);},5*60*1000);
 })();
 </script>
 
