@@ -240,12 +240,124 @@ jobs:
           else:
               print("  수집 실패 — 기존 council_data.json 유지")
 
+          # ── 장윤정 의원 대표·공동발의 (공지사항과 동일한 실제 브라우저 방식) ──
+          BILL_PROFILE = "https://www.ggc.go.kr/site/lwmkr/blog/11017/11"
+          bill_summaries, bill_seen = [], set()
+
+          def add_bill_links(html, current_url):
+              soup = BeautifulSoup(html, "lxml")
+              added = 0
+              for a in soup.select('a[href*="motionBillList/DetailView/"]'):
+                  href = urljoin(current_url, a.get("href", ""))
+                  if not href or href in bill_seen:
+                      continue
+                  bill_seen.add(href)
+                  bill_summaries.append(href)
+                  added += 1
+              return added
+
+          def bill_value(soup, label):
+              for tag in soup.find_all(["th", "dt"]):
+                  if tag.get_text(" ", strip=True) == label:
+                      nxt = tag.find_next_sibling(["td", "dd"])
+                      return nxt.get_text(" ", strip=True) if nxt else ""
+              return ""
+
+          collected_bills = []
+          try:
+              with sync_playwright() as pw:
+                  browser = pw.chromium.launch(headless=True)
+                  ctx = browser.new_context(
+                      user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120.0.0.0 Safari/537.36",
+                      locale="ko-KR", viewport={"width": 1280, "height": 900})
+                  bp = ctx.new_page()
+                  bp.goto(BILL_PROFILE, wait_until="networkidle", timeout=60000)
+                  add_bill_links(bp.content(), bp.url)
+                  list_anchor = bp.locator('a[href*="motionBillList"]:not([href*="DetailView"])').first
+                  if list_anchor.count():
+                      list_anchor.click()
+                      bp.wait_for_load_state("domcontentloaded", timeout=60000)
+                      list_url = bp.url
+                      listed_pages = set()
+                      for page_no in range(1, 51):
+                          u = list_url + ("&" if "?" in list_url else "?") + f"pageIndex={page_no}"
+                          bp.goto(u, wait_until="domcontentloaded", timeout=60000)
+                          bp.wait_for_timeout(700)
+                          before = len(bill_summaries)
+                          add_bill_links(bp.content(), bp.url)
+                          signature = "|".join(bill_summaries[before:])
+                          if not signature or signature in listed_pages:
+                              break
+                          listed_pages.add(signature)
+
+                  for idx, href in enumerate(bill_summaries, 1):
+                      try:
+                          bp.goto(href, wait_until="domcontentloaded", timeout=60000)
+                          bp.wait_for_timeout(250)
+                          detail = BeautifulSoup(bp.content(), "lxml")
+                          lead = bill_value(detail, "대표발의")
+                          co = bill_value(detail, "공동발의")
+                          if "장윤정" not in lead and "장윤정" not in co:
+                              continue
+                          results = []
+                          for tag in detail.find_all(["th", "dt"]):
+                              if tag.get_text(" ", strip=True) == "처리결과":
+                                  nxt = tag.find_next_sibling(["td", "dd"])
+                                  value = nxt.get_text(" ", strip=True) if nxt else ""
+                                  if value:
+                                      results.append(value)
+                          bill_no = bill_value(detail, "의안번호")
+                          detail_id = _re.search(r"DetailView/\d+/(\d+)", href)
+                          title = detail.find("h2")
+                          title = title.get_text(" ", strip=True) if title else bill_no
+                          stage = results[-1] if results else "처리현황 확인 중"
+                          collected_bills.append({
+                              "id": detail_id.group(1) if detail_id else bill_no,
+                              "billNo": bill_no, "name": title,
+                              "kind": "대표발의" if "장윤정" in lead else "공동발의",
+                              "leadSponsor": lead, "coSponsors": co,
+                              "committee": bill_value(detail, "소관위원회"),
+                              "proposedAt": bill_value(detail, "제안일").replace(".", "-").replace("/", "-"),
+                              "proposalSession": bill_value(detail, "제안회기"),
+                              "committeeResult": results[0] if results else "",
+                              "plenaryResult": results[-1] if len(results) > 1 else "",
+                              "stage": stage,
+                              "progress": 100 if _re.search(r"가결|통과|공포|폐기|부결|철회", stage) else 30,
+                              "source": "ggc", "sourceUrl": href,
+                          })
+                          print(f"  [정책 {idx}/{len(bill_summaries)}] {bill_no} {title[:35]}")
+                      except Exception as e:
+                          print(f"  정책 상세 ERROR {href}: {e}")
+                  browser.close()
+          except Exception as e:
+              print(f"정책 Playwright ERROR: {e}")
+
+          # 기존 검증 자료와 합쳐 크롤링 오류로 의안이 사라지지 않게 한다.
+          existing_bills = []
+          try:
+              with open("bills_data.json", encoding="utf-8") as f:
+                  existing_bills = json.load(f).get("bills", [])
+          except Exception:
+              pass
+          merged = {}
+          for item in existing_bills + collected_bills:
+              key = str(item.get("id") or item.get("billNo") or item.get("sourceUrl") or "")
+              if key:
+                  merged[key] = item
+          final_bills = sorted(merged.values(), key=lambda x: str(x.get("proposedAt", "")), reverse=True)
+          if collected_bills:
+              with open("bills_data.json", "w", encoding="utf-8") as f:
+                  json.dump({"updatedAt": now_utc, "source": "경기도의회 실제 브라우저 자동수집", "bills": final_bills}, f, ensure_ascii=False, indent=2)
+              print(f"정책 수집 {len(collected_bills)}건 / 누적 {len(final_bills)}건")
+          else:
+              print("정책 수집 실패 — 기존 bills_data.json 유지")
+
           EOF
 
       - name: 변경사항 커밋
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add notices_data.json central_data.json council_data.json
+          git add notices_data.json central_data.json council_data.json bills_data.json
           git diff --cached --quiet || git commit -m "chore: 공지사항 데이터 업데이트 $(date +'%Y-%m-%d %H:%M')"
           git push
