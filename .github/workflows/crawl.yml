@@ -245,6 +245,10 @@ jobs:
 
           # ── 장윤정 의원 대표·공동발의 (공지사항과 동일한 실제 브라우저 방식) ──
           BILL_PROFILE = "https://www.ggc.go.kr/site/lwmkr/blog/11017/11"
+          BILL_PROFILES = [
+              "https://m.ggc.go.kr/site/lwmkr/blog/11017/11",
+              BILL_PROFILE,
+          ]
           bill_summaries, bill_seen = [], set()
           bill_debug = {"profile": BILL_PROFILE, "events": []}
 
@@ -275,17 +279,28 @@ jobs:
                       user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120.0.0.0 Safari/537.36",
                       locale="ko-KR", viewport={"width": 1280, "height": 900})
                   bp = ctx.new_page()
-                  # 이 페이지는 백그라운드 통신이 계속되어 networkidle이 오지 않는다.
-                  bp.goto(BILL_PROFILE, wait_until="domcontentloaded", timeout=60000)
-                  bp.wait_for_timeout(1200)
-                  profile_html = bp.content()
-                  profile_added = add_bill_links(profile_html, bp.url)
-                  profile_soup = BeautifulSoup(profile_html, "lxml")
-                  bill_debug["events"].append({
-                      "step": "profile", "url": bp.url, "title": bp.title(),
-                      "htmlLength": len(profile_html), "detailLinks": profile_added,
-                      "bodyPreview": profile_soup.get_text(" ", strip=True)[:300],
-                  })
+                  # PC 주소가 메인으로 강제 이동될 수 있어 모바일→PC 순서로 시도한다.
+                  profile_ready = False
+                  for candidate in BILL_PROFILES:
+                      try:
+                          bp.goto(candidate, wait_until="commit", timeout=60000)
+                          bp.wait_for_timeout(3000)
+                          profile_html = bp.content()
+                          profile_added = add_bill_links(profile_html, bp.url)
+                          profile_soup = BeautifulSoup(profile_html, "lxml")
+                          bill_debug["events"].append({
+                              "step": "profile", "candidate": candidate, "url": bp.url, "title": bp.title(),
+                              "htmlLength": len(profile_html), "detailLinks": profile_added,
+                              "bodyPreview": profile_soup.get_text(" ", strip=True)[:300],
+                          })
+                          list_count = bp.locator('a[href*="motionBillList"]:not([href*="DetailView"])').count()
+                          if profile_added or list_count:
+                              profile_ready = True
+                              break
+                      except Exception as e:
+                          bill_debug["events"].append({"step": "profile-error", "candidate": candidate, "error": str(e)})
+                  if not profile_ready:
+                      raise RuntimeError("모바일·PC 의원 페이지 모두 발의의안 화면을 열지 못했습니다.")
                   list_anchor = bp.locator('a[href*="motionBillList"]:not([href*="DetailView"])').first
                   if list_anchor.count():
                       list_href = list_anchor.get_attribute("href")
