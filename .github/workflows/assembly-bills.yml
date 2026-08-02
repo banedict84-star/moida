@@ -30,7 +30,7 @@ jobs:
           from playwright.sync_api import sync_playwright
 
           BASE='https://www.ggc.go.kr'
-          LIST=BASE+'/site/lwmkr/blog/app/motionBillList'
+          PROFILE=BASE+'/site/lwmkr/blog/11017/11'
           MEMBER='장윤정'
 
           def text(node): return node.get_text(' ', strip=True) if node else ''
@@ -46,15 +46,30 @@ jobs:
               browser=pw.chromium.launch(headless=True)
               ctx=browser.new_context(locale='ko-KR', viewport={'width':1280,'height':900}, user_agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/124.0.0.0 Safari/537.36')
               page=ctx.new_page()
-              # 일반 목록에서 바로 상세 페이지를 읽고 발의자 이름으로 판별한다.
-              for no in range(1, 26):
-                  page.goto(LIST+('?pageIndex='+str(no) if no>1 else ''), wait_until='domcontentloaded', timeout=45000)
+              # 의원 홈페이지를 먼저 열어 세션과 실제 발의의안 목록 주소를 확보한다.
+              page.goto(PROFILE, wait_until='domcontentloaded', timeout=60000)
+              profile=BeautifulSoup(page.content(),'lxml')
+              list_link=''
+              for a in profile.select('a[href*="motionBillList"]'):
+                  if 'DetailView' not in a.get('href',''):
+                      list_link=urljoin(PROFILE,a.get('href',''))
+                      break
+              if not list_link:
+                  raise SystemExit('장윤정 의원 발의의안 목록 주소를 찾지 못했습니다.')
+              listed_pages=set()
+              for no in range(1, 41):
+                  separator='&' if '?' in list_link else '?'
+                  list_url=list_link+(separator+'pageIndex='+str(no) if no>1 else '')
+                  page.goto(list_url, wait_until='domcontentloaded', timeout=60000)
+                  page.wait_for_timeout(700)
                   soup=BeautifulSoup(page.content(),'lxml')
                   links=[]
                   for a in soup.select('a[href*="motionBillList/DetailView/"]'):
-                      href=urljoin(LIST,a.get('href',''))
+                      href=urljoin(page.url,a.get('href',''))
                       if href not in seen: seen.add(href); links.append(href)
-                  if not links: break
+                  signature='|'.join(links)
+                  if not links or signature in listed_pages: break
+                  listed_pages.add(signature)
                   for href in links:
                       page.goto(href, wait_until='domcontentloaded', timeout=45000)
                       detail=BeautifulSoup(page.content(),'lxml')
@@ -78,6 +93,8 @@ jobs:
           with open('bills_data.json','w',encoding='utf-8') as f:
               json.dump({'updatedAt':datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC'),'bills':bills},f,ensure_ascii=False,indent=2)
           print('수집 완료:',len(bills),'건')
+          if len(bills) < 5:
+              raise SystemExit('수집 건수가 비정상적으로 적어 기존 자료를 보존합니다: '+str(len(bills))+'건')
           PY
       - name: 자료 반영
         run: |
