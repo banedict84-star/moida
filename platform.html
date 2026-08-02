@@ -1899,7 +1899,7 @@ onAuthStateChanged(_auth, async function(user){
   'use strict';
   var M = window.MOIDA; if(!M) return;
   var ENDPOINT='https://moida-gpt.banedict84.workers.dev';
-  var CACHE_KEY='moida_assembly_bills_11017_v2';
+  var CACHE_KEY='moida_assembly_bills_11017_v3';
   var remoteBills=[], activeFilter='all', loading=false, loaded=false, cacheSavedAt=0;
   function counts(list){
     return {
@@ -1962,7 +1962,7 @@ onAuthStateChanged(_auth, async function(user){
     }catch(e){}
   }
   function loadOfficialCache(){
-    return fetch('bills_data.json?v=20260802b',{cache:'no-store'}).then(function(r){
+    return fetch('bills_data.json?v=20260802c',{cache:'no-store'}).then(function(r){
       if(!r.ok) throw new Error('공개자료 캐시를 찾을 수 없습니다.');
       return r.json();
     }).then(function(data){
