@@ -1546,6 +1546,8 @@ onAuthStateChanged(_auth, async function(user){
     var v=String(value||'').trim();
     if(!/^[가-힣]+(?:동|읍|면)$/.test(v)) return false;
     if(/^(?:[가나다라마바사아자차카타파하]동|주동)$/.test(v)) return false;
+    // 도로명·건물 표기에서 유입된 값들(행정동 아님)
+    if(['구룡동','안산천동','호동'].indexOf(v)>=0) return false;
     // 안산 명부는 실제 안산시 행정동 목록으로 한 번 더 검증한다.
     if(/안산(?:시)?/.test(String(address||''))) return ansanAdminDongs().indexOf(v)>=0;
     return true;
