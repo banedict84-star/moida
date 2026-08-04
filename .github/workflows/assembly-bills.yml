@@ -95,7 +95,7 @@ jobs:
                   co=value(detail,'공동발의')
                   if not kind_hint and MEMBER not in lead and MEMBER not in co: continue
                   bill_no=value(detail,'의안번호')
-                  kind='대표발의' if kind_hint or MEMBER in lead else '공동발의'
+                  kind='대표발의' if kind_hint == '대표발의' or MEMBER in lead else '공동발의'
                   results=[]
                   for tag in detail.find_all(['th','dt']):
                       if text(tag)=='처리결과':
