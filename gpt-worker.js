@@ -1550,6 +1550,7 @@ async function googleCalendarEvents(request, env, user) {
         status: event.status || "",
         htmlLink: event.htmlLink || "",
         updated: event.updated || "",
+        origin: event.extendedProperties?.private?.moidaTenant === user.uid ? "moida" : "google",
       })),
     }, 200, request, env);
   }
