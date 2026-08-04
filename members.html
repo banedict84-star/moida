@@ -849,10 +849,11 @@ onAuthStateChanged(_auth, async function(user){
       if(!m.sex||m.sex==='undefined') m.sex=D.sex;
       var _formattedPhone=formatPhone(m.phone);
       if(_formattedPhone&&_formattedPhone!==m.phone){ m.phone=_formattedPhone; _cloudChanged=true; }
-      if(m.addr&&m.addr!=='—'){
-        var _dm=m.addr.match(/\(([가-힣]+[동읍면리])[,)]/); if(!_dm) _dm=m.addr.match(/([가-힣]+[동읍면리])\s*\d/); if(!_dm) _dm=m.addr.match(/([가-힣]+[동읍면리])[\s,)]/);
-        if(_dm) m.dong=_dm[1];
-      }
+      var _oldDong=String(m.dong||'');
+      var _adminDong=extractAdminDong(m.addr);
+      if(_adminDong) m.dong=_adminDong;
+      else if(!isAdminDong(m.dong)) m.dong='—';
+      if(_oldDong!==String(m.dong||'')) _cloudChanged=true;
       var _beforeAge=String(m.age||''), _beforeAgeb=String(m.ageb||'');
       if(m.rrn&&m.rrn!=='—'){ var _d=deriveFromRrn(m.rrn); if(_d){ m.age=_d.age; m.ageb=_d.ageb; if(!m.sex||m.sex==='—') m.sex=_d.sex; } }
       if(!isValidAgeBand(m.ageb) || (+m.age&&(+m.age<0||+m.age>110))){ m.age=''; m.ageb='—'; }
@@ -886,11 +887,10 @@ onAuthStateChanged(_auth, async function(user){
       if(!m.ageb||m.ageb==='undefined') m.ageb=D.ageb;
       if(!m.sex||m.sex==='undefined') m.sex=D.sex;
       m.phone=formatPhone(m.phone);
-      // 행정동 자동 추출 — 주소가 있으면 항상 재추출
-      if(m.addr&&m.addr!=='—'){
-        var _dm=m.addr.match(/\(([가-힣]+[동읍면리])[,)]/); if(!_dm) _dm=m.addr.match(/([가-힣]+[동읍면리])\s*\d/); if(!_dm) _dm=m.addr.match(/([가-힣]+[동읍면리])[\s,)]/);
-        if(_dm) m.dong=_dm[1];
-      }
+      // 주소의 행정구역 부분만 추출 — 건물 동·아파트명은 제외
+      var _adminDong=extractAdminDong(m.addr);
+      if(_adminDong) m.dong=_adminDong;
+      else if(!isAdminDong(m.dong)) m.dong='—';
       // 주민번호에서 나이·연령대·성별 자동 파생 (기존의 잘못된 연령대도 보정)
       if(m.rrn&&m.rrn!=='—'){ var _d=deriveFromRrn(m.rrn); if(_d){ m.age=_d.age; m.ageb=_d.ageb; if(!m.sex||m.sex==='—') m.sex=_d.sex; } }
       if(!isValidAgeBand(m.ageb) || (+m.age&&(+m.age<0||+m.age>110))){ m.age=''; m.ageb='—'; }
@@ -1523,6 +1523,24 @@ onAuthStateChanged(_auth, async function(user){
   function isValidAgeBand(value){
     return /^(?:0|[1-9][0-9]|100|110)대$/.test(String(value||''));
   }
+  // 주소에서 행정동만 고른다. "가동·나동·주동" 같은 건물 동과 "휴스토리" 같은 단지명은 제외한다.
+  function isAdminDong(value){
+    var v=String(value||'').trim();
+    if(!/^[가-힣]+(?:동|읍|면)$/.test(v)) return false;
+    return !/^(?:[가나다라마바사아자차카타파하]동|주동)$/.test(v);
+  }
+  function extractAdminDong(address){
+    var text=String(address||'').replace(/\s+/g,' ').trim();
+    if(!text||text==='—') return '';
+    // 괄호 속 법정동 표기: "... (성포동, 123-4)"
+    var bracket=text.match(/\(([가-힣]+(?:동|읍|면))\s*(?:,|\))/);
+    if(bracket&&isAdminDong(bracket[1])) return bracket[1];
+    // 도로명(…로/…길) 이전의 행정구역에서 마지막 동·읍·면만 사용
+    var beforeRoad=text.split(/\s+(?=[가-힣0-9-]*(?:로|길)\b)/)[0];
+    var candidates=beforeRoad.match(/[가-힣]+(?:동|읍|면)/g)||[];
+    for(var i=candidates.length-1;i>=0;i--){ if(isAdminDong(candidates[i])) return candidates[i]; }
+    return '';
+  }
 
   // 저장 (신규 추가 / 기존 수정)
   var _save=document.getElementById('dtSave');
@@ -1905,8 +1923,7 @@ onAuthStateChanged(_auth, async function(user){
         if(m.rrn && m.rrn!=='—'){ var _d=deriveFromRrn(m.rrn); if(_d){ if(!m.age||m.age==='') m.age=_d.age; if(!m.ageb||m.ageb==='—') m.ageb=_d.ageb; if(!m.sex||m.sex==='—') m.sex=_d.sex; } }
         // 주소에서 행정동 자동 추출 (예: "경기 안산시 상록구 성포동 ..." → "성포동")
         if((!m.dong||m.dong==='—') && m.addr && m.addr!=='—'){
-          var _dm=m.addr.match(/\(([가-힣]+[동읍면리])[,)]/); if(!_dm) _dm=m.addr.match(/([가-힣]+[동읍면리])\s*\d/); if(!_dm) _dm=m.addr.match(/([가-힣]+[동읍면리])[\s,)$]/);
-          if(_dm) m.dong=_dm[1];
+          var _adminDong=extractAdminDong(m.addr); if(_adminDong) m.dong=_adminDong;
         }
         // rec2/rec3 sync
         if(m.sub&&m.sub!=='—') m.rec2=m.sub; if(m.third&&m.third!=='—') m.rec3=m.third;
