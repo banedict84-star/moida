@@ -4309,7 +4309,18 @@ onAuthStateChanged(_auth, async function(user){
     syncBtn.disabled=false;syncBtn.textContent='일정 동기화';
   });
   window.addEventListener('message',function(event){
-    if(event.origin!==location.origin||!event.data||event.data.type!=='moida:events-changed'||!Array.isArray(event.data.events))return;
+    if(event.origin!==location.origin||!event.data)return;
+    if(event.data.type==='moida:event-deleted'){
+      var deleted=event.data.event||{}, deletedId=String(deleted.id||''), googleId=String(deleted.googleEventId||'');
+      if(deletedId)window.MOIDA.events=(window.MOIDA.events||[]).filter(function(item){return item.id!==deletedId;});
+      if(window.MOIDA.save)window.MOIDA.save('events',window.MOIDA.events||[]);
+      if(googleId){
+        var snapshot=readSnapshot();Object.keys(snapshot).forEach(function(key){if((snapshot[key]||{}).googleEventId===googleId)delete snapshot[key];});writeSnapshot(snapshot);
+        api('/google/calendar/events?id='+encodeURIComponent(googleId),{method:'DELETE'}).catch(function(error){console.warn('Google Calendar immediate delete failed',error);});
+      }
+      return;
+    }
+    if(event.data.type!=='moida:events-changed'||!Array.isArray(event.data.events))return;
     window.MOIDA.events=event.data.events;
     if(window.MOIDA.save)window.MOIDA.save('events',window.MOIDA.events);
     clearTimeout(syncTimer);syncTimer=setTimeout(function(){syncGoogleCalendar(false);},700);
