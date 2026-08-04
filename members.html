@@ -852,6 +852,8 @@ onAuthStateChanged(_auth, async function(user){
       var _oldDong=String(m.dong||'');
       var _adminDong=extractAdminDong(m.addr);
       if(_adminDong) m.dong=_adminDong;
+      // 도로명 주소에 행정동 표기가 없으면, 과거 자동 추출값도 남기지 않는다.
+      else if(m.addr&&m.addr!=='—') m.dong='—';
       else if(!isAdminDong(m.dong)) m.dong='—';
       if(_oldDong!==String(m.dong||'')) _cloudChanged=true;
       var _beforeAge=String(m.age||''), _beforeAgeb=String(m.ageb||'');
@@ -890,6 +892,7 @@ onAuthStateChanged(_auth, async function(user){
       // 주소의 행정구역 부분만 추출 — 건물 동·아파트명은 제외
       var _adminDong=extractAdminDong(m.addr);
       if(_adminDong) m.dong=_adminDong;
+      else if(m.addr&&m.addr!=='—') m.dong='—';
       else if(!isAdminDong(m.dong)) m.dong='—';
       // 주민번호에서 나이·연령대·성별 자동 파생 (기존의 잘못된 연령대도 보정)
       if(m.rrn&&m.rrn!=='—'){ var _d=deriveFromRrn(m.rrn); if(_d){ m.age=_d.age; m.ageb=_d.ageb; if(!m.sex||m.sex==='—') m.sex=_d.sex; } }
