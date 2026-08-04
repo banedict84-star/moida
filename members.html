@@ -823,6 +823,16 @@ onAuthStateChanged(_auth, async function(user){
       await saveMembers();
       return;
     }
+    // 서버의 빈 배열이 기기에 남아 있는 실제 명부를 덮어쓰지 않도록 보호한다.
+    // 의도적으로 전체 삭제한 경우에는 같은 시점의 기기 캐시도 빈 배열이므로 영향이 없다.
+    if(Array.isArray(fsData) && (!fsData.length && (cached.length||currentBeforeSync.length))){
+      members=cached.length?cached:currentBeforeSync;
+      dispMembers=members.slice();
+      localStorage.setItem(_MEM_KEY,JSON.stringify(members));
+      recalcScores(); renderRows();
+      await saveMembers();
+      return;
+    }
     if(Array.isArray(fsData)){
       localStorage.setItem(_MEM_KEY,JSON.stringify(fsData));
       window._reloadMembersFromFS(fsData);
@@ -838,6 +848,10 @@ onAuthStateChanged(_auth, async function(user){
     if(_membersCloudReady && (_membersPendingSave || localStorage.getItem(pendingKey(_uid))==='1')) saveMembers();
   });
   window._reloadMembersFromFS = function(fsData){
+    // 클라우드 읽기 오류로 빈 배열이 전달된 경우, 이미 화면에 있는 명부를 유지한다.
+    if(Array.isArray(fsData)&&!fsData.length&&Array.isArray(members)&&members.length){
+      saveMembers(); recalcScores(); renderRows(); return;
+    }
     members = fsData;
     var _cloudChanged=false;
     var D={rrn:'—',dong:'—',org:'—',rec:'—',rec2:'—',rec3:'—',sub:'—',third:'—',addr:'—',addrDetail:'',family:null,age:'',ageb:'—',sex:'—',vote:'미확인',voteK:'err',katalk:'—',type:'일반당원',typeK:'old',krGrade:0,smGrade:0,photo:'',orgs:[]};
