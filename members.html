@@ -1343,10 +1343,18 @@ onAuthStateChanged(_auth, async function(user){
       var dd=document.createElement('div');
       dd.style.cssText='position:fixed;z-index:1300;display:none;background:#fff;border:1px solid var(--line);border-radius:11px;box-shadow:0 14px 38px rgba(22,26,45,.2);padding:6px;min-width:150px;max-height:320px;overflow:auto';
       document.body.appendChild(dd);
-      var opts=[]; members.forEach(function(m){ if(m[field]!=null && m[field]!=='—' && (field!=='ageb'||isValidAgeBand(m[field])) && opts.indexOf(m[field])<0) opts.push(m[field]); });
-      opts.sort(function(a,b){ return String(a).localeCompare(String(b),'ko'); });
       var arr=filters[field];
-      function render(){ dd.innerHTML=['전체'].concat(opts).map(function(d){ var on=(d==='전체'&&!arr.length)||arr.indexOf(d)>=0; return '<div class="f-opt" data-d="'+d+'" style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;cursor:pointer;font-size:13px;font-weight:600;color:'+(on?'var(--primary)':'var(--ink-2)')+';background:'+(on?'var(--primary-soft)':'transparent')+'"><span style="width:14px;text-align:center">'+(on?'✓':'')+'</span>'+d+'</div>'; }).join(''); }
+      function optionsForCurrentFilters(){
+        var source=(searchKw&&searchWorker)?(searchResultIds||[]).map(function(id){ return memberById[id]; }).filter(Boolean):dispMembers;
+        var opts=[];
+        source.forEach(function(m){
+          // 현재 열려 있는 필터 자신을 제외한 조건을 모두 통과한 값만 표시
+          var ok=Object.keys(filters).every(function(key){ return key===field || !filters[key].length || filters[key].indexOf(m[key])>=0; });
+          if(ok&&m[field]!=null&&m[field]!=='—'&&(field!=='ageb'||isValidAgeBand(m[field]))&&opts.indexOf(m[field])<0) opts.push(m[field]);
+        });
+        return opts.sort(function(a,b){ return String(a).localeCompare(String(b),'ko'); });
+      }
+      function render(){ var opts=optionsForCurrentFilters(); dd.innerHTML=['전체'].concat(opts).map(function(d){ var on=(d==='전체'&&!arr.length)||arr.indexOf(d)>=0; return '<div class="f-opt" data-d="'+d+'" style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;cursor:pointer;font-size:13px;font-weight:600;color:'+(on?'var(--primary)':'var(--ink-2)')+';background:'+(on?'var(--primary-soft)':'transparent')+'"><span style="width:14px;text-align:center">'+(on?'✓':'')+'</span>'+d+'</div>'; }).join(''); }
       sel.addEventListener('click',function(){ render(); var r=sel.getBoundingClientRect(); dd.style.left=r.left+'px'; dd.style.top=(r.bottom+5)+'px'; dd.style.display=dd.style.display==='block'?'none':'block'; });
       dd.addEventListener('click',function(e){ var o=e.target.closest('.f-opt'); if(!o) return; var d=o.dataset.d; if(d==='전체'){ arr.length=0; } else { var i=arr.indexOf(d); if(i>=0) arr.splice(i,1); else arr.push(d); } lbl.textContent=arr.length?(arr.length===1?arr[0]:arr[0]+' 외 '+(arr.length-1)):label; sel.style.color=arr.length?'var(--primary)':''; sel.style.borderColor=arr.length?'var(--primary)':''; currentPage=1; render(); renderRows(); });
       document.addEventListener('mousedown',function(e){ if(!dd.contains(e.target)&&!sel.contains(e.target)) dd.style.display='none'; });
