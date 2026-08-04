@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-02 (경기도의회 원문 재검증)",
+  "updatedAt": "2026-08-04 (경기도의회 대표발의 공식 목록 대조)",
   "source": "경기도의회 발의의안 공개 페이지",
   "bills": [
     {
@@ -90,7 +90,7 @@
       "summary": "건강가정기본법 개정에 맞춰 경기도 가족센터의 설치·운영 근거를 정비하는 조례안입니다.",
       "files": [],
       "source": "ggc",
-      "sourceUrl": "https://www.ggc.go.kr/site/lwmkr/blog/app/motionBillList/DetailView/11033/9492"
+      "sourceUrl": "https://www.ggc.go.kr/site/lwmkr/blog/app/motionBillList/DetailView/11017/9492"
     },
     {
       "id": "9456",
@@ -145,7 +145,7 @@
       "summary": "고교학점제 지원 체계를 정비하기 위한 전부개정조례안입니다.",
       "files": [],
       "source": "ggc",
-      "sourceUrl": "https://www.ggc.go.kr/site/agendaif/app/agndsrchList/DetailView/9081"
+      "sourceUrl": "https://www.ggc.go.kr/site/lwmkr/blog/app/motionBillList/DetailView/11017/9081"
     },
     {
       "id": "8914",
@@ -164,7 +164,25 @@
       "summary": "디지털 성범죄 예방교육과 지원 체계를 강화하기 위한 일부개정조례안입니다.",
       "files": [],
       "source": "ggc",
-      "sourceUrl": "https://www.ggc.go.kr/site/agendaif/app/agndsrchList/DetailView/8914"
+      "sourceUrl": "https://www.ggc.go.kr/site/lwmkr/blog/app/motionBillList/DetailView/11017/8914"
+    },
+    {
+      "id": "8687", "billNo": "1202", "name": "경기도교육청 예산절감 및 예산낭비 사례공개 등에 관한 조례안", "committee": "교육기획위원회", "proposedAt": "2024-05-31", "kind": "대표발의", "leadSponsor": "장윤정", "coSponsors": "", "proposalSession": "", "committeeResult": "", "plenaryResult": "", "stage": "처리현황 확인 중", "summary": "경기도의회 대표발의 공식 목록에서 확인된 의안입니다. 상세 내용은 원문에서 확인할 수 있습니다.", "files": [], "source": "ggc-main-list", "sourceUrl": "https://www.ggc.go.kr/site/lwmkr/blog/app/motionBillList/DetailView/11017/8687"
+    },
+    {
+      "id": "8453", "billNo": "999", "name": "경기도교육청 무료법률상담 조례안", "committee": "교육기획위원회", "proposedAt": "2024-02-05", "kind": "대표발의", "leadSponsor": "장윤정", "coSponsors": "", "proposalSession": "", "committeeResult": "", "plenaryResult": "", "stage": "처리현황 확인 중", "summary": "경기도의회 대표발의 공식 목록에서 확인된 의안입니다. 상세 내용은 원문에서 확인할 수 있습니다.", "files": [], "source": "ggc-main-list", "sourceUrl": "https://www.ggc.go.kr/site/lwmkr/blog/app/motionBillList/DetailView/11017/8453"
+    },
+    {
+      "id": "8346", "billNo": "901", "name": "경기도교육청 정책실명제 운영 조례 일부개정조례안", "committee": "교육기획위원회", "proposedAt": "2023-12-06", "kind": "대표발의", "leadSponsor": "장윤정", "coSponsors": "", "proposalSession": "", "committeeResult": "", "plenaryResult": "", "stage": "처리현황 확인 중", "summary": "경기도의회 대표발의 공식 목록에서 확인된 의안입니다. 상세 내용은 원문에서 확인할 수 있습니다.", "files": [], "source": "ggc-main-list", "sourceUrl": "https://www.ggc.go.kr/site/lwmkr/blog/app/motionBillList/DetailView/11017/8346"
+    },
+    {
+      "id": "8347", "billNo": "902", "name": "경기도교육청 남북교육교류협력에 관한 조례 일부개정조례안", "committee": "교육기획위원회", "proposedAt": "2023-12-06", "kind": "대표발의", "leadSponsor": "장윤정", "coSponsors": "", "proposalSession": "", "committeeResult": "", "plenaryResult": "", "stage": "처리현황 확인 중", "summary": "경기도의회 대표발의 공식 목록에서 확인된 의안입니다. 상세 내용은 원문에서 확인할 수 있습니다.", "files": [], "source": "ggc-main-list", "sourceUrl": "https://www.ggc.go.kr/site/lwmkr/blog/app/motionBillList/DetailView/11017/8347"
+    },
+    {
+      "id": "8101", "billNo": "650", "name": "경기도교육청 학교 실내 공기질 개선 및 유지·관리에 관한 조례 일부개정조례안", "committee": "교육행정위원회", "proposedAt": "2023-08-25", "kind": "대표발의", "leadSponsor": "장윤정", "coSponsors": "", "proposalSession": "", "committeeResult": "", "plenaryResult": "", "stage": "처리현황 확인 중", "summary": "경기도의회 대표발의 공식 목록에서 확인된 의안입니다. 상세 내용은 원문에서 확인할 수 있습니다.", "files": [], "source": "ggc-main-list", "sourceUrl": "https://www.ggc.go.kr/site/lwmkr/blog/app/motionBillList/DetailView/11017/8101"
+    },
+    {
+      "id": "7791", "billNo": "346", "name": "경기도 학생인권 조례 일부개정조례안", "committee": "교육기획위원회", "proposedAt": "2023-03-03", "kind": "대표발의", "leadSponsor": "장윤정", "coSponsors": "", "proposalSession": "", "committeeResult": "", "plenaryResult": "", "stage": "처리현황 확인 중", "summary": "경기도의회 대표발의 공식 목록에서 확인된 의안입니다. 상세 내용은 원문에서 확인할 수 있습니다.", "files": [], "source": "ggc-main-list", "sourceUrl": "https://www.ggc.go.kr/site/lwmkr/blog/app/motionBillList/DetailView/11017/7791"
     }
   ]
 }
