@@ -31,6 +31,8 @@ jobs:
 
           BASE='https://www.ggc.go.kr'
           PROFILE=BASE+'/site/lwmkr/blog/11017/11'
+          # 경기도의회가 제공하는 장윤정 의원 대표발의 전용 목록
+          MAIN_LIST=BASE+'/site/lwmkr/blog/app/motionBillList?type=main&bpCouncilor=&bpCouncilorCode=11017&proposerMainName=&proposerMainCode=11017&bpRepresentActiveChair=&pageSize=10&blTitle='
           MEMBER='장윤정'
 
           def text(node): return node.get_text(' ', strip=True) if node else ''
@@ -41,7 +43,7 @@ jobs:
                       return text(nxt)
               return ''
 
-          bills, seen = [], set()
+          bills, seen, summaries = [], set(), []
           with sync_playwright() as pw:
               browser=pw.chromium.launch(headless=True)
               ctx=browser.new_context(locale='ko-KR', viewport={'width':1280,'height':900}, user_agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/124.0.0.0 Safari/537.36')
@@ -54,10 +56,25 @@ jobs:
                   if 'DetailView' not in a.get('href',''):
                       list_link=urljoin(PROFILE,a.get('href',''))
                       break
-              if not list_link:
-                  raise SystemExit('장윤정 의원 발의의안 목록 주소를 찾지 못했습니다.')
+              # 대표발의 전용 목록을 먼저 읽는다. 이 목록에는 1인발의도 포함된다.
               listed_pages=set()
               for no in range(1, 41):
+                  separator='&' if '?' in MAIN_LIST else '?'
+                  list_url=MAIN_LIST+(separator+'pageIndex='+str(no) if no>1 else '')
+                  page.goto(list_url, wait_until='domcontentloaded', timeout=60000)
+                  page.wait_for_timeout(700)
+                  soup=BeautifulSoup(page.content(),'lxml')
+                  links=[]
+                  for a in soup.select('a[href*="motionBillList/DetailView/"]'):
+                      href=urljoin(page.url,a.get('href',''))
+                      if href not in seen: seen.add(href); links.append(href); summaries.append((href,'대표발의'))
+                  signature='|'.join(links)
+                  if not links or signature in listed_pages: break
+                  listed_pages.add(signature)
+              # 전체 목록도 순회하여 공동발의만 보완한다.
+              if list_link:
+                listed_pages=set()
+                for no in range(1, 41):
                   separator='&' if '?' in list_link else '?'
                   list_url=list_link+(separator+'pageIndex='+str(no) if no>1 else '')
                   page.goto(list_url, wait_until='domcontentloaded', timeout=60000)
@@ -66,25 +83,25 @@ jobs:
                   links=[]
                   for a in soup.select('a[href*="motionBillList/DetailView/"]'):
                       href=urljoin(page.url,a.get('href',''))
-                      if href not in seen: seen.add(href); links.append(href)
+                      if href not in seen: seen.add(href); links.append(href); summaries.append((href,''))
                   signature='|'.join(links)
                   if not links or signature in listed_pages: break
                   listed_pages.add(signature)
-                  for href in links:
-                      page.goto(href, wait_until='domcontentloaded', timeout=45000)
-                      detail=BeautifulSoup(page.content(),'lxml')
-                      lead=value(detail,'대표발의')
-                      co=value(detail,'공동발의')
-                      if MEMBER not in lead and MEMBER not in co: continue
-                      bill_no=value(detail,'의안번호')
-                      kind='대표발의' if MEMBER in lead else '공동발의'
-                      results=[]
-                      for tag in detail.find_all(['th','dt']):
-                          if text(tag)=='처리결과':
-                              results.append(text(tag.find_next_sibling(['td','dd'])))
-                      title=text(detail.find(['h2','h3'])) or text(detail.select_one('title'))
-                      source=re.search(r'DetailView/\\d+/(\\d+)',href)
-                      bills.append({'id':source.group(1) if source else bill_no,'billNo':bill_no,'name':title,'kind':kind,'leadSponsor':lead,'coSponsors':co,'committee':value(detail,'소관위원회'),'proposedAt':value(detail,'제안일').replace('.','-').replace('/','-'),'proposalSession':value(detail,'제안회기'),'committeeResult':results[0] if results else '','plenaryResult':results[-1] if len(results)>1 else '','stage':results[-1] if results else '처리현황 확인 중','progress':100 if results and re.search('가결|통과|공포',results[-1]) else 30,'source':'ggc','sourceUrl':href})
+              for href, kind_hint in summaries:
+                  page.goto(href, wait_until='domcontentloaded', timeout=45000)
+                  detail=BeautifulSoup(page.content(),'lxml')
+                  lead=value(detail,'대표발의')
+                  co=value(detail,'공동발의')
+                  if not kind_hint and MEMBER not in lead and MEMBER not in co: continue
+                  bill_no=value(detail,'의안번호')
+                  kind='대표발의' if kind_hint or MEMBER in lead else '공동발의'
+                  results=[]
+                  for tag in detail.find_all(['th','dt']):
+                      if text(tag)=='처리결과':
+                          results.append(text(tag.find_next_sibling(['td','dd'])))
+                  title=text(detail.find(['h2','h3'])) or text(detail.select_one('title'))
+                  source=re.search(r'DetailView/\\d+/(\\d+)',href)
+                  bills.append({'id':source.group(1) if source else bill_no,'billNo':bill_no,'name':title,'kind':kind,'leadSponsor':lead,'coSponsors':co,'committee':value(detail,'소관위원회'),'proposedAt':value(detail,'제안일').replace('.','-').replace('/','-'),'proposalSession':value(detail,'제안회기'),'committeeResult':results[0] if results else '','plenaryResult':results[-1] if len(results)>1 else '','stage':results[-1] if results else '처리현황 확인 중','progress':100 if results and re.search('가결|통과|공포',results[-1]) else 30,'source':'ggc','sourceUrl':href})
                   time.sleep(.2)
               browser.close()
           if not bills:
