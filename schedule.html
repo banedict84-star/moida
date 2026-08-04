@@ -1764,9 +1764,9 @@ onAuthStateChanged(_auth, async function(user){
       if(nameEl) nameEl.innerHTML = ownerNm + ' <span class="pme">의원실</span>';
       var chipAva = document.getElementById('myChipAva');
       var chipName = document.getElementById('myChipName');
-      if(chipAva) chipAva.textContent = nm.charAt(0);
-      if(chipName) chipName.textContent = nm;
-      if(typeof _myName !== 'undefined') _myName = nm;
+      if(chipAva) chipAva.textContent = ownerNm.charAt(0);
+      if(chipName) chipName.textContent = ownerNm;
+      if(typeof _myName !== 'undefined') _myName = ownerNm;
     } catch(e){}
   })();
   window.addEventListener('moida:office-profile',function(event){
@@ -1774,6 +1774,10 @@ onAuthStateChanged(_auth, async function(user){
     var ava=document.getElementById('ownerAva'),nameEl=document.getElementById('ownerName');
     if(ava)ava.textContent=ownerNm.charAt(0);
     if(nameEl)nameEl.innerHTML=ownerNm+' <span class="pme">의원실</span>';
+    var chipAva=document.getElementById('myChipAva'),chipName=document.getElementById('myChipName');
+    if(chipAva)chipAva.textContent=ownerNm.charAt(0);
+    if(chipName)chipName.textContent=ownerNm;
+    if(typeof _myName !== 'undefined')_myName=ownerNm;
   });
 
   // sidebar collapse
