@@ -1527,13 +1527,13 @@ onAuthStateChanged(_auth, async function(user){
     return /^(?:0|[1-9][0-9]|100|110)대$/.test(String(value||''));
   }
   // 주소에서 행정동만 고른다. "가동·나동·주동" 같은 건물 동과 "휴스토리" 같은 단지명은 제외한다.
-  var ANSAN_ADMIN_DONGS=['고잔동','대부동','반월동','백운동','본오1동','본오2동','본오3동','부곡동','사동','사이동','선부1동','선부2동','선부3동','성포동','신길동','안산동','와동','원곡동','월피동','이동','일동','장상동','중앙동','초지동','해양동','호수동'];
+  function ansanAdminDongs(){ return ['고잔동','대부동','반월동','백운동','본오1동','본오2동','본오3동','부곡동','사동','사이동','선부1동','선부2동','선부3동','성포동','신길동','안산동','와동','원곡동','월피동','이동','일동','장상동','중앙동','초지동','해양동','호수동']; }
   function isAdminDong(value,address){
     var v=String(value||'').trim();
     if(!/^[가-힣]+(?:동|읍|면)$/.test(v)) return false;
     if(/^(?:[가나다라마바사아자차카타파하]동|주동)$/.test(v)) return false;
     // 안산 명부는 실제 안산시 행정동 목록으로 한 번 더 검증한다.
-    if(/안산(?:시)?/.test(String(address||''))) return ANSAN_ADMIN_DONGS.indexOf(v)>=0;
+    if(/안산(?:시)?/.test(String(address||''))) return ansanAdminDongs().indexOf(v)>=0;
     return true;
   }
   function extractAdminDong(address){
