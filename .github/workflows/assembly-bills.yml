@@ -106,7 +106,17 @@ jobs:
               browser.close()
           if not bills:
               raise SystemExit('의안 수집 결과가 없어 기존 자료를 보존합니다.')
-          bills.sort(key=lambda x:x.get('proposedAt',''), reverse=True)
+          # 일시적인 사이트 응답 오류로 일부 목록만 수집돼도, 기존 공식 확인 자료를 지우지 않는다.
+          existing=[]
+          try:
+              existing=json.load(open('bills_data.json',encoding='utf-8')).get('bills',[])
+          except Exception:
+              pass
+          merged={}
+          for item in existing+bills:
+              key=str(item.get('billNo') or item.get('id') or item.get('sourceUrl') or '')
+              if key: merged[key]=item
+          bills=sorted(merged.values(), key=lambda x:x.get('proposedAt',''), reverse=True)
           with open('bills_data.json','w',encoding='utf-8') as f:
               json.dump({'updatedAt':datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC'),'bills':bills},f,ensure_ascii=False,indent=2)
           print('수집 완료:',len(bills),'건')
