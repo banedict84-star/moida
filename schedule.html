@@ -1631,10 +1631,8 @@ onAuthStateChanged(_auth, async function(user){
           var removedEvent=events[_idx];
           rememberDeletedEvent(removedEvent);
           try{window.parent&&window.parent!==window&&window.parent.postMessage({type:'moida:event-deleted',event:{id:removedEvent.id||'',googleEventId:removedEvent.googleEventId||''}},location.origin);}catch(e){}
-          events.splice(_idx,1); saveEvents(); renderStats(); renderImp(); if(window.renderCal) window.renderCal();
+          events.splice(_idx,1); saveEvents(); renderFeed(); renderStats(); renderImp(); if(window.renderCal) window.renderCal();
         }
-        ev.remove();
-        var cnt=document.getElementById('evCount'); if(cnt) cnt.textContent=Math.max(0,(+cnt.textContent-1));
         close();
       });
       return;
