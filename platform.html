@@ -4140,6 +4140,89 @@ onAuthStateChanged(_auth, async function(user){
     if(!response.ok||!data.ok) throw new Error((data.error&&data.error.message)||'Google Calendar 요청에 실패했습니다.');
     return data;
   }
+  function ownerKey(){
+    var user=window.MOIDA.auth&&window.MOIDA.auth.currentUser;
+    return (user&&(user.uid||user.email))||'default';
+  }
+  function snapshotKey(){return 'moida_google_calendar_snapshot_'+ownerKey();}
+  function readSnapshot(){try{return JSON.parse(localStorage.getItem(snapshotKey())||'{}')||{};}catch(e){return {};}}
+  function writeSnapshot(value){try{localStorage.setItem(snapshotKey(),JSON.stringify(value||{}));}catch(e){}}
+  function pad2(n){return String(n).padStart(2,'0');}
+  function koreaParts(value){
+    var d=new Date(value);
+    if(isNaN(d.getTime()))return {date:'',time:''};
+    var p={};
+    try{new Intl.DateTimeFormat('en-US',{timeZone:'Asia/Seoul',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).formatToParts(d).forEach(function(x){p[x.type]=x.value;});}catch(e){}
+    return {date:(p.year||'')+'-'+(p.month||'')+'-'+(p.day||''),time:(p.hour||'')+':'+(p.minute||'')};
+  }
+  function localDateTime(date,time){return String(date||'')+'T'+String(time||'00:00')+':00+09:00';}
+  function plusMinutes(time,minutes){var p=String(time||'00:00').split(':').map(Number),n=(p[0]||0)*60+(p[1]||0)+(minutes||0);return pad2(Math.floor((n%1440+1440)%1440/60))+':'+pad2((n%60+60)%60);}
+  function nextDate(date){var d=new Date(String(date||'')+'T00:00:00+09:00');d.setDate(d.getDate()+1);return d.getFullYear()+'-'+pad2(d.getMonth()+1)+'-'+pad2(d.getDate());}
+  function eventPayload(e){
+    var allDay=!e.time;
+    return {id:e.googleEventId||'',title:e.title||'(제목 없음)',allDay:allDay,
+      start:allDay?e.date:localDateTime(e.date,e.time),
+      end:allDay?(e.endDate||nextDate(e.date)):(e.endDate&&e.endTime?localDateTime(e.endDate,e.endTime):localDateTime(e.date,e.endTime||plusMinutes(e.time,60))),
+      location:e._location||e.location||'',description:e.description||e._body||''};
+  }
+  function signature(e){var p=eventPayload(e);return JSON.stringify([p.title,p.allDay,p.start,p.end,p.location,p.description]);}
+  function mergeGoogleEvents(remoteEvents){
+    var events=window.MOIDA.events||[], added=0, updated=0, removed=0, snapshot=readSnapshot();
+    (remoteEvents||[]).forEach(function(remote){
+      var index=events.findIndex(function(e){return e.googleEventId===remote.id;});
+      if(remote.status==='cancelled'){
+        if(index>=0){events.splice(index,1);removed++;}
+        Object.keys(snapshot).forEach(function(key){if(snapshot[key]&&snapshot[key].googleEventId===remote.id)delete snapshot[key];});
+        return;
+      }
+      var start=remote.allDay?{date:remote.start,time:''}:koreaParts(remote.start);
+      var end=remote.allDay?{date:remote.end,time:''}:koreaParts(remote.end);
+      var data={title:remote.title||'(제목 없음)',date:start.date,time:start.time,endDate:end.date,endTime:end.time,
+        _location:remote.location||'',description:remote.description||'',_body:remote.description||'',allDay:!!remote.allDay,
+        googleEventId:remote.id,googleHtmlLink:remote.htmlLink||'',googleUpdated:remote.updated||'',googleSyncStatus:'synced',source:'google'};
+      if(index<0){
+        data.id='gcal_'+remote.id;data.author='Google Calendar';data.created=Date.now();events.push(data);added++;index=events.length-1;
+      }else{Object.keys(data).forEach(function(k){events[index][k]=data[k];});updated++;}
+      snapshot[events[index].id||('gcal_'+remote.id)]={googleEventId:remote.id,signature:signature(events[index])};
+    });
+    window.MOIDA.events=events;writeSnapshot(snapshot);
+    return {added:added,updated:updated,removed:removed};
+  }
+  async function pushMoidaEvents(){
+    var events=window.MOIDA.events||[], snapshot=readSnapshot(), current={}, created=0, updated=0, removed=0;
+    for(var i=0;i<events.length;i++){
+      var event=events[i]; if(!event||!event.date)continue;
+      var key=event.id||('event_'+i), prior=snapshot[key], payload=eventPayload(event);
+      if(!event.googleEventId){
+        var createdResult=await api('/google/calendar/events',{method:'POST',body:JSON.stringify(payload)});
+        event.googleEventId=createdResult.event&&createdResult.event.id||'';event.googleHtmlLink=createdResult.event&&createdResult.event.htmlLink||'';event.googleSyncStatus='synced';created++;
+      }else if(prior&&prior.signature!==signature(event)){
+        await api('/google/calendar/events',{method:'PUT',body:JSON.stringify(payload)});event.googleSyncStatus='synced';updated++;
+      }
+      if(event.googleEventId)current[key]={googleEventId:event.googleEventId,signature:signature(event)};
+    }
+    for(var oldKey in snapshot){
+      if(!current[oldKey]&&snapshot[oldKey]&&snapshot[oldKey].googleEventId){
+        try{await api('/google/calendar/events?id='+encodeURIComponent(snapshot[oldKey].googleEventId),{method:'DELETE'});removed++;}catch(e){console.warn('Google Calendar delete sync failed',e);current[oldKey]=snapshot[oldKey];}
+      }
+    }
+    writeSnapshot(current);
+    return {created:created,updated:updated,removed:removed};
+  }
+  var syncTimer=0, syncing=false;
+  async function syncGoogleCalendar(showResult){
+    if(syncing)return;syncing=true;
+    try{
+      var result=await api('/google/calendar/events');
+      var inbound=mergeGoogleEvents(result.events);
+      var outbound=await pushMoidaEvents();
+      if(window.MOIDA.save)await window.MOIDA.save('events',window.MOIDA.events||[]);
+      if(window.MOIDA.emit)window.MOIDA.emit();
+      try{var frame=document.querySelector('.page[data-page="schedule"] iframe');if(frame)frame.contentWindow.location.reload();}catch(e){}
+      if(showResult)alert('동기화가 완료되었습니다.\nGoogle → MOIDA: '+inbound.added+'개 추가, '+inbound.updated+'개 갱신, '+inbound.removed+'개 삭제\nMOIDA → Google: '+outbound.created+'개 추가, '+outbound.updated+'개 수정, '+outbound.removed+'개 삭제');
+    }catch(error){if(showResult)alert(error.message);else console.warn('Google Calendar sync failed',error);}
+    finally{syncing=false;}
+  }
   function paint(status){
     var connected=Boolean(status&&status.connected);
     badge.textContent=connected?'연결됨':'미연결';
@@ -4191,12 +4274,15 @@ onAuthStateChanged(_auth, async function(user){
   connectBtn.addEventListener('click',function(){connectGoogleCalendar(connectBtn);});
   if(secretaryConnectBtn)secretaryConnectBtn.addEventListener('click',function(){connectGoogleCalendar(secretaryConnectBtn);});
   syncBtn.addEventListener('click',async function(){
-    syncBtn.disabled=true;syncBtn.textContent='확인 중…';
-    try{
-      var result=await api('/google/calendar/events');
-      alert('Google Calendar에서 향후 일정 '+result.events.length+'건을 확인했습니다.\\n다음 단계에서 MOIDA 일정 목록과 자동 동기화됩니다.');
-    }catch(error){alert(error.message);}
-    syncBtn.disabled=false;syncBtn.textContent='일정 확인';
+    syncBtn.disabled=true;syncBtn.textContent='동기화 중…';
+    await syncGoogleCalendar(true);
+    syncBtn.disabled=false;syncBtn.textContent='일정 동기화';
+  });
+  window.addEventListener('message',function(event){
+    if(event.origin!==location.origin||!event.data||event.data.type!=='moida:events-changed'||!Array.isArray(event.data.events))return;
+    window.MOIDA.events=event.data.events;
+    if(window.MOIDA.save)window.MOIDA.save('events',window.MOIDA.events);
+    clearTimeout(syncTimer);syncTimer=setTimeout(function(){syncGoogleCalendar(false);},700);
   });
   var agentRunClear=document.getElementById('agentRunClear');
   if(agentRunClear)agentRunClear.addEventListener('click',function(){agentRuns.forEach(function(run){hiddenAgentRuns[run.id]=true;});saveHiddenAgentRuns();renderAgentRuns();});
@@ -4213,8 +4299,9 @@ onAuthStateChanged(_auth, async function(user){
     history.replaceState(null,'',location.pathname+location.hash);
     account.textContent='Google 연결이 취소되었습니다.';
   }
-  if(window.MOIDA.onData)window.MOIDA.onData(loadStatus);
-  setTimeout(loadStatus,1200);
+  if(window.MOIDA.onData)window.MOIDA.onData(function(){loadStatus();});
+  setTimeout(function(){loadStatus();syncGoogleCalendar(false);},1200);
+  setInterval(function(){syncGoogleCalendar(false);},5*60*1000);
 })();
 </script>
 <style>
