@@ -538,12 +538,21 @@ onAuthStateChanged(_auth, function(user){
     var d=p.replace(/^www\./,'').toLowerCase();
     return PRESS_MAP[d] || d.replace(/\.(co\.kr|or\.kr|go\.kr|com|net|kr|news)$/,'');
   }
+  // RSS·중계 서버가 내려주는 HTML 링크 조각은 기사 요약으로 노출하지 않는다.
+  function cleanNewsText(value){
+    var s=String(value||'').replace(/&lt;/gi,'<').replace(/&gt;/gi,'>').replace(/&amp;/gi,'&');
+    s=s.replace(/<a\b[\s\S]*$/i,' ').replace(/<[^>]*>/g,' ');
+    var box=document.createElement('div'); box.innerHTML=s;
+    return (box.textContent||box.innerText||'').replace(/\s+/g,' ').trim();
+  }
+  function cleanNewsTitle(value){ return cleanNewsText(value).replace(/\s*>\s*뉴스\s*$/,'').trim(); }
   function visible(){ var list; if(liveMode) list=NEWS.slice(); else{ var ks=keywords().map(function(k){ return k.replace(/\s+/g,''); }).filter(Boolean); list=NEWS.filter(function(n){ var hay=(n.title+' '+n.press+' '+n.snippet).toLowerCase().replace(/\s+/g,''); return ks.every(function(k){ return hay.indexOf(k)>=0; }); }); } return list.sort(function(a,b){ return dnum(b.date)-dnum(a.date); }); }
   function renderList(){
     var items = visible();
     if(resultCount) resultCount.textContent=items.length;
     nlist.innerHTML = items.map(function(n){
-      return '<div class="ncard'+(n.id===curId?' sel':'')+'" data-id="'+n.id+'"><div class="nt">'+srcBadge(n.source)+esc(n.title)+'</div><div class="nmeta"><span class="press-pill">'+esc(prettyPress(n))+'</span>'+(n.date?'<span>'+n.date+'</span>':'')+'</div><div class="nprev">'+esc(n.snippet)+'</div></div>';
+      var title=cleanNewsTitle(n.title)||'제목 없는 기사', snippet=cleanNewsText(n.snippet)||'기사 요약은 원문에서 확인할 수 있습니다.';
+      return '<div class="ncard'+(n.id===curId?' sel':'')+'" data-id="'+n.id+'"><div class="nt">'+srcBadge(n.source)+esc(title)+'</div><div class="nmeta"><span class="press-pill">'+esc(prettyPress(n))+'</span>'+(n.date?'<span>'+n.date+'</span>':'')+'</div><div class="nprev">'+esc(snippet)+'</div></div>';
     }).join('') || '<div class="news-empty"><div><div class="empty-icon">⌕</div><b>검색 결과가 없습니다</b><p>다른 키워드로 다시 검색하거나<br>추천 키워드를 선택해 보세요.</p></div></div>';
     if(items.length){ var still=items.some(function(n){return n.id===curId;}); selectNews(still?curId:items[0].id); }
     else { ndetail.classList.remove('has-article'); ndTitle.textContent='기사를 선택하세요'; ndMeta.innerHTML='<span>검색 결과가 없습니다.</span>'; ndBody.innerHTML=''; }
@@ -552,9 +561,10 @@ onAuthStateChanged(_auth, function(user){
     var n = NEWS.find(function(x){return x.id===id;}); if(!n) return; curId=id;
     ndetail.classList.add('has-article');
     nlist.querySelectorAll('.ncard').forEach(function(c){ c.classList.toggle('sel', +c.dataset.id===id); });
-    ndTitle.textContent = n.title;
+    var title=cleanNewsTitle(n.title)||'제목 없는 기사', snippet=cleanNewsText(n.snippet)||'기사 요약은 원문에서 확인할 수 있습니다.';
+    ndTitle.textContent = title;
     ndMeta.innerHTML = srcBadge(n.source)+'<span class="press-pill">'+esc(prettyPress(n))+'</span>'+(n.date?'<span>'+n.date+'</span>':'');
-    ndBody.innerHTML = '<p style="font-size:14.5px;line-height:1.7;color:var(--ink-2)">'+esc(n.snippet)+'</p>'+
+    ndBody.innerHTML = '<p style="font-size:14.5px;line-height:1.7;color:var(--ink-2)">'+esc(snippet)+'</p>'+
       '<a class="src-link" href="'+n.url+'" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>'+esc(prettyPress(n))+' 원문 보기</a>';
   }
   nlist.addEventListener('click', function(e){
