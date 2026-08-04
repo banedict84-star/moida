@@ -4177,11 +4177,15 @@ onAuthStateChanged(_auth, async function(user){
       }
       var start=remote.allDay?{date:remote.start,time:''}:koreaParts(remote.start);
       var end=remote.allDay?{date:remote.end,time:''}:koreaParts(remote.end);
+      var moidaOrigin=remote.origin==='moida';
+      var existing=events[index]||{};
+      var officeName=(window.MOIDA.profile&&window.MOIDA.profile.name)||'의원실';
       var data={title:remote.title||'(제목 없음)',date:start.date,time:start.time,endDate:end.date,endTime:end.time,
         _location:remote.location||'',description:remote.description||'',_body:remote.description||'',allDay:!!remote.allDay,
-        googleEventId:remote.id,googleHtmlLink:remote.htmlLink||'',googleUpdated:remote.updated||'',googleSyncStatus:'synced',source:'google'};
+        googleEventId:remote.id,googleHtmlLink:remote.htmlLink||'',googleUpdated:remote.updated||'',googleSyncStatus:'synced',
+        source:moidaOrigin?'moida':'google',author:moidaOrigin?((existing.author&&existing.author!=='Google Calendar')?existing.author:officeName):'Google Calendar'};
       if(index<0){
-        data.id='gcal_'+remote.id;data.author='Google Calendar';data.created=Date.now();events.push(data);added++;index=events.length-1;
+        data.id='gcal_'+remote.id;data.created=Date.now();events.push(data);added++;index=events.length-1;
       }else{Object.keys(data).forEach(function(k){events[index][k]=data[k];});updated++;}
       snapshot[events[index].id||('gcal_'+remote.id)]={googleEventId:remote.id,signature:signature(events[index])};
     });
