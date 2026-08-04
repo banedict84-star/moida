@@ -4186,7 +4186,11 @@ onAuthStateChanged(_auth, async function(user){
         source:moidaOrigin?'moida':'google',author:moidaOrigin?((existing.author&&existing.author!=='Google Calendar')?existing.author:officeName):'Google Calendar'};
       if(index<0){
         data.id='gcal_'+remote.id;data.created=Date.now();events.push(data);added++;index=events.length-1;
-      }else{Object.keys(data).forEach(function(k){events[index][k]=data[k];});updated++;}
+      }else{
+        var before=signature(events[index]);
+        Object.keys(data).forEach(function(k){events[index][k]=data[k];});
+        if(before!==signature(events[index]))updated++;
+      }
       snapshot[events[index].id||('gcal_'+remote.id)]={googleEventId:remote.id,signature:signature(events[index])};
     });
     window.MOIDA.events=events;writeSnapshot(snapshot);
@@ -4237,7 +4241,14 @@ onAuthStateChanged(_auth, async function(user){
       var outbound=await pushMoidaEvents();
       if(window.MOIDA.save)await window.MOIDA.save('events',window.MOIDA.events||[]);
       if(window.MOIDA.emit)window.MOIDA.emit();
-      try{var frame=document.querySelector('.page[data-page="schedule"] iframe');if(frame)frame.contentWindow.location.reload();}catch(e){}
+      // MOIDA에서 방금 편집 중인 화면은 새로고침하지 않는다. 외부 Google 변경이 있을 때만 목록을 갱신한다.
+      if(inbound.added||inbound.updated||inbound.removed){
+        try{
+          var frame=document.querySelector('.page[data-page="schedule"] iframe');
+          var editing=frame&&frame.contentDocument&&frame.contentDocument.getElementById('evModal')&&frame.contentDocument.getElementById('evModal').classList.contains('show');
+          if(frame&&!editing)frame.contentWindow.location.reload();
+        }catch(e){}
+      }
       if(showResult)alert('동기화가 완료되었습니다.\nGoogle → MOIDA: '+inbound.added+'개 추가, '+inbound.updated+'개 갱신, '+inbound.removed+'개 삭제\nMOIDA → Google: '+outbound.created+'개 추가, '+outbound.updated+'개 수정, '+(outbound.removed+deletedBeforePull)+'개 삭제');
     }catch(error){if(showResult)alert(error.message);else console.warn('Google Calendar sync failed',error);}
     finally{syncing=false;}
@@ -4318,7 +4329,7 @@ onAuthStateChanged(_auth, async function(user){
     history.replaceState(null,'',location.pathname+location.hash);
     account.textContent='Google 연결이 취소되었습니다.';
   }
-  if(window.MOIDA.onData)window.MOIDA.onData(function(){loadStatus();syncGoogleCalendar(false);});
+  if(window.MOIDA.onData)window.MOIDA.onData(function(){loadStatus();});
   setTimeout(function(){loadStatus();syncGoogleCalendar(false);},1200);
   setInterval(function(){syncGoogleCalendar(false);},5*60*1000);
 })();
