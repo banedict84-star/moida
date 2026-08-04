@@ -4213,17 +4213,32 @@ onAuthStateChanged(_auth, async function(user){
     writeSnapshot(current);
     return {created:created,updated:updated,removed:removed};
   }
+  async function deleteRemovedMoidaEvents(){
+    var events=window.MOIDA.events||[], snapshot=readSnapshot(), live={};
+    events.forEach(function(event,index){live[event.id||('event_'+index)]=true;});
+    var removed=0;
+    for(var key in snapshot){
+      if(live[key]||!snapshot[key]||!snapshot[key].googleEventId)continue;
+      // 삭제가 실패한 상태에서 원격 일정을 다시 가져오면 항목이 되살아나므로, 먼저 삭제를 확정한다.
+      await api('/google/calendar/events?id='+encodeURIComponent(snapshot[key].googleEventId),{method:'DELETE'});
+      delete snapshot[key];removed++;
+    }
+    writeSnapshot(snapshot);
+    return removed;
+  }
   var syncTimer=0, syncing=false;
   async function syncGoogleCalendar(showResult){
+    if(!window.MOIDA || !window.MOIDA.ready)return;
     if(syncing)return;syncing=true;
     try{
+      var deletedBeforePull=await deleteRemovedMoidaEvents();
       var result=await api('/google/calendar/events');
       var inbound=mergeGoogleEvents(result.events);
       var outbound=await pushMoidaEvents();
       if(window.MOIDA.save)await window.MOIDA.save('events',window.MOIDA.events||[]);
       if(window.MOIDA.emit)window.MOIDA.emit();
       try{var frame=document.querySelector('.page[data-page="schedule"] iframe');if(frame)frame.contentWindow.location.reload();}catch(e){}
-      if(showResult)alert('동기화가 완료되었습니다.\nGoogle → MOIDA: '+inbound.added+'개 추가, '+inbound.updated+'개 갱신, '+inbound.removed+'개 삭제\nMOIDA → Google: '+outbound.created+'개 추가, '+outbound.updated+'개 수정, '+outbound.removed+'개 삭제');
+      if(showResult)alert('동기화가 완료되었습니다.\nGoogle → MOIDA: '+inbound.added+'개 추가, '+inbound.updated+'개 갱신, '+inbound.removed+'개 삭제\nMOIDA → Google: '+outbound.created+'개 추가, '+outbound.updated+'개 수정, '+(outbound.removed+deletedBeforePull)+'개 삭제');
     }catch(error){if(showResult)alert(error.message);else console.warn('Google Calendar sync failed',error);}
     finally{syncing=false;}
   }
@@ -4303,7 +4318,7 @@ onAuthStateChanged(_auth, async function(user){
     history.replaceState(null,'',location.pathname+location.hash);
     account.textContent='Google 연결이 취소되었습니다.';
   }
-  if(window.MOIDA.onData)window.MOIDA.onData(function(){loadStatus();});
+  if(window.MOIDA.onData)window.MOIDA.onData(function(){loadStatus();syncGoogleCalendar(false);});
   setTimeout(function(){loadStatus();syncGoogleCalendar(false);},1200);
   setInterval(function(){syncGoogleCalendar(false);},5*60*1000);
 })();
