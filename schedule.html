@@ -1069,7 +1069,12 @@ onAuthStateChanged(_auth, async function(user){
   }
   var _authorFilter='all';
   function renderImp(){
-    var imp=events.filter(function(e){return e.star;}).sort(function(a,b){return a.date<b.date?-1:1;});
+    var now=new Date(),pad=function(n){return String(n).padStart(2,'0');};
+    var today=now.getFullYear()+'-'+pad(now.getMonth()+1)+'-'+pad(now.getDate());
+    // 지난 날짜의 중요 표시는 자동 해제한다. 일정 기록 자체는 보존한다.
+    var expired=events.filter(function(e){return e.star&&e.date&&e.date<today;});
+    if(expired.length){expired.forEach(function(e){e.star=false;});saveEvents();}
+    var imp=events.filter(function(e){return e.star&&e.date>=today;}).sort(function(a,b){return a.date<b.date?-1:1;});
     var strip=document.getElementById('impStrip');
     if(!imp.length){ strip.classList.add('empty'); strip.innerHTML=''; return; }
     strip.classList.remove('empty');
