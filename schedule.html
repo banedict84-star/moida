@@ -752,9 +752,16 @@ onAuthStateChanged(_auth, async function(user){
       ownerInfo = inv;
     }
   } catch(e){}
-  sessionStorage.setItem('moida_auth_user', JSON.stringify({uid:user.uid, email:user.email, displayName:user.displayName||'', effectiveUid:effectiveUid, ownerInfo:ownerInfo}));
-  // Firestore에서 일정 데이터 로드
   var fsUid = effectiveUid || user.uid;
+  // 일정 화면의 의원실 소유자 표기는 로그인 계정명이 아니라 의원실 프로필을 사용한다.
+  var officeName = '';
+  try{
+    var tenantSnap = await getDoc(doc(_db, 'tenants', fsUid));
+    if(tenantSnap.exists()) officeName = String((tenantSnap.data()||{}).name||'').trim();
+  }catch(e){}
+  sessionStorage.setItem('moida_auth_user', JSON.stringify({uid:user.uid, email:user.email, displayName:user.displayName||'', effectiveUid:effectiveUid, ownerInfo:ownerInfo, officeName:officeName}));
+  try{ window.dispatchEvent(new CustomEvent('moida:office-profile',{detail:{name:officeName}})); }catch(e){}
+  // Firestore에서 일정 데이터 로드
   var fsEvents = await window._fsLoad(fsUid, 'events');
   if(fsEvents && Array.isArray(fsEvents) && fsEvents.length > 0){
     var KEY='moida_events_'+fsUid;
@@ -1741,10 +1748,20 @@ onAuthStateChanged(_auth, async function(user){
           + '<div style="font-size:11.5px;color:var(--ink-3);padding:0 10px 6px;word-break:break-all">' + (u.email||'') + '</div>';
       }
       var nm = u.displayName || u.email || '?';
+      var officeNm = u.officeName || '';
+      try{
+        var parentProfile = window.parent && window.parent !== window && window.parent.MOIDA && window.parent.MOIDA.profile;
+        if(parentProfile && parentProfile.name) officeNm = parentProfile.name;
+      }catch(e){}
+      if(!officeNm) try{
+        var cachedProfile = JSON.parse(localStorage.getItem('moida_tenant_'+(u.effectiveUid||u.uid||'default'))||'{}');
+        officeNm = cachedProfile.name || '';
+      }catch(e){}
+      var ownerNm = officeNm || nm;
       var ava = document.getElementById('ownerAva');
       var nameEl = document.getElementById('ownerName');
-      if(ava) ava.textContent = nm.charAt(0);
-      if(nameEl) nameEl.innerHTML = nm + ' <span class="pme">나</span>';
+      if(ava) ava.textContent = ownerNm.charAt(0);
+      if(nameEl) nameEl.innerHTML = ownerNm + ' <span class="pme">의원실</span>';
       var chipAva = document.getElementById('myChipAva');
       var chipName = document.getElementById('myChipName');
       if(chipAva) chipAva.textContent = nm.charAt(0);
@@ -1752,6 +1769,12 @@ onAuthStateChanged(_auth, async function(user){
       if(typeof _myName !== 'undefined') _myName = nm;
     } catch(e){}
   })();
+  window.addEventListener('moida:office-profile',function(event){
+    var ownerNm=String(event.detail&&event.detail.name||'').trim(); if(!ownerNm)return;
+    var ava=document.getElementById('ownerAva'),nameEl=document.getElementById('ownerName');
+    if(ava)ava.textContent=ownerNm.charAt(0);
+    if(nameEl)nameEl.innerHTML=ownerNm+' <span class="pme">의원실</span>';
+  });
 
   // sidebar collapse
   (function(){
