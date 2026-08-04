@@ -1201,12 +1201,14 @@ onAuthStateChanged(_auth, async function(user){
     var totalPages=Math.max(1,Math.ceil(matchedRows.length/PAGE_SIZE));
     if(currentPage>totalPages) currentPage=totalPages;
     var pageStart=(currentPage-1)*PAGE_SIZE;
+    var pageGroupStart=Math.floor((currentPage-1)/10)*10+1;
+    var pageGroupEnd=Math.min(pageGroupStart+9,totalPages);
     var rows=matchedRows.slice(pageStart,pageStart+PAGE_SIZE);
     var isPaged=matchedRows.length>PAGE_SIZE;
     var tfLeft=document.getElementById('tfLeft'); if(tfLeft) tfLeft.innerHTML='조회 <b>'+matchedRows.length+'</b>명'+(isPaged?' · '+(pageStart+1)+'–'+Math.min(pageStart+PAGE_SIZE,matchedRows.length)+'명 표시':'')+' · 당원을 클릭하면 상세정보가 표시됩니다';
     tbody.innerHTML = rows.map(function(m,ri){ var i=members.indexOf(m); if(i<0) i=members.findIndex(function(x){ return x.mid&&x.mid===m.mid; }); return `
     <tr data-i="${i}">
-      <td class="muted-cell">${ri+1}</td>
+      <td class="muted-cell">${pageStart+ri+1}</td>
       <td><span class="score ${scoreCls(m.score)}">${m.score}</span></td>
       <td class="nm-cell">${m.photo?'<span class="photo-dot" title="사진 등록됨"></span>':''}${m.name}</td>
       <td>${formatPhone(m.phone)}</td>
@@ -1224,7 +1226,7 @@ onAuthStateChanged(_auth, async function(user){
       <td class="gcell">${gauge('sm', m.smGrade)}</td>
       <td>${famDisplay(m)}</td>
       <td class="${(m.addr||"—")==="—"?"muted-cell":""}">${m.addr||"—"}</td>
-    </tr>`; }).join("")+(isPaged?'<tr><td colspan="18" style="padding:14px;text-align:center;background:#fafbfc"><div role="navigation" aria-label="명부 페이지" style="display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;justify-content:center;align-items:center;gap:6px;white-space:nowrap">'+(currentPage>1?'<button type="button" data-member-page="'+(currentPage-1)+'" style="border:1px solid #dbe3ee;border-radius:8px;background:#fff;color:#31527f;padding:7px 11px;font:inherit;font-size:12px;font-weight:700;cursor:pointer">이전</button>':'')+Array.from({length:Math.min(10,totalPages)},function(_,n){var p=n+1;return '<button type="button" data-member-page="'+p+'" aria-current="'+(p===currentPage?'page':'false')+'" style="min-width:32px;border:1px solid '+(p===currentPage?'#31527f':'#dbe3ee')+';border-radius:8px;background:'+(p===currentPage?'#31527f':'#fff')+';color:'+(p===currentPage?'#fff':'#31527f')+';padding:7px 8px;font:inherit;font-size:12px;font-weight:700;cursor:pointer">'+p+'</button>';}).join('')+(totalPages>10?'<span style="color:#8591a5;font-size:12px;padding:0 2px">…</span><button type="button" data-member-page="'+totalPages+'" style="min-width:32px;border:1px solid #dbe3ee;border-radius:8px;background:#fff;color:#31527f;padding:7px 8px;font:inherit;font-size:12px;font-weight:700;cursor:pointer">'+totalPages+'</button>':'')+(currentPage<totalPages?'<button type="button" data-member-page="'+(currentPage+1)+'" style="border:1px solid #dbe3ee;border-radius:8px;background:#fff;color:#31527f;padding:7px 11px;font:inherit;font-size:12px;font-weight:700;cursor:pointer">다음</button>':'')+'</div></td></tr>':'');
+    </tr>`; }).join("")+(isPaged?'<tr><td colspan="18" style="padding:14px;text-align:center;background:#fafbfc"><div role="navigation" aria-label="명부 페이지" style="display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;justify-content:center;align-items:center;gap:6px;white-space:nowrap">'+(currentPage>1?'<button type="button" data-member-page="'+(currentPage-1)+'" style="border:1px solid #dbe3ee;border-radius:8px;background:#fff;color:#31527f;padding:7px 11px;font:inherit;font-size:12px;font-weight:700;cursor:pointer">이전</button>':'')+Array.from({length:pageGroupEnd-pageGroupStart+1},function(_,n){var p=pageGroupStart+n;return '<button type="button" data-member-page="'+p+'" aria-current="'+(p===currentPage?'page':'false')+'" style="min-width:32px;border:1px solid '+(p===currentPage?'#31527f':'#dbe3ee')+';border-radius:8px;background:'+(p===currentPage?'#31527f':'#fff')+';color:'+(p===currentPage?'#fff':'#31527f')+';padding:7px 8px;font:inherit;font-size:12px;font-weight:700;cursor:pointer">'+p+'</button>';}).join('')+(pageGroupEnd<totalPages?'<span style="color:#8591a5;font-size:12px;padding:0 2px">…</span><button type="button" data-member-page="'+totalPages+'" style="min-width:32px;border:1px solid #dbe3ee;border-radius:8px;background:#fff;color:#31527f;padding:7px 8px;font:inherit;font-size:12px;font-weight:700;cursor:pointer">'+totalPages+'</button>':'')+(currentPage<totalPages?'<button type="button" data-member-page="'+(currentPage+1)+'" style="border:1px solid #dbe3ee;border-radius:8px;background:#fff;color:#31527f;padding:7px 11px;font:inherit;font-size:12px;font-weight:700;cursor:pointer">다음</button>':'')+'</div></td></tr>':'');
   }
   renderRows();
   tbody.addEventListener('click',function(e){
