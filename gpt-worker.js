@@ -1531,6 +1531,7 @@ async function googleCalendarEvents(request, env, user) {
       maxResults: "250",
       timeMin,
       timeMax,
+      showDeleted: "true",
     });
     const data = await googleApi(
       accessToken,
@@ -1573,6 +1574,39 @@ async function googleCalendarEvents(request, env, user) {
       },
     );
     return json({ ok: true, event: { id: event.id, htmlLink: event.htmlLink || "" } }, 201, request, env);
+  }
+  if (request.method === "PUT") {
+    const body = await requestBody(request);
+    if (!String(body.id || "").trim() || !String(body.title || "").trim() || !body.start || !body.end) {
+      throw new HttpError(400, "수정할 일정 ID, 제목, 시작 및 종료 시각이 필요합니다.");
+    }
+    const event = await googleApi(
+      accessToken,
+      `https://www.googleapis.com/calendar/v3/calendars/${calendarId}/events/${encodeURIComponent(body.id)}`,
+      {
+        method: "PATCH",
+        body: JSON.stringify({
+          summary: String(body.title).slice(0, 500),
+          description: String(body.description || "").slice(0, 8000),
+          location: String(body.location || "").slice(0, 1000),
+          start: body.allDay ? { date: body.start } : { dateTime: body.start, timeZone: "Asia/Seoul" },
+          end: body.allDay ? { date: body.end } : { dateTime: body.end, timeZone: "Asia/Seoul" },
+          extendedProperties: { private: { moidaTenant: user.uid } },
+        }),
+      },
+    );
+    return json({ ok: true, event: { id: event.id, htmlLink: event.htmlLink || "" } }, 200, request, env);
+  }
+  if (request.method === "DELETE") {
+    const url = new URL(request.url);
+    const id = url.searchParams.get("id");
+    if (!id) throw new HttpError(400, "삭제할 Google Calendar 일정 ID가 필요합니다.");
+    await googleApi(
+      accessToken,
+      `https://www.googleapis.com/calendar/v3/calendars/${calendarId}/events/${encodeURIComponent(id)}`,
+      { method: "DELETE" },
+    );
+    return json({ ok: true }, 200, request, env);
   }
   throw new HttpError(405, "지원하지 않는 요청 방식입니다.");
 }
@@ -1618,7 +1652,7 @@ async function handleFetch(request, env) {
       const user = await verifyFirebaseUser(request, env);
       return await googleCalendarStatus(request, env, user);
     }
-    if (path === "/google/calendar/events" && (request.method === "GET" || request.method === "POST")) {
+    if (path === "/google/calendar/events" && ["GET", "POST", "PUT", "DELETE"].includes(request.method)) {
       const user = await verifyFirebaseUser(request, env);
       return await googleCalendarEvents(request, env, user);
     }
