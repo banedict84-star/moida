@@ -1600,12 +1600,13 @@ onAuthStateChanged(_auth, async function(user){
     p.querySelector('[data-del]').addEventListener('click',function(){
       var ev=p._curEv; if(!ev) return;
       moidaConfirm({ title:'일정 삭제', desc:'이 일정을 삭제합니다.<br>삭제한 일정은 복구할 수 없어요.', ok:'삭제' }, function(){
-        var _t2=ev.querySelector('.ev-t'); var _m2=ev.querySelector('.ev-meta');
-        if(_t2 && _m2){
-          var _title2=_t2.textContent.trim();
-          var _created2=(_m2.textContent.split(' · ')[1]||'').trim();
-          var _idx=events.findIndex(function(e){ return e.title===_title2 && e.created===_created2; });
-          if(_idx>=0){ events.splice(_idx,1); saveEvents(); renderStats(); renderImp(); if(window.renderCal) window.renderCal(); }
+        var item=ev._ev||null;
+        var _idx=item?events.indexOf(item):-1;
+        if(_idx<0&&item&&item.id)_idx=events.findIndex(function(e){return e.id===item.id;});
+        if(_idx>=0){
+          var removedEvent=events[_idx];
+          try{window.parent&&window.parent!==window&&window.parent.postMessage({type:'moida:event-deleted',event:{id:removedEvent.id||'',googleEventId:removedEvent.googleEventId||''}},location.origin);}catch(e){}
+          events.splice(_idx,1); saveEvents(); renderStats(); renderImp(); if(window.renderCal) window.renderCal();
         }
         ev.remove();
         var cnt=document.getElementById('evCount'); if(cnt) cnt.textContent=Math.max(0,(+cnt.textContent-1));
