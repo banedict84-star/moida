@@ -950,6 +950,7 @@ onAuthStateChanged(_auth, async function(user){
   function saveEvents(){
     localStorage.setItem(EV_KEY, JSON.stringify(events));
     if(window._fsSave && _uid && _uid!=='default') window._fsSave(_uid, 'events', events);
+    try{ window.parent&&window.parent!==window&&window.parent.postMessage({type:'moida:events-changed',events:events},location.origin); }catch(e){}
   }
   window._reloadEventsFromFS = function(fsEvents){
     events = fsEvents;
@@ -1392,7 +1393,7 @@ onAuthStateChanged(_auth, async function(user){
         var _mb=document.getElementById('evmMap'); if(_mb) _mb.classList.remove('show');
         return;
       }
-      events.unshift({ title:title, author:_myName, created:created, date:datePart, time:timePart, endDate:endDate, endTime:endTime, d:dayNum, star:false, _body:bodyTxt, _files:files, _location:locVal });
+      events.unshift({ id:'e'+Date.now()+Math.random().toString(36).slice(2,6), title:title, author:_myName, created:created, date:datePart, time:timePart, endDate:endDate, endTime:endTime, d:dayNum, star:false, _body:bodyTxt, _files:files, _location:locVal });
       saveEvents(); renderFeed(); renderStats(); renderImp(); if(window.renderCal) window.renderCal();
       switchView('feed');
       ti.value=''; if(ct) ct.value=''; if(modal&&modal._resetFiles) modal._resetFiles();
