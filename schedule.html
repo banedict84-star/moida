@@ -751,6 +751,9 @@ window._db = _db;
 window._fsSave = async function(uid, key, data){
   try{ await setDoc(doc(_db,'moida_users',uid), {[key]: JSON.stringify(data)}, {merge:true}); }catch(e){ console.warn('fs save err',e); }
 };
+window._fsSaveDeletedEvents = async function(uid, data){
+  try{ await setDoc(doc(_db,'moida_users',uid), {deletedEventIds:JSON.stringify(data||[])}, {merge:true}); }catch(e){ console.warn('deleted event save err',e); }
+};
 window._fsLoad = async function(uid, key){
   try{ var snap=await getDoc(doc(_db,'moida_users',uid)); if(snap.exists()&&snap.data()[key]) return JSON.parse(snap.data()[key]); }catch(e){ console.warn('fs load err',e); } return null;
 };
@@ -781,6 +784,11 @@ onAuthStateChanged(_auth, async function(user){
   sessionStorage.setItem('moida_auth_user', JSON.stringify({uid:user.uid, email:user.email, displayName:user.displayName||'', effectiveUid:effectiveUid, ownerInfo:ownerInfo, officeName:officeName}));
   try{ window.dispatchEvent(new CustomEvent('moida:office-profile',{detail:{name:officeName}})); }catch(e){}
   // Firestore에서 일정 데이터 로드
+  var fsDeleted = await window._fsLoad(fsUid, 'deletedEventIds');
+  if(Array.isArray(fsDeleted)){
+    try{localStorage.setItem('moida_deleted_events_'+fsUid,JSON.stringify(fsDeleted));}catch(e){}
+    if(window._reloadDeletedEvents)window._reloadDeletedEvents(fsDeleted);
+  }
   var fsEvents = await window._fsLoad(fsUid, 'events');
   if(fsEvents && Array.isArray(fsEvents) && fsEvents.length > 0){
     var KEY='moida_events_'+fsUid;
@@ -983,7 +991,17 @@ onAuthStateChanged(_auth, async function(user){
   var _uid = _authUser.effectiveUid || _authUser.uid || 'default';
   var _myName = _authUser.displayName || _authUser.email || '나';
   const EV_KEY='moida_events_' + _uid;
-  var events = JSON.parse(localStorage.getItem(EV_KEY)||'[]');
+  const DEL_KEY='moida_deleted_events_' + _uid;
+  var deletedEventIds=(function(){try{var value=JSON.parse(localStorage.getItem(DEL_KEY)||'[]');return Array.isArray(value)?value:[];}catch(e){return [];}})();
+  function eventIdentity(event){return String((event&&event.id)||(event&&event.googleEventId)||[(event&&event.title)||'',(event&&event.date)||'',(event&&event.time)||'',(event&&event.created)||''].join('|'));}
+  function isDeletedEvent(event){return deletedEventIds.indexOf(eventIdentity(event))>=0;}
+  function visibleEvents(list){return (Array.isArray(list)?list:[]).filter(function(event){return !isDeletedEvent(event);});}
+  function rememberDeletedEvent(event){
+    var key=eventIdentity(event);if(!key||deletedEventIds.indexOf(key)>=0)return;
+    deletedEventIds.push(key);try{localStorage.setItem(DEL_KEY,JSON.stringify(deletedEventIds));}catch(e){}
+    if(window._fsSaveDeletedEvents&&_uid&&_uid!=='default')window._fsSaveDeletedEvents(_uid,deletedEventIds);
+  }
+  var events = visibleEvents(JSON.parse(localStorage.getItem(EV_KEY)||'[]'));
   var birthdayMembers = JSON.parse(localStorage.getItem('moida_members_'+_uid)||'[]');
   var BIRTHDAY_VISIBILITY_KEY='moida_show_birthdays_'+_uid;
   var showBirthdays=localStorage.getItem(BIRTHDAY_VISIBILITY_KEY)!=='false';
@@ -1002,9 +1020,15 @@ onAuthStateChanged(_auth, async function(user){
     try{ window.parent&&window.parent!==window&&window.parent.postMessage({type:'moida:events-changed',events:events},location.origin); }catch(e){}
   }
   window._reloadEventsFromFS = function(fsEvents){
-    events = fsEvents;
+    events = visibleEvents(fsEvents);
     localStorage.setItem(EV_KEY, JSON.stringify(events));
     renderFeed(); renderStats(); renderImp(); if(window.renderCal) window.renderCal();
+  };
+  window._reloadDeletedEvents = function(ids){
+    deletedEventIds=Array.isArray(ids)?ids:deletedEventIds;
+    try{localStorage.setItem(DEL_KEY,JSON.stringify(deletedEventIds));}catch(e){}
+    events=visibleEvents(events);localStorage.setItem(EV_KEY,JSON.stringify(events));
+    renderFeed(); renderStats(); renderImp(); if(window.renderCal)window.renderCal();
   };
   window._reloadMembersFromFS = function(fsMembers){
     birthdayMembers=Array.isArray(fsMembers)?fsMembers:[];
@@ -1605,6 +1629,7 @@ onAuthStateChanged(_auth, async function(user){
         if(_idx<0&&item&&item.id)_idx=events.findIndex(function(e){return e.id===item.id;});
         if(_idx>=0){
           var removedEvent=events[_idx];
+          rememberDeletedEvent(removedEvent);
           try{window.parent&&window.parent!==window&&window.parent.postMessage({type:'moida:event-deleted',event:{id:removedEvent.id||'',googleEventId:removedEvent.googleEventId||''}},location.origin);}catch(e){}
           events.splice(_idx,1); saveEvents(); renderStats(); renderImp(); if(window.renderCal) window.renderCal();
         }
