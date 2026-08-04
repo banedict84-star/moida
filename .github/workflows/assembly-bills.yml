@@ -33,6 +33,8 @@ jobs:
           PROFILE=BASE+'/site/lwmkr/blog/11017/11'
           # 경기도의회가 제공하는 장윤정 의원 대표발의 전용 목록
           MAIN_LIST=BASE+'/site/lwmkr/blog/app/motionBillList?type=main&bpCouncilor=&bpCouncilorCode=11017&proposerMainName=&proposerMainCode=11017&bpRepresentActiveChair=&pageSize=10&blTitle='
+          # 공동발의 전용 목록. 공식 페이지는 pageIndex가 아니라 cp(페이지 번호)를 사용한다.
+          CO_LIST=BASE+'/site/lwmkr/blog/app/motionBillList?type=all&bpCouncilor=&bpCouncilorCode=11017&proposerMainName=&proposerMainCode=11017&bpRepresentActiveChair=&pageSize=10&blTitle='
           MEMBER='장윤정'
 
           def text(node): return node.get_text(' ', strip=True) if node else ''
@@ -60,7 +62,7 @@ jobs:
               listed_pages=set()
               for no in range(1, 41):
                   separator='&' if '?' in MAIN_LIST else '?'
-                  list_url=MAIN_LIST+(separator+'pageIndex='+str(no) if no>1 else '')
+                  list_url=MAIN_LIST+(separator+'cp='+str(no) if no>1 else '')
                   page.goto(list_url, wait_until='domcontentloaded', timeout=60000)
                   page.wait_for_timeout(700)
                   soup=BeautifulSoup(page.content(),'lxml')
@@ -71,19 +73,18 @@ jobs:
                   signature='|'.join(links)
                   if not links or signature in listed_pages: break
                   listed_pages.add(signature)
-              # 전체 목록도 순회하여 공동발의만 보완한다.
-              if list_link:
-                listed_pages=set()
-                for no in range(1, 41):
-                  separator='&' if '?' in list_link else '?'
-                  list_url=list_link+(separator+'pageIndex='+str(no) if no>1 else '')
+              # 공동발의 전용 공식 목록을 끝 페이지까지 순회한다. (현재 17페이지/165건)
+              listed_pages=set()
+              for no in range(1, 41):
+                  separator='&' if '?' in CO_LIST else '?'
+                  list_url=CO_LIST+(separator+'cp='+str(no) if no>1 else '')
                   page.goto(list_url, wait_until='domcontentloaded', timeout=60000)
                   page.wait_for_timeout(700)
                   soup=BeautifulSoup(page.content(),'lxml')
                   links=[]
                   for a in soup.select('a[href*="motionBillList/DetailView/"]'):
                       href=urljoin(page.url,a.get('href',''))
-                      if href not in seen: seen.add(href); links.append(href); summaries.append((href,''))
+                      if href not in seen: seen.add(href); links.append(href); summaries.append((href,'공동발의'))
                   signature='|'.join(links)
                   if not links or signature in listed_pages: break
                   listed_pages.add(signature)
