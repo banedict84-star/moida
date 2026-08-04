@@ -1220,10 +1220,17 @@ onAuthStateChanged(_auth, async function(user){
       <td class="gcell">${gauge('sm', m.smGrade)}</td>
       <td>${famDisplay(m)}</td>
       <td class="${(m.addr||"—")==="—"?"muted-cell":""}">${m.addr||"—"}</td>
-    </tr>`; }).join("")+(isLimited?'<tr><td colspan="18" style="padding:14px;text-align:center;background:#fafbfc"><button type="button" data-load-more style="border:1px solid #dbe3ee;border-radius:8px;background:#fff;color:#31527f;padding:7px 13px;font:inherit;font-size:12px;font-weight:700;cursor:pointer">100명 더 보기</button></td></tr>':'');
+    </tr>`; }).join("")+(isLimited?'<tr><td colspan="18" style="padding:14px;text-align:center;background:#fafbfc"><div style="display:flex;justify-content:center;align-items:center;gap:8px"><button type="button" data-load-more style="border:1px solid #dbe3ee;border-radius:8px;background:#fff;color:#31527f;padding:7px 13px;font:inherit;font-size:12px;font-weight:700;cursor:pointer">100명 더 보기</button><button type="button" data-show-all style="border:1px solid #31527f;border-radius:8px;background:#31527f;color:#fff;padding:7px 13px;font:inherit;font-size:12px;font-weight:700;cursor:pointer">전체 '+matchedRows.length+'명 보기</button></div></td></tr>':'');
   }
   renderRows();
-  tbody.addEventListener('click',function(e){ var more=e.target.closest('[data-load-more]'); if(!more)return; e.stopImmediatePropagation(); rowLimit+=100; renderRows(); });
+  tbody.addEventListener('click',function(e){
+    var more=e.target.closest('[data-load-more]');
+    var all=e.target.closest('[data-show-all]');
+    if(!more&&!all)return;
+    e.stopImmediatePropagation();
+    rowLimit=all?Number.MAX_SAFE_INTEGER:rowLimit+100;
+    renderRows();
+  });
 
   // 당원구분 인라인 변경 팝업
   (function(){
