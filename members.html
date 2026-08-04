@@ -853,7 +853,10 @@ onAuthStateChanged(_auth, async function(user){
         var _dm=m.addr.match(/\(([가-힣]+[동읍면리])[,)]/); if(!_dm) _dm=m.addr.match(/([가-힣]+[동읍면리])\s*\d/); if(!_dm) _dm=m.addr.match(/([가-힣]+[동읍면리])[\s,)]/);
         if(_dm) m.dong=_dm[1];
       }
-      if(m.rrn&&m.rrn!=='—'){ var _d=deriveFromRrn(m.rrn); if(_d){ if(!m.age||m.age==='') m.age=_d.age; if(!m.ageb||m.ageb==='—') m.ageb=_d.ageb; if(!m.sex||m.sex==='—') m.sex=_d.sex; } }
+      var _beforeAge=String(m.age||''), _beforeAgeb=String(m.ageb||'');
+      if(m.rrn&&m.rrn!=='—'){ var _d=deriveFromRrn(m.rrn); if(_d){ m.age=_d.age; m.ageb=_d.ageb; if(!m.sex||m.sex==='—') m.sex=_d.sex; } }
+      if(!isValidAgeBand(m.ageb) || (+m.age&&(+m.age<0||+m.age>110))){ m.age=''; m.ageb='—'; }
+      if(_beforeAge!==String(m.age||'')||_beforeAgeb!==String(m.ageb||'')) _cloudChanged=true;
     });
     // re-apply grades from localStorage so they survive Firestore reload
     var _sg=JSON.parse(localStorage.getItem(GRADE_KEY)||'{}');
@@ -888,8 +891,9 @@ onAuthStateChanged(_auth, async function(user){
         var _dm=m.addr.match(/\(([가-힣]+[동읍면리])[,)]/); if(!_dm) _dm=m.addr.match(/([가-힣]+[동읍면리])\s*\d/); if(!_dm) _dm=m.addr.match(/([가-힣]+[동읍면리])[\s,)]/);
         if(_dm) m.dong=_dm[1];
       }
-      // 주민번호에서 나이·연령대·성별 자동 파생
-      if(m.rrn&&m.rrn!=='—'){ var _d=deriveFromRrn(m.rrn); if(_d){ if(!m.age||m.age==='') m.age=_d.age; if(!m.ageb||m.ageb==='—') m.ageb=_d.ageb; if(!m.sex||m.sex==='—') m.sex=_d.sex; } }
+      // 주민번호에서 나이·연령대·성별 자동 파생 (기존의 잘못된 연령대도 보정)
+      if(m.rrn&&m.rrn!=='—'){ var _d=deriveFromRrn(m.rrn); if(_d){ m.age=_d.age; m.ageb=_d.ageb; if(!m.sex||m.sex==='—') m.sex=_d.sex; } }
+      if(!isValidAgeBand(m.ageb) || (+m.age&&(+m.age<0||+m.age>110))){ m.age=''; m.ageb='—'; }
     });
     // 기기 캐시의 오래된 명부가 로그인 직후 Firestore를 덮어쓰지 않도록
     // 초기 보정값은 로컬에만 저장하고, 서버 데이터를 먼저 불러온다.
@@ -1322,7 +1326,7 @@ onAuthStateChanged(_auth, async function(user){
       var dd=document.createElement('div');
       dd.style.cssText='position:fixed;z-index:1300;display:none;background:#fff;border:1px solid var(--line);border-radius:11px;box-shadow:0 14px 38px rgba(22,26,45,.2);padding:6px;min-width:150px;max-height:320px;overflow:auto';
       document.body.appendChild(dd);
-      var opts=[]; members.forEach(function(m){ if(m[field]!=null && m[field]!=='—' && opts.indexOf(m[field])<0) opts.push(m[field]); });
+      var opts=[]; members.forEach(function(m){ if(m[field]!=null && m[field]!=='—' && (field!=='ageb'||isValidAgeBand(m[field])) && opts.indexOf(m[field])<0) opts.push(m[field]); });
       opts.sort(function(a,b){ return String(a).localeCompare(String(b),'ko'); });
       var arr=filters[field];
       function render(){ dd.innerHTML=['전체'].concat(opts).map(function(d){ var on=(d==='전체'&&!arr.length)||arr.indexOf(d)>=0; return '<div class="f-opt" data-d="'+d+'" style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;cursor:pointer;font-size:13px;font-weight:600;color:'+(on?'var(--primary)':'var(--ink-2)')+';background:'+(on?'var(--primary-soft)':'transparent')+'"><span style="width:14px;text-align:center">'+(on?'✓':'')+'</span>'+d+'</div>'; }).join(''); }
@@ -1505,12 +1509,19 @@ onAuthStateChanged(_auth, async function(user){
     var raw=(rrnStr||'').replace(/[^0-9]/g,'').slice(0,7);
     if(raw.length<6) return null;
     var yy=+raw.slice(0,2), g=raw.length>=7?+raw.slice(6,7):null;
-    var cMap={1:1900,2:1900,3:2000,4:2000,5:1900,6:1900,7:2000,8:2000,9:1800,0:1800};
+    if(g!=null && (g<1||g>8)) return null;
+    var mm=+raw.slice(2,4), dd=+raw.slice(4,6);
+    if(mm<1||mm>12||dd<1||dd>31) return null;
+    var cMap={1:1900,2:1900,3:2000,4:2000,5:1900,6:1900,7:2000,8:2000};
     var birth= g!=null ? (cMap[g]||1900)+yy : (yy<=new Date().getFullYear()%100 ? 2000+yy : 1900+yy);
     var age=(new Date().getFullYear())-birth+1;
+    if(age<0||age>110) return null;
     var ageb=(Math.floor(age/10)*10)+'대';
     var sex= g!=null ? ((g%2===1)?'남':'여') : '—';
     return {age:age, ageb:ageb, sex:sex};
+  }
+  function isValidAgeBand(value){
+    return /^(?:0|[1-9][0-9]|100|110)대$/.test(String(value||''));
   }
 
   // 저장 (신규 추가 / 기존 수정)
