@@ -1013,6 +1013,15 @@ onAuthStateChanged(_auth, async function(user){
   };
 
   const calIco = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="4.5" width="17" height="16" rx="3"/><path d="M3.5 9h17M8 3v3M16 3v3"/></svg>';
+  function mapSearchQuery(location){
+    var text=String(location||'').trim();
+    var aliases={
+      '경기도의회':'경기도의회, 경기도 수원시 영통구 도청로 30',
+      '경기도청':'경기도청, 경기도 수원시 영통구 도청로 30',
+      '경기도교육청':'경기도교육청, 경기도 수원시 영통구 도청로 28'
+    };
+    return aliases[text]||text;
+  }
   function saveStars(){ saveEvents(); }
   function starSvg(on){ return '<svg viewBox="0 0 24 24" fill="'+(on?'currentColor':'none')+'" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 17.8 6.8 19.2l1-5.8L3.5 9.2l5.9-.9z"/></svg>'; }
 
@@ -1393,7 +1402,7 @@ onAuthStateChanged(_auth, async function(user){
       function showMap(q){
         var mapBox=document.getElementById('evmMap'); if(!mapBox) return;
         if(!q){ mapBox.classList.remove('show'); return; }
-        var enc=encodeURIComponent(q);
+        var enc=encodeURIComponent(mapSearchQuery(q));
         document.getElementById('evmMapFrame').src='https://maps.google.com/maps?q='+enc+'&z=15&output=embed&hl=ko&region=KR';
         document.getElementById('evmMapAddr').textContent=q;
         document.getElementById('evmMapLink').href='https://www.google.com/maps/search/?api=1&query='+enc;
@@ -1553,7 +1562,7 @@ onAuthStateChanged(_auth, async function(user){
         p.querySelector('#evdTime').textContent=_timeStr;
       } else { p.querySelector('#evdTime').textContent=dt; }
       var data=ev._evData||(_evArr?{ body:_evArr._body, files:_evArr._files, location:_evArr._location }:{}); var ch='';
-      if(data.location){ var enc=encodeURIComponent(data.location); ch+='<div class="evd-map"><div class="evd-maploc"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-5.6-7-11a7 7 0 0 1 14 0c0 5.4-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>'+data.location+'</div><iframe loading="lazy" src="https://maps.google.com/maps?q='+enc+'&z=15&output=embed"></iframe></div>'; }
+      if(data.location){ var enc=encodeURIComponent(mapSearchQuery(data.location)); ch+='<div class="evd-map"><div class="evd-maploc"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-5.6-7-11a7 7 0 0 1 14 0c0 5.4-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>'+data.location+'</div><iframe loading="lazy" src="https://maps.google.com/maps?q='+enc+'&z=15&output=embed"></iframe></div>'; }
       if(data.body){ ch+='<div class="evd-text">'+data.body.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/\n/g,'<br>')+'</div>'; }
       if(data.files&&data.files.length){
         var imgs=data.files.filter(function(f){return f.isImage;});
