@@ -1539,7 +1539,7 @@ onAuthStateChanged(_auth, async function(user){
     var bracket=text.match(/\(([가-힣]+(?:동|읍|면))\s*(?:,|\))/);
     if(bracket&&isAdminDong(bracket[1])) return bracket[1];
     // 도로명(…로/…길) 이전의 행정구역에서 마지막 동·읍·면만 사용
-    var beforeRoad=text.split(/\s+(?=[가-힣0-9-]*(?:로|길)\b)/)[0];
+    var beforeRoad=text.split(/\s+(?=[가-힣0-9-]*(?:로|길)(?:\s|$))/)[0];
     var candidates=beforeRoad.match(/[가-힣]+(?:동|읍|면)/g)||[];
     for(var i=candidates.length-1;i>=0;i--){ if(isAdminDong(candidates[i])) return candidates[i]; }
     return '';
