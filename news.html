@@ -321,6 +321,41 @@ onAuthStateChanged(_auth, function(user){
     </div>
 
     <style>
+      /* ===== News monitoring workspace ===== */
+      .news-hub{margin:18px 28px 0;padding:20px 22px 18px;border:1px solid #dfe7f5;border-radius:18px;background:linear-gradient(135deg,#fff 0%,#f7faff 100%);box-shadow:0 10px 30px rgba(25,54,103,.05)}
+      .news-hub-top{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;margin-bottom:15px}
+      .news-eyebrow{display:flex;align-items:center;gap:7px;color:#2f5fd0;font-size:12px;font-weight:800;letter-spacing:.04em}
+      .news-eyebrow i{width:7px;height:7px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 4px rgba(34,197,94,.12)}
+      .news-hub-title{margin-top:5px;font-size:19px;font-weight:800;letter-spacing:-.035em;color:var(--ink)}
+      .news-hub-copy{margin-top:5px;font-size:12.5px;color:var(--ink-3);line-height:1.5}
+      .news-source-note{display:flex;align-items:center;gap:7px;flex-shrink:0;padding:9px 11px;border:1px solid #e4eaf4;border-radius:10px;background:rgba(255,255,255,.82);font-size:11.5px;font-weight:700;color:#667085}
+      .news-source-note b{color:#2f5fd0}
+      .news-hub .news-search{margin:0;padding:7px 7px 7px 16px;border-color:#d8e2f2;background:#fff;box-shadow:0 2px 5px rgba(22,26,45,.025)}
+      .news-hub .news-search:focus-within{box-shadow:0 0 0 4px rgba(47,95,208,.11)}
+      .news-hub .news-go{min-width:112px;box-shadow:0 5px 12px rgba(47,95,208,.2)}
+      .news-hub .news-chips{margin:13px 0 0}
+      .news-hub .ncl{width:37px;color:#8792a7}
+      .news-work{grid-template-columns:minmax(0,1fr) 410px;gap:18px;padding-top:18px}
+      .news-results{overflow:hidden;border:1px solid var(--line);border-radius:16px;background:var(--surface);box-shadow:var(--shadow-sm)}
+      .news-results-head{display:flex;align-items:center;justify-content:space-between;padding:15px 18px 13px;border-bottom:1px solid var(--line-soft)}
+      .news-results-title{display:flex;align-items:center;gap:9px;font-size:14px;font-weight:800;color:var(--ink)}
+      .news-results-title span{display:inline-flex;align-items:center;justify-content:center;min-width:22px;height:21px;padding:0 7px;border-radius:20px;background:var(--primary-soft);color:var(--primary);font-size:11px}
+      .news-results-sort{font-size:11.5px;font-weight:700;color:var(--ink-4)}
+      .news-results .nlist{padding:10px;gap:7px;min-height:340px}
+      .news-results .ncard{border:none;border-radius:12px;padding:15px 16px;box-shadow:none;border-left:3px solid transparent}
+      .news-results .ncard:hover{background:#f8faff;box-shadow:none;transform:none}
+      .news-results .ncard.sel{border-color:transparent;border-left-color:var(--primary);background:#edf4ff;box-shadow:none}
+      .news-results .ncard .nt{font-size:15px;line-height:1.45}
+      .news-results .ncard .nprev{-webkit-line-clamp:2}
+      .ndetail{padding:0;overflow:hidden;border-color:#dfe6f2}
+      .ndetail::before{content:"ARTICLE BRIEF";display:block;padding:13px 20px 11px;background:linear-gradient(90deg,#edf4ff,#f9fbff);border-bottom:1px solid #e4eaf4;color:#3564c7;font-size:10.5px;font-weight:800;letter-spacing:.09em}
+      .ndetail .dh{padding:19px 20px 0;font-size:18px}
+      .ndetail .dm{margin:12px 20px 0;padding:0 0 14px}
+      .ndetail .db{padding:0 20px 20px;margin-top:15px}
+      .news-empty{display:flex;min-height:330px;align-items:center;justify-content:center;text-align:center;padding:32px;color:var(--ink-3)}
+      .news-empty .empty-icon{width:46px;height:46px;margin:0 auto 13px;border-radius:14px;background:var(--primary-soft);color:var(--primary);display:flex;align-items:center;justify-content:center;font-size:21px;font-weight:800}
+      .news-empty b{display:block;color:var(--ink-2);font-size:14px;margin-bottom:6px}
+      .news-empty p{font-size:12.5px;line-height:1.65}
       .news-search{ display:flex; align-items:center; gap:10px; margin:18px 28px 10px; background:var(--surface); border:1.5px solid var(--line); border-radius:14px; padding:6px 6px 6px 16px; }
       .news-search:focus-within{ border-color:var(--primary); }
       .news-search > svg{ color:var(--ink-3); flex-shrink:0; }
@@ -388,6 +423,7 @@ onAuthStateChanged(_auth, function(user){
       .news-go.loading{ position:relative; color:transparent !important; pointer-events:none; }
       .news-go.loading::after{ content:""; position:absolute; left:50%; top:50%; width:15px; height:15px; margin:-7.5px 0 0 -7.5px; border:2px solid rgba(255,255,255,.45); border-top-color:#fff; border-radius:50%; animation:nspin .7s linear infinite; }
       @media(max-width:700px){
+        .news-hub{margin:12px 12px 0;padding:16px 14px 13px;border-radius:16px}.news-hub-top{margin-bottom:13px}.news-hub-title{font-size:17px}.news-hub-copy{font-size:12px}.news-source-note{display:none}.news-hub .news-search{margin:0}.news-hub .news-chips{padding:0;margin-top:11px}.news-work{padding:12px}.news-results{border-radius:14px}.news-results .nlist{min-height:250px}.news-results-head{padding:13px 14px}.news-empty{min-height:230px}
         .news-search{ display:grid; grid-template-columns:auto minmax(0,1fr); gap:7px 9px; margin:12px 12px 9px; padding:10px 11px; border-radius:13px; }
         .news-search input{ min-width:0; width:100%; padding:7px 0; font-size:14px; text-overflow:ellipsis; }
         .news-go{ grid-column:1 / -1; width:100%; min-height:42px; padding:10px 14px; border-radius:10px; }
@@ -417,6 +453,8 @@ onAuthStateChanged(_auth, function(user){
       }
     </style>
 
+    <section class="news-hub">
+      <div class="news-hub-top"><div><div class="news-eyebrow"><i></i> NEWS MONITORING</div><div class="news-hub-title">관심 이슈를 빠르게 모니터링하세요</div><div class="news-hub-copy">키워드별 최신 언론 보도를 모아 보고, 필요한 기사만 바로 확인합니다.</div></div><div class="news-source-note"><b>Google · Naver</b> 실시간 수집</div></div>
     <div class="news-search">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4-4"/></svg>
       <input id="newsKw" placeholder="키워드 2~3개 입력 · 예: 장윤정 안산 교육" autocomplete="off">
@@ -432,10 +470,11 @@ onAuthStateChanged(_auth, function(user){
       <span id="recentList" style="display:contents"></span>
       <button class="nchip-add" id="recentClear">전체삭제</button>
     </div>
+    </section>
 
-    <div class="work">
+    <div class="work news-work">
       <div class="ncol">
-        <div class="nlist" id="nlist"></div>
+        <div class="news-results"><div class="news-results-head"><div class="news-results-title">수집 기사 <span id="newsResultCount">0</span></div><div class="news-results-sort">최신순</div></div><div class="nlist" id="nlist"></div></div>
       </div>
 
       <aside class="ndetail" id="ndetail">
@@ -460,6 +499,7 @@ onAuthStateChanged(_auth, function(user){
   const ndTitle = document.getElementById('ndTitle');
   const ndMeta = document.getElementById('ndMeta');
   const ndBody = document.getElementById('ndBody');
+  const resultCount = document.getElementById('newsResultCount');
   let curId = null;
   let liveMode = false; // true = 크롤링 결과(전체 표시), false = 시드 목록(키워드 필터)
   let POOL = []; // 서버 크롤러(news_data.json)가 모아둔 구글·네이버·다음 기사 풀
@@ -501,9 +541,10 @@ onAuthStateChanged(_auth, function(user){
   function visible(){ var list; if(liveMode) list=NEWS.slice(); else{ var ks=keywords().map(function(k){ return k.replace(/\s+/g,''); }).filter(Boolean); list=NEWS.filter(function(n){ var hay=(n.title+' '+n.press+' '+n.snippet).toLowerCase().replace(/\s+/g,''); return ks.every(function(k){ return hay.indexOf(k)>=0; }); }); } return list.sort(function(a,b){ return dnum(b.date)-dnum(a.date); }); }
   function renderList(){
     var items = visible();
+    if(resultCount) resultCount.textContent=items.length;
     nlist.innerHTML = items.map(function(n){
       return '<div class="ncard'+(n.id===curId?' sel':'')+'" data-id="'+n.id+'"><div class="nt">'+srcBadge(n.source)+esc(n.title)+'</div><div class="nmeta"><span class="press-pill">'+esc(prettyPress(n))+'</span>'+(n.date?'<span>'+n.date+'</span>':'')+'</div><div class="nprev">'+esc(n.snippet)+'</div></div>';
-    }).join('') || '<div style="padding:40px 4px;color:var(--ink-4);font-size:14px;">검색 결과가 없습니다. 위에서 키워드를 입력해 구글·네이버에서 검색해 보세요.</div>';
+    }).join('') || '<div class="news-empty"><div><div class="empty-icon">⌕</div><b>검색 결과가 없습니다</b><p>다른 키워드로 다시 검색하거나<br>추천 키워드를 선택해 보세요.</p></div></div>';
     if(items.length){ var still=items.some(function(n){return n.id===curId;}); selectNews(still?curId:items[0].id); }
     else { ndetail.classList.remove('has-article'); ndTitle.textContent='기사를 선택하세요'; ndMeta.innerHTML='<span>검색 결과가 없습니다.</span>'; ndBody.innerHTML=''; }
   }
@@ -777,7 +818,8 @@ onAuthStateChanged(_auth, function(user){
 
   function showIntro(){
     NEWS.length=0; curId=null; liveMode=false;
-    nlist.innerHTML='<div style="padding:48px 8px;color:var(--ink-4);font-size:14px;line-height:1.7;text-align:center;">검색어를 입력하고 <b style="color:var(--ink-3)">뉴스 수집</b>을 눌러주세요.<br>구글·네이버에서 실시간으로 기사를 모아옵니다.</div>';
+    if(resultCount) resultCount.textContent='0';
+    nlist.innerHTML='<div class="news-empty"><div><div class="empty-icon">⌕</div><b>오늘의 뉴스 흐름을 확인해 보세요</b><p>키워드를 입력한 뒤 <strong style="color:var(--primary)">뉴스 수집</strong>을 누르면<br>구글·네이버 최신 기사를 모아옵니다.</p></div></div>';
     ndetail.classList.remove('has-article');
     ndTitle.textContent='기사를 선택하세요'; ndMeta.innerHTML='<span>검색 후 기사를 클릭하면 요약과 원문 링크가 표시됩니다.</span>'; ndBody.innerHTML='';
   }
