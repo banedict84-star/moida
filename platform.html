@@ -928,7 +928,7 @@ body.app-loading #sideAvatar{color:transparent!important;background:#243a5c!impo
   M.paintProfile = paintProfile;
   try{
     var u0 = M.sessUser();
-    var cached = JSON.parse(localStorage.getItem('moida_tenant_'+(u0.uid||'default'))||'null');
+    var cached = u0.uid ? JSON.parse(localStorage.getItem('moida_tenant_'+u0.uid)||'null') : null;
     if(cached) { M.profile = cached; paintProfile(cached); }
     else if(u0.displayName||u0.email) paintProfile(null);
   }catch(e){}
@@ -936,9 +936,12 @@ body.app-loading #sideAvatar{color:transparent!important;background:#243a5c!impo
   /* 즉시 로컬 캐시에서 데이터 로드 (Firestore 도착 전 빠른 렌더) */
   try{
     var uc = M.uidOf();
-    ['members','events','complaints','policies','pr'].forEach(function(k){
-      try{ var raw = localStorage.getItem('moida_'+k+'_'+uc); if(raw) M[k] = JSON.parse(raw)||[]; }catch(e){}
-    });
+    /* 인증 전에는 공용 default 캐시를 읽지 않는다. */
+    if(u0.uid){
+      ['members','events','complaints','policies','pr'].forEach(function(k){
+        try{ var raw = localStorage.getItem('moida_'+k+'_'+uc); if(raw) M[k] = JSON.parse(raw)||[]; }catch(e){}
+      });
+    }
   }catch(e){}
 })();
 </script>
@@ -982,6 +985,14 @@ onAuthStateChanged(_auth, async function(user){
 
   /* 구성원·일정 데이터 (moida_users/{uid}) */
   var euid = (M.sessUser().effectiveUid) || uid;
+  /* 새 계정은 이전 화면에서 읽힌 공용/다른 계정 캐시를 절대 이어받지 않는다. */
+  ['members','events','complaints','policies','pr'].forEach(function(k){
+    M[k] = [];
+    try{
+      var cachedData = localStorage.getItem('moida_'+k+'_'+euid);
+      if(cachedData) M[k] = JSON.parse(cachedData)||[];
+    }catch(e){}
+  });
   try{
     var us = await getDoc(doc(_db,'moida_users',euid));
     if(us.exists()){
