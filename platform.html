@@ -1436,11 +1436,12 @@ onAuthStateChanged(_auth, async function(user){
     var ktm = document.getElementById('kpiTodayMeta');
     if(ktm) ktm.innerHTML = ev.length ? '<span style="color:#2563eb;font-weight:700">'+M.esc(ev[0].time||'')+'</span><span style="color:#9aa3b0">'+M.esc(ev[0].title||'')+'</span>' : '<span style="color:#9aa3b0">예정된 일정 없음</span>';
     var km = document.getElementById('kpiMembers'); if(km) km.textContent = ((M.members||[]).length).toLocaleString();
-    var news = M.news||[];
+    var memberName = (M.profile&&M.profile.name) || (M.sessUser().displayName) || '';
+    var news = memberName ? (M.news||[]).filter(function(x){ return (String(x.title||'')+String(x.snippet||'')).indexOf(memberName)>=0; }) : [];
     var kn = document.getElementById('kpiNews'); if(kn) kn.textContent = news.length;
     var pos=news.filter(function(x){return x._s==='긍정';}).length, neg=news.filter(function(x){return x._s==='부정';}).length, neu=news.length-pos-neg;
     var knm = document.getElementById('kpiNewsMeta');
-    if(knm) knm.innerHTML = news.length ? '<span style="color:#16a34a;font-weight:700">긍정 '+pos+'</span><span style="color:#9aa3b0">중립 '+neu+' · 부정 '+neg+'</span>' : '<span style="color:#9aa3b0">집계 중</span>';
+    if(knm) knm.innerHTML = news.length ? '<span style="color:#16a34a;font-weight:700">긍정 '+pos+'</span><span style="color:#9aa3b0">중립 '+neu+' · 부정 '+neg+'</span>' : '<span style="color:#9aa3b0">관련 기사 수집 중</span>';
   }
   function renderToday(){
     var box = document.getElementById('dashToday'); if(!box) return;
@@ -1467,10 +1468,8 @@ onAuthStateChanged(_auth, async function(user){
     var nm = (M.profile&&M.profile.name) || '';
     var all = (M.news||[]);
     // 의원 이름으로 검색되는(이름이 포함된) 기사 우선
-    if(nm){
-      var named = all.filter(function(x){ return (String(x.title||'')+String(x.snippet||'')).indexOf(nm)>=0; });
-      if(named.length) all = named;
-    }
+    if(nm) all = all.filter(function(x){ return (String(x.title||'')+String(x.snippet||'')).indexOf(nm)>=0; });
+    else all = [];
     var list = all.slice(0,4);
     if(!list.length){ box.innerHTML = '<div style="grid-column:1/-1;padding:18px;text-align:center;color:#9aa3b0;font-size:13px">'+(nm?M.esc(nm)+' 관련 뉴스를 불러오는 중…':'뉴스 데이터를 불러오는 중…')+'</div>'; return; }
     box.innerHTML = list.map(function(x){
@@ -1522,7 +1521,9 @@ onAuthStateChanged(_auth, async function(user){
     var open = cs.filter(function(c){ var s=c.status||'접수'; return s!=='종결'&&s!=='답변완료'; }).length;
     var urgent = cs.filter(function(c){ return c.priority==='긴급' && (c.status||'접수')!=='종결'; }).length;
     var ev = (M.events||[]).filter(function(e){ return e.date===todayKey(); }).sort(function(a,b){ return (a.time||'').localeCompare(b.time||''); });
-    var news = M.news||[]; var neg = news.filter(function(x){ return x._s==='부정'; }).length;
+    var memberName = (M.profile&&M.profile.name) || (M.sessUser().displayName) || '';
+    var news = memberName ? (M.news||[]).filter(function(x){ return (String(x.title||'')+String(x.snippet||'')).indexOf(memberName)>=0; }) : [];
+    var neg = news.filter(function(x){ return x._s==='부정'; }).length;
     var policies = M.policies||[];
     if(birthdays.length){
       var birthdayNames = birthdays.slice(0,3).map(function(m){ return M.esc(m.name||'이름 미등록'); }).join(', ');
