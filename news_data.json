@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-08 10:03 UTC",
+  "updated": "2026-08-08 11:01 UTC",
   "items": [
     {
       "source": "naver",
@@ -163,6 +163,14 @@
     },
     {
       "source": "naver",
+      "press": "enetnews.co.kr",
+      "date": "2026.08.07",
+      "title": "SBS아카데미AIX학원 부산점, ㈜퍼스트인코리아 실무자 위한 'ChatGPT 업무...",
+      "snippet": "취업 교육을 장려하고 있다. 현재 3D영상학원 SBS아카데미AIX학원은 강남, 홍대(신촌), 인천(부평, 구월), 부산(서면), 광주, 대구, 대전, 수원, 일산, 울산, 노원, 분당, 종로(혜화), 안산, 안양, 천안, 청주 지점 등 전국 18개...",
+      "url": "https://www.enetnews.co.kr/news/articleView.html?idxno=53216"
+    },
+    {
+      "source": "naver",
       "press": "shinailbo.co.kr",
       "date": "2026.08.07",
       "title": "안산대 간호학과, 치유농업 경험 담은 공동저작물 '어쩌다 텃밭' 출간",
@@ -176,14 +184,6 @@
       "title": "안산교육지원청, 서울예대와 손잡고 여름방학 예술문화교육 운영",
       "snippet": "경기 안산교육지원청이 여름방학을 맞아 서울예술대학교와 협력해 초·중·고등학생을 위한 예술문화교육 프로그램을 운영한다고 7일 밝혔다. 이번 프로그램은 학생들이 다양한 문화예술을 직접 체험하며 진로를...",
       "url": "https://www.shinailbo.co.kr/news/articleView.html?idxno=5049174"
-    },
-    {
-      "source": "naver",
-      "press": "enetnews.co.kr",
-      "date": "2026.08.07",
-      "title": "SBS아카데미AIX학원 부산점, ㈜퍼스트인코리아 실무자 위한 'ChatGPT 업무...",
-      "snippet": "취업 교육을 장려하고 있다. 현재 3D영상학원 SBS아카데미AIX학원은 강남, 홍대(신촌), 인천(부평, 구월), 부산(서면), 광주, 대구, 대전, 수원, 일산, 울산, 노원, 분당, 종로(혜화), 안산, 안양, 천안, 청주 지점 등 전국 18개...",
-      "url": "https://www.enetnews.co.kr/news/articleView.html?idxno=53216"
     },
     {
       "source": "naver",
@@ -307,14 +307,6 @@
     },
     {
       "source": "naver",
-      "press": "pinpointnews.co.kr",
-      "date": "2026.08.07",
-      "title": "LH, 시흥거모 신혼희망타운 입주자 모집",
-      "snippet": "또한 서안산IC와 군자JC를 통한 광역도로 이용도 편리하다. 교육과 생활 인프라도 갖췄다. 단지 인근에는 초등학교가 개교 예정이며 상업시설과 공원, 제기천 수변공원, 산들공원 등이 가까워 생활 편의성과...",
-      "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=475216"
-    },
-    {
-      "source": "naver",
       "press": "businesskorea.co.kr",
       "date": "2026.08.07",
       "title": "한국토지주택공사, 시흥거모 A-5블록 신혼희망타운 290호 공급",
@@ -323,11 +315,11 @@
     },
     {
       "source": "naver",
-      "press": "theviewers.co.kr",
+      "press": "pinpointnews.co.kr",
       "date": "2026.08.07",
-      "title": "교육·녹지 갖춘 '에듀타운형' 단지 주목…수원이목지구 '디에트르 더 리...",
-      "snippet": "뷰어스 백진엽 기­자 jinebito@theviewers.co.kr 최근 수도권 주택시장에서는 교육 인프라와 녹지환경을 동시에... 교통 측면에서는 광교역에서 북수원과 의왕·군포·안산을 연결하는 신분당선 추가 연장의 조속한 추진을...",
-      "url": "https://theviewers.co.kr/View.aspx?No=4177671"
+      "title": "LH, 시흥거모 신혼희망타운 입주자 모집",
+      "snippet": "또한 서안산IC와 군자JC를 통한 광역도로 이용도 편리하다. 교육과 생활 인프라도 갖췄다. 단지 인근에는 초등학교가 개교 예정이며 상업시설과 공원, 제기천 수변공원, 산들공원 등이 가까워 생활 편의성과...",
+      "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=475216"
     },
     {
       "source": "naver",
@@ -339,19 +331,19 @@
     },
     {
       "source": "naver",
+      "press": "theviewers.co.kr",
+      "date": "2026.08.07",
+      "title": "교육·녹지 갖춘 '에듀타운형' 단지 주목…수원이목지구 '디에트르 더 리...",
+      "snippet": "뷰어스 백진엽 기­자 jinebito@theviewers.co.kr 최근 수도권 주택시장에서는 교육 인프라와 녹지환경을 동시에... 교통 측면에서는 광교역에서 북수원과 의왕·군포·안산을 연결하는 신분당선 추가 연장의 조속한 추진을...",
+      "url": "https://theviewers.co.kr/View.aspx?No=4177671"
+    },
+    {
+      "source": "naver",
       "press": "handmk.com",
       "date": "2026.08.07",
       "title": "LH, 시흥거모 첫 신혼희망타운 290가구 공급…8월 청약 접수",
       "snippet": "서안산IC와 군자JC를 통한 광역도로 접근도 가능하다. 교육과 생활 인프라도 갖췄다. 단지 인근에는 상업시설과 생활 편의시설이 들어서며, 도보권에 초등학교가 개교할 예정이다. 제기천 수변공원과 산들공원 등...",
       "url": "https://www.handmk.com/news/articleView.html?idxno=42004"
-    },
-    {
-      "source": "naver",
-      "press": "beyondpost.co.kr",
-      "date": "2026.08.07",
-      "title": "경기도의회 민주당, 재정건전성 TF 2차회의 개최…“구조적 재정위기 해...",
-      "snippet": "이날 회의에는 장한별(수원4)·김태희(안산2) 공동단장을 비롯해 김창식 기획재정위원장, 백승기 도청 예산결산특별위원장, 이채명 교육청 예산결산특별위원장, 유경현 정무수석, 김회철 협치수석, 김성기 의원 등이...",
-      "url": "http://www.beyondpost.co.kr/view.php?ud=2026080709141576474c878f8fa1_30"
     },
     {
       "source": "naver",
@@ -363,11 +355,11 @@
     },
     {
       "source": "naver",
-      "press": "newsclaim.co.kr",
+      "press": "beyondpost.co.kr",
       "date": "2026.08.07",
-      "title": "안산시 초등학생 세계문화 체험캠프 마무리",
-      "snippet": "안산시 제공 안산시 외국인주민지원본부가 여름방학을 맞아 초등학생들이 다양한 국가의 문화를 체험하는... 없는 시각을 가진 사회 구성원으로 성장할 수 있도록 다양한 교육 프로그램을 이어가겠습니다\"라고 말했습니다.",
-      "url": "https://www.newsclaim.co.kr/news/articleView.html?idxno=3071408"
+      "title": "경기도의회 민주당, 재정건전성 TF 2차회의 개최…“구조적 재정위기 해...",
+      "snippet": "이날 회의에는 장한별(수원4)·김태희(안산2) 공동단장을 비롯해 김창식 기획재정위원장, 백승기 도청 예산결산특별위원장, 이채명 교육청 예산결산특별위원장, 유경현 정무수석, 김회철 협치수석, 김성기 의원 등이...",
+      "url": "http://www.beyondpost.co.kr/view.php?ud=2026080709141576474c878f8fa1_30"
     },
     {
       "source": "naver",
@@ -376,6 +368,14 @@
       "title": "안산시 하반기 교복 나눔 행사… 저렴한 가격에 판매",
       "snippet": "교복 나눔 행사,기증,판매 '2026년 하반기 안산시 교복나눔 행사' 디지털 홍보물. 안산시 제공 안산시가... 시는 교복 재사용이 학부모의 교육비 부담을 줄이는 동시에 의류 폐기물을 줄여 자원순환에도 기여할 것으로...",
       "url": "https://www.newsclaim.co.kr/news/articleView.html?idxno=3071406"
+    },
+    {
+      "source": "naver",
+      "press": "newsclaim.co.kr",
+      "date": "2026.08.07",
+      "title": "안산시 초등학생 세계문화 체험캠프 마무리",
+      "snippet": "안산시 제공 안산시 외국인주민지원본부가 여름방학을 맞아 초등학생들이 다양한 국가의 문화를 체험하는... 없는 시각을 가진 사회 구성원으로 성장할 수 있도록 다양한 교육 프로그램을 이어가겠습니다\"라고 말했습니다.",
+      "url": "https://www.newsclaim.co.kr/news/articleView.html?idxno=3071408"
     },
     {
       "source": "naver",
@@ -440,14 +440,6 @@
       "title": "박은경 도의원, 안산 교육 현안과 유보통합 추진 상황 점검 나서",
       "snippet": "박은경 도의원, 안산 교육 현안과 유보통합 추진 상황 점검 나서 피디언뉴스",
       "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE82X3pvNXR4Y1lfZ3Axb1JUbmk2Y1FIWXRNVzRvR2xuLUE3VFp5MDJSVmVYUnZkV01FRlZQLVo2Rm56Y1JmVTJvX2tQaVBpdG9rTTh6N3FCZUZXRUUx?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "웹이코노미",
-      "date": "2026.08.07",
-      "title": "경기도의회 박은경 의원, 안산 교육현안·유보통합 추진상황 점검",
-      "snippet": "경기도의회 박은경 의원, 안산 교육현안·유보통합 추진상황 점검 웹이코노미",
-      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE1mOVRQWGFGQ2lVdWViSlVnTVVVSkdyV3lLeEtwd1I2S0dzdzM5QWpwc2xIUHA1NllPZ3BzLUJpam5id0VEWlNiNTdRdlhGUGZCZVpzeWgyYkFEZExpOHBRTlNMdVdLbTlzNmJiSlZzRzgyQQ?oc=5"
     },
     {
       "source": "naver",
@@ -699,6 +691,14 @@
     },
     {
       "source": "google",
+      "press": "서울경제TV",
+      "date": "2026.08.05",
+      "title": "안산시, 호수중학군 과밀 해소 추진",
+      "snippet": "안산시, 호수중학군 과밀 해소 추진 서울경제TV",
+      "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFBMTkdXMFV3OWNPMDVaMDNvemRNeEotY05lTUJUaVdmVnl6em5ILXZxeHdnb2ROWFRjX0xmRHVPYUdMLWVPNEU5UG9IblljR1k2a0U3akl2MzFTb0U0RTMtVHE4RVk?oc=5"
+    },
+    {
+      "source": "google",
       "press": "경기종합뉴스",
       "date": "2026.08.04",
       "title": "안산 성포동 옛 홈플러스 부지에 대형 복합개발사업 본궤도 올라 … 지역 상생모델로 주목!",
@@ -723,10 +723,10 @@
     },
     {
       "source": "google",
-      "press": "리버럴미디어",
+      "press": "liberalmedia.co.kr",
       "date": "2026.08.04",
       "title": "안산교육지원청×안산시 도서관, RAS·벽깨기 실천 여름방학 독서프로그램 운영",
-      "snippet": "안산교육지원청×안산시 도서관, RAS·벽깨기 실천 여름방학 독서프로그램 운영 리버럴미디어",
+      "snippet": "안산교육지원청×안산시 도서관, RAS·벽깨기 실천 여름방학 독서프로그램 운영 liberalmedia.co.kr",
       "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFBFaU9rVDhVdFVSVDNpYWhmQldFazhucExJbDk3ZkdXcW05bWRCaURRQjU5Ukt5SkR3MFdrMnNPb2MtTVh2UEJacXN3aFY4ZnFtRDQ0aE5PX2FMQWQwM1lMMkk1MV8?oc=5"
     },
     {
@@ -1243,10 +1243,10 @@
     },
     {
       "source": "google",
-      "press": "경기연합뉴스",
+      "press": "kgyonhapnews.net",
       "date": "2026.07.21",
       "title": "경기도의회 장윤정 의원, 경제노동위원회 첫 업무보고에서 사회적 기업 지원 체계 및 공공 플랫폼 고객 지원 시스템 개선 촉구",
-      "snippet": "경기도의회 장윤정 의원, 경제노동위원회 첫 업무보고에서 사회적 기업 지원 체계 및 공공 플랫폼 고객 지원 시스템 개선 촉구 경기연합뉴스",
+      "snippet": "경기도의회 장윤정 의원, 경제노동위원회 첫 업무보고에서 사회적 기업 지원 체계 및 공공 플랫폼 고객 지원 시스템 개선 촉구 kgyonhapnews.net",
       "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE9FckhkRXJ3dmRWc1NXazlleDJkNUFEblFfT2hiaTcyanJVSWptTTdPMjZlMXQxMEwzVlNYSUZNaDhKMDRKbDBVU3V2aHlzaTVLaDVCT1FGeTdpODFHUjRUaVhPeEp0SzBC0gFoQVVfeXFMT0VySGRFcnd2ZFZzU1drOWV4MmQ1QURuUV9PaGJpNzJqclVJam1NN08yNmUxdDEwTDNWU1hJRk1oOEowNEpsMFVTdXZoeXNpNUtoNUJPUUZ5N2k4MUdSNFRpWE94SnRLMEI?oc=5"
     },
     {
@@ -1747,19 +1747,19 @@
     },
     {
       "source": "google",
+      "press": "뉴시스",
+      "date": "2026.05.09",
+      "title": "[표]민주당 경기도당, 안산3 장윤정 등 광역의원 경선 결과 발표",
+      "snippet": "[표]민주당 경기도당, 안산3 장윤정 등 광역의원 경선 결과 발표 뉴시스",
+      "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTFBJQjhGdDAtcUU4dWRCRkhmaDBoQ1NHaEh3bFg4SmlfQS1RZWZHblJtWHJLdzdwNVdSSzZrSkxwRjZOUm0zdmxMSUhUaGNLYk1XWE40TUo1T2lJcElOOUxKSdIBeEFVX3lxTE5FLTRicWFjcmJBWHRrdmJDVnF0Sm8zbFRlWUYxcFJ3MjZCQ3Zpd2pORXY2MWZjU05XWHhsZktYRXp2SEdndFozbktzRFEtZzNhV1R1MHd1RzZmT2taaEJyQVY3YWk0TzRDdFY1M3ZMNTZnSElqSmJycg?oc=5"
+    },
+    {
+      "source": "google",
       "press": "경기일보",
       "date": "2026.05.09",
       "title": "'공천 개입' 논란 속 다시 공천받은 장윤정 경기도의원…민주, 20차 경선결과 발표",
       "snippet": "'공천 개입' 논란 속 다시 공천받은 장윤정 경기도의원…민주, 20차 경선결과 발표 경기일보",
       "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE94cXMtSzRfclhwaGFQTS1NYUtLdVBaOUFQaFdhUnpqcm5BNGFHUzFYYVlRQlZmN24zMHVBTVFDS29XWVd3c3htZTFCdTVqMmd4eV9RbDZTaktFRzg?oc=5"
-    },
-    {
-      "source": "naver",
-      "press": "newsis.com",
-      "date": "2026.05.09",
-      "title": "[표]민주당 경기도당, 안산3 장윤정 등 광역의원 경선 결과 발표",
-      "snippet": "더불어민주당 경기도당이 9일 제9회 전국동시지방선거 경기도의회 의원(광역의원) 경선 결과를 발표했다. 다음은 민주당 경기도의회 의원 후보자 명단. ◇광역의원 ▲안산시 제3선거구 장윤정 ▲용인시 제2선거구 김성태",
-      "url": "https://www.newsis.com/view/NISX20260509_0003622951"
     },
     {
       "source": "google",
@@ -1888,22 +1888,6 @@
       "title": "안산 상록구 도로서 차량 불…진화 완료",
       "snippet": "안산 상록구 도로서 차량 불…진화 완료 경기일보",
       "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBtdUVNeG92LXpKaG9wYU4tdzREWHJ5eWNZbzNjVVh0eTY1QUM5M2dzY2t6bEpwMnNxS1N3VnBibC1EY05oN2dTeGRlc2dkaTBSWXE3alVpb3NnRVU?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "안산뉴스",
-      "date": "2026.01.04",
-      "title": "장윤정 도의원 지역발전 특교금 12억원 확보",
-      "snippet": "장윤정 도의원 지역발전 특교금 12억원 확보 안산뉴스",
-      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9KNFhBYkNfTVo1cHVTNU1WQk5Kc2VrWWhCSnJwdEhFeGo5M01UbUJKSC1zN2h5Q0F3R1lEQkZMNHFGVVdxQ0llQW9yX3hnRndBWkcwbnBFXzloZVRlNUR4Q2otblN0Vi1TWEg1Sg?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "안산뉴스",
-      "date": "2025.11.28",
-      "title": "장윤정 도의원 ‘민주당 당대표 청년특보’ 임명",
-      "snippet": "장윤정 도의원 ‘민주당 당대표 청년특보’ 임명 안산뉴스",
-      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFAxdTJ2bWJiQUIwZ1ZVZW4zaV9GRGo5TEFiMGlJeDRBQ0lwbkZudGVFVUxJeEdQLVM2RFZwYzhhMjBIdEQ2NWRYZTB0SGRNY0xLd3BaSEtpRzdmMFJZX2MwVkgtYW94TDBaY3Fidg?oc=5"
     }
   ]
 }
