@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-09 17:59 UTC",
+  "updated": "2026-08-09 19:11 UTC",
   "items": [
     {
       "source": "naver",
@@ -147,19 +147,19 @@
     },
     {
       "source": "naver",
-      "press": "viva100.com",
-      "date": "2026.08.09",
-      "title": "경기도, 출생 미등록 아동 보호 위한 민관 협력 강화",
-      "snippet": "연계 ▲보건·의료·교육·생계·복지 등 기존 지원사업과의 연계 및 지원 협력 ▲공적확인제도 및 지원사업에... 도는 현재 고양, 화성, 성남, 부천, 안산, 평택, 시흥, 안성, 동두천, 과천 등 10개 시군에서 공적확인제도를...",
-      "url": "https://www.viva100.com/article/20260809500052"
-    },
-    {
-      "source": "naver",
       "press": "discoverynews.kr",
       "date": "2026.08.09",
       "title": "경기도 출생 미등록 이주배경아동 확인 144건…민관 보호망 넓힌다",
       "snippet": "현재 제도가 시행되는 지역은 고양과 화성, 성남, 부천, 안산, 평택, 시흥, 안성, 동두천, 과천 등 도내 10개... 현장에서 아동을 찾아내는 과정부터 공적확인 이후 의료·교육·생계·복지사업 연결과 지속적인 사례관리까지...",
       "url": "https://www.discoverynews.kr/news/articleView.html?idxno=1098160"
+    },
+    {
+      "source": "naver",
+      "press": "viva100.com",
+      "date": "2026.08.09",
+      "title": "경기도, 출생 미등록 아동 보호 위한 민관 협력 강화",
+      "snippet": "연계 ▲보건·의료·교육·생계·복지 등 기존 지원사업과의 연계 및 지원 협력 ▲공적확인제도 및 지원사업에... 도는 현재 고양, 화성, 성남, 부천, 안산, 평택, 시흥, 안성, 동두천, 과천 등 10개 시군에서 공적확인제도를...",
+      "url": "https://www.viva100.com/article/20260809500052"
     },
     {
       "source": "naver",
@@ -363,11 +363,11 @@
     },
     {
       "source": "naver",
-      "press": "shinailbo.co.kr",
+      "press": "enetnews.co.kr",
       "date": "2026.08.07",
-      "title": "안산교육지원청, 서울예대와 손잡고 여름방학 예술문화교육 운영",
-      "snippet": "경기 안산교육지원청이 여름방학을 맞아 서울예술대학교와 협력해 초·중·고등학생을 위한 예술문화교육 프로그램을 운영한다고 7일 밝혔다. 이번 프로그램은 학생들이 다양한 문화예술을 직접 체험하며 진로를...",
-      "url": "https://www.shinailbo.co.kr/news/articleView.html?idxno=5049174"
+      "title": "SBS아카데미AIX학원 부산점, ㈜퍼스트인코리아 실무자 위한 'ChatGPT 업무...",
+      "snippet": "취업 교육을 장려하고 있다. 현재 3D영상학원 SBS아카데미AIX학원은 강남, 홍대(신촌), 인천(부평, 구월), 부산(서면), 광주, 대구, 대전, 수원, 일산, 울산, 노원, 분당, 종로(혜화), 안산, 안양, 천안, 청주 지점 등 전국 18개...",
+      "url": "https://www.enetnews.co.kr/news/articleView.html?idxno=53216"
     },
     {
       "source": "naver",
@@ -379,11 +379,11 @@
     },
     {
       "source": "naver",
-      "press": "enetnews.co.kr",
+      "press": "shinailbo.co.kr",
       "date": "2026.08.07",
-      "title": "SBS아카데미AIX학원 부산점, ㈜퍼스트인코리아 실무자 위한 'ChatGPT 업무...",
-      "snippet": "취업 교육을 장려하고 있다. 현재 3D영상학원 SBS아카데미AIX학원은 강남, 홍대(신촌), 인천(부평, 구월), 부산(서면), 광주, 대구, 대전, 수원, 일산, 울산, 노원, 분당, 종로(혜화), 안산, 안양, 천안, 청주 지점 등 전국 18개...",
-      "url": "https://www.enetnews.co.kr/news/articleView.html?idxno=53216"
+      "title": "안산교육지원청, 서울예대와 손잡고 여름방학 예술문화교육 운영",
+      "snippet": "경기 안산교육지원청이 여름방학을 맞아 서울예술대학교와 협력해 초·중·고등학생을 위한 예술문화교육 프로그램을 운영한다고 7일 밝혔다. 이번 프로그램은 학생들이 다양한 문화예술을 직접 체험하며 진로를...",
+      "url": "https://www.shinailbo.co.kr/news/articleView.html?idxno=5049174"
     },
     {
       "source": "naver",
@@ -443,10 +443,10 @@
     },
     {
       "source": "google",
-      "press": "피디언뉴스",
+      "press": "pedien.com",
       "date": "2026.08.07",
       "title": "박은경 도의원, 안산 교육 현안과 유보통합 추진 상황 점검 나서",
-      "snippet": "박은경 도의원, 안산 교육 현안과 유보통합 추진 상황 점검 나서 피디언뉴스",
+      "snippet": "박은경 도의원, 안산 교육 현안과 유보통합 추진 상황 점검 나서 pedien.com",
       "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE82X3pvNXR4Y1lfZ3Axb1JUbmk2Y1FIWXRNVzRvR2xuLUE3VFp5MDJSVmVYUnZkV01FRlZQLVo2Rm56Y1JmVTJvX2tQaVBpdG9rTTh6N3FCZUZXRUUx?oc=5"
     },
     {
@@ -747,10 +747,10 @@
     },
     {
       "source": "google",
-      "press": "대한투데이",
+      "press": "dhtoday.com",
       "date": "2026.08.02",
       "title": "안산시 상록구, 어르신 안전 위한 경로당 시설점검 추진",
-      "snippet": "안산시 상록구, 어르신 안전 위한 경로당 시설점검 추진 대한투데이",
+      "snippet": "안산시 상록구, 어르신 안전 위한 경로당 시설점검 추진 dhtoday.com",
       "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1IMkExd0IwT3loYjlhNUU5azJfM2djOVNNaWVTZjRsMlNKX1hRLVU3YWktQTZxVjFMZ04zWE0wZFhrY2dnTDZ2Sm1PN2V4TWV4clpQd3RDTUlOSXRiX1JGWGRic29kc2UyM1E?oc=5"
     },
     {
@@ -1179,10 +1179,10 @@
     },
     {
       "source": "google",
-      "press": "경기연합뉴스",
+      "press": "kgyonhapnews.net",
       "date": "2026.07.21",
       "title": "경기도의회 장윤정 의원, 경제노동위원회 첫 업무보고에서 사회적 기업 지원 체계 및 공공 플랫폼 고객 지원 시스템 개선 촉구",
-      "snippet": "경기도의회 장윤정 의원, 경제노동위원회 첫 업무보고에서 사회적 기업 지원 체계 및 공공 플랫폼 고객 지원 시스템 개선 촉구 경기연합뉴스",
+      "snippet": "경기도의회 장윤정 의원, 경제노동위원회 첫 업무보고에서 사회적 기업 지원 체계 및 공공 플랫폼 고객 지원 시스템 개선 촉구 kgyonhapnews.net",
       "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE9FckhkRXJ3dmRWc1NXazlleDJkNUFEblFfT2hiaTcyanJVSWptTTdPMjZlMXQxMEwzVlNYSUZNaDhKMDRKbDBVU3V2aHlzaTVLaDVCT1FGeTdpODFHUjRUaVhPeEp0SzBC0gFoQVVfeXFMT0VySGRFcnd2ZFZzU1drOWV4MmQ1QURuUV9PaGJpNzJqclVJam1NN08yNmUxdDEwTDNWU1hJRk1oOEowNEpsMFVTdXZoeXNpNUtoNUJPUUZ5N2k4MUdSNFRpWE94SnRLMEI?oc=5"
     },
     {
@@ -1211,10 +1211,10 @@
     },
     {
       "source": "google",
-      "press": "웹이코노미",
+      "press": "webeconomy.co.kr",
       "date": "2026.07.21",
       "title": "경기도의회 장윤정 의원, 사회적 기업 지원 확대 및 공공 플랫폼 개선 촉구",
-      "snippet": "경기도의회 장윤정 의원, 사회적 기업 지원 확대 및 공공 플랫폼 개선 촉구 웹이코노미",
+      "snippet": "경기도의회 장윤정 의원, 사회적 기업 지원 확대 및 공공 플랫폼 개선 촉구 webeconomy.co.kr",
       "url": "https://news.google.com/rss/articles/CBMickFVX3lxTFB4ejlJaEQwS0tyTEhGaWhTUWRwNnpVU1Z6el8xSEhqZ2xtWGZ0MWFCUVloSEVVTHBuSGFsdFhLaXRFcERsTE0zVWtmUmZBQUt3cVgyUHQzNVA1ZTYwLVFsazhEUmhoR3h5MEVlVU8ySUpnQQ?oc=5"
     },
     {
@@ -1843,10 +1843,10 @@
     },
     {
       "source": "google",
-      "press": "뉴스핌",
+      "press": "newspim.com",
       "date": "2026.02.11",
       "title": "안산 상록구 부곡동서 차량 화재…인명피해 없어",
-      "snippet": "안산 상록구 부곡동서 차량 화재…인명피해 없어 뉴스핌",
+      "snippet": "안산 상록구 부곡동서 차량 화재…인명피해 없어 newspim.com",
       "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE9MazNlSlhmQndMMXh6RWFBWHNfZzJZRU9jQ0VYTUw1cVpUZkxla0JSVGhuRUFpeUR3a3loUF9hUTUyVnBPSGVqS1NVSzhoWUx6OWhTdkxrSmV0LXps?oc=5"
     },
     {
