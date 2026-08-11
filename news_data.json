@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-11 12:10 UTC",
+  "updated": "2026-08-11 13:54 UTC",
   "items": [
     {
       "source": "naver",
@@ -411,14 +411,6 @@
     },
     {
       "source": "google",
-      "press": "참좋은뉴스",
-      "date": "2026.08.10",
-      "title": "안산상록경찰서어린이집 '감자장터' 수익금, 안산푸드뱅크에 후원",
-      "snippet": "안산상록경찰서어린이집 '감자장터' 수익금, 안산푸드뱅크에 후원 참좋은뉴스",
-      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9oQjFGSDNialB0azY3MjNLdGFwQTdadE1TcTlkVVhzOXp5dnlyVlFiZlM3VG9tYWxTLUFkUFYxV19Famd2LWlfbkEzX3RpVUVkNXpsRDRqbDhHMzktUUJTc1ZpRnhoOUVrTGxDQnYtY0o3UEU?oc=5"
-    },
-    {
-      "source": "google",
       "press": "아트월드뉴스",
       "date": "2026.08.10",
       "title": "전병희 마음에 그리다 20번째 이야기 전 안산 상록 더 갤러리에서 개최",
@@ -426,12 +418,12 @@
       "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9EOGpzYW1KQkhyNHRTSGI5NEhHbVJUUk9oUUNpbnBXWXctRGNVN0l3R1g2VzluUW9ma18taWozWmtBUTNGR2ZseE9fOWZEVnBkdWVTZnZCcGl6b1NBVy1jTmpqOEhIdFRpZmZUdGdQTGU?oc=5"
     },
     {
-      "source": "naver",
-      "press": "newstown.co.kr",
+      "source": "google",
+      "press": "참좋은뉴스",
       "date": "2026.08.10",
-      "title": "이민근 안산시장 \"시민·청년 함께 즐기는 축제\"…e스포츠 페스티벌 개...",
-      "snippet": "안산시가 오는 29일 상록수김연경체육관에서 '2026 안산 e스포츠 페스티벌'을 개최한다. 올해 행사는 리그... 앞으로도 참가자 수뿐 아니라 지역 청소년 진로교육, 관련 산업 연계, 지역경제 파급효과 등 축제의 성과를...",
-      "url": "http://www.newstown.co.kr/news/articleView.html?idxno=711948"
+      "title": "안산상록경찰서어린이집 '감자장터' 수익금, 안산푸드뱅크에 후원",
+      "snippet": "안산상록경찰서어린이집 '감자장터' 수익금, 안산푸드뱅크에 후원 참좋은뉴스",
+      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9oQjFGSDNialB0azY3MjNLdGFwQTdadE1TcTlkVVhzOXp5dnlyVlFiZlM3VG9tYWxTLUFkUFYxV19Famd2LWlfbkEzX3RpVUVkNXpsRDRqbDhHMzktUUJTc1ZpRnhoOUVrTGxDQnYtY0o3UEU?oc=5"
     },
     {
       "source": "naver",
@@ -440,6 +432,14 @@
       "title": "이민근 안산시장 공약 이행 시민이 심의한다…안산시 시민배심원단 출...",
       "snippet": "이민근 안산시장과 시민배심원들이 지난 7일 열린 '2026 안산시 시민배심원 회의'에서 위촉장을 들고... 1차 회의에서는 시민배심원 위촉식과 함께 매니페스토 운동 및 시민배심원제에 관한 교육이 진행됐다. 배심원들은...",
       "url": "http://www.newstown.co.kr/news/articleView.html?idxno=711947"
+    },
+    {
+      "source": "naver",
+      "press": "newstown.co.kr",
+      "date": "2026.08.10",
+      "title": "이민근 안산시장 \"시민·청년 함께 즐기는 축제\"…e스포츠 페스티벌 개...",
+      "snippet": "안산시가 오는 29일 상록수김연경체육관에서 '2026 안산 e스포츠 페스티벌'을 개최한다. 올해 행사는 리그... 앞으로도 참가자 수뿐 아니라 지역 청소년 진로교육, 관련 산업 연계, 지역경제 파급효과 등 축제의 성과를...",
+      "url": "http://www.newstown.co.kr/news/articleView.html?idxno=711948"
     },
     {
       "source": "naver",
@@ -914,6 +914,14 @@
       "url": "https://www.joongboo.com/news/articleView.html?idxno=363732903"
     },
     {
+      "source": "google",
+      "press": "대한투데이",
+      "date": "2026.08.02",
+      "title": "안산시 상록구, 어르신 안전 위한 경로당 시설점검 추진",
+      "snippet": "안산시 상록구, 어르신 안전 위한 경로당 시설점검 추진 대한투데이",
+      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1IMkExd0IwT3loYjlhNUU5azJfM2djOVNNaWVTZjRsMlNKX1hRLVU3YWktQTZxVjFMZ04zWE0wZFhrY2dnTDZ2Sm1PN2V4TWV4clpQd3RDTUlOSXRiX1JGWGRic29kc2UyM1E?oc=5"
+    },
+    {
       "source": "naver",
       "press": "ekn.kr",
       "date": "2026.08.01",
@@ -1139,10 +1147,10 @@
     },
     {
       "source": "google",
-      "press": "newscj.com",
+      "press": "천지일보",
       "date": "2026.07.27",
       "title": "장윤정 경기도의원, 경기도교육청 예결특위 위원 선임",
-      "snippet": "장윤정 경기도의원, 경기도교육청 예결특위 위원 선임 newscj.com",
+      "snippet": "장윤정 경기도의원, 경기도교육청 예결특위 위원 선임 천지일보",
       "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBhSjRyb3hjNWNtRFpLV0tGbFVFZzhNVnE0ZmpwMTd2RGhCM2lmSEVEcW1LZG4xd3lHVDNrN0NIMkRlS2hkeGdIX0ZoejFNVm1PcFB4NWRDMkFsbHdLMkUtR0ZDOWhCbVFyZHc?oc=5"
     },
     {
@@ -1163,10 +1171,10 @@
     },
     {
       "source": "google",
-      "press": "senews.kr",
+      "press": "사회적경제뉴스",
       "date": "2026.07.27",
       "title": "경기도의회 장윤정 의원, 최혜경 의원 의정 활동 소식",
-      "snippet": "경기도의회 장윤정 의원, 최혜경 의원 의정 활동 소식 senews.kr",
+      "snippet": "경기도의회 장윤정 의원, 최혜경 의원 의정 활동 소식 사회적경제뉴스",
       "url": "https://news.google.com/rss/articles/CBMiTEFVX3lxTFA0N1E0MG1Qc3U3UkNlLUhkdkFEbDJSSXJxdEVMa09Tb1Z1MDBtRjktdG1oMndrVG1hbkctQU93OGhIYUN3V2NJOVA3SWo?oc=5"
     },
     {
@@ -1323,26 +1331,18 @@
     },
     {
       "source": "google",
-      "press": "newscj.com",
+      "press": "천지일보",
       "date": "2026.07.21",
       "title": "장윤정 경기도의원 “사회적기업 지원 확대하고 공공서비스 개선해야”",
-      "snippet": "장윤정 경기도의원 “사회적기업 지원 확대하고 공공서비스 개선해야” newscj.com",
+      "snippet": "장윤정 경기도의원 “사회적기업 지원 확대하고 공공서비스 개선해야” 천지일보",
       "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9GbkNjVWNmT0lIQVF5QUFHSlJIT2tZQVE3Vm5zZnhQTU1nRGJiTXM4YVJTVzIzemJTWmUyXzVWdnRCd2lHc25ya3J5dFp4RjBEOTJKOExKZEJOLW85WVl0YzRqc3BMN2N3d2c?oc=5"
     },
     {
       "source": "google",
-      "press": "서울Pn",
-      "date": "2026.07.21",
-      "title": "장윤정 경기도의원, 경제노동위원회 부위원장으로 선임, 첫 업무보고부터 민생 현안 해결 박차",
-      "snippet": "장윤정 경기도의원, 경제노동위원회 부위원장으로 선임, 첫 업무보고부터 민생 현안 해결 박차 서울Pn",
-      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9ZdlZLeFp4RGdBb0dQUV9yTkNLRXdfRjk4T2w3aTZNTzhySV83UHZtd3BTYUFBQjFqLVkzZFFCYU44TUV4czRQYU9JNGdSMXQwV3F5X2N5TWx2d2QzQWxHSUtNeUNqelgxYmlnTXFJY1lKNHlFWnE1RzZTdw?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "경기연합뉴스",
+      "press": "kgyonhapnews.net",
       "date": "2026.07.21",
       "title": "경기도의회 장윤정 의원, 경제노동위원회 첫 업무보고에서 사회적 기업 지원 체계 및 공공 플랫폼 고객 지원 시스템 개선 촉구",
-      "snippet": "경기도의회 장윤정 의원, 경제노동위원회 첫 업무보고에서 사회적 기업 지원 체계 및 공공 플랫폼 고객 지원 시스템 개선 촉구 경기연합뉴스",
+      "snippet": "경기도의회 장윤정 의원, 경제노동위원회 첫 업무보고에서 사회적 기업 지원 체계 및 공공 플랫폼 고객 지원 시스템 개선 촉구 kgyonhapnews.net",
       "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE9FckhkRXJ3dmRWc1NXazlleDJkNUFEblFfT2hiaTcyanJVSWptTTdPMjZlMXQxMEwzVlNYSUZNaDhKMDRKbDBVU3V2aHlzaTVLaDVCT1FGeTdpODFHUjRUaVhPeEp0SzBC0gFoQVVfeXFMT0VySGRFcnd2ZFZzU1drOWV4MmQ1QURuUV9PaGJpNzJqclVJam1NN08yNmUxdDEwTDNWU1hJRk1oOEowNEpsMFVTdXZoeXNpNUtoNUJPUUZ5N2k4MUdSNFRpWE94SnRLMEI?oc=5"
     },
     {
@@ -1360,6 +1360,14 @@
       "title": "경기도의회 경제노동위원회, 장윤정 의원 부위원장 선임",
       "snippet": "경기도의회 경제노동위원회, 장윤정 의원 부위원장 선임 내외뉴스통신",
       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBlRWdnVGVta2hSVW83bGtoTG9lVU5xa1FyUHhqMGdNcm5NQU91cXh3V1FaSy1QdFlhVlhiTmZJc2hudkNvSTI3cVJpZndiYjc0anBsZWd6MFhnTmVwcVd2QmNxOUlRXy1zNWlhVNIBcEFVX3lxTE9ONHNLMnZHQzlseEt1U1RRVjhVdVFTVkp0aVExcHFaNnQtX0RoZWczTzI0dUpkekhMUUNyLTFtdG92YTRBV1FHSFR5M1huRFVfSXFaVE5jNW9DLW15ZTNESnVDWDhrV09aQUNfNGl5MW8?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "서울Pn",
+      "date": "2026.07.21",
+      "title": "장윤정 경기도의원, 경제노동위원회 부위원장으로 선임, 첫 업무보고부터 민생 현안 해결 박차",
+      "snippet": "장윤정 경기도의원, 경제노동위원회 부위원장으로 선임, 첫 업무보고부터 민생 현안 해결 박차 서울Pn",
+      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9ZdlZLeFp4RGdBb0dQUV9yTkNLRXdfRjk4T2w3aTZNTzhySV83UHZtd3BTYUFBQjFqLVkzZFFCYU44TUV4czRQYU9JNGdSMXQwV3F5X2N5TWx2d2QzQWxHSUtNeUNqelgxYmlnTXFJY1lKNHlFWnE1RzZTdw?oc=5"
     },
     {
       "source": "naver",
@@ -1480,6 +1488,14 @@
       "title": "장윤정 도의원, 경기도교육청 예산유보 운영 점검",
       "snippet": "장윤정 도의원, 경기도교육청 예산유보 운영 점검 경기인저널",
       "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE94OGl1THNCaUQ4MFM0WFpyZ2JKV1FUdXlVUXdQYkptNkd1Vi14MDVzb3ZXUlI4bEhYSHkyZXRpNGsxVEtZdUg0cy1MZ3haYjI5YkNiQjRLLTNPOGZTZGpKOTk4UFg?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "더코리아",
+      "date": "2026.06.13",
+      "title": "장윤정 경기도의회 교육기획위원회 부위원장, 경기도교육청 예산유보 운영 점검 > 뉴스",
+      "snippet": "장윤정 경기도의회 교육기획위원회 부위원장, 경기도교육청 예산유보 운영 점검 > 뉴스 더코리아",
+      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFA4aWt5Vl9FYVZmYklkdUd0UU9DNS1qT08tR28zNC1YT0JsU1R3QWk3NmxyenRTTi1NdTFGb2hWenEwbWRjUk5xYmhnTzZsX2hYNVkyY0NnYnMtUkh5bXowU1E2UHNjZ3pvdnBIRXhjWUE?oc=5"
     },
     {
       "source": "naver",
@@ -1707,19 +1723,19 @@
     },
     {
       "source": "google",
-      "press": "일간투데이",
-      "date": "2026.05.09",
-      "title": "기울어진 운동장 안 된다”…장윤정 경기도의원, 안산 정치권 녹취 파장 정면 비판",
-      "snippet": "기울어진 운동장 안 된다”…장윤정 경기도의원, 안산 정치권 녹취 파장 정면 비판 일간투데이",
-      "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE9PNjdvWkxMWnZ6SFlOczZKSW40VnhSd3dXMzFPYnFPckp3b3A0V2taR1lPcnJTc01XR1l6VkJIY3JieHRxYm15ZFdYN25aOEttQmtwbGFlYTJGYmt0REItTzBJVlBETmZvcU5J?oc=5"
-    },
-    {
-      "source": "google",
       "press": "경기일보",
       "date": "2026.05.09",
       "title": "'공천 개입' 논란 속 다시 공천받은 장윤정 경기도의원…민주, 20차 경선결과 발표",
       "snippet": "'공천 개입' 논란 속 다시 공천받은 장윤정 경기도의원…민주, 20차 경선결과 발표 경기일보",
       "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE94cXMtSzRfclhwaGFQTS1NYUtLdVBaOUFQaFdhUnpqcm5BNGFHUzFYYVlRQlZmN24zMHVBTVFDS29XWVd3c3htZTFCdTVqMmd4eV9RbDZTaktFRzg?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "일간투데이",
+      "date": "2026.05.09",
+      "title": "기울어진 운동장 안 된다”…장윤정 경기도의원, 안산 정치권 녹취 파장 정면 비판",
+      "snippet": "기울어진 운동장 안 된다”…장윤정 경기도의원, 안산 정치권 녹취 파장 정면 비판 일간투데이",
+      "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE9PNjdvWkxMWnZ6SFlOczZKSW40VnhSd3dXMzFPYnFPckp3b3A0V2taR1lPcnJTc01XR1l6VkJIY3JieHRxYm15ZFdYN25aOEttQmtwbGFlYTJGYmt0REItTzBJVlBETmZvcU5J?oc=5"
     },
     {
       "source": "google",
@@ -1795,10 +1811,10 @@
     },
     {
       "source": "google",
-      "press": "김포시민신문",
+      "press": "gpsimin.com",
       "date": "2026.04.01",
       "title": "[경기도의회] 장윤정 의원, 기계설비유지관리자 처우개선 논의",
-      "snippet": "[경기도의회] 장윤정 의원, 기계설비유지관리자 처우개선 논의 김포시민신문",
+      "snippet": "[경기도의회] 장윤정 의원, 기계설비유지관리자 처우개선 논의 gpsimin.com",
       "url": "https://news.google.com/rss/articles/CBMiQkFVX3lxTE93ZHlHbUFtYmwyb0dDMTc1NmFsNnZUNnZ6X2pMWGttbjdOc0lfYVhmVDh3SWxsVW5hZy1hNHVOeXQxUQ?oc=5"
     },
     {
@@ -1827,6 +1843,14 @@
     },
     {
       "source": "google",
+      "press": "일간경기",
+      "date": "2026.03.05",
+      "title": "장윤정 의원, 안산 학교 환경개선 87억원 규모 예산 확보",
+      "snippet": "장윤정 의원, 안산 학교 환경개선 87억원 규모 예산 확보 일간경기",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBDY3FVTXFLN2F6cUxkY0F6ckplb0xJX0ttcnJGdkxheEhlRlRrVDZWZmlGWXZNUk84TWxGeHBheHhVbktRT1FNQ0hNcFFQcGd6VnQyX3hFcER4S0JLZGl5SnB0THhnTHNj?oc=5"
+    },
+    {
+      "source": "google",
       "press": "뉴스핌",
       "date": "2026.02.11",
       "title": "안산 상록구 부곡동서 차량 화재…인명피해 없어",
@@ -1843,11 +1867,11 @@
     },
     {
       "source": "google",
-      "press": "안산뉴스",
-      "date": "2025.11.28",
-      "title": "장윤정 도의원 ‘민주당 당대표 청년특보’ 임명",
-      "snippet": "장윤정 도의원 ‘민주당 당대표 청년특보’ 임명 안산뉴스",
-      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFAxdTJ2bWJiQUIwZ1ZVZW4zaV9GRGo5TEFiMGlJeDRBQ0lwbkZudGVFVUxJeEdQLVM2RFZwYzhhMjBIdEQ2NWRYZTB0SGRNY0xLd3BaSEtpRzdmMFJZX2MwVkgtYW94TDBaY3Fidg?oc=5"
+      "press": "경인매일",
+      "date": "2025.12.29",
+      "title": "장윤정 경기도의원, ‘2025 지방의정대상’ 수상 영예",
+      "snippet": "장윤정 경기도의원, ‘2025 지방의정대상’ 수상 영예 경인매일",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5xQklJbUNlSHQ0bzlEQnhhYWp4Z0EweWlrVEdvWFQ2anRGdVJEWDc1WlktX25NenNCUmhqSkdpY0pZbk5JYnJ3bmlid21MMHNsbkFsSEE3OUNHeXlHa08tMmRxbHVBcUpG?oc=5"
     }
   ]
 }
