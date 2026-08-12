@@ -1,6 +1,14 @@
 {
-  "updated": "2026-08-12 19:37 UTC",
+  "updated": "2026-08-12 21:20 UTC",
   "items": [
+    {
+      "source": "naver",
+      "press": "newsis.com",
+      "date": "2026.08.13",
+      "title": "[오늘의 주요일정]경기남부(8월13일 목요일)",
+      "snippet": "양성교육 운영, 도시농업지원센터 ▲오후 2시, 화성시 인재육성재단 장학증서 수여식, 다원이음터 ▲오후 3시, 화성시복지재단 2026년 제6차 이사회, 화성시복지재단 대회의실 ◇안산시 ▲오전 10시30분, 제95차...",
+      "url": "https://www.newsis.com/view/NISX20260813_0003746950"
+    },
     {
       "source": "naver",
       "press": "ekn.kr",
@@ -283,19 +291,19 @@
     },
     {
       "source": "naver",
-      "press": "news.kbs.co.kr",
-      "date": "2026.08.12",
-      "title": "안산도시공사, ‘저출생·지방소멸 극복’ 시민 공모전",
-      "snippet": "공모 주제는 일·가정 양립, 일자리 창출, 교육·돌봄 부담 완화, 결혼·출산·양육 지원 등입니다. 참여 희망자는 오는 28일까지 경기도 안산도시공사 누리집을 참조해서 제안서를 제출하면 됩니다. 안산도시공사는 심사를...",
-      "url": "https://news.kbs.co.kr/news/pc/view/view.do?ncd=8635133&ref=A"
-    },
-    {
-      "source": "naver",
       "press": "datanet.co.kr",
       "date": "2026.08.12",
       "title": "에듀싱크, 중기부 '팁스' 선정 ··· 멀티모달 수업 AI 시스템 고도화",
       "snippet": "에듀싱크는 양명고, 평택성동초, 안산국제비즈니스고 등과 실증 네트워크를 구축하고 약 7000차시의 수업... 향후 동남아와 북미 교육 플랫폼·전자칠판 기업과 애플리케이션프로그래밍인터페이스(API) 및 데이터 연동을...",
       "url": "https://www.datanet.co.kr/news/articleView.html?idxno=213726"
+    },
+    {
+      "source": "naver",
+      "press": "news.kbs.co.kr",
+      "date": "2026.08.12",
+      "title": "안산도시공사, ‘저출생·지방소멸 극복’ 시민 공모전",
+      "snippet": "공모 주제는 일·가정 양립, 일자리 창출, 교육·돌봄 부담 완화, 결혼·출산·양육 지원 등입니다. 참여 희망자는 오는 28일까지 경기도 안산도시공사 누리집을 참조해서 제안서를 제출하면 됩니다. 안산도시공사는 심사를...",
+      "url": "https://news.kbs.co.kr/news/pc/view/view.do?ncd=8635133&ref=A"
     },
     {
       "source": "naver",
@@ -480,14 +488,6 @@
       "title": "안산시의회 3개 상임위, 제305회 임시회 대비 집행부 간담회 개최",
       "snippet": "건립사업은 교육청과의 소유권 협의를 조속히 마무리해 사업 불확실성을 해소하라고 촉구했다. 문화복지위원회는 문화예술과 등 15개 부서로부터 44건의 안건을 점검했다. 문화복지위 위원들은 '안산 겨울 빛의 나라...",
       "url": "https://www.newspim.com/news/view/20260812000386"
-    },
-    {
-      "source": "naver",
-      "press": "pointdaily.co.kr",
-      "date": "2026.08.12",
-      "title": "에듀싱크, 중기부 '팁스' 선정…2년간 8억원 확보",
-      "snippet": "에듀싱크는 공교육 현장 적용으로 약 7000차시 분량의 수업 데이터를 쌓았다. 양명고, 평택성동초, 안산국제비즈니스고 등과 실증 네트워크를 구축했다. 화면 저지연 동기화, 멀티모달 데이터 처리 특허도 출원했다....",
-      "url": "https://www.pointdaily.co.kr/news/articleView.html?idxno=315207"
     },
     {
       "source": "google",
@@ -973,17 +973,17 @@
       "source": "google",
       "press": "더코리아",
       "date": "2026.08.03",
-      "title": "장윤정 경기도의원, 경제노동위원회 부위원장 선임… 민생 현안 해결 박차 > 뉴스",
-      "snippet": "장윤정 경기도의원, 경제노동위원회 부위원장 선임… 민생 현안 해결 박차 > 뉴스 더코리아",
-      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1SdDh6UW9sWXlEWlRrYkVrWjlKU3ZoY19HUnpubU5peFNTWko1QlRGYVh1djVtcnM4VmgxYVpUUDNCRHpsb1lHZWwzTmhfVDBsUE5walJQb2dzWi1BS1FIQ0phNzVFc1g4RkF6UWxVQzk?oc=5"
+      "title": "장윤정 경기도의원, 사회적 기업 지원 체계 및 공공 플랫폼 개선 촉구 > 뉴스",
+      "snippet": "장윤정 경기도의원, 사회적 기업 지원 체계 및 공공 플랫폼 개선 촉구 > 뉴스 더코리아",
+      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5XbWV3MGFGUTk5UlN5anN2REFZZUc0STlQTWFTM2tPY2RLVktlbTZheWtrV0Y0VkNtdzhpMFlmM2JNd25MUzc0cXdBYjdMSUtsUWV1Qm9VQTliZGYxbWlnMDlmcW1HQ2F4NlZGZ2tUUlE?oc=5"
     },
     {
       "source": "google",
       "press": "더코리아",
       "date": "2026.08.03",
-      "title": "장윤정 경기도의원, 사회적 기업 지원 체계 및 공공 플랫폼 개선 촉구 > 뉴스",
-      "snippet": "장윤정 경기도의원, 사회적 기업 지원 체계 및 공공 플랫폼 개선 촉구 > 뉴스 더코리아",
-      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5XbWV3MGFGUTk5UlN5anN2REFZZUc0STlQTWFTM2tPY2RLVktlbTZheWtrV0Y0VkNtdzhpMFlmM2JNd25MUzc0cXdBYjdMSUtsUWV1Qm9VQTliZGYxbWlnMDlmcW1HQ2F4NlZGZ2tUUlE?oc=5"
+      "title": "장윤정 경기도의원, 경제노동위원회 부위원장 선임… 민생 현안 해결 박차 > 뉴스",
+      "snippet": "장윤정 경기도의원, 경제노동위원회 부위원장 선임… 민생 현안 해결 박차 > 뉴스 더코리아",
+      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1SdDh6UW9sWXlEWlRrYkVrWjlKU3ZoY19HUnpubU5peFNTWko1QlRGYVh1djVtcnM4VmgxYVpUUDNCRHpsb1lHZWwzTmhfVDBsUE5walJQb2dzWi1BS1FIQ0phNzVFc1g4RkF6UWxVQzk?oc=5"
     },
     {
       "source": "naver",
@@ -1515,10 +1515,10 @@
     },
     {
       "source": "google",
-      "press": "banwol.net",
+      "press": "반월신문",
       "date": "2026.06.17",
       "title": "민주당 장윤정 경기도의원 당선인사 “보내주신 성원 잊지 않고 성과로 보답하겠다”",
-      "snippet": "민주당 장윤정 경기도의원 당선인사 “보내주신 성원 잊지 않고 성과로 보답하겠다” banwol.net",
+      "snippet": "민주당 장윤정 경기도의원 당선인사 “보내주신 성원 잊지 않고 성과로 보답하겠다” 반월신문",
       "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE8wa3F4V2J6eEd5OFZaTFdEa0ZPMlRQRFg5U2J0aFpVcy1CZlUzOEc3NERKTlduMV85T2xBMURmWlhNMC16ZXZOZ21TV2NEcGlWRXBvOWxCcFh2MGkxNHR0ckt0N2hWd28?oc=5"
     },
     {
@@ -1787,6 +1787,14 @@
     },
     {
       "source": "google",
+      "press": "뉴시스",
+      "date": "2026.05.09",
+      "title": "[표]민주당 경기도당, 안산3 장윤정 등 광역의원 경선 결과 발표",
+      "snippet": "[표]민주당 경기도당, 안산3 장윤정 등 광역의원 경선 결과 발표 뉴시스",
+      "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTFBJQjhGdDAtcUU4dWRCRkhmaDBoQ1NHaEh3bFg4SmlfQS1RZWZHblJtWHJLdzdwNVdSSzZrSkxwRjZOUm0zdmxMSUhUaGNLYk1XWE40TUo1T2lJcElOOUxKSdIBeEFVX3lxTE5FLTRicWFjcmJBWHRrdmJDVnF0Sm8zbFRlWUYxcFJ3MjZCQ3Zpd2pORXY2MWZjU05XWHhsZktYRXp2SEdndFozbktzRFEtZzNhV1R1MHd1RzZmT2taaEJyQVY3YWk0TzRDdFY1M3ZMNTZnSElqSmJycg?oc=5"
+    },
+    {
+      "source": "google",
       "press": "경기일보",
       "date": "2026.05.06",
       "title": "안산 상록 상가에 차량 돌진…70대 운전자 등 4명 부상",
@@ -1843,11 +1851,11 @@
     },
     {
       "source": "google",
-      "press": "경기시사투데이",
+      "press": "경기종합뉴스",
       "date": "2026.04.06",
-      "title": "장윤정 경기도의원 안산 제3선거구 재선 출마 선언",
-      "snippet": "장윤정 경기도의원 안산 제3선거구 재선 출마 선언 경기시사투데이",
-      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE4zR1VkX09YVU9udnZnck9kQUVZMFp5NjlfNlBGZ255aGphNWs3SjV4a0E5ZmxsZ08yR00tajhmbU1ERUZGNExCM0FnaEJsY0VHRFZ1ejVmajFuNzBwYlVfdkxvOHRPdFBSYUE?oc=5"
+      "title": "장윤정 경기도의원, 안산 제3선거구 재선 출마 선언",
+      "snippet": "장윤정 경기도의원, 안산 제3선거구 재선 출마 선언 경기종합뉴스",
+      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTFBkWlpOOHVUNFFBMVRySTRaOU9vVlo5d0o0cG5IbEd1QXc4MGYxNnl2bGpfSzVfbXMzVWZQcHUxckNkT2hHVExjZmJLTXFaRHdZNHhpTkwyZHVLWk9hOFpyVlVDZzlYS1JJR2lMdVg2X3pBYXhJ?oc=5"
     },
     {
       "source": "google",
@@ -1864,14 +1872,6 @@
       "title": "장윤정 도의원, 안산 시곡중 오수관 파손 사고 현장 방문...신속 복구 강조",
       "snippet": "장윤정 도의원, 안산 시곡중 오수관 파손 사고 현장 방문...신속 복구 강조 팍스경제TV",
       "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5CZldmYnZqSmo0akV5SHgtNGZkdTF3bkRyRHpxOFNhdTdwd1RtSkp4NC12eHF4clctaE9VY2pkc3Jyald6NU1OSXROQldFbUN2MGdxakNGODRiY09TckhmLVQtYmItVm5U?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "안산뉴스",
-      "date": "2026.03.08",
-      "title": "장윤정 도의원 ‘시곡중 오수관 사고’ 신속 복구 요구",
-      "snippet": "장윤정 도의원 ‘시곡중 오수관 사고’ 신속 복구 요구 안산뉴스",
-      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBBbVVRa0JyLS1BSzUzcHl5Vk1VcmlJNlEtdjUxLUh6NGF0bjdBejhXTThxMGptX2R1X2xYTWp1cFVhZm9NQUw5MHdfT2FRQWcwRWptVHJJU2VFOUZGeHZlUW5uVzV4NmdKaU9XRQ?oc=5"
     },
     {
       "source": "google",
