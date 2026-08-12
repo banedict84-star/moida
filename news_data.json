@@ -1,6 +1,14 @@
 {
-  "updated": "2026-08-12 21:20 UTC",
+  "updated": "2026-08-12 22:11 UTC",
   "items": [
+    {
+      "source": "naver",
+      "press": "safetimes.co.kr",
+      "date": "2026.08.13",
+      "title": "[오늘의 주요일정·13일] 행안부, 폭염·가뭄 재난대응 중앙재난안전대...",
+      "snippet": "서안산 노인전문병원 현장간담회(15:00 경기도 안산) ▲ 류현철 노동부 산업안전보건본부장... 정부서울청사) ▲ 교육부, 국가교육위원회 제8차 회의(14:30 정부서울청사) [문화] ▲ 문체부, 봉황대기 고교야구대회...",
+      "url": "https://www.safetimes.co.kr/news/articleView.html?idxno=244880"
+    },
     {
       "source": "naver",
       "press": "newsis.com",
@@ -179,19 +187,19 @@
     },
     {
       "source": "naver",
-      "press": "mt.co.kr",
-      "date": "2026.08.12",
-      "title": "\"교실서 휘발되던 지식을 데이터로\"…에듀싱크, 중기부 팁스 선정",
-      "snippet": "양명고와 평택성동초, 안산국제비즈니스고 등과 실증 네트워크를 구축했다. 권가원 에듀싱크 대표는... 이어 \"단절된 교실 데이터를 하나의 순환 구조로 연결해 교사의 업무 부담을 줄이고 학생 맞춤형 교육을 지원하는...",
-      "url": "https://www.mt.co.kr/future/2026/08/12/2026081209301671937"
-    },
-    {
-      "source": "naver",
       "press": "jeonmae.co.kr",
       "date": "2026.08.12",
       "title": "안산시, 찾아가는 아동권리교육 본격 운영",
       "snippet": "이민근 안산시장은 \"아동이 자신의 권리를 이해하고 건강한 사회 구성원으로 성장하려면 어릴 때부터 꾸준한 교육이 필요하다\"며 \"아동의 목소리가 존중받고 모든 아동이 안전하고 행복하게 성장할 수 있는 환경을...",
       "url": "https://www.jeonmae.co.kr/news/articleView.html?idxno=1283301"
+    },
+    {
+      "source": "naver",
+      "press": "mt.co.kr",
+      "date": "2026.08.12",
+      "title": "\"교실서 휘발되던 지식을 데이터로\"…에듀싱크, 중기부 팁스 선정",
+      "snippet": "양명고와 평택성동초, 안산국제비즈니스고 등과 실증 네트워크를 구축했다. 권가원 에듀싱크 대표는... 이어 \"단절된 교실 데이터를 하나의 순환 구조로 연결해 교사의 업무 부담을 줄이고 학생 맞춤형 교육을 지원하는...",
+      "url": "https://www.mt.co.kr/future/2026/08/12/2026081209301671937"
     },
     {
       "source": "naver",
@@ -482,27 +490,19 @@
       "url": "https://www.sidae.com/article/2026081210345678641"
     },
     {
-      "source": "naver",
-      "press": "newspim.com",
-      "date": "2026.08.12",
-      "title": "안산시의회 3개 상임위, 제305회 임시회 대비 집행부 간담회 개최",
-      "snippet": "건립사업은 교육청과의 소유권 협의를 조속히 마무리해 사업 불확실성을 해소하라고 촉구했다. 문화복지위원회는 문화예술과 등 15개 부서로부터 44건의 안건을 점검했다. 문화복지위 위원들은 '안산 겨울 빛의 나라...",
-      "url": "https://www.newspim.com/news/view/20260812000386"
-    },
-    {
       "source": "google",
-      "press": "리버럴미디어",
+      "press": "liberalmedia.co.kr",
       "date": "2026.08.12",
       "title": "안산시, 아동·청소년 대상 찾아가는 아동권리교육 운영",
-      "snippet": "안산시, 아동·청소년 대상 찾아가는 아동권리교육 운영 리버럴미디어",
+      "snippet": "안산시, 아동·청소년 대상 찾아가는 아동권리교육 운영 liberalmedia.co.kr",
       "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE5yOGwxUjdqRWdUTWRYMjI3ZDVpdXJMeXQ1V1RDdjdUR0RzWHRfZ24xU09zZGVsOWV2MEUzUzZySElLYkRYQjd3X2Q5WW8yc2J3cWdQRDhkS1N1bFdlRTZIMnRBN28?oc=5"
     },
     {
       "source": "google",
-      "press": "리버럴미디어",
+      "press": "liberalmedia.co.kr",
       "date": "2026.08.12",
       "title": "안산시 성호박물관, 기획전시 연계 교육‘성호의 책가도’참가자 모집",
-      "snippet": "안산시 성호박물관, 기획전시 연계 교육‘성호의 책가도’참가자 모집 리버럴미디어",
+      "snippet": "안산시 성호박물관, 기획전시 연계 교육‘성호의 책가도’참가자 모집 liberalmedia.co.kr",
       "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFBHWXhyOVFZNnVaQlFNLVNlUHE0RkpMNkotN0xINEE1QWhOSHBxM3o1Z2lfZkxvbmF3V2M5cUtOcDhCczJ2WFAwbXdjLWthMVBWN2Z0WWktcEtFOTZmSWpHYnk2dDQ?oc=5"
     },
     {
@@ -691,11 +691,11 @@
     },
     {
       "source": "google",
-      "press": "엔디엔뉴스",
+      "press": "경인투데이뉴스",
       "date": "2026.08.10",
-      "title": "안산교육지원청, 지자체와 손잡고 영유아 문화다양성 꽃피운다 !",
-      "snippet": "안산교육지원청, 지자체와 손잡고 영유아 문화다양성 꽃피운다 ! 엔디엔뉴스",
-      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTFBFZHh2dldGZXJOQWhLWVFGbGcyb1FBU0ZjN1J3b2tEbHBLc3FUd1Q5VENwUUtONFNxeUI0dHNFbzNFZklFcUM4RTZpd185bVRvRHlMVUpFSXQxcW0zSlN2RFhIMDNVbGJVTnNPZWQ2eWVGUdIBckFVX3lxTFBFZHh2dldGZXJOQWhLWVFGbGcyb1FBU0ZjN1J3b2tEbHBLc3FUd1Q5VENwUUtONFNxeUI0dHNFbzNFZklFcUM4RTZpd185bVRvRHlMVUpFSXQxcW0zSlN2RFhIMDNVbGJVTnNPZWQ2eWVGUQ?oc=5"
+      "title": "안산교육지원청, 지자체와 손잡고 영유아 문화다양성 꽃피운다 !:경인투데이뉴스",
+      "snippet": "안산교육지원청, 지자체와 손잡고 영유아 문화다양성 꽃피운다 !:경인투데이뉴스 경인투데이뉴스",
+      "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE5CU29HNm5ad1U0WlBadDdqNkRMNzNpQWRwSUJPcE1JaC1pQnVCOW9zSGI1ekdOeXlIbS10RVYyTEJJMW1ZWjEzTkYzZTJoNnM3eHFmT191Qmh3ZUdlWWNR0gFfQVVfeXFMTkl3ekJnZlJqb1RCWlRuOWc5VmFjeXlCb2hzMHlHWlNLakFyOGtub3FCNVJVRGVZYzJmQ05rX1FpTDBQMHhNWldLeDR3X0p4NUxDWjgxcjV3dHhVY3k1c1k?oc=5"
     },
     {
       "source": "google",
@@ -763,18 +763,18 @@
     },
     {
       "source": "google",
-      "press": "seoul.co.kr",
+      "press": "서울신문",
       "date": "2026.08.07",
       "title": "박은경 경기도의원, 안산 교육현안·유보통합 추진상황 점검",
-      "snippet": "박은경 경기도의원, 안산 교육현안·유보통합 추진상황 점검 seoul.co.kr",
+      "snippet": "박은경 경기도의원, 안산 교육현안·유보통합 추진상황 점검 서울신문",
       "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPRG1EVkJicWxVbDR4cmpQR0NQTWRMY2tkVXdRUl9NYldlVm4tZ3hqNFk4NFowOXQzRW1GZEdPZGlTSmFVMDF4aXJGd2R5SlZ2ZnJ0VWE3NGs1aFlMdHNyYl9QTFgwSDl0cEtUR0t1djh5S0xVOEtQaS1YeWlxNzNmMjN2MzJBWmpnQkNGWFc1MG91OEE?oc=5"
     },
     {
       "source": "google",
-      "press": "한국사회복지저널",
+      "press": "ksw-news.com",
       "date": "2026.08.07",
       "title": "박은경 경기도의원, 안산 교육 현안 점검…유보통합 추진 상황도 논의",
-      "snippet": "박은경 경기도의원, 안산 교육 현안 점검…유보통합 추진 상황도 논의 한국사회복지저널",
+      "snippet": "박은경 경기도의원, 안산 교육 현안 점검…유보통합 추진 상황도 논의 ksw-news.com",
       "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE1HZkNXLTJNUVZIQXVRdFNjLW0zaGoyVE5kUWtvcXI3LTQtNWFUU3h4X1lsbk9xRGotdTMtX3hYUXduSEVFVzdEdEpqWHYwUnVOTW5MTUp4djlyaGtwUWdGMktmdTZmTlNLVENn?oc=5"
     },
     {
@@ -973,17 +973,17 @@
       "source": "google",
       "press": "더코리아",
       "date": "2026.08.03",
-      "title": "장윤정 경기도의원, 사회적 기업 지원 체계 및 공공 플랫폼 개선 촉구 > 뉴스",
-      "snippet": "장윤정 경기도의원, 사회적 기업 지원 체계 및 공공 플랫폼 개선 촉구 > 뉴스 더코리아",
-      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5XbWV3MGFGUTk5UlN5anN2REFZZUc0STlQTWFTM2tPY2RLVktlbTZheWtrV0Y0VkNtdzhpMFlmM2JNd25MUzc0cXdBYjdMSUtsUWV1Qm9VQTliZGYxbWlnMDlmcW1HQ2F4NlZGZ2tUUlE?oc=5"
+      "title": "장윤정 경기도의원, 경제노동위원회 부위원장 선임… 민생 현안 해결 박차 > 뉴스",
+      "snippet": "장윤정 경기도의원, 경제노동위원회 부위원장 선임… 민생 현안 해결 박차 > 뉴스 더코리아",
+      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1SdDh6UW9sWXlEWlRrYkVrWjlKU3ZoY19HUnpubU5peFNTWko1QlRGYVh1djVtcnM4VmgxYVpUUDNCRHpsb1lHZWwzTmhfVDBsUE5walJQb2dzWi1BS1FIQ0phNzVFc1g4RkF6UWxVQzk?oc=5"
     },
     {
       "source": "google",
       "press": "더코리아",
       "date": "2026.08.03",
-      "title": "장윤정 경기도의원, 경제노동위원회 부위원장 선임… 민생 현안 해결 박차 > 뉴스",
-      "snippet": "장윤정 경기도의원, 경제노동위원회 부위원장 선임… 민생 현안 해결 박차 > 뉴스 더코리아",
-      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1SdDh6UW9sWXlEWlRrYkVrWjlKU3ZoY19HUnpubU5peFNTWko1QlRGYVh1djVtcnM4VmgxYVpUUDNCRHpsb1lHZWwzTmhfVDBsUE5walJQb2dzWi1BS1FIQ0phNzVFc1g4RkF6UWxVQzk?oc=5"
+      "title": "장윤정 경기도의원, 사회적 기업 지원 체계 및 공공 플랫폼 개선 촉구 > 뉴스",
+      "snippet": "장윤정 경기도의원, 사회적 기업 지원 체계 및 공공 플랫폼 개선 촉구 > 뉴스 더코리아",
+      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5XbWV3MGFGUTk5UlN5anN2REFZZUc0STlQTWFTM2tPY2RLVktlbTZheWtrV0Y0VkNtdzhpMFlmM2JNd25MUzc0cXdBYjdMSUtsUWV1Qm9VQTliZGYxbWlnMDlmcW1HQ2F4NlZGZ2tUUlE?oc=5"
     },
     {
       "source": "naver",
@@ -1179,10 +1179,10 @@
     },
     {
       "source": "google",
-      "press": "seoul.co.kr",
+      "press": "서울신문",
       "date": "2026.07.28",
       "title": "장윤정 경기도의원, 도교육청 예결위원 선임… “학생·현장 중심 예산 편성 총력”",
-      "snippet": "장윤정 경기도의원, 도교육청 예결위원 선임… “학생·현장 중심 예산 편성 총력” seoul.co.kr",
+      "snippet": "장윤정 경기도의원, 도교육청 예결위원 선임… “학생·현장 중심 예산 편성 총력” 서울신문",
       "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPVk5XSnhCU1B1T2ZqbkFMcFowZkdnUDN3cVBabHV6dGdQWlJnenVTRzdZM1VmQkNWLU1obXU5RXNzQTBUZHFDMXVPd2dJUW1WYUQ5SEV0c3hfZWJiVGFEQm8tdXV2RF9nX29xUm1RZDhlYk1WMHJUSmxDT3dFZDVYcTJkbVIyXzdkUVA5QnFfZVVhbUU?oc=5"
     },
     {
@@ -1547,10 +1547,10 @@
     },
     {
       "source": "google",
-      "press": "gijn.kr",
+      "press": "경기인저널",
       "date": "2026.06.14",
       "title": "장윤정 도의원, 경기도교육청 예산유보 운영 점검",
-      "snippet": "장윤정 도의원, 경기도교육청 예산유보 운영 점검 gijn.kr",
+      "snippet": "장윤정 도의원, 경기도교육청 예산유보 운영 점검 경기인저널",
       "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE94OGl1THNCaUQ4MFM0WFpyZ2JKV1FUdXlVUXdQYkptNkd1Vi14MDVzb3ZXUlI4bEhYSHkyZXRpNGsxVEtZdUg0cy1MZ3haYjI5YkNiQjRLLTNPOGZTZGpKOTk4UFg?oc=5"
     },
     {
@@ -1739,10 +1739,10 @@
     },
     {
       "source": "google",
-      "press": "seoul.co.kr",
+      "press": "서울신문",
       "date": "2026.05.13",
       "title": "안산 상록구 다세대 주택 불…1명 사망·3명 부상",
-      "snippet": "안산 상록구 다세대 주택 불…1명 사망·3명 부상 seoul.co.kr",
+      "snippet": "안산 상록구 다세대 주택 불…1명 사망·3명 부상 서울신문",
       "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9ERkxuNk5RRFVpQmNqRVMtalpDU05MNndSNGIzb1l0bmZvOUZNU0dYeUptT2NyNDlvN2ZyLW9neG8xZWRKb2FPMzl0STFERTNjYWpqVF9jc1NhWlhMTlNBNWUyMGttZEl4YkdYTFJ2ZkJrUWNtdmFkSDlhOA?oc=5"
     },
     {
@@ -1752,14 +1752,6 @@
       "title": "안산 상록구 다세대주택서 불…1명 사망·3명 중경상",
       "snippet": "안산 상록구 다세대주택서 불…1명 사망·3명 중경상 연합뉴스",
       "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE91T1VUTjFsVE1fVzdLbWhjdnUyZVh4blRVUmszcnVzT25IOHQ1T2J1Uk16SHM0UHFoeDlXUllVNWZmM19mX2pSaXliOU9jNmdfYVNkU3p3QUI2XzjSAWBBVV95cUxQRUVibk9OcUtnV0dqeEREMF80dmI3WUJONzVXTmY4UU9SNEtrczl4RU1XVnpKY3ZhSkFhLWN1NF9lVEx1aS1zTF9rdUNhWEUwMmlCV1p6RlV3dWNFSnVKOFg?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "경기일보",
-      "date": "2026.05.13",
-      "title": "안산 상록구 다세대 주택 화재…1명 사망·3명 부상",
-      "snippet": "안산 상록구 다세대 주택 화재…1명 사망·3명 부상 경기일보",
-      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE53M3hjTDY4NG44T0Q5TkNFaXJrSGZxNzdhM2h4Vjg5SzgyVEs0enRjRGNTa0NpaUxsSTBSRjdjaW42RmVabHdfVGlaakkwOTRFWnRZU0ZpTWFKZ0k?oc=5"
     },
     {
       "source": "google",
@@ -1819,10 +1811,10 @@
     },
     {
       "source": "google",
-      "press": "donga.com",
+      "press": "동아일보",
       "date": "2026.04.25",
       "title": "안산 상록구 금속 구조물 제작 공장서 불…35분 만에 완진",
-      "snippet": "안산 상록구 금속 구조물 제작 공장서 불…35분 만에 완진 donga.com",
+      "snippet": "안산 상록구 금속 구조물 제작 공장서 불…35분 만에 완진 동아일보",
       "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE9aNk9telFyd253d0xfZ0IxWTgwa3VvaDc3b3ZzZEtCZnZwOVQxbTN3V201dWZNZllWTWVNT2RscWhFM3dMcWdtRm1CZE5Ca3ZmWHBGRGQxV2JfRVQ2UHZtTGVkMS1vSWJaLXdMSUp1TXNhem9PN2fSAWZBVV95cUxNekI3eFlqQTY1bURXeWpzdy1veXhkXzBVN0lIUTQxNGtsbTNZZTFYZzFXNFhDTzZFYnFkS25VSU1fRnd6MUxHTFlRRFhpSEFDY29lRjdRdUdCS0h4SlJxMUhGQk5hQkE?oc=5"
     },
     {
