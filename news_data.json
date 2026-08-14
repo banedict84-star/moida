@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-14 22:50 UTC",
+  "updated": "2026-08-14 23:48 UTC",
   "items": [
     {
       "source": "naver",
@@ -107,19 +107,19 @@
     },
     {
       "source": "naver",
-      "press": "fntimes.com",
-      "date": "2026.08.14",
-      "title": "김병철호 한양증권, PB 인재 ‘직접 키운다’…채용 방식도 변화",
-      "snippet": "입문교육을 마친 11명은 다음 주부터 여의도PWM센터, 송파RM센터, 안산프리미어센터, 인천프리미어센터 등에 배치된다. 현업 구성원들과 함께 근무하면서 금융상품과 자산관리, 고객 커뮤니케이션 등 리테일 영업 전반을...",
-      "url": "https://www.fntimes.com/html/view.php?ud=2026081414581760102a735e27af_18"
-    },
-    {
-      "source": "naver",
       "press": "news.dealsitetv.com",
       "date": "2026.08.14",
       "title": "한양증권, 리테일 신규 인력 선발…PB 인턴십 진행",
       "snippet": "교육을 마친 이들은 다음주부터 여의도PWM센터, 송파RM센터, 안산프리미어센터, 인천프리미어센터 등 각 영업 현장에 배치돼 현장 교육을 받는다. 이들은 현업 구성원들과 함께 금융상품과 자산관리, 고객 커뮤니케이션 등...",
       "url": "https://news.dealsitetv.com/articles/174784"
+    },
+    {
+      "source": "naver",
+      "press": "fntimes.com",
+      "date": "2026.08.14",
+      "title": "김병철호 한양증권, PB 인재 ‘직접 키운다’…채용 방식도 변화",
+      "snippet": "입문교육을 마친 11명은 다음 주부터 여의도PWM센터, 송파RM센터, 안산프리미어센터, 인천프리미어센터 등에 배치된다. 현업 구성원들과 함께 근무하면서 금융상품과 자산관리, 고객 커뮤니케이션 등 리테일 영업 전반을...",
+      "url": "https://www.fntimes.com/html/view.php?ud=2026081414581760102a735e27af_18"
     },
     {
       "source": "naver",
@@ -291,10 +291,10 @@
     },
     {
       "source": "google",
-      "press": "mnewstime.com",
+      "press": "mnewstime.newsa.kr",
       "date": "2026.08.14",
       "title": "안산교육지원청, 유·초 교사가 함께 만드는 배움의 길 ‘2026 협력 공동수업’ 시작",
-      "snippet": "안산교육지원청, 유·초 교사가 함께 만드는 배움의 길 ‘2026 협력 공동수업’ 시작 mnewstime.com",
+      "snippet": "안산교육지원청, 유·초 교사가 함께 만드는 배움의 길 ‘2026 협력 공동수업’ 시작 mnewstime.newsa.kr",
       "url": "https://news.google.com/rss/articles/CBMiR0FVX3lxTE1lQjl4WVdmRUx2VWhWbzlrUXUxQzBiRFJCZlpDV2Nya0dnSXNaREJ2YVFHM01IZlhUcUp1Nzg2SjA4UmpqRFpn?oc=5"
     },
     {
@@ -435,14 +435,6 @@
     },
     {
       "source": "naver",
-      "press": "siminilbo.co.kr",
-      "date": "2026.08.13",
-      "title": "안산시, 아동급식 대상자 재점검…결식 우려 아동 지원 강화",
-      "snippet": "안산시 아동급식위원회는 공무원을 비롯해 학부모, 영양사, 교수, 교육청 관계자 등 9명으로 구성돼 아동 급식과 관련한 주요 사항을 심의한다. 현재 안산에서는 G-드림카드를 이용하는 아동 1천277명과 지역아동센터 등...",
-      "url": "https://www.siminilbo.co.kr/news/newsview.php?ncode=1160263059294815"
-    },
-    {
-      "source": "naver",
       "press": "gukjenews.com",
       "date": "2026.08.13",
       "title": "솥밥 프랜차이즈 동양솥밥, 인천계양점 오픈…수도권 가맹 확대 본격화",
@@ -456,6 +448,14 @@
       "title": "안산시, 환경기초시설 온실가스 배출권 관리 실무교육",
       "snippet": "▲ ‘2026년 온실가스 배출권거래제 교육을 진행하고 있다 /사진제공=안산시 안산시가 환경기초시설의 온실가스 배출량을 효율적으로 관리하기 위한 실무교육을 진행했다. 시는 지난 12일 환경기초시설 17개 사업장...",
       "url": "https://www.siminilbo.co.kr/news/newsview.php?ncode=1160262938276429"
+    },
+    {
+      "source": "naver",
+      "press": "siminilbo.co.kr",
+      "date": "2026.08.13",
+      "title": "안산시, 아동급식 대상자 재점검…결식 우려 아동 지원 강화",
+      "snippet": "안산시 아동급식위원회는 공무원을 비롯해 학부모, 영양사, 교수, 교육청 관계자 등 9명으로 구성돼 아동 급식과 관련한 주요 사항을 심의한다. 현재 안산에서는 G-드림카드를 이용하는 아동 1천277명과 지역아동센터 등...",
+      "url": "https://www.siminilbo.co.kr/news/newsview.php?ncode=1160263059294815"
     },
     {
       "source": "naver",
@@ -1275,10 +1275,10 @@
     },
     {
       "source": "google",
-      "press": "천지일보",
+      "press": "newscj.com",
       "date": "2026.07.27",
       "title": "장윤정 경기도의원, 경기도교육청 예결특위 위원 선임",
-      "snippet": "장윤정 경기도의원, 경기도교육청 예결특위 위원 선임 천지일보",
+      "snippet": "장윤정 경기도의원, 경기도교육청 예결특위 위원 선임 newscj.com",
       "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBhSjRyb3hjNWNtRFpLV0tGbFVFZzhNVnE0ZmpwMTd2RGhCM2lmSEVEcW1LZG4xd3lHVDNrN0NIMkRlS2hkeGdIX0ZoejFNVm1PcFB4NWRDMkFsbHdLMkUtR0ZDOWhCbVFyZHc?oc=5"
     },
     {
@@ -1291,10 +1291,10 @@
     },
     {
       "source": "google",
-      "press": "사회적경제뉴스",
+      "press": "senews.kr",
       "date": "2026.07.27",
       "title": "경기도의회 장윤정 의원, 최혜경 의원 의정 활동 소식",
-      "snippet": "경기도의회 장윤정 의원, 최혜경 의원 의정 활동 소식 사회적경제뉴스",
+      "snippet": "경기도의회 장윤정 의원, 최혜경 의원 의정 활동 소식 senews.kr",
       "url": "https://news.google.com/rss/articles/CBMiTEFVX3lxTFA0N1E0MG1Qc3U3UkNlLUhkdkFEbDJSSXJxdEVMa09Tb1Z1MDBtRjktdG1oMndrVG1hbkctQU93OGhIYUN3V2NJOVA3SWo?oc=5"
     },
     {
@@ -1459,10 +1459,10 @@
     },
     {
       "source": "google",
-      "press": "천지일보",
+      "press": "newscj.com",
       "date": "2026.07.21",
       "title": "장윤정 경기도의원 “사회적기업 지원 확대하고 공공서비스 개선해야”",
-      "snippet": "장윤정 경기도의원 “사회적기업 지원 확대하고 공공서비스 개선해야” 천지일보",
+      "snippet": "장윤정 경기도의원 “사회적기업 지원 확대하고 공공서비스 개선해야” newscj.com",
       "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9GbkNjVWNmT0lIQVF5QUFHSlJIT2tZQVE3Vm5zZnhQTU1nRGJiTXM4YVJTVzIzemJTWmUyXzVWdnRCd2lHc25ya3J5dFp4RjBEOTJKOExKZEJOLW85WVl0YzRqc3BMN2N3d2c?oc=5"
     },
     {
@@ -1731,18 +1731,18 @@
     },
     {
       "source": "google",
-      "press": "news.kbs.co.kr",
+      "press": "KBS 뉴스",
       "date": "2026.05.26",
       "title": "경기 안산 상록구 카센터서 불…인명 피해 없어",
-      "snippet": "경기 안산 상록구 카센터서 불…인명 피해 없어 news.kbs.co.kr",
+      "snippet": "경기 안산 상록구 카센터서 불…인명 피해 없어 KBS 뉴스",
       "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9BZ0ZQQk1lYXVtWXJsTk1jYU5GbTJTMWk0TXh1VG1aTEVmaVhsRUZXM2lhZzNoQzJMNWU0MVk0OFlBcUlzZkFfSFpHbEVDOTlHMGp4cGFWT2JGdXM?oc=5"
     },
     {
       "source": "google",
-      "press": "yna.co.kr",
+      "press": "연합뉴스",
       "date": "2026.05.13",
       "title": "안산 상록구 비닐하우스서 불…1시간 20여분 만에 진화",
-      "snippet": "안산 상록구 비닐하우스서 불…1시간 20여분 만에 진화 yna.co.kr",
+      "snippet": "안산 상록구 비닐하우스서 불…1시간 20여분 만에 진화 연합뉴스",
       "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9RU2dkakIwbl9yY3JnSlZIRTV0LVBTdWpOejh4eEd5Rm9yUEE1TXQ0R25zX0l3ZDlSNmtLTi12MmtqUWVISThZR3ZaNE5NcGV4cVRmd0FIaDJwcDTSAWBBVV95cUxQNldVQmI2OEdEejFPM2N5eUhZRHN3MjJxUU9PR0FYLVVqWEhjRnBlRXIzRWZuQnRkcURjLWxvbHJydzJCM3ZVRTNlamhGQnJIZktIYkQzcjk5Rk9iR0pNX0M?oc=5"
     },
     {
@@ -1755,10 +1755,10 @@
     },
     {
       "source": "google",
-      "press": "yna.co.kr",
+      "press": "연합뉴스",
       "date": "2026.05.13",
       "title": "안산 상록구 다세대주택서 불…1명 사망·3명 중경상",
-      "snippet": "안산 상록구 다세대주택서 불…1명 사망·3명 중경상 yna.co.kr",
+      "snippet": "안산 상록구 다세대주택서 불…1명 사망·3명 중경상 연합뉴스",
       "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE91T1VUTjFsVE1fVzdLbWhjdnUyZVh4blRVUmszcnVzT25IOHQ1T2J1Uk16SHM0UHFoeDlXUllVNWZmM19mX2pSaXliOU9jNmdfYVNkU3p3QUI2XzjSAWBBVV95cUxQRUVibk9OcUtnV0dqeEREMF80dmI3WUJONzVXTmY4UU9SNEtrczl4RU1XVnpKY3ZhSkFhLWN1NF9lVEx1aS1zTF9rdUNhWEUwMmlCV1p6RlV3dWNFSnVKOFg?oc=5"
     },
     {
@@ -1803,10 +1803,10 @@
     },
     {
       "source": "google",
-      "press": "동아일보",
+      "press": "donga.com",
       "date": "2026.04.25",
       "title": "안산 상록구 금속 구조물 제작 공장서 불…35분 만에 완진",
-      "snippet": "안산 상록구 금속 구조물 제작 공장서 불…35분 만에 완진 동아일보",
+      "snippet": "안산 상록구 금속 구조물 제작 공장서 불…35분 만에 완진 donga.com",
       "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE9aNk9telFyd253d0xfZ0IxWTgwa3VvaDc3b3ZzZEtCZnZwOVQxbTN3V201dWZNZllWTWVNT2RscWhFM3dMcWdtRm1CZE5Ca3ZmWHBGRGQxV2JfRVQ2UHZtTGVkMS1vSWJaLXdMSUp1TXNhem9PN2fSAWZBVV95cUxNekI3eFlqQTY1bURXeWpzdy1veXhkXzBVN0lIUTQxNGtsbTNZZTFYZzFXNFhDTzZFYnFkS25VSU1fRnd6MUxHTFlRRFhpSEFDY29lRjdRdUdCS0h4SlJxMUhGQk5hQkE?oc=5"
     },
     {
