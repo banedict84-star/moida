@@ -1,6 +1,14 @@
 {
-  "updated": "2026-08-15 13:08 UTC",
+  "updated": "2026-08-15 13:52 UTC",
   "items": [
+    {
+      "source": "naver",
+      "press": "kor.theasian.asia",
+      "date": "2026.08.15",
+      "title": "[임영상의 글로컬 뷰] 고려인 제빵교육 수료…‘페치카 베이커리’ 창업...",
+      "snippet": "우선 8월 19일 컨벡션 오븐 1대를 증정하고, 9월 18일 정식으로 곤지암 <페치카 베이커리> 창업(개점) 행사를 추진하기로 했다.안산 김뱌체슬라프 교육생은 기존의 <프로방스>를 제과·제빵과 다양한 음료를 판매하는...",
+      "url": "http://kor.theasian.asia/archives/413225"
+    },
     {
       "source": "naver",
       "press": "ekn.kr",
@@ -147,19 +155,19 @@
     },
     {
       "source": "naver",
-      "press": "news.dealsitetv.com",
-      "date": "2026.08.14",
-      "title": "한양증권, 리테일 신규 인력 선발…PB 인턴십 진행",
-      "snippet": "교육을 마친 이들은 다음주부터 여의도PWM센터, 송파RM센터, 안산프리미어센터, 인천프리미어센터 등 각 영업 현장에 배치돼 현장 교육을 받는다. 이들은 현업 구성원들과 함께 금융상품과 자산관리, 고객 커뮤니케이션 등...",
-      "url": "https://news.dealsitetv.com/articles/174784"
-    },
-    {
-      "source": "naver",
       "press": "fntimes.com",
       "date": "2026.08.14",
       "title": "김병철호 한양증권, PB 인재 ‘직접 키운다’…채용 방식도 변화",
       "snippet": "입문교육을 마친 11명은 다음 주부터 여의도PWM센터, 송파RM센터, 안산프리미어센터, 인천프리미어센터 등에 배치된다. 현업 구성원들과 함께 근무하면서 금융상품과 자산관리, 고객 커뮤니케이션 등 리테일 영업 전반을...",
       "url": "https://www.fntimes.com/html/view.php?ud=2026081414581760102a735e27af_18"
+    },
+    {
+      "source": "naver",
+      "press": "news.dealsitetv.com",
+      "date": "2026.08.14",
+      "title": "한양증권, 리테일 신규 인력 선발…PB 인턴십 진행",
+      "snippet": "교육을 마친 이들은 다음주부터 여의도PWM센터, 송파RM센터, 안산프리미어센터, 인천프리미어센터 등 각 영업 현장에 배치돼 현장 교육을 받는다. 이들은 현업 구성원들과 함께 금융상품과 자산관리, 고객 커뮤니케이션 등...",
+      "url": "https://news.dealsitetv.com/articles/174784"
     },
     {
       "source": "naver",
@@ -466,14 +474,6 @@
       "url": "https://www.shinailbo.co.kr/news/articleView.html?idxno=5051271"
     },
     {
-      "source": "naver",
-      "press": "kgnews.co.kr",
-      "date": "2026.08.13",
-      "title": "배드민턴부터 양궁까지, ‘대한체육회·광주은행’ 유·청소년 스포츠 ...",
-      "snippet": "학생들은 중학교 진학 이후 자신의 운동 목표를 구체적으로 설정하고 이를 실천하기 위한 계획을 스스로 세우며 교육을 마무리했다. 유·청소년 종목 탐색 과정에서 양궁의 안산선수가 멘토링 을 하고 있다. (사진...",
-      "url": "https://www.kgnews.co.kr/news/article.html?no=907730"
-    },
-    {
       "source": "google",
       "press": "경인투데이뉴스",
       "date": "2026.08.13",
@@ -531,10 +531,10 @@
     },
     {
       "source": "google",
-      "press": "webeconomy.co.kr",
+      "press": "웹이코노미",
       "date": "2026.08.12",
       "title": "경기도의회 장윤정 의원, 안산시 사회적경제연대와 현장 소통",
-      "snippet": "경기도의회 장윤정 의원, 안산시 사회적경제연대와 현장 소통 webeconomy.co.kr",
+      "snippet": "경기도의회 장윤정 의원, 안산시 사회적경제연대와 현장 소통 웹이코노미",
       "url": "https://news.google.com/rss/articles/CBMickFVX3lxTFBQSF9IMk8zT3dVa1JjSjVrNWFuS2I0ck9sWERyV2dCSGlzSFl2R0Y2TjhCVFF3VHBSelJjdjNKNzN2QzVZRnV1RTNsZ1ZTdDJTS1ZtTnJZVThCTWsyTkg1RXEtbEZOUVBrM0NxcXIyMjVaQQ?oc=5"
     },
     {
@@ -1435,10 +1435,10 @@
     },
     {
       "source": "google",
-      "press": "천지일보",
+      "press": "newscj.com",
       "date": "2026.07.21",
       "title": "장윤정 경기도의원 “사회적기업 지원 확대하고 공공서비스 개선해야”",
-      "snippet": "장윤정 경기도의원 “사회적기업 지원 확대하고 공공서비스 개선해야” 천지일보",
+      "snippet": "장윤정 경기도의원 “사회적기업 지원 확대하고 공공서비스 개선해야” newscj.com",
       "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9GbkNjVWNmT0lIQVF5QUFHSlJIT2tZQVE3Vm5zZnhQTU1nRGJiTXM4YVJTVzIzemJTWmUyXzVWdnRCd2lHc25ya3J5dFp4RjBEOTJKOExKZEJOLW85WVl0YzRqc3BMN2N3d2c?oc=5"
     },
     {
@@ -1808,14 +1808,6 @@
       "title": "장윤정 도의원 안산3선거구 재도전 공식선언",
       "snippet": "장윤정 도의원 안산3선거구 재도전 공식선언 안산뉴스",
       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9RaUlPOGI2eng2bU9nTGJBZHdmd3JpRVRXc1BiSG5sN0c0d3A4RkF0WVZ2OWUzaDNTWWs0VDMwV2FqU0g3ZzdaYzV6d0Z4TnZtRG9YRVRIQ3VTQWxucXdWbmRxR3I5VFJCZ2RUNA?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "김포시민신문",
-      "date": "2026.04.01",
-      "title": "[경기도의회] 장윤정 의원, 기계설비유지관리자 처우개선 논의",
-      "snippet": "[경기도의회] 장윤정 의원, 기계설비유지관리자 처우개선 논의 김포시민신문",
-      "url": "https://news.google.com/rss/articles/CBMiQkFVX3lxTE93ZHlHbUFtYmwyb0dDMTc1NmFsNnZUNnZ6X2pMWGttbjdOc0lfYVhmVDh3SWxsVW5hZy1hNHVOeXQxUQ?oc=5"
     },
     {
       "source": "google",
