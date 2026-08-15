@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-15 18:56 UTC",
+  "updated": "2026-08-15 19:46 UTC",
   "items": [
     {
       "source": "naver",
@@ -163,19 +163,19 @@
     },
     {
       "source": "naver",
-      "press": "fntimes.com",
-      "date": "2026.08.14",
-      "title": "김병철호 한양증권, PB 인재 ‘직접 키운다’…채용 방식도 변화",
-      "snippet": "입문교육을 마친 11명은 다음 주부터 여의도PWM센터, 송파RM센터, 안산프리미어센터, 인천프리미어센터 등에 배치된다. 현업 구성원들과 함께 근무하면서 금융상품과 자산관리, 고객 커뮤니케이션 등 리테일 영업 전반을...",
-      "url": "https://www.fntimes.com/html/view.php?ud=2026081414581760102a735e27af_18"
-    },
-    {
-      "source": "naver",
       "press": "news.dealsitetv.com",
       "date": "2026.08.14",
       "title": "한양증권, 리테일 신규 인력 선발…PB 인턴십 진행",
       "snippet": "교육을 마친 이들은 다음주부터 여의도PWM센터, 송파RM센터, 안산프리미어센터, 인천프리미어센터 등 각 영업 현장에 배치돼 현장 교육을 받는다. 이들은 현업 구성원들과 함께 금융상품과 자산관리, 고객 커뮤니케이션 등...",
       "url": "https://news.dealsitetv.com/articles/174784"
+    },
+    {
+      "source": "naver",
+      "press": "fntimes.com",
+      "date": "2026.08.14",
+      "title": "김병철호 한양증권, PB 인재 ‘직접 키운다’…채용 방식도 변화",
+      "snippet": "입문교육을 마친 11명은 다음 주부터 여의도PWM센터, 송파RM센터, 안산프리미어센터, 인천프리미어센터 등에 배치된다. 현업 구성원들과 함께 근무하면서 금융상품과 자산관리, 고객 커뮤니케이션 등 리테일 영업 전반을...",
+      "url": "https://www.fntimes.com/html/view.php?ud=2026081414581760102a735e27af_18"
     },
     {
       "source": "naver",
@@ -339,19 +339,19 @@
     },
     {
       "source": "google",
+      "press": "한국글로벌뉴스",
+      "date": "2026.08.14",
+      "title": "안산교육지원청, \"교과서는 교실 안까지\" 2학기 초등학교 교과서 배부 지원",
+      "snippet": "안산교육지원청, \"교과서는 교실 안까지\" 2학기 초등학교 교과서 배부 지원 한국글로벌뉴스",
+      "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE44a1E0b2U0emNyd0dFUDR0OWtJdXg0eFJqdGNnTVJ6TTZQci1XRHdIR1Q2RTFQYXhLMzdKRWlodjIwS0xqMzFicGlwMFAyQWF2M0loZFRmZVpobnI2X2FwNg?oc=5"
+    },
+    {
+      "source": "google",
       "press": "newszoom.kr",
       "date": "2026.08.14",
       "title": "안산교육지원청, KT와 함께 교원 AI 활용 역량강화 직무연수 성료",
       "snippet": "안산교육지원청, KT와 함께 교원 AI 활용 역량강화 직무연수 성료 newszoom.kr",
       "url": "https://news.google.com/rss/articles/CBMiREFVX3lxTFBFaVlTNHBLd00yajh4eXhZWE50WG90d3UtbHpCWldMVVJZTmpGOU1qT29KYUlKYVNSQmRVMnptcDVialJD?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "누리일보",
-      "date": "2026.08.14",
-      "title": "안산교육지원청, \"교과서는 교실 안까지\" 2학기 초등학교 교과서 배부 지원",
-      "snippet": "안산교육지원청, \"교과서는 교실 안까지\" 2학기 초등학교 교과서 배부 지원 누리일보",
-      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE11WVVYb0RBTXVMMXplcmF3aWhUVVY2N0xLVDdyM2ZXeGcybTdkbFpDRmlSN2NjTDI0S1BSY3poV18yWHdOTWZ1NFY3RmRUSnRjXzJhX2lNRnR3MmlM?oc=5"
     },
     {
       "source": "google",
@@ -483,14 +483,6 @@
     },
     {
       "source": "google",
-      "press": "광흥타임즈",
-      "date": "2026.08.13",
-      "title": "2026 안산청소년통합자치기구(A.Y.U.: Ansan Youth Union) 기관장과의 정담회 운영",
-      "snippet": "2026 안산청소년통합자치기구(A.Y.U.: Ansan Youth Union) 기관장과의 정담회 운영 광흥타임즈",
-      "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE4xeWhHcVlPeDRqR1podjNLZlp1a01QblY3TEE3SW5QQmZBdzQ1VVFLN2V5eEZKd3JlVEdZQ2k2bGppRjUxN182UjNUQkxWYzE0Tk1hSzl0Ui1ucWFTcnVV?oc=5"
-    },
-    {
-      "source": "google",
       "press": "한국소통투데이",
       "date": "2026.08.13",
       "title": "안산시의회, 안산청소년의회 의원들 '격려'",
@@ -504,6 +496,14 @@
       "title": "안산시, 온실가스 배출권거래제 담당자 교육 실시",
       "snippet": "안산시, 온실가스 배출권거래제 담당자 교육 실시 liberalmedia.co.kr",
       "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE5hbzJrMDJNbjZVbGtnak1aZEljVzlrMzRsQ0tMaWZHbUdnR2laX2RpNC1UWDNxZVJZQU5xMFFuNms4bmc2eWo1WERvQllUbzZCNjdnTmt4R29QT2QzLWtDQkZFTTE?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "mediatoday.asia",
+      "date": "2026.08.13",
+      "title": "2026 안산청소년통합자치기구(A.Y.U.: Ansan Youth Union) 기관장과의 정담회 운영",
+      "snippet": "2026 안산청소년통합자치기구(A.Y.U.: Ansan Youth Union) 기관장과의 정담회 운영 mediatoday.asia",
+      "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFB0dkY1amhIQ3NjQ1FfdlhBSXMybFBFbmpYSDFjeV9hM3BybG1na2QxelF2TlV6Vnl0T0o5LXhfTDJxN1pzNGpoVU8zSXdBNDhGTVVBMlVn?oc=5"
     },
     {
       "source": "naver",
@@ -539,10 +539,10 @@
     },
     {
       "source": "google",
-      "press": "웹이코노미",
+      "press": "webeconomy.co.kr",
       "date": "2026.08.12",
       "title": "경기도의회 장윤정 의원, 안산시 사회적경제연대와 현장 소통",
-      "snippet": "경기도의회 장윤정 의원, 안산시 사회적경제연대와 현장 소통 웹이코노미",
+      "snippet": "경기도의회 장윤정 의원, 안산시 사회적경제연대와 현장 소통 webeconomy.co.kr",
       "url": "https://news.google.com/rss/articles/CBMickFVX3lxTFBQSF9IMk8zT3dVa1JjSjVrNWFuS2I0ck9sWERyV2dCSGlzSFl2R0Y2TjhCVFF3VHBSelJjdjNKNzN2QzVZRnV1RTNsZ1ZTdDJTS1ZtTnJZVThCTWsyTkg1RXEtbEZOUVBrM0NxcXIyMjVaQQ?oc=5"
     },
     {
@@ -787,10 +787,10 @@
     },
     {
       "source": "google",
-      "press": "매일일보",
+      "press": "m-i.kr",
       "date": "2026.08.10",
       "title": "안산교육지원청, 영유아 127명 대상 문화다양성 음악회",
-      "snippet": "안산교육지원청, 영유아 127명 대상 문화다양성 음악회 매일일보",
+      "snippet": "안산교육지원청, 영유아 127명 대상 문화다양성 음악회 m-i.kr",
       "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFBZNmxsNTVVQkhOOFZhalNTUXYzeTAtWDNYUmN6LVNCR2I4OE9OWExmWjQ3NjBfMnVybUU3eWoxcTZQek9BakNScU1FRkxITnR4Qkd2QzBseTlTMjRnRVNZcFpCU2Y?oc=5"
     },
     {
@@ -808,6 +808,14 @@
       "title": "안산교육지원청, 지자체와 손잡고 영유아 문화다양성 꽃피운다 !",
       "snippet": "안산교육지원청, 지자체와 손잡고 영유아 문화다양성 꽃피운다 ! mediatoday.asia",
       "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxObmxBdUh5REtnVk92Q0dudXlJZDd1OEFlWTdOT2tKMW5GaEoyVUY3WXd6ZC1XN2hxZmtLTkNtOGxYbXgtRjgtZUQwNWdsTGhGXzVoc0JMSVpnVjFZZnBhUjZ6S29BSW1xOGxRVVkwTV94dnlJbEdfeVM2MzRzOHAxdGN3clAzMDVnTlBqYWlJSG5KV2hNTDJ3NQ?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "아시아투데이",
+      "date": "2026.08.10",
+      "title": "안산시 교육투자 확대…이민근 시장, 정주 경쟁력 끌어올린다",
+      "snippet": "안산시 교육투자 확대…이민근 시장, 정주 경쟁력 끌어올린다 아시아투데이",
+      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE9uYko3Wm1jX1pxQVlaMnc1emQzZWowNTM0UGJWYVd0YjFTNjg0TURUNlZfMTljak82QzRtSUpLcklITERtQ1BEaFB2Qkdudi12YldNaEdSWlg3RWdjQnhvRWJ5WGx0cWFXdHZpdF9n?oc=5"
     },
     {
       "source": "naver",
@@ -1267,10 +1275,10 @@
     },
     {
       "source": "google",
-      "press": "사회적경제뉴스",
+      "press": "senews.kr",
       "date": "2026.07.27",
       "title": "경기도의회 장윤정 의원, 최혜경 의원 의정 활동 소식",
-      "snippet": "경기도의회 장윤정 의원, 최혜경 의원 의정 활동 소식 사회적경제뉴스",
+      "snippet": "경기도의회 장윤정 의원, 최혜경 의원 의정 활동 소식 senews.kr",
       "url": "https://news.google.com/rss/articles/CBMiP0FVX3lxTE1EMTUyU180VHVXUlhfdGdoYnlEekUtVjA2WG5EaGRKVVVHbEpyU2NjQzMyYWJmd3QtVk91SHZ2bw?oc=5"
     },
     {
@@ -1368,14 +1376,6 @@
       "title": "경기도의회 장윤정 의원, 경기도 사회적경제원 및 신용보증재단 현안 집중 질의",
       "snippet": "경기도의회 장윤정 의원, 경기도 사회적경제원 및 신용보증재단 현안 집중 질의 snfocus.net",
       "url": "https://news.google.com/rss/articles/CBMiREFVX3lxTFB5dDZkRnRySzhpa2xfRUNXaDU5VlQ0c2xXcnpLb3BrR29KUUVOY1htS1dEOFZEN284ajdEcVpJaEVwWm1Q?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "kgmail.kr",
-      "date": "2026.07.22",
-      "title": "안산교육지원청 “다름이 자산이 되는 교실 이야기”",
-      "snippet": "안산교육지원청 “다름이 자산이 되는 교실 이야기” kgmail.kr",
-      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFA5X01TMlI0QUhHN3JtQ21nVERNZDN1Q1ZHRWNMQS1BTmZLRHA4eVhtcWVYUWFiaG5hcmdSRWh2WFZRUWs5QlVrdlExMms0SHV2V0FveTRLc2R4VFJ6OHllUkpaZ0tYekE?oc=5"
     },
     {
       "source": "naver",
