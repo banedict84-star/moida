@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-15 04:57 UTC",
+  "updated": "2026-08-15 05:51 UTC",
   "items": [
     {
       "source": "naver",
@@ -123,19 +123,19 @@
     },
     {
       "source": "naver",
-      "press": "fntimes.com",
-      "date": "2026.08.14",
-      "title": "김병철호 한양증권, PB 인재 ‘직접 키운다’…채용 방식도 변화",
-      "snippet": "입문교육을 마친 11명은 다음 주부터 여의도PWM센터, 송파RM센터, 안산프리미어센터, 인천프리미어센터 등에 배치된다. 현업 구성원들과 함께 근무하면서 금융상품과 자산관리, 고객 커뮤니케이션 등 리테일 영업 전반을...",
-      "url": "https://www.fntimes.com/html/view.php?ud=2026081414581760102a735e27af_18"
-    },
-    {
-      "source": "naver",
       "press": "news.dealsitetv.com",
       "date": "2026.08.14",
       "title": "한양증권, 리테일 신규 인력 선발…PB 인턴십 진행",
       "snippet": "교육을 마친 이들은 다음주부터 여의도PWM센터, 송파RM센터, 안산프리미어센터, 인천프리미어센터 등 각 영업 현장에 배치돼 현장 교육을 받는다. 이들은 현업 구성원들과 함께 금융상품과 자산관리, 고객 커뮤니케이션 등...",
       "url": "https://news.dealsitetv.com/articles/174784"
+    },
+    {
+      "source": "naver",
+      "press": "fntimes.com",
+      "date": "2026.08.14",
+      "title": "김병철호 한양증권, PB 인재 ‘직접 키운다’…채용 방식도 변화",
+      "snippet": "입문교육을 마친 11명은 다음 주부터 여의도PWM센터, 송파RM센터, 안산프리미어센터, 인천프리미어센터 등에 배치된다. 현업 구성원들과 함께 근무하면서 금융상품과 자산관리, 고객 커뮤니케이션 등 리테일 영업 전반을...",
+      "url": "https://www.fntimes.com/html/view.php?ud=2026081414581760102a735e27af_18"
     },
     {
       "source": "naver",
@@ -453,14 +453,6 @@
       "source": "naver",
       "press": "siminilbo.co.kr",
       "date": "2026.08.13",
-      "title": "안산시, 아동급식 대상자 재점검…결식 우려 아동 지원 강화",
-      "snippet": "안산시 아동급식위원회는 공무원을 비롯해 학부모, 영양사, 교수, 교육청 관계자 등 9명으로 구성돼 아동 급식과 관련한 주요 사항을 심의한다. 현재 안산에서는 G-드림카드를 이용하는 아동 1천277명과 지역아동센터 등...",
-      "url": "https://www.siminilbo.co.kr/news/newsview.php?ncode=1160263059294815"
-    },
-    {
-      "source": "naver",
-      "press": "siminilbo.co.kr",
-      "date": "2026.08.13",
       "title": "안산시, 환경기초시설 온실가스 배출권 관리 실무교육",
       "snippet": "▲ ‘2026년 온실가스 배출권거래제 교육을 진행하고 있다 /사진제공=안산시 안산시가 환경기초시설의 온실가스 배출량을 효율적으로 관리하기 위한 실무교육을 진행했다. 시는 지난 12일 환경기초시설 17개 사업장...",
       "url": "https://www.siminilbo.co.kr/news/newsview.php?ncode=1160262938276429"
@@ -472,6 +464,14 @@
       "title": "솥밥 프랜차이즈 동양솥밥, 인천계양점 오픈…수도권 가맹 확대 본격화",
       "snippet": "㈜우리이길은 직영점 운영을 통해 축적한 상권 데이터를 바탕으로 가맹점 입지 분석과 매장 운영 전략을 지원하고 있으며, 점포 개발부터 오픈 교육, 마케팅까지 체계적인 본사 지원 시스템을 구축하고 있다. 또한 안산...",
       "url": "https://www.gukjenews.com/news/articleView.html?idxno=3664049"
+    },
+    {
+      "source": "naver",
+      "press": "siminilbo.co.kr",
+      "date": "2026.08.13",
+      "title": "안산시, 아동급식 대상자 재점검…결식 우려 아동 지원 강화",
+      "snippet": "안산시 아동급식위원회는 공무원을 비롯해 학부모, 영양사, 교수, 교육청 관계자 등 9명으로 구성돼 아동 급식과 관련한 주요 사항을 심의한다. 현재 안산에서는 G-드림카드를 이용하는 아동 1천277명과 지역아동센터 등...",
+      "url": "https://www.siminilbo.co.kr/news/newsview.php?ncode=1160263059294815"
     },
     {
       "source": "google",
@@ -523,10 +523,10 @@
     },
     {
       "source": "google",
-      "press": "thekorea.kr",
+      "press": "더코리아",
       "date": "2026.08.12",
       "title": "장윤정 경기도의원, 안산시 사회적경제연대와 현장 소통 나서 > 뉴스",
-      "snippet": "장윤정 경기도의원, 안산시 사회적경제연대와 현장 소통 나서 > 뉴스 thekorea.kr",
+      "snippet": "장윤정 경기도의원, 안산시 사회적경제연대와 현장 소통 나서 > 뉴스 더코리아",
       "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5MZmlrTkM0V21OazF6QzVUcHFORGp4TGo1bTh6cUZ2MHFqeUJOMUxsVld1b2htdTcwMmlQZzhHdXM4SXhXYi1OUUN1bW5uUnlYS0dpN3pMeXNIMklOR2xsYXBGLWxjd2ZLZVJxLWMwQ1o?oc=5"
     },
     {
@@ -779,10 +779,10 @@
     },
     {
       "source": "google",
-      "press": "HKBC환경방송",
+      "press": "hkbc.kr",
       "date": "2026.08.11",
       "title": "경기도의회 박은경 의원, 안산 교육현안·유보통합 추진상황 점검",
-      "snippet": "경기도의회 박은경 의원, 안산 교육현안·유보통합 추진상황 점검 HKBC환경방송",
+      "snippet": "경기도의회 박은경 의원, 안산 교육현안·유보통합 추진상황 점검 hkbc.kr",
       "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTFBxa0plSmtNZy1sdktTRkRpaDFIY0p1Y3Q3RWtKMzhLYnBLUDRQYUpwS3F0YjJkSGEyUVRCZFdjbzhfLWs1a3JNM1MwOWQtV2lOMDNYbTZuOXVfMDdhR0Z3RDNHVdIBZ0FVX3lxTE9oS3owNThVWF95LWYyQ2cwelBrclhNSC1ibm5RTG5rVnZEOUZicmxOVVlmbWt6dFMxVzZ3dGllYlZDMmQyMHF4VUdZYi1MODVpSGFqbTJvRmJTYUc5emswUzUyUkZxZTQ?oc=5"
     },
     {
@@ -808,6 +808,14 @@
       "title": "안산교육지원청, 지자체와 손잡고 영유아 문화다양성 꽃피운다 !",
       "snippet": "안산교육지원청, 지자체와 손잡고 영유아 문화다양성 꽃피운다 ! mediatoday.asia",
       "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxObmxBdUh5REtnVk92Q0dudXlJZDd1OEFlWTdOT2tKMW5GaEoyVUY3WXd6ZC1XN2hxZmtLTkNtOGxYbXgtRjgtZUQwNWdsTGhGXzVoc0JMSVpnVjFZZnBhUjZ6S29BSW1xOGxRVVkwTV94dnlJbEdfeVM2MzRzOHAxdGN3clAzMDVnTlBqYWlJSG5KV2hNTDJ3NQ?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "아시아투데이",
+      "date": "2026.08.10",
+      "title": "안산시 교육투자 확대…이민근 시장, 정주 경쟁력 끌어올린다",
+      "snippet": "안산시 교육투자 확대…이민근 시장, 정주 경쟁력 끌어올린다 아시아투데이",
+      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE9uYko3Wm1jX1pxQVlaMnc1emQzZWowNTM0UGJWYVd0YjFTNjg0TURUNlZfMTljak82QzRtSUpLcklITERtQ1BEaFB2Qkdudi12YldNaEdSWlg3RWdjQnhvRWJ5WGx0cWFXdHZpdF9n?oc=5"
     },
     {
       "source": "naver",
@@ -1027,18 +1035,18 @@
     },
     {
       "source": "google",
-      "press": "thekorea.kr",
+      "press": "더코리아",
       "date": "2026.08.03",
       "title": "장윤정 경기도의원, 사회적 기업 지원 체계 및 공공 플랫폼 개선 촉구 > 뉴스",
-      "snippet": "장윤정 경기도의원, 사회적 기업 지원 체계 및 공공 플랫폼 개선 촉구 > 뉴스 thekorea.kr",
+      "snippet": "장윤정 경기도의원, 사회적 기업 지원 체계 및 공공 플랫폼 개선 촉구 > 뉴스 더코리아",
       "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5XbWV3MGFGUTk5UlN5anN2REFZZUc0STlQTWFTM2tPY2RLVktlbTZheWtrV0Y0VkNtdzhpMFlmM2JNd25MUzc0cXdBYjdMSUtsUWV1Qm9VQTliZGYxbWlnMDlmcW1HQ2F4NlZGZ2tUUlE?oc=5"
     },
     {
       "source": "google",
-      "press": "thekorea.kr",
+      "press": "더코리아",
       "date": "2026.08.03",
       "title": "장윤정 경기도의원, 경제노동위원회 부위원장 선임… 민생 현안 해결 박차 > 뉴스",
-      "snippet": "장윤정 경기도의원, 경제노동위원회 부위원장 선임… 민생 현안 해결 박차 > 뉴스 thekorea.kr",
+      "snippet": "장윤정 경기도의원, 경제노동위원회 부위원장 선임… 민생 현안 해결 박차 > 뉴스 더코리아",
       "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1SdDh6UW9sWXlEWlRrYkVrWjlKU3ZoY19HUnpubU5peFNTWko1QlRGYVh1djVtcnM4VmgxYVpUUDNCRHpsb1lHZWwzTmhfVDBsUE5walJQb2dzWi1BS1FIQ0phNzVFc1g4RkF6UWxVQzk?oc=5"
     },
     {
@@ -1075,10 +1083,10 @@
     },
     {
       "source": "google",
-      "press": "thekorea.kr",
+      "press": "더코리아",
       "date": "2026.08.02",
       "title": "장윤정 경기도의원, 경기도 사회적경제원 및 신용보증재단 현안 집중 질의 > 뉴스",
-      "snippet": "장윤정 경기도의원, 경기도 사회적경제원 및 신용보증재단 현안 집중 질의 > 뉴스 thekorea.kr",
+      "snippet": "장윤정 경기도의원, 경기도 사회적경제원 및 신용보증재단 현안 집중 질의 > 뉴스 더코리아",
       "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBVV3BDNjRuWHgtOGpuMHRVYzd4TmhMblN4RnZDbm5SUGhaYlhmY09vSGxVZndlLW9XZlNtZ3l4NTNVbFNJQWJwN0hLU1VBY20tNXQwUk83OHpta1ZYeVZiWE9PMWhCME9Ma0FMaE1QSVc?oc=5"
     },
     {
@@ -1251,6 +1259,14 @@
     },
     {
       "source": "google",
+      "press": "천지일보",
+      "date": "2026.07.27",
+      "title": "장윤정 경기도의원, 경기도교육청 예결특위 위원 선임",
+      "snippet": "장윤정 경기도의원, 경기도교육청 예결특위 위원 선임 천지일보",
+      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBhSjRyb3hjNWNtRFpLV0tGbFVFZzhNVnE0ZmpwMTd2RGhCM2lmSEVEcW1LZG4xd3lHVDNrN0NIMkRlS2hkeGdIX0ZoejFNVm1PcFB4NWRDMkFsbHdLMkUtR0ZDOWhCbVFyZHc?oc=5"
+    },
+    {
+      "source": "google",
       "press": "경기일보",
       "date": "2026.07.27",
       "title": "장윤정 경기도의원, 교육청 예결특위 선임…“학생·현장 중심 예산 총력”",
@@ -1355,27 +1371,19 @@
     },
     {
       "source": "google",
-      "press": "newspeak.kr",
+      "press": "서프라이즈뉴스",
       "date": "2026.07.22",
-      "title": "장윤정 경기도의원 경기도 사회적경제원 및 신용보증재단 현안 집중 질의",
-      "snippet": "장윤정 경기도의원 경기도 사회적경제원 및 신용보증재단 현안 집중 질의 newspeak.kr",
-      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9aTEpyQ0RBNzN2RWlHUTRtUldpQUJ1VkdCWmJsZ0wxZTdtS3Y1ZENYZjRHZk11YXg1djJ6bjdGZ2dwV01kcVFNa0JqVTZ0Z29RbkhSaDZWYVVFYjNsWDgydm52Y3FOMkUwOEE?oc=5"
+      "title": "장윤정 경기도의원, 경기도 사회적경제원 및 신용보증재단 현안 집중 질의",
+      "snippet": "장윤정 경기도의원, 경기도 사회적경제원 및 신용보증재단 현안 집중 질의 서프라이즈뉴스",
+      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE9IRHFJdWh4M29yUnBKZ00wVHNUTkxHSUl1d3E3bkZSeU1RbjNrUWpEbmlWYUR4Tk1fODN3S1NFVEMxRVBpN3Y2NnhoVXBTQ2xzRlhZQ1ZJVEhfd1A2MkVSTmpNNDBqb3pXVS0xZW1xNA?oc=5"
     },
     {
       "source": "google",
-      "press": "성남포커스",
+      "press": "snfocus.net",
       "date": "2026.07.22",
       "title": "경기도의회 장윤정 의원, 경기도 사회적경제원 및 신용보증재단 현안 집중 질의",
-      "snippet": "경기도의회 장윤정 의원, 경기도 사회적경제원 및 신용보증재단 현안 집중 질의 성남포커스",
+      "snippet": "경기도의회 장윤정 의원, 경기도 사회적경제원 및 신용보증재단 현안 집중 질의 snfocus.net",
       "url": "https://news.google.com/rss/articles/CBMiREFVX3lxTFB5dDZkRnRySzhpa2xfRUNXaDU5VlQ0c2xXcnpLb3BrR29KUUVOY1htS1dEOFZEN284ajdEcVpJaEVwWm1Q?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "경기매일",
-      "date": "2026.07.22",
-      "title": "안산교육지원청 “다름이 자산이 되는 교실 이야기”",
-      "snippet": "안산교육지원청 “다름이 자산이 되는 교실 이야기” 경기매일",
-      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFA5X01TMlI0QUhHN3JtQ21nVERNZDN1Q1ZHRWNMQS1BTmZLRHA4eVhtcWVYUWFiaG5hcmdSRWh2WFZRUWs5QlVrdlExMms0SHV2V0FveTRLc2R4VFJ6OHllUkpaZ0tYekE?oc=5"
     },
     {
       "source": "naver",
@@ -1530,14 +1538,6 @@
       "url": "https://www.nc.press/news/articleView.html?idxno=618592"
     },
     {
-      "source": "google",
-      "press": "반월신문",
-      "date": "2026.06.17",
-      "title": "민주당 장윤정 경기도의원 당선인사 “보내주신 성원 잊지 않고 성과로 보답하겠다”",
-      "snippet": "민주당 장윤정 경기도의원 당선인사 “보내주신 성원 잊지 않고 성과로 보답하겠다” 반월신문",
-      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE8wa3F4V2J6eEd5OFZaTFdEa0ZPMlRQRFg5U2J0aFpVcy1CZlUzOEc3NERKTlduMV85T2xBMURmWlhNMC16ZXZOZ21TV2NEcGlWRXBvOWxCcFh2MGkxNHR0ckt0N2hWd28?oc=5"
-    },
-    {
       "source": "naver",
       "press": "ekn.kr",
       "date": "2026.06.16",
@@ -1568,14 +1568,6 @@
       "title": "장윤정 도의원, 경기도교육청 예산유보 운영 점검",
       "snippet": "장윤정 도의원, 경기도교육청 예산유보 운영 점검 경기인저널",
       "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE94OGl1THNCaUQ4MFM0WFpyZ2JKV1FUdXlVUXdQYkptNkd1Vi14MDVzb3ZXUlI4bEhYSHkyZXRpNGsxVEtZdUg0cy1MZ3haYjI5YkNiQjRLLTNPOGZTZGpKOTk4UFg?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "thekorea.kr",
-      "date": "2026.06.13",
-      "title": "장윤정 경기도의회 교육기획위원회 부위원장, 경기도교육청 예산유보 운영 점검 > 뉴스",
-      "snippet": "장윤정 경기도의회 교육기획위원회 부위원장, 경기도교육청 예산유보 운영 점검 > 뉴스 thekorea.kr",
-      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFA4aWt5Vl9FYVZmYklkdUd0UU9DNS1qT08tR28zNC1YT0JsU1R3QWk3NmxyenRTTi1NdTFGb2hWenEwbWRjUk5xYmhnTzZsX2hYNVkyY0NnYnMtUkh5bXowU1E2UHNjZ3pvdnBIRXhjWUE?oc=5"
     },
     {
       "source": "naver",
@@ -1707,10 +1699,10 @@
     },
     {
       "source": "google",
-      "press": "newsfreezone.co.kr",
+      "press": "뉴스프리존",
       "date": "2026.05.28",
       "title": "장윤정 경기도의원 후보 “교육·지역경제 함께 성장하는 안산 만들 것”",
-      "snippet": "장윤정 경기도의원 후보 “교육·지역경제 함께 성장하는 안산 만들 것” newsfreezone.co.kr",
+      "snippet": "장윤정 경기도의원 후보 “교육·지역경제 함께 성장하는 안산 만들 것” 뉴스프리존",
       "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE45OHNIeUxramRDR1dsYnVpb1VrXzRjbGdCQXFoXzV4Q1ZCTzN6d3lzbDlfdDBaSDIyeXFOZlhWZUd6dWxQUEliaGxVR1hDeFZDdGhnakxPZGxrLU5sVzg0QlBCMVpQeWVaTEhfb01KMmt1RG_SAXdBVV95cUxQRWRkWGpqeWRPZVJvdXdITXh0ZmVxWFJPanVncTBDc1VrRXc5OS1OOFFwcHIzR1JHZmo0UWZIT3BMMXNiVDJuQXhENllHMzVTVE94WGFJMHhDRzd3QW03REVoTnBraXh1OGlZYWJob2c4amNXdmZNRQ?oc=5"
     },
     {
@@ -1824,6 +1816,14 @@
       "title": "장윤정 경기도의원, 재선 출마 공식선언… “안산 변화 이끌 것”",
       "snippet": "장윤정 경기도의원, 재선 출마 공식선언… “안산 변화 이끌 것” v.daum.net",
       "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE9UV0RqUVdyLU9HWEJBWk54ZDV2TV9nNTVxTmg3RnBXQ3owbTBnSml2eHBFMlBoLW1IQzJqVGNnbllnMnBONHRVZEJLZ0FKVGs?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "김포시민신문",
+      "date": "2026.04.01",
+      "title": "[경기도의회] 장윤정 의원, 기계설비유지관리자 처우개선 논의",
+      "snippet": "[경기도의회] 장윤정 의원, 기계설비유지관리자 처우개선 논의 김포시민신문",
+      "url": "https://news.google.com/rss/articles/CBMiQkFVX3lxTE93ZHlHbUFtYmwyb0dDMTc1NmFsNnZUNnZ6X2pMWGttbjdOc0lfYVhmVDh3SWxsVW5hZy1hNHVOeXQxUQ?oc=5"
     },
     {
       "source": "google",
