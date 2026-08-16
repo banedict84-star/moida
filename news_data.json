@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-16 14:49 UTC",
+  "updated": "2026-08-16 15:47 UTC",
   "items": [
     {
       "source": "naver",
@@ -203,19 +203,19 @@
     },
     {
       "source": "naver",
-      "press": "news.dealsitetv.com",
-      "date": "2026.08.14",
-      "title": "한양증권, 리테일 신규 인력 선발…PB 인턴십 진행",
-      "snippet": "교육을 마친 이들은 다음주부터 여의도PWM센터, 송파RM센터, 안산프리미어센터, 인천프리미어센터 등 각 영업 현장에 배치돼 현장 교육을 받는다. 이들은 현업 구성원들과 함께 금융상품과 자산관리, 고객 커뮤니케이션 등...",
-      "url": "https://news.dealsitetv.com/articles/174784"
-    },
-    {
-      "source": "naver",
       "press": "fntimes.com",
       "date": "2026.08.14",
       "title": "김병철호 한양증권, PB 인재 ‘직접 키운다’…채용 방식도 변화",
       "snippet": "입문교육을 마친 11명은 다음 주부터 여의도PWM센터, 송파RM센터, 안산프리미어센터, 인천프리미어센터 등에 배치된다. 현업 구성원들과 함께 근무하면서 금융상품과 자산관리, 고객 커뮤니케이션 등 리테일 영업 전반을...",
       "url": "https://www.fntimes.com/html/view.php?ud=2026081414581760102a735e27af_18"
+    },
+    {
+      "source": "naver",
+      "press": "news.dealsitetv.com",
+      "date": "2026.08.14",
+      "title": "한양증권, 리테일 신규 인력 선발…PB 인턴십 진행",
+      "snippet": "교육을 마친 이들은 다음주부터 여의도PWM센터, 송파RM센터, 안산프리미어센터, 인천프리미어센터 등 각 영업 현장에 배치돼 현장 교육을 받는다. 이들은 현업 구성원들과 함께 금융상품과 자산관리, 고객 커뮤니케이션 등...",
+      "url": "https://news.dealsitetv.com/articles/174784"
     },
     {
       "source": "naver",
@@ -555,10 +555,10 @@
     },
     {
       "source": "google",
-      "press": "웹이코노미",
+      "press": "webeconomy.co.kr",
       "date": "2026.08.12",
       "title": "경기도의회 장윤정 의원, 안산시 사회적경제연대와 현장 소통",
-      "snippet": "경기도의회 장윤정 의원, 안산시 사회적경제연대와 현장 소통 웹이코노미",
+      "snippet": "경기도의회 장윤정 의원, 안산시 사회적경제연대와 현장 소통 webeconomy.co.kr",
       "url": "https://news.google.com/rss/articles/CBMickFVX3lxTFBQSF9IMk8zT3dVa1JjSjVrNWFuS2I0ck9sWERyV2dCSGlzSFl2R0Y2TjhCVFF3VHBSelJjdjNKNzN2QzVZRnV1RTNsZ1ZTdDJTS1ZtTnJZVThCTWsyTkg1RXEtbEZOUVBrM0NxcXIyMjVaQQ?oc=5"
     },
     {
@@ -848,14 +848,6 @@
       "title": "경기도의회 박은경 의원, 안산 교육현안·유보통합 추진상황 점검:경인투데이뉴스",
       "snippet": "경기도의회 박은경 의원, 안산 교육현안·유보통합 추진상황 점검:경인투데이뉴스 경인투데이뉴스",
       "url": "https://news.google.com/rss/articles/CBMiQ0FVX3lxTE9qVUotQnBhZl92RjRwdm1vSmdzOTNXVkVabzRrS1RTLUxKUXBGTkJKRmZMQ0FVR3g4eTdieXoyUFEwWkHSAV9BVV95cUxNelpXQ092aktid2FXZFloS0ZrWFZmR3RmeV9HX0ROcXl2SWpDYjZpUkd2dW14QlRyZ3lyajNuYmdwY1JLUUZXa0I5X0tmZ1dDalhhODNxZkk4SVU2NXVCNA?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "서울Pn",
-      "date": "2026.08.07",
-      "title": "박은경 경기도의원, 안산 교육현안·유보통합 추진상황 점검",
-      "snippet": "박은경 경기도의원, 안산 교육현안·유보통합 추진상황 점검 서울Pn",
-      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE0tRTRTZ1VtVXU1SjhKZjE4VHZrdUxfSzZ3QTI1cWhzNGdkTVJuY29mMkFlRUVsTlptOUJGMzZHWENKMWRmMHR2OWhfekozcVZnaGFxdm5TV3pFdVFncmZkX3BMV3lqNGJBVWc?oc=5"
     },
     {
       "source": "naver",
@@ -1290,6 +1282,14 @@
       "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5lSjcyV1UtRnJvbGpBWHJOX09aNVN1N1BYVTRtNWM2TFJQTW5IUkdlTlc3N1J0cjNyWFV6YkRkMUpSQ2NSdTdleHpHNVNTa0JFendTQ3JTeVVqWDJ1TjdhYzJEekFFQ0szYkU3XzNn0gFyQVVfeXFMTlVmM1FxSUpQWkZYenZoUmRfSExnUWJjR3lqOGdoZFRnU3o5cGM1MDFDdUdOcVY0UWFBdUdMVWZCNUtMYUhEZ0lCcTRfU00yVXlaTk8xcGZkc1pSYUZWZlhNQjE5TUdxYktxeGJ3d2dxeThR?oc=5"
     },
     {
+      "source": "google",
+      "press": "joongboo.com",
+      "date": "2026.07.27",
+      "title": "안산교육지원청, AI 활용 재무행정 콘텐츠 제작…학교 업무부담 경감",
+      "snippet": "안산교육지원청, AI 활용 재무행정 콘텐츠 제작…학교 업무부담 경감 joongboo.com",
+      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE1oWnNVU2RkN1p4T1AyUjBaUTlPSjdBTlFnUGxwXzM1a1FmcllHUEZPREpkTjQ2UXVRY2ZRekt1TnQxVWdrRkVxaHhMS1k5VjhQRDlIMkZUV0RIUWMtSDFIMGZieWRRX2pZNkxXd2U1cw?oc=5"
+    },
+    {
       "source": "naver",
       "press": "mk.co.kr",
       "date": "2026.07.25",
@@ -1363,10 +1363,10 @@
     },
     {
       "source": "google",
-      "press": "경기매일",
+      "press": "kgmail.kr",
       "date": "2026.07.22",
       "title": "안산교육지원청 “다름이 자산이 되는 교실 이야기”",
-      "snippet": "안산교육지원청 “다름이 자산이 되는 교실 이야기” 경기매일",
+      "snippet": "안산교육지원청 “다름이 자산이 되는 교실 이야기” kgmail.kr",
       "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFA5X01TMlI0QUhHN3JtQ21nVERNZDN1Q1ZHRWNMQS1BTmZLRHA4eVhtcWVYUWFiaG5hcmdSRWh2WFZRUWs5QlVrdlExMms0SHV2V0FveTRLc2R4VFJ6OHllUkpaZ0tYekE?oc=5"
     },
     {
@@ -1667,10 +1667,10 @@
     },
     {
       "source": "google",
-      "press": "safetynews.co.kr",
+      "press": "안전신문",
       "date": "2026.06.02",
       "title": "장윤정 \"교육·주거·문화가 함께 성장하는 안산 만들겠다\"",
-      "snippet": "장윤정 \"교육·주거·문화가 함께 성장하는 안산 만들겠다\" safetynews.co.kr",
+      "snippet": "장윤정 \"교육·주거·문화가 함께 성장하는 안산 만들겠다\" 안전신문",
       "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5wMWVvSGdEVVhfX0hHRE1fZURKYi1OUjVPd3I5SjR1STAydy1DMHZIbEQ1QVFLYUszUkcteHR1VjFTcjMwNmZNc3B0Y3FVWF82SG5fcWctQi1oTThHUWtVTndNRkJQd1VSdVZVZlBUaHY?oc=5"
     },
     {
@@ -1803,10 +1803,10 @@
     },
     {
       "source": "google",
-      "press": "뉴스핌",
+      "press": "newspim.com",
       "date": "2026.02.11",
       "title": "안산 상록구 부곡동서 차량 화재…인명피해 없어",
-      "snippet": "안산 상록구 부곡동서 차량 화재…인명피해 없어 뉴스핌",
+      "snippet": "안산 상록구 부곡동서 차량 화재…인명피해 없어 newspim.com",
       "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE9MazNlSlhmQndMMXh6RWFBWHNfZzJZRU9jQ0VYTUw1cVpUZkxla0JSVGhuRUFpeUR3a3loUF9hUTUyVnBPSGVqS1NVSzhoWUx6OWhTdkxrSmV0LXps?oc=5"
     }
   ]
