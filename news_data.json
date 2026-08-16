@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-16 15:47 UTC",
+  "updated": "2026-08-16 16:51 UTC",
   "items": [
     {
       "source": "naver",
@@ -203,19 +203,19 @@
     },
     {
       "source": "naver",
-      "press": "fntimes.com",
-      "date": "2026.08.14",
-      "title": "김병철호 한양증권, PB 인재 ‘직접 키운다’…채용 방식도 변화",
-      "snippet": "입문교육을 마친 11명은 다음 주부터 여의도PWM센터, 송파RM센터, 안산프리미어센터, 인천프리미어센터 등에 배치된다. 현업 구성원들과 함께 근무하면서 금융상품과 자산관리, 고객 커뮤니케이션 등 리테일 영업 전반을...",
-      "url": "https://www.fntimes.com/html/view.php?ud=2026081414581760102a735e27af_18"
-    },
-    {
-      "source": "naver",
       "press": "news.dealsitetv.com",
       "date": "2026.08.14",
       "title": "한양증권, 리테일 신규 인력 선발…PB 인턴십 진행",
       "snippet": "교육을 마친 이들은 다음주부터 여의도PWM센터, 송파RM센터, 안산프리미어센터, 인천프리미어센터 등 각 영업 현장에 배치돼 현장 교육을 받는다. 이들은 현업 구성원들과 함께 금융상품과 자산관리, 고객 커뮤니케이션 등...",
       "url": "https://news.dealsitetv.com/articles/174784"
+    },
+    {
+      "source": "naver",
+      "press": "fntimes.com",
+      "date": "2026.08.14",
+      "title": "김병철호 한양증권, PB 인재 ‘직접 키운다’…채용 방식도 변화",
+      "snippet": "입문교육을 마친 11명은 다음 주부터 여의도PWM센터, 송파RM센터, 안산프리미어센터, 인천프리미어센터 등에 배치된다. 현업 구성원들과 함께 근무하면서 금융상품과 자산관리, 고객 커뮤니케이션 등 리테일 영업 전반을...",
+      "url": "https://www.fntimes.com/html/view.php?ud=2026081414581760102a735e27af_18"
     },
     {
       "source": "naver",
@@ -555,10 +555,10 @@
     },
     {
       "source": "google",
-      "press": "webeconomy.co.kr",
+      "press": "웹이코노미",
       "date": "2026.08.12",
       "title": "경기도의회 장윤정 의원, 안산시 사회적경제연대와 현장 소통",
-      "snippet": "경기도의회 장윤정 의원, 안산시 사회적경제연대와 현장 소통 webeconomy.co.kr",
+      "snippet": "경기도의회 장윤정 의원, 안산시 사회적경제연대와 현장 소통 웹이코노미",
       "url": "https://news.google.com/rss/articles/CBMickFVX3lxTFBQSF9IMk8zT3dVa1JjSjVrNWFuS2I0ck9sWERyV2dCSGlzSFl2R0Y2TjhCVFF3VHBSelJjdjNKNzN2QzVZRnV1RTNsZ1ZTdDJTS1ZtTnJZVThCTWsyTkg1RXEtbEZOUVBrM0NxcXIyMjVaQQ?oc=5"
     },
     {
@@ -955,10 +955,10 @@
     },
     {
       "source": "google",
-      "press": "ansansm.co.kr",
+      "press": "안산신문",
       "date": "2026.08.06",
       "title": "안산교육지원청 ‘안산 동그리 미술공유학교’ 운영",
-      "snippet": "안산교육지원청 ‘안산 동그리 미술공유학교’ 운영 ansansm.co.kr",
+      "snippet": "안산교육지원청 ‘안산 동그리 미술공유학교’ 운영 안산신문",
       "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE54enRkRHVtajhwYXFrcEs0V0NoVXl3dE1zanViVTNlbW1sT2RCejR6SndOX0VnbEo1M0tCeDRDbENTc0VzdDRFZE5kQ1N6RUlnN0NhSU1ULVZHVVlzZ1VqNmpPX3NfQ1BrWHc?oc=5"
     },
     {
@@ -1243,10 +1243,10 @@
     },
     {
       "source": "google",
-      "press": "newscj.com",
+      "press": "천지일보",
       "date": "2026.07.27",
       "title": "장윤정 경기도의원, 경기도교육청 예결특위 위원 선임",
-      "snippet": "장윤정 경기도의원, 경기도교육청 예결특위 위원 선임 newscj.com",
+      "snippet": "장윤정 경기도의원, 경기도교육청 예결특위 위원 선임 천지일보",
       "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBhSjRyb3hjNWNtRFpLV0tGbFVFZzhNVnE0ZmpwMTd2RGhCM2lmSEVEcW1LZG4xd3lHVDNrN0NIMkRlS2hkeGdIX0ZoejFNVm1PcFB4NWRDMkFsbHdLMkUtR0ZDOWhCbVFyZHc?oc=5"
     },
     {
@@ -1259,11 +1259,11 @@
     },
     {
       "source": "google",
-      "press": "안산뉴스",
+      "press": "광흥타임즈",
       "date": "2026.07.27",
-      "title": "도의회 장윤정 의원 도교육청 예결특위 위원 선임",
-      "snippet": "도의회 장윤정 의원 도교육청 예결특위 위원 선임 안산뉴스",
-      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFByV2hHN2NpUHphWHBYVVUwR0NNaEN3ZlRudWF5N3hqLW94VFJLbG1fQWljam5VUmlGYjVPX1E0RFJEV0h3OXdibld4Z1FlbTA0dWRCcVNZa3RMWnVwV3ZwenVMNmdYNWhLRUZaTQ?oc=5"
+      "title": "경기도의회 장윤정 의원, 도교육청 예결위원 선임...재정의 건전성과 효율성, 학생과 현장 중심의 예산 편성에 총력 다할 것",
+      "snippet": "경기도의회 장윤정 의원, 도교육청 예결위원 선임...재정의 건전성과 효율성, 학생과 현장 중심의 예산 편성에 총력 다할 것 광흥타임즈",
+      "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE9GQkFRVlljR1FNSi1IaHhtOUdmRVNhamN6Y0FncjgxWkVTX2g4YUpuelk0UTNyTkY0SVBHYjQ3WUFoSDhYMDFPYkZDVHI4aWRiNnVDNUd1azc5di1IRVpZ?oc=5"
     },
     {
       "source": "google",
@@ -1275,18 +1275,18 @@
     },
     {
       "source": "google",
-      "press": "엔디엔뉴스",
+      "press": "안산뉴스",
       "date": "2026.07.27",
-      "title": "경기도의회 장윤정 의원, 도교육청 예결위원 선임...재정의 건전성과 효율성, 학생과 현장 중심의 예산 편성에 총력 다할 것",
-      "snippet": "경기도의회 장윤정 의원, 도교육청 예결위원 선임...재정의 건전성과 효율성, 학생과 현장 중심의 예산 편성에 총력 다할 것 엔디엔뉴스",
-      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5lSjcyV1UtRnJvbGpBWHJOX09aNVN1N1BYVTRtNWM2TFJQTW5IUkdlTlc3N1J0cjNyWFV6YkRkMUpSQ2NSdTdleHpHNVNTa0JFendTQ3JTeVVqWDJ1TjdhYzJEekFFQ0szYkU3XzNn0gFyQVVfeXFMTlVmM1FxSUpQWkZYenZoUmRfSExnUWJjR3lqOGdoZFRnU3o5cGM1MDFDdUdOcVY0UWFBdUdMVWZCNUtMYUhEZ0lCcTRfU00yVXlaTk8xcGZkc1pSYUZWZlhNQjE5TUdxYktxeGJ3d2dxeThR?oc=5"
+      "title": "도의회 장윤정 의원 도교육청 예결특위 위원 선임",
+      "snippet": "도의회 장윤정 의원 도교육청 예결특위 위원 선임 안산뉴스",
+      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFByV2hHN2NpUHphWHBYVVUwR0NNaEN3ZlRudWF5N3hqLW94VFJLbG1fQWljam5VUmlGYjVPX1E0RFJEV0h3OXdibld4Z1FlbTA0dWRCcVNZa3RMWnVwV3ZwenVMNmdYNWhLRUZaTQ?oc=5"
     },
     {
       "source": "google",
-      "press": "joongboo.com",
+      "press": "중부일보",
       "date": "2026.07.27",
       "title": "안산교육지원청, AI 활용 재무행정 콘텐츠 제작…학교 업무부담 경감",
-      "snippet": "안산교육지원청, AI 활용 재무행정 콘텐츠 제작…학교 업무부담 경감 joongboo.com",
+      "snippet": "안산교육지원청, AI 활용 재무행정 콘텐츠 제작…학교 업무부담 경감 중부일보",
       "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE1oWnNVU2RkN1p4T1AyUjBaUTlPSjdBTlFnUGxwXzM1a1FmcllHUEZPREpkTjQ2UXVRY2ZRekt1TnQxVWdrRkVxaHhMS1k5VjhQRDlIMkZUV0RIUWMtSDFIMGZieWRRX2pZNkxXd2U1cw?oc=5"
     },
     {
@@ -1427,10 +1427,10 @@
     },
     {
       "source": "google",
-      "press": "newscj.com",
+      "press": "천지일보",
       "date": "2026.07.21",
       "title": "장윤정 경기도의원 “사회적기업 지원 확대하고 공공서비스 개선해야”",
-      "snippet": "장윤정 경기도의원 “사회적기업 지원 확대하고 공공서비스 개선해야” newscj.com",
+      "snippet": "장윤정 경기도의원 “사회적기업 지원 확대하고 공공서비스 개선해야” 천지일보",
       "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9GbkNjVWNmT0lIQVF5QUFHSlJIT2tZQVE3Vm5zZnhQTU1nRGJiTXM4YVJTVzIzemJTWmUyXzVWdnRCd2lHc25ya3J5dFp4RjBEOTJKOExKZEJOLW85WVl0YzRqc3BMN2N3d2c?oc=5"
     },
     {
@@ -1512,14 +1512,6 @@
       "title": "[NC포토] 알고보니 혼수상태, 골프장 나들이...\"인카금융 '더헤븐 마스터...",
       "snippet": "'히트 제조기' 알고보니 혼수상태(김지환·김경범)가 안산 대부도 더헤븐리조트 내 더헤븐CC에서 열린... 송대관, 장윤정, 신유, 한혜진, 금잔디, 김용임, 홍진영, 김호중, 안성훈, 박서진, 홍지윤, 정서주, 양지은 등...",
       "url": "https://www.nc.press/news/articleView.html?idxno=618592"
-    },
-    {
-      "source": "google",
-      "press": "반월신문",
-      "date": "2026.06.17",
-      "title": "민주당 장윤정 경기도의원 당선인사 “보내주신 성원 잊지 않고 성과로 보답하겠다”",
-      "snippet": "민주당 장윤정 경기도의원 당선인사 “보내주신 성원 잊지 않고 성과로 보답하겠다” 반월신문",
-      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE8wa3F4V2J6eEd5OFZaTFdEa0ZPMlRQRFg5U2J0aFpVcy1CZlUzOEc3NERKTlduMV85T2xBMURmWlhNMC16ZXZOZ21TV2NEcGlWRXBvOWxCcFh2MGkxNHR0ckt0N2hWd28?oc=5"
     },
     {
       "source": "naver",
@@ -1803,10 +1795,10 @@
     },
     {
       "source": "google",
-      "press": "newspim.com",
+      "press": "뉴스핌",
       "date": "2026.02.11",
       "title": "안산 상록구 부곡동서 차량 화재…인명피해 없어",
-      "snippet": "안산 상록구 부곡동서 차량 화재…인명피해 없어 newspim.com",
+      "snippet": "안산 상록구 부곡동서 차량 화재…인명피해 없어 뉴스핌",
       "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE9MazNlSlhmQndMMXh6RWFBWHNfZzJZRU9jQ0VYTUw1cVpUZkxla0JSVGhuRUFpeUR3a3loUF9hUTUyVnBPSGVqS1NVSzhoWUx6OWhTdkxrSmV0LXps?oc=5"
     }
   ]
