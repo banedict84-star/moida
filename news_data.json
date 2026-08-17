@@ -1,6 +1,14 @@
 {
-  "updated": "2026-08-17 19:52 UTC",
+  "updated": "2026-08-17 20:54 UTC",
   "items": [
+    {
+      "source": "naver",
+      "press": "newsis.com",
+      "date": "2026.08.18",
+      "title": "[오늘의 주요일정]경기남부(8월18일 화요일)",
+      "snippet": "경영실습교육장 ▲오전 10시, 을지연습 통합방위협의회 및 최초상황보고, 충무지휘용 대피시설 ▲오전 10시30분, 궁평항 어촌계 방문, 궁평항 ◇안산시 ▲오전 10시, 안산시장애인직업재활시설협회 간담회, 시장실...",
+      "url": "https://www.newsis.com/view/NISX20260817_0003751640"
+    },
     {
       "source": "naver",
       "press": "segye.com",
@@ -347,19 +355,19 @@
     },
     {
       "source": "naver",
-      "press": "fntimes.com",
-      "date": "2026.08.14",
-      "title": "김병철호 한양증권, PB 인재 ‘직접 키운다’…채용 방식도 변화",
-      "snippet": "입문교육을 마친 11명은 다음 주부터 여의도PWM센터, 송파RM센터, 안산프리미어센터, 인천프리미어센터 등에 배치된다. 현업 구성원들과 함께 근무하면서 금융상품과 자산관리, 고객 커뮤니케이션 등 리테일 영업 전반을...",
-      "url": "https://www.fntimes.com/html/view.php?ud=2026081414581760102a735e27af_18"
-    },
-    {
-      "source": "naver",
       "press": "news.dealsitetv.com",
       "date": "2026.08.14",
       "title": "한양증권, 리테일 신규 인력 선발…PB 인턴십 진행",
       "snippet": "교육을 마친 이들은 다음주부터 여의도PWM센터, 송파RM센터, 안산프리미어센터, 인천프리미어센터 등 각 영업 현장에 배치돼 현장 교육을 받는다. 이들은 현업 구성원들과 함께 금융상품과 자산관리, 고객 커뮤니케이션 등...",
       "url": "https://news.dealsitetv.com/articles/174784"
+    },
+    {
+      "source": "naver",
+      "press": "fntimes.com",
+      "date": "2026.08.14",
+      "title": "김병철호 한양증권, PB 인재 ‘직접 키운다’…채용 방식도 변화",
+      "snippet": "입문교육을 마친 11명은 다음 주부터 여의도PWM센터, 송파RM센터, 안산프리미어센터, 인천프리미어센터 등에 배치된다. 현업 구성원들과 함께 근무하면서 금융상품과 자산관리, 고객 커뮤니케이션 등 리테일 영업 전반을...",
+      "url": "https://www.fntimes.com/html/view.php?ud=2026081414581760102a735e27af_18"
     },
     {
       "source": "naver",
@@ -418,14 +426,6 @@
       "url": "https://www.thepowernews.co.kr/view.php?ud=202608141350459227de3f0aa1be_7"
     },
     {
-      "source": "naver",
-      "press": "edaily.co.kr",
-      "date": "2026.08.14",
-      "title": "한양증권, 프라이빗 뱅커 인턴 선발··· 입문교육 수료",
-      "snippet": "교육을 마친 인턴들은 다음 주부터 여의도PWM센터, 송파RM센터, 안산프리미어센터, 인천프리미어센터 등 주요 영업 거점에 배치되어 본격적인 현장 교육(OJT)에 착수한다. 인턴들은 현업 구성원들과 밀착해 금융상품 분석...",
-      "url": "https://www.edaily.co.kr/news/newspath.asp?newsid=04939686645547320"
-    },
-    {
       "source": "google",
       "press": "뉴스후",
       "date": "2026.08.14",
@@ -440,6 +440,14 @@
       "title": "안산교육지원청, \"교과서는 교실 안까지\" 2학기 초등학교 교과서 배부 지원",
       "snippet": "안산교육지원청, \"교과서는 교실 안까지\" 2학기 초등학교 교과서 배부 지원 문화매일신문",
       "url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTFBubmJIMklkU1lSanlMclNQbXg2SC1Yejl0eElGTXlfak9vdk5hX2gtZzhxU1IxaHhXcnBPOWFCNmpsR25OY01zWFhB?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "미디어이슈",
+      "date": "2026.08.14",
+      "title": "안산교육지원청, 초등학교 2학기 교과서 배포 행정 지원으로 수업 환경 최적화",
+      "snippet": "안산교육지원청, 초등학교 2학기 교과서 배포 행정 지원으로 수업 환경 최적화 미디어이슈",
+      "url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTE03SHRwU0Q1TjFJZFIwTE1XdDAxNkZJdklBRngwcld6XzhVcUt6empLeTJ4NzdDdG5ZM2p4aGhkQXRNd2VUWWg4ZE1R?oc=5"
     },
     {
       "source": "google",
@@ -603,10 +611,10 @@
     },
     {
       "source": "google",
-      "press": "100ssd.co.kr",
+      "press": "백세시대",
       "date": "2026.08.12",
       "title": "대한노인회 경기 안산시 상록구지회 고잔푸르지오7차경로당, 색칠공부로 시간가는줄 몰라",
-      "snippet": "대한노인회 경기 안산시 상록구지회 고잔푸르지오7차경로당, 색칠공부로 시간가는줄 몰라 100ssd.co.kr",
+      "snippet": "대한노인회 경기 안산시 상록구지회 고잔푸르지오7차경로당, 색칠공부로 시간가는줄 몰라 백세시대",
       "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE5MVC1yN0w4QVhwNlpJRGNvWTZYc1RZNmxxeVFPQ1dheTlnNnh5a0lGeXg0UTdpOGNWYWlWbFN6TWpNaFkzT1MzdmM2LTA2WjFHWDZKSjFWOXZGdmVZeWpHQ01rNlNKdThaRjc0?oc=5"
     },
     {
@@ -755,10 +763,10 @@
     },
     {
       "source": "google",
-      "press": "글로벌뉴스통신GNA",
+      "press": "globalnewsagency.kr",
       "date": "2026.08.11",
       "title": "안산시, 상록구 일반미용업 영업자 대상 뷰티아카데미 운영",
-      "snippet": "안산시, 상록구 일반미용업 영업자 대상 뷰티아카데미 운영 글로벌뉴스통신GNA",
+      "snippet": "안산시, 상록구 일반미용업 영업자 대상 뷰티아카데미 운영 globalnewsagency.kr",
       "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE9xeFpxZHpkLWpFenpyekx2dlg0NzA1Z2lhYV8zemxvTEJQa3U3ekJGSG5tWlZBM0dTVmt4cDJieFFwcFdCdi1wZDFfYTJaXzEwOTlDUU41REJMWlRhWDNUX2pKVFhLMnhsaHZnV0lrRjBCLTNF?oc=5"
     },
     {
@@ -768,14 +776,6 @@
       "title": "안산교육지원청, '질문하는 시민, 혁신하는 학교, 지속가능한 미래'캠프 개최",
       "snippet": "안산교육지원청, '질문하는 시민, 혁신하는 학교, 지속가능한 미래'캠프 개최 k1ilbo.com",
       "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE5lWWswUWcwRFVYVE05LU1oZXFUajdJVEh4R2Q5ZkotNjFqVk1IYWwxT1B2OWNacURGTFlydW5NRGsyay1JR2xjSTFTb0tDU2M?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "저널25방송",
-      "date": "2026.08.11",
-      "title": "안산교육지원청, 지자체와 손잡고 영유아 문화다양성 꽃피운다 !",
-      "snippet": "안산교육지원청, 지자체와 손잡고 영유아 문화다양성 꽃피운다 ! 저널25방송",
-      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9VWmNyeElkUDd1UFhLb3Bua1FaYmdTeVROeTBGX3pMOVNLOWlHTnNweFd1OThNR3Z4Q1RCUnJna2gycW9QdUN0VTZPeTFoNmpQa2RrNXRXRFEtLU9yNG5JeFc3ZjFaalBRM0pKWg?oc=5"
     },
     {
       "source": "google",
@@ -792,6 +792,14 @@
       "title": "\"예술로 채우는 배움의 즐거움!\" 안산교육지원청, 서울예술대학교와 함께 RAS·벽깨기 교육 실천",
       "snippet": "\"예술로 채우는 배움의 즐거움!\" 안산교육지원청, 서울예술대학교와 함께 RAS·벽깨기 교육 실천 대한민국교육신문",
       "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE5mMWFYUnR6TUxWVWJIRXVqTWd3Znd2SHg5U3p4dHRWdE9UeElhSW9fclVGWG5wOVBCR3IxN0Q1MFI3VHJjejFNZVJzLVEtY0h2SnF0Z1hvYXRfRmFuX1dZUGdLZw?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "mediatoday.asia",
+      "date": "2026.08.10",
+      "title": "안산교육지원청, 지자체와 손잡고 영유아 문화다양성 꽃피운다 !",
+      "snippet": "안산교육지원청, 지자체와 손잡고 영유아 문화다양성 꽃피운다 ! mediatoday.asia",
+      "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxObmxBdUh5REtnVk92Q0dudXlJZDd1OEFlWTdOT2tKMW5GaEoyVUY3WXd6ZC1XN2hxZmtLTkNtOGxYbXgtRjgtZUQwNWdsTGhGXzVoc0JMSVpnVjFZZnBhUjZ6S29BSW1xOGxRVVkwTV94dnlJbEdfeVM2MzRzOHAxdGN3clAzMDVnTlBqYWlJSG5KV2hNTDJ3NQ?oc=5"
     },
     {
       "source": "naver",
@@ -827,11 +835,11 @@
     },
     {
       "source": "google",
-      "press": "서울Pn",
+      "press": "서울신문",
       "date": "2026.08.07",
       "title": "박은경 경기도의원, 안산 교육현안·유보통합 추진상황 점검",
-      "snippet": "박은경 경기도의원, 안산 교육현안·유보통합 추진상황 점검 서울Pn",
-      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE0tRTRTZ1VtVXU1SjhKZjE4VHZrdUxfSzZ3QTI1cWhzNGdkTVJuY29mMkFlRUVsTlptOUJGMzZHWENKMWRmMHR2OWhfekozcVZnaGFxdm5TV3pFdVFncmZkX3BMV3lqNGJBVWc?oc=5"
+      "snippet": "박은경 경기도의원, 안산 교육현안·유보통합 추진상황 점검 서울신문",
+      "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPRG1EVkJicWxVbDR4cmpQR0NQTWRMY2tkVXdRUl9NYldlVm4tZ3hqNFk4NFowOXQzRW1GZEdPZGlTSmFVMDF4aXJGd2R5SlZ2ZnJ0VWE3NGs1aFlMdHNyYl9QTFgwSDl0cEtUR0t1djh5S0xVOEtQaS1YeWlxNzNmMjN2MzJBWmpnQkNGWFc1MG91OEE?oc=5"
     },
     {
       "source": "google",
@@ -1258,14 +1266,6 @@
       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFByV2hHN2NpUHphWHBYVVUwR0NNaEN3ZlRudWF5N3hqLW94VFJLbG1fQWljam5VUmlGYjVPX1E0RFJEV0h3OXdibld4Z1FlbTA0dWRCcVNZa3RMWnVwV3ZwenVMNmdYNWhLRUZaTQ?oc=5"
     },
     {
-      "source": "google",
-      "press": "joongboo.com",
-      "date": "2026.07.27",
-      "title": "안산교육지원청, AI 활용 재무행정 콘텐츠 제작…학교 업무부담 경감",
-      "snippet": "안산교육지원청, AI 활용 재무행정 콘텐츠 제작…학교 업무부담 경감 joongboo.com",
-      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE1oWnNVU2RkN1p4T1AyUjBaUTlPSjdBTlFnUGxwXzM1a1FmcllHUEZPREpkTjQ2UXVRY2ZRekt1TnQxVWdrRkVxaHhMS1k5VjhQRDlIMkZUV0RIUWMtSDFIMGZieWRRX2pZNkxXd2U1cw?oc=5"
-    },
-    {
       "source": "naver",
       "press": "mk.co.kr",
       "date": "2026.07.25",
@@ -1283,10 +1283,10 @@
     },
     {
       "source": "google",
-      "press": "100ssd.co.kr",
+      "press": "백세시대",
       "date": "2026.07.25",
       "title": "대한노인회 경기 안산시 상록구지회, 경로당에 MG안산서부새마을금고의 후원물품 전달",
-      "snippet": "대한노인회 경기 안산시 상록구지회, 경로당에 MG안산서부새마을금고의 후원물품 전달 100ssd.co.kr",
+      "snippet": "대한노인회 경기 안산시 상록구지회, 경로당에 MG안산서부새마을금고의 후원물품 전달 백세시대",
       "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE5rT3dLQUtSQXR5QmgxSm8xUUlBS3BSRlNwaDhiYm1EVEdYNmpaMmFvNzJnbDZNR0s0elJKRTE3c2tPWmYxUEhXeXdMY3UxSFRwcTJxcEpBOFJuR2dJVklHdlVjeWM2NTZNVEhr?oc=5"
     },
     {
@@ -1715,10 +1715,10 @@
     },
     {
       "source": "google",
-      "press": "경향신문",
+      "press": "khan.co.kr",
       "date": "2026.05.13",
       "title": "안산 상록구 다세대주택서 화재···1명 숨지고 3명 부상",
-      "snippet": "안산 상록구 다세대주택서 화재···1명 숨지고 3명 부상 경향신문",
+      "snippet": "안산 상록구 다세대주택서 화재···1명 숨지고 3명 부상 khan.co.kr",
       "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE94ZFJWc1liZGRLTWM0aVAxVjY5c0VSOE40bVN0RXA3QlRidXMzdVkwdFljWVIxTG5oOGNwLUtsMl9pT2NJY1VTOEh4OGRMRU02b3Bob0pwa3dSQdIBX0FVX3lxTE52SDdudTdHX3NXYVFOQkhjSnFLR2pmVW5hbmE0aEZYM3B6WXVLNGpoY09DY0xlMVpuZVEzYWIzZVFjY1h1TTYtRHFMVFdPR0RfQ05pWGVIRm5NUG16cTRN?oc=5"
     },
     {
@@ -1811,10 +1811,10 @@
     },
     {
       "source": "google",
-      "press": "뉴스핌",
+      "press": "newspim.com",
       "date": "2026.02.11",
       "title": "안산 상록구 부곡동서 차량 화재…인명피해 없어",
-      "snippet": "안산 상록구 부곡동서 차량 화재…인명피해 없어 뉴스핌",
+      "snippet": "안산 상록구 부곡동서 차량 화재…인명피해 없어 newspim.com",
       "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE9MazNlSlhmQndMMXh6RWFBWHNfZzJZRU9jQ0VYTUw1cVpUZkxla0JSVGhuRUFpeUR3a3loUF9hUTUyVnBPSGVqS1NVSzhoWUx6OWhTdkxrSmV0LXps?oc=5"
     }
   ]
