@@ -1,6 +1,22 @@
 {
-  "updated": "2026-08-18 04:08 UTC",
+  "updated": "2026-08-18 05:02 UTC",
   "items": [
+    {
+      "source": "naver",
+      "press": "news1.kr",
+      "date": "2026.08.18",
+      "title": "여름밤 청년몰에서 즐기는 맥주축제…안산서 21일 개막",
+      "snippet": "경기 안산시가 오는 21~22일 상록구 소소플래닛 다농에서 성인 방문객에게 생맥주를 제공하는 '맥주페스티벌'을 연다. 18일 안산시에 따르면 행사는 이틀간 오후 5시부터 11시 30분까지 진행된다. 시민들에게 여름철 즐길...",
+      "url": "https://www.news1.kr/local/gyeonggi/6261804"
+    },
+    {
+      "source": "naver",
+      "press": "incheonilbo.com",
+      "date": "2026.08.18",
+      "title": "안산 성포·월피동 주민들, \"성포예술광장 재정비 사업 부족분 전액 심...",
+      "snippet": "성포광장은 1989년 상록구 성포동 593-39에 조성된 안산의 대표적인 공원으로, 3만 4551㎡ 규모에 야외무대와 주민 휴게시설, 조각품과 소설 '상록수'의 저자인 심훈의 문학비 등이 설치돼 있어 연간 29만 명의 시민이 즐겨...",
+      "url": "https://www.incheonilbo.com/news/articleView.html?idxno=1329785"
+    },
     {
       "source": "naver",
       "press": "weekly.hankooki.com",
@@ -24,6 +40,30 @@
       "title": "[Who Is ?] 김종량 한양대학교 법인 이사장",
       "snippet": "경기 안산시 상록구 사동 산166번지 일원에 165만3천여㎡(50만 평) 규모로 지정된 안산사이언스밸리 경제자유구역은 첨단로봇과 제조산업을 전략 산업으로 육성된다. 이 지역은 한양대 에리카캠퍼스를 거점으로...",
       "url": "https://www.businesspost.co.kr/BP?command=article_view&num=444628"
+    },
+    {
+      "source": "naver",
+      "press": "shinailbo.co.kr",
+      "date": "2026.08.18",
+      "title": "안산시, 9월 1일 양성평등주간 기념행사 개최",
+      "snippet": "행사장 로비에서는 양성평등 인식 개선 홍보를 비롯해 경력 단절 예방, 찾아가는 노동 상담, 부모 교육 안내 등 관계 기관이 참여하는 부대행사도 운영된다. 이민근 안산시장은 \"이번 행사가 시 승격 40주년을 맞아 지난...",
+      "url": "https://www.shinailbo.co.kr/news/articleView.html?idxno=5052258"
+    },
+    {
+      "source": "naver",
+      "press": "weeklytoday.com",
+      "date": "2026.08.18",
+      "title": "[보험업계 동향] 한화생명ㆍDB손해보험ㆍ현대해상ㆍ흥국화재(8.18)",
+      "snippet": "'마음한글'은 안산과 천안, 아산, 울산 지역의 대학생 멘토들이 주 2회 다문화 아동을 만나 한글 학습과 정서적 성장을 지원하는 프로그램이다. 현대해상은 앞으로도 언어 교육과 체험 활동을 연계해 아이들이 자신의...",
+      "url": "http://www.weeklytoday.com/news/articleView.html?idxno=790605"
+    },
+    {
+      "source": "naver",
+      "press": "consumuch.com",
+      "date": "2026.08.18",
+      "title": "현대해상, 다문화 가정 아동 직업 체험 행사",
+      "snippet": "경험을 제공하며 아이들의 성장을 꾸준히 도울 계획이다. '마음한글'은 안산, 천안, 아산, 울산 지역의 대학생들이 주 2회 다문화 아동의 한글 교육과 심리적 안정을 돕는 현대해상의 핵심 사회공헌 프로젝트다. [컨슈머치 = ]",
+      "url": "https://www.consumuch.com/news/articleView.html?idxno=78802"
     },
     {
       "source": "naver",
@@ -418,30 +458,6 @@
       "url": "http://kor.theasian.asia/archives/413225"
     },
     {
-      "source": "naver",
-      "press": "ekn.kr",
-      "date": "2026.08.15",
-      "title": "[패트롤] 안산시의회-양평군의회-시흥시의회-의정부시의회",
-      "snippet": "안산=에너지경제신문 강근주기자 안산시의회 의원들이 15일 안산문화예술의전당 해돋이극장에서 열린... 연수 기간에는 예산-결산 심사와 행정사무감사, 조례 심사 등 의정활동 전반에 필요한 실무 중심 교육이 진행됐다....",
-      "url": "https://www.ekn.kr/web/view.php?key=20260815025583179"
-    },
-    {
-      "source": "naver",
-      "press": "enewstoday.co.kr",
-      "date": "2026.08.15",
-      "title": "경기도의회 민주당 재정건전성 TF, 채무관리 개선책 논의",
-      "snippet": "회의에는 공동단장인 김태희 정책위원장(안산2)과 김창식 부단장(남양주5), 백승기 도청 예산결산특별위원장(안성2), 이채명 교육청 예산결산특별위원장(안양6), 유경현 정무수석(부천7), 김회철 협치수석(화성6) 등이...",
-      "url": "http://www.enewstoday.co.kr/news/articleView.html?idxno=2459837"
-    },
-    {
-      "source": "naver",
-      "press": "newsis.com",
-      "date": "2026.08.15",
-      "title": "K리그1 부천, '선수단 규정 위반' 신재원 징계…김찬영과는 계약 해지",
-      "snippet": "그는 2019년 FC서울에서 프로에 데뷔한 뒤 안산 그리너스, 수원FC, 성남FC를 거쳐 올해 K리그1로 승격한 부천에... 대한 교육과 관리 체계를 다시 한번 면밀히 점검하겠다\"고 팬들에게 약속했다. 부천은 오는 16일 오후...",
-      "url": "https://www.newsis.com/view/NISX20260815_0003750627"
-    },
-    {
       "source": "google",
       "press": "newszoom.kr",
       "date": "2026.08.14",
@@ -619,10 +635,10 @@
     },
     {
       "source": "google",
-      "press": "100ssd.co.kr",
+      "press": "백세시대",
       "date": "2026.08.12",
       "title": "대한노인회 경기 안산시 상록구지회 고잔푸르지오7차경로당, 색칠공부로 시간가는줄 몰라",
-      "snippet": "대한노인회 경기 안산시 상록구지회 고잔푸르지오7차경로당, 색칠공부로 시간가는줄 몰라 100ssd.co.kr",
+      "snippet": "대한노인회 경기 안산시 상록구지회 고잔푸르지오7차경로당, 색칠공부로 시간가는줄 몰라 백세시대",
       "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE5MVC1yN0w4QVhwNlpJRGNvWTZYc1RZNmxxeVFPQ1dheTlnNnh5a0lGeXg0UTdpOGNWYWlWbFN6TWpNaFkzT1MzdmM2LTA2WjFHWDZKSjFWOXZGdmVZeWpHQ01rNlNKdThaRjc0?oc=5"
     },
     {
@@ -779,10 +795,10 @@
     },
     {
       "source": "google",
-      "press": "매일일보",
+      "press": "m-i.kr",
       "date": "2026.08.10",
       "title": "안산교육지원청, 영유아 127명 대상 문화다양성 음악회",
-      "snippet": "안산교육지원청, 영유아 127명 대상 문화다양성 음악회 매일일보",
+      "snippet": "안산교육지원청, 영유아 127명 대상 문화다양성 음악회 m-i.kr",
       "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFBZNmxsNTVVQkhOOFZhalNTUXYzeTAtWDNYUmN6LVNCR2I4OE9OWExmWjQ3NjBfMnVybUU3eWoxcTZQek9BakNScU1FRkxITnR4Qkd2QzBseTlTMjRnRVNZcFpCU2Y?oc=5"
     },
     {
@@ -1103,7 +1119,7 @@
       "date": "2026.08.02",
       "title": "안산교육지원청 이주배경 가정과 함께하는 가족 어울림 교육 운영",
       "snippet": "안산교육지원청 이주배경 가정과 함께하는 가족 어울림 교육 운영 v.daum.net",
-      "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE84Rm92NzMwaGkwbE01eHVrZVZmYmlpcDc5STZHRjhvbnJsVDNVVWttM3ZwemlCN0R5TTVQcVViVmpmZE92RDRaSGdGX2lwLTA?oc=5"
+      "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE5lZmtIMmhWbUF4RDk1dTNod2xOM3FESXR4b3hqd0tNVHJwX2Z0dnhGYUxDREdQQWRHeUhObHQ0ZnJacGtMeXc?oc=5"
     },
     {
       "source": "naver",
@@ -1136,22 +1152,6 @@
       "title": "안산시, 본오동 공원 아래 주차공간 확보…신선어린이공원 지하주차장...",
       "snippet": "무료 시범 개방 거쳐 10월 정식 운영…주거밀집지역 주차환경 개선과 공원 재정비로 주민 생활편의·도심 환경 품질 향상 기대 ▲ 신선어린이공원 지하주차장 모습 /사진제공=안산시 경기 안산시가 상록구 본오동 주택...",
       "url": "https://www.siminilbo.co.kr/news/newsview.php?ncode=1160262488225527"
-    },
-    {
-      "source": "naver",
-      "press": "news1.kr",
-      "date": "2026.07.31",
-      "title": "안산시 '신선어린이공원 지하주차장' 조성…본오동 일대 주차난 개선",
-      "snippet": "경기 안산시가 상록구 본오동 일대 주거지역 주차난 해소를 위해 '신선어린이공원 지하주차장 조성사업'을 완료했다고 31일 밝혔다. 시에 따르면 본오동 일대는 저층 주택 밀집지역으로, 도로 폭이 좁고 주차 공간이...",
-      "url": "https://www.news1.kr/local/gyeonggi/6245384"
-    },
-    {
-      "source": "naver",
-      "press": "arunews.com",
-      "date": "2026.07.31",
-      "title": "\"한 달 반 만에 73% 동의… 안산 재건축 모범사례 만들 것\"",
-      "snippet": "또 중앙역과 더불어 상록수역 인접 상권은 안산에서도 가장 크고 유동인구가 많은 지역이다. 그간 단원구를 위주로 정비사업이 많이 진행됐는데, 이제 상록구의 차례가 왔다. 그만큼 앞으로 개발 예정지도 많아 미래가...",
-      "url": "https://www.arunews.com/news/articleView.html?idxno=65519"
     },
     {
       "source": "naver",
@@ -1259,10 +1259,10 @@
     },
     {
       "source": "google",
-      "press": "100ssd.co.kr",
+      "press": "백세시대",
       "date": "2026.07.25",
       "title": "대한노인회 경기 안산시 상록구지회, 경로당에 MG안산서부새마을금고의 후원물품 전달",
-      "snippet": "대한노인회 경기 안산시 상록구지회, 경로당에 MG안산서부새마을금고의 후원물품 전달 100ssd.co.kr",
+      "snippet": "대한노인회 경기 안산시 상록구지회, 경로당에 MG안산서부새마을금고의 후원물품 전달 백세시대",
       "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE5rT3dLQUtSQXR5QmgxSm8xUUlBS3BSRlNwaDhiYm1EVEdYNmpaMmFvNzJnbDZNR0s0elJKRTE3c2tPWmYxUEhXeXdMY3UxSFRwcTJxcEpBOFJuR2dJVklHdlVjeWM2NTZNVEhr?oc=5"
     },
     {
@@ -1307,10 +1307,10 @@
     },
     {
       "source": "google",
-      "press": "jeonmae.co.kr",
+      "press": "전국매일신문",
       "date": "2026.07.22",
       "title": "장윤정 경기도의원, 아동 돌봄 서비스와 계약직 인력 구조 문제 집중 질의",
-      "snippet": "장윤정 경기도의원, 아동 돌봄 서비스와 계약직 인력 구조 문제 집중 질의 jeonmae.co.kr",
+      "snippet": "장윤정 경기도의원, 아동 돌봄 서비스와 계약직 인력 구조 문제 집중 질의 전국매일신문",
       "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFB5Tm9fUHZGTVlKbnJNWGRSS3lRMlZXc3hjUEtBMmtwZjJZTExNaWRxZk5uRGhKSEhUdHNIaHVLYUk1M1hfUHV5RGVIaEhxbURVODlvbldEMHFJVTFjVEZQX1hfbFlVYUNzamlhSTJB?oc=5"
     },
     {
@@ -1659,10 +1659,10 @@
     },
     {
       "source": "google",
-      "press": "news.kbs.co.kr",
+      "press": "KBS 뉴스",
       "date": "2026.05.26",
       "title": "경기 안산 상록구 카센터서 불…인명 피해 없어",
-      "snippet": "경기 안산 상록구 카센터서 불…인명 피해 없어 news.kbs.co.kr",
+      "snippet": "경기 안산 상록구 카센터서 불…인명 피해 없어 KBS 뉴스",
       "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9BZ0ZQQk1lYXVtWXJsTk1jYU5GbTJTMWk0TXh1VG1aTEVmaVhsRUZXM2lhZzNoQzJMNWU0MVk0OFlBcUlzZkFfSFpHbEVDOTlHMGp4cGFWT2JGdXM?oc=5"
     },
     {
