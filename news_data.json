@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-18 22:52 UTC",
+  "updated": "2026-08-18 23:47 UTC",
   "items": [
     {
       "source": "naver",
@@ -898,14 +898,6 @@
       "url": "https://news.google.com/rss/articles/CBMiQ0FVX3lxTE9qVUotQnBhZl92RjRwdm1vSmdzOTNXVkVabzRrS1RTLUxKUXBGTkJKRmZMQ0FVR3g4eTdieXoyUFEwWkHSAV9BVV95cUxNelpXQ092aktid2FXZFloS0ZrWFZmR3RmeV9HX0ROcXl2SWpDYjZpUkd2dW14QlRyZ3lyajNuYmdwY1JLUUZXa0I5X0tmZ1dDalhhODNxZkk4SVU2NXVCNA?oc=5"
     },
     {
-      "source": "google",
-      "press": "신아일보",
-      "date": "2026.08.07",
-      "title": "안산교육지원청, 서울예대와 손잡고 여름방학 예술문화교육 운영",
-      "snippet": "안산교육지원청, 서울예대와 손잡고 여름방학 예술문화교육 운영 신아일보",
-      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5RY1FwbWdzY1VqNzEyYkdzQk9UdWkxaG5NVFZKMksxMWhGZVV3MTdYVS1fOXIyXzVLaEpRTE9YNkdmUHNLc2laNXI4MXZWZF9WWk5nT2NvN0xzZEpQMlAtQTRtaFQ2STV2M1d6ZjVMZUc?oc=5"
-    },
-    {
       "source": "naver",
       "press": "intn.co.kr",
       "date": "2026.08.06",
@@ -1200,6 +1192,14 @@
       "title": "장윤정 경기도의원, 도교육청 예결위원 선임… “학생·현장 중심 예산 편성 총력”",
       "snippet": "장윤정 경기도의원, 도교육청 예결위원 선임… “학생·현장 중심 예산 편성 총력” twig24.com",
       "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTFBqdjBwRGdOaHc2bmRCZTZNSVlGYmdaYi0xenpQZzF5Z2xTYjdsVkI1Q3hraGFob25VSFBsUW1LZEVpQ3lHVVJsT2xreVZDTlhUcWtDMGs5ODIyWEhxd1JuREtIc1JTUTFDUnJtbzI3REEtVFdx?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "투데이안산",
+      "date": "2026.07.28",
+      "title": "안산교육지원청, '질문하는 시민, 혁신하는 학교, 지속가능한 미래' 캠프 개최",
+      "snippet": "안산교육지원청, '질문하는 시민, 혁신하는 학교, 지속가능한 미래' 캠프 개최 투데이안산",
+      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1ybEs5TU9ZTFRDaDJxbm0wVm5hSkw5WVNqMU5pWEh6enVHZ2ZvU2NxWVkwcmRDSG5relZ4SXR0ZDNiU2ZjclJJdmJ2N2FfcTZ4QVM3RDF3dkpRbVREVzF3ZS16WlZMYV84dXhucHhR0gFyQVVfeXFMTk5FWGJFMk1uS3FwTUlGZzEzSy10dDB2bEdtc0NpYzZ0TlVFNi1aSHlPazYwSXkydExaNTF0OGNlT3FCRjU3clZBMDVEZEIzWmEzV3VWQUFZeHVmemRYZkJ6NmxvVnJUbVAzTHhZenI4dzhR?oc=5"
     },
     {
       "source": "naver",
@@ -1707,10 +1707,10 @@
     },
     {
       "source": "google",
-      "press": "KBS 뉴스",
+      "press": "news.kbs.co.kr",
       "date": "2026.05.26",
       "title": "경기 안산 상록구 카센터서 불…인명 피해 없어",
-      "snippet": "경기 안산 상록구 카센터서 불…인명 피해 없어 KBS 뉴스",
+      "snippet": "경기 안산 상록구 카센터서 불…인명 피해 없어 news.kbs.co.kr",
       "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9BZ0ZQQk1lYXVtWXJsTk1jYU5GbTJTMWk0TXh1VG1aTEVmaVhsRUZXM2lhZzNoQzJMNWU0MVk0OFlBcUlzZkFfSFpHbEVDOTlHMGp4cGFWT2JGdXM?oc=5"
     },
     {
