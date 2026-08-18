@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-18 09:03 UTC",
+  "updated": "2026-08-18 09:58 UTC",
   "items": [
     {
       "source": "naver",
@@ -56,6 +56,14 @@
       "title": "[Who Is ?] 김종량 한양대학교 법인 이사장",
       "snippet": "경기 안산시 상록구 사동 산166번지 일원에 165만3천여㎡(50만 평) 규모로 지정된 안산사이언스밸리 경제자유구역은 첨단로봇과 제조산업을 전략 산업으로 육성된다. 이 지역은 한양대 에리카캠퍼스를 거점으로...",
       "url": "https://www.businesspost.co.kr/BP?command=article_view&num=444628"
+    },
+    {
+      "source": "naver",
+      "press": "goodnews1.com",
+      "date": "2026.08.18",
+      "title": "\"한국교회, 복음으로 민족의 미래 열어가자\"",
+      "snippet": "특별기도 시간에는 부총재 박승주 목사(새일꾼교회), 부총재 이옥화 목사(안산 예정교회), 부총재 김영윤... ▲전 부총리 겸 교육부장관인 황우여 장로가 경축사를 전했다.ⓒ데일리굿뉴스 특히 전 부총리 겸 교육부 장관을...",
+      "url": "https://www.goodnews1.com/news/articleView.html?idxno=463158"
     },
     {
       "source": "naver",
@@ -458,14 +466,6 @@
       "url": "https://www.topstarnews.net/news/articleView.html?idxno=16164545"
     },
     {
-      "source": "naver",
-      "press": "kwangju.co.kr",
-      "date": "2026.08.17",
-      "title": "고려인 독립유공자 후손에게 ‘역사의 빚’ 갚다",
-      "snippet": "안산에서 일하는 세르게이씨가 광주와 인연이 닿은 건 딸 스베틀라나 세르게이(16)양의 호소 때문이었다. 광복회 광주시지부와 광주시교육청 등은 지난해 홍범도 장군이 잠든 중앙아시아 카자흐스탄 크즐오르다시 거주...",
-      "url": "http://www.kwangju.co.kr/article.php?aid=1786963800802363028"
-    },
-    {
       "source": "google",
       "press": "경기일보",
       "date": "2026.08.17",
@@ -811,11 +811,11 @@
     },
     {
       "source": "google",
-      "press": "글로벌뉴스통신GNA",
+      "press": "시민일보",
       "date": "2026.08.11",
-      "title": "안산시, 상록구 일반미용업 영업자 대상 뷰티아카데미 운영",
-      "snippet": "안산시, 상록구 일반미용업 영업자 대상 뷰티아카데미 운영 글로벌뉴스통신GNA",
-      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE9xeFpxZHpkLWpFenpyekx2dlg0NzA1Z2lhYV8zemxvTEJQa3U3ekJGSG5tWlZBM0dTVmt4cDJieFFwcFdCdi1wZDFfYTJaXzEwOTlDUU41REJMWlRhWDNUX2pKVFhLMnhsaHZnV0lrRjBCLTNF?oc=5"
+      "title": "안산시, 상록구 미용업 종사자 실무 역량 강화 나서",
+      "snippet": "안산시, 상록구 미용업 종사자 실무 역량 강화 나서 시민일보",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE0ybG5WdzFuWnJBQXpWenJPLVZNNWNNOEIxMkQ5MWVEMUJ0amJOTk5FaEtfNDNLelZ3WUhKa1I0angzRjdVOVIwU1l6U2VqVUV4VDlCR1ZoVThXUVVrUGYtNW9RLWJKQl9lb0lzVEk3SnNzUdIBb0FVX3lxTE9RZ1hpUzBVeXZ0dVlyblFpMGlBT3V0eVc3bFFvVlJ0dVR4TWhGQ0JrY3Z6UjVGd0FsdG1LQWpZTW1LeWd2M1hrWlZvcXVGa1hoWGN3cUNiTC1uX0xOd1FIMmZuN1Z1b202LTBwZnUxTQ?oc=5"
     },
     {
       "source": "google",
@@ -1075,34 +1075,26 @@
     },
     {
       "source": "google",
-      "press": "경기종합뉴스",
-      "date": "2026.08.04",
-      "title": "안산 성포동 옛 홈플러스 부지에 대형 복합개발사업 본궤도 올라 … 지역 상생모델로 주목!",
-      "snippet": "안산 성포동 옛 홈플러스 부지에 대형 복합개발사업 본궤도 올라 … 지역 상생모델로 주목! 경기종합뉴스",
-      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE9xbGhsaG9Cdkx0QlhMUm9Od1NBUmdVMzZQT0MzZ2Y5ZlpRUC02MTVrZjFWX0htQlU5bWNKcC15TUtjSUVSSEYzdUxzbE5vWHpVNlZ5cFV6THdGUk5FOGZyb0xLVG5EU3NGLUtkaEZwQW54Qm1K?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "더코리아",
+      "press": "thekorea.kr",
       "date": "2026.08.03",
       "title": "장윤정 경기도의원, 경기도 사회적경제원 및 신용보증재단 현안 집중 질의 > 뉴스",
-      "snippet": "장윤정 경기도의원, 경기도 사회적경제원 및 신용보증재단 현안 집중 질의 > 뉴스 더코리아",
+      "snippet": "장윤정 경기도의원, 경기도 사회적경제원 및 신용보증재단 현안 집중 질의 > 뉴스 thekorea.kr",
       "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBVV3BDNjRuWHgtOGpuMHRVYzd4TmhMblN4RnZDbm5SUGhaYlhmY09vSGxVZndlLW9XZlNtZ3l4NTNVbFNJQWJwN0hLU1VBY20tNXQwUk83OHpta1ZYeVZiWE9PMWhCME9Ma0FMaE1QSVc?oc=5"
     },
     {
       "source": "google",
-      "press": "더코리아",
+      "press": "thekorea.kr",
       "date": "2026.08.03",
       "title": "장윤정 경기도의원, 사회적 기업 지원 체계 및 공공 플랫폼 개선 촉구 > 뉴스",
-      "snippet": "장윤정 경기도의원, 사회적 기업 지원 체계 및 공공 플랫폼 개선 촉구 > 뉴스 더코리아",
+      "snippet": "장윤정 경기도의원, 사회적 기업 지원 체계 및 공공 플랫폼 개선 촉구 > 뉴스 thekorea.kr",
       "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5XbWV3MGFGUTk5UlN5anN2REFZZUc0STlQTWFTM2tPY2RLVktlbTZheWtrV0Y0VkNtdzhpMFlmM2JNd25MUzc0cXdBYjdMSUtsUWV1Qm9VQTliZGYxbWlnMDlmcW1HQ2F4NlZGZ2tUUlE?oc=5"
     },
     {
       "source": "google",
-      "press": "더코리아",
+      "press": "thekorea.kr",
       "date": "2026.08.03",
       "title": "장윤정 경기도의원, 경제노동위원회 부위원장 선임… 민생 현안 해결 박차 > 뉴스",
-      "snippet": "장윤정 경기도의원, 경제노동위원회 부위원장 선임… 민생 현안 해결 박차 > 뉴스 더코리아",
+      "snippet": "장윤정 경기도의원, 경제노동위원회 부위원장 선임… 민생 현안 해결 박차 > 뉴스 thekorea.kr",
       "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1SdDh6UW9sWXlEWlRrYkVrWjlKU3ZoY19HUnpubU5peFNTWko1QlRGYVh1djVtcnM4VmgxYVpUUDNCRHpsb1lHZWwzTmhfVDBsUE5walJQb2dzWi1BS1FIQ0phNzVFc1g4RkF6UWxVQzk?oc=5"
     },
     {
@@ -1290,6 +1282,14 @@
       "url": "https://basketkorea.com/news/newsview.php?ncode=1065587043666757"
     },
     {
+      "source": "google",
+      "press": "백세시대",
+      "date": "2026.07.25",
+      "title": "대한노인회 경기 안산시 상록구지회, 경로당에 MG안산서부새마을금고의 후원물품 전달",
+      "snippet": "대한노인회 경기 안산시 상록구지회, 경로당에 MG안산서부새마을금고의 후원물품 전달 백세시대",
+      "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE5rT3dLQUtSQXR5QmgxSm8xUUlBS3BSRlNwaDhiYm1EVEdYNmpaMmFvNzJnbDZNR0s0elJKRTE3c2tPWmYxUEhXeXdMY3UxSFRwcTJxcEpBOFJuR2dJVklHdlVjeWM2NTZNVEhr?oc=5"
+    },
+    {
       "source": "naver",
       "press": "kyeonggi.com",
       "date": "2026.07.23",
@@ -1451,11 +1451,11 @@
     },
     {
       "source": "google",
-      "press": "연합뉴스",
-      "date": "2026.07.12",
-      "title": "안산 팔곡이동 도금단지 공장서 화재…한때 대응 1단계",
-      "snippet": "안산 팔곡이동 도금단지 공장서 화재…한때 대응 1단계 연합뉴스",
-      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9tS3RtSThxcjhxWDFReDRnU2ZqT2RSMy0wUWhSblJLbzFSWGdqaTd0aTBTQlhYdGZBS2VJQ3MtZVlsWWpPVDkyY2haLXotd3hlTUk4VkxrMW9BWjA?oc=5"
+      "press": "반월신문",
+      "date": "2026.07.14",
+      "title": "안산 상록구 도금공장 화재 대응 1단계 발령 후 54분 만에 초진…인명피해 없어",
+      "snippet": "안산 상록구 도금공장 화재 대응 1단계 발령 후 54분 만에 초진…인명피해 없어 반월신문",
+      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBXVi1zZVRQbjhjaDY5UXBTTjNaUXlnRmZtbmx1ZEJqeDRDTENDNW1uTlN1czBabkhUOGV2UXc2NE44cmtkS2Z5YjF6YW1NZkdudUdhQnN3X19lc2pWaG1iajBEcFp2Qzg?oc=5"
     },
     {
       "source": "naver",
@@ -1659,10 +1659,10 @@
     },
     {
       "source": "google",
-      "press": "뉴스프리존",
+      "press": "newsfreezone.co.kr",
       "date": "2026.05.28",
       "title": "장윤정 경기도의원 후보 “교육·지역경제 함께 성장하는 안산 만들 것”",
-      "snippet": "장윤정 경기도의원 후보 “교육·지역경제 함께 성장하는 안산 만들 것” 뉴스프리존",
+      "snippet": "장윤정 경기도의원 후보 “교육·지역경제 함께 성장하는 안산 만들 것” newsfreezone.co.kr",
       "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE45OHNIeUxramRDR1dsYnVpb1VrXzRjbGdCQXFoXzV4Q1ZCTzN6d3lzbDlfdDBaSDIyeXFOZlhWZUd6dWxQUEliaGxVR1hDeFZDdGhnakxPZGxrLU5sVzg0QlBCMVpQeWVaTEhfb01KMmt1RG_SAXdBVV95cUxQRWRkWGpqeWRPZVJvdXdITXh0ZmVxWFJPanVncTBDc1VrRXc5OS1OOFFwcHIzR1JHZmo0UWZIT3BMMXNiVDJuQXhENllHMzVTVE94WGFJMHhDRzd3QW03REVoTnBraXh1OGlZYWJob2c4amNXdmZNRQ?oc=5"
     },
     {
@@ -1707,14 +1707,6 @@
     },
     {
       "source": "google",
-      "press": "news.sbs.co.kr",
-      "date": "2026.05.13",
-      "title": "안산 상록구 비닐하우스 화재…\"인명피해 없어\"",
-      "snippet": "안산 상록구 비닐하우스 화재…\"인명피해 없어\" news.sbs.co.kr",
-      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE14bkNRMWFTb2ZUdWNwcThiMFdQRFRuWHpyYU9JWWdJSFVwdnliRmRYcWFpdW92TWc3RzVlUFplalFpLV8tb0FOdW40SHh2QkdRX2dZMEVXR2dsVVVNU09jZkwtMHFUN0JROEE?oc=5"
-    },
-    {
-      "source": "google",
       "press": "경향신문",
       "date": "2026.05.13",
       "title": "안산 상록구 다세대주택서 화재···1명 숨지고 3명 부상",
@@ -1739,10 +1731,18 @@
     },
     {
       "source": "google",
-      "press": "경인신문",
+      "press": "news.sbs.co.kr",
+      "date": "2026.05.13",
+      "title": "안산 상록구 비닐하우스 화재…\"인명피해 없어\"",
+      "snippet": "안산 상록구 비닐하우스 화재…\"인명피해 없어\" news.sbs.co.kr",
+      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE14bkNRMWFTb2ZUdWNwcThiMFdQRFRuWHpyYU9JWWdJSFVwdnliRmRYcWFpdW92TWc3RzVlUFplalFpLV8tb0FOdW40SHh2QkdRX2dZMEVXR2dsVVVNU09jZkwtMHFUN0JROEE?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "asn24.com",
       "date": "2026.05.11",
       "title": "장윤정 경기도의원, 안산 제3선거구 공천 확정... \"무도한 권력에 대한 당원들의 엄중한 심판\"",
-      "snippet": "장윤정 경기도의원, 안산 제3선거구 공천 확정... \"무도한 권력에 대한 당원들의 엄중한 심판\" 경인신문",
+      "snippet": "장윤정 경기도의원, 안산 제3선거구 공천 확정... \"무도한 권력에 대한 당원들의 엄중한 심판\" asn24.com",
       "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE1lUTd5aEhXbmtjLTVva3RfUC1DOGdJSkRnVWt4RWlJRThQRm1PR3N1SFpJYXZhclpic0Jsc2xBWHF5UHNQS2pxMl9RU2pzTVpfVWx3aDdZSkhKaFcyNEVUUlRJU1I1WjA?oc=5"
     },
     {
@@ -1779,10 +1779,10 @@
     },
     {
       "source": "google",
-      "press": "동아일보",
+      "press": "donga.com",
       "date": "2026.04.25",
       "title": "안산 상록구 금속 구조물 제작 공장서 불…35분 만에 완진",
-      "snippet": "안산 상록구 금속 구조물 제작 공장서 불…35분 만에 완진 동아일보",
+      "snippet": "안산 상록구 금속 구조물 제작 공장서 불…35분 만에 완진 donga.com",
       "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE9aNk9telFyd253d0xfZ0IxWTgwa3VvaDc3b3ZzZEtCZnZwOVQxbTN3V201dWZNZllWTWVNT2RscWhFM3dMcWdtRm1CZE5Ca3ZmWHBGRGQxV2JfRVQ2UHZtTGVkMS1vSWJaLXdMSUp1TXNhem9PN2fSAWZBVV95cUxNekI3eFlqQTY1bURXeWpzdy1veXhkXzBVN0lIUTQxNGtsbTNZZTFYZzFXNFhDTzZFYnFkS25VSU1fRnd6MUxHTFlRRFhpSEFDY29lRjdRdUdCS0h4SlJxMUhGQk5hQkE?oc=5"
     },
     {
@@ -1803,10 +1803,10 @@
     },
     {
       "source": "google",
-      "press": "paxetv.com",
+      "press": "팍스경제TV",
       "date": "2026.03.08",
       "title": "장윤정 도의원, 안산 시곡중 오수관 파손 사고 현장 방문...신속 복구 강조",
-      "snippet": "장윤정 도의원, 안산 시곡중 오수관 파손 사고 현장 방문...신속 복구 강조 paxetv.com",
+      "snippet": "장윤정 도의원, 안산 시곡중 오수관 파손 사고 현장 방문...신속 복구 강조 팍스경제TV",
       "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5CZldmYnZqSmo0akV5SHgtNGZkdTF3bkRyRHpxOFNhdTdwd1RtSkp4NC12eHF4clctaE9VY2pkc3Jyald6NU1OSXROQldFbUN2MGdxakNGODRiY09TckhmLVQtYmItVm5U?oc=5"
     },
     {
