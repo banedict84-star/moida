@@ -4,12 +4,12 @@
     {
       "step": "profile-error",
       "candidate": "https://m.ggc.go.kr/site/lwmkr/blog/11017/11",
-      "error": "Page.goto: Timeout 60000ms exceeded.\nCall log:\n  - navigating to \"https://m.ggc.go.kr/site/lwmkr/blog/11017/11\", waiting until \"commit\"\n"
+      "error": "Page.content: Unable to retrieve content because the page is navigating and changing the content."
     },
     {
       "step": "profile-error",
       "candidate": "https://www.ggc.go.kr/site/lwmkr/blog/11017/11",
-      "error": "Page.goto: Timeout 60000ms exceeded.\nCall log:\n  - navigating to \"https://www.ggc.go.kr/site/lwmkr/blog/11017/11\", waiting until \"commit\"\n"
+      "error": "Page.goto: Navigation to \"https://www.ggc.go.kr/site/lwmkr/blog/11017/11\" is interrupted by another navigation to \"https://m.ggc.go.kr/site/main/home\"\nCall log:\n  - navigating to \"https://www.ggc.go.kr/site/lwmkr/blog/11017/11\", waiting until \"commit\"\n"
     }
   ],
   "error": "모바일·PC 의원 페이지 모두 발의의안 화면을 열지 못했습니다."
