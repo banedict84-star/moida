@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-19 19:03 UTC",
+  "updated": "2026-08-19 19:50 UTC",
   "items": [
     {
       "source": "naver",
@@ -13,17 +13,17 @@
       "source": "naver",
       "press": "ekn.kr",
       "date": "2026.08.20",
-      "title": "[패트롤] 화성시-평택시-수원시-안성시-오산시",
-      "snippet": "현재 가입된 도시는 경기권 13개 시(수원·용인·고양·화성·성남·부천·남양주·안산·평택·안양·시흥·김포... 아울러 센터는 사후 조정에 그치지 않고 예방 교육과 찾아가는 상담 등 사전 예방 활동을 병행해 주민들의...",
-      "url": "https://www.ekn.kr/web/view.php?key=20260820021354395"
+      "title": "[패트롤] 경기도-경기도일자리재단-경기도교육청",
+      "snippet": "경기도교육청이 공정성과 합리성을 높인 '2027학년도 경기도 고등학교 평준화학군 학생 배정 방안'을 발표했다. 도내 고등학교 평준화 지역은 수원, 성남, 안양권(안양·과천·군포·의왕), 고양, 안산, 용인, 부천, 광명...",
+      "url": "https://www.ekn.kr/web/view.php?key=20260820027564379"
     },
     {
       "source": "naver",
       "press": "ekn.kr",
       "date": "2026.08.20",
-      "title": "[패트롤] 경기도-경기도일자리재단-경기도교육청",
-      "snippet": "경기도교육청이 공정성과 합리성을 높인 '2027학년도 경기도 고등학교 평준화학군 학생 배정 방안'을 발표했다. 도내 고등학교 평준화 지역은 수원, 성남, 안양권(안양·과천·군포·의왕), 고양, 안산, 용인, 부천, 광명...",
-      "url": "https://www.ekn.kr/web/view.php?key=20260820027564379"
+      "title": "[패트롤] 화성시-평택시-수원시-안성시-오산시",
+      "snippet": "현재 가입된 도시는 경기권 13개 시(수원·용인·고양·화성·성남·부천·남양주·안산·평택·안양·시흥·김포... 아울러 센터는 사후 조정에 그치지 않고 예방 교육과 찾아가는 상담 등 사전 예방 활동을 병행해 주민들의...",
+      "url": "https://www.ekn.kr/web/view.php?key=20260820021354395"
     },
     {
       "source": "naver",
@@ -395,14 +395,6 @@
     },
     {
       "source": "naver",
-      "press": "kyeonggi.com",
-      "date": "2026.08.19",
-      "title": "경기도교육청, 2027학년도 평준화학군 고교 배정안 확정",
-      "snippet": "도교육청은 19일 수원·성남·안양권·고양·안산·용인·부천·광명·의정부 등 12개 시 지역의 ‘2027학년도 경기도 고등학교 평준화학군 학생 배정 방안’을 발표했다. 학생 배정은 9개 학군별 후기 일반고 지원자를...",
-      "url": "https://www.kyeonggi.com/article/20260819580089"
-    },
-    {
-      "source": "naver",
       "press": "queen.co.kr",
       "date": "2026.08.19",
       "title": "경기도교육청, 2027학년도 고교 평준화 학군 학생 배정 방안 발표",
@@ -410,12 +402,20 @@
       "url": "http://www.queen.co.kr/news/articleView.html?idxno=461915"
     },
     {
+      "source": "naver",
+      "press": "kyeonggi.com",
+      "date": "2026.08.19",
+      "title": "경기도교육청, 2027학년도 평준화학군 고교 배정안 확정",
+      "snippet": "도교육청은 19일 수원·성남·안양권·고양·안산·용인·부천·광명·의정부 등 12개 시 지역의 ‘2027학년도 경기도 고등학교 평준화학군 학생 배정 방안’을 발표했다. 학생 배정은 9개 학군별 후기 일반고 지원자를...",
+      "url": "https://www.kyeonggi.com/article/20260819580089"
+    },
+    {
       "source": "google",
-      "press": "newszoom.kr",
+      "press": "엔디엔뉴스",
       "date": "2026.08.19",
       "title": "안산교육지원청, 2026년 을지연습 연계 ‘비상체험존 스탬프 투어’ 운영",
-      "snippet": "안산교육지원청, 2026년 을지연습 연계 ‘비상체험존 스탬프 투어’ 운영 newszoom.kr",
-      "url": "https://news.google.com/rss/articles/CBMiREFVX3lxTE43WHpISnE1WFZWdzI4dXJ1MjlBZUxFclh6STZsWGpVd05OaGVHeEM1NlZIa3VmbmpRUkdKM2l6LTdNRE4z?oc=5"
+      "snippet": "안산교육지원청, 2026년 을지연습 연계 ‘비상체험존 스탬프 투어’ 운영 엔디엔뉴스",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTFBjNFRha2l1V3BLbzZsbDdVVWtwR1lzLXNRX0VvNnVpU0IwRUQ1Wk81cWxZR0RLakJBWFhCSTJqTU1CVEszN1cwSDBIb2U0ZmllenhKQTZmcV9KUjYwaUl2Mm5JSHFTN3pIaTdTNmdLTjFPd9IBckFVX3lxTFBjNFRha2l1V3BLbzZsbDdVVWtwR1lzLXNRX0VvNnVpU0IwRUQ1Wk81cWxZR0RLakJBWFhCSTJqTU1CVEszN1cwSDBIb2U0ZmllenhKQTZmcV9KUjYwaUl2Mm5JSHFTN3pIaTdTNmdLTjFPdw?oc=5"
     },
     {
       "source": "naver",
@@ -835,10 +835,10 @@
     },
     {
       "source": "google",
-      "press": "m-i.kr",
+      "press": "매일일보",
       "date": "2026.08.10",
       "title": "안산교육지원청, 영유아 127명 대상 문화다양성 음악회",
-      "snippet": "안산교육지원청, 영유아 127명 대상 문화다양성 음악회 m-i.kr",
+      "snippet": "안산교육지원청, 영유아 127명 대상 문화다양성 음악회 매일일보",
       "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFBZNmxsNTVVQkhOOFZhalNTUXYzeTAtWDNYUmN6LVNCR2I4OE9OWExmWjQ3NjBfMnVybUU3eWoxcTZQek9BakNScU1FRkxITnR4Qkd2QzBseTlTMjRnRVNZcFpCU2Y?oc=5"
     },
     {
@@ -899,14 +899,6 @@
     },
     {
       "source": "google",
-      "press": "서울신문",
-      "date": "2026.08.07",
-      "title": "박은경 경기도의원, 안산 교육현안·유보통합 추진상황 점검",
-      "snippet": "박은경 경기도의원, 안산 교육현안·유보통합 추진상황 점검 서울신문",
-      "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPRG1EVkJicWxVbDR4cmpQR0NQTWRMY2tkVXdRUl9NYldlVm4tZ3hqNFk4NFowOXQzRW1GZEdPZGlTSmFVMDF4aXJGd2R5SlZ2ZnJ0VWE3NGs1aFlMdHNyYl9QTFgwSDl0cEtUR0t1djh5S0xVOEtQaS1YeWlxNzNmMjN2MzJBWmpnQkNGWFc1MG91OEE?oc=5"
-    },
-    {
-      "source": "google",
       "press": "경인투데이뉴스",
       "date": "2026.08.07",
       "title": "경기도의회 박은경 의원, 안산 교육현안·유보통합 추진상황 점검:경인투데이뉴스",
@@ -915,11 +907,11 @@
     },
     {
       "source": "google",
-      "press": "신아일보",
+      "press": "서울신문",
       "date": "2026.08.07",
-      "title": "안산교육지원청, 서울예대와 손잡고 여름방학 예술문화교육 운영",
-      "snippet": "안산교육지원청, 서울예대와 손잡고 여름방학 예술문화교육 운영 신아일보",
-      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5RY1FwbWdzY1VqNzEyYkdzQk9UdWkxaG5NVFZKMksxMWhGZVV3MTdYVS1fOXIyXzVLaEpRTE9YNkdmUHNLc2laNXI4MXZWZF9WWk5nT2NvN0xzZEpQMlAtQTRtaFQ2STV2M1d6ZjVMZUc?oc=5"
+      "title": "박은경 경기도의원, 안산 교육현안·유보통합 추진상황 점검",
+      "snippet": "박은경 경기도의원, 안산 교육현안·유보통합 추진상황 점검 서울신문",
+      "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPRG1EVkJicWxVbDR4cmpQR0NQTWRMY2tkVXdRUl9NYldlVm4tZ3hqNFk4NFowOXQzRW1GZEdPZGlTSmFVMDF4aXJGd2R5SlZ2ZnJ0VWE3NGs1aFlMdHNyYl9QTFgwSDl0cEtUR0t1djh5S0xVOEtQaS1YeWlxNzNmMjN2MzJBWmpnQkNGWFc1MG91OEE?oc=5"
     },
     {
       "source": "naver",
@@ -1043,10 +1035,18 @@
     },
     {
       "source": "google",
-      "press": "m-i.kr",
+      "press": "누리일보",
+      "date": "2026.08.06",
+      "title": "안산교육지원청, 관내 초등학생 대상 'IBEP 공유학교' 운영",
+      "snippet": "안산교육지원청, 관내 초등학생 대상 'IBEP 공유학교' 운영 누리일보",
+      "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE5xVktqS3Fmc2VqN2tWUEs4ZmhBaEI4WVNWZ2xUOUpUd0QycW1yZUVEa3FUVjQyU2I1cmdydkxrclRnR29TVk9XQm1QSnZRSEZnSWh3d3RTTGx2MHlidk1uZjhn?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "매일일보",
       "date": "2026.08.06",
       "title": "안산교육지원청, 중·고생 대상 여름방학 독서토론 운영",
-      "snippet": "안산교육지원청, 중·고생 대상 여름방학 독서토론 운영 m-i.kr",
+      "snippet": "안산교육지원청, 중·고생 대상 여름방학 독서토론 운영 매일일보",
       "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFBHWUwwcnZtSWlwc0VQa2duQVVQVWNDZloyNlRkYlBJVE1jRXFhY0NfS0t4R3FZQjdnRGhLM2dURnhEM3hVZ1Y5STBLREw2LXFldGVtWW1oX1lweTVrdFcyMTlDTjM?oc=5"
     },
     {
@@ -1115,10 +1115,10 @@
     },
     {
       "source": "google",
-      "press": "thekorea.kr",
+      "press": "더코리아",
       "date": "2026.08.03",
       "title": "장윤정 경기도의원, 경기도 사회적경제원 및 신용보증재단 현안 집중 질의 > 뉴스",
-      "snippet": "장윤정 경기도의원, 경기도 사회적경제원 및 신용보증재단 현안 집중 질의 > 뉴스 thekorea.kr",
+      "snippet": "장윤정 경기도의원, 경기도 사회적경제원 및 신용보증재단 현안 집중 질의 > 뉴스 더코리아",
       "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBVV3BDNjRuWHgtOGpuMHRVYzd4TmhMblN4RnZDbm5SUGhaYlhmY09vSGxVZndlLW9XZlNtZ3l4NTNVbFNJQWJwN0hLU1VBY20tNXQwUk83OHpta1ZYeVZiWE9PMWhCME9Ma0FMaE1QSVc?oc=5"
     },
     {
@@ -1235,19 +1235,19 @@
     },
     {
       "source": "google",
-      "press": "광흥타임즈",
-      "date": "2026.07.27",
-      "title": "경기도의회 장윤정 의원, 도교육청 예결위원 선임...재정의 건전성과 효율성, 학생과 현장 중심의 예산 편성에 총력 다할 것",
-      "snippet": "경기도의회 장윤정 의원, 도교육청 예결위원 선임...재정의 건전성과 효율성, 학생과 현장 중심의 예산 편성에 총력 다할 것 광흥타임즈",
-      "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE9GQkFRVlljR1FNSi1IaHhtOUdmRVNhamN6Y0FncjgxWkVTX2g4YUpuelk0UTNyTkY0SVBHYjQ3WUFoSDhYMDFPYkZDVHI4aWRiNnVDNUd1azc5di1IRVpZ?oc=5"
-    },
-    {
-      "source": "google",
       "press": "사회적경제뉴스",
       "date": "2026.07.27",
       "title": "경기도의회 장윤정 의원, 최혜경 의원 의정 활동 소식",
       "snippet": "경기도의회 장윤정 의원, 최혜경 의원 의정 활동 소식 사회적경제뉴스",
       "url": "https://news.google.com/rss/articles/CBMiP0FVX3lxTE1EMTUyU180VHVXUlhfdGdoYnlEekUtVjA2WG5EaGRKVVVHbEpyU2NjQzMyYWJmd3QtVk91SHZ2bw?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "엔디엔뉴스",
+      "date": "2026.07.27",
+      "title": "경기도의회 장윤정 의원, 도교육청 예결위원 선임...재정의 건전성과 효율성, 학생과 현장 중심의 예산 편성에 총력 다할 것",
+      "snippet": "경기도의회 장윤정 의원, 도교육청 예결위원 선임...재정의 건전성과 효율성, 학생과 현장 중심의 예산 편성에 총력 다할 것 엔디엔뉴스",
+      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5lSjcyV1UtRnJvbGpBWHJOX09aNVN1N1BYVTRtNWM2TFJQTW5IUkdlTlc3N1J0cjNyWFV6YkRkMUpSQ2NSdTdleHpHNVNTa0JFendTQ3JTeVVqWDJ1TjdhYzJEekFFQ0szYkU3XzNn0gFyQVVfeXFMTlVmM1FxSUpQWkZYenZoUmRfSExnUWJjR3lqOGdoZFRnU3o5cGM1MDFDdUdOcVY0UWFBdUdMVWZCNUtMYUhEZ0lCcTRfU00yVXlaTk8xcGZkc1pSYUZWZlhNQjE5TUdxYktxeGJ3d2dxeThR?oc=5"
     },
     {
       "source": "google",
@@ -1330,6 +1330,14 @@
       "url": "https://news.google.com/rss/articles/CBMiREFVX3lxTFB5dDZkRnRySzhpa2xfRUNXaDU5VlQ0c2xXcnpLb3BrR29KUUVOY1htS1dEOFZEN284ajdEcVpJaEVwWm1Q?oc=5"
     },
     {
+      "source": "google",
+      "press": "서프라이즈뉴스",
+      "date": "2026.07.22",
+      "title": "장윤정 경기도의원, 경기도 사회적경제원 및 신용보증재단 현안 집중 질의",
+      "snippet": "장윤정 경기도의원, 경기도 사회적경제원 및 신용보증재단 현안 집중 질의 서프라이즈뉴스",
+      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE9IRHFJdWh4M29yUnBKZ00wVHNUTkxHSUl1d3E3bkZSeU1RbjNrUWpEbmlWYUR4Tk1fODN3S1NFVEMxRVBpN3Y2NnhoVXBTQ2xzRlhZQ1ZJVEhfd1A2MkVSTmpNNDBqb3pXVS0xZW1xNA?oc=5"
+    },
+    {
       "source": "naver",
       "press": "joongboo.com",
       "date": "2026.07.21",
@@ -1392,6 +1400,14 @@
       "title": "도의회 장윤정 의원, 경제노동위 부위원장 선임",
       "snippet": "도의회 장윤정 의원, 경제노동위 부위원장 선임 안산뉴스",
       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9pZEVycTdDUVFGVUx0U2lzbFVqUnhUdDdhWmw1c1R2VDNLZm9UalY0VlY5b3lzWFZLcnMwY3VhdWtfcnpmbkdRYjdUNnFuZ3lPU0RRY0JNLXRiczkwQ1VOUmJJRmpzWUd1Nkl3Ug?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "웹이코노미",
+      "date": "2026.07.21",
+      "title": "경기도의회 장윤정 의원, 사회적 기업 지원 확대 및 공공 플랫폼 개선 촉구",
+      "snippet": "경기도의회 장윤정 의원, 사회적 기업 지원 확대 및 공공 플랫폼 개선 촉구 웹이코노미",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTFB4ejlJaEQwS0tyTEhGaWhTUWRwNnpVU1Z6el8xSEhqZ2xtWGZ0MWFCUVloSEVVTHBuSGFsdFhLaXRFcERsTE0zVWtmUmZBQUt3cVgyUHQzNVA1ZTYwLVFsazhEUmhoR3h5MEVlVU8ySUpnQQ?oc=5"
     },
     {
       "source": "naver",
@@ -1507,10 +1523,10 @@
     },
     {
       "source": "google",
-      "press": "thekorea.kr",
+      "press": "더코리아",
       "date": "2026.06.13",
       "title": "장윤정 경기도의회 교육기획위원회 부위원장, 경기도교육청 예산유보 운영 점검 > 뉴스",
-      "snippet": "장윤정 경기도의회 교육기획위원회 부위원장, 경기도교육청 예산유보 운영 점검 > 뉴스 thekorea.kr",
+      "snippet": "장윤정 경기도의회 교육기획위원회 부위원장, 경기도교육청 예산유보 운영 점검 > 뉴스 더코리아",
       "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFA4aWt5Vl9FYVZmYklkdUd0UU9DNS1qT08tR28zNC1YT0JsU1R3QWk3NmxyenRTTi1NdTFGb2hWenEwbWRjUk5xYmhnTzZsX2hYNVkyY0NnYnMtUkh5bXowU1E2UHNjZ3pvdnBIRXhjWUE?oc=5"
     },
     {
@@ -1536,6 +1552,14 @@
       "title": "장윤정 부위원장, 교육청 예산유보 운영 점검… \"적기 집행이 우선\"",
       "snippet": "장윤정 경기도의회 교육기획위원회 부위원장(더불어민주당, 안산3)이 경기도교육청의 예산유보 운영 실태를 점검하며 교육현장에 필요한 예산의 적기 집행 중요성을 강조했다. 장 부위원장은 지난 11일 열린 2025회계연도...",
       "url": "https://www.newscj.com/news/articleView.html?idxno=3408864"
+    },
+    {
+      "source": "google",
+      "press": "경인투데이뉴스",
+      "date": "2026.06.12",
+      "title": "경기도의회 장윤정 의원, 경기도교육청 예산유보 운영 점검…“절감보다 적기 집행이 중요”:경인투데이뉴스",
+      "snippet": "경기도의회 장윤정 의원, 경기도교육청 예산유보 운영 점검…“절감보다 적기 집행이 중요”:경인투데이뉴스 경인투데이뉴스",
+      "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE83UjRXR0p2Q2twNEwwT1RFNDFJZFp5OUhNNjdUVjlfZF9mY24wMFRGOWRpRjJ2NllIR0ZUalpBSFNGWl9mTDhxc0hWN1lmb0wxQWY3QXpka3B0N0JnVVJn0gFfQVVfeXFMTzdSNFdHSnZDa3A0TDBPVEU0MUlkWnk5SE02N1RWOV9kX2ZjbjAwVEY5ZGlGMnY2WUhHRlRqWkFIU0ZaX2ZMOHFzSFY3WWZvTDFBZjdBemRrcHQ3QmdVUmc?oc=5"
     },
     {
       "source": "naver",
