@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-20 10:00 UTC",
+  "updated": "2026-08-20 10:57 UTC",
   "items": [
     {
       "source": "naver",
@@ -51,6 +51,22 @@
     },
     {
       "source": "naver",
+      "press": "newsclaim.co.kr",
+      "date": "2026.08.20",
+      "title": "안산시 청년친화헌정대상 경기도 종합대상 선정",
+      "snippet": "청년친화헌정대상,종합대상,선정 안산시청 전경. 사진=이관희 기자 안산시가 청년정책과 소통 분야의 성과를... 시는 청년정책을 참여·권리, 일자리, 주거·복지, 교육·문화 등으로 확대해 추진하고 있습니다....",
+      "url": "https://www.newsclaim.co.kr/news/articleView.html?idxno=3072624"
+    },
+    {
+      "source": "naver",
+      "press": "osen.co.kr",
+      "date": "2026.08.20",
+      "title": "정지석·황택의·허수봉, 배구 꿈나무 돕기 위해 손잡았다…배구 U-12 국...",
+      "snippet": "미래육성캠프는 이날부터 22일까지 경기 안산에서 진행된다. 한국초등배구연맹은 초등학교 6학년 남녀... 캠프에서는 기본기와 포지션별 기술 훈련을 비롯해 스포츠과학을 활용한 체력 관리, 부상 예방 교육, 멘탈...",
+      "url": "http://www.osen.co.kr/article/G1112860633"
+    },
+    {
+      "source": "naver",
       "press": "sportsworldi.com",
       "date": "2026.08.20",
       "title": "“한국 배구의 미래 위해” 정지석·황택의·허수봉, 유소년 캠프 지원",
@@ -85,17 +101,17 @@
       "source": "naver",
       "press": "shinailbo.co.kr",
       "date": "2026.08.20",
-      "title": "안산대-경복비즈니스고, 회계 전문인재 양성 맞손…선이수 학점 인정",
-      "snippet": "실무형 인재를 양성하는 데 최선을 다하겠다\"고 밝혔다. 안산대는 앞으로 특성화고와 연계교육 협약을 확대해 실무 중심 인재를 조기에 발굴하고 대학 교육까지 연계하는 인재 양성체계를 강화할 방침이다. [신아일보] 안산",
-      "url": "https://www.shinailbo.co.kr/news/articleView.html?idxno=5053322"
+      "title": "안산대, 진로취업 지도교수 역량강화 워크숍 개최",
+      "snippet": "경기 안산대학교가 변화하는 채용환경에 대응해 교수와 교직원의 학생 진로·취업 지도 역량을 높이는... 또 퍼스널컬러 분석을 활용한 면접 지도 기법 등 실제 학생 지도에 적용할 수 있는 실무 중심의 교육도 진행했다....",
+      "url": "https://www.shinailbo.co.kr/news/articleView.html?idxno=5053336"
     },
     {
       "source": "naver",
       "press": "shinailbo.co.kr",
       "date": "2026.08.20",
-      "title": "안산대, 진로취업 지도교수 역량강화 워크숍 개최",
-      "snippet": "경기 안산대학교가 변화하는 채용환경에 대응해 교수와 교직원의 학생 진로·취업 지도 역량을 높이는... 또 퍼스널컬러 분석을 활용한 면접 지도 기법 등 실제 학생 지도에 적용할 수 있는 실무 중심의 교육도 진행했다....",
-      "url": "https://www.shinailbo.co.kr/news/articleView.html?idxno=5053336"
+      "title": "안산대-경복비즈니스고, 회계 전문인재 양성 맞손…선이수 학점 인정",
+      "snippet": "실무형 인재를 양성하는 데 최선을 다하겠다\"고 밝혔다. 안산대는 앞으로 특성화고와 연계교육 협약을 확대해 실무 중심 인재를 조기에 발굴하고 대학 교육까지 연계하는 인재 양성체계를 강화할 방침이다. [신아일보] 안산",
+      "url": "https://www.shinailbo.co.kr/news/articleView.html?idxno=5053322"
     },
     {
       "source": "naver",
@@ -410,20 +426,12 @@
       "url": "https://www.ekn.kr/web/view.php?key=20260820021354395"
     },
     {
-      "source": "naver",
-      "press": "nocutnews.co.kr",
-      "date": "2026.08.20",
-      "title": "\"받은 사랑 돌려준다\"…정지석·황택의·허수봉, 배구 꿈나무 위해 맞잡...",
-      "snippet": "19일 배구계에 따르면 세 선수는 이날부터 22일까지 나흘간 경기도 안산에서 열리는 한국초등배구연맹 주최... 소통 교육, 진로 멘토링 등 종합적인 성장 프로그램이 진행된다. 선수들의 선행에 세 선수의 소속 구단인...",
-      "url": "https://www.nocutnews.co.kr/news/6565138?utm_source=naver&utm_medium=article&utm_campaign=20260820120036"
-    },
-    {
       "source": "google",
-      "press": "뉴스후",
+      "press": "경기헤드라인",
       "date": "2026.08.20",
       "title": "안산교육지원청, 안산교복은행 교복나눔 행사 개최",
-      "snippet": "안산교육지원청, 안산교복은행 교복나눔 행사 개최 뉴스후",
-      "url": "https://news.google.com/rss/articles/CBMiQ0FVX3lxTE9acXhoNDRlSEtyR2FwNUNiamc5LUtQbi1OWGgtTXFMRnZwSDcweXNpN3N2Rk4wMjVxY18wb3NEZG5OTkU?oc=5"
+      "snippet": "안산교육지원청, 안산교복은행 교복나눔 행사 개최 경기헤드라인",
+      "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE5XV3pzSURuOEZ3ZGpWamhQZ3ZnQXRWTDgzLThmVm5HU1o4YjlJOUxzWUJfOEs4LXhUQm44NGpHcmJXTUNINFpOTHdFbGFfRG1qV3I2a3N4cFNxVHgzalpNZmFEVTk?oc=5"
     },
     {
       "source": "naver",
@@ -448,14 +456,6 @@
       "title": "안산사이언스밸리 개발 손질… 市, 노후 주거지 정비 밑그림",
       "snippet": "완화 안산시가 도시관리계획 재정비를 통해 안산사이언스밸리(ASV)의 개발 문턱을 낮추고, 노후 주거지... 특히 시는 ASV 일대 상록구 사동 산186-21 일원의 자연녹지지역 26만5천890㎡가 준주거지역으로 변경된다. 시는 ASV...",
       "url": "https://www.kyeongin.com/article/1769242"
-    },
-    {
-      "source": "naver",
-      "press": "thepublic.kr",
-      "date": "2026.08.19",
-      "title": "경기 고교 배정, 2027학년도부터 바뀐다…쏠림·미달 막는 데 초점",
-      "snippet": "경기도교육청이 확정한 '2027학년도 경기도 고등학교 평준화학군 학생 배정 방안'의 내용이다. 고교 평준화... 경기도에서는 수원, 성남, 안양·과천·군포·의왕(안양권), 고양, 안산, 용인, 부천, 광명, 의정부 등 9개 학군...",
-      "url": "https://www.thepublic.kr/news/articleView.html?idxno=315373"
     },
     {
       "source": "google",
@@ -1235,11 +1235,11 @@
     },
     {
       "source": "google",
-      "press": "엔디엔뉴스",
+      "press": "누리일보",
       "date": "2026.07.27",
       "title": "경기도의회 장윤정 의원, 도교육청 예결위원 선임...재정의 건전성과 효율성, 학생과 현장 중심의 예산 편성에 총력 다할 것",
-      "snippet": "경기도의회 장윤정 의원, 도교육청 예결위원 선임...재정의 건전성과 효율성, 학생과 현장 중심의 예산 편성에 총력 다할 것 엔디엔뉴스",
-      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5lSjcyV1UtRnJvbGpBWHJOX09aNVN1N1BYVTRtNWM2TFJQTW5IUkdlTlc3N1J0cjNyWFV6YkRkMUpSQ2NSdTdleHpHNVNTa0JFendTQ3JTeVVqWDJ1TjdhYzJEekFFQ0szYkU3XzNn0gFyQVVfeXFMTlVmM1FxSUpQWkZYenZoUmRfSExnUWJjR3lqOGdoZFRnU3o5cGM1MDFDdUdOcVY0UWFBdUdMVWZCNUtMYUhEZ0lCcTRfU00yVXlaTk8xcGZkc1pSYUZWZlhNQjE5TUdxYktxeGJ3d2dxeThR?oc=5"
+      "snippet": "경기도의회 장윤정 의원, 도교육청 예결위원 선임...재정의 건전성과 효율성, 학생과 현장 중심의 예산 편성에 총력 다할 것 누리일보",
+      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE9rWXFJS1BRV2NkdmRHOXdPYU1yNUQzdkNST3FvNFB6LWI2T2cta2Jsbk0zYzlHUnB6Y3UzRnRQQ2VsT01ZWXUxVVR2ZGFOYTAyQnJPaXRmNi1VaUg1?oc=5"
     },
     {
       "source": "google",
