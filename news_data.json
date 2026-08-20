@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-20 09:05 UTC",
+  "updated": "2026-08-20 10:00 UTC",
   "items": [
     {
       "source": "naver",
@@ -48,6 +48,14 @@
       "title": "1237회 로또 명당 주소 총정리…1등 20곳·2등 68곳·편의점 9곳",
       "snippet": "경기 안산시 상록구 수인로 1836 복돼지 복권방: 경기 수원시 팔달구 동말로25번길 65 1층(화서동) 두근두근 로또명당: 경기 수원시 권선구 금곡로197번길 65 1층(금곡동) 스카이25: 경기 남양주시 미금로 26-2...",
       "url": "https://www.econovill.com/news/articleView.html?idxno=748414"
+    },
+    {
+      "source": "naver",
+      "press": "sportsworldi.com",
+      "date": "2026.08.20",
+      "title": "“한국 배구의 미래 위해” 정지석·황택의·허수봉, 유소년 캠프 지원",
+      "snippet": "미래육성캠프는 지난 19일 시작해 오는 22일까지 안산에서 진행된다. 한국초등배구연맹은 초등학교 6학년... 캠프에서는 기본기와 포지션별 기술 훈련을 비롯해 스포츠과학을 활용한 체력 관리, 부상 예방 교육, 멘털...",
+      "url": "https://www.sportsworldi.com/newsView/20260820522748"
     },
     {
       "source": "naver",
@@ -448,14 +456,6 @@
       "title": "경기 고교 배정, 2027학년도부터 바뀐다…쏠림·미달 막는 데 초점",
       "snippet": "경기도교육청이 확정한 '2027학년도 경기도 고등학교 평준화학군 학생 배정 방안'의 내용이다. 고교 평준화... 경기도에서는 수원, 성남, 안양·과천·군포·의왕(안양권), 고양, 안산, 용인, 부천, 광명, 의정부 등 9개 학군...",
       "url": "https://www.thepublic.kr/news/articleView.html?idxno=315373"
-    },
-    {
-      "source": "naver",
-      "press": "news.sbs.co.kr",
-      "date": "2026.08.19",
-      "title": "정지석·황택의·허수봉, 배구 꿈나무 캠프에 2천500만 원 후원",
-      "snippet": "오늘(19일) 배구계에 따르면 세 선수는 이날부터 22일까지 경기 안산에서 열리는 한국초등배구연맹의 '12세... 등의 교육을 받습니다. 정지석, 황택의, 허수봉 세 선수는 배구를 통해 받은 사랑을 어린 후배들에게...",
-      "url": "https://news.sbs.co.kr/news/endPage.do?news_id=N1008712504&plink=ORI&cooper=NAVER"
     },
     {
       "source": "google",
@@ -1235,11 +1235,11 @@
     },
     {
       "source": "google",
-      "press": "누리일보",
+      "press": "엔디엔뉴스",
       "date": "2026.07.27",
       "title": "경기도의회 장윤정 의원, 도교육청 예결위원 선임...재정의 건전성과 효율성, 학생과 현장 중심의 예산 편성에 총력 다할 것",
-      "snippet": "경기도의회 장윤정 의원, 도교육청 예결위원 선임...재정의 건전성과 효율성, 학생과 현장 중심의 예산 편성에 총력 다할 것 누리일보",
-      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE9rWXFJS1BRV2NkdmRHOXdPYU1yNUQzdkNST3FvNFB6LWI2T2cta2Jsbk0zYzlHUnB6Y3UzRnRQQ2VsT01ZWXUxVVR2ZGFOYTAyQnJPaXRmNi1VaUg1?oc=5"
+      "snippet": "경기도의회 장윤정 의원, 도교육청 예결위원 선임...재정의 건전성과 효율성, 학생과 현장 중심의 예산 편성에 총력 다할 것 엔디엔뉴스",
+      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5lSjcyV1UtRnJvbGpBWHJOX09aNVN1N1BYVTRtNWM2TFJQTW5IUkdlTlc3N1J0cjNyWFV6YkRkMUpSQ2NSdTdleHpHNVNTa0JFendTQ3JTeVVqWDJ1TjdhYzJEekFFQ0szYkU3XzNn0gFyQVVfeXFMTlVmM1FxSUpQWkZYenZoUmRfSExnUWJjR3lqOGdoZFRnU3o5cGM1MDFDdUdOcVY0UWFBdUdMVWZCNUtMYUhEZ0lCcTRfU00yVXlaTk8xcGZkc1pSYUZWZlhNQjE5TUdxYktxeGJ3d2dxeThR?oc=5"
     },
     {
       "source": "google",
@@ -1320,14 +1320,6 @@
       "title": "경기도의회 장윤정 의원, 경기도 사회적경제원 및 신용보증재단 현안 집중 질의",
       "snippet": "경기도의회 장윤정 의원, 경기도 사회적경제원 및 신용보증재단 현안 집중 질의 경기타임스 e",
       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE93LWxpRjA4T0lrOVdXYy1BTFNOcTVNNUlrdDE2aUJMUDJNa0RuaTJFUGI1V1Nka0tFeUdXVG1tQjRST2FMVkppeWhSelRkZlZ6eE1Ca3dvdkE5TV9halZSN0hQckpTd3dmZTh4MQ?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "서프라이즈뉴스",
-      "date": "2026.07.22",
-      "title": "장윤정 경기도의원, 경기도 사회적경제원 및 신용보증재단 현안 집중 질의",
-      "snippet": "장윤정 경기도의원, 경기도 사회적경제원 및 신용보증재단 현안 집중 질의 서프라이즈뉴스",
-      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE9IRHFJdWh4M29yUnBKZ00wVHNUTkxHSUl1d3E3bkZSeU1RbjNrUWpEbmlWYUR4Tk1fODN3S1NFVEMxRVBpN3Y2NnhoVXBTQ2xzRlhZQ1ZJVEhfd1A2MkVSTmpNNDBqb3pXVS0xZW1xNA?oc=5"
     },
     {
       "source": "naver",
@@ -1768,6 +1760,14 @@
       "title": "안산 상록구 금속 구조물 제작 공장서 불…35분 만에 완진",
       "snippet": "안산 상록구 금속 구조물 제작 공장서 불…35분 만에 완진 동아일보",
       "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE9aNk9telFyd253d0xfZ0IxWTgwa3VvaDc3b3ZzZEtCZnZwOVQxbTN3V201dWZNZllWTWVNT2RscWhFM3dMcWdtRm1CZE5Ca3ZmWHBGRGQxV2JfRVQ2UHZtTGVkMS1vSWJaLXdMSUp1TXNhem9PN2fSAWZBVV95cUxNekI3eFlqQTY1bURXeWpzdy1veXhkXzBVN0lIUTQxNGtsbTNZZTFYZzFXNFhDTzZFYnFkS25VSU1fRnd6MUxHTFlRRFhpSEFDY29lRjdRdUdCS0h4SlJxMUhGQk5hQkE?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "김포시민신문",
+      "date": "2026.04.01",
+      "title": "[경기도의회] 장윤정 의원, 기계설비유지관리자 처우개선 논의",
+      "snippet": "[경기도의회] 장윤정 의원, 기계설비유지관리자 처우개선 논의 김포시민신문",
+      "url": "https://news.google.com/rss/articles/CBMiQkFVX3lxTE93ZHlHbUFtYmwyb0dDMTc1NmFsNnZUNnZ6X2pMWGttbjdOc0lfYVhmVDh3SWxsVW5hZy1hNHVOeXQxUQ?oc=5"
     },
     {
       "source": "google",
