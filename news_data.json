@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-21 08:05 UTC",
+  "updated": "2026-08-21 09:07 UTC",
   "items": [
     {
       "source": "google",
@@ -43,9 +43,25 @@
     },
     {
       "source": "naver",
+      "press": "breaknews.com",
+      "date": "2026.08.21",
+      "title": "민선 9기 50일, 안양·군포·의왕·과천 '4년 승부처' 가동",
+      "snippet": "의왕·군포·안산 공공주택지구와 대야미지구, 금정역 남·북부 통합역사 개발... 도시개발, 첨단자족도시, 교통, 교육, 청년, 문화·체육·복지, 건강·안전 등 7개...",
+      "url": "http://www.breaknews.com/1230599"
+    },
+    {
+      "source": "naver",
+      "press": "djtimes.co.kr",
+      "date": "2026.08.21",
+      "title": "학생 400여 명에 장학금 5억 원 지원",
+      "snippet": "신청 대상은 석문면과 화성시 우정읍 국화리, 안산시 단원구 풍도동에 현재 주민등록을 두고 거주하는... 다만 다른 장학금을 받은 학생은 본인이 실제 부담한 교육비 범위 내에서 장학금이 지급된다. 신청은 오는 9월...",
+      "url": "http://www.djtimes.co.kr/news/articleView.html?idxno=113091"
+    },
+    {
+      "source": "naver",
       "press": "dongponews.net",
       "date": "2026.08.21",
-      "title": "국내 정착 동포 청년 100명이 묻고 김경협 청장이 답하다",
+      "title": "국내 정착 동포 청년들, 고충과 경험 정책으로 제안",
       "snippet": "국내에 정착해 생활하는 재외동포 청년 100여 명이 한국에서 겪은 교육·취업·사회적응 등의 경험과 고충을 공유하고, 이를 바탕으로 필요한 정책과 지원 방안을 직접 제안했다. 재외동포청은 안산시와 함께 21일...",
       "url": "https://www.dongponews.net/news/articleView.html?idxno=59984"
     },
@@ -275,19 +291,19 @@
     },
     {
       "source": "naver",
-      "press": "newsclaim.co.kr",
-      "date": "2026.08.21",
-      "title": "안산시 실전 같은 민방위 대피 훈련",
-      "snippet": "민방위 훈련,긴급차량,현장 대응 이민근 안산시장이 지난 20일 안산도시공사에서 진행한 '을지연습 연계 공습 민방위 대피 및 시범훈련'에 참석해 비상시 행동요령 교육을 듣고 있다. 안산시 제공 안산시가 공습 상황을...",
-      "url": "https://www.newsclaim.co.kr/news/articleView.html?idxno=3072693"
-    },
-    {
-      "source": "naver",
       "press": "4th.kr",
       "date": "2026.08.21",
       "title": "[경제소식] 우리금융, 스포츠 유망주 초청해 국가대표 멘토링·선수촌 ...",
       "snippet": "올해 '하나금융그룹 챔피언십'은 9월 17일부터 20일까지 경기도 안산 더헤븐컨트리클럽에서 개최한다. 사전... 지역사회에서는 문화·교육·생활 인프라 확충 사업을 진행하고 중소기업에는 AI 전환(AX)과 녹색전환(GX)...",
       "url": "http://www.4th.kr/news/articleView.html?idxno=2116683"
+    },
+    {
+      "source": "naver",
+      "press": "newsclaim.co.kr",
+      "date": "2026.08.21",
+      "title": "안산시 실전 같은 민방위 대피 훈련",
+      "snippet": "민방위 훈련,긴급차량,현장 대응 이민근 안산시장이 지난 20일 안산도시공사에서 진행한 '을지연습 연계 공습 민방위 대피 및 시범훈련'에 참석해 비상시 행동요령 교육을 듣고 있다. 안산시 제공 안산시가 공습 상황을...",
+      "url": "https://www.newsclaim.co.kr/news/articleView.html?idxno=3072693"
     },
     {
       "source": "naver",
@@ -323,19 +339,19 @@
     },
     {
       "source": "naver",
-      "press": "businessplus.kr",
-      "date": "2026.08.21",
-      "title": "[금융권 이모저모]KB금융, 'FTSE4Good' 16년 연속 편입 外",
-      "snippet": "금융교육 프로그램을 진행했다. KB금융그룹 본사 전경. / 사진=KB금융그룹 ◇KB금융그룹, 'FTSE4Good' 16년 연속... 경기 안산 더헤븐컨트리클럽에서 열리는 한국여자프로골프협회(KLPGA) 정규투어 '하나금융그룹 챔피언십...",
-      "url": "https://www.businessplus.kr/news/articleView.html?idxno=115729"
-    },
-    {
-      "source": "naver",
       "press": "weeklytoday.com",
       "date": "2026.08.21",
       "title": "[금융권 소식] 하나금융그룹ㆍKB금융ㆍNH농협은행(8.21)",
       "snippet": "경기도 안산 더헤븐컨트리클럽에서 열리는 KLPGA 정규투어 '하나금융그룹 챔피언십'의 갤러리 티켓 사전... 지역사회에서는 문화·교육·생활 인프라 확충 사업을 추진하고 중소기업에는 AI 전환과 녹색전환, 안전전환...",
       "url": "http://www.weeklytoday.com/news/articleView.html?idxno=791112"
+    },
+    {
+      "source": "naver",
+      "press": "businessplus.kr",
+      "date": "2026.08.21",
+      "title": "[금융권 이모저모]KB금융, 'FTSE4Good' 16년 연속 편입 外",
+      "snippet": "금융교육 프로그램을 진행했다. KB금융그룹 본사 전경. / 사진=KB금융그룹 ◇KB금융그룹, 'FTSE4Good' 16년 연속... 경기 안산 더헤븐컨트리클럽에서 열리는 한국여자프로골프협회(KLPGA) 정규투어 '하나금융그룹 챔피언십...",
+      "url": "https://www.businessplus.kr/news/articleView.html?idxno=115729"
     },
     {
       "source": "naver",
@@ -512,22 +528,6 @@
       "title": "안산시 학교시설 드론 테러 가정 을지연습 실제 훈련",
       "snippet": "회의 이후에는 안산대학교 재난안전교육센터를 방문해 학생 대상 재난안전교육 운영 현황을 확인했습니다. 학교시설의 안전관리 체계와 재난 대응 교육이 실제 현장에서 어떻게 운영되는지도 점검했습니다. 지난 19일...",
       "url": "https://www.newsclaim.co.kr/news/articleView.html?idxno=3072625"
-    },
-    {
-      "source": "naver",
-      "press": "gnmaeil.com",
-      "date": "2026.08.20",
-      "title": "간병 100만 시대, 가족·사회 함께 해결해야(상편)",
-      "snippet": "경기도 안산시에 사는 하선규 씨는 10년 전부터 만성 백혈병과 뇌경색을 앓는 노모를 간병하며 개인... 우리 사회가 간병 문제를 해결하기 위해선 정부의 적극적 개입과 간병인 전문 교육 강화, 의료기관과 지역 사회...",
-      "url": "http://www.gnmaeil.com/news/articleView.html?idxno=593178"
-    },
-    {
-      "source": "naver",
-      "press": "kyeongin.com",
-      "date": "2026.08.20",
-      "title": "기후재난 독일 완결성 돋보여… 가출 미성년자 보호 접근 호평",
-      "snippet": "조용준(안산미래연구원 선임연구위원), 한상진(민주노총 경기도본부 정책기획국장), 곽주철(수원... 곽주철 위원은 <경기도교육청 ‘교육장 공모’ 시동… 교장 확대 쏠린눈(7월10일자 3면 보도)>에 대해 “지역교육의...",
-      "url": "https://www.kyeongin.com/article/1769378"
     },
     {
       "source": "google",
@@ -771,14 +771,6 @@
     },
     {
       "source": "google",
-      "press": "경인종합일보",
-      "date": "2026.08.12",
-      "title": "경기도의회 장윤정 의원, 안산시 사회적경제연대와 현장 소통 나서",
-      "snippet": "경기도의회 장윤정 의원, 안산시 사회적경제연대와 현장 소통 나서 경인종합일보",
-      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5EUm5UMWdfWUdEWS1UUk92NkwtekpVWWdQQ0w3X185dnVyMmxDby1BeWdiQnJYT0l4MGJQRGpNMEhSLW1yQ1RrMW52cnhXalFZQ1d0T2I0MnFmc3JiY05ETUI5UWpiTlY5UkdfUUxB0gFyQVVfeXFMTkZOUnpMWk45RnZOdDVkSzNvejY3SDhoU1hoWDNqNlN0b3lCQ09GRU5SVjhQYjlUbkQ3RXVkdHE4aFBSbHIxN0FiS3lJRmlhbG1oTElOdlpXQXdERmk3aVZPTl81Q3ZVczBycVhWRzVCaUt3?oc=5"
-    },
-    {
-      "source": "google",
       "press": "매일타임즈",
       "date": "2026.08.12",
       "title": "경기도의회 장윤정, 안산에 '햇빛발전·통합돌봄' 모델 논의…전국 확산 의지",
@@ -787,11 +779,11 @@
     },
     {
       "source": "google",
-      "press": "웹이코노미",
+      "press": "케이에스피뉴스",
       "date": "2026.08.12",
-      "title": "경기도의회 장윤정 의원, 안산시 사회적경제연대와 현장 소통",
-      "snippet": "경기도의회 장윤정 의원, 안산시 사회적경제연대와 현장 소통 웹이코노미",
-      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTFBQSF9IMk8zT3dVa1JjSjVrNWFuS2I0ck9sWERyV2dCSGlzSFl2R0Y2TjhCVFF3VHBSelJjdjNKNzN2QzVZRnV1RTNsZ1ZTdDJTS1ZtTnJZVThCTWsyTkg1RXEtbEZOUVBrM0NxcXIyMjVaQQ?oc=5"
+      "title": "경기도의회 장윤정 의원, 안산시 사회적경제연대와 현장 소통 나서",
+      "snippet": "경기도의회 장윤정 의원, 안산시 사회적경제연대와 현장 소통 나서 케이에스피뉴스",
+      "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE1scmQtMFpJbzAzdldGb0dna3liVnRranVYLUxNMVh3U3U1dnBiLW12aEZYRWNMSXhNVmgwYm9BR1JtNk83d3c?oc=5"
     },
     {
       "source": "naver",
@@ -1444,6 +1436,14 @@
     {
       "source": "google",
       "press": "반월신문",
+      "date": "2026.07.14",
+      "title": "안산 상록구 도금공장 화재 대응 1단계 발령 후 54분 만에 초진…인명피해 없어",
+      "snippet": "안산 상록구 도금공장 화재 대응 1단계 발령 후 54분 만에 초진…인명피해 없어 반월신문",
+      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBXVi1zZVRQbjhjaDY5UXBTTjNaUXlnRmZtbmx1ZEJqeDRDTENDNW1uTlN1czBabkhUOGV2UXc2NE44cmtkS2Z5YjF6YW1NZkdudUdhQnN3X19lc2pWaG1iajBEcFp2Qzg?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "반월신문",
       "date": "2026.07.08",
       "title": "더불어민주당 장윤정 경기도의원, \"초심 잃지 않고 주민 곁에서 실천으로 보답\"",
       "snippet": "더불어민주당 장윤정 경기도의원, \"초심 잃지 않고 주민 곁에서 실천으로 보답\" 반월신문",
@@ -1835,19 +1835,19 @@
     },
     {
       "source": "google",
+      "press": "안산뉴스",
+      "date": "2026.03.08",
+      "title": "장윤정 도의원 ‘시곡중 오수관 사고’ 신속 복구 요구",
+      "snippet": "장윤정 도의원 ‘시곡중 오수관 사고’ 신속 복구 요구 안산뉴스",
+      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBBbVVRa0JyLS1BSzUzcHl5Vk1VcmlJNlEtdjUxLUh6NGF0bjdBejhXTThxMGptX2R1X2xYTWp1cFVhZm9NQUw5MHdfT2FRQWcwRWptVHJJU2VFOUZGeHZlUW5uVzV4NmdKaU9XRQ?oc=5"
+    },
+    {
+      "source": "google",
       "press": "뉴스핌",
       "date": "2026.02.11",
       "title": "안산 상록구 부곡동서 차량 화재…인명피해 없어",
       "snippet": "안산 상록구 부곡동서 차량 화재…인명피해 없어 뉴스핌",
       "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE9MazNlSlhmQndMMXh6RWFBWHNfZzJZRU9jQ0VYTUw1cVpUZkxla0JSVGhuRUFpeUR3a3loUF9hUTUyVnBPSGVqS1NVSzhoWUx6OWhTdkxrSmV0LXps?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "경기일보",
-      "date": "2026.02.10",
-      "title": "안산 상록구 도로서 차량 불…진화 완료",
-      "snippet": "안산 상록구 도로서 차량 불…진화 완료 경기일보",
-      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBtdUVNeG92LXpKaG9wYU4tdzREWHJ5eWNZbzNjVVh0eTY1QUM5M2dzY2t6bEpwMnNxS1N3VnBibC1EY05oN2dTeGRlc2dkaTBSWXE3alVpb3NnRVU?oc=5"
     },
     {
       "source": "google",
