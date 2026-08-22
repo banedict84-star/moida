@@ -1,6 +1,30 @@
 {
-  "updated": "2026-08-22 01:57 UTC",
+  "updated": "2026-08-22 03:21 UTC",
   "items": [
+    {
+      "source": "naver",
+      "press": "kyeonggi.com",
+      "date": "2026.08.22",
+      "title": "범피센터 피해자 가정 후원활동 왕성…안산·시흥·광명지역범죄피해자...",
+      "snippet": "자녀 교육, 진로 상담, 그리고 애로사항 청취에 이르기까지 적극적인 지원과 활발한 멘토 활동을 해왔다. 안산·시흥·광명 범피센터는 상반기 동안 10여 차례에 걸친 간담회, 가정방문 상담에 이어 생활자금 160만원...",
+      "url": "https://www.kyeonggi.com/article/20260822580039"
+    },
+    {
+      "source": "naver",
+      "press": "dailypop.kr",
+      "date": "2026.08.22",
+      "title": "금융권, 고객 접점 확대·ESG 역량 강화 총력…디지털 혜택 및 현장 소통...",
+      "snippet": "(CPR) 교육 등이 진행됐다. BNK금융은 철저한 재난 대비체계를 점검하는 한편, 최근 집중호우 피해를 입은... 하나금융그룹은 오는 9월 17일부터 20일까지 경기도 안산 더헤븐컨트리클럽에서 KLPGA 정규투어 '하나금융그룹...",
+      "url": "http://www.dailypop.kr/news/articleView.html?idxno=101797"
+    },
+    {
+      "source": "naver",
+      "press": "the-biz.co.kr",
+      "date": "2026.08.22",
+      "title": "[내집마련 캘린더] 부천 상동 1859가구 청약… 서대문도 분양",
+      "snippet": "단지는 명지초·충암초·홍연초와 명지중·연희중·명지고·충암고 등이 인접해 교육 여건이 양호하다. 백련산과 홍제천, 안산도시자연공원 등 녹지·수변공간도 가깝다. 윤지해 부동산R114 리서치랩장은 \"청약은...",
+      "url": "http://www.the-biz.co.kr/news/articleView.html?idxno=726627"
+    },
     {
       "source": "naver",
       "press": "edaily.co.kr",
@@ -418,30 +442,6 @@
       "url": "https://www.dailypharm.com/user/news/341640?REFERER=NP"
     },
     {
-      "source": "naver",
-      "press": "weeklytoday.com",
-      "date": "2026.08.21",
-      "title": "[금융권 소식] 하나금융그룹ㆍKB금융ㆍNH농협은행(8.21)",
-      "snippet": "경기도 안산 더헤븐컨트리클럽에서 열리는 KLPGA 정규투어 '하나금융그룹 챔피언십'의 갤러리 티켓 사전... 지역사회에서는 문화·교육·생활 인프라 확충 사업을 추진하고 중소기업에는 AI 전환과 녹색전환, 안전전환...",
-      "url": "http://www.weeklytoday.com/news/articleView.html?idxno=791112"
-    },
-    {
-      "source": "naver",
-      "press": "businessplus.kr",
-      "date": "2026.08.21",
-      "title": "[금융권 이모저모]KB금융, 'FTSE4Good' 16년 연속 편입 外",
-      "snippet": "금융교육 프로그램을 진행했다. KB금융그룹 본사 전경. / 사진=KB금융그룹 ◇KB금융그룹, 'FTSE4Good' 16년 연속... 경기 안산 더헤븐컨트리클럽에서 열리는 한국여자프로골프협회(KLPGA) 정규투어 '하나금융그룹 챔피언십...",
-      "url": "https://www.businessplus.kr/news/articleView.html?idxno=115729"
-    },
-    {
-      "source": "naver",
-      "press": "enewstoday.co.kr",
-      "date": "2026.08.21",
-      "title": "안산시, 길고양이 보호관리 문화교실 개최",
-      "snippet": "시는 29일 안산시농업기술센터에서 '길고양이 보호관리 문화교실'을 개최한다. 이번 교육은 농림축산식품부의 길고양이 보호관리 교육과 연계해 마련됐다. 길고양이 급식소 운영 과정에서 발생할 수 있는 주민 간 갈등을...",
-      "url": "http://www.enewstoday.co.kr/news/articleView.html?idxno=2461489"
-    },
-    {
       "source": "google",
       "press": "안산타임스",
       "date": "2026.08.21",
@@ -762,6 +762,14 @@
       "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE1scmQtMFpJbzAzdldGb0dna3liVnRranVYLUxNMVh3U3U1dnBiLW12aEZYRWNMSXhNVmgwYm9BR1JtNk83d3c?oc=5"
     },
     {
+      "source": "google",
+      "press": "경인투데이뉴스",
+      "date": "2026.08.12",
+      "title": "장윤정 경기도의원, 안산시 사회적경제연대와 ‘햇빛돌봄’ 모델 구축 논의:경인투데이뉴스",
+      "snippet": "장윤정 경기도의원, 안산시 사회적경제연대와 ‘햇빛돌봄’ 모델 구축 논의:경인투데이뉴스 경인투데이뉴스",
+      "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTFBiRUl1ODBEVGZUMkpUa2pQSldxeXd1TXpsNmtGcWRwV0Etd1BFczlWYlJ1T0N4VGJQcXpMX2lvQWdndEpEbUdSM056WEJwd3NXQmVNa3lWSzBqc0xJcm5z0gFfQVVfeXFMUGJFSXU4MERUZlQySlRralBKV3F5d3VNemw2a0ZxZHBXQS13UEVzOVZiUnVPQ3hUYlBxekxfaW9BZ2d0SkRtR1IzTnpYQnB3c1dCZU1reVZLMGpzTElybnM?oc=5"
+    },
+    {
       "source": "naver",
       "press": "100ssd.co.kr",
       "date": "2026.08.12",
@@ -968,14 +976,6 @@
       "title": "안산교육지원청, 영유아 127명 대상 문화다양성 음악회",
       "snippet": "안산교육지원청, 영유아 127명 대상 문화다양성 음악회 매일일보",
       "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFBZNmxsNTVVQkhOOFZhalNTUXYzeTAtWDNYUmN6LVNCR2I4OE9OWExmWjQ3NjBfMnVybUU3eWoxcTZQek9BakNScU1FRkxITnR4Qkd2QzBseTlTMjRnRVNZcFpCU2Y?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "대한민국교육신문",
-      "date": "2026.08.10",
-      "title": "\"예술로 채우는 배움의 즐거움!\" 안산교육지원청, 서울예술대학교와 함께 RAS·벽깨기 교육 실천",
-      "snippet": "\"예술로 채우는 배움의 즐거움!\" 안산교육지원청, 서울예술대학교와 함께 RAS·벽깨기 교육 실천 대한민국교육신문",
-      "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE5mMWFYUnR6TUxWVWJIRXVqTWd3Znd2SHg5U3p4dHRWdE9UeElhSW9fclVGWG5wOVBCR3IxN0Q1MFI3VHJjejFNZVJzLVEtY0h2SnF0Z1hvYXRfRmFuX1dZUGdLZw?oc=5"
     },
     {
       "source": "naver",
@@ -1824,6 +1824,14 @@
       "title": "장윤정 경기도의원, 재선 출마 공식선언… “안산 변화 이끌 것”",
       "snippet": "장윤정 경기도의원, 재선 출마 공식선언… “안산 변화 이끌 것” v.daum.net",
       "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE9UV0RqUVdyLU9HWEJBWk54ZDV2TV9nNTVxTmg3RnBXQ3owbTBnSml2eHBFMlBoLW1IQzJqVGNnbllnMnBONHRVZEJLZ0FKVGs?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "김포시민신문",
+      "date": "2026.04.01",
+      "title": "[경기도의회] 장윤정 의원, 기계설비유지관리자 처우개선 논의",
+      "snippet": "[경기도의회] 장윤정 의원, 기계설비유지관리자 처우개선 논의 김포시민신문",
+      "url": "https://news.google.com/rss/articles/CBMiQkFVX3lxTE93ZHlHbUFtYmwyb0dDMTc1NmFsNnZUNnZ6X2pMWGttbjdOc0lfYVhmVDh3SWxsVW5hZy1hNHVOeXQxUQ?oc=5"
     },
     {
       "source": "google",
