@@ -1,6 +1,30 @@
 {
-  "updated": "2026-08-23 14:50 UTC",
+  "updated": "2026-08-23 15:48 UTC",
   "items": [
+    {
+      "source": "naver",
+      "press": "chosun.com",
+      "date": "2026.08.24",
+      "title": "신평고 4골 폭발… 고교축구선수권 8강 안착",
+      "snippet": "(조선일보사·대한축구협회·교육부·문화체육관광부 주최) 16강전에서 성남FC 유스팀 풍생고를 4대1로 완파했다. 이번 대회 5경기에서 27골(2실점)을 몰아친 신평고는 안산FC U18을 3대2로 꺾은 경기화성 U18과 8강에서...",
+      "url": "https://www.chosun.com/sports/football/2026/08/24/F2Z7L76JV5HWPGNXKXCQACCVQE/?utm_source=naver&utm_medium=referral&utm_campaign=naver-news"
+    },
+    {
+      "source": "naver",
+      "press": "kado.net",
+      "date": "2026.08.24",
+      "title": "내년 보선 '강릉 대전' 정국 승부처 급부상",
+      "snippet": "여기에 양양 출신 권미경 최고위원을 지명하고 허영(춘천·철원·화천·양구갑) 도당위원장과 강릉 출신 김현(경기 안산을) 의원을 각각 정책위 수석부의장과 교육연수원장으로 발탁했다. 이에 맞서 국민의힘은 이양수...",
+      "url": "https://www.kado.net/news/articleView.html?idxno=2068132"
+    },
+    {
+      "source": "naver",
+      "press": "kado.net",
+      "date": "2026.08.24",
+      "title": "'민주 김민석 체제' 허영 정책위 수석부의장·김현 교육연수원장 임명",
+      "snippet": "더불어민주당 김민석 대표는 지난 21일 허영(춘천·철원·화천·양구 갑) 국회의원을 정책위 사회수석부의장으로, 강릉 출신 김현(경기 안산 을) 의원을 당원들의 교육을 담당하는 교육연수원장으로 임명했다. 김 대표는...",
+      "url": "https://www.kado.net/news/articleView.html?idxno=2068102"
+    },
     {
       "source": "naver",
       "press": "realty.chosun.com",
@@ -91,19 +115,19 @@
     },
     {
       "source": "naver",
-      "press": "metroseoul.co.kr",
-      "date": "2026.08.23",
-      "title": "시흥시 임병택 시장, \"청소년이 시화호의 미래를 고민하고 지켜야\"",
-      "snippet": "한편 시흥·안산·화성은 시화호를 매개로 환경과 생태, 지속가능한 발전을 위한 협력 기반을 이어가고 있으며, 청소년들의 환경교육과 참여 활동 역시 지역 간 환경 협력의 중요한 축으로 자리매김하고 있다.",
-      "url": "http://www.metroseoul.co.kr/article/20260823500095"
-    },
-    {
-      "source": "naver",
       "press": "m-economynews.com",
       "date": "2026.08.23",
       "title": "민주당 당직 개편…김원이 전략기획위원장, 민병덕·허영 정책위 수석 ...",
       "snippet": "이와 함께 당원 교육을 책임지는 교육연수원장에는 김현 의원(경기 안산을)이, 대국민 홍보를 총괄할 국민소통위원장에는 장철민 의원(대전 동구)이 각각 임명됐다. 아울러 디지털전략사무부총장에는 이정헌 의원(서울...",
       "url": "https://www.m-economynews.com/news/article.html?no=70026"
+    },
+    {
+      "source": "naver",
+      "press": "metroseoul.co.kr",
+      "date": "2026.08.23",
+      "title": "시흥시 임병택 시장, \"청소년이 시화호의 미래를 고민하고 지켜야\"",
+      "snippet": "한편 시흥·안산·화성은 시화호를 매개로 환경과 생태, 지속가능한 발전을 위한 협력 기반을 이어가고 있으며, 청소년들의 환경교육과 참여 활동 역시 지역 간 환경 협력의 중요한 축으로 자리매김하고 있다.",
+      "url": "http://www.metroseoul.co.kr/article/20260823500095"
     },
     {
       "source": "naver",
@@ -512,30 +536,6 @@
       "title": "안산시, 공습 대비 민방위 훈련 실시…시민 대피·심폐소생술 교육 진행",
       "snippet": "공습경보 발령과 함께 시민들은 안내에 따라 지하 대피소로 이동해 비상시 행동요령 교육을 받았으며, 경보 해제 후에는 심폐소생술 실습 교육도 진행됐습니다. 이와 함께 안산 광덕대로 일대에서는 소방차와 구급차의...",
       "url": "http://www.paxetv.com/news/articleView.html?idxno=280005"
-    },
-    {
-      "source": "naver",
-      "press": "etnews.com",
-      "date": "2026.08.21",
-      "title": "김민석號 주요 당직 윤곽…전략 '김원이'·정무 '강위원'·정책 '민병덕...",
-      "snippet": "당내 비위 문제를 담당하는 윤리감찰단장에는 검사 출신 김기표 의원(초선·경기 부천을), 교육연수원장에는 김현 의원(재선·경기 안산을), 국민소통위원장에는 장철민 의원(재선·대전 동구)이 각각 임명됐다....",
-      "url": "https://www.etnews.com/20260821000184"
-    },
-    {
-      "source": "naver",
-      "press": "incheonilbo.com",
-      "date": "2026.08.21",
-      "title": "김민석 민주당 지도부, 인천·경기 13명 중용…'수도권 라인' 뜬다",
-      "snippet": "민병덕(안양시동안구갑) 의원은 정책위 수석부의장 경제 부문, 김기표(부천시을) 의원은 윤리감찰단장, 김현(안산시을) 의원은 교육연수원장을 맡는다. 앞선 인선까지 범위를 넓히면 인천·경기 의원들의 중용은 더욱...",
-      "url": "https://www.incheonilbo.com/news/articleView.html?idxno=1330087"
-    },
-    {
-      "source": "naver",
-      "press": "dailian.co.kr",
-      "date": "2026.08.21",
-      "title": "[주간분양] 서울은 ‘찔끔’, 경기는 ‘대단지’…수도권 분양시장 양극...",
-      "snippet": "단지는 인근에 명지초, 충암초, 홍연초, 명지중, 연희중, 명지고, 충암고 등 초·중·고교와 명지대학교가 위치해 교육 환경이 양호하다. 백련산, 홍제천, 안산, 안산도시자연공원 등 녹지 및 수변 공간도 가깝다. 한화...",
-      "url": "https://www.dailian.co.kr/news/view/1680756/?sc=Naver"
     },
     {
       "source": "google",
@@ -1019,6 +1019,14 @@
     },
     {
       "source": "google",
+      "press": "시민일보",
+      "date": "2026.08.11",
+      "title": "안산시, 상록구 미용업 종사자 실무 역량 강화 나서",
+      "snippet": "안산시, 상록구 미용업 종사자 실무 역량 강화 나서 시민일보",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE0ybG5WdzFuWnJBQXpWenJPLVZNNWNNOEIxMkQ5MWVEMUJ0amJOTk5FaEtfNDNLelZ3WUhKa1I0angzRjdVOVIwU1l6U2VqVUV4VDlCR1ZoVThXUVVrUGYtNW9RLWJKQl9lb0lzVEk3SnNzUdIBb0FVX3lxTE9RZ1hpUzBVeXZ0dVlyblFpMGlBT3V0eVc3bFFvVlJ0dVR4TWhGQ0JrY3Z6UjVGd0FsdG1LQWpZTW1LeWd2M1hrWlZvcXVGa1hoWGN3cUNiTC1uX0xOd1FIMmZuN1Z1b202LTBwZnUxTQ?oc=5"
+    },
+    {
+      "source": "google",
       "press": "매일일보",
       "date": "2026.08.10",
       "title": "안산교육지원청, 영유아 127명 대상 문화다양성 음악회",
@@ -1436,6 +1444,14 @@
     {
       "source": "google",
       "press": "반월신문",
+      "date": "2026.07.14",
+      "title": "안산 상록구 도금공장 화재 대응 1단계 발령 후 54분 만에 초진…인명피해 없어",
+      "snippet": "안산 상록구 도금공장 화재 대응 1단계 발령 후 54분 만에 초진…인명피해 없어 반월신문",
+      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBXVi1zZVRQbjhjaDY5UXBTTjNaUXlnRmZtbmx1ZEJqeDRDTENDNW1uTlN1czBabkhUOGV2UXc2NE44cmtkS2Z5YjF6YW1NZkdudUdhQnN3X19lc2pWaG1iajBEcFp2Qzg?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "반월신문",
       "date": "2026.07.08",
       "title": "더불어민주당 장윤정 경기도의원, \"초심 잃지 않고 주민 곁에서 실천으로 보답\"",
       "snippet": "더불어민주당 장윤정 경기도의원, \"초심 잃지 않고 주민 곁에서 실천으로 보답\" 반월신문",
@@ -1715,14 +1731,6 @@
     },
     {
       "source": "google",
-      "press": "news.sbs.co.kr",
-      "date": "2026.05.13",
-      "title": "안산 상록구 비닐하우스 화재…\"인명피해 없어\"",
-      "snippet": "안산 상록구 비닐하우스 화재…\"인명피해 없어\" news.sbs.co.kr",
-      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE14bkNRMWFTb2ZUdWNwcThiMFdQRFRuWHpyYU9JWWdJSFVwdnliRmRYcWFpdW92TWc3RzVlUFplalFpLV8tb0FOdW40SHh2QkdRX2dZMEVXR2dsVVVNU09jZkwtMHFUN0JROEE?oc=5"
-    },
-    {
-      "source": "google",
       "press": "연합뉴스",
       "date": "2026.05.13",
       "title": "안산 상록구 비닐하우스서 불…1시간 20여분 만에 진화",
@@ -1792,6 +1800,14 @@
       "title": "장윤정 도의원 교육기획위 부위원장 선임",
       "snippet": "장윤정 도의원 교육기획위 부위원장 선임 안산뉴스",
       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE1OR3g0WmZLbHVpZXJqRVVPblJuUU8tNWZ6eEpkMUZvVTFBTUlXbHBvN25wQVpaUlRieGpXSU5yNmRRVEdPeVlsS3pBZmlweV9IRktMUUIteU03Z203R0FmX3UtVVpWWFFzWWJHdw?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "경기남부뉴스",
+      "date": "2026.04.27",
+      "title": "경기도의회 장윤정 의원, 학교 급식실 환기설비 개선 TF 후속 정담회 개최...현장 체감 개선 논의",
+      "snippet": "경기도의회 장윤정 의원, 학교 급식실 환기설비 개선 TF 후속 정담회 개최...현장 체감 개선 논의 경기남부뉴스",
+      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE1LckYwaW1MaHhuTHN2WXBRUXQzdXlkNTlUdEV2aWlNRjJHd1YzNXVNLTlfcGxUdnZFeGw4WnNMMFhaYzktV1JHNk55OTJEWklidV9SREYxU0d0SWUwc0tzSmF0T2R3NHc?oc=5"
     },
     {
       "source": "google",
