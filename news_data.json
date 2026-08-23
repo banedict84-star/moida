@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-23 18:57 UTC",
+  "updated": "2026-08-23 19:45 UTC",
   "items": [
     {
       "source": "naver",
@@ -171,11 +171,11 @@
     },
     {
       "source": "google",
-      "press": "엔디엔뉴스",
+      "press": "경기헤드라인",
       "date": "2026.08.23",
       "title": "안산교육지원청,'안산 루트UP' 로봇 심화교육 성료",
-      "snippet": "안산교육지원청,'안산 루트UP' 로봇 심화교육 성료 엔디엔뉴스",
-      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE55REpjUXhMQ0p5UXpabDYxY2dfaF9wbnktSEpFUl9sSVBqZUJOSWd2ekdORVVIa2RpamMxREhCbFdvVEd0TnJwSGtrMy1VSXl1S2hGWFItMm1VVkJQNXRIT3ZrZTB4akR2TkhhTGhVc3NHQdIBckFVX3lxTE55REpjUXhMQ0p5UXpabDYxY2dfaF9wbnktSEpFUl9sSVBqZUJOSWd2ekdORVVIa2RpamMxREhCbFdvVEd0TnJwSGtrMy1VSXl1S2hGWFItMm1VVkJQNXRIT3ZrZTB4akR2TkhhTGhVc3NHQQ?oc=5"
+      "snippet": "안산교육지원청,'안산 루트UP' 로봇 심화교육 성료 경기헤드라인",
+      "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE5YeV9OdlpadkFrN2p2dTdJekQwOEtmaEZXNU1XQVJzaXBYZVR2Z1BZTWxqbGkzZnBMQUU2emVzV1luUzQyT21YRVRwNlNTTFNic1hXTlNySjhGVDZYbTZUV2sta2U?oc=5"
     },
     {
       "source": "google",
@@ -1042,6 +1042,14 @@
       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE5rOUp0SGFqaWVwN25zWW1yeFowdURYdUpNU0xOVE52dEpJUDRxcHpGYjNWUk02OTJxWGkzaGprbFl4OGZrUlZTT3ZlNzV5UGlyZ2hFdDJWa3JjQnZoWDQySDd0dHViMFRZSnRhSA?oc=5"
     },
     {
+      "source": "google",
+      "press": "시민일보",
+      "date": "2026.08.11",
+      "title": "안산시, 상록구 미용업 종사자 실무 역량 강화 나서",
+      "snippet": "안산시, 상록구 미용업 종사자 실무 역량 강화 나서 시민일보",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE0ybG5WdzFuWnJBQXpWenJPLVZNNWNNOEIxMkQ5MWVEMUJ0amJOTk5FaEtfNDNLelZ3WUhKa1I0angzRjdVOVIwU1l6U2VqVUV4VDlCR1ZoVThXUVVrUGYtNW9RLWJKQl9lb0lzVEk3SnNzUdIBb0FVX3lxTE9RZ1hpUzBVeXZ0dVlyblFpMGlBT3V0eVc3bFFvVlJ0dVR4TWhGQ0JrY3Z6UjVGd0FsdG1LQWpZTW1LeWd2M1hrWlZvcXVGa1hoWGN3cUNiTC1uX0xOd1FIMmZuN1Z1b202LTBwZnUxTQ?oc=5"
+    },
+    {
       "source": "naver",
       "press": "thereport.co.kr",
       "date": "2026.08.08",
@@ -1402,14 +1410,6 @@
       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9pZEVycTdDUVFGVUx0U2lzbFVqUnhUdDdhWmw1c1R2VDNLZm9UalY0VlY5b3lzWFZLcnMwY3VhdWtfcnpmbkdRYjdUNnFuZ3lPU0RRY0JNLXRiczkwQ1VOUmJJRmpzWUd1Nkl3Ug?oc=5"
     },
     {
-      "source": "google",
-      "press": "내외뉴스통신",
-      "date": "2026.07.21",
-      "title": "경기도의회 경제노동위원회, 장윤정 의원 부위원장 선임",
-      "snippet": "경기도의회 경제노동위원회, 장윤정 의원 부위원장 선임 내외뉴스통신",
-      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBlRWdnVGVta2hSVW83bGtoTG9lVU5xa1FyUHhqMGdNcm5NQU91cXh3V1FaSy1QdFlhVlhiTmZJc2hudkNvSTI3cVJpZndiYjc0anBsZWd6MFhnTmVwcVd2QmNxOUlRXy1zNWlhVNIBcEFVX3lxTE9ONHNLMnZHQzlseEt1U1RRVjhVdVFTVkp0aVExcHFaNnQtX0RoZWczTzI0dUpkekhMUUNyLTFtdG92YTRBV1FHSFR5M1huRFVfSXFaVE5jNW9DLW15ZTNESnVDWDhrV09aQUNfNGl5MW8?oc=5"
-    },
-    {
       "source": "naver",
       "press": "seoul.co.kr",
       "date": "2026.07.20",
@@ -1440,6 +1440,14 @@
       "title": "[인사] 경북 포항시(종합), IBK기업은행, 기획예산처 외",
       "snippet": "전병구 △수안역개인스마트 장윤정 △수영역 전소라 △울산공업탑 정은지 △울산무거동 현수환 △울산호계... 이재원 △안산 김승배 △시흥 이장욱 △부산 류길하 △사상 김흥일 △통영 안재우 △김해중앙 박해규...",
       "url": "https://www.businesspost.co.kr/BP?command=article_view&num=442394"
+    },
+    {
+      "source": "google",
+      "press": "반월신문",
+      "date": "2026.07.14",
+      "title": "안산 상록구 도금공장 화재 대응 1단계 발령 후 54분 만에 초진…인명피해 없어",
+      "snippet": "안산 상록구 도금공장 화재 대응 1단계 발령 후 54분 만에 초진…인명피해 없어 반월신문",
+      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBXVi1zZVRQbjhjaDY5UXBTTjNaUXlnRmZtbmx1ZEJqeDRDTENDNW1uTlN1czBabkhUOGV2UXc2NE44cmtkS2Z5YjF6YW1NZkdudUdhQnN3X19lc2pWaG1iajBEcFp2Qzg?oc=5"
     },
     {
       "source": "google",
@@ -1547,11 +1555,11 @@
     },
     {
       "source": "google",
-      "press": "경기탑뉴스",
+      "press": "투데이경제",
       "date": "2026.06.12",
       "title": "경기도의회 장윤정 의원, 경기도교육청 예산유보 운영 점검…“절감보다 적기 집행이 중요”",
-      "snippet": "경기도의회 장윤정 의원, 경기도교육청 예산유보 운영 점검…“절감보다 적기 집행이 중요” 경기탑뉴스",
-      "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE1EMndORE9QZHp5bTFKX2tBUm1mcFNWOVpqUGlBREFBQXFfbE5ya2w4MzJ4UXJRSkxycjZDUV9YQjVqRHZxa2ZvT2xSM0NhSXlNSXJ3Wkx2NFVoS2dFb2RaVg?oc=5"
+      "snippet": "경기도의회 장윤정 의원, 경기도교육청 예산유보 운영 점검…“절감보다 적기 집행이 중요” 투데이경제",
+      "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE9zb2RFaWl5akFnellzdnVNQzlBajFsS0dhQm1RdlZaSXhpWVZCYVpvSU9SVEpwREJPanBFSU9RUUxHQmJwSi1sbGxvWVRvNXdmUFkxU1ltaUNhaHBPNkhyNWg3R2ZiRG5rd09n?oc=5"
     },
     {
       "source": "naver",
@@ -1712,14 +1720,6 @@
       "title": "안산 상록구 다세대주택서 화재···1명 숨지고 3명 부상",
       "snippet": "안산 상록구 다세대주택서 화재···1명 숨지고 3명 부상 경향신문",
       "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE94ZFJWc1liZGRLTWM0aVAxVjY5c0VSOE40bVN0RXA3QlRidXMzdVkwdFljWVIxTG5oOGNwLUtsMl9pT2NJY1VTOEh4OGRMRU02b3Bob0pwa3dSQdIBX0FVX3lxTE52SDdudTdHX3NXYVFOQkhjSnFLR2pmVW5hbmE0aEZYM3B6WXVLNGpoY09DY0xlMVpuZVEzYWIzZVFjY1h1TTYtRHFMVFdPR0RfQ05pWGVIRm5NUG16cTRN?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "news.sbs.co.kr",
-      "date": "2026.05.13",
-      "title": "안산 상록구 비닐하우스 화재…\"인명피해 없어\"",
-      "snippet": "안산 상록구 비닐하우스 화재…\"인명피해 없어\" news.sbs.co.kr",
-      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE14bkNRMWFTb2ZUdWNwcThiMFdQRFRuWHpyYU9JWWdJSFVwdnliRmRYcWFpdW92TWc3RzVlUFplalFpLV8tb0FOdW40SHh2QkdRX2dZMEVXR2dsVVVNU09jZkwtMHFUN0JROEE?oc=5"
     },
     {
       "source": "google",
