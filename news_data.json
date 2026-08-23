@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-23 13:54 UTC",
+  "updated": "2026-08-23 14:50 UTC",
   "items": [
     {
       "source": "naver",
@@ -91,19 +91,19 @@
     },
     {
       "source": "naver",
-      "press": "m-economynews.com",
-      "date": "2026.08.23",
-      "title": "민주당 당직 개편…김원이 전략기획위원장, 민병덕·허영 정책위 수석 ...",
-      "snippet": "이와 함께 당원 교육을 책임지는 교육연수원장에는 김현 의원(경기 안산을)이, 대국민 홍보를 총괄할 국민소통위원장에는 장철민 의원(대전 동구)이 각각 임명됐다. 아울러 디지털전략사무부총장에는 이정헌 의원(서울...",
-      "url": "https://www.m-economynews.com/news/article.html?no=70026"
-    },
-    {
-      "source": "naver",
       "press": "metroseoul.co.kr",
       "date": "2026.08.23",
       "title": "시흥시 임병택 시장, \"청소년이 시화호의 미래를 고민하고 지켜야\"",
       "snippet": "한편 시흥·안산·화성은 시화호를 매개로 환경과 생태, 지속가능한 발전을 위한 협력 기반을 이어가고 있으며, 청소년들의 환경교육과 참여 활동 역시 지역 간 환경 협력의 중요한 축으로 자리매김하고 있다.",
       "url": "http://www.metroseoul.co.kr/article/20260823500095"
+    },
+    {
+      "source": "naver",
+      "press": "m-economynews.com",
+      "date": "2026.08.23",
+      "title": "민주당 당직 개편…김원이 전략기획위원장, 민병덕·허영 정책위 수석 ...",
+      "snippet": "이와 함께 당원 교육을 책임지는 교육연수원장에는 김현 의원(경기 안산을)이, 대국민 홍보를 총괄할 국민소통위원장에는 장철민 의원(대전 동구)이 각각 임명됐다. 아울러 디지털전략사무부총장에는 이정헌 의원(서울...",
+      "url": "https://www.m-economynews.com/news/article.html?no=70026"
     },
     {
       "source": "naver",
@@ -139,11 +139,11 @@
     },
     {
       "source": "google",
-      "press": "메트로타임즈",
+      "press": "경기헤드라인",
       "date": "2026.08.23",
       "title": "안산교육지원청,'안산 루트UP' 로봇 심화교육 성료",
-      "snippet": "안산교육지원청,'안산 루트UP' 로봇 심화교육 성료 메트로타임즈",
-      "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFBKbDlXbkY4bm02ZHlRQU5NNmtGUy1CN3VrZ05tRWt4Q05wVUpyNzUycHdBMWRGTWZ3VHlWY0Z6ckxKbkJxTHhjYlBkZFZiUmUwMGlYX0N2Tkk?oc=5"
+      "snippet": "안산교육지원청,'안산 루트UP' 로봇 심화교육 성료 경기헤드라인",
+      "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE5YeV9OdlpadkFrN2p2dTdJekQwOEtmaEZXNU1XQVJzaXBYZVR2Z1BZTWxqbGkzZnBMQUU2emVzV1luUzQyT21YRVRwNlNTTFNic1hXTlNySjhGVDZYbTZUV2sta2U?oc=5"
     },
     {
       "source": "google",
@@ -1019,14 +1019,6 @@
     },
     {
       "source": "google",
-      "press": "시민일보",
-      "date": "2026.08.11",
-      "title": "안산시, 상록구 미용업 종사자 실무 역량 강화 나서",
-      "snippet": "안산시, 상록구 미용업 종사자 실무 역량 강화 나서 시민일보",
-      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE0ybG5WdzFuWnJBQXpWenJPLVZNNWNNOEIxMkQ5MWVEMUJ0amJOTk5FaEtfNDNLelZ3WUhKa1I0angzRjdVOVIwU1l6U2VqVUV4VDlCR1ZoVThXUVVrUGYtNW9RLWJKQl9lb0lzVEk3SnNzUdIBb0FVX3lxTE9RZ1hpUzBVeXZ0dVlyblFpMGlBT3V0eVc3bFFvVlJ0dVR4TWhGQ0JrY3Z6UjVGd0FsdG1LQWpZTW1LeWd2M1hrWlZvcXVGa1hoWGN3cUNiTC1uX0xOd1FIMmZuN1Z1b202LTBwZnUxTQ?oc=5"
-    },
-    {
-      "source": "google",
       "press": "매일일보",
       "date": "2026.08.10",
       "title": "안산교육지원청, 영유아 127명 대상 문화다양성 음악회",
@@ -1243,19 +1235,19 @@
     },
     {
       "source": "google",
-      "press": "누리일보",
-      "date": "2026.07.27",
-      "title": "경기도의회 장윤정 의원, 도교육청 예결위원 선임...재정의 건전성과 효율성, 학생과 현장 중심의 예산 편성에 총력 다할 것",
-      "snippet": "경기도의회 장윤정 의원, 도교육청 예결위원 선임...재정의 건전성과 효율성, 학생과 현장 중심의 예산 편성에 총력 다할 것 누리일보",
-      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE9rWXFJS1BRV2NkdmRHOXdPYU1yNUQzdkNST3FvNFB6LWI2T2cta2Jsbk0zYzlHUnB6Y3UzRnRQQ2VsT01ZWXUxVVR2ZGFOYTAyQnJPaXRmNi1VaUg1?oc=5"
-    },
-    {
-      "source": "google",
       "press": "안산뉴스",
       "date": "2026.07.27",
       "title": "도의회 장윤정 의원 도교육청 예결특위 위원 선임",
       "snippet": "도의회 장윤정 의원 도교육청 예결특위 위원 선임 안산뉴스",
       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFByV2hHN2NpUHphWHBYVVUwR0NNaEN3ZlRudWF5N3hqLW94VFJLbG1fQWljam5VUmlGYjVPX1E0RFJEV0h3OXdibld4Z1FlbTA0dWRCcVNZa3RMWnVwV3ZwenVMNmdYNWhLRUZaTQ?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "누리일보",
+      "date": "2026.07.27",
+      "title": "경기도의회 장윤정 의원, 도교육청 예결위원 선임...재정의 건전성과 효율성, 학생과 현장 중심의 예산 편성에 총력 다할 것",
+      "snippet": "경기도의회 장윤정 의원, 도교육청 예결위원 선임...재정의 건전성과 효율성, 학생과 현장 중심의 예산 편성에 총력 다할 것 누리일보",
+      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE9rWXFJS1BRV2NkdmRHOXdPYU1yNUQzdkNST3FvNFB6LWI2T2cta2Jsbk0zYzlHUnB6Y3UzRnRQQ2VsT01ZWXUxVVR2ZGFOYTAyQnJPaXRmNi1VaUg1?oc=5"
     },
     {
       "source": "naver",
@@ -1444,14 +1436,6 @@
     {
       "source": "google",
       "press": "반월신문",
-      "date": "2026.07.14",
-      "title": "안산 상록구 도금공장 화재 대응 1단계 발령 후 54분 만에 초진…인명피해 없어",
-      "snippet": "안산 상록구 도금공장 화재 대응 1단계 발령 후 54분 만에 초진…인명피해 없어 반월신문",
-      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBXVi1zZVRQbjhjaDY5UXBTTjNaUXlnRmZtbmx1ZEJqeDRDTENDNW1uTlN1czBabkhUOGV2UXc2NE44cmtkS2Z5YjF6YW1NZkdudUdhQnN3X19lc2pWaG1iajBEcFp2Qzg?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "반월신문",
       "date": "2026.07.08",
       "title": "더불어민주당 장윤정 경기도의원, \"초심 잃지 않고 주민 곁에서 실천으로 보답\"",
       "snippet": "더불어민주당 장윤정 경기도의원, \"초심 잃지 않고 주민 곁에서 실천으로 보답\" 반월신문",
@@ -1504,6 +1488,14 @@
       "title": "[NC포토] 알고보니 혼수상태, 골프장 나들이...\"인카금융 '더헤븐 마스터...",
       "snippet": "'히트 제조기' 알고보니 혼수상태(김지환·김경범)가 안산 대부도 더헤븐리조트 내 더헤븐CC에서 열린... 송대관, 장윤정, 신유, 한혜진, 금잔디, 김용임, 홍진영, 김호중, 안성훈, 박서진, 홍지윤, 정서주, 양지은 등...",
       "url": "https://www.nc.press/news/articleView.html?idxno=618592"
+    },
+    {
+      "source": "google",
+      "press": "반월신문",
+      "date": "2026.06.17",
+      "title": "민주당 장윤정 경기도의원 당선인사 “보내주신 성원 잊지 않고 성과로 보답하겠다”",
+      "snippet": "민주당 장윤정 경기도의원 당선인사 “보내주신 성원 잊지 않고 성과로 보답하겠다” 반월신문",
+      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE8wa3F4V2J6eEd5OFZaTFdEa0ZPMlRQRFg5U2J0aFpVcy1CZlUzOEc3NERKTlduMV85T2xBMURmWlhNMC16ZXZOZ21TV2NEcGlWRXBvOWxCcFh2MGkxNHR0ckt0N2hWd28?oc=5"
     },
     {
       "source": "naver",
@@ -1715,19 +1707,19 @@
     },
     {
       "source": "google",
-      "press": "news.sbs.co.kr",
-      "date": "2026.05.13",
-      "title": "안산 상록구 비닐하우스 화재…\"인명피해 없어\"",
-      "snippet": "안산 상록구 비닐하우스 화재…\"인명피해 없어\" news.sbs.co.kr",
-      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE14bkNRMWFTb2ZUdWNwcThiMFdQRFRuWHpyYU9JWWdJSFVwdnliRmRYcWFpdW92TWc3RzVlUFplalFpLV8tb0FOdW40SHh2QkdRX2dZMEVXR2dsVVVNU09jZkwtMHFUN0JROEE?oc=5"
-    },
-    {
-      "source": "google",
       "press": "경향신문",
       "date": "2026.05.13",
       "title": "안산 상록구 다세대주택서 화재···1명 숨지고 3명 부상",
       "snippet": "안산 상록구 다세대주택서 화재···1명 숨지고 3명 부상 경향신문",
       "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE94ZFJWc1liZGRLTWM0aVAxVjY5c0VSOE40bVN0RXA3QlRidXMzdVkwdFljWVIxTG5oOGNwLUtsMl9pT2NJY1VTOEh4OGRMRU02b3Bob0pwa3dSQdIBX0FVX3lxTE52SDdudTdHX3NXYVFOQkhjSnFLR2pmVW5hbmE0aEZYM3B6WXVLNGpoY09DY0xlMVpuZVEzYWIzZVFjY1h1TTYtRHFMVFdPR0RfQ05pWGVIRm5NUG16cTRN?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "news.sbs.co.kr",
+      "date": "2026.05.13",
+      "title": "안산 상록구 비닐하우스 화재…\"인명피해 없어\"",
+      "snippet": "안산 상록구 비닐하우스 화재…\"인명피해 없어\" news.sbs.co.kr",
+      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE14bkNRMWFTb2ZUdWNwcThiMFdQRFRuWHpyYU9JWWdJSFVwdnliRmRYcWFpdW92TWc3RzVlUFplalFpLV8tb0FOdW40SHh2QkdRX2dZMEVXR2dsVVVNU09jZkwtMHFUN0JROEE?oc=5"
     },
     {
       "source": "google",
@@ -1803,14 +1795,6 @@
     },
     {
       "source": "google",
-      "press": "경기남부뉴스",
-      "date": "2026.04.27",
-      "title": "경기도의회 장윤정 의원, 학교 급식실 환기설비 개선 TF 후속 정담회 개최...현장 체감 개선 논의",
-      "snippet": "경기도의회 장윤정 의원, 학교 급식실 환기설비 개선 TF 후속 정담회 개최...현장 체감 개선 논의 경기남부뉴스",
-      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE1LckYwaW1MaHhuTHN2WXBRUXQzdXlkNTlUdEV2aWlNRjJHd1YzNXVNLTlfcGxUdnZFeGw4WnNMMFhaYzktV1JHNk55OTJEWklidV9SREYxU0d0SWUwc0tzSmF0T2R3NHc?oc=5"
-    },
-    {
-      "source": "google",
       "press": "동아일보",
       "date": "2026.04.25",
       "title": "안산 상록구 금속 구조물 제작 공장서 불…35분 만에 완진",
@@ -1864,6 +1848,14 @@
       "title": "장윤정 도의원 ‘시곡중 오수관 사고’ 신속 복구 요구",
       "snippet": "장윤정 도의원 ‘시곡중 오수관 사고’ 신속 복구 요구 안산뉴스",
       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBBbVVRa0JyLS1BSzUzcHl5Vk1VcmlJNlEtdjUxLUh6NGF0bjdBejhXTThxMGptX2R1X2xYTWp1cFVhZm9NQUw5MHdfT2FRQWcwRWptVHJJU2VFOUZGeHZlUW5uVzV4NmdKaU9XRQ?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "뉴스핌",
+      "date": "2026.02.11",
+      "title": "안산 상록구 부곡동서 차량 화재…인명피해 없어",
+      "snippet": "안산 상록구 부곡동서 차량 화재…인명피해 없어 뉴스핌",
+      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE9MazNlSlhmQndMMXh6RWFBWHNfZzJZRU9jQ0VYTUw1cVpUZkxla0JSVGhuRUFpeUR3a3loUF9hUTUyVnBPSGVqS1NVSzhoWUx6OWhTdkxrSmV0LXps?oc=5"
     },
     {
       "source": "google",
