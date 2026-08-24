@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-24 07:37 UTC",
+  "updated": "2026-08-24 09:23 UTC",
   "items": [
     {
       "source": "naver",
@@ -35,11 +35,139 @@
     },
     {
       "source": "google",
-      "press": "경인투데이뉴스",
+      "press": "프레스뉴스",
       "date": "2026.08.24",
-      "title": "안산시 상록구 이동 직능단체, 의료·요양 통합돌봄 역량강화 교육 및 홍보:경인투데이뉴스",
-      "snippet": "안산시 상록구 이동 직능단체, 의료·요양 통합돌봄 역량강화 교육 및 홍보:경인투데이뉴스 경인투데이뉴스",
-      "url": "https://news.google.com/rss/articles/CBMiQ0FVX3lxTE5LU2VKNUR1ZF8tYkk3V1BrWWtGbllndWF0TGE4dHdVamJDWTBSVnAzS2tqVnVzckZMS1RUY21sTktCemPSAV9BVV95cUxQMzNsRVhjbzZDNHNSR2JhNWhBLURIRnZndE9qZXpJZzRlaVlpMVBUYk9OQml1VXZwbVNaaVRBbUx5WnNiaHBrZmtPbEpFenZ5S0VFNnh0cDlKbjRGX2RtMA?oc=5"
+      "title": "안산시 상록구 이동 직능단체, 의료·요양 통합돌봄 역량강화 교육 및 홍보",
+      "snippet": "안산시 상록구 이동 직능단체, 의료·요양 통합돌봄 역량강화 교육 및 홍보 프레스뉴스",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTFA4MjRyWG16VXc1OE9YYXFPdzQwZFF2SDRpbEpUNzFNNHctR1RwV1k2Z2dWNThQNXQ3TlFfSXBKWVVqdi1vYW1NZ2ZLWGQxbGlicG1PV1lCTEJSWHhLUldmdXJHX0MwLUZZM3o3TUl0Ym9CUQ?oc=5"
+    },
+    {
+      "source": "naver",
+      "press": "joongboo.com",
+      "date": "2026.08.24",
+      "title": "박병화·조두순에 이어 김근식까지...해당 지역은 예산·행정력 소모 우...",
+      "snippet": "훈련 교육 서비스를 제공하는 시설이다. 현재 17명의 출소자가 머무는 것으로 전해진다. 현재 파주시에선... 성범죄자 조두순의 치료감호시설 입소로 올 초부터 방범 초소 운영을 잠정 중단한 안산시는 향후 조두순의 출소...",
+      "url": "https://www.joongboo.com/news/articleView.html?idxno=363734622"
+    },
+    {
+      "source": "naver",
+      "press": "weekly.hankooki.com",
+      "date": "2026.08.24",
+      "title": "\"학부모·학생 더 기다리기 어렵다\"…과천시, 교육구조 개선 요구",
+      "snippet": "과천시는 안산교육지원청에서 열린 경기도교육청 주관 조찬 간담회에 참석해 지역 교육 현안과 지자체·교육기관 간 협력방안을 논의했다고 24일 밝혔다. 이날 자리는 다음 달 예정된 경기도와 31개 시군, 경기도교육청 간...",
+      "url": "https://weekly.hankooki.com/news/articleView.html?idxno=7180308"
+    },
+    {
+      "source": "naver",
+      "press": "nspna.com",
+      "date": "2026.08.24",
+      "title": "[학교 현장 리포트] 경기도교육청, 지자체와 손잡고 교육 해법 정면돌파",
+      "snippet": "통학로부터 학교 개방까지 24일 안산교육지원청에서 열린 서부권역 간담회에는 안양·부천·안산 등 8개 시·군 단체장과 6개 교육장이 참석했다. 이 자리에서 학교복합시설 조성 및 시설 개방, 학생 통학 여건 개선, ‘RAS...",
+      "url": "https://www.nspna.com/news/?mode=view&newsid=825369"
+    },
+    {
+      "source": "naver",
+      "press": "gukjenews.com",
+      "date": "2026.08.24",
+      "title": "안산시의회, 18일간 임시회 돌입…예결특위 구성·명칭 변경 건의안 의...",
+      "snippet": "선현우 의원은 5분 자유발언에서 안정적인 통학 여건 조성이 교육복지의 출발점임을 강조하며, 초지동 등 통학 여건이 열악한 지역 학생들의 불편을 언급하고 데이터 기반 노선 개편, 안산시·교육지원청 협의체 구성...",
+      "url": "https://www.gukjenews.com/news/articleView.html?idxno=3673053"
+    },
+    {
+      "source": "naver",
+      "press": "siminilbo.co.kr",
+      "date": "2026.08.24",
+      "title": "안산시, 특성화고 학생 대상 현장실습 노동권 교육",
+      "snippet": "안산시는 21일 안산교육지원청, 안산시비정규직노동자지원센터와 함께 지역 특성화고 5곳의 3학년 학생 약 200명을 대상으로 ‘특성화고로 찾아가는 현장실습 출근준비’ 교육을 진행했다. 이번 교육은 안산...",
+      "url": "https://www.siminilbo.co.kr/news/newsview.php?ncode=1160263160306020"
+    },
+    {
+      "source": "naver",
+      "press": "siminilbo.co.kr",
+      "date": "2026.08.24",
+      "title": "안산서 국내외 동포 청년 한자리에…정착 넘어 미래 정책 논의",
+      "snippet": "이어진 원탁토론에서는 교육·진로, 취업·창업, 사회통합·지역 참여, 재외동포 청년 지원 등 4개 분야를 중심으로 참가자들이 의견을 나누고 정책 제안으로 정리했다. 안산시는 포럼에서 나온 청년들의 의견을 향후 관련...",
+      "url": "https://www.siminilbo.co.kr/news/newsview.php?ncode=1160263029867056"
+    },
+    {
+      "source": "naver",
+      "press": "suwonilbo.kr",
+      "date": "2026.08.24",
+      "title": "안민석, \"아이들의 미래, 교육청과 지자체가 벽 깨는데서 시작\"",
+      "snippet": "첫 일정인 24일 서부권역 간담회는 안산교육지원청에서 열렸다. 간담회에는 안양, 과천, 군포, 의왕, 시흥, 부천, 광명, 안산 등 8개 시·군 단체장과 6개 지역 교육장이 참여했다. 간담회에서는 △학교복합시설과 학교시설...",
+      "url": "http://www.suwonilbo.kr/news/articleView.html?idxno=317663"
+    },
+    {
+      "source": "naver",
+      "press": "ohmynews.com",
+      "date": "2026.08.24",
+      "title": "안민석 교육감 \"교육청과 지자체 교육·돌봄 함께 해결해야\"",
+      "snippet": "첫 일정인 24일 서부권역 간담회는 안산교육지원청에서 열렸다. 안양, 과천, 군포, 의왕, 시흥, 부천, 광명, 안산 등 8개 시·군 단체장과 6개 지역 교육장이 참여했다. 학교시설 개방과 학생 통학 여건 개선,'RAS 경기 문예체...",
+      "url": "https://www.ohmynews.com/NWS_Web/View/at_pg.aspx?CNTN_CD=A0003261514&CMPT_CD=P0010&utm_source=naver&utm_medium=newsearch&utm_campaign=naver_news"
+    },
+    {
+      "source": "naver",
+      "press": "queen.co.kr",
+      "date": "2026.08.24",
+      "title": "안민석 경기도교육감, '권역별 벽깨기 조찬 간담회'로 지역 교육 현안 ...",
+      "snippet": "첫 일정인 서부권역 간담회는 안산교육지원청에서 열렸다. 안양, 과천, 군포, 의왕, 시흥, 부천, 광명, 안산 등 8개 시·군 단체장과 6개 지역 교육장이 참석해 ▲학교복합시설 및 학교시설 개방 ▲학생 통학 여건 개선 ▲'RAS...",
+      "url": "http://www.queen.co.kr/news/articleView.html?idxno=462174"
+    },
+    {
+      "source": "naver",
+      "press": "shinailbo.co.kr",
+      "date": "2026.08.24",
+      "title": "안산대, 학생 창업 아이디어 사업화 역량 높인다",
+      "snippet": "안산대 창업교육센터는 지난 12일부터 13일까지 라르고빌리조트에서 1박 2일 일정으로 '2026학년도 앵커사업 비즈니스모델 고도화 창업캠프'를 운영했다고 24일 밝혔다. 이번 캠프에는 간호학과와 호텔조리학과...",
+      "url": "https://www.shinailbo.co.kr/news/articleView.html?idxno=5054345"
+    },
+    {
+      "source": "naver",
+      "press": "rookie.co.kr",
+      "date": "2026.08.24",
+      "title": "[유노유농] 참여 학생들의 적극적 참여 속 성황리에 끝난 안산 TOP 초지...",
+      "snippet": "성공적으로 여름방학 특강을 끝낸 안산 TOP 초지점은 정규 수업과 다양한 특강 및 대외 활동을 통해 학생들에게 체계적인 농구 교육과 즐거운 스포츠 경험을 제공하고 있으며, 앞으로도 학생들의 성장과 실력 향상을...",
+      "url": "http://www.rookie.co.kr/news/articleView.html?idxno=126318"
+    },
+    {
+      "source": "naver",
+      "press": "shinailbo.co.kr",
+      "date": "2026.08.24",
+      "title": "안산시의회 제305회 임시회 개회…추경안 등 47건 심의",
+      "snippet": "안산시와 교육지원청 간 협의체 구성과 권역별 통학순환버스 도입도 제안했다. 안두회 의원은 고려대학교 안산병원 증축을 위한 시유지 매각 문제를 언급했다. 장례식장의 교육동 이전에 따른 주거지역 영향을 비롯해...",
+      "url": "https://www.shinailbo.co.kr/news/articleView.html?idxno=5054339"
+    },
+    {
+      "source": "naver",
+      "press": "shinailbo.co.kr",
+      "date": "2026.08.24",
+      "title": "안산인재육성재단, 3차 장학생 505명 선발",
+      "snippet": "경기 안산시가 대학생과 청소년, 청년 등 505명을 대상으로 7억700만원 규모의 장학금을 지원하며 교육 기회 확대에 나선다. 안산인재육성재단은 오는 31일부터 다음달 11일까지 '2026년도 3차 장학생 선발' 신청을...",
+      "url": "https://www.shinailbo.co.kr/news/articleView.html?idxno=5054340"
+    },
+    {
+      "source": "naver",
+      "press": "shinailbo.co.kr",
+      "date": "2026.08.24",
+      "title": "신계용 과천시장, 학생 학교선택권 보장 등 교육구조 개선 건의",
+      "snippet": "과천시는 24일 안산교육지원청에서 열린 경기도교육청 주관 '벽깨기 정책 협약' 사전 조찬 간담회에 참석해 지자체와 교육청 간 지역맞춤형 교육 협력 방안을 논의했다고 밝혔다. 이번 간담회는 다음달 예정된 경기도와...",
+      "url": "https://www.shinailbo.co.kr/news/articleView.html?idxno=5054338"
+    },
+    {
+      "source": "naver",
+      "press": "news.kbs.co.kr",
+      "date": "2026.08.24",
+      "title": "[생생토론] 육해공군 사관학교 통합 배경은?",
+      "snippet": "군의 교육 경기 3군 사관학교에서 교육이 끝나는 것이 아니라 지속적인 교육이 필요하고 그런 부분은 융합... 지금 뭐 안산 산단에 이 지금 방산 특화단지도 지금 적용을 하려고 하고 있고 뭐 여러 가지 지금 이제 국방 방산...",
+      "url": "https://news.kbs.co.kr/news/pc/view/view.do?ncd=8644367&ref=A"
+    },
+    {
+      "source": "naver",
+      "press": "suwonilbo.kr",
+      "date": "2026.08.24",
+      "title": "과천시, 교육구조개선·학교선택권 보장 경기도교육청에 건의",
+      "snippet": "과천시는 24일, 안산교육지원청에서 열린 경기도교육청 주관 벽깨기 협약식 추진을 위한 사전 조찬 간담회에 참석했다. 이번 간담회는 오는 9월 예정된 경기도 및 31개 시군과 경기도교육청의 '벽깨기 정책 협약' 체결에...",
+      "url": "http://www.suwonilbo.kr/news/articleView.html?idxno=317657"
     },
     {
       "source": "naver",
@@ -147,6 +275,14 @@
     },
     {
       "source": "naver",
+      "press": "enewstoday.co.kr",
+      "date": "2026.08.24",
+      "title": "안민석 교육감, 시장·군수와 지역 교육현안 해법 모색",
+      "snippet": "첫 일정인 서부권역 간담회는 24일 안산교육지원청에서 열렸다. 안양·과천·군포·의왕·시흥·부천·광명·안산 등 8개 시·군 단체장과 6개 지역 교육장이 참석해 지역 교육 현안을 공유했다. 참석자들은 △학교복합시설...",
+      "url": "http://www.enewstoday.co.kr/news/articleView.html?idxno=2462306"
+    },
+    {
+      "source": "naver",
       "press": "newsfreezone.co.kr",
       "date": "2026.08.24",
       "title": "안산시-지역대학, 상생발전 해법 모색",
@@ -160,14 +296,6 @@
       "title": "선현우 안산시의원 \"안정적인 통학 여건 조성이 교육복지 출발점\"",
       "snippet": "아시아투데이 진현탁 기자 = 선현우 안산시의회 의원이 초등학생들의 통학권을 확보하기 위해 데이터 기반 버스 노선 개편과 안산시·교육지원청 협의체 구성, 권역별 통학순환버스 도입 등이 시급하다고 집행부에...",
       "url": "https://www.asiatoday.co.kr/kn/view.php?key=20260824010007895"
-    },
-    {
-      "source": "naver",
-      "press": "enewstoday.co.kr",
-      "date": "2026.08.24",
-      "title": "안민석 교육감, 시장·군수와 지역 교육현안 해법 모색",
-      "snippet": "첫 일정인 서부권역 간담회는 24일 안산교육지원청에서 열렸다. 안양·과천·군포·의왕·시흥·부천·광명·안산 등 8개 시·군 단체장과 6개 지역 교육장이 참석해 지역 교육 현안을 공유했다. 참석자들은 △학교복합시설...",
-      "url": "http://www.enewstoday.co.kr/news/articleView.html?idxno=2462306"
     },
     {
       "source": "naver",
@@ -314,134 +442,6 @@
       "url": "https://www.newsis.com/view/NISX20260824_0003759997"
     },
     {
-      "source": "naver",
-      "press": "m-i.kr",
-      "date": "2026.08.24",
-      "title": "안민석 교육감, 31개 시·군과 지역 교육 '벽깨기' 협력 추진",
-      "snippet": "첫 일정인 서부권역 간담회는 24일 안산교육지원청에서 열렸다. 안양·과천·군포·의왕·시흥·부천·광명·안산 등 8개 시·군 단체장과 6개 지역 교육장이 참석했다. 이날 학교복합시설과 학교시설 개방, 학생 통학 여건...",
-      "url": "https://www.m-i.kr/news/articleView.html?idxno=1405186"
-    },
-    {
-      "source": "naver",
-      "press": "newsis.com",
-      "date": "2026.08.24",
-      "title": "과천시, 도교육청에 '학군 조정·지구제 재정편성' 공식 건의",
-      "snippet": "24일 시에 따르면 신계용 시장은 이날 안산교육지원청에서 열린 경기도교육청 주관 '지자체-교육청 간 교육협력 사전 조찬 간담회'에 참석해 '과천시 교육구조개선 실행 건의서'를 경기도교육청에 전달했다. 이번 간담회는...",
-      "url": "https://www.newsis.com/view/NISX20260824_0003759985"
-    },
-    {
-      "source": "naver",
-      "press": "mt.co.kr",
-      "date": "2026.08.24",
-      "title": "\"과천 교육 구조 개혁 시급\"…신계용 시장, 안민석 교육감에 결단 촉구",
-      "snippet": "신계용 과천시장은 24일 안산교육지원청에서 열린 경기도교육청 주관 '벽깨기 정책 협약' 추진을 위한 사전 조찬 간담회에 참석했다. 간담회는 오는 9월 예정된 경기도 및 31개 시·군과 경기도교육청 간의 정책 협약을...",
-      "url": "https://www.mt.co.kr/policy/2026/08/24/2026082413212950584"
-    },
-    {
-      "source": "naver",
-      "press": "newsclaim.co.kr",
-      "date": "2026.08.24",
-      "title": "과천시 도교육청 교육구조… 학생 배치 계획 마련 요청",
-      "snippet": "교육구조 개선,학교선택권,대책 마련 24일 안산교육지원청에서 열린 경기도교육청 주관 '벽깨기 협약식' 사전 조찬 간담회 후 참석자들과 기념 촬영을 하고 있다. 과천시 제공 과천시가 경기도교육청에 과천지역 교육구조...",
-      "url": "https://www.newsclaim.co.kr/news/articleView.html?idxno=3072937"
-    },
-    {
-      "source": "naver",
-      "press": "news1.kr",
-      "date": "2026.08.24",
-      "title": "경기도교육청·31개 시군 ‘벽깨기’…교육 현안 공동 대응",
-      "snippet": "안산교육지원청에서 열린 서부권역 간담회에는 안양·과천·군포·의왕·시흥·부천·광명·안산 등 8개 시군 단체장과 6개 지역 교육장이 참석했다. 주요 논의 과제는 △학교복합시설과 학교시설 개방 △학생 통학 여건...",
-      "url": "https://www.news1.kr/local/gyeonggi/6267437"
-    },
-    {
-      "source": "naver",
-      "press": "hbnpress.com",
-      "date": "2026.08.24",
-      "title": "경기도교육청, 31개 시·군, '권역별 벽깨기 조찬 간담회' 개최",
-      "snippet": "서부권역은 24일 안산교육지원청에서 첫 간담회 개최 (안양·과천·군포·의왕·시흥·부천·광명·안산 등 8개 시·군 단체장 및 6개 교육장 참석)하며 남부권역 25일, 2일 차 간담회 진행되며 동부권역은 26일, 북부권역은 9월...",
-      "url": "https://hbnpress.com/news/view/1065581595689000"
-    },
-    {
-      "source": "naver",
-      "press": "kukinews.com",
-      "date": "2026.08.24",
-      "title": "안민석 교육감 “아이들 문제 교육청‧지자체 일 따로 없다”",
-      "snippet": "첫 일정인 서부권역 간담회는 이날 안산교육지원청에서 열렸다. 안양, 과천, 군포, 의왕, 시흥, 부천, 광명, 안산 등 8개 시·군 단체장과 6개 지역 교육장이 참여해 교육, 일반행정의 벽을 허물고 아이들 미래를 위한 교육...",
-      "url": "https://www.kukinews.com/article/view/kuk202608240077"
-    },
-    {
-      "source": "naver",
-      "press": "getnews.co.kr",
-      "date": "2026.08.24",
-      "title": "안민석 \"지역의 교육·돌봄 함께 해결해야\"...'지역맞춤형 벽깨기' 추진",
-      "snippet": "이날 서부권역 간담회는 안산교육지원청에서 열렸다. 간담회에는 안양, 과천, 군포, 의왕, 시흥, 부천, 광명, 안산 등 8개 시·군 단체장과 6개 지역 교육장이 참여했다. 간담회에서는 ▲학교복합시설과 학교시설 개방...",
-      "url": "https://www.getnews.co.kr/news/articleView.html?idxno=878648"
-    },
-    {
-      "source": "naver",
-      "press": "paxetv.com",
-      "date": "2026.08.24",
-      "title": "안산시, 지역대학 상생협력협의회 개최…교육·산업 협력 강화",
-      "snippet": "이날 회의에는 이민근 안산시장을 비롯해 서울예술대학교와 신안산대학교, 안산대학교, 한양대학교 ERICA 등 지역 대학 관계자들이 참석해 안산선 지하화 개발사업과 연계한 교육·연구·문화 자원 활용 방안과 대학생의...",
-      "url": "http://www.paxetv.com/news/articleView.html?idxno=280104"
-    },
-    {
-      "source": "naver",
-      "press": "newsclaim.co.kr",
-      "date": "2026.08.24",
-      "title": "안산시 국내외 동포 청년과 '글로벌 K 청년 포럼'",
-      "snippet": "참가자들은 교육·진로, 취업·창업, 사회통합·지역 참여, 재외동포 청년 지원 등 4개 분야로 나눠 의견을 교환하고 토론 결과를 정책 제안으로 정리해 공유했습니다. 안산시는 이번 포럼에서 제시된 청년들의 의견을...",
-      "url": "https://www.newsclaim.co.kr/news/articleView.html?idxno=3072927"
-    },
-    {
-      "source": "naver",
-      "press": "newsclaim.co.kr",
-      "date": "2026.08.24",
-      "title": "안산시 지역대학과 상생협력 강화",
-      "snippet": "협의회에서는 안산선 지하화 개발사업과 연계한 대학의 교육·연구·문화 자원 활용 방안이 주요 안건으로 다뤄졌습니다. 대학생의 지역사회 참여와 교류를 확대하기 위한 안산유니온페스티벌 활성화 방안도...",
-      "url": "https://www.newsclaim.co.kr/news/articleView.html?idxno=3072925"
-    },
-    {
-      "source": "naver",
-      "press": "kyeonggi.com",
-      "date": "2026.08.24",
-      "title": "문화유산회복재단, 안산 초등학교서 ‘문화유산 실감수업’ 진행",
-      "snippet": "국회등록법인 문화유산회복재단이 경기도안산교육지원청과 손을 잡고 오는 31일부터 안산 관내 초등학교에서 ‘보훈교육과 국가상징, 찾아가는 문화유산’ 실감수업을 본격 실시한다. 24일 재단에 따르면 이번 안산...",
-      "url": "https://www.kyeonggi.com/article/20260824580135"
-    },
-    {
-      "source": "naver",
-      "press": "viva100.com",
-      "date": "2026.08.24",
-      "title": "안민석 경기교육감 “아이들 문제, 경계 없다”..도내 31개 시·군과 ‘...",
-      "snippet": "안산교육지원청에서 열린 첫 서부권역 간담회에는 안양, 과천, 군포, 의왕, 시흥, 부천, 광명, 안산 등 8개 시·군 단체장과 6개 지역 교육장이 모여 지역 밀착형 협력 과제를 논의했다. 주요 안건으로는 ▲학교복합시설 및...",
-      "url": "https://www.viva100.com/article/20260824500671"
-    },
-    {
-      "source": "naver",
-      "press": "joongboo.com",
-      "date": "2026.08.24",
-      "title": "안산 고교생들, 지역문제 해결할 창업 아이디어 현실화 '눈길'",
-      "snippet": "안산교육지원청이 관내 고교 창업동아리 학생들을 대상으로 2026 안산 루트 창업캠프를 진행하고 기념촬영을 하고 있다. 사진=안산교육지원청 안산지역 고등학생들이 로봇·인공지능(AI)과 환경·사회적 가치 등을...",
-      "url": "https://www.joongboo.com/news/articleView.html?idxno=363734547"
-    },
-    {
-      "source": "naver",
-      "press": "ajunews.com",
-      "date": "2026.08.24",
-      "title": "안민석 교육감, 31개 시군과 '벽깨기'...교육·돌봄 현안 공동 해결 나선...",
-      "snippet": "첫 일정인 이날 서부권역 간담회는 안산교육지원청에서 열렸으며 안양·과천·군포·의왕·시흥·부천·광명·안산 등 8개 시·군 단체장과 6개 지역 교육장이 참여해 학교와 지역사회가 함께 풀어야 할 교육 현안을 놓고...",
-      "url": "https://www.ajunews.com/view/20260824111000162"
-    },
-    {
-      "source": "naver",
-      "press": "m-economynews.com",
-      "date": "2026.08.24",
-      "title": "5분 불 꺼 55만kWh 아꼈는데...올해 ‘10분 소등’ 효과 얼마나 컸나",
-      "snippet": "서울과 광주, 부산, 대구, 천안, 안산, 구미, 마산, 여수 등에서도 지역 시민단체를 중심으로 에너지절약... 당시 행사에는 정부·공공기관 985곳과 지방자치단체 169곳, 랜드마크·기업 2089곳, 교육청 44곳, 학교·유치원...",
-      "url": "https://www.m-economynews.com/news/article.html?no=70041"
-    },
-    {
       "source": "google",
       "press": "안산뉴스",
       "date": "2026.08.24",
@@ -459,11 +459,43 @@
     },
     {
       "source": "google",
+      "press": "경기일보",
+      "date": "2026.08.24",
+      "title": "문화유산회복재단, 안산 초등학교서 ‘문화유산 실감수업’ 진행",
+      "snippet": "문화유산회복재단, 안산 초등학교서 ‘문화유산 실감수업’ 진행 경기일보",
+      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBFUXB0OFdIc3lZZmxEMFo3bmEwaFVDTDM2QVEtRFRIcGdvYXg5cGp5UTlDdlJMNExQemN5ZWdiWUxVOXJPM1NhMTZLRW52c1BzYUhDZjYyd0xUTW8?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "데일리엔뉴스",
+      "date": "2026.08.24",
+      "title": "안민석 교육감, 31개 시·군과 ‘벽깨기’…교육·돌봄 현안 공동대응",
+      "snippet": "안민석 교육감, 31개 시·군과 ‘벽깨기’…교육·돌봄 현안 공동대응 데일리엔뉴스",
+      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE82X0pJaEdqWHZDZE5Eb0hnYjliSnhSeTFRMTh0RzUweFpvSk16RTFCS2Mzc1ZfSFk3bkhxMG9xcWlROXlpcWJSaThJTmJPTVIwVkdxV0IyUzg3Zw?oc=5"
+    },
+    {
+      "source": "google",
       "press": "BBS불교방송",
       "date": "2026.08.24",
       "title": "‘교실로 찾아가는 박물관’...청소년 문화유산 실감교육, 안산서 열린다",
       "snippet": "‘교실로 찾아가는 박물관’...청소년 문화유산 실감교육, 안산서 열린다 BBS불교방송",
       "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE5ka0g3MmdXRUl3Z0pvN1I4REU5SkhHUlE4bUcwczR6LTdkSTZibnhVQzRtcGJiSkdVRl95dGNHX3I3b2ZVQVlpbjBhMkdhdTZQdkRfOTQ5Um92SmVERWI2YlV2ZWYyS1BxNmo0?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "머니투데이",
+      "date": "2026.08.24",
+      "title": "학교 개방부터 통학·돌봄까지…경기도교육청, 31개 시군과 교육 혁신 - 머니투데이",
+      "snippet": "학교 개방부터 통학·돌봄까지…경기도교육청, 31개 시군과 교육 혁신 - 머니투데이 머니투데이",
+      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE9PUEpSNk5wOUZGWGhPQWxFdElfdHhpSWloWnNiYzltYzk1dHUxQ2g4Ulh5UlVZRUo1RExNNzJXbXFENFB0cFpzY2Qzb2Iwc2xqeFpCVk0ydG5BcHNsTGRpcWhGNkxKdDRQejFiWmhqWdIBb0FVX3lxTE9PUEpSNk5wOUZGWGhPQWxFdElfdHhpSWloWnNiYzltYzk1dHUxQ2g4Ulh5UlVZRUo1RExNNzJXbXFENFB0cFpzY2Qzb2Iwc2xqeFpCVk0ydG5BcHNsTGRpcWhGNkxKdDRQejFiWmhqWQ?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "경기도민일보 미디어",
+      "date": "2026.08.24",
+      "title": "과천시, 교육구조 개선 ‘실행’ 촉구, 2027학년도 학생배치계획 반영 요구",
+      "snippet": "과천시, 교육구조 개선 ‘실행’ 촉구, 2027학년도 학생배치계획 반영 요구 경기도민일보 미디어",
+      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5MLUZaLTJLRjJkajRLVC1POU5FMTZld0ltSDRjUWladUxEaHB3OXI3bGRuTENPSkFQMGV0ZV9PMzh0UUNTOG5qa0VKSXV6OENWQWZSUHpZekM5Um1WNl9sRTNIYTEzVE5fZkE?oc=5"
     },
     {
       "source": "google",
@@ -475,27 +507,35 @@
     },
     {
       "source": "google",
-      "press": "머니투데이",
+      "press": "팍스경제TV",
       "date": "2026.08.24",
-      "title": "학교 개방부터 통학·돌봄까지…경기도교육청, 31개 시군과 교육 혁신 - 머니투데이",
-      "snippet": "학교 개방부터 통학·돌봄까지…경기도교육청, 31개 시군과 교육 혁신 - 머니투데이 머니투데이",
-      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1WWHlaZzZFVm9EZjQ2T0NHZUEzV3FXemxRcWRMYTlCZm4zcDF4dC1IMDM5d3NsNmRmNEs2b3dZZFdvMjNocDZVdmc2eUluMDZPekdSdzhWRm9ZME1vaVFfaFZ3YWMzQXFoLVHSAW9BVV95cUxPT1BKUjZOcDlGRlhoT0FsRXRJX3R4aUlpaFpzYmM5bWM5NXR1MUNoOFJYeVJVWUVKNURMTTcyV21xRDRQdHBac2NkM29iMHNsanhaQlZNMnRuQXBzbExkaXFoRjZMSnQ0UHoxYlpoalk?oc=5"
+      "title": "안산시, 지역대학 상생협력협의회 개최…교육·산업 협력 강화",
+      "snippet": "안산시, 지역대학 상생협력협의회 개최…교육·산업 협력 강화 팍스경제TV",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE9Gcmt2ckNsMEUtSGFheGpldExzNWljdzVORUNCWUZydkZTMDJtY2c0a3hFSkFPYzNMYW50Mk9pRFhSejR1QmtkcENmbG02NkpmTGpWekU0TmpZN215Yk10TjkxaGRVLWo4?oc=5"
     },
     {
       "source": "google",
-      "press": "경기탑뉴스",
+      "press": "서울신문",
       "date": "2026.08.24",
-      "title": "과천시, 경기도교육청에 교육구조개선 실행건의서 전달",
-      "snippet": "과천시, 경기도교육청에 교육구조개선 실행건의서 전달 경기탑뉴스",
-      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE5JZjhydTFJb0ZnN2F0SDRzM2dqTTFiVjZwdGRxa2o0TlA4ai04SVhhdjF2R29jdmV3V0xpeHZwQ3RPalNCcnU4MFZzVlJaX1A5RnZqaFRVbWp4bnB4OG9zOWZxV3JfQQ?oc=5"
+      "title": "경기도교육청, 교육지원청과 31개 시군 ‘벽깨기’ 본격화",
+      "snippet": "경기도교육청, 교육지원청과 31개 시군 ‘벽깨기’ 본격화 서울신문",
+      "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE92NXozR25FVWRfdHBZWU5lal9BLWI3RVY0Vm9xMzk4OTNHZGgxNE1XMFVWdWNVbFpNV1RNRmdBWEw1SFpZX05hTjl4MFo4R1N5MXY0c05PTQ?oc=5"
     },
     {
       "source": "google",
-      "press": "데일리중앙",
+      "press": "중부일보",
       "date": "2026.08.24",
-      "title": "안민석 경기도교육감 \"아이들의 미래, 교육청과 지자체가 함께 책임져야\"",
-      "snippet": "안민석 경기도교육감 \"아이들의 미래, 교육청과 지자체가 함께 책임져야\" 데일리중앙",
-      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE5sLTJfRnZRME1tVXVxMkdlQXQ0TGtiVmM1LWhtNGFGeF9MczZyMjlPTmQwOUY5REVYUTBLUWdESlJ2cmhiSTc3Q2YtU3NydktHYThuZGdkNXFkLURnWEVDT2t5UHBSS3g5TENkWA?oc=5"
+      "title": "안산 고교생들, 지역문제 해결할 창업 아이디어 현실화 ‘눈길’",
+      "snippet": "안산 고교생들, 지역문제 해결할 창업 아이디어 현실화 ‘눈길’ 중부일보",
+      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE9wMmdLRTlTOEJHMFhGYnJOOWh2Vy1GQWNDMENpNjN5QVNJcmVCQzI3YlM4T3M1WmpZbjhIc0pqcmUyOHJRYjVFUDZQVndnQ25pSzdnVDZxYU5XSnc0RzF0ZGhtc1BPcVFwTGRUQTdB?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "경기일보",
+      "date": "2026.08.24",
+      "title": "과천시, 경기도교육청에 ‘교육구조개선 실행건의서’ 전달",
+      "snippet": "과천시, 경기도교육청에 ‘교육구조개선 실행건의서’ 전달 경기일보",
+      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFA4bUtYbG0waWVIR0xsX0ZJRFlnNjM3c0ZGSldxQW0tQVpiLXQxSmVTUG5xVVEwNXNoVHd5eTd2cXZRYXJUUE9kdHV1elFGamR2MjAyTTBsZktjUk0?oc=5"
     },
     {
       "source": "google",
@@ -531,11 +571,11 @@
     },
     {
       "source": "google",
-      "press": "newszoom.kr",
+      "press": "안산뉴스",
       "date": "2026.08.23",
-      "title": "안산교육지원청,'안산 루트UP' 로봇 심화교육 성료",
-      "snippet": "안산교육지원청,'안산 루트UP' 로봇 심화교육 성료 newszoom.kr",
-      "url": "https://news.google.com/rss/articles/CBMiREFVX3lxTE1scHV5MGRwaHY1WEhuV3RoSXVUTnNZRXJOVzV2WHJsQ2dsVWllT0hwWEc1TUlkZjdld0h5SDRydmdlb1hB?oc=5"
+      "title": "안산교육청 ‘안산 루트UP’ 로봇 심화교육",
+      "snippet": "안산교육청 ‘안산 루트UP’ 로봇 심화교육 안산뉴스",
+      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE1UQWMxZWhIUHRzdFdKSmlIUVFzaXlvNTdYR0p0NTNCZVFRSU1TUWtyTEMxMmxsdkN2OUpQYmptQkxhSlk3NEFoM0RkTDZWaVFuYk9tbDRSMkwyUGRZNTRkbUtvWW5EZ0h3cFB6bQ?oc=5"
     },
     {
       "source": "google",
@@ -688,14 +728,6 @@
       "title": "1237회 로또 명당 주소 총정리…1등 20곳·2등 68곳·편의점 9곳",
       "snippet": "경기 안산시 상록구 수인로 1836 복돼지 복권방: 경기 수원시 팔달구 동말로25번길 65 1층(화서동) 두근두근 로또명당: 경기 수원시 권선구 금곡로197번길 65 1층(금곡동) 스카이25: 경기 남양주시 미금로 26-2...",
       "url": "https://www.econovill.com/news/articleView.html?idxno=748414"
-    },
-    {
-      "source": "google",
-      "press": "매일일보",
-      "date": "2026.08.20",
-      "title": "안산교육지원청, 8월 22~23일 안산교복은행 교복나눔 행사 운영",
-      "snippet": "안산교육지원청, 8월 22~23일 안산교복은행 교복나눔 행사 운영 매일일보",
-      "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFBfdDNzV093ak04Y1VGUWNmVGh6QkhyVW8zd29WSDNaUnJfLUIwM2hkNWxvX3B3bDVJT2RCWThmLTRKdGpGQzFLR0F3cnA3XzkxcWxYdHFPaWlOeWJxMEZZNDByb3A?oc=5"
     },
     {
       "source": "naver",
@@ -1239,7 +1271,7 @@
       "date": "2026.07.27",
       "title": "장윤정 경기도의원, 교육청 예결특위 선임…“학생·현장 중심 예산 총력”",
       "snippet": "장윤정 경기도의원, 교육청 예결특위 선임…“학생·현장 중심 예산 총력” v.daum.net",
-      "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE9hUUw2b2h1ZzlCcTI1ZExkanRDREtsMnJpZUZYeUx3SDFsNE83V2N0MFNJdlJfQ0VYSHF2cWcyVWo3YjlhNTA5dWFKUzRtWUk?oc=5"
+      "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE5WcWF6Zk5fdVB5V0dzQ2FmSUd5MVg4SzN4ak1HU2J0RktrWGIxUVhyajRUY2FXSnZyWThpMi1PMzBxUzVNM0E?oc=5"
     },
     {
       "source": "google",
@@ -1840,14 +1872,6 @@
       "title": "장윤정 도의원 ‘시곡중 오수관 사고’ 신속 복구 요구",
       "snippet": "장윤정 도의원 ‘시곡중 오수관 사고’ 신속 복구 요구 안산뉴스",
       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBBbVVRa0JyLS1BSzUzcHl5Vk1VcmlJNlEtdjUxLUh6NGF0bjdBejhXTThxMGptX2R1X2xYTWp1cFVhZm9NQUw5MHdfT2FRQWcwRWptVHJJU2VFOUZGeHZlUW5uVzV4NmdKaU9XRQ?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "일간경기",
-      "date": "2026.03.05",
-      "title": "장윤정 의원, 안산 학교 환경개선 87억원 규모 예산 확보",
-      "snippet": "장윤정 의원, 안산 학교 환경개선 87억원 규모 예산 확보 일간경기",
-      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBDY3FVTXFLN2F6cUxkY0F6ckplb0xJX0ttcnJGdkxheEhlRlRrVDZWZmlGWXZNUk84TWxGeHBheHhVbktRT1FNQ0hNcFFQcGd6VnQyX3hFcER4S0JLZGl5SnB0THhnTHNj?oc=5"
     },
     {
       "source": "google",
