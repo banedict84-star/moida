@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-24 09:23 UTC",
+  "updated": "2026-08-24 10:11 UTC",
   "items": [
     {
       "source": "naver",
@@ -43,6 +43,22 @@
     },
     {
       "source": "naver",
+      "press": "newsclaim.co.kr",
+      "date": "2026.08.24",
+      "title": "안산시의회 제305회 임시회 개회",
+      "snippet": "최근 5년간 버스 노선의 전면적인 개편이 없었다고 언급하고 데이터에 기반한 노선 조정과 안산시·교육지원청 협의체 구성, 권역별 통학순환버스 도입 등을 제안했습니다. 안두회 의원은 고려대학교 안산병원 증축을...",
+      "url": "https://www.newsclaim.co.kr/news/articleView.html?idxno=3073015"
+    },
+    {
+      "source": "naver",
+      "press": "lawissue.co.kr",
+      "date": "2026.08.24",
+      "title": "경기도교육청, 교육지원청·시군 손잡고 지역교육 현안 해법 찾는다… ...",
+      "snippet": "첫 간담회는 24일 안산교육지원청에서 서부권역 8개 시·군 단체장과 6개 지역 교육장이 참석한 가운데 열렸다. 참석자들은 학교복합시설과 학교시설 개방을 비롯해 학생 통학 여건, 돌봄과 지역자원 연계 등 현안을 놓고...",
+      "url": "http://www.lawissue.co.kr/view.php?ud=202608241521586136d94aa4ada6_12"
+    },
+    {
+      "source": "naver",
       "press": "joongboo.com",
       "date": "2026.08.24",
       "title": "박병화·조두순에 이어 김근식까지...해당 지역은 예산·행정력 소모 우...",
@@ -67,14 +83,6 @@
     },
     {
       "source": "naver",
-      "press": "gukjenews.com",
-      "date": "2026.08.24",
-      "title": "안산시의회, 18일간 임시회 돌입…예결특위 구성·명칭 변경 건의안 의...",
-      "snippet": "선현우 의원은 5분 자유발언에서 안정적인 통학 여건 조성이 교육복지의 출발점임을 강조하며, 초지동 등 통학 여건이 열악한 지역 학생들의 불편을 언급하고 데이터 기반 노선 개편, 안산시·교육지원청 협의체 구성...",
-      "url": "https://www.gukjenews.com/news/articleView.html?idxno=3673053"
-    },
-    {
-      "source": "naver",
       "press": "siminilbo.co.kr",
       "date": "2026.08.24",
       "title": "안산시, 특성화고 학생 대상 현장실습 노동권 교육",
@@ -88,6 +96,14 @@
       "title": "안산서 국내외 동포 청년 한자리에…정착 넘어 미래 정책 논의",
       "snippet": "이어진 원탁토론에서는 교육·진로, 취업·창업, 사회통합·지역 참여, 재외동포 청년 지원 등 4개 분야를 중심으로 참가자들이 의견을 나누고 정책 제안으로 정리했다. 안산시는 포럼에서 나온 청년들의 의견을 향후 관련...",
       "url": "https://www.siminilbo.co.kr/news/newsview.php?ncode=1160263029867056"
+    },
+    {
+      "source": "naver",
+      "press": "gukjenews.com",
+      "date": "2026.08.24",
+      "title": "안산시의회, 18일간 임시회 돌입…예결특위 구성·명칭 변경 건의안 의...",
+      "snippet": "선현우 의원은 5분 자유발언에서 안정적인 통학 여건 조성이 교육복지의 출발점임을 강조하며, 초지동 등 통학 여건이 열악한 지역 학생들의 불편을 언급하고 데이터 기반 노선 개편, 안산시·교육지원청 협의체 구성...",
+      "url": "https://www.gukjenews.com/news/articleView.html?idxno=3673053"
     },
     {
       "source": "naver",
@@ -411,14 +427,6 @@
     },
     {
       "source": "naver",
-      "press": "mt.co.kr",
-      "date": "2026.08.24",
-      "title": "학교 개방부터 통학·돌봄까지…경기도교육청, 31개 시군과 교육 혁신",
-      "snippet": "안산교육지원청에서 열린 서부권역 간담회에는 안양·과천·군포·의왕·시흥·부천·광명·안산 등 8개 시·군 단체장과 6개 지역 교육장이 모였다. 논의 테이블에는 △학교복합시설 설치 및 학교시설 개방 △학생 통학...",
-      "url": "https://www.mt.co.kr/policy/2026/08/24/2026082413272485893"
-    },
-    {
-      "source": "naver",
       "press": "newsis.com",
       "date": "2026.08.24",
       "title": "안산시, 지역 발전에 지역 대학 인프라 활용한다",
@@ -434,12 +442,12 @@
       "url": "https://www.m-i.kr/news/articleView.html?idxno=1405240"
     },
     {
-      "source": "naver",
-      "press": "newsis.com",
+      "source": "google",
+      "press": "더코리아",
       "date": "2026.08.24",
-      "title": "경기교육청, 31개 시·군과 '벽깨기 간담회'…교육 협력 강화",
-      "snippet": "이날 서부권역 첫 간담회는 안산교육지원청에서 열렸다. 간담회에는 안양, 과천, 군포, 의왕, 시흥, 부천, 광명, 안산 등 8개 시·군 단체장과 6개 지역 교육장이 참여했다. 간담회에서는 ▲학교복합시설과 학교시설 개방...",
-      "url": "https://www.newsis.com/view/NISX20260824_0003759997"
+      "title": "안산시, 특성화고로 찾아가는 현장실습 출근준비 교육 실시 > 뉴스",
+      "snippet": "안산시, 특성화고로 찾아가는 현장실습 출근준비 교육 실시 > 뉴스 더코리아",
+      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE51YWoySFEyTUpwQW1EUjhudHJZLTljQm1vUDFpRXVQVEhNUnJwaG9sQmhNdU9aLW5YNTVvLUxlZkh0aDZSby0wUEQ1VFlESHVMUHlYUV9KVVBkdnBzZVJPZDBPbFQzNmR5RFJBY3pHWVI?oc=5"
     },
     {
       "source": "google",
@@ -451,19 +459,11 @@
     },
     {
       "source": "google",
-      "press": "더코리아",
+      "press": "뉴스파노라마",
       "date": "2026.08.24",
-      "title": "안산시, 특성화고로 찾아가는 현장실습 출근준비 교육 실시 > 뉴스",
-      "snippet": "안산시, 특성화고로 찾아가는 현장실습 출근준비 교육 실시 > 뉴스 더코리아",
-      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE51YWoySFEyTUpwQW1EUjhudHJZLTljQm1vUDFpRXVQVEhNUnJwaG9sQmhNdU9aLW5YNTVvLUxlZkh0aDZSby0wUEQ1VFlESHVMUHlYUV9KVVBkdnBzZVJPZDBPbFQzNmR5RFJBY3pHWVI?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "경기일보",
-      "date": "2026.08.24",
-      "title": "문화유산회복재단, 안산 초등학교서 ‘문화유산 실감수업’ 진행",
-      "snippet": "문화유산회복재단, 안산 초등학교서 ‘문화유산 실감수업’ 진행 경기일보",
-      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBFUXB0OFdIc3lZZmxEMFo3bmEwaFVDTDM2QVEtRFRIcGdvYXg5cGp5UTlDdlJMNExQemN5ZWdiWUxVOXJPM1NhMTZLRW52c1BzYUhDZjYyd0xUTW8?oc=5"
+      "title": "안산시, 특성화고로 찾아가는 '현장실습 출근준비' 교육 시작",
+      "snippet": "안산시, 특성화고로 찾아가는 '현장실습 출근준비' 교육 시작 뉴스파노라마",
+      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE9EYzJweVZBanA1dHlDVDA4N09ITy0wdVlhbGNsNnlKeDc4d1dYaUd1ZG9GWmRFVFFFeGNBLUlIT0RaTk1QY284Mm5TNFRYdTVsNXNiR1RYY3YzbnI0QXZfN21IeExxWWZCcFQ2VEsyNA?oc=5"
     },
     {
       "source": "google",
@@ -475,11 +475,11 @@
     },
     {
       "source": "google",
-      "press": "BBS불교방송",
+      "press": "경기일보",
       "date": "2026.08.24",
-      "title": "‘교실로 찾아가는 박물관’...청소년 문화유산 실감교육, 안산서 열린다",
-      "snippet": "‘교실로 찾아가는 박물관’...청소년 문화유산 실감교육, 안산서 열린다 BBS불교방송",
-      "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE5ka0g3MmdXRUl3Z0pvN1I4REU5SkhHUlE4bUcwczR6LTdkSTZibnhVQzRtcGJiSkdVRl95dGNHX3I3b2ZVQVlpbjBhMkdhdTZQdkRfOTQ5Um92SmVERWI2YlV2ZWYyS1BxNmo0?oc=5"
+      "title": "문화유산회복재단, 안산 초등학교서 ‘문화유산 실감수업’ 진행",
+      "snippet": "문화유산회복재단, 안산 초등학교서 ‘문화유산 실감수업’ 진행 경기일보",
+      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBFUXB0OFdIc3lZZmxEMFo3bmEwaFVDTDM2QVEtRFRIcGdvYXg5cGp5UTlDdlJMNExQemN5ZWdiWUxVOXJPM1NhMTZLRW52c1BzYUhDZjYyd0xUTW8?oc=5"
     },
     {
       "source": "google",
@@ -491,6 +491,14 @@
     },
     {
       "source": "google",
+      "press": "BBS불교방송",
+      "date": "2026.08.24",
+      "title": "‘교실로 찾아가는 박물관’...청소년 문화유산 실감교육, 안산서 열린다",
+      "snippet": "‘교실로 찾아가는 박물관’...청소년 문화유산 실감교육, 안산서 열린다 BBS불교방송",
+      "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE5ka0g3MmdXRUl3Z0pvN1I4REU5SkhHUlE4bUcwczR6LTdkSTZibnhVQzRtcGJiSkdVRl95dGNHX3I3b2ZVQVlpbjBhMkdhdTZQdkRfOTQ5Um92SmVERWI2YlV2ZWYyS1BxNmo0?oc=5"
+    },
+    {
+      "source": "google",
       "press": "경기도민일보 미디어",
       "date": "2026.08.24",
       "title": "과천시, 교육구조 개선 ‘실행’ 촉구, 2027학년도 학생배치계획 반영 요구",
@@ -499,27 +507,11 @@
     },
     {
       "source": "google",
-      "press": "매일일보",
-      "date": "2026.08.24",
-      "title": "안산시, 특성화고 찾아가는 ‘현장실습 출근준비’ 교육",
-      "snippet": "안산시, 특성화고 찾아가는 ‘현장실습 출근준비’ 교육 매일일보",
-      "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE52ekVuemtXeVF0cml4T2RQQ1N3clhOZ2cwQTNIbmZXNFRaQzFnMngtVU1JSThnMTFJZDJHX2htTzhibkNTUnlNUEYzcjMtZmRQTzNxbExORTRicFMweHVWbFlzaEY?oc=5"
-    },
-    {
-      "source": "google",
       "press": "팍스경제TV",
       "date": "2026.08.24",
       "title": "안산시, 지역대학 상생협력협의회 개최…교육·산업 협력 강화",
       "snippet": "안산시, 지역대학 상생협력협의회 개최…교육·산업 협력 강화 팍스경제TV",
       "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE9Gcmt2ckNsMEUtSGFheGpldExzNWljdzVORUNCWUZydkZTMDJtY2c0a3hFSkFPYzNMYW50Mk9pRFhSejR1QmtkcENmbG02NkpmTGpWekU0TmpZN215Yk10TjkxaGRVLWo4?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "서울신문",
-      "date": "2026.08.24",
-      "title": "경기도교육청, 교육지원청과 31개 시군 ‘벽깨기’ 본격화",
-      "snippet": "경기도교육청, 교육지원청과 31개 시군 ‘벽깨기’ 본격화 서울신문",
-      "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE92NXozR25FVWRfdHBZWU5lal9BLWI3RVY0Vm9xMzk4OTNHZGgxNE1XMFVWdWNVbFpNV1RNRmdBWEw1SFpZX05hTjl4MFo4R1N5MXY0c05PTQ?oc=5"
     },
     {
       "source": "google",
@@ -546,6 +538,22 @@
       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBGaHh5Z1YxUVRKenhRQmNNSjdMdnF3cW1nVUplRG92TVhBV050UzZRNnZ3S0wyR1N3YUxHeXJjd2ptTTJKRVZBa1VreG9LdUo3Rkw1bGZWdEsyV04xWVhwNGpNQ09lbGI0R3hLNg?oc=5"
     },
     {
+      "source": "google",
+      "press": "서울신문",
+      "date": "2026.08.24",
+      "title": "경기도교육청, 교육지원청과 31개 시군 ‘벽깨기’ 본격화",
+      "snippet": "경기도교육청, 교육지원청과 31개 시군 ‘벽깨기’ 본격화 서울신문",
+      "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE92NXozR25FVWRfdHBZWU5lal9BLWI3RVY0Vm9xMzk4OTNHZGgxNE1XMFVWdWNVbFpNV1RNRmdBWEw1SFpZX05hTjl4MFo4R1N5MXY0c05PTQ?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "데일리중앙",
+      "date": "2026.08.24",
+      "title": "안민석 경기도교육감 \"아이들의 미래, 교육청과 지자체가 함께 책임져야\"",
+      "snippet": "안민석 경기도교육감 \"아이들의 미래, 교육청과 지자체가 함께 책임져야\" 데일리중앙",
+      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE5sLTJfRnZRME1tVXVxMkdlQXQ0TGtiVmM1LWhtNGFGeF9MczZyMjlPTmQwOUY5REVYUTBLUWdESlJ2cmhiSTc3Q2YtU3NydktHYThuZGdkNXFkLURnWEVDT2t5UHBSS3g5TENkWA?oc=5"
+    },
+    {
       "source": "naver",
       "press": "realty.chosun.com",
       "date": "2026.08.23",
@@ -560,14 +568,6 @@
       "title": "1238회 로또 4매 동시 배출점 등 명당 주소 총정리…1등 18곳·2등 76곳",
       "snippet": "경기 안산시 상록구 석호로 34 101호(삼원에이스) 노다지복권방: 경기 시흥시 복지로 103-1 1층상가 777로또복권방: 경기 수원시 팔달구 효원로 269 1층 116호(인계동 에스팝타워) 수원가구거리 미래복권: 경기...",
       "url": "https://www.econovill.com/news/articleView.html?idxno=748662"
-    },
-    {
-      "source": "google",
-      "press": "경기평화신문",
-      "date": "2026.08.23",
-      "title": "안산시, 특성화고로 찾아가는 `현장실습 출근준비` 교육 시작",
-      "snippet": "안산시, 특성화고로 찾아가는 `현장실습 출근준비` 교육 시작 경기평화신문",
-      "url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE5nbjhWWFU5UURvd21pamtGSUpJbHgzSks4bmw2ZDZKM1dUdEl4TmxXc0EyZHlTbGZidkNYZmxZN3BjY1pWcGZmSQ?oc=5"
     },
     {
       "source": "google",
