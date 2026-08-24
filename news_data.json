@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-24 21:54 UTC",
+  "updated": "2026-08-24 22:54 UTC",
   "items": [
     {
       "source": "naver",
@@ -403,19 +403,19 @@
     },
     {
       "source": "naver",
-      "press": "newsfreezone.co.kr",
-      "date": "2026.08.24",
-      "title": "안산시-지역대학, 상생발전 해법 모색",
-      "snippet": "주요 안건으로는 안산선 지하화 개발사업과 연계한 대학의 교육·연구·문화 자원 활용 방안과 대학생의 지역사회 참여 및 교류 확대를 위한 안산유니온페스티벌 활성화 방안 등이 논의됐다. 또한 지역 산업의 인공지능...",
-      "url": "https://www.newsfreezone.co.kr/news/articleView.html?idxno=705381"
-    },
-    {
-      "source": "naver",
       "press": "asiatoday.co.kr",
       "date": "2026.08.24",
       "title": "선현우 안산시의원 \"안정적인 통학 여건 조성이 교육복지 출발점\"",
       "snippet": "아시아투데이 진현탁 기자 = 선현우 안산시의회 의원이 초등학생들의 통학권을 확보하기 위해 데이터 기반 버스 노선 개편과 안산시·교육지원청 협의체 구성, 권역별 통학순환버스 도입 등이 시급하다고 집행부에...",
       "url": "https://www.asiatoday.co.kr/kn/view.php?key=20260824010007895"
+    },
+    {
+      "source": "naver",
+      "press": "newsfreezone.co.kr",
+      "date": "2026.08.24",
+      "title": "안산시-지역대학, 상생발전 해법 모색",
+      "snippet": "주요 안건으로는 안산선 지하화 개발사업과 연계한 대학의 교육·연구·문화 자원 활용 방안과 대학생의 지역사회 참여 및 교류 확대를 위한 안산유니온페스티벌 활성화 방안 등이 논의됐다. 또한 지역 산업의 인공지능...",
+      "url": "https://www.newsfreezone.co.kr/news/articleView.html?idxno=705381"
     },
     {
       "source": "naver",
@@ -475,6 +475,14 @@
     },
     {
       "source": "google",
+      "press": "경인투데이뉴스",
+      "date": "2026.08.24",
+      "title": "안산시 특성화고 청소년, 지역 문제 해결할 창업가로 도전…‘안산 루트 창업캠프’ 성료:경인투데이뉴스",
+      "snippet": "안산시 특성화고 청소년, 지역 문제 해결할 창업가로 도전…‘안산 루트 창업캠프’ 성료:경인투데이뉴스 경인투데이뉴스",
+      "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE4xR0tTTHdGNW02VE9UcFRFZE15T0xJWDhwMVhxd3hzRHpkU3pHM2NrZ1JCdGxObWJvaWlEcVdvNU9ZLUpZWEIwck4wb2J6dkdDQVFmZ3gwNDF2dnNOeUFn0gFfQVVfeXFMTjFHS1NMd0Y1bTZUT1RwVEVkTXlPTElYOHAxWHF3eHNEemRTekczY2tnUkJ0bE5tYm9paURxV281T1ktSllYQjByTjBvYnp2R0NBUWZneDA0MXZ2c055QWc?oc=5"
+    },
+    {
+      "source": "google",
       "press": "경기일보",
       "date": "2026.08.24",
       "title": "문화유산회복재단, 안산 초등학교서 ‘문화유산 실감수업’ 진행",
@@ -507,19 +515,19 @@
     },
     {
       "source": "google",
-      "press": "중부일보",
-      "date": "2026.08.24",
-      "title": "안산 고교생들, 지역문제 해결할 창업 아이디어 현실화 ‘눈길’",
-      "snippet": "안산 고교생들, 지역문제 해결할 창업 아이디어 현실화 ‘눈길’ 중부일보",
-      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE9wMmdLRTlTOEJHMFhGYnJOOWh2Vy1GQWNDMENpNjN5QVNJcmVCQzI3YlM4T3M1WmpZbjhIc0pqcmUyOHJRYjVFUDZQVndnQ25pSzdnVDZxYU5XSnc0RzF0ZGhtc1BPcVFwTGRUQTdB?oc=5"
-    },
-    {
-      "source": "google",
       "press": "안산뉴스",
       "date": "2026.08.24",
       "title": "찾아가는 특성화고 현장실습 출근준비",
       "snippet": "찾아가는 특성화고 현장실습 출근준비 안산뉴스",
       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBGaHh5Z1YxUVRKenhRQmNNSjdMdnF3cW1nVUplRG92TVhBV050UzZRNnZ3S0wyR1N3YUxHeXJjd2ptTTJKRVZBa1VreG9LdUo3Rkw1bGZWdEsyV04xWVhwNGpNQ09lbGI0R3hLNg?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "중부일보",
+      "date": "2026.08.24",
+      "title": "안산 고교생들, 지역문제 해결할 창업 아이디어 현실화 ‘눈길’",
+      "snippet": "안산 고교생들, 지역문제 해결할 창업 아이디어 현실화 ‘눈길’ 중부일보",
+      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE5SaGYxVzNNRE9fTjZtTkFsOURWV0c2d2NJNE5BbGJqYmUwNWhrTTJXN25JUnNLc3luTG1jeF9FLWMxZ2xMWXFiMUJxeHdGWkJmeUdZU202ZWhvSzRIUkNVU3hrS3NTdU5sY09VY0lwcw?oc=5"
     },
     {
       "source": "google",
@@ -531,19 +539,11 @@
     },
     {
       "source": "google",
-      "press": "엔디엔뉴스",
+      "press": "광교신문",
       "date": "2026.08.24",
-      "title": "안산시, 특성화고로 찾아가는 '현장실습 출근준비' 교육 시작",
-      "snippet": "안산시, 특성화고로 찾아가는 '현장실습 출근준비' 교육 시작 엔디엔뉴스",
-      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTFBXU3NXa1dqVGIyRUlNRmwtNF85VTBNZmxkc1dGNjdBMElUR0RWNElsLUpIazdZSmF3OVp5Nm40bFkzV3ZzZGpHSGE5VjJmVTRFYl8xZnVfeG9kRHBxdkdCX3NmZWpBdGJhc0xDNG1KdVJ2Z9IBckFVX3lxTFBXU3NXa1dqVGIyRUlNRmwtNF85VTBNZmxkc1dGNjdBMElUR0RWNElsLUpIazdZSmF3OVp5Nm40bFkzV3ZzZGpHSGE5VjJmVTRFYl8xZnVfeG9kRHBxdkdCX3NmZWpBdGJhc0xDNG1KdVJ2Zw?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "팍스경제TV",
-      "date": "2026.08.24",
-      "title": "안산시, 지역대학 상생협력협의회 개최…교육·산업 협력 강화",
-      "snippet": "안산시, 지역대학 상생협력협의회 개최…교육·산업 협력 강화 팍스경제TV",
-      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE9Gcmt2ckNsMEUtSGFheGpldExzNWljdzVORUNCWUZydkZTMDJtY2c0a3hFSkFPYzNMYW50Mk9pRFhSejR1QmtkcENmbG02NkpmTGpWekU0TmpZN215Yk10TjkxaGRVLWo4?oc=5"
+      "title": "안산시, 특성화고로 찾아가는 ‘현장실습 출근준비’ 교육 시작",
+      "snippet": "안산시, 특성화고로 찾아가는 ‘현장실습 출근준비’ 교육 시작 광교신문",
+      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE00WUFYN1kyU3pWN2lTQk1rdnNMZFRINjdFQ0JaSWdKNWVCZVJ4NjU4b19iRjVTSmh4YUZzbzJYNmN5ME5tSEM0VjBhQVVudFhrSlZQNk9VSDRFTFhIdEk5TWVZN1c2MzhEMGhGZdIBbEFVX3lxTE00WUFYN1kyU3pWN2lTQk1rdnNMZFRINjdFQ0JaSWdKNWVCZVJ4NjU4b19iRjVTSmh4YUZzbzJYNmN5ME5tSEM0VjBhQVVudFhrSlZQNk9VSDRFTFhIdEk5TWVZN1c2MzhEMGhGZQ?oc=5"
     },
     {
       "source": "naver",
@@ -575,7 +575,7 @@
       "date": "2026.08.23",
       "title": "안산교육지원청, KT와 함께 교원 AI 활용 역량강화 직무연수 성료",
       "snippet": "안산교육지원청, KT와 함께 교원 AI 활용 역량강화 직무연수 성료 투데이안산",
-      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE9ab2ZlMGhkSnQ3YXMtRnl2ckhwYVktU2h2c2NvTXc5SXM0RlFaN3BJTHlZWG1yaFlkTU5VUzFneXAxOEtZUjUxV1M5cER5YmV5MDgxOVNEX0VQdmlOeF9zaFY0Q3M1T1lXVk9mbnJWcDZ5UdIBckFVX3lxTE9ab2ZlMGhkSnQ3YXMtRnl2ckhwYVktU2h2c2NvTXc5SXM0RlFaN3BJTHlZWG1yaFlkTU5VUzFneXAxOEtZUjUxV1M5cER5YmV5MDgxOVNEX0VQdmlOeF9zaFY0Q3M1T1lXVk9mbnJWcDZ5UQ?oc=5"
+      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1IeGxET3VTOTljdnA4Y2RXV1RNSmxaajRNaWV6M2hTOTVhaUZBWjFxT2N5ODZwdi1ZbEJqQmo4ZWJ5cEhGN05BeERmeTY2TFNfYmpiY3dxdmJHWnFZUzB3TGVOSXRobjZOcmZmOHhR0gFyQVVfeXFMT1pvZmUwaGRKdDdhcy1GeXZySHBhWS1TaHZzY29NdzlJczRGUVo3cElMeVlYbXJoWWRNTlVTMWd5cDE4S1lSNTFXUzlwRHliZXkwODE5U0RfRVB2aU54X3NoVjRDczVPWVdWT2ZuclZwNnlR?oc=5"
     },
     {
       "source": "google",
@@ -1434,6 +1434,14 @@
       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9pZEVycTdDUVFGVUx0U2lzbFVqUnhUdDdhWmw1c1R2VDNLZm9UalY0VlY5b3lzWFZLcnMwY3VhdWtfcnpmbkdRYjdUNnFuZ3lPU0RRY0JNLXRiczkwQ1VOUmJJRmpzWUd1Nkl3Ug?oc=5"
     },
     {
+      "source": "google",
+      "press": "내외뉴스통신",
+      "date": "2026.07.21",
+      "title": "경기도의회 경제노동위원회, 장윤정 의원 부위원장 선임",
+      "snippet": "경기도의회 경제노동위원회, 장윤정 의원 부위원장 선임 내외뉴스통신",
+      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBlRWdnVGVta2hSVW83bGtoTG9lVU5xa1FyUHhqMGdNcm5NQU91cXh3V1FaSy1QdFlhVlhiTmZJc2hudkNvSTI3cVJpZndiYjc0anBsZWd6MFhnTmVwcVd2QmNxOUlRXy1zNWlhVNIBcEFVX3lxTE9ONHNLMnZHQzlseEt1U1RRVjhVdVFTVkp0aVExcHFaNnQtX0RoZWczTzI0dUpkekhMUUNyLTFtdG92YTRBV1FHSFR5M1huRFVfSXFaVE5jNW9DLW15ZTNESnVDWDhrV09aQUNfNGl5MW8?oc=5"
+    },
+    {
       "source": "naver",
       "press": "seoul.co.kr",
       "date": "2026.07.20",
@@ -1891,27 +1899,11 @@
     },
     {
       "source": "google",
-      "press": "성남포커스",
-      "date": "2026.01.07",
-      "title": "경기도의회 장윤정 의원, 성포중 ‘노후 냉난방기 개선방안’ 논의",
-      "snippet": "경기도의회 장윤정 의원, 성포중 ‘노후 냉난방기 개선방안’ 논의 성남포커스",
-      "url": "https://news.google.com/rss/articles/CBMiQ0FVX3lxTE90TFBWcHNIQmJiUlNEV3VBWjhFUkpGWUQ5NHBWWDdVMmh5eDlSc1pMSGdwYklmR211dDJyVko2N1pWMzA?oc=5"
-    },
-    {
-      "source": "google",
       "press": "안산뉴스",
       "date": "2026.01.04",
       "title": "장윤정 도의원 지역발전 특교금 12억원 확보",
       "snippet": "장윤정 도의원 지역발전 특교금 12억원 확보 안산뉴스",
       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9KNFhBYkNfTVo1cHVTNU1WQk5Kc2VrWWhCSnJwdEhFeGo5M01UbUJKSC1zN2h5Q0F3R1lEQkZMNHFGVVdxQ0llQW9yX3hnRndBWkcwbnBFXzloZVRlNUR4Q2otblN0Vi1TWEg1Sg?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "경기남부뉴스",
-      "date": "2025.12.26",
-      "title": "경기도의회 장윤정 의원, “정쟁 아닌 민생, 도민 삶에 닿는 정치 끝까지 책임”",
-      "snippet": "경기도의회 장윤정 의원, “정쟁 아닌 민생, 도민 삶에 닿는 정치 끝까지 책임” 경기남부뉴스",
-      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE4tVDMtQUlSLVhVOFZIa2VUQVBWSy1uUTVsRHRSdU1rcFVFQUExZzFfYVJ4aWlFTDdjWkd3eUZfV3FHUXkxLTdja1p6M0tHNFZ0dC1HVjdHbzQwT2FjMHRlb2N4bHdYV0U?oc=5"
     }
   ]
 }
