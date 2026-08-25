@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-25 19:08 UTC",
+  "updated": "2026-08-25 19:55 UTC",
   "items": [
     {
       "source": "naver",
@@ -203,19 +203,19 @@
     },
     {
       "source": "naver",
-      "press": "incheonilbo.com",
-      "date": "2026.08.25",
-      "title": "안산시 성호박물관 소장품 '해암인소' 등 12점 경기도 유형문화유산 지...",
-      "snippet": "발굴하고 연구해 시민들이 안산의 역사에 자부심을 가질 수 있게 하겠다\"고 했다. 성호박물관은 성호 이익 선생의 삶과 정신을 알리기 위해 전시와 유물 수집, 교육, 학술사업 등 다양한 사업을 운영하고 있다. /안산=",
-      "url": "https://www.incheonilbo.com/news/articleView.html?idxno=1330336"
-    },
-    {
-      "source": "naver",
       "press": "job-post.co.kr",
       "date": "2026.08.25",
       "title": "한민족합기도무술협회, 서인선 총재 원형보존 경기 광주 연수회 성료",
       "snippet": "관장(안산 충무합기도), 안지섭 관장(영무관) 등 협회 주요 지도진이 참여해 교육의 전문성과 완성도를 높였다. 협회는 이번 3차 경기 광주 연수회를 포함해 1차 대구, 2차 부산 교육을 성공적으로 마쳤으며, 앞으로도...",
       "url": "https://www.job-post.co.kr/news/articleView.html?idxno=224976"
+    },
+    {
+      "source": "naver",
+      "press": "incheonilbo.com",
+      "date": "2026.08.25",
+      "title": "안산시 성호박물관 소장품 '해암인소' 등 12점 경기도 유형문화유산 지...",
+      "snippet": "발굴하고 연구해 시민들이 안산의 역사에 자부심을 가질 수 있게 하겠다\"고 했다. 성호박물관은 성호 이익 선생의 삶과 정신을 알리기 위해 전시와 유물 수집, 교육, 학술사업 등 다양한 사업을 운영하고 있다. /안산=",
+      "url": "https://www.incheonilbo.com/news/articleView.html?idxno=1330336"
     },
     {
       "source": "naver",
@@ -483,6 +483,14 @@
     },
     {
       "source": "google",
+      "press": "시민일보",
+      "date": "2026.08.24",
+      "title": "안산시 상록구 이동 직능단체, 의료·요양 통합돌봄 역량강화 교육 및 홍보",
+      "snippet": "안산시 상록구 이동 직능단체, 의료·요양 통합돌봄 역량강화 교육 및 홍보 시민일보",
+      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTFBJaS1obDQ3UnhQSVZDNi1KQ3VvbjZudDA0RmY2a054NThUeDI5ajBiZHhFd3AwOVdhN1BJT2lNZW5oTXo3eWh2VEJvdkhsLWhWOERoYlVzbF9YRi1Fb2VIb1U3ZVVNUUgwbVdZNUozSdIBb0FVX3lxTFBJaS1obDQ3UnhQSVZDNi1KQ3VvbjZudDA0RmY2a054NThUeDI5ajBiZHhFd3AwOVdhN1BJT2lNZW5oTXo3eWh2VEJvdkhsLWhWOERoYlVzbF9YRi1Fb2VIb1U3ZVVNUUgwbVdZNUozSQ?oc=5"
+    },
+    {
+      "source": "google",
       "press": "경인투데이뉴스",
       "date": "2026.08.24",
       "title": "안산교육지원청·안산시진로체험지원센터,「2026 안산 루트 창업캠프」 성료:경인투데이뉴스",
@@ -613,6 +621,14 @@
       "source": "google",
       "press": "k1ilbo.com",
       "date": "2026.08.21",
+      "title": "경기도의회 장윤정 의원, 경제노동위원회 첫 업무보고에서 사회적 기업 지원 체계 및 공공 플랫폼 고객 지원 시스템 개선 촉구",
+      "snippet": "경기도의회 장윤정 의원, 경제노동위원회 첫 업무보고에서 사회적 기업 지원 체계 및 공공 플랫폼 고객 지원 시스템 개선 촉구 k1ilbo.com",
+      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9FQTZwU25jSnZUSC1BV01RTWtzSFVSUHF4RTBhc3B0V2F5Q1FheXN3Y25jZUpkQlQtWGpoX2tOdDBBT2tGSUNJVlJhRjZBOE1XcGx6ZkplTzNWcjA?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "k1ilbo.com",
+      "date": "2026.08.21",
       "title": "경기도의회 장윤정 의원, 경기도 사회적경제원 및 신용보증재단 현안 집중 질의",
       "snippet": "경기도의회 장윤정 의원, 경기도 사회적경제원 및 신용보증재단 현안 집중 질의 k1ilbo.com",
       "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE43QVRjSkRoaERHMF9QRnNVRTZMNGstT1RPLXFfUEpBM0ZiSEpERWVZWHRLM29FdjNrVU16RFVyU0NvMTBTMHlJQk5ZRzdaWVo5eG9RaGNiWEk1VDQ?oc=5"
@@ -656,14 +672,6 @@
       "title": "2026 안산맥주페스티벌, 운영시간·입장료·준비물 '확인'",
       "snippet": "소소플래닛 다농 맥주페스티벌 / 안산시 안산 맥주페스티벌이 오늘(21일)부터 22일까지 이틀간 '소소플래닛 다농'(상록구 예술광장로 1)에서 열린다. 소소플래닛은 청년 창업 지원과 지역 상권 활성화를 위해 조성된...",
       "url": "https://www.gukjenews.com/news/articleView.html?idxno=3670259"
-    },
-    {
-      "source": "google",
-      "press": "k1ilbo.com",
-      "date": "2026.08.21",
-      "title": "경기도의회 장윤정 의원, 경제노동위원회 첫 업무보고에서 사회적 기업 지원 체계 및 공공 플랫폼 고객 지원 시스템 개선 촉구",
-      "snippet": "경기도의회 장윤정 의원, 경제노동위원회 첫 업무보고에서 사회적 기업 지원 체계 및 공공 플랫폼 고객 지원 시스템 개선 촉구 k1ilbo.com",
-      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9FQTZwU25jSnZUSC1BV01RTWtzSFVSUHF4RTBhc3B0V2F5Q1FheXN3Y25jZUpkQlQtWGpoX2tOdDBBT2tGSUNJVlJhRjZBOE1XcGx6ZkplTzNWcjA?oc=5"
     },
     {
       "source": "naver",
@@ -1452,14 +1460,6 @@
     {
       "source": "google",
       "press": "반월신문",
-      "date": "2026.07.14",
-      "title": "안산 상록구 도금공장 화재 대응 1단계 발령 후 54분 만에 초진…인명피해 없어",
-      "snippet": "안산 상록구 도금공장 화재 대응 1단계 발령 후 54분 만에 초진…인명피해 없어 반월신문",
-      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBXVi1zZVRQbjhjaDY5UXBTTjNaUXlnRmZtbmx1ZEJqeDRDTENDNW1uTlN1czBabkhUOGV2UXc2NE44cmtkS2Z5YjF6YW1NZkdudUdhQnN3X19lc2pWaG1iajBEcFp2Qzg?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "반월신문",
       "date": "2026.07.08",
       "title": "더불어민주당 장윤정 경기도의원, \"초심 잃지 않고 주민 곁에서 실천으로 보답\"",
       "snippet": "더불어민주당 장윤정 경기도의원, \"초심 잃지 않고 주민 곁에서 실천으로 보답\" 반월신문",
@@ -1512,14 +1512,6 @@
       "title": "[NC포토] 알고보니 혼수상태, 골프장 나들이...\"인카금융 '더헤븐 마스터...",
       "snippet": "'히트 제조기' 알고보니 혼수상태(김지환·김경범)가 안산 대부도 더헤븐리조트 내 더헤븐CC에서 열린... 송대관, 장윤정, 신유, 한혜진, 금잔디, 김용임, 홍진영, 김호중, 안성훈, 박서진, 홍지윤, 정서주, 양지은 등...",
       "url": "https://www.nc.press/news/articleView.html?idxno=618592"
-    },
-    {
-      "source": "google",
-      "press": "반월신문",
-      "date": "2026.06.17",
-      "title": "민주당 장윤정 경기도의원 당선인사 “보내주신 성원 잊지 않고 성과로 보답하겠다”",
-      "snippet": "민주당 장윤정 경기도의원 당선인사 “보내주신 성원 잊지 않고 성과로 보답하겠다” 반월신문",
-      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE8wa3F4V2J6eEd5OFZaTFdEa0ZPMlRQRFg5U2J0aFpVcy1CZlUzOEc3NERKTlduMV85T2xBMURmWlhNMC16ZXZOZ21TV2NEcGlWRXBvOWxCcFh2MGkxNHR0ckt0N2hWd28?oc=5"
     },
     {
       "source": "naver",
