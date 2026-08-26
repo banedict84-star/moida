@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-26 11:56 UTC",
+  "updated": "2026-08-26 13:34 UTC",
   "items": [
     {
       "source": "naver",
@@ -563,11 +563,11 @@
     },
     {
       "source": "google",
-      "press": "뉴스파노라마",
+      "press": "안산뉴스",
       "date": "2026.08.23",
-      "title": "안산교육지원청,'안산 루트UP' 로봇 심화교육 성료",
-      "snippet": "안산교육지원청,'안산 루트UP' 로봇 심화교육 성료 뉴스파노라마",
-      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE5jMFhBTHluX0dLTW45THNuaHR4X1B0U0FjeEkzaUpqb3Bwcmk1ckxYVy1SWUtZM2tvbGdfSzRUdnNacFd5SzV4bWdkZlJUV0lydXlyTmZLV29yNXh1RmE1bVphOTE1amxGTHUzazJxVQ?oc=5"
+      "title": "안산교육청 ‘안산 루트UP’ 로봇 심화교육",
+      "snippet": "안산교육청 ‘안산 루트UP’ 로봇 심화교육 안산뉴스",
+      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE1UQWMxZWhIUHRzdFdKSmlIUVFzaXlvNTdYR0p0NTNCZVFRSU1TUWtyTEMxMmxsdkN2OUpQYmptQkxhSlk3NEFoM0RkTDZWaVFuYk9tbDRSMkwyUGRZNTRkbUtvWW5EZ0h3cFB6bQ?oc=5"
     },
     {
       "source": "google",
@@ -576,6 +576,14 @@
       "title": "안산교육지원청, KT와 함께 교원 AI 활용 역량강화 직무연수 성료",
       "snippet": "안산교육지원청, KT와 함께 교원 AI 활용 역량강화 직무연수 성료 투데이안산",
       "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE9ab2ZlMGhkSnQ3YXMtRnl2ckhwYVktU2h2c2NvTXc5SXM0RlFaN3BJTHlZWG1yaFlkTU5VUzFneXAxOEtZUjUxV1M5cER5YmV5MDgxOVNEX0VQdmlOeF9zaFY0Q3M1T1lXVk9mbnJWcDZ5UdIBckFVX3lxTE9ab2ZlMGhkSnQ3YXMtRnl2ckhwYVktU2h2c2NvTXc5SXM0RlFaN3BJTHlZWG1yaFlkTU5VUzFneXAxOEtZUjUxV1M5cER5YmV5MDgxOVNEX0VQdmlOeF9zaFY0Q3M1T1lXVk9mbnJWcDZ5UQ?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "엔디엔뉴스",
+      "date": "2026.08.23",
+      "title": "안산교육지원청,'안산 루트UP' 로봇 심화교육 성료",
+      "snippet": "안산교육지원청,'안산 루트UP' 로봇 심화교육 성료 엔디엔뉴스",
+      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE9uOThTaTBHMzY0WVNiYjZyMmxLUFdYRE4tN1MwQS1SenE4NHJXWjhSbkROSEpNUTZOTFBYbi1YY2JnTmlELXdmQ1hhOWF1TFBXQ1M0cFFRUTc1eHQtcU85SUNDOVNVTC1sbGpfT0xn0gFyQVVfeXFMTnlESmNReExDSnlRelpsNjFjZ19oX3BueS1ISkVSX2xJUGplQk5JZ3Z6R05FVUhrZGlqYzFESEJsV29UR3ROcnBIa2szLVVJeXVLaEZYUi0ybVVWQlA1dEhPdmtlMHhqRHZOSGFMaFVzc0dB?oc=5"
     },
     {
       "source": "google",
@@ -720,14 +728,6 @@
       "title": "1237회 로또 명당 주소 총정리…1등 20곳·2등 68곳·편의점 9곳",
       "snippet": "경기 안산시 상록구 수인로 1836 복돼지 복권방: 경기 수원시 팔달구 동말로25번길 65 1층(화서동) 두근두근 로또명당: 경기 수원시 권선구 금곡로197번길 65 1층(금곡동) 스카이25: 경기 남양주시 미금로 26-2...",
       "url": "https://www.econovill.com/news/articleView.html?idxno=748414"
-    },
-    {
-      "source": "google",
-      "press": "안산타임스",
-      "date": "2026.08.20",
-      "title": "안산교육지원청, 안산교복은행 교복나눔 행사 개최",
-      "snippet": "안산교육지원청, 안산교복은행 교복나눔 행사 개최 안산타임스",
-      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE9adHZyck4yRWtwaU5WMnp4Nnhsd3YyV2ZOVVRGM2w5RldmQ0lFUVVmdnQ2T2hBNVgxWk9Sekk2dFNmLVVNYzZQYi1nNWVNZGlhY1RTWDhCd1d1elJaelNPc1hQLUNjTVhxbmhCWHRURdIBc0FVX3lxTE41dEFncklEcUxLMk9nUVFULWlzOXNWRVZCX2tDWllPNXhDN2huN3VqT1JfbGlyZEpmSFdrZklxMVpCWk1NRDNYTTd5a1hxVGFEMGdvWjJJSlBkbzJHdnFSeDZIR0RzM3RmTUZmX1l6bHZEVlk?oc=5"
     },
     {
       "source": "naver",
@@ -1251,11 +1251,11 @@
     },
     {
       "source": "google",
-      "press": "누리일보",
+      "press": "엔디엔뉴스",
       "date": "2026.07.27",
       "title": "경기도의회 장윤정 의원, 도교육청 예결위원 선임...재정의 건전성과 효율성, 학생과 현장 중심의 예산 편성에 총력 다할 것",
-      "snippet": "경기도의회 장윤정 의원, 도교육청 예결위원 선임...재정의 건전성과 효율성, 학생과 현장 중심의 예산 편성에 총력 다할 것 누리일보",
-      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE9rWXFJS1BRV2NkdmRHOXdPYU1yNUQzdkNST3FvNFB6LWI2T2cta2Jsbk0zYzlHUnB6Y3UzRnRQQ2VsT01ZWXUxVVR2ZGFOYTAyQnJPaXRmNi1VaUg1?oc=5"
+      "snippet": "경기도의회 장윤정 의원, 도교육청 예결위원 선임...재정의 건전성과 효율성, 학생과 현장 중심의 예산 편성에 총력 다할 것 엔디엔뉴스",
+      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5lSjcyV1UtRnJvbGpBWHJOX09aNVN1N1BYVTRtNWM2TFJQTW5IUkdlTlc3N1J0cjNyWFV6YkRkMUpSQ2NSdTdleHpHNVNTa0JFendTQ3JTeVVqWDJ1TjdhYzJEekFFQ0szYkU3XzNn0gFyQVVfeXFMTlVmM1FxSUpQWkZYenZoUmRfSExnUWJjR3lqOGdoZFRnU3o5cGM1MDFDdUdOcVY0UWFBdUdMVWZCNUtMYUhEZ0lCcTRfU00yVXlaTk8xcGZkc1pSYUZWZlhNQjE5TUdxYktxeGJ3d2dxeThR?oc=5"
     },
     {
       "source": "naver",
@@ -1514,6 +1514,14 @@
       "url": "https://www.jeonmae.co.kr/news/articleView.html?idxno=1264967"
     },
     {
+      "source": "google",
+      "press": "경기인저널",
+      "date": "2026.06.14",
+      "title": "장윤정 도의원, 경기도교육청 예산유보 운영 점검",
+      "snippet": "장윤정 도의원, 경기도교육청 예산유보 운영 점검 경기인저널",
+      "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE94OGl1THNCaUQ4MFM0WFpyZ2JKV1FUdXlVUXdQYkptNkd1Vi14MDVzb3ZXUlI4bEhYSHkyZXRpNGsxVEtZdUg0cy1MZ3haYjI5YkNiQjRLLTNPOGZTZGpKOTk4UFg?oc=5"
+    },
+    {
       "source": "naver",
       "press": "thereport.co.kr",
       "date": "2026.06.12",
@@ -1539,11 +1547,11 @@
     },
     {
       "source": "google",
-      "press": "투데이경제",
+      "press": "경기탑뉴스",
       "date": "2026.06.12",
       "title": "경기도의회 장윤정 의원, 경기도교육청 예산유보 운영 점검…“절감보다 적기 집행이 중요”",
-      "snippet": "경기도의회 장윤정 의원, 경기도교육청 예산유보 운영 점검…“절감보다 적기 집행이 중요” 투데이경제",
-      "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE9zb2RFaWl5akFnellzdnVNQzlBajFsS0dhQm1RdlZaSXhpWVZCYVpvSU9SVEpwREJPanBFSU9RUUxHQmJwSi1sbGxvWVRvNXdmUFkxU1ltaUNhaHBPNkhyNWg3R2ZiRG5rd09n?oc=5"
+      "snippet": "경기도의회 장윤정 의원, 경기도교육청 예산유보 운영 점검…“절감보다 적기 집행이 중요” 경기탑뉴스",
+      "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE1EMndORE9QZHp5bTFKX2tBUm1mcFNWOVpqUGlBREFBQXFfbE5ya2w4MzJ4UXJRSkxycjZDUV9YQjVqRHZxa2ZvT2xSM0NhSXlNSXJ3Wkx2NFVoS2dFb2RaVg?oc=5"
     },
     {
       "source": "naver",
