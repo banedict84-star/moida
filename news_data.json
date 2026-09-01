@@ -1,6 +1,30 @@
 {
-  "updated": "2026-09-01 18:44 UTC",
+  "updated": "2026-09-01 21:55 UTC",
   "items": [
+    {
+      "source": "naver",
+      "press": "fnnews.com",
+      "date": "2026.09.02",
+      "title": "주진우 \"용혜인, '안산 주택' 중국인에 되팔아 11개월새 2000만원 차익\"",
+      "snippet": "주 의원이 공개한 등기사항전부증명서에 따르면 용 후보자는 지난 2021년 4월 20일 경기 안산 상록구 사동 소재 5층 공동주택 건물을 2억4500만원에 샀다. 이후 그는 2022년 3월 25일 2억6500만원에 되팔았는데, 이 주택의...",
+      "url": "https://www.fnnews.com/news/202609020618299378"
+    },
+    {
+      "source": "naver",
+      "press": "dailian.co.kr",
+      "date": "2026.09.02",
+      "title": "용혜인, 안산 주택 '단타'…中 국적자에 팔아 2000만원 차익 등 [9/2(수) ...",
+      "snippet": "주 의원이 공개한 등기사항전부증명서에 따르면 용 후보자는 2021년 4월 20일 경기 안산시 상록구 사동의 5층 공동주택을 2억4500만원에 매입했다. 이후 약 11개월 뒤인 2022년 3월 25일 해당 주택을 2억6500만원에 매각했다....",
+      "url": "https://www.dailian.co.kr/news/view/1685239/?sc=Naver"
+    },
+    {
+      "source": "naver",
+      "press": "biz.heraldcorp.com",
+      "date": "2026.09.02",
+      "title": "‘죽기 전에 얼굴 딱 한 번만’ 사라진 아내·딸·아들…그들은 오늘도...",
+      "snippet": "이후 자신과 별다른 연고가 없는 경기 안산상록경찰서에서 사건을 담당했고 어느 순간 사건이 종결 처리된... 대한 교육과 전문 인력이 함께 뒷받침돼야 한다”고 설명했다. 이어 “소규모 경찰서는 별도 전담인력을 두기...",
+      "url": "https://biz.heraldcorp.com/article/10858955?ref=naver"
+    },
     {
       "source": "naver",
       "press": "ekn.kr",
@@ -690,19 +714,11 @@
       "url": "https://www.cnbnews.com/news/articleView.html?idxno=1013571"
     },
     {
-      "source": "naver",
-      "press": "mk.co.kr",
-      "date": "2026.08.31",
-      "title": "외국인 설계사 뛴다…'月소득 1억' 보험왕까지 탄생",
-      "snippet": "이들은 수원·안산 등 중국 동포들이 밀집해 거주하는 생활 공간에 녹아들어 중국인·동포 고객을 상대로... 보험사들은 이를 보완하기 위해 시험 내용을 먼저 현지어로 이해하도록 돕는 별도 교육과정을 만들고...",
-      "url": "https://www.mk.co.kr/article/12140644"
-    },
-    {
       "source": "google",
-      "press": "newsshin.co.kr",
+      "press": "뉴스신",
       "date": "2026.08.31",
       "title": "안산교육지원청, 디지털교육 선도지구 AI·독서·RAS 융합 고등학생 공존토론 운영",
-      "snippet": "안산교육지원청, 디지털교육 선도지구 AI·독서·RAS 융합 고등학생 공존토론 운영 newsshin.co.kr",
+      "snippet": "안산교육지원청, 디지털교육 선도지구 AI·독서·RAS 융합 고등학생 공존토론 운영 뉴스신",
       "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE04ZHh1elZWbF9ROXhYMjhiNzk2a3FYMVpQbEFaX2RsbjNsRU5OUFNyMkFOUm9DLXpTUG1yX3lkVll2S3F2YVhGU1JYNFRSQzZLdkI2WS11YzljbFV0Vy00ZG90MC15MzFRamxLcXZ30gFyQVVfeXFMTUN1d201OEJtQURTRGdMckdYazhEZmNoNlQxYTMtVk93NXlQQ2hqWTRDT18yUFVmUjA0WHVLUHhCd0JqYzdncENVdlFXZS1yeGFOTEh1TkY2RHpFMmNrM2RrVWJBb2pEVDJHZmZySVhQRnJ3?oc=5"
     },
     {
@@ -747,19 +763,19 @@
     },
     {
       "source": "google",
-      "press": "투데이안산",
-      "date": "2026.08.30",
-      "title": "안산교육지원청, 경기글로벌 국제교류협력 프로그램 운영",
-      "snippet": "안산교육지원청, 경기글로벌 국제교류협력 프로그램 운영 투데이안산",
-      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBVTy04Y2xBaDBtVFhfYzc3YVVoR3htWFI1VHRtYWxtUEhSVXNTbmVRU0FCRkd6VURqOVVkcFNWLXQ0Y2o0RHYweW0zS0Y4YjJZRXNEZE9oSkptNF9ScXVQZkJudHFlalJRRXhnZGR30gFyQVVfeXFMT1JNSFNwRWszSE54Si1FbkZ6bjB2Yk5zSmtlV3ZhZjVxREtGazdrYzV6T2ZuT2JKNHp4NGlCd1U4SkMxVDhkSGx2LW1CajN4bmNSVlRYU05xRFNhSFAzOHE2bEd2WnFsOFl3UWtfRFk3WGhn?oc=5"
-    },
-    {
-      "source": "google",
       "press": "안산뉴스",
       "date": "2026.08.30",
       "title": "안산교육청 고교생 독서 공존 토론 캠프 열어",
       "snippet": "안산교육청 고교생 독서 공존 토론 캠프 열어 안산뉴스",
       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE1rWWtpTXJGQjFELU5CdHNNbFNCVjZnZzgwZ18tcTBBRkd1TnFfUDhtWlpOTWxVOHZtRDg4Nzc5d21rblZESnl4aEQtcTlMZ2kyZW9wQjduZGcwOWNaMTIzaWtGbjRmRjJWTU15Yw?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "투데이안산",
+      "date": "2026.08.30",
+      "title": "안산교육지원청, 경기글로벌 국제교류협력 프로그램 운영",
+      "snippet": "안산교육지원청, 경기글로벌 국제교류협력 프로그램 운영 투데이안산",
+      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBVTy04Y2xBaDBtVFhfYzc3YVVoR3htWFI1VHRtYWxtUEhSVXNTbmVRU0FCRkd6VURqOVVkcFNWLXQ0Y2o0RHYweW0zS0Y4YjJZRXNEZE9oSkptNF9ScXVQZkJudHFlalJRRXhnZGR30gFyQVVfeXFMT1JNSFNwRWszSE54Si1FbkZ6bjB2Yk5zSmtlV3ZhZjVxREtGazdrYzV6T2ZuT2JKNHp4NGlCd1U4SkMxVDhkSGx2LW1CajN4bmNSVlRYU05xRFNhSFAzOHE2bEd2WnFsOFl3UWtfRFk3WGhn?oc=5"
     },
     {
       "source": "google",
@@ -987,10 +1003,10 @@
     },
     {
       "source": "google",
-      "press": "참좋은뉴스",
+      "press": "xn--vg1b002adod2pbo4i.com",
       "date": "2026.08.27",
       "title": "안산상록구미용지부, 본격적인 ‘2026년 헤어 뷰티아카데미’ 본격 돌입",
-      "snippet": "안산상록구미용지부, 본격적인 ‘2026년 헤어 뷰티아카데미’ 본격 돌입 참좋은뉴스",
+      "snippet": "안산상록구미용지부, 본격적인 ‘2026년 헤어 뷰티아카데미’ 본격 돌입 xn--vg1b002adod2pbo4i.com",
       "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9kcHphcXRjekFEVWpEeF8xcWpXNEN0WThKMXBwY3gzY3VzbFVoTVNPRTJBMEZySFljWWxiWjJGRWJCRnhHdnkwME5sUkhUdHNrX2Y4WmFERTdXVGpGaU5rSnp3TFM3UUVoTG1QNjM3UmJsbGs?oc=5"
     },
     {
@@ -1024,22 +1040,6 @@
       "title": "경기도장애인생활체육대회 가평에서 28일 개막…4276명 참가",
       "snippet": "시장·군수와 국회의원, 도의원, 선수단 등 3000여 명이 참석할 예정이다. 식전행사는 오전 9시 30분 시작된다.... 노라조와 장윤정의 축하공연과 경품 추첨이 마련된다. 행사장에서는 체험·홍보 공간도 운영된다. 경기도장...",
       "url": "http://www.the-biz.co.kr/news/articleView.html?idxno=726809"
-    },
-    {
-      "source": "naver",
-      "press": "kyeonggi.com",
-      "date": "2026.08.26",
-      "title": "[기자노트] 25년째 ‘서서울요금소’…안산 이름은 언제 찾나",
-      "snippet": "국내에서 세 번째로 긴 노선인 서해안고속도로 구간 가운데 안산시 상록구 장하동 188-4 일원에 설치된 ‘서서울 TG’가 수십 년째 사용되고 있다. 서서울 TG는 안산에 위치하고 있는데도 명칭은 서서울인 것이다. 지금도...",
-      "url": "https://www.kyeonggi.com/article/20260826580138"
-    },
-    {
-      "source": "naver",
-      "press": "shinailbo.co.kr",
-      "date": "2026.08.26",
-      "title": "\"노동력은 필요하고 아이들의 미래는 외면\"…이주민 교육격차 해법 찾아...",
-      "snippet": "박범수 진보당 안산시상록구위원장은 이날 현장에서 나온 요구를 중앙당과 공유하고 이주배경 청소년의 교육권 보장과 장기정주 이주민의 사회보장 사각지대 해소를 위한 정책·입법 과제를 마련하겠다고 밝혔다....",
-      "url": "https://www.shinailbo.co.kr/news/articleView.html?idxno=5054890"
     },
     {
       "source": "google",
@@ -1419,14 +1419,6 @@
     },
     {
       "source": "google",
-      "press": "일간경기",
-      "date": "2026.07.27",
-      "title": "장윤정 의원, “도민 세금이 1원도 헛되이 쓰이지 않게 하겠다”",
-      "snippet": "장윤정 의원, “도민 세금이 1원도 헛되이 쓰이지 않게 하겠다” 일간경기",
-      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE56YnRsUjY3N0FmRHF0a1paTHI1ZjY0SlI2MHNIc1VTT2p6RmtPUzlRMUFpTzc0Sm84bVdfYWJaVFM1ajNqRjAyTjFLQmdrUnY3M2Utc01Nel82SUt3TGZJbTM0OS1BdldF?oc=5"
-    },
-    {
-      "source": "google",
       "press": "새한일보",
       "date": "2026.07.27",
       "title": "경기도의회 장윤정 의원, 도교육청 예결위원 선임...재정의 건전성과 효율성, 학생과 현장 중심의 예산 편성에 총력 다할 것",
@@ -1604,14 +1596,6 @@
     {
       "source": "google",
       "press": "반월신문",
-      "date": "2026.07.14",
-      "title": "안산 상록구 도금공장 화재 대응 1단계 발령 후 54분 만에 초진…인명피해 없어",
-      "snippet": "안산 상록구 도금공장 화재 대응 1단계 발령 후 54분 만에 초진…인명피해 없어 반월신문",
-      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBXVi1zZVRQbjhjaDY5UXBTTjNaUXlnRmZtbmx1ZEJqeDRDTENDNW1uTlN1czBabkhUOGV2UXc2NE44cmtkS2Z5YjF6YW1NZkdudUdhQnN3X19lc2pWaG1iajBEcFp2Qzg?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "반월신문",
       "date": "2026.07.08",
       "title": "더불어민주당 장윤정 경기도의원, \"초심 잃지 않고 주민 곁에서 실천으로 보답\"",
       "snippet": "더불어민주당 장윤정 경기도의원, \"초심 잃지 않고 주민 곁에서 실천으로 보답\" 반월신문",
@@ -1619,10 +1603,10 @@
     },
     {
       "source": "google",
-      "press": "참좋은뉴스",
+      "press": "xn--vg1b002adod2pbo4i.com",
       "date": "2026.07.01",
       "title": "폭우 예고 속 지하차도 침수 기준 ‘인천 5cm vs 안산 상록구 15cm’",
-      "snippet": "폭우 예고 속 지하차도 침수 기준 ‘인천 5cm vs 안산 상록구 15cm’ 참좋은뉴스",
+      "snippet": "폭우 예고 속 지하차도 침수 기준 ‘인천 5cm vs 안산 상록구 15cm’ xn--vg1b002adod2pbo4i.com",
       "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE56NDJ2QjZTYUFfOUFfX0tpalBVSVh4Q3drRmZQZmdVVWhfQmNwVDFmUnpsRkJrS0NpdHkyUDZhTmdkRlVHNWRHTEhiem16VkFqbHFpVm5PSk5KWFltLS1qbkkyZ0VoSGl3c25Eb24zWTJRMk0?oc=5"
     },
     {
@@ -1843,10 +1827,18 @@
     },
     {
       "source": "google",
-      "press": "asn24.com",
+      "press": "경기일보",
+      "date": "2026.05.13",
+      "title": "안산 상록구 다세대 주택 화재…1명 사망·3명 부상",
+      "snippet": "안산 상록구 다세대 주택 화재…1명 사망·3명 부상 경기일보",
+      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE53M3hjTDY4NG44T0Q5TkNFaXJrSGZxNzdhM2h4Vjg5SzgyVEs0enRjRGNTa0NpaUxsSTBSRjdjaW42RmVabHdfVGlaakkwOTRFWnRZU0ZpTWFKZ0k?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "경인신문",
       "date": "2026.05.11",
       "title": "장윤정 경기도의원, 안산 제3선거구 공천 확정... \"무도한 권력에 대한 당원들의 엄중한 심판\"",
-      "snippet": "장윤정 경기도의원, 안산 제3선거구 공천 확정... \"무도한 권력에 대한 당원들의 엄중한 심판\" asn24.com",
+      "snippet": "장윤정 경기도의원, 안산 제3선거구 공천 확정... \"무도한 권력에 대한 당원들의 엄중한 심판\" 경인신문",
       "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE1lUTd5aEhXbmtjLTVva3RfUC1DOGdJSkRnVWt4RWlJRThQRm1PR3N1SFpJYXZhclpic0Jsc2xBWHF5UHNQS2pxMl9RU2pzTVpfVWx3aDdZSkhKaFcyNEVUUlRJU1I1WjA?oc=5"
     },
     {
@@ -1919,7 +1911,7 @@
       "date": "2026.04.22",
       "title": "경기도의회 장윤정 의원, 교육기획위원회 부위원장 선임...책임 있는 마무리 이끌 것",
       "snippet": "경기도의회 장윤정 의원, 교육기획위원회 부위원장 선임...책임 있는 마무리 이끌 것 뉴스 따옴",
-      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBJdndwb3dnNWdSRnE0cHFtVHdReDgzMERmTHpXRVJJczRMVVhneDJoMU9GSHBrUHhZUjRrTFZiSFAtSlBBM1VmMWdMRnRweTktS0d4b01PRE5PdDUzWlk1cUxPanhnU0ZlLXpZMWFR0gFyQVVfeXFMTUo0QnBSV2p2S0tockVLT043TlFERWFESXhvU1JJRm1pUHRhcFFpSGdVSWlCRHlZU3RWV1g5R25tMXU0ZTlrVTZfUEpRaEpRWXlTT2x3RlF0QzNrYi04aHE3QTFOVjYtX3FEQjdqanhQdGJ3?oc=5"
+      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTFBiWEJxX3lVYWtISGU3ZnVmam9vRDNLekc3RExBLWxRR3ZaNGNLR1pmREVwRE40WTE4ejZ3VGJsbE92ZGJOMHVrSUVELWtreEV5Wkl3cWNJYTNyaXhJT3F5a3V0Zm51blFpejJTYXIyZ9IBckFVX3lxTE1KNEJwUldqdktLaHJFS09ON05RREVhREl4b1NSSUZtaVB0YXBRaUhnVUlpQkR5WVN0VldYOUdubTF1NGU5a1U2X1BKUWhKUVl5U09sd0ZRdEMza2ItOGhxN0ExTlY2LV9xREI3amp4UHRidw?oc=5"
     },
     {
       "source": "google",
@@ -1952,6 +1944,14 @@
       "title": "장윤정 경기도의원, 학교 급식실 환기설비 개선 TF 가동",
       "snippet": "장윤정 경기도의원, 학교 급식실 환기설비 개선 TF 가동 경기인저널",
       "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFBYR1pMeTQ2OWJXT1JGb045UG9Jb2xWaUtFV1diVFVzZHFMYXlUZTJ3a3NXV0RMb1dvZ0ZKMldHSmo0MzJtT3R6LVZOYUg0WnRwa3FFQnE5d0pRbHhhVFlneW9KY2Y?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "현대일보",
+      "date": "2026.03.09",
+      "title": "장윤정 의원(안산3) 시곡중 오수관 파손현장 신속복구 조치 요구",
+      "snippet": "장윤정 의원(안산3) 시곡중 오수관 파손현장 신속복구 조치 요구 현대일보",
+      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5rVXRZR1FSc0pJbU1KVThFNDRBaFpYZkJreXlFbUF1NlMwM1pKQjBySUo5Q0xZdkpaTTZKOUVIMXI4YmdnUXdSbFl4VmhDN0hNU0c3QnlVckRRN0JnRkhPdUpHQW0xY1hSTzhJaU93?oc=5"
     },
     {
       "source": "google",
