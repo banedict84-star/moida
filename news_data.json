@@ -1,6 +1,14 @@
 {
-  "updated": "2026-09-06 19:25 UTC",
+  "updated": "2026-09-06 21:34 UTC",
   "items": [
+    {
+      "source": "naver",
+      "press": "newsis.com",
+      "date": "2026.09.07",
+      "title": "[오늘의 주요일정]경기남부(9월7일 월요일)",
+      "snippet": "의장접견실 ◇경기도교육청 ▲오후 2시, 2026 AP Korean 도입을 위한 전략 로드맵 세미나, 국회 ◇용인시 ▲오전 9시, 간부공무원 회의, 영상회의실 ◇안산시 ▲오전 9시30분, 제7기 5급 승진리더과정 수료보고, 시장실...",
+      "url": "https://www.newsis.com/view/NISX20260906_0003778044"
+    },
     {
       "source": "naver",
       "press": "thereport.co.kr",
@@ -147,11 +155,11 @@
     },
     {
       "source": "google",
-      "press": "안산뉴스",
+      "press": "정도일보",
       "date": "2026.09.06",
-      "title": "안산교육청 ‘RAS FESTA’ 성료",
-      "snippet": "안산교육청 ‘RAS FESTA’ 성료 안산뉴스",
-      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9kM25Jb1Jzbm42cFkyQ04xNUhoSUI3SHJrS0w5V3VjVzJEYTRkY2E2eGg1Z1VmUC0tcVBnXzRRdXMzZXgtRGJFckllZTByaURHNHlKOUxkemxSMFFhQnluUGRUNWdjbG5FMFlaYg?oc=5"
+      "title": "안산교육지원청, ‘가족과 함께하는 안산 RAS FESTA 슬로우 러닝 축제’ 성황리 개최",
+      "snippet": "안산교육지원청, ‘가족과 함께하는 안산 RAS FESTA 슬로우 러닝 축제’ 성황리 개최 정도일보",
+      "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE0tLWpXS2RZYUlZaUtzSDZfZ3VnUEFrVHVsYzlOYWFlbGVCeFJCYi1ra0J5QlVXWW9CSU8xcmFFWkFsTUlkaXplMHRiTDBHVGFOcW1JVUNKOEdyYXg5QWVQcmx0X2o?oc=5"
     },
     {
       "source": "google",
@@ -168,14 +176,6 @@
       "title": "안산시종합사회복지관 연합교육 열려",
       "snippet": "안산시종합사회복지관 연합교육 열려 안산뉴스",
       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE93QVgtRVNUaW1OR3lXb0xrN29GcXdZSXdaOUdEbUdtOHlIRWU0LVJYdFBSVHc1MXlpbFJBNHRBNW1yaDJWYzFSR0VnVkM1Qm9NZ0N2Nm9iVXEtMG5LdE84UUxUbDNJeERSbHNYaw?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "안산뉴스",
-      "date": "2026.09.06",
-      "title": "평생비전센터 하반기 단기강좌 수강생 모집",
-      "snippet": "평생비전센터 하반기 단기강좌 수강생 모집 안산뉴스",
-      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE5USkNpemVhRnBscnJSaXhqaFl2MFp6MjUxMzh0ZzlVZkU2bHNHVm5mUHR2RU9sR0VreUl2bmNxZWVLTDd2SkIxN1lqdnBMb2RrcWxEdXhlUGxLYnhUaHpsQjNIUEpCdVdkNy0yeA?oc=5"
     },
     {
       "source": "naver",
@@ -259,19 +259,19 @@
     },
     {
       "source": "naver",
-      "press": "newsis.com",
-      "date": "2026.09.05",
-      "title": "교육감·시장·교육장까지 슬로우 러닝…안산서 RAS 실천",
-      "snippet": "경기도교육청과 안산교육지원청이 오전 7시30분부터 2시간 가량 연 '라스 페스타(RAS FESTA) 가족 슬로우 러닝 축제'에는 지역 학생과 가족을 비롯해 안산시, 안산시체육회 관계자 등 800여명이 참석했다. 행사는 순위를...",
-      "url": "https://www.newsis.com/view/NISX20260905_0003777540"
-    },
-    {
-      "source": "naver",
       "press": "idaegu.co.kr",
       "date": "2026.09.05",
       "title": "[2026 대한민국 다문화 어울림 엑스포] 정착 넘어 삶 전체로…경기도, 다...",
       "snippet": "종사자 교육·컨설팅과 네트워크 활성화, 가족 인식개선 등을 지원하고 있다. 지역마다 외국인 주민의 정착 양상과 가족이 마주한 과제도 다른 만큼 안산과 수원, 구리 가족센터를 통해 지역 특성에 따라 달라지는...",
       "url": "https://www.idaegu.co.kr/news/articleView.html?idxno=558703"
+    },
+    {
+      "source": "naver",
+      "press": "newsis.com",
+      "date": "2026.09.05",
+      "title": "교육감·시장·교육장까지 슬로우 러닝…안산서 RAS 실천",
+      "snippet": "경기도교육청과 안산교육지원청이 오전 7시30분부터 2시간 가량 연 '라스 페스타(RAS FESTA) 가족 슬로우 러닝 축제'에는 지역 학생과 가족을 비롯해 안산시, 안산시체육회 관계자 등 800여명이 참석했다. 행사는 순위를...",
+      "url": "https://www.newsis.com/view/NISX20260905_0003777540"
     },
     {
       "source": "naver",
@@ -328,6 +328,14 @@
       "title": "서·논술형 평가 확대한다지만…초등 수학 평가자료 92.5% ‘풀이·정답...",
       "snippet": "김명하 안산대학교 유아교육과 교수는 \"상급학교의 평가 변화가 사고력·문해력·표현력이라는 이름으로 유아 대상 독서·논술, 한글·어휘, 독해·글쓰기 프로그램을 확산시키는 계기가 돼서는 안 된다\"고 지적했다. 김...",
       "url": "https://www.etoday.co.kr/news/view/2621971"
+    },
+    {
+      "source": "google",
+      "press": "KPI뉴스",
+      "date": "2026.09.05",
+      "title": "안산교육지원청, ′가족과 함께하는 RAS FESTA 슬로우 러닝 축제′ 개최",
+      "snippet": "안산교육지원청, ′가족과 함께하는 RAS FESTA 슬로우 러닝 축제′ 개최 KPI뉴스",
+      "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTFBFNXI3NXZINVFPSkpMYnRYSDZxazUwR1ljTG5BYUxRQjZhNmUtcTZici1oNmw4c2p1RG1aU0tPTlFHbjA4YWdwcl9ZQ180bjNFLW5vT3AzRdIBU0FVX3lxTE1xa2MxdFI2RkRvbGRNdFJUYTFKMUxlWTg0SkVxMVZ1cnV0NTlOaEM3by1KdTRXMG05MFRTS1JoX2lwdHZZbF84MkQ5SkRCVHN0Wlpn?oc=5"
     },
     {
       "source": "google",
@@ -546,14 +554,6 @@
       "url": "https://economist.co.kr/article/view/ecn202609040008"
     },
     {
-      "source": "naver",
-      "press": "pressian.com",
-      "date": "2026.09.04",
-      "title": "안산시평생학습관, 보이스피싱 예방 특강 운영",
-      "snippet": "- 안산상록경찰서 형사과장이 전하는 실제 사례 중심 예방·대처법 - 경기 안산시평생학습관(관장 최라영)은... 단순한 이론 중심의 범죄예방 교육에서 벗어나 실제 수사과정에서 접한 사례와 범죄수법을 바탕으로...",
-      "url": "https://www.pressian.com/pages/articles/2026090410431081466?utm_source=naver&utm_medium=search"
-    },
-    {
       "source": "google",
       "press": "경인투데이뉴스",
       "date": "2026.09.04",
@@ -600,14 +600,6 @@
       "title": "장윤정 의원,“안산 햇빛발전 협동조합 공모사업 추진과정 다시 살펴야”",
       "snippet": "장윤정 의원,“안산 햇빛발전 협동조합 공모사업 추진과정 다시 살펴야” 일간경기",
       "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE8yWloyRVA2bkVMbHZ6VnBzNHVpa1lkUlNkSFMzaVRITEZBZUkxdndYSnJOUFdIZmJMd2g0cWQtd193WEdiUzg2RG9kVkxLQVctZDJjYkd1S2pnMHU0dng3R0llbmxyU3Ff?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "경기연합신문",
-      "date": "2026.09.03",
-      "title": "장윤정 도의원 “안산 햇빛발전 공모사업, 부지 확보부터\"",
-      "snippet": "장윤정 도의원 “안산 햇빛발전 공모사업, 부지 확보부터\" 경기연합신문",
-      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTFBrX29YclRCN2VDTlFWaHFXVGpkSVZwVnR6Ri1FWVNydTlDOC1GakFKalpFU2gzYTF2VjBFVU9tajhnVzZTdUtDUlhPeXBZd0w3TG9Jc0FUWW10M2JucDVMaGgtUGpaQQ?oc=5"
     },
     {
       "source": "naver",
@@ -712,6 +704,22 @@
       "title": "김승원 ‘로비’·용혜인 ‘단타’…野, 청문회 총공세",
       "snippet": "주진우 국민의힘 의원에 따르면 용 후보자는 2021년 4월 경기 안산시 상록구 사동의 공동주택을 2억 4500만 원에 사들인 뒤 11개월 만인 2022년 3월 2억 6500만 원에 팔았다. 주 의원은 용 후보자가 해당 주택을 중국인에게...",
       "url": "https://www.sedaily.com/article/20086537?ref=naver"
+    },
+    {
+      "source": "google",
+      "press": "경인투데이뉴스",
+      "date": "2026.09.03",
+      "title": "경기도의회 장윤정 의원, “부지도 없이 추진한 햇빛발전·통합돌봄 사업 전면 재검토해야”:경인투데이뉴스",
+      "snippet": "경기도의회 장윤정 의원, “부지도 없이 추진한 햇빛발전·통합돌봄 사업 전면 재검토해야”:경인투데이뉴스 경인투데이뉴스",
+      "url": "https://news.google.com/rss/articles/CBMiQ0FVX3lxTE56UlNGTDZndnhidUExUWFRcjhjTDdsWU1xLTlBQXoteVY2alhZTHBQZ09JUS12WHJsZXdybS1aeFQ5Q3fSAV9BVV95cUxOV1lnNkFTNGdYV09HUXE4RkQ4aEVNRS1ZRVpEaVJDcE9tUHAya291QzBjeV9kTi14WVg4UW92T2pCdkJJeGpyTVFRalZ3QnlYWDRUeDRlQWNJOWJrVllVUQ?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "ansansm.co.kr",
+      "date": "2026.09.03",
+      "title": "안산공고, 전국기능경기대회 종합 2위",
+      "snippet": "안산공고, 전국기능경기대회 종합 2위 ansansm.co.kr",
+      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBDcVR3TDlFT1FJZmlHdjNLTENwSnVTUXRfaEFqN1EwTFZ2Mm82MTZfMTl6R1d1d2NsTXNNUVhiRTdLU2VCYzdrUGdmc3VRdHY2VWo2SUhiLXhkRTc4M096Y0pYOEJ5VGphM1E?oc=5"
     },
     {
       "source": "naver",
@@ -915,18 +923,18 @@
     },
     {
       "source": "google",
-      "press": "매일신문",
+      "press": "imaeil.com",
       "date": "2026.09.01",
       "title": "`용혜인, 안산 주택 1년 `단타`로 2천만원 차익…매수자는 중국인`",
-      "snippet": "`용혜인, 안산 주택 1년 `단타`로 2천만원 차익…매수자는 중국인` 매일신문",
+      "snippet": "`용혜인, 안산 주택 1년 `단타`로 2천만원 차익…매수자는 중국인` imaeil.com",
       "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE9mMWNGNHd4dTl3Uno1NVllamNwa1FNZ3hvVzF6RjVaWEZiZm9nSGVwUXVNZEtlQ3F2a2VtZm8xUXhYQ2tENmFyVGd6SGlQUGIwOUN4WktUY29DRWJWNk8tUXpn?oc=5"
     },
     {
       "source": "google",
-      "press": "네이트",
+      "press": "news.nate.com",
       "date": "2026.09.01",
       "title": "주진우 \"용혜인, '안산 주택' 중국인에 되팔아 11개월새 2000만원 차익\"",
-      "snippet": "주진우 \"용혜인, '안산 주택' 중국인에 되팔아 11개월새 2000만원 차익\" 네이트",
+      "snippet": "주진우 \"용혜인, '안산 주택' 중국인에 되팔아 11개월새 2000만원 차익\" news.nate.com",
       "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE1sVnA5YVNoU1FaUm9IV2p5amZ1TlZrN0Z5RTV1cDcyZk82ZlV2TktqVHBxVjZjZEFFSVhUNkxuODV2MVp4VTBUaTNBOER0QXg2S0d4VkNzR3VZaVhRdENLVg?oc=5"
     },
     {
@@ -1083,19 +1091,11 @@
     },
     {
       "source": "google",
-      "press": "v.daum.net",
+      "press": "경기일보",
       "date": "2026.08.27",
       "title": "안산교육지원청, 일상 속 RAS 배움... 아이들 푸른 성장 [꿈꾸는 경기교육]",
-      "snippet": "안산교육지원청, 일상 속 RAS 배움... 아이들 푸른 성장 [꿈꾸는 경기교육] v.daum.net",
-      "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE4tYWx1V1NBMjZoRGNvRkM5R0VNM29nMTR0eWZUWG5RRUo1Y29wSHRnWWduRjE4VkNVSTI4cHI5dlVoWGZ3My00S3F6dHNSaXMzNzA2RQ?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "jnewstimes.com",
-      "date": "2026.08.27",
-      "title": "안산교육지원청, 경기글로벌 국제교류협력 프로그램 운영",
-      "snippet": "안산교육지원청, 경기글로벌 국제교류협력 프로그램 운영 jnewstimes.com",
-      "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFB1U29iOUdhMS1kbnJIVzVJeDBaNVhKWWRWMGdRUy1FYjZ5SENKZmxvMklubkJTdzRteEF6YjhVV1RTd3owbUZjdzdhUnZXNlZjRU9xNXAxWUFrYkhLeGNDOG9YR0c?oc=5"
+      "snippet": "안산교육지원청, 일상 속 RAS 배움... 아이들 푸른 성장 [꿈꾸는 경기교육] 경기일보",
+      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBhZDFZczVpVWlOblNXRFZYNVhqTHlwWnFiOTh5Q0tRZ1czX0hlQjRueDZXWDZPQU5yWHlMSXJZOVN6Vl8xMDJ4eF84bUxkaW1Bdmh6NjhoN2hqbm8?oc=5"
     },
     {
       "source": "naver",
@@ -1120,6 +1120,22 @@
       "title": "안산교육지원청, 학교·업체 계약업무 돕는 ‘계약이지(Easy)’ 구축",
       "snippet": "안산교육지원청, 학교·업체 계약업무 돕는 ‘계약이지(Easy)’ 구축 매일일보",
       "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE4zYzAtdjk2TnEwLUdfWHRKZHFITUYtUjhIUEk1TFFPY1BkX3hNQzM3SjJlaktvMW50OEE2WEVaVzR2VmlGd3N2enJCa0VSVjZBcmV6ck95ZE9YemxTQ25aeWk2ODU?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "더코리아",
+      "date": "2026.08.26",
+      "title": "안산시 안산교육지원청과 교육발전 정담회 열고 미래 교육 협력 강화 > 뉴스",
+      "snippet": "안산시 안산교육지원청과 교육발전 정담회 열고 미래 교육 협력 강화 > 뉴스 더코리아",
+      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1SVnlUa2l1akVFajNjdF9Nb281VnhrOGpoMGNDV0JWV1dOYVROQVNHYVAweV9YMWN6VG83Nlktd194RS1Jd0wyU1JwVTRmMTVkcENCbkV3NVB0bFBsdGRRTHIteEJ1T0g1R0puakl1bG4?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "banwol.net",
+      "date": "2026.08.26",
+      "title": "안산교육지원청, 계약이지 (Easy) 프로그램 구축",
+      "snippet": "안산교육지원청, 계약이지 (Easy) 프로그램 구축 banwol.net",
+      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5fZXVqaTQ5R1ZGSEpNLVBiVDhjdjQza1NublhRMmJKcnM5RTVIUGxqS1VVeTU2QzNGS3dIb1dSLXhqNUs1U1VMb1VQX2FYdlRNbjI1RHRSVk90bzl1M1ZmUWpfemtMT0U?oc=5"
     },
     {
       "source": "naver",
@@ -1163,18 +1179,10 @@
     },
     {
       "source": "google",
-      "press": "안산뉴스",
-      "date": "2026.08.23",
-      "title": "안산교육청 ‘안산 루트UP’ 로봇 심화교육",
-      "snippet": "안산교육청 ‘안산 루트UP’ 로봇 심화교육 안산뉴스",
-      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE1UQWMxZWhIUHRzdFdKSmlIUVFzaXlvNTdYR0p0NTNCZVFRSU1TUWtyTEMxMmxsdkN2OUpQYmptQkxhSlk3NEFoM0RkTDZWaVFuYk9tbDRSMkwyUGRZNTRkbUtvWW5EZ0h3cFB6bQ?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "안산신문",
+      "press": "ansansm.co.kr",
       "date": "2026.08.21",
       "title": "장윤정 도의원, 안산시 사회적경제연대와 간담회",
-      "snippet": "장윤정 도의원, 안산시 사회적경제연대와 간담회 안산신문",
+      "snippet": "장윤정 도의원, 안산시 사회적경제연대와 간담회 ansansm.co.kr",
       "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE81bmR2N3dtQmprSEhyWGhhdE1wUHhXMGdIUkFBMlNQMklwZVZkRzNYM2dmRk1WczltUU9WeGtnUmhJZHBQd1U2Q2tvc2VfaTBnQkFBQnRGTHNQVXVxMWtzcFI1Mmp6YTA?oc=5"
     },
     {
@@ -1232,14 +1240,6 @@
       "title": "경기도의회 장윤정 의원, 안산시 사회적경제연대와 현장 소통 나서",
       "snippet": "경기도의회 장윤정 의원, 안산시 사회적경제연대와 현장 소통 나서 정필",
       "url": "https://news.google.com/rss/articles/CBMiR0FVX3lxTE56RldNN0QwbGNhY3RuQTdqaUN0ZWdtT1lkMHEyR2E3V2hVcTNvX3JDZW91RmxiQXNxN09hZ0V6bE54WHY2Tnhn?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "더코리아",
-      "date": "2026.08.12",
-      "title": "장윤정 경기도의원, 안산시 사회적경제연대와 현장 소통 나서 > 뉴스",
-      "snippet": "장윤정 경기도의원, 안산시 사회적경제연대와 현장 소통 나서 > 뉴스 더코리아",
-      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5MZmlrTkM0V21OazF6QzVUcHFORGp4TGo1bTh6cUZ2MHFqeUJOMUxsVld1b2htdTcwMmlQZzhHdXM4SXhXYi1OUUN1bW5uUnlYS0dpN3pMeXNIMklOR2xsYXBGLWxjd2ZLZVJxLWMwQ1o?oc=5"
     },
     {
       "source": "google",
@@ -1411,10 +1411,10 @@
     },
     {
       "source": "google",
-      "press": "go.seoul.co.kr",
+      "press": "서울Pn",
       "date": "2026.07.28",
       "title": "장윤정 경기도의원, 도교육청 예결위원 선임… “학생·현장 중심 예산 편성 총력”",
-      "snippet": "장윤정 경기도의원, 도교육청 예결위원 선임… “학생·현장 중심 예산 편성 총력” go.seoul.co.kr",
+      "snippet": "장윤정 경기도의원, 도교육청 예결위원 선임… “학생·현장 중심 예산 편성 총력” 서울Pn",
       "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9tQWh4WGsxcnBlRFpxYnp4cWlIZ19hMWo2eGdjN0Y5d05SbUV1MUZMVmpPcVhzcXp5dnFFSkd2VTgyRTQya3N4YU9vUTBnQnFPbFpuUkdxYmktc1l1Q050WnVRSVB4QUM3TGc?oc=5"
     },
     {
@@ -1523,19 +1523,11 @@
     },
     {
       "source": "google",
-      "press": "반월신문",
+      "press": "banwol.net",
       "date": "2026.07.23",
       "title": "장윤정 경기도의원, 경제노동위원회 부위원장 선임",
-      "snippet": "장윤정 경기도의원, 경제노동위원회 부위원장 선임 반월신문",
+      "snippet": "장윤정 경기도의원, 경제노동위원회 부위원장 선임 banwol.net",
       "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5KSDF6UWdDRzRUellYazRBY0hHaEEyZ09GUFNDcmZ0Q19VdkRmUV9TRXVSczN1TUs3SVczTVdhVTBmREpWWWw0ZHpoNkdqaWkteHZ3bHB5TWdJMUF6T0hjOU8wN0NHQ2s?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "경기일보",
-      "date": "2026.07.23",
-      "title": "안산교육지원청, 다문화 영유아 대상 ‘세계테마여행 음악회’ 개최",
-      "snippet": "안산교육지원청, 다문화 영유아 대상 ‘세계테마여행 음악회’ 개최 경기일보",
-      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE1feVBRRlNaR3dnVGJVR3k5RW9jWERBZG1ONkpaLW1oVnllTTZmSWwyc2lTUy0yMFdTSVJGTnpWd1FFcG43SEJuU01FZnA1N28zUzhiMVRZOFk5SWc?oc=5"
     },
     {
       "source": "naver",
@@ -1651,18 +1643,18 @@
     },
     {
       "source": "google",
-      "press": "반월신문",
+      "press": "banwol.net",
       "date": "2026.07.14",
       "title": "안산 상록구 도금공장 화재 대응 1단계 발령 후 54분 만에 초진…인명피해 없어",
-      "snippet": "안산 상록구 도금공장 화재 대응 1단계 발령 후 54분 만에 초진…인명피해 없어 반월신문",
+      "snippet": "안산 상록구 도금공장 화재 대응 1단계 발령 후 54분 만에 초진…인명피해 없어 banwol.net",
       "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBXVi1zZVRQbjhjaDY5UXBTTjNaUXlnRmZtbmx1ZEJqeDRDTENDNW1uTlN1czBabkhUOGV2UXc2NE44cmtkS2Z5YjF6YW1NZkdudUdhQnN3X19lc2pWaG1iajBEcFp2Qzg?oc=5"
     },
     {
       "source": "google",
-      "press": "반월신문",
+      "press": "banwol.net",
       "date": "2026.07.08",
       "title": "더불어민주당 장윤정 경기도의원, \"초심 잃지 않고 주민 곁에서 실천으로 보답\"",
-      "snippet": "더불어민주당 장윤정 경기도의원, \"초심 잃지 않고 주민 곁에서 실천으로 보답\" 반월신문",
+      "snippet": "더불어민주당 장윤정 경기도의원, \"초심 잃지 않고 주민 곁에서 실천으로 보답\" banwol.net",
       "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9ITFU4Um15Q3puTHU3eVQ0S1JjYXRuc0ZQY3RfUkhnZHVZZXhHS3pZQXdfelkzcnBTM2hwTmVHZDZWN3V5ZkdfYzdveEo0ZnZZVVVBNlJoYTk0TEZieE9maW1VUm83WHM?oc=5"
     },
     {
@@ -1699,10 +1691,10 @@
     },
     {
       "source": "google",
-      "press": "반월신문",
+      "press": "banwol.net",
       "date": "2026.06.17",
       "title": "민주당 장윤정 경기도의원 당선인사 “보내주신 성원 잊지 않고 성과로 보답하겠다”",
-      "snippet": "민주당 장윤정 경기도의원 당선인사 “보내주신 성원 잊지 않고 성과로 보답하겠다” 반월신문",
+      "snippet": "민주당 장윤정 경기도의원 당선인사 “보내주신 성원 잊지 않고 성과로 보답하겠다” banwol.net",
       "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE8wa3F4V2J6eEd5OFZaTFdEa0ZPMlRQRFg5U2J0aFpVcy1CZlUzOEc3NERKTlduMV85T2xBMURmWlhNMC16ZXZOZ21TV2NEcGlWRXBvOWxCcFh2MGkxNHR0ckt0N2hWd28?oc=5"
     },
     {
@@ -1811,10 +1803,10 @@
     },
     {
       "source": "google",
-      "press": "반월신문",
+      "press": "banwol.net",
       "date": "2026.05.27",
       "title": "차량 1대·집기류 화재 안산 상록구 본오동 카센터 화재",
-      "snippet": "차량 1대·집기류 화재 안산 상록구 본오동 카센터 화재 반월신문",
+      "snippet": "차량 1대·집기류 화재 안산 상록구 본오동 카센터 화재 banwol.net",
       "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE42WEotQmM5ZHRNeVZacjByMV9yTGNsaDdvZUVnZWhUckZBSzhiMU1ycFZXQjlSSGRMdW1aYXZtQTFMLTd6T01VV0pESExhYlVUakhXNFhHOFFfNFFxNUlMRlFJN3F6RTA?oc=5"
     },
     {
@@ -1859,6 +1851,14 @@
     },
     {
       "source": "google",
+      "press": "경기일보",
+      "date": "2026.05.13",
+      "title": "안산 상록구 다세대 주택 화재…1명 사망·3명 부상",
+      "snippet": "안산 상록구 다세대 주택 화재…1명 사망·3명 부상 경기일보",
+      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE53M3hjTDY4NG44T0Q5TkNFaXJrSGZxNzdhM2h4Vjg5SzgyVEs0enRjRGNTa0NpaUxsSTBSRjdjaW42RmVabHdfVGlaakkwOTRFWnRZU0ZpTWFKZ0k?oc=5"
+    },
+    {
+      "source": "google",
       "press": "경인신문",
       "date": "2026.05.11",
       "title": "장윤정 경기도의원, 안산 제3선거구 공천 확정... \"무도한 권력에 대한 당원들의 엄중한 심판\"",
@@ -1875,10 +1875,10 @@
     },
     {
       "source": "google",
-      "press": "일간투데이",
+      "press": "dtoday.co.kr",
       "date": "2026.05.09",
       "title": "기울어진 운동장 안 된다”…장윤정 경기도의원, 안산 정치권 녹취 파장 정면 비판",
-      "snippet": "기울어진 운동장 안 된다”…장윤정 경기도의원, 안산 정치권 녹취 파장 정면 비판 일간투데이",
+      "snippet": "기울어진 운동장 안 된다”…장윤정 경기도의원, 안산 정치권 녹취 파장 정면 비판 dtoday.co.kr",
       "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE9PNjdvWkxMWnZ6SFlOczZKSW40VnhSd3dXMzFPYnFPckp3b3A0V2taR1lPcnJTc01XR1l6VkJIY3JieHRxYm15ZFdYN25aOEttQmtwbGFlYTJGYmt0REItTzBJVlBETmZvcU5J?oc=5"
     },
     {
@@ -1891,19 +1891,27 @@
     },
     {
       "source": "google",
-      "press": "더리포트",
+      "press": "thereport.co.kr",
       "date": "2026.05.05",
       "title": "[6·3 지선] 장윤정 의원 \"안산 정치권 경선 개입 의혹 녹취 제보\"… 파장 확산",
-      "snippet": "[6·3 지선] 장윤정 의원 \"안산 정치권 경선 개입 의혹 녹취 제보\"… 파장 확산 더리포트",
+      "snippet": "[6·3 지선] 장윤정 의원 \"안산 정치권 경선 개입 의혹 녹취 제보\"… 파장 확산 thereport.co.kr",
       "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1FZkl4bzBBV1VKcGk2M2NNQm16WnpjUDU0VlZWVjRkc0pDQ0lCLXJPTUwxY2pILUZoT3ZTREJ4MWhkRjZaaWh5YUVBVVVGVW9GR0lGd2hDR1BLdXFBcl81dncxeHI3UGNmcl9CYXBB?oc=5"
     },
     {
       "source": "google",
-      "press": "동아일보",
-      "date": "2026.04.25",
-      "title": "안산 상록구 금속 구조물 제작 공장서 불…35분 만에 완진",
-      "snippet": "안산 상록구 금속 구조물 제작 공장서 불…35분 만에 완진 동아일보",
-      "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE9aNk9telFyd253d0xfZ0IxWTgwa3VvaDc3b3ZzZEtCZnZwOVQxbTN3V201dWZNZllWTWVNT2RscWhFM3dMcWdtRm1CZE5Ca3ZmWHBGRGQxV2JfRVQ2UHZtTGVkMS1vSWJaLXdMSUp1TXNhem9PN2fSAWZBVV95cUxNekI3eFlqQTY1bURXeWpzdy1veXhkXzBVN0lIUTQxNGtsbTNZZTFYZzFXNFhDTzZFYnFkS25VSU1fRnd6MUxHTFlRRFhpSEFDY29lRjdRdUdCS0h4SlJxMUhGQk5hQkE?oc=5"
+      "press": "v.daum.net",
+      "date": "2026.04.06",
+      "title": "장윤정 경기도의원, 재선 출마 공식선언… “안산 변화 이끌 것”",
+      "snippet": "장윤정 경기도의원, 재선 출마 공식선언… “안산 변화 이끌 것” v.daum.net",
+      "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE9UV0RqUVdyLU9HWEJBWk54ZDV2TV9nNTVxTmg3RnBXQ3owbTBnSml2eHBFMlBoLW1IQzJqVGNnbllnMnBONHRVZEJLZ0FKVGs?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "안산뉴스",
+      "date": "2026.03.08",
+      "title": "장윤정 도의원 ‘시곡중 오수관 사고’ 신속 복구 요구",
+      "snippet": "장윤정 도의원 ‘시곡중 오수관 사고’ 신속 복구 요구 안산뉴스",
+      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBBbVVRa0JyLS1BSzUzcHl5Vk1VcmlJNlEtdjUxLUh6NGF0bjdBejhXTThxMGptX2R1X2xYTWp1cFVhZm9NQUw5MHdfT2FRQWcwRWptVHJJU2VFOUZGeHZlUW5uVzV4NmdKaU9XRQ?oc=5"
     }
   ]
 }
