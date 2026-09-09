@@ -2,9 +2,13 @@
   "profile": "https://www.ggc.go.kr/site/lwmkr/blog/11017/11",
   "events": [
     {
-      "step": "profile-error",
+      "step": "profile",
       "candidate": "https://m.ggc.go.kr/site/lwmkr/blog/11017/11",
-      "error": "Page.content: Unable to retrieve content because the page is navigating and changing the content."
+      "url": "https://m.ggc.go.kr/site/main/home",
+      "title": "경기도의회 | 경기도의회 - 메인페이지",
+      "htmlLength": 575,
+      "detailLinks": 0,
+      "bodyPreview": "경기도의회 | 경기도의회 - 메인페이지"
     },
     {
       "step": "profile",
