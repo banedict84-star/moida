@@ -1,6 +1,22 @@
 {
-  "updated": "2026-09-12 22:28 UTC",
+  "updated": "2026-09-13 00:12 UTC",
   "items": [
+    {
+      "source": "naver",
+      "press": "shinailbo.co.kr",
+      "date": "2026.09.13",
+      "title": "경기도교육청4.16생명안전교육원, 특수·이주배경학생 맞춤형 안전교육",
+      "snippet": "특수교육대상학생 교육에는 상반기 안산·시흥지역 39개교 60학급에서 407명이 참여했다. 지난 11일부터는 수원지역 12개교 13학급, 149명을 대상으로 프로그램을 운영하고 있다. 이주배경학생 대상 교육은 상반기 12개...",
+      "url": "https://www.shinailbo.co.kr/news/articleView.html?idxno=5061479"
+    },
+    {
+      "source": "naver",
+      "press": "cnbizm.com",
+      "date": "2026.09.13",
+      "title": "오세훈 서울시장, 12일 서울사회복지사 등반대회 참석...감사와 격려 전...",
+      "snippet": "올해는 약 1,200명이 참여했으며 안산(서대문구 소재)을 등반했다. 오 시장은 \"AI와 같은 과학기술이 우리 사회... 사회복지에 관한 전문지식과 기술을 개발·보급하고 사회복지사의 자질향상을 위한 교육훈련 및...",
+      "url": "https://www.cnbizm.com/news/articleView.html?idxno=314905"
+    },
     {
       "source": "naver",
       "press": "seoul.co.kr",
@@ -213,17 +229,17 @@
       "source": "naver",
       "press": "siminilbo.co.kr",
       "date": "2026.09.11",
-      "title": "안산시, 30일~10월1일 무료 드론체험…14일부터 접수",
-      "snippet": "안산시민이면 14일부터 시 통합예약시스템에서 선착순으로 신청할 수 있다. 교육은 양일 오후 2시~4시 진행하며, 드론의 작동 원리와 안전한 조종 방법을 익힌 뒤 직접 조종하는 실습으로 이어진다. 이민근 시장은 “이번...",
-      "url": "https://www.siminilbo.co.kr/news/newsview.php?ncode=1160265822478520"
+      "title": "안산시의회, 김제연 환경재단 대표 후보자 ‘적합’…전문성 보완 주문",
+      "snippet": "위원회는 김 후보자의 지역 언론·도의회·교육계 경력이 재단 운영과 지역사회 소통에 도움이 될 수 있다고 평가했다. 안산에서 오랫동안 언론인으로 활동하며 지역 현안을 이해하고 있다는 점도 긍정적으로 봤다. 다만...",
+      "url": "https://www.siminilbo.co.kr/news/newsview.php?ncode=1160270166691709"
     },
     {
       "source": "naver",
       "press": "siminilbo.co.kr",
       "date": "2026.09.11",
-      "title": "안산시의회, 김제연 환경재단 대표 후보자 ‘적합’…전문성 보완 주문",
-      "snippet": "위원회는 김 후보자의 지역 언론·도의회·교육계 경력이 재단 운영과 지역사회 소통에 도움이 될 수 있다고 평가했다. 안산에서 오랫동안 언론인으로 활동하며 지역 현안을 이해하고 있다는 점도 긍정적으로 봤다. 다만...",
-      "url": "https://www.siminilbo.co.kr/news/newsview.php?ncode=1160270166691709"
+      "title": "안산시, 30일~10월1일 무료 드론체험…14일부터 접수",
+      "snippet": "안산시민이면 14일부터 시 통합예약시스템에서 선착순으로 신청할 수 있다. 교육은 양일 오후 2시~4시 진행하며, 드론의 작동 원리와 안전한 조종 방법을 익힌 뒤 직접 조종하는 실습으로 이어진다. 이민근 시장은 “이번...",
+      "url": "https://www.siminilbo.co.kr/news/newsview.php?ncode=1160265822478520"
     },
     {
       "source": "naver",
@@ -315,19 +331,19 @@
     },
     {
       "source": "naver",
-      "press": "incheonilbo.com",
-      "date": "2026.09.11",
-      "title": "안산시의회, 김제연 안산환경재단 대표이사 후보자 청문 보고서 채택",
-      "snippet": "김제연(왼쪽) 안산환경재단 대표이사 후보자가 10일 안산시의회 도시환경위원회 인사청문회에서 모두발언을... 위원들은 김 후보자가 언론과 도의회, 교육계 등 다양한 분야에서 쌓은 행정·의정 및 대외협력 경험이 재단...",
-      "url": "https://www.incheonilbo.com/news/articleView.html?idxno=1331804"
-    },
-    {
-      "source": "naver",
       "press": "kihoilbo.co.kr",
       "date": "2026.09.11",
       "title": "경기도교육청 특수교육·이주배경학생 맞춤 '생명안전교육' 진행",
       "snippet": "상반기 안산·시흥지역 39개교 60학급 407명의 특수교육대상학생이 참여했으며, 11일부터 실시하는 하반기 교육에는 수원지역 12교 13학급 149명을 대상으로 운영한다. 이와 함께 이주배경학생을 위한 맞춤형...",
       "url": "https://www.kihoilbo.co.kr/news/articleView.html?idxno=3034401"
+    },
+    {
+      "source": "naver",
+      "press": "incheonilbo.com",
+      "date": "2026.09.11",
+      "title": "안산시의회, 김제연 안산환경재단 대표이사 후보자 청문 보고서 채택",
+      "snippet": "김제연(왼쪽) 안산환경재단 대표이사 후보자가 10일 안산시의회 도시환경위원회 인사청문회에서 모두발언을... 위원들은 김 후보자가 언론과 도의회, 교육계 등 다양한 분야에서 쌓은 행정·의정 및 대외협력 경험이 재단...",
+      "url": "https://www.incheonilbo.com/news/articleView.html?idxno=1331804"
     },
     {
       "source": "naver",
@@ -515,22 +531,6 @@
     },
     {
       "source": "naver",
-      "press": "shinailbo.co.kr",
-      "date": "2026.09.11",
-      "title": "한양대 ERICA, IC-PBL 10주년 맞아 'NEXT HORIZON 2039' 선포",
-      "snippet": "한양대 ERICA는 앞으로도 'NEXT HORIZON 2039'를 바탕으로 산업체와 지역사회 연계 교육을 확대하고 IC-PBL을 미래교육 혁신 모델로 발전시킬 계획이다. [신아일보] 안산",
-      "url": "https://www.shinailbo.co.kr/news/articleView.html?idxno=5061204"
-    },
-    {
-      "source": "naver",
-      "press": "newsfreezone.co.kr",
-      "date": "2026.09.11",
-      "title": "한양대 에리카, 새 미래교육 전략 '넥스트 호라이즌 2039'선포",
-      "snippet": "아울러 전민현 인제대 총장, 신동우 한양대 총동문회장, 박우형 광명시 보좌관, 김정택 안산그리너스FC 단장, 이상윤 서산농업협동조합장 등이 함께 참여했다. 행사 내 진행된 '에리카 IC-PBL 교육혁신 10년의...",
-      "url": "https://www.newsfreezone.co.kr/news/articleView.html?idxno=708734"
-    },
-    {
-      "source": "naver",
       "press": "newstown.co.kr",
       "date": "2026.09.10",
       "title": "경기도의회, 'AI 의정플랫폼' 속도…디지털의정위원회 11명 구성",
@@ -571,10 +571,10 @@
     },
     {
       "source": "google",
-      "press": "kyeonggi.com",
+      "press": "경기일보",
       "date": "2026.09.10",
       "title": "장윤정 경기도의원 \"경기도 햇빛발전·통합돌봄 사업, 기초지자체 협의 없는 탁상행정\"",
-      "snippet": "장윤정 경기도의원 \"경기도 햇빛발전·통합돌봄 사업, 기초지자체 협의 없는 탁상행정\" kyeonggi.com",
+      "snippet": "장윤정 경기도의원 \"경기도 햇빛발전·통합돌봄 사업, 기초지자체 협의 없는 탁상행정\" 경기일보",
       "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBsX3FYWHJXTV9DQ0l3ME5wTkg0MFRYUjNoYUYzVVE3NVBRNGg3WlVGZWxic21QUU5Bdm9iNW42T1dCYXBkQ3ZDZ3R1bGc0S2IwOTNEckZMWmh2ZkE?oc=5"
     },
     {
@@ -595,10 +595,10 @@
     },
     {
       "source": "google",
-      "press": "kmaeil.com",
+      "press": "경인매일",
       "date": "2026.09.10",
       "title": "장윤정 경기도의원 \"안산시와 부지 협의 없이 태양광 사업 추진...졸속 행정\"",
-      "snippet": "장윤정 경기도의원 \"안산시와 부지 협의 없이 태양광 사업 추진...졸속 행정\" kmaeil.com",
+      "snippet": "장윤정 경기도의원 \"안산시와 부지 협의 없이 태양광 사업 추진...졸속 행정\" 경인매일",
       "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFA2b1puUDdNMk5TNG05YlNkaTdoMUo3VmQyVUNYSHVuWHBZZ2hQRFctUm9PU2hEUGtYdUI0aFdieV9qUHR4SDNPWXB0akJybFd6UWFtRFRLZzc5eVI2WGZ0UXBwbWVoZEFS?oc=5"
     },
     {
@@ -611,10 +611,10 @@
     },
     {
       "source": "google",
-      "press": "snfocus.net",
+      "press": "성남포커스",
       "date": "2026.09.10",
       "title": "경기도의회 장윤정 의원, 경기도 햇빛발전 통합돌봄 융합모델 사업, 부지 협의 누락 및 졸속 행정, 원점 재검토 촉구",
-      "snippet": "경기도의회 장윤정 의원, 경기도 햇빛발전 통합돌봄 융합모델 사업, 부지 협의 누락 및 졸속 행정, 원점 재검토 촉구 snfocus.net",
+      "snippet": "경기도의회 장윤정 의원, 경기도 햇빛발전 통합돌봄 융합모델 사업, 부지 협의 누락 및 졸속 행정, 원점 재검토 촉구 성남포커스",
       "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE8tQWllb3k2UUVZU08zR0JwNGhuaEdvdUstNWpzUklYVTRGRHNlSTVidTZIc3hTbnBqLUMzX0NSYVIzMEZmaHI4aU56cmNPb3ZQ?oc=5"
     },
     {
@@ -995,10 +995,10 @@
     },
     {
       "source": "google",
-      "press": "kyeonggi.com",
+      "press": "경기일보",
       "date": "2026.09.10",
       "title": "안산교육지원청, 정책공유 협의회…‘교사 행정업무 ZERO’ 실행력 강화",
-      "snippet": "안산교육지원청, 정책공유 협의회…‘교사 행정업무 ZERO’ 실행력 강화 kyeonggi.com",
+      "snippet": "안산교육지원청, 정책공유 협의회…‘교사 행정업무 ZERO’ 실행력 강화 경기일보",
       "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE1rR09ndDhVNTNnRi1BOERRTnd0RmY1NWYwZXdyZHhlb0J1U2JYSU5fdnpjMVRrVkNwOWZFZGcteDVfdDgwQXhlSkEya29xV01IVnRYZjZUc2tRTUU?oc=5"
     },
     {
@@ -1051,10 +1051,10 @@
     },
     {
       "source": "google",
-      "press": "경기종합뉴스",
+      "press": "ggoverallnews.co.kr",
       "date": "2026.09.09",
       "title": "장윤정 경기도의원, \"민생 정책 성과 높이려면 철저한 홍보와 소통 필수… 지역 언론 홍보 예산 삭감 우려\"",
-      "snippet": "장윤정 경기도의원, \"민생 정책 성과 높이려면 철저한 홍보와 소통 필수… 지역 언론 홍보 예산 삭감 우려\" 경기종합뉴스",
+      "snippet": "장윤정 경기도의원, \"민생 정책 성과 높이려면 철저한 홍보와 소통 필수… 지역 언론 홍보 예산 삭감 우려\" ggoverallnews.co.kr",
       "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTFBjQlZ3TVFKWHBMTHY2S2M1dG9za0ZCRzBNTjExR1ByMDV2OXN3NzI3V0ZhVVNSN0dfejE3Zk1rcnk3ZDBQeGxWQ3IwbXQyZ1NfMm5PeVA1b2hhNzNZRnFPVDFfdHgwNWxzV1FTVndRN1dwdnZX?oc=5"
     },
     {
@@ -1067,14 +1067,6 @@
     },
     {
       "source": "google",
-      "press": "경기평화신문",
-      "date": "2026.09.09",
-      "title": "경기도의회 장윤정 의원, 민생 정책 성과 높이려면 철저한 홍보와 소통 필수, 지역 언론 홍보 예산 삭감 우려",
-      "snippet": "경기도의회 장윤정 의원, 민생 정책 성과 높이려면 철저한 홍보와 소통 필수, 지역 언론 홍보 예산 삭감 우려 경기평화신문",
-      "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQcHdQUzB2U3VTRzRGVE1lR1RJYnJBNzh6TXVuYUY3WVhqaG4tOG5vUnlIMUE3VnhteHprMlVuUzcxbDVibEt1MnNxY1NJU1JMdlhpMXV0dVJodzdzOU9uNHFoMnEwdkFOcmZvcXZTZ19DOW9HOGpDUlBHdWlEQl9heGRzbXZ0U2RRVndnODQ1eW5TT1BjX0E?oc=5"
-    },
-    {
-      "source": "google",
       "press": "백세시대",
       "date": "2026.09.09",
       "title": "대한노인회 경기 안산시 상록구지회, 반월역 두산위브더센트럴A경로당 개소식 개최",
@@ -1083,19 +1075,19 @@
     },
     {
       "source": "google",
-      "press": "경기매일",
+      "press": "kgmail.kr",
       "date": "2026.09.09",
       "title": "안산시 상록구, 제33기 외식사업아카데미 입교식 개최",
-      "snippet": "안산시 상록구, 제33기 외식사업아카데미 입교식 개최 경기매일",
+      "snippet": "안산시 상록구, 제33기 외식사업아카데미 입교식 개최 kgmail.kr",
       "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE8zU29FTVRiek1kWW1DbnU0emxFNExRbUxweW5yT251c0JXNjZfc0ZpWnhlQ2Vuc2VQVVFqQjBWb0dRazFrOHM0UG5GOEQ0SDZlYTdyTGNVTUY3aXlPT1BaZ21Pc19tQ3M?oc=5"
     },
     {
       "source": "google",
-      "press": "mediatoday.asia",
+      "press": "케이에스피뉴스",
       "date": "2026.09.09",
       "title": "안산시 상록구, 궁중삼계탕으로부터 성금 500만 원 기탁받아",
-      "snippet": "안산시 상록구, 궁중삼계탕으로부터 성금 500만 원 기탁받아 mediatoday.asia",
-      "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxPdGduZmczRnZJZGFWZ3g0SDBzTHpEV2MzRkx0dTUwS2pISW93cjlUSk1DVVFsZk5OTlJIaFV6aFA2Ny1EQ19aWVg5NXZMZHI4QXpsSUJiUDZGUGZoS1o4Zndfc3o4dl9WV1dyWmxZekE5YllfNnpHMUJ3NXlRczBwWDYwQllNRE1vU3Nra0ExYWU4WGlSZDJUNA?oc=5"
+      "snippet": "안산시 상록구, 궁중삼계탕으로부터 성금 500만 원 기탁받아 케이에스피뉴스",
+      "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE16NldpUUFHT3FDUTBWY1I5SW1KdDJacjdVUUYzMEozWko1MUE0YXBMbHYwcThKWmlxakh1NVpQdlJGWlJROWc?oc=5"
     },
     {
       "source": "google",
@@ -1103,7 +1095,15 @@
       "date": "2026.09.09",
       "title": "안산시 상록구 외식사업 아카데미, 33기 교육생 25명 참여",
       "snippet": "안산시 상록구 외식사업 아카데미, 33기 교육생 25명 참여 시민일보",
-      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE11TjQ4LUJzbTBuNnRuWmNnQzFNZ25Jdy0yR0F2ZmlDcFAwSElUbjR1aG92T0tkZU5ERUgtWGN0aG02OEc0aWxmSTl3eDdTdGVvNU1UWjNmQjRaY1l4MjJ5TFFRcElXXzN5ci1SeW9qd9IBb0FVX3lxTE11TjQ4LUJzbTBuNnRuWmNnQzFNZ25Jdy0yR0F2ZmlDcFAwSElUbjR1aG92T0tkZU5ERUgtWGN0aG02OEc0aWxmSTl3eDdTdGVvNU1UWjNmQjRaY1l4MjJ5TFFRcElXXzN5ci1SeW9qdw?oc=5"
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTFBCT3FjSEd5X2ZZQXVIRWlhTm9tc3RfVzFIOWJkR1B2QkxENWx1eVFUaDNOTy11VjJic3B5Umx6dHQ5c0JoTW1yTlNYUjgyXzBucjdiRDI2TlFUYlBRVi1YNWRldnE1Y3VWSE80RFk5S2h0QdIBb0FVX3lxTE11TjQ4LUJzbTBuNnRuWmNnQzFNZ25Jdy0yR0F2ZmlDcFAwSElUbjR1aG92T0tkZU5ERUgtWGN0aG02OEc0aWxmSTl3eDdTdGVvNU1UWjNmQjRaY1l4MjJ5TFFRcElXXzN5ci1SeW9qdw?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "경기평화신문",
+      "date": "2026.09.09",
+      "title": "경기도의회 장윤정 의원, 민생 정책 성과 높이려면 철저한 홍보와 소통 필수, 지역 언론 홍보 예산 삭감 우려",
+      "snippet": "경기도의회 장윤정 의원, 민생 정책 성과 높이려면 철저한 홍보와 소통 필수, 지역 언론 홍보 예산 삭감 우려 경기평화신문",
+      "url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTE92TXVReEk3dDhic2lQUjRIbzQ3cEdEYUtON0N3SzZjZzh2ZDM3Nmh1Q2pqQjZoS3g3eEt1UWVPdndTWTFiSHFiV2hn?oc=5"
     },
     {
       "source": "google",
@@ -1187,18 +1187,18 @@
     },
     {
       "source": "google",
-      "press": "m-i.kr",
+      "press": "매일일보",
       "date": "2026.09.07",
       "title": "안산교육지원청, 이주배경 영유아 가족 대상 '어울림 걷기대회' 개최",
-      "snippet": "안산교육지원청, 이주배경 영유아 가족 대상 '어울림 걷기대회' 개최 m-i.kr",
+      "snippet": "안산교육지원청, 이주배경 영유아 가족 대상 '어울림 걷기대회' 개최 매일일보",
       "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFBzbXd0ME52RnV3eWp5UTBVS2F1TmZaWXVVNXF3enJYa0ZiWEhZcVNSeHh4M3pWUzBHMHhYRVpwaE1tVWxhVXppN3E2VE5salpMMHZUUHY0WTNhSExfMV9TMmFpd0LSAWhBVV95cUxPUEl0QXplaVJ5RURhVXBsaEQ0WEQxc2RieENCYnlUTkg5SUg4TnpJYjYwd1lqX3E2N0o2WklWRGdnZkF1cmx3bGkzRjFjM3VNN3g1YS1lbFVNNzdEblMtUldFMkdvVWpnQg?oc=5"
     },
     {
       "source": "google",
-      "press": "sisats.com",
+      "press": "시사통신",
       "date": "2026.09.07",
       "title": "안산교육지원청, 이주배경 영유아 가족 걷기대회 개최",
-      "snippet": "안산교육지원청, 이주배경 영유아 가족 걷기대회 개최 sisats.com",
+      "snippet": "안산교육지원청, 이주배경 영유아 가족 걷기대회 개최 시사통신",
       "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5PZm9OdklDd0xrM1RBS1ZsN21Yc3RrU3NIUUNLenA2MG1KN0RkUUdGREFVeXlNVk5RNl91UDg3a2VQWnQ0WTVwTkh3SVl4YjNTajFVWXlUTjU5SFBtOWhXQXdDaGFtaEFG0gFrQVVfeXFMTm5jZTMxZXgyOWJxcXNQNW5GNnZTalAzYl9mb2NPY3lDNzNUWmxXa0k0YjlMQjczZy1MT1hnRXYxM1FPTGFmaDNPb1l4eHNEQ3ZBTXZHc1RfOXZ0alI3YTNKaGNNcTc1TnZ1N0k?oc=5"
     },
     {
@@ -1235,10 +1235,10 @@
     },
     {
       "source": "google",
-      "press": "kyeonggi.com",
+      "press": "경기일보",
       "date": "2026.09.05",
       "title": "안산시 강아지들 다 모여라~ '2026 안산 펫 페스티벌' [포토뉴스]",
-      "snippet": "안산시 강아지들 다 모여라~ '2026 안산 펫 페스티벌' [포토뉴스] kyeonggi.com",
+      "snippet": "안산시 강아지들 다 모여라~ '2026 안산 펫 페스티벌' [포토뉴스] 경기일보",
       "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE01Mno2dW16Y21QVHBvbVVPdmFXX0lDX05NR0dJYmRmRmY3bFdqUlBzZ25YYnZtbi1tc015UVBPWFhoMEFrQ2NlOVVQNXpBOHNzeHBaR2NHNVd2dTg?oc=5"
     },
     {
@@ -1267,26 +1267,26 @@
     },
     {
       "source": "google",
-      "press": "seoul.co.kr",
+      "press": "서울신문",
       "date": "2026.09.03",
       "title": "장윤정 경기도의원, 안산시 태양광 햇빛발전 협동조합 공모사업 추진과정 다시 살펴야",
-      "snippet": "장윤정 경기도의원, 안산시 태양광 햇빛발전 협동조합 공모사업 추진과정 다시 살펴야 seoul.co.kr",
+      "snippet": "장윤정 경기도의원, 안산시 태양광 햇빛발전 협동조합 공모사업 추진과정 다시 살펴야 서울신문",
       "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxQWEdjblJFLXNmQ29ObWJfcDJGMmpSOWdUNEdabTdzVTB6WVp3YUpkQlpFRTFmYzhNU1dkUUhmdUZQV2NQTFlWYy1zaEc5eWRKVjBhLXhoRTVBSFo0SF9mY3VXem1MalgzQU1IVVozY05NQlBCNXFWZVRMZ1VYM3p4ZXVUTU1XRDE0bXluaEM5c3FNWVE?oc=5"
     },
     {
       "source": "google",
-      "press": "vision21.kr",
+      "press": "비전21뉴스",
       "date": "2026.09.03",
       "title": "경기도의회 장윤정 의원, 안산시 태양광 햇빛발전 협동조합 공모사업 추진과정 다시 살펴야",
-      "snippet": "경기도의회 장윤정 의원, 안산시 태양광 햇빛발전 협동조합 공모사업 추진과정 다시 살펴야 vision21.kr",
+      "snippet": "경기도의회 장윤정 의원, 안산시 태양광 햇빛발전 협동조합 공모사업 추진과정 다시 살펴야 비전21뉴스",
       "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTFA2N090M1drOGhIZDc5ck5zVzRBZTE1bzc0dWdPOVlGQUNEQi03RFcxMWJfc2g2Q3V4LU1lNHBRUVFHQXZDNHM1ZWxlS1BuMHNYaHZqU3dNRVk0V1F6WU5pSk9Obw?oc=5"
     },
     {
       "source": "google",
-      "press": "kyeonggi.com",
+      "press": "경기일보",
       "date": "2026.09.02",
       "title": "주진우 “용혜인, 안산 주택 중국인에 단타 매도…차익 2천만원”",
-      "snippet": "주진우 “용혜인, 안산 주택 중국인에 단타 매도…차익 2천만원” kyeonggi.com",
+      "snippet": "주진우 “용혜인, 안산 주택 중국인에 단타 매도…차익 2천만원” 경기일보",
       "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE0yTmxHM0ZHakNrbWJCQmxzX2hfWEVDX3FMdk5IN1ZYTEJqNXZwUFRqRVlqaXkzTElOcDFLd1Nwdkhtd0FIaWRzT0JIRG9iYXZaUm50eExmYmxfM0U?oc=5"
     },
     {
@@ -1408,6 +1408,14 @@
       "title": "스프링힐스 골프장 증설 찬성 시민들 거리로…고양시의회는 적법성 조사",
       "snippet": "국토교통부와 경기도의 개발제한구역 관리계획 승인, 전략환경영향평가와 환경영향평가 등을 거쳐 지난해... 장윤정 의원이 대표발의하고 최성원 의원 등 11명이 발의에 찬성했다. 조사는 일산동구 산황동 424-10번지...",
       "url": "https://www.sedaily.com/article/20083175?ref=naver"
+    },
+    {
+      "source": "google",
+      "press": "중부일보",
+      "date": "2026.08.25",
+      "title": "안산교육지원청, 안산시·시의회와 안산교육 발전 방안 논의",
+      "snippet": "안산교육지원청, 안산시·시의회와 안산교육 발전 방안 논의 중부일보",
+      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE5nbi1yMkdVUHJnOFVLTG13Y2xLRG12STBPUllBTVhYLVJEenhPRUNjUDk2Ry1LaXo2aDQyS0JoYk9hOU9zTFVkek9JSWFzT1VHZVJUSXZQXzlIVUpLb1VsbkR3X0twcGZJYlJiMlFsNA?oc=5"
     },
     {
       "source": "naver",
@@ -1643,10 +1651,18 @@
     },
     {
       "source": "google",
-      "press": "m-i.kr",
+      "press": "더코리아",
+      "date": "2026.08.03",
+      "title": "장윤정 경기도의원, 경기도 사회적경제원 및 신용보증재단 현안 집중 질의 > 뉴스",
+      "snippet": "장윤정 경기도의원, 경기도 사회적경제원 및 신용보증재단 현안 집중 질의 > 뉴스 더코리아",
+      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBVV3BDNjRuWHgtOGpuMHRVYzd4TmhMblN4RnZDbm5SUGhaYlhmY09vSGxVZndlLW9XZlNtZ3l4NTNVbFNJQWJwN0hLU1VBY20tNXQwUk83OHpta1ZYeVZiWE9PMWhCME9Ma0FMaE1QSVc?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "매일일보",
       "date": "2026.08.03",
       "title": "안산 상록구, 경로당 71곳 안전점검 실시",
-      "snippet": "안산 상록구, 경로당 71곳 안전점검 실시 m-i.kr",
+      "snippet": "안산 상록구, 경로당 71곳 안전점검 실시 매일일보",
       "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE14R243MnE4b1I5YTBaRnRzdUludlY1WjV0a3lzeDNEa1NEZmZqbDlLVUxEM1JoSHRRYmdTcnpHTkhNUFg0d0x3MW1SeE9UdXFzM0k5WWc2SDZ6QjZNUUlhd0ZZMU8?oc=5"
     },
     {
@@ -1667,10 +1683,10 @@
     },
     {
       "source": "google",
-      "press": "kyeonggi.com",
+      "press": "경기일보",
       "date": "2026.07.27",
       "title": "장윤정 경기도의원, 교육청 예결특위 선임…“학생·현장 중심 예산 총력”",
-      "snippet": "장윤정 경기도의원, 교육청 예결특위 선임…“학생·현장 중심 예산 총력” kyeonggi.com",
+      "snippet": "장윤정 경기도의원, 교육청 예결특위 선임…“학생·현장 중심 예산 총력” 경기일보",
       "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE5uMzlEVEtfOGJqeG1MQlVDWXR6RkdRcTlLSnNBMEpQOFdNRFlNbTFXLU1rZ1pzUnU4M1lRQVc2NWNTYkxrU3dwZk12bUFpVkNsNDB5ektBRHdPaXc?oc=5"
     },
     {
@@ -1818,6 +1834,14 @@
       "url": "https://www.businesspost.co.kr/BP?command=article_view&num=442394"
     },
     {
+      "source": "google",
+      "press": "데일리굿뉴스",
+      "date": "2026.06.26",
+      "title": "안산 상록구교구협의회, 6·25전쟁 76주년 연합성회 개최",
+      "snippet": "안산 상록구교구협의회, 6·25전쟁 76주년 연합성회 개최 데일리굿뉴스",
+      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9zV0JKSnBJRXl1ZUJuZjNoczlJNzI1UVdEYkVxekVIcU1HYl9WWDItcjhqNkhVSlhIeE5yRm1kX2RZSnRmYVJ5MzVUb0Q1SVotZ29vMmN1U1ZyMVpkOGRvT3U4aGNqUEstM2ZkS9IBcEFVX3lxTFBpVnc2NEZBcmJyNm1uWkFDVmh1S3RWeHQxQkhYWHJWa3FXS3VZaDkxLXNyNnViSFJzb3g0MGJYRUJEbVh0c0d0aWVCRmlWMmJuT001NHNvTTZUVTdRdFpqdVdiSGl4ZF9IVFliMjZENGo?oc=5"
+    },
+    {
       "source": "naver",
       "press": "joongboo.com",
       "date": "2026.06.25",
@@ -1867,18 +1891,18 @@
     },
     {
       "source": "google",
-      "press": "연합뉴스",
+      "press": "yna.co.kr",
       "date": "2026.05.13",
       "title": "안산 상록구 비닐하우스서 불…1시간 20여분 만에 진화",
-      "snippet": "안산 상록구 비닐하우스서 불…1시간 20여분 만에 진화 연합뉴스",
+      "snippet": "안산 상록구 비닐하우스서 불…1시간 20여분 만에 진화 yna.co.kr",
       "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9RU2dkakIwbl9yY3JnSlZIRTV0LVBTdWpOejh4eEd5Rm9yUEE1TXQ0R25zX0l3ZDlSNmtLTi12MmtqUWVISThZR3ZaNE5NcGV4cVRmd0FIaDJwcDTSAWBBVV95cUxQNldVQmI2OEdEejFPM2N5eUhZRHN3MjJxUU9PR0FYLVVqWEhjRnBlRXIzRWZuQnRkcURjLWxvbHJydzJCM3ZVRTNlamhGQnJIZktIYkQzcjk5Rk9iR0pNX0M?oc=5"
     },
     {
       "source": "google",
-      "press": "seoul.co.kr",
+      "press": "서울신문",
       "date": "2026.05.13",
       "title": "안산 상록구 다세대 주택 불…1명 사망·3명 부상",
-      "snippet": "안산 상록구 다세대 주택 불…1명 사망·3명 부상 seoul.co.kr",
+      "snippet": "안산 상록구 다세대 주택 불…1명 사망·3명 부상 서울신문",
       "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9ERkxuNk5RRFVpQmNqRVMtalpDU05MNndSNGIzb1l0bmZvOUZNU0dYeUptT2NyNDlvN2ZyLW9neG8xZWRKb2FPMzl0STFERTNjYWpqVF9jc1NhWlhMTlNBNWUyMGttZEl4YkdYTFJ2ZkJrUWNtdmFkSDlhOA?oc=5"
     },
     {
@@ -1899,26 +1923,26 @@
     },
     {
       "source": "google",
-      "press": "kyeonggi.com",
+      "press": "경기일보",
       "date": "2026.05.09",
       "title": "'공천 개입' 논란 속 다시 공천받은 장윤정 경기도의원…민주, 20차 경선결과 발표",
-      "snippet": "'공천 개입' 논란 속 다시 공천받은 장윤정 경기도의원…민주, 20차 경선결과 발표 kyeonggi.com",
+      "snippet": "'공천 개입' 논란 속 다시 공천받은 장윤정 경기도의원…민주, 20차 경선결과 발표 경기일보",
       "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE94cXMtSzRfclhwaGFQTS1NYUtLdVBaOUFQaFdhUnpqcm5BNGFHUzFYYVlRQlZmN24zMHVBTVFDS29XWVd3c3htZTFCdTVqMmd4eV9RbDZTaktFRzg?oc=5"
     },
     {
       "source": "google",
-      "press": "일간투데이",
+      "press": "dtoday.co.kr",
       "date": "2026.05.09",
       "title": "기울어진 운동장 안 된다”…장윤정 경기도의원, 안산 정치권 녹취 파장 정면 비판",
-      "snippet": "기울어진 운동장 안 된다”…장윤정 경기도의원, 안산 정치권 녹취 파장 정면 비판 일간투데이",
+      "snippet": "기울어진 운동장 안 된다”…장윤정 경기도의원, 안산 정치권 녹취 파장 정면 비판 dtoday.co.kr",
       "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE9PNjdvWkxMWnZ6SFlOczZKSW40VnhSd3dXMzFPYnFPckp3b3A0V2taR1lPcnJTc01XR1l6VkJIY3JieHRxYm15ZFdYN25aOEttQmtwbGFlYTJGYmt0REItTzBJVlBETmZvcU5J?oc=5"
     },
     {
       "source": "google",
-      "press": "kyeonggi.com",
+      "press": "경기일보",
       "date": "2026.05.06",
       "title": "안산 상록 상가에 차량 돌진…70대 운전자 등 4명 부상",
-      "snippet": "안산 상록 상가에 차량 돌진…70대 운전자 등 4명 부상 kyeonggi.com",
+      "snippet": "안산 상록 상가에 차량 돌진…70대 운전자 등 4명 부상 경기일보",
       "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFB2cC1QVExwd1pxbGlKZFh2V1RLVHdndlZuMk5adUpqaUV3Z2g1eC1oa2N3VzdrMG8zVDczQ0kzSEZkV0N1ekhkNUVFMGQzYTF0WUhtV293Q0ZLOGs?oc=5"
     },
     {
@@ -1939,19 +1963,19 @@
     },
     {
       "source": "google",
-      "press": "donga.com",
+      "press": "동아일보",
       "date": "2026.04.25",
       "title": "안산 상록구 금속 구조물 제작 공장서 불…35분 만에 완진",
-      "snippet": "안산 상록구 금속 구조물 제작 공장서 불…35분 만에 완진 donga.com",
+      "snippet": "안산 상록구 금속 구조물 제작 공장서 불…35분 만에 완진 동아일보",
       "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE9aNk9telFyd253d0xfZ0IxWTgwa3VvaDc3b3ZzZEtCZnZwOVQxbTN3V201dWZNZllWTWVNT2RscWhFM3dMcWdtRm1CZE5Ca3ZmWHBGRGQxV2JfRVQ2UHZtTGVkMS1vSWJaLXdMSUp1TXNhem9PN2fSAWZBVV95cUxNekI3eFlqQTY1bURXeWpzdy1veXhkXzBVN0lIUTQxNGtsbTNZZTFYZzFXNFhDTzZFYnFkS25VSU1fRnd6MUxHTFlRRFhpSEFDY29lRjdRdUdCS0h4SlJxMUhGQk5hQkE?oc=5"
     },
     {
       "source": "google",
-      "press": "안산뉴스",
-      "date": "2026.04.07",
-      "title": "장윤정 도의원 안산3선거구 재도전 공식선언",
-      "snippet": "장윤정 도의원 안산3선거구 재도전 공식선언 안산뉴스",
-      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9RaUlPOGI2eng2bU9nTGJBZHdmd3JpRVRXc1BiSG5sN0c0d3A4RkF0WVZ2OWUzaDNTWWs0VDMwV2FqU0g3ZzdaYzV6d0Z4TnZtRG9YRVRIQ3VTQWxucXdWbmRxR3I5VFJCZ2RUNA?oc=5"
+      "press": "v.daum.net",
+      "date": "2026.04.06",
+      "title": "장윤정 경기도의원, 재선 출마 공식선언… “안산 변화 이끌 것”",
+      "snippet": "장윤정 경기도의원, 재선 출마 공식선언… “안산 변화 이끌 것” v.daum.net",
+      "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE9UV0RqUVdyLU9HWEJBWk54ZDV2TV9nNTVxTmg3RnBXQ3owbTBnSml2eHBFMlBoLW1IQzJqVGNnbllnMnBONHRVZEJLZ0FKVGs?oc=5"
     },
     {
       "source": "google",
