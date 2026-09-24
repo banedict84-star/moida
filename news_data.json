@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-24 05:12 UTC",
+  "updated": "2026-09-24 10:22 UTC",
   "items": [
     {
       "source": "naver",
@@ -363,19 +363,19 @@
     },
     {
       "source": "naver",
-      "press": "getnews.co.kr",
-      "date": "2026.09.23",
-      "title": "'경희궁 유보라 아파트' 보류지 1가구 매각 재입찰",
-      "snippet": "안산자락길 산책로·등산길, 인왕산 등문화·녹지공간도 가깝다. 이와 함께 지하철 3호선 독립문역과 5호선 서대문역을 도보로 이용할 수 있고 통일로와 사직로, 새문안로, KTX 서울역도 지근거리에 있다. 교육 시설로는...",
-      "url": "https://www.getnews.co.kr/news/articleView.html?idxno=881636"
-    },
-    {
-      "source": "naver",
       "press": "koreadaily.com",
       "date": "2026.09.23",
       "title": "쌍용건설 ‘쌍용 더 플래티넘 서대문’ 100% 계약 완료 “신축 희소성에...",
       "snippet": "단지가 들어서는 서대문구 홍은동 일대는 기존 주거지가 형성돼 있어 교육과 교통, 생활편의시설 등을... 백련산과 홍제천, 안산, 안산도시자연공원 등이 인접해 산책과 운동 등 여가생활을 즐기기에도 좋다. 교통망을...",
       "url": "https://www.koreadaily.com/article/20260922170005797"
+    },
+    {
+      "source": "naver",
+      "press": "getnews.co.kr",
+      "date": "2026.09.23",
+      "title": "'경희궁 유보라 아파트' 보류지 1가구 매각 재입찰",
+      "snippet": "안산자락길 산책로·등산길, 인왕산 등문화·녹지공간도 가깝다. 이와 함께 지하철 3호선 독립문역과 5호선 서대문역을 도보로 이용할 수 있고 통일로와 사직로, 새문안로, KTX 서울역도 지근거리에 있다. 교육 시설로는...",
+      "url": "https://www.getnews.co.kr/news/articleView.html?idxno=881636"
     },
     {
       "source": "naver",
@@ -587,10 +587,10 @@
     },
     {
       "source": "google",
-      "press": "pressian.com",
+      "press": "프레시안",
       "date": "2026.09.22",
       "title": "경기도 안산교육지원청, ‘교사 행정업무 ZERO’ 위해 신청서 폐지·입찰 전담 강화",
-      "snippet": "경기도 안산교육지원청, ‘교사 행정업무 ZERO’ 위해 신청서 폐지·입찰 전담 강화 pressian.com",
+      "snippet": "경기도 안산교육지원청, ‘교사 행정업무 ZERO’ 위해 신청서 폐지·입찰 전담 강화 프레시안",
       "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTFAzTm5LSDkyMXREMjZEMThQX0tEejNrdVIxMV9ON2owSmlmV1pfMHlEdEtYSHY5TDg3YmxMYno0NUNyTHVzZEFkYWxIQmFsS011QUEtdzhBZTFaVmlER25YTDRIOXRnbEhzaTNR?oc=5"
     },
     {
@@ -603,10 +603,10 @@
     },
     {
       "source": "google",
-      "press": "pressian.com",
+      "press": "프레시안",
       "date": "2026.09.22",
       "title": "안산디자인문화고, 최신 설비 갖춘 ‘식생활교육관’ 개관",
-      "snippet": "안산디자인문화고, 최신 설비 갖춘 ‘식생활교육관’ 개관 pressian.com",
+      "snippet": "안산디자인문화고, 최신 설비 갖춘 ‘식생활교육관’ 개관 프레시안",
       "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTFBqWUZqQlF4Rjd3UG1zNE56WEQ5SUNrYnFkNmlBbVhJdlBTQ29xMUZCZk9nRnY1ck9acWRGN2xXZTF3LUpsM2doRGU5S0NmUkZxODZoWGRSaUJqZFJCZ3JMMzZfSUozQUlKQzRZ?oc=5"
     },
     {
@@ -907,14 +907,6 @@
     },
     {
       "source": "google",
-      "press": "popupnews24.com",
-      "date": "2026.09.18",
-      "title": "경기도의회 박은경 의원, 안산 직업교육 발전 간담회 개최",
-      "snippet": "경기도의회 박은경 의원, 안산 직업교육 발전 간담회 개최 popupnews24.com",
-      "url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTE5QZzI1OXI4NHZ4LWdPMElIcnlBX2IyVmVYTGdNdjFJRWxjd3JwUXlTN3lxTWZsRWFOOE0xNFBsVm1UUkx0WmE4OVZR?oc=5"
-    },
-    {
-      "source": "google",
       "press": "경기일보",
       "date": "2026.09.17",
       "title": "안산 자동차 정비업체서 불…8명 긴급 대피·소방 장비 18대 투입",
@@ -995,6 +987,14 @@
     },
     {
       "source": "google",
+      "press": "중부시사신문",
+      "date": "2026.09.15",
+      "title": "경기도의회 장윤정 의원, 특성화고 출신 선배로서 직업계고 학생들의 꿈과 도전 응원",
+      "snippet": "경기도의회 장윤정 의원, 특성화고 출신 선배로서 직업계고 학생들의 꿈과 도전 응원 중부시사신문",
+      "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE5sYzg0S0tucGQ3aU9TY1c2UV9Pazl1WURxNlJBeUVmVXd2d1RQeVBvbkpPajhJTjlydHJFUUNLNS1acFFfSmpBLVFwaEFWUk9TVVQ3d25rR29wMHFZY2RscUVTMA?oc=5"
+    },
+    {
+      "source": "google",
       "press": "웹이코노미",
       "date": "2026.09.15",
       "title": "경기도의회 장윤정 의원, 직업계고 학생들 응원",
@@ -1016,14 +1016,6 @@
       "title": "\"현장에서 취업까지 한번에~!\" 경기도교육청 직업계고 취창업박람회, 학...",
       "snippet": "15일 오전 고양시 일산서구 킨텍스 제2전시장 6홀에서 열린 '2026 경기도교육청 직업계고 취창업박람회' 개막식에서 채열희 경기도교육청 학교교육국장, 장윤정 경기도의회 경제노동위원회 부위원장, 참석 내빈들과...",
       "url": "https://www.joongboo.com/news/articleView.html?idxno=363736819"
-    },
-    {
-      "source": "google",
-      "press": "mediatoday.asia",
-      "date": "2026.09.15",
-      "title": "경기도의회 장윤정 의원, 특성화고 출신 선배로서 직업계고 학생들의 꿈과 도전 응원",
-      "snippet": "경기도의회 장윤정 의원, 특성화고 출신 선배로서 직업계고 학생들의 꿈과 도전 응원 mediatoday.asia",
-      "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNTUdFTnpRcUV6dm0yYlk3M2RCWUVySjZfMzI0MEJwZ1BKNnM5YVJuNzVEc0NNRXM0LVFkM3l0bXg2a01UX2Z6amM5Ny1MdENvN0d2cnBjeTFfZXdTZFBRa2JGWTdiNXl3N093Y0NJa0M4OFZadXhVMEJEeldWSUJ0LTR6S1pxWlA3ZFphMVlaNjdMT0FsQXM3Zw?oc=5"
     },
     {
       "source": "naver",
@@ -1267,11 +1259,11 @@
     },
     {
       "source": "google",
-      "press": "경인종합일보",
+      "press": "화성인터넷신문",
       "date": "2026.09.09",
-      "title": "경기도의회 장윤정 의원, \"민생 정책 성과 높이려면 철저한 홍보와 소통 필수… 지역 언론 홍보 예산 삭감 우려\"",
-      "snippet": "경기도의회 장윤정 의원, \"민생 정책 성과 높이려면 철저한 홍보와 소통 필수… 지역 언론 홍보 예산 삭감 우려\" 경인종합일보",
-      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE0wcUUtbU9tcE15bEZpZHo5emtyS3N4bV9xU3FFcExPcTRObkdVRC1aUW9WLVpscmctMDdFUUVnSU1lSWM0TjNiWTVzWG5hMmJYaGZKN3otcmtsVE4yVFQ0bzA4Uk1BeGFiSHFHY1FB?oc=5"
+      "title": "경기도의회 장윤정 의원, 민생 정책 성과 높이려면 철저한 홍보와 소통 필수, 지역 언론 홍보 예산 삭감 우려",
+      "snippet": "경기도의회 장윤정 의원, 민생 정책 성과 높이려면 철저한 홍보와 소통 필수, 지역 언론 홍보 예산 삭감 우려 화성인터넷신문",
+      "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE1MbVktalhjZ3ZkT2xnTVl2el9OQ0xDLXg1cExJSF9iZC11ZFlSdV80eTZwY3djc1RJeU1kN09sZkhjSkhMZFNFc0ZTR1djR0E?oc=5"
     },
     {
       "source": "google",
@@ -1352,6 +1344,14 @@
       "title": "주진우 “용혜인, 안산 주택 중국인에 단타 매도…차익 2천만원”",
       "snippet": "주진우 “용혜인, 안산 주택 중국인에 단타 매도…차익 2천만원” 경기일보",
       "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE0yTmxHM0ZHakNrbWJCQmxzX2hfWEVDX3FMdk5IN1ZYTEJqNXZwUFRqRVlqaXkzTElOcDFLd1Nwdkhtd0FIaWRzT0JIRG9iYXZaUm50eExmYmxfM0U?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "매일일보",
+      "date": "2026.09.02",
+      "title": "안산교육지원청, 생성형 AI로 제작한 '학교 예산 지원사업' 안내영상 공개",
+      "snippet": "안산교육지원청, 생성형 AI로 제작한 '학교 예산 지원사업' 안내영상 공개 매일일보",
+      "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFBydXppTzJDRGpDYVVrZEgwSjRkWWQ2M211RTRkVk9nZ3NoVjdNSjNMVVNBa09pV0tESlZWNXFPeVU0UzVvUms1RXBkVS1FM0JMZUFRQ0FvRm5UbmMzdTM4WnppNjbSAWhBVV95cUxQd0k2alg5SDE2dWV2SW9rU0FsVGhxdTFEMjFuZl9XbDh0dWZfTmRtTENBS29meVk1Mi1oWjlhRG0xNXZkeEdPd3E2SXFJYmxoM19TZy10dnRMa2Z0Y1dfUU5DVTV2ZFNKWQ?oc=5"
     },
     {
       "source": "google",
@@ -1787,10 +1787,10 @@
     },
     {
       "source": "google",
-      "press": "일간경기",
+      "press": "1gan.co.kr",
       "date": "2026.07.27",
       "title": "장윤정 의원, “도민 세금이 1원도 헛되이 쓰이지 않게 하겠다”",
-      "snippet": "장윤정 의원, “도민 세금이 1원도 헛되이 쓰이지 않게 하겠다” 일간경기",
+      "snippet": "장윤정 의원, “도민 세금이 1원도 헛되이 쓰이지 않게 하겠다” 1gan.co.kr",
       "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE56YnRsUjY3N0FmRHF0a1paTHI1ZjY0SlI2MHNIc1VTT2p6RmtPUzlRMUFpTzc0Sm84bVdfYWJaVFM1ajNqRjAyTjFLQmdrUnY3M2Utc01Nel82SUt3TGZJbTM0OS1BdldF?oc=5"
     },
     {
@@ -1859,10 +1859,10 @@
     },
     {
       "source": "google",
-      "press": "경기중앙신문",
+      "press": "ggjapp.com",
       "date": "2026.07.21",
       "title": "경기도의회 장윤정 의원, “경제노동위원회 부위원장으로 선임, 막중한 책임감 느껴..”",
-      "snippet": "경기도의회 장윤정 의원, “경제노동위원회 부위원장으로 선임, 막중한 책임감 느껴..” 경기중앙신문",
+      "snippet": "경기도의회 장윤정 의원, “경제노동위원회 부위원장으로 선임, 막중한 책임감 느껴..” ggjapp.com",
       "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5janNQeURtRERwWUw4RlRESFBQd1lpVXdsS3B1RDN4MXhSWkpIVWhTWlAxYkRkMXBGM2R3NW9YWjh4dXFFTFdmbF9tUFFCa2hPdXItaWpsb0dod2hxUUhaM2NzN1ZyYzZl?oc=5"
     },
     {
@@ -1891,22 +1891,6 @@
     },
     {
       "source": "google",
-      "press": "더코리아",
-      "date": "2026.06.13",
-      "title": "장윤정 경기도의회 교육기획위원회 부위원장, 경기도교육청 예산유보 운영 점검 > 뉴스",
-      "snippet": "장윤정 경기도의회 교육기획위원회 부위원장, 경기도교육청 예산유보 운영 점검 > 뉴스 더코리아",
-      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFA4aWt5Vl9FYVZmYklkdUd0UU9DNS1qT08tR28zNC1YT0JsU1R3QWk3NmxyenRTTi1NdTFGb2hWenEwbWRjUk5xYmhnTzZsX2hYNVkyY0NnYnMtUkh5bXowU1E2UHNjZ3pvdnBIRXhjWUE?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "투데이경제",
-      "date": "2026.06.12",
-      "title": "경기도의회 장윤정 의원, 경기도교육청 예산유보 운영 점검…“절감보다 적기 집행이 중요”",
-      "snippet": "경기도의회 장윤정 의원, 경기도교육청 예산유보 운영 점검…“절감보다 적기 집행이 중요” 투데이경제",
-      "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE9zb2RFaWl5akFnellzdnVNQzlBajFsS0dhQm1RdlZaSXhpWVZCYVpvSU9SVEpwREJPanBFSU9RUUxHQmJwSi1sbGxvWVRvNXdmUFkxU1ltaUNhaHBPNkhyNWg3R2ZiRG5rd09n?oc=5"
-    },
-    {
-      "source": "google",
       "press": "안산뉴스",
       "date": "2026.06.04",
       "title": "민주당 경기도의원 8석 싹쓸이 당선",
@@ -1923,10 +1907,10 @@
     },
     {
       "source": "google",
-      "press": "뉴스프리존",
+      "press": "newsfreezone.co.kr",
       "date": "2026.05.28",
       "title": "장윤정 경기도의원 후보 “교육·지역경제 함께 성장하는 안산 만들 것”",
-      "snippet": "장윤정 경기도의원 후보 “교육·지역경제 함께 성장하는 안산 만들 것” 뉴스프리존",
+      "snippet": "장윤정 경기도의원 후보 “교육·지역경제 함께 성장하는 안산 만들 것” newsfreezone.co.kr",
       "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE45OHNIeUxramRDR1dsYnVpb1VrXzRjbGdCQXFoXzV4Q1ZCTzN6d3lzbDlfdDBaSDIyeXFOZlhWZUd6dWxQUEliaGxVR1hDeFZDdGhnakxPZGxrLU5sVzg0QlBCMVpQeWVaTEhfb01KMmt1RG_SAXdBVV95cUxQRWRkWGpqeWRPZVJvdXdITXh0ZmVxWFJPanVncTBDc1VrRXc5OS1OOFFwcHIzR1JHZmo0UWZIT3BMMXNiVDJuQXhENllHMzVTVE94WGFJMHhDRzd3QW03REVoTnBraXh1OGlZYWJob2c4amNXdmZNRQ?oc=5"
     },
     {
@@ -1955,10 +1939,10 @@
     },
     {
       "source": "google",
-      "press": "asn24.com",
+      "press": "경인신문",
       "date": "2026.05.11",
       "title": "장윤정 경기도의원, 안산 제3선거구 공천 확정... \"무도한 권력에 대한 당원들의 엄중한 심판\"",
-      "snippet": "장윤정 경기도의원, 안산 제3선거구 공천 확정... \"무도한 권력에 대한 당원들의 엄중한 심판\" asn24.com",
+      "snippet": "장윤정 경기도의원, 안산 제3선거구 공천 확정... \"무도한 권력에 대한 당원들의 엄중한 심판\" 경인신문",
       "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE1lUTd5aEhXbmtjLTVva3RfUC1DOGdJSkRnVWt4RWlJRThQRm1PR3N1SFpJYXZhclpic0Jsc2xBWHF5UHNQS2pxMl9RU2pzTVpfVWx3aDdZSkhKaFcyNEVUUlRJU1I1WjA?oc=5"
     },
     {
@@ -1979,10 +1963,10 @@
     },
     {
       "source": "google",
-      "press": "뉴시스",
+      "press": "newsis.com",
       "date": "2026.05.09",
       "title": "[표]민주당 경기도당, 안산3 장윤정 등 광역의원 경선 결과 발표",
-      "snippet": "[표]민주당 경기도당, 안산3 장윤정 등 광역의원 경선 결과 발표 뉴시스",
+      "snippet": "[표]민주당 경기도당, 안산3 장윤정 등 광역의원 경선 결과 발표 newsis.com",
       "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTFBJQjhGdDAtcUU4dWRCRkhmaDBoQ1NHaEh3bFg4SmlfQS1RZWZHblJtWHJLdzdwNVdSSzZrSkxwRjZOUm0zdmxMSUhUaGNLYk1XWE40TUo1T2lJcElOOUxKSdIBeEFVX3lxTE5FLTRicWFjcmJBWHRrdmJDVnF0Sm8zbFRlWUYxcFJ3MjZCQ3Zpd2pORXY2MWZjU05XWHhsZktYRXp2SEdndFozbktzRFEtZzNhV1R1MHd1RzZmT2taaEJyQVY3YWk0TzRDdFY1M3ZMNTZnSElqSmJycg?oc=5"
     },
     {
@@ -2000,6 +1984,22 @@
       "title": "장윤정 도의원 교육기획위 부위원장 선임",
       "snippet": "장윤정 도의원 교육기획위 부위원장 선임 안산뉴스",
       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE1OR3g0WmZLbHVpZXJqRVVPblJuUU8tNWZ6eEpkMUZvVTFBTUlXbHBvN25wQVpaUlRieGpXSU5yNmRRVEdPeVlsS3pBZmlweV9IRktMUUIteU03Z203R0FmX3UtVVpWWFFzWWJHdw?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "v.daum.net",
+      "date": "2026.04.06",
+      "title": "장윤정 경기도의원, 재선 출마 공식선언… “안산 변화 이끌 것”",
+      "snippet": "장윤정 경기도의원, 재선 출마 공식선언… “안산 변화 이끌 것” v.daum.net",
+      "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE9UV0RqUVdyLU9HWEJBWk54ZDV2TV9nNTVxTmg3RnBXQ3owbTBnSml2eHBFMlBoLW1IQzJqVGNnbllnMnBONHRVZEJLZ0FKVGs?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "경기시사투데이",
+      "date": "2026.04.06",
+      "title": "장윤정 경기도의원 안산 제3선거구 재선 출마 선언",
+      "snippet": "장윤정 경기도의원 안산 제3선거구 재선 출마 선언 경기시사투데이",
+      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE4zR1VkX09YVU9udnZnck9kQUVZMFp5NjlfNlBGZ255aGphNWs3SjV4a0E5ZmxsZ08yR00tajhmbU1ERUZGNExCM0FnaEJsY0VHRFZ1ejVmajFuNzBwYlVfdkxvOHRPdFBSYUE?oc=5"
     }
   ]
 }
