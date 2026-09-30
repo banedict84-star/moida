@@ -1,6 +1,18 @@
 {
-  "updated": "2026-09-30 01:31 UTC",
+  "updated": "2026-09-30 07:23 UTC",
   "items": [
+    {
+      "title": "전국위원장 선출을 위한 선거일 공고",
+      "date": "2026-09-30",
+      "link": "https://theminjoo.kr/main/sub/news/view.php?sno=0&brd=1&post=1220510&search=",
+      "category": "공지"
+    },
+    {
+      "title": "전국위원장 후보자 등록 공고",
+      "date": "2026-09-30",
+      "link": "https://theminjoo.kr/main/sub/news/view.php?sno=0&brd=1&post=1220511&search=",
+      "category": "공지"
+    },
     {
       "title": "2026 더불어민주당 정책위원회 전문위원(교육) 계약직 채용공고",
       "date": "2026-09-29",
@@ -112,13 +124,13 @@
     {
       "title": "당대표·최고위원 선출 순회경선 (제주·인천) 권리당원 투표결과",
       "date": "2026-08-08",
-      "link": "https://theminjoo.kr/main/sub/news/view.php?sno=0&brd=1&post=1219599&search=",
+      "link": "https://theminjoo.kr/main/sub/news/view.php?sno=20&brd=1&post=1219599&search=",
       "category": "일반"
     },
     {
       "title": "더불어민주당 당대표 및 최고위원 선출을 위한 권리당원(강원·대구·​경북) 자발적 ARS투표 안내",
       "date": "2026-08-08",
-      "link": "https://theminjoo.kr/main/sub/news/view.php?sno=0&brd=1&post=1219582&search=",
+      "link": "https://theminjoo.kr/main/sub/news/view.php?sno=20&brd=1&post=1219582&search=",
       "category": "일반"
     },
     {
@@ -232,13 +244,13 @@
     {
       "title": "당대표 및 최고위원 후보자 선출을 위한 예비경선 합동연설회 공고",
       "date": "2026-07-17",
-      "link": "https://theminjoo.kr/main/sub/news/view.php?sno=20&brd=1&post=1219342&search=",
+      "link": "https://theminjoo.kr/main/sub/news/view.php?sno=40&brd=1&post=1219342&search=",
       "category": "일반"
     },
     {
       "title": "당대표 및 최고위원 (예비)후보등록안내 공고",
       "date": "2026-07-14",
-      "link": "https://theminjoo.kr/main/sub/news/view.php?sno=20&brd=1&post=1219306&search=",
+      "link": "https://theminjoo.kr/main/sub/news/view.php?sno=40&brd=1&post=1219306&search=",
       "category": "일반"
     },
     {
@@ -347,18 +359,6 @@
       "title": "제9회 전국동시지방선거 제주특별자치도 광역단체장 결선 결과 발표",
       "date": "2026-04-18",
       "link": "https://theminjoo.kr/main/sub/news/view.php?sno=40&brd=1&post=1218116&search=",
-      "category": "일반"
-    },
-    {
-      "title": "더불어민주당 제주특별자치도지사 후보자 선출을 위한 권리당원 자발적 ARS투표 안내",
-      "date": "2026-04-18",
-      "link": "https://theminjoo.kr/main/sub/news/view.php?sno=40&brd=1&post=1218067&search=",
-      "category": "일반"
-    },
-    {
-      "title": "제9회 전국동시지방선거 세종특별자치시 광역단체장 결선 결과 발표",
-      "date": "2026-04-16",
-      "link": "https://theminjoo.kr/main/sub/news/view.php?sno=40&brd=1&post=1218088&search=",
       "category": "일반"
     }
   ]
