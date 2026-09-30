@@ -3,6 +3,7 @@ import { DurableObject } from 'cloudflare:workers';
 import './core.js';
 import browserScripts from './browser-scripts.js';
 import publicKey from './public-key.js';
+import { handleWebAccess } from './web-access.js';
 const C = globalThis.NewPostsCore;
 const DAY = 86400000, BUDGET = 540000;
 const encoder = new TextEncoder();
@@ -13,6 +14,14 @@ const nextDay = () => (Math.floor(Date.now()/DAY)+1)*DAY+5000;
 export default {
   async fetch(request,env) {
     if(new URL(request.url).pathname==='/health') return json({service:'new-post-helper',ready:true});
+    const web=await handleWebAccess(request,env);if(web)return web;
+    if(['GET','HEAD'].includes(request.method)&&env.ASSETS){
+      const asset=await env.ASSETS.fetch(request), response=new Response(asset.body,asset);
+      response.headers.set('Referrer-Policy','no-referrer');
+      response.headers.set('X-Content-Type-Options','nosniff');
+      response.headers.set('Content-Security-Policy',"default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'; object-src 'none'; form-action 'self'");
+      return response;
+    }
     if(request.method!=='POST'||new URL(request.url).pathname!=='/command') return json({error:'Not found'},404);
     const body=await request.text();
     if(body.length>30000)return json({error:'Too large'},413);
@@ -112,7 +121,7 @@ export class Helper extends DurableObject {
   }
   async reserve(ms){if(this.quota()<ms)throw new Error('오늘의 무료 실행량이 부족합니다. 내일 다시 시도해 주세요.');this.state.quota.used+=ms;this.save();return {day:this.state.quota.day,ms,at:Date.now()};}
   settle(reservation,closed){if(closed&&reservation?.day===this.state.quota.day){const used=Math.min(reservation.ms,Date.now()-reservation.at+5000);this.state.quota.used=Math.max(0,this.state.quota.used-(reservation.ms-used));this.save();}}
-  async launch(){return puppeteer.launch(this.env.BROWSER,{keep_alive:60000,guardrails:{allowedDomains:['facebook.com','*.facebook.com','*.fbcdn.net','*.fbsbx.com','*.facebook.net']}});}
+  async launch(keepAlive=60000){return puppeteer.launch(this.env.BROWSER,{keep_alive:keepAlive,guardrails:{allowedDomains:['facebook.com','*.facebook.com','*.fbcdn.net','*.fbsbx.com','*.facebook.net']}});}
   async crypt(value,decrypt=false){
     if(!this.env.FB_SESSION_KEY)throw new Error('서버 연결 설정이 아직 완료되지 않았습니다.');
     const raw=Uint8Array.from(this.env.FB_SESSION_KEY.match(/.{2}/g),x=>parseInt(x,16));
@@ -125,7 +134,7 @@ export class Helper extends DurableObject {
     if(!this.env.FB_SESSION_KEY)throw new Error('서버 연결 설정이 아직 완료되지 않았습니다.');
     const reservation=await this.reserve(240000);let browser;
     try {
-      browser=await this.launch();const page=await browser.newPage();await page.setViewport({width:1280,height:900});await page.goto('https://www.facebook.com/login/?locale=ko_KR',{waitUntil:'domcontentloaded',timeout:30000});
+      browser=await this.launch(180000);const page=await browser.newPage();await page.setViewport({width:1280,height:900});await page.goto('https://www.facebook.com/login/?locale=ko_KR',{waitUntil:'domcontentloaded',timeout:30000});
       const cdp=await page.createCDPSession();const {devtoolsFrontendUrl}=await cdp.send('Cloudflare.getLiveView',{mode:'tab',expiresInMs:180000});
       this.state.login={sessionId:browser.sessionId(),expiresAt:Date.now()+180000,reservation};this.save();await this.schedule();await browser.disconnect();return {url:devtoolsFrontendUrl,expiresAt:this.state.login.expiresAt};
     }catch(e){let closed=false;if(browser){try{await browser.close();closed=true;}catch{}}this.settle(reservation,closed);throw e;}

@@ -25,6 +25,7 @@ jobs:
         with:
           node-version: '22'
       - run: npm ci --no-audit --no-fund
+      - run: npm run build
       - run: npx wrangler deploy
       - name: Create encryption key only on first deployment
         shell: bash
