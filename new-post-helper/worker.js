@@ -11,6 +11,9 @@ const json = (value, status=200) => Response.json(value,{status,headers:{'Cache-
 const from64 = s => Uint8Array.from(atob(s), c=>c.charCodeAt(0));
 const to64 = a => btoa(String.fromCharCode(...new Uint8Array(a)));
 const nextDay = () => (Math.floor(Date.now()/DAY)+1)*DAY+5000;
+const monthStart = () => {const d=new Date();return Date.UTC(d.getUTCFullYear(),d.getUTCMonth(),1);};
+const nextMonth = () => {const d=new Date();return Date.UTC(d.getUTCFullYear(),d.getUTCMonth()+1,1)+5000;};
+const MONTHLY_HOURS = [30,100,200,500];
 export default {
   async fetch(request,env) {
     if(new URL(request.url).pathname==='/health') return json({service:'new-post-helper',ready:true});
@@ -44,19 +47,51 @@ export class Helper extends DurableObject {
     this.sql.exec('CREATE TABLE IF NOT EXISTS nonces (id TEXT PRIMARY KEY, at INTEGER NOT NULL)');
     const row=this.sql.exec('SELECT value FROM meta WHERE id=1').toArray()[0];
     this.state=row?JSON.parse(row.value):{...C.defaultState(),posts:undefined,quota:{day:'',used:0},nextRunAt:null,connection:{connected:false},login:null};
+    this.state.settings.monthlyHours ||= 100;
     if(this.state.job?.running){this.state.job=null;this.state.settings.dailyEnabled=false;this.event('실행이 중단되어 자동 확인을 껐습니다. 기록을 확인한 뒤 다시 시작해 주세요.','warning');}
     for(const row of this.sql.exec("SELECT key,value FROM posts WHERE json_extract(value,'$.status')='attempting'").toArray()){const p=JSON.parse(row.value);p.status='uncertain';p.note='서버가 재시작되어 결과를 확인해야 합니다.';this.putPost(p);}
     this.save();
+    if(ctx.blockConcurrencyWhile)ctx.blockConcurrencyWhile(async()=>{await this.syncPlan(true);await this.schedule();});
   }
   event(message,level='info'){this.state.events.unshift({at:Date.now(),message,level});this.state.events=this.state.events.slice(0,150);}
   save(){this.sql.exec('INSERT OR REPLACE INTO meta(id,value) VALUES(1,?)',JSON.stringify(this.state));}
   putPost(p){this.sql.exec('INSERT OR REPLACE INTO posts(key,target,seen,value) VALUES(?,?,?,?)',p.key,p.targetId,p.lastSeenAt||p.firstSeenAt||Date.now(),JSON.stringify(p));}
   post(key){const row=this.sql.exec('SELECT value FROM posts WHERE key=?',key).toArray()[0];return row?JSON.parse(row.value):null;}
-  quota(){const day=new Date().toISOString().slice(0,10);if(this.state.quota.day!==day)this.state.quota={day,used:0};return Math.max(0,BUDGET-this.state.quota.used);}
+  plan(){return this.state.executionPlan==='paid'?'paid':'free';}
+  async syncPlan(force=false){
+    if(!force&&Date.now()-(this.state.planCheckedAt||0)<60000)return;
+    if(this.planCheck)return this.planCheck;
+    this.planCheck=(async()=>{
+      let timer;
+      try {
+        const limits=await Promise.race([Promise.resolve().then(()=>puppeteer.limits(this.env.BROWSER)),new Promise((_,reject)=>{timer=setTimeout(()=>reject(new Error('Plan check timed out')),10000);})]);
+        if(!Number.isInteger(limits.maxConcurrentSessions)||limits.maxConcurrentSessions<1)throw new Error('Unknown account limits');
+        // The current provider Free tier permits 3 sessions; Paid permits more.
+        const previous=this.plan(),plan=limits.maxConcurrentSessions>3?'paid':'free';
+        const remaining=this.quota();this.state.executionPlan=plan;this.state.planCheckedAt=Date.now();
+        const job=this.state.job;
+        if(previous==='free'&&plan==='paid'){
+          this.event('유료 실행 요금제를 확인했습니다. 하루 9분 제한을 해제했습니다.');
+          if(job&&!job.running&&(job.waitReason==='free-quota'||(!job.waitReason&&remaining<90000&&job.dueAt>Date.now()))){job.dueAt=Date.now()+1000;delete job.waitReason;}
+        }else if(previous==='paid'&&plan==='free')this.event('현재 서버 요금제가 무료로 확인되어 하루 실행 한도를 적용했습니다.','warning');
+        this.save();await this.schedule();
+      }catch{this.state.planCheckFailedAt=Date.now();}
+      finally{if(timer)clearTimeout(timer);this.planCheck=null;}
+    })();
+    return this.planCheck;
+  }
+  quota(){
+    const day=new Date().toISOString().slice(0,10),month=day.slice(0,7);
+    this.state.monthUsage ||= {month,used:this.state.quota.used||0};
+    if(this.state.monthUsage.month!==month)this.state.monthUsage={month,used:0};
+    if(this.state.quota.day!==day)this.state.quota={day,used:0};
+    return Math.max(0,this.plan()==='paid'?this.state.settings.monthlyHours*3600000-this.state.monthUsage.used:this.state.quota.providerBlocked?0:BUDGET-this.state.quota.used);
+  }
   publicState(){
     this.quota();const {login,encryptedSession,...s}=this.state;
     const posts=this.sql.exec('SELECT value FROM posts ORDER BY seen DESC LIMIT 300').toArray().map(r=>JSON.parse(r.value));
-    return {...s,posts:Object.fromEntries(posts.map(p=>[p.key,p])),busy:this.busy,login:login?{expiresAt:login.expiresAt}:null,quota:{...s.quota,budget:BUDGET,resetsAt:nextDay()}};
+    const paid=this.plan()==='paid',monthHours=s.monthUsage.used/3600000;
+    return {...s,posts:Object.fromEntries(posts.map(p=>[p.key,p])),busy:this.busy,login:login?{expiresAt:login.expiresAt}:null,quota:{...s.quota,plan:this.plan(),remaining:this.quota(),budget:paid?null:BUDGET,resetsAt:paid?nextMonth():nextDay(),month:s.monthUsage.month,monthUsed:s.monthUsage.used,monthBudgetHours:s.settings.monthlyHours,estimatedUsd:paid?Math.round((5+Math.max(0,Math.round(monthHours)-10)*0.09)*100)/100:0,planCheckedAt:s.planCheckedAt||null}};
   }
   async schedule(){
     const times=[this.state.login?.expiresAt,this.state.job?.dueAt,!this.state.job&&this.state.settings.dailyEnabled?this.state.nextRunAt:null].filter(x=>Number.isFinite(x));
@@ -68,7 +103,7 @@ export class Helper extends DurableObject {
       if(this.sql.exec('SELECT id FROM nonces WHERE id=?',nonce).toArray().length)return json({ok:false,error:'중복 요청입니다.'},409);
       this.sql.exec('INSERT INTO nonces(id,at) VALUES(?,?)',nonce,Date.now());
       const m=await request.json();
-      if(m.type==='get')return json({ok:true,result:this.publicState()});
+      if(m.type==='get'||m.type==='refreshPlan'){await this.syncPlan(m.type==='refreshPlan');return json({ok:true,result:this.publicState()});}
       if(m.type==='stop'){
         this.cancel=true;this.state.settings.dailyEnabled=false;this.state.nextRunAt=null;this.state.job=null;this.event('모든 작업과 자동 확인을 중단했습니다.');this.save();
         if(this.browser)await this.browser.close().catch(()=>{});await this.schedule();return json({ok:true,result:true});
@@ -79,9 +114,16 @@ export class Helper extends DurableObject {
       finally {this.busy=false;}
     }catch(e){return json({ok:false,error:this.safeError(e)},400);}
   }
-  safeError(e){const msg=String(e?.message||e);if(/429|limit|quota/i.test(msg))return '오늘의 무료 실행량을 다 썼습니다. 다음 초기화 이후 다시 실행해 주세요.';if(/401|403|captcha|challenge/i.test(msg))return '접근 또는 인증 확인이 필요합니다. 페이스북 로그인 상태를 확인해 주세요.';return msg.slice(0,350).replace(/https?:\/\/\S*(?:jwt|token|signature)\S*/gi,'[보호된 주소]');}
+  safeError(e){const msg=String(e?.message||e);if(/429|limit|quota/i.test(msg))return this.plan()==='paid'?'실행 서버의 일시적인 제한입니다. 잠시 후 다시 시도하거나 서버 요금제 적용 상태를 확인해 주세요.':'무료 실행 서버의 한도 또는 호출 제한입니다. 요금제 상태와 남은 실행량을 확인해 주세요.';if(/401|403|captcha|challenge/i.test(msg))return '접근 또는 인증 확인이 필요합니다. 페이스북 로그인 상태를 확인해 주세요.';return msg.slice(0,350).replace(/https?:\/\/\S*(?:jwt|token|signature)\S*/gi,'[보호된 주소]');}
   async action(m){
     const s=this.state;
+    if(m.type==='budget'){
+      const hours=Number(m.hours);if(!MONTHLY_HOURS.includes(hours))throw new Error('월 실행 예산을 확인해 주세요.');
+      if(s.login||s.job?.running)throw new Error('진행 중인 작업이 끝난 뒤 변경해 주세요.');
+      s.settings.monthlyHours=hours;
+      if(s.job?.waitReason==='monthly-budget'&&this.quota()>=90000){s.job.dueAt=Date.now()+1000;delete s.job.waitReason;}
+      return true;
+    }
     if(m.type==='loginStart')return this.loginStart();
     if(m.type==='loginFinish')return this.loginFinish();
     if(m.type==='logout'){
@@ -106,7 +148,7 @@ export class Helper extends DurableObject {
       if(this.sql.exec('SELECT key FROM posts LIMIT 1').toArray().length&&(actorName!==s.settings.actorName||actorUrl!==s.settings.actorUrl))throw new Error('기록이 있는 상태에서는 반응 계정을 바꿀 수 없습니다.');
       if(v.dailyEnabled&&!s.connection.connected)throw new Error('페이스북 로그인을 먼저 연결해 주세요.');
       const changed=s.settings.checkIntervalMinutes!==interval||!s.settings.dailyEnabled;
-      s.settings={actorName,actorUrl,checkIntervalMinutes:interval,maxPerRun:max,dailyEnabled:v.dailyEnabled===true,autoLike:v.autoLike===true};
+      s.settings={actorName,actorUrl,checkIntervalMinutes:interval,maxPerRun:max,dailyEnabled:v.dailyEnabled===true,autoLike:v.autoLike===true,monthlyHours:s.settings.monthlyHours};
       s.nextRunAt=s.settings.dailyEnabled?(changed?Date.now()+interval*60000:s.nextRunAt):null;return true;
     }
     if(m.type==='runTargetLatest'||m.type==='run'){
@@ -119,8 +161,16 @@ export class Helper extends DurableObject {
     if(m.type==='skip'){for(const k of (m.keys||[]).slice(0,300)){const p=this.post(k);if(p&&['new','review'].includes(p.status)){p.status='skipped';this.putPost(p);}}return true;}
     throw new Error('지원하지 않는 요청입니다.');
   }
-  async reserve(ms){if(this.quota()<ms)throw new Error('오늘의 무료 실행량이 부족합니다. 내일 다시 시도해 주세요.');this.state.quota.used+=ms;this.save();return {day:this.state.quota.day,ms,at:Date.now()};}
-  settle(reservation,closed){if(closed&&reservation?.day===this.state.quota.day){const used=Math.min(reservation.ms,Date.now()-reservation.at+5000);this.state.quota.used=Math.max(0,this.state.quota.used-(reservation.ms-used));this.save();}}
+  async reserve(ms){if(!Number.isFinite(ms)||ms<=0)throw new Error('실행 시간을 확인해 주세요.');if(this.quota()<ms)throw new Error(this.plan()==='paid'?'이번 달 실행 예산이 부족합니다. 월 실행 예산을 높이거나 다음 달에 실행해 주세요.':'오늘의 무료 실행량이 부족합니다. 유료 요금제 적용 상태를 확인하거나 내일 다시 시도해 주세요.');this.state.quota.used+=ms;this.state.monthUsage.used+=ms;this.save();return {day:this.state.quota.day,month:this.state.monthUsage.month,ms,at:Date.now()};}
+  settle(reservation,closed){
+    if(!closed||!reservation)return;this.quota();
+    const used=Math.min(reservation.ms,Math.max(0,Date.now()-reservation.at+5000)),refund=reservation.ms-used;
+    if(reservation.day===this.state.quota.day)this.state.quota.used=Math.max(0,this.state.quota.used-refund);
+    else this.state.quota.used+=Math.min(used,Math.max(0,Date.now()-Math.floor(Date.now()/DAY)*DAY+5000));
+    if(reservation.month===this.state.monthUsage.month)this.state.monthUsage.used=Math.max(0,this.state.monthUsage.used-refund);
+    else if(reservation.month)this.state.monthUsage.used+=Math.min(used,Math.max(0,Date.now()-monthStart()+5000));
+    this.save();
+  }
   async launch(keepAlive=60000){return puppeteer.launch(this.env.BROWSER,{keep_alive:keepAlive,guardrails:{allowedDomains:['facebook.com','*.facebook.com','*.fbcdn.net','*.fbsbx.com','*.facebook.net']}});}
   async crypt(value,decrypt=false){
     if(!this.env.FB_SESSION_KEY)throw new Error('서버 연결 설정이 아직 완료되지 않았습니다.');
@@ -156,6 +206,7 @@ export class Helper extends DurableObject {
     if(this.busy){await this.ctx.storage.setAlarm(Date.now()+10000);return;}
     this.busy=true;
     try {
+      await this.syncPlan();
       if(this.state.login){if(Date.now()>=this.state.login.expiresAt)await this.closeLogin();return;}
       if(!this.state.job&&this.state.settings.dailyEnabled&&Date.now()>=this.state.nextRunAt){
         const ids=this.state.targets.filter(t=>t.enabled).map(t=>t.id);
@@ -168,12 +219,13 @@ export class Helper extends DurableObject {
   }
   async runBatch(){
     const job=this.state.job;
-    if(this.quota()<90000){job.dueAt=nextDay();this.event('오늘의 무료 실행량을 다 사용해 남은 동료는 다음 날 이어서 확인합니다.');return;}
+    if(this.quota()<90000){job.dueAt=this.plan()==='paid'?nextMonth():nextDay();job.waitReason=this.plan()==='paid'?'monthly-budget':'free-quota';this.event(this.plan()==='paid'?'이번 달 실행 예산에 도달했습니다. 예산을 높이면 남은 동료를 이어서 확인합니다.':'오늘의 무료 실행량을 다 사용해 남은 동료는 다음 날 이어서 확인합니다.');return;}
+    delete job.waitReason;
     const reservation=await this.reserve(Math.min(180000,this.quota()));const activeMs=reservation.ms-60000;
-    let browser,closed=false;const deadline=Date.now()+activeMs;let timer;this.cancel=false;job.running=true;this.save();
+    let browser,closed=false;const deadline=Date.now()+activeMs;let timer,deadlineReached=false;this.cancel=false;job.running=true;this.save();
     try {
       browser=await this.launch();this.browser=browser;
-      timer=setTimeout(()=>{this.cancel=true;browser.close().catch(()=>{});},activeMs);
+      timer=setTimeout(()=>{deadlineReached=true;this.cancel=true;browser.close().catch(()=>{});},activeMs);
       if(!this.state.encryptedSession)throw new Error('페이스북 로그인을 다시 연결해 주세요.');
       const page=await browser.newPage();await page.setCookie(...await this.crypt(this.state.encryptedSession,true));await page.setViewport({width:1440,height:1000});
       while(job.index<job.ids.length&&!this.cancel&&Date.now()<deadline-25000){
@@ -182,12 +234,23 @@ export class Helper extends DurableObject {
       }
     }catch(e){
       if(this.cancel&&this.state.job!==job)return;
-      if(/429|quota|time limit/i.test(String(e))){this.state.quota.used=BUDGET;job.dueAt=nextDay();this.event('무료 실행 한도에 도달해 남은 작업은 다음 날 이어갑니다.');}
+      if(deadlineReached&&!job.reactionUncertain){job.dueAt=Date.now()+25000;this.event('실행 시간을 나누어 남은 동료 확인을 이어갑니다.');}
+      else if(this.handleBrowserLimit(e,job)){}
       else throw e;
     }finally{if(timer)clearTimeout(timer);if(browser){try{await browser.close();closed=true;}catch{}}this.browser=null;this.settle(reservation,closed);job.running=false;}
     if(this.state.job!==job)return;
     if(job.index>=job.ids.length){this.event(`${job.ids.length}명 확인을 마쳤습니다.`);this.state.lastRunAt=Date.now();this.state.job=null;}
     else job.dueAt=Math.max(job.dueAt,Date.now()+25000);
+  }
+  handleBrowserLimit(error,job){
+    const message=String(error);if(!/429|quota|time limit/i.test(message))return false;
+    if(this.plan()==='free'&&/time limit exceeded|quota|daily|for today/i.test(message)){
+      this.state.quota.providerBlocked=true;job.dueAt=nextDay();job.waitReason='free-quota';this.event('무료 실행 서버의 하루 한도에 도달했습니다. 유료 전환을 확인하면 남은 작업을 이어갑니다.');
+    }else{
+      job.limitRetries=(job.limitRetries||0)+1;if(job.limitRetries>3)throw new Error('실행 서버의 제한이 반복되어 중단했습니다. 요금제 적용 상태를 확인한 뒤 다시 실행해 주세요.');
+      job.dueAt=Date.now()+job.limitRetries*60000;job.waitReason='service-limit';this.event(`실행 서버의 일시적인 제한으로 ${job.limitRetries}분 뒤 남은 작업을 이어갑니다.`,'warning');
+    }
+    return true;
   }
   ensure(job){if(this.cancel||this.state.job!==job)throw new Error('작업을 중단했습니다.');}
   async processTarget(page,target,job,deadline){
@@ -209,7 +272,7 @@ export class Helper extends DurableObject {
       p.status='attempting';p.attemptedAt=Date.now();this.putPost(p);job.used++;this.save();
       let r;try{r=await page.evaluate(async args=>globalThis.NewPostsFacebook.react(args),{...args,postId:p.id,intent:job.mode==='latest'?'latest':'new'});}catch{r={status:'uncertain',message:'클릭 후 결과를 확인할 수 없습니다.'};}
       p.status=['done','already','review'].includes(r.status)?r.status:'uncertain';p.note=p.status==='uncertain'?'반응 결과를 확인할 수 없어 다시 누르지 않습니다.':r.message||'반응 상태 확인 완료';p.completedAt=Date.now();this.putPost(p);this.event(`${target.name}: ${p.status==='done'?'좋아요 완료':p.note}`);
-      if(p.status==='uncertain')throw new Error(`${target.name}: 결과 확인이 필요해 자동 실행을 중단했습니다.`);
+      if(p.status==='uncertain'){job.reactionUncertain=true;throw new Error(`${target.name}: 결과 확인이 필요해 자동 실행을 중단했습니다.`);}
     }
   }
 }

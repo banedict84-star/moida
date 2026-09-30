@@ -1,4 +1,4 @@
-name: 새 글 도우미 무료 실행 서버
+name: 새 글 도우미 실행 서버
 on:
   push:
     branches: [main]
