@@ -1,0 +1,11 @@
+{
+  "name":"new-post-helper-cloud",
+  "main":"worker.js",
+  "account_id":"0a43eeb2c6fe53d7e8e6f38d7ea96905",
+  "compatibility_date":"2026-09-01",
+  "compatibility_flags":["nodejs_compat"],
+  "browser":{"binding":"BROWSER"},
+  "durable_objects":{"bindings":[{"name":"HELPER","class_name":"Helper"}]},
+  "migrations":[{"tag":"v1","new_sqlite_classes":["Helper"]}],
+  "observability":{"enabled":false}
+}

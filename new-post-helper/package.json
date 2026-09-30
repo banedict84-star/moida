@@ -1,0 +1,1 @@
+{"name":"new-post-helper-cloud","private":true,"type":"module","scripts":{"check":"wrangler deploy --dry-run --outdir dist"},"dependencies":{"@cloudflare/puppeteer":"latest"},"devDependencies":{"wrangler":"4.92.0"}}
