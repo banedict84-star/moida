@@ -1,6 +1,14 @@
 {
-  "updated": "2026-10-03 13:38 UTC",
+  "updated": "2026-10-03 18:07 UTC",
   "items": [
+    {
+      "source": "naver",
+      "press": "ekn.kr",
+      "date": "2026.10.04",
+      "title": "[패트롤] 구리시의회-군포시의회-시흥시의회-안산시의회",
+      "snippet": "한편 시흥시의회는 오는 제340회 제2차 정례회에서 2026년 행정사무감사와 시정질문을 실시할 예정이며, 내실 있는 의정활동을 위해 의원들 전문성 강화를 위한 교육을 지속 추진할 계획이다. 안산=에너지경제신문...",
+      "url": "https://www.ekn.kr/web/view.php?key=20261004024352049"
+    },
     {
       "source": "naver",
       "press": "hankyung.com",
@@ -331,10 +339,10 @@
     },
     {
       "source": "google",
-      "press": "NSP통신",
+      "press": "nspna.com",
       "date": "2026.10.01",
       "title": "[현장 의정 리포트]장윤정 경기도의원, ASV 내 에이로봇 400억 투자 유치 환영",
-      "snippet": "[현장 의정 리포트]장윤정 경기도의원, ASV 내 에이로봇 400억 투자 유치 환영 NSP통신",
+      "snippet": "[현장 의정 리포트]장윤정 경기도의원, ASV 내 에이로봇 400억 투자 유치 환영 nspna.com",
       "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE51djA3TTlhZ3VPdUhrdnhteUpsNTEtV0k0WTAxcnlSTTJFaXpEczBZYUx5dDF5YnlRSUI0TEphMWdJSWtsUkJMQ3pieTNFdEc3SlVOMlFiR0VHZ1RBWXYtSw?oc=5"
     },
     {
@@ -443,19 +451,19 @@
     },
     {
       "source": "naver",
-      "press": "ziksir.com",
-      "date": "2026.10.01",
-      "title": "GS건설, 안산 옛 홈플러스 부지 '아르뮤제자이' 10월 분양 예정",
-      "snippet": "GS건설은 1일 안산시 상록구 성포동 586번지 일원에 들어서는 아르뮤제자이를 분양할 예정이라고 밝혔다. 아르뮤제자이는 지하 6층~지상 49층, 6개동(공동주택 4개동·오피스텔 2개동) 규모로 들어선다. 공동주택...",
-      "url": "https://www.ziksir.com/news/articleView.html?idxno=148071"
-    },
-    {
-      "source": "naver",
       "press": "socialvalue.kr",
       "date": "2026.10.01",
       "title": "GS건설, 안산 ‘아르뮤제자이’ 10월 분양…총 1354가구",
       "snippet": "GS건설은 경기도 안산시 상록구 성포동 586번지 일원에 들어서는 ‘아르뮤제자이’를 이달 분양할 예정이라고 1일 밝혔다. ▲아르뮤제자이 스케치컷/이미지=GS건설 제공 아르뮤제자이는 지하 6층~지상 49층, 6개동...",
       "url": "https://www.socialvalue.kr/news/view/1065594640903288"
+    },
+    {
+      "source": "naver",
+      "press": "ziksir.com",
+      "date": "2026.10.01",
+      "title": "GS건설, 안산 옛 홈플러스 부지 '아르뮤제자이' 10월 분양 예정",
+      "snippet": "GS건설은 1일 안산시 상록구 성포동 586번지 일원에 들어서는 아르뮤제자이를 분양할 예정이라고 밝혔다. 아르뮤제자이는 지하 6층~지상 49층, 6개동(공동주택 4개동·오피스텔 2개동) 규모로 들어선다. 공동주택...",
+      "url": "https://www.ziksir.com/news/articleView.html?idxno=148071"
     },
     {
       "source": "naver",
@@ -635,19 +643,19 @@
     },
     {
       "source": "google",
-      "press": "ansannews.co.kr",
-      "date": "2026.10.01",
-      "title": "상록구여성합창단 정기연주회…이달 6일",
-      "snippet": "상록구여성합창단 정기연주회…이달 6일 ansannews.co.kr",
-      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE1vR0xJREh5Z2xES0prQmllUG4tUWNELUFJQkR2aHdDQ3ZSX1ZIV3V5aWRBVlpPYmxRZ0ZJSlV2RFA0WVVRRG9mdlVfUXlxNDRWdGd5cDJnMFk2bFgzNEdQaGc0ZWMzZWFxd1BPeQ?oc=5"
-    },
-    {
-      "source": "google",
       "press": "경기매일",
       "date": "2026.10.01",
       "title": "상록시니어클럽 – 상록구 안산시 다함께 돌봄시설 업무협약체결",
       "snippet": "상록시니어클럽 – 상록구 안산시 다함께 돌봄시설 업무협약체결 경기매일",
       "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9EbERwcUpLRm8xTW9CRjI4Y1BibTZJTE5wWEtMelZZRHZ4R1VWWkUwWmk5c2o3TmphWlQwaVVLM3hTeWZieThHQXc4WlUtN1FVMnVVNy1IRUhhdERsaUgwcUk3VGFzM2s?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "ansannews.co.kr",
+      "date": "2026.10.01",
+      "title": "상록구여성합창단 정기연주회…이달 6일",
+      "snippet": "상록구여성합창단 정기연주회…이달 6일 ansannews.co.kr",
+      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE1vR0xJREh5Z2xES0prQmllUG4tUWNELUFJQkR2aHdDQ3ZSX1ZIV3V5aWRBVlpPYmxRZ0ZJSlV2RFA0WVVRRG9mdlVfUXlxNDRWdGd5cDJnMFk2bFgzNEdQaGc0ZWMzZWFxd1BPeQ?oc=5"
     },
     {
       "source": "google",
@@ -683,10 +691,10 @@
     },
     {
       "source": "google",
-      "press": "specialtimes.co.kr",
+      "press": "스페셜타임스",
       "date": "2026.10.01",
       "title": "GS건설, 안산 성포동에 ‘아르뮤제자이’ 10월 분양 예정",
-      "snippet": "GS건설, 안산 성포동에 ‘아르뮤제자이’ 10월 분양 예정 specialtimes.co.kr",
+      "snippet": "GS건설, 안산 성포동에 ‘아르뮤제자이’ 10월 분양 예정 스페셜타임스",
       "url": "https://news.google.com/rss/articles/CBMickFVX3lxTFB0LTNYWk5SektMbkpfcG4wSUV3RHJwSFJKVlpTTk9oMlpyNHRGdUFqUW5Wb0xiZ2cySkhPWVJJWWdZa241MW9pZjY1M2J1WEZqQUpzY0pTQkhTa1RjcDkwQjNkS1BrWU5pbmtDVDQ2RWVZdw?oc=5"
     },
     {
@@ -731,19 +739,19 @@
     },
     {
       "source": "naver",
-      "press": "gamevu.co.kr",
-      "date": "2026.10.01",
-      "title": "[게임뉴스] 펄어비스 및 위메이드 소식 외",
-      "snippet": "자생적인 교육 환경을 구축할 수 있는 AI 촉진자를 양성하기 위해 마련됐다. 경기도 남양주, 안산, 양주, 의정부, 성남, 수원, 용인, 평택 소재 지역아동센터 10개 기관과 대학생 멘토 20명이 참여한다....",
-      "url": "https://www.gamevu.co.kr/news/articleView.html?idxno=61159"
-    },
-    {
-      "source": "naver",
       "press": "popcornnews.net",
       "date": "2026.10.01",
       "title": "게임업계, 10월 신작·업데이트 경쟁 본격화…'아이온2' 스팀 글로벌 1위",
       "snippet": "스마일게이트 희망스튜디오는 경기도경제과학진흥원과 함께 지역아동센터 대상 AI 교육 프로젝트를... 경기도 남양주와 안산, 양주, 의정부, 성남, 수원, 용인, 평택 등에 위치한 지역아동센터 10곳과 대학생 멘토...",
       "url": "http://www.popcornnews.net/news/articleView.html?idxno=134727"
+    },
+    {
+      "source": "naver",
+      "press": "gamevu.co.kr",
+      "date": "2026.10.01",
+      "title": "[게임뉴스] 펄어비스 및 위메이드 소식 외",
+      "snippet": "자생적인 교육 환경을 구축할 수 있는 AI 촉진자를 양성하기 위해 마련됐다. 경기도 남양주, 안산, 양주, 의정부, 성남, 수원, 용인, 평택 소재 지역아동센터 10개 기관과 대학생 멘토 20명이 참여한다....",
+      "url": "https://www.gamevu.co.kr/news/articleView.html?idxno=61159"
     },
     {
       "source": "naver",
@@ -882,14 +890,6 @@
       "url": "https://www.abcn.kr/news/articleView.html?idxno=92568"
     },
     {
-      "source": "naver",
-      "press": "view.asiae.co.kr",
-      "date": "2026.10.01",
-      "title": "[현장너머]교육예산 '얼마나' 아닌 '어떻게'의 문제",
-      "snippet": "이제는 교육 예산을 집행할 때 '몇 명한테 쓸 것인가'가 아니라 '어떻게 쓸 것인가'로 질문을 바꿔야 할 때다. 최근 만난 경기 안산 푸른꿈동산학교의 이주배경학생들에게도 마찬가지다. 국내 이주배경학생은 2012년 0.7...",
-      "url": "https://view.asiae.co.kr/article/2026093014234953890"
-    },
-    {
       "source": "google",
       "press": "경기헤드뉴스",
       "date": "2026.10.01",
@@ -899,10 +899,10 @@
     },
     {
       "source": "google",
-      "press": "pressian.com",
+      "press": "프레시안",
       "date": "2026.10.01",
       "title": "안산교육지원청, ‘한걸음 쉼표 러닝’ 참여 교원 100명 쌀 300kg 지역사회 나눔",
-      "snippet": "안산교육지원청, ‘한걸음 쉼표 러닝’ 참여 교원 100명 쌀 300kg 지역사회 나눔 pressian.com",
+      "snippet": "안산교육지원청, ‘한걸음 쉼표 러닝’ 참여 교원 100명 쌀 300kg 지역사회 나눔 프레시안",
       "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE9oUy1IVmRiejZvZUVxc2Q3LXhnVWc1b3d4SFFqVGRWVE5YY1MtaVVfcGZoemJQZUtzRzNRanBHRzN2dGZaRGxKNHdnZ1EwaXZtVlN0TE05alEyMlgxekk3cE8taFZueTBPYzY0?oc=5"
     },
     {
@@ -939,19 +939,19 @@
     },
     {
       "source": "google",
-      "press": "뉴시스",
-      "date": "2026.09.30",
-      "title": "경기도안산교육지원청, 학부모정책지원단 출범",
-      "snippet": "경기도안산교육지원청, 학부모정책지원단 출범 뉴시스",
-      "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTFBIbzYzTW1UaGdPdHRqZzQ2YjhaZFpmN0JwcnJvSlNJeVN2LVVsNlFJSnZIWkUtUmhNbFJ6d3NXLUxQcG5vdGZpM0RfdmxxcUxTM3lSSEE0bDVBYlk2ZExzVWtnRGtOQjctVUFWVWNPZHhyaEN3dzRSR9IBeEFVX3lxTFBIbzYzTW1UaGdPdHRqZzQ2YjhaZFpmN0JwcnJvSlNJeVN2LVVsNlFJSnZIWkUtUmhNbFJ6d3NXLUxQcG5vdGZpM0RfdmxxcUxTM3lSSEE0bDVBYlk2ZExzVWtnRGtOQjctVUFWVWNPZHhyaEN3dzRSRw?oc=5"
-    },
-    {
-      "source": "google",
       "press": "투데이안산",
       "date": "2026.09.30",
       "title": "안산교육지원청, 학부모와 함께 그리는 교육정책 '학부모정책지원단' 출범",
       "snippet": "안산교육지원청, 학부모와 함께 그리는 교육정책 '학부모정책지원단' 출범 투데이안산",
       "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5vb042QUpFc0NMUENtMWpiR3BEcUFCR3VRSUNkSUZzOGJBYzdCSHV1enNOVE8xaUVud18tazVpYTZUM1VvSS02SDB5TDNoT0dvN1dpMUsxaUh0aVc3WVJRSWExdkMzWTlwQjJYZ1B30gFyQVVfeXFMT1ZmSndRTlZ2SkQzTE1mMmlsRi1ybEw1NHVvdmUwc1J1MXlLU195b2U0QjVHdmtqRUxNaG5MQy02R2U3T1hySTVNYkI3MV9sWFVlaUdLT3BBMWV2bzNHTUd2cTB5a1BmV2JtOS14Q2lYeENn?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "뉴시스",
+      "date": "2026.09.30",
+      "title": "경기도안산교육지원청, 학부모정책지원단 출범",
+      "snippet": "경기도안산교육지원청, 학부모정책지원단 출범 뉴시스",
+      "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTFBVV01XUVgxb0t6Tkg1TUZuT2NDS0FmdHZhRVRIUHByLVh4Wm5TczNxOWYzRmRFVEozV0VCWmN4dHF3ai11MGhRdG1ESldMemRJWTdidjRQbnFhVzNkeUY1NtIBeEFVX3lxTFBIbzYzTW1UaGdPdHRqZzQ2YjhaZFpmN0JwcnJvSlNJeVN2LVVsNlFJSnZIWkUtUmhNbFJ6d3NXLUxQcG5vdGZpM0RfdmxxcUxTM3lSSEE0bDVBYlk2ZExzVWtnRGtOQjctVUFWVWNPZHhyaEN3dzRSRw?oc=5"
     },
     {
       "source": "google",
@@ -971,11 +971,11 @@
     },
     {
       "source": "google",
-      "press": "ansannews.co.kr",
-      "date": "2026.09.30",
-      "title": "안산교육청 국제교류 협력 기반 마련",
-      "snippet": "안산교육청 국제교류 협력 기반 마련 ansannews.co.kr",
-      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE1JWDZkQTY4YlVtdTVxTl8wTFVseFNIb2V0WGZJRzVaZnlaZEFsOGpXOGNka3Q4Vld2XzdHM1lOek8yb1FScmoxT2hWeG9USG9sWmp2UmVpVTh2amVjLTRaZkh0NmRrMklGQURGWg?oc=5"
+      "press": "신아일보",
+      "date": "2026.09.29",
+      "title": "안산교육지원청, 학부모 화해중재단 출범…학교 갈등 예방 지원",
+      "snippet": "안산교육지원청, 학부모 화해중재단 출범…학교 갈등 예방 지원 신아일보",
+      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBIY3FBM1Z6cWVYWEo1aUdzMHBPejdNM3FaTU1FT1l6VC1KM1FxRmhHSHVSQmdpOFlaZ01UTy12d21aZ2tVX1hVUkUtTFRYaTU3X1R2U1d5M3lIQkNna1hHY3EzVmFLazNuYVl5MHpKT2c?oc=5"
     },
     {
       "source": "google",
@@ -1007,7 +1007,7 @@
       "date": "2026.09.29",
       "title": "안산교육지원청 '더안심 학부모 화해중재단' 출범",
       "snippet": "안산교육지원청 '더안심 학부모 화해중재단' 출범 뉴시스",
-      "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE5mWGZ5bG51MUtzZ190OGZzdjNHb1poeWlrUk1nTUp2aUJCdk93bXdIRXkwY1pqeTEzZWM4ZHNxY25pdVN5bzdMU0pUeS1UY1ItUjh0ek12OGVkbmdyc0xyctIBeEFVX3lxTE1OTVBOZHZoblJyaFZEMmlOZGo2RGg2ckpQQy0wcmdWNXJDTmlwYTFJaF9TT0R3ZHJJeE9iUWlrcTFTOTRRMDluX2Z0bDRqd3R2RndCTWJyVm1RRW1kTHJqMXpuUTROMHpWbUt4QzlVYk9ZU196RUtGSg?oc=5"
+      "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTFBELV9ZMHp2Z3d4T1RvemRkVW9vVndpZl9ZbTBZeFpKa3hwTkJpMmtGOTdvNlpKTU5SbHkwZkg4dGdiWE9BY1h0eDdDcE5PS2RQWndWclRmcmx0bWVkYlNKU05R?oc=5"
     },
     {
       "source": "naver",
@@ -1064,14 +1064,6 @@
       "title": "경기도의회 교육청 예결특위, 교육현장 점검 이어 재정운용 방향 논의",
       "snippet": "경기도의회 경기도교육청 예산결산특별위원회(위원장 이채명)가 교육현장에 대한 이해를 높이고 2027년도... 한편 이날 현장방문에는 이채명 위원장을 비롯해 이자형 부위원장, 이은미·장윤정·박은주·오민용·우현욱...",
       "url": "https://www.tournews21.com/news/articleView.html?idxno=143907"
-    },
-    {
-      "source": "google",
-      "press": "참좋은뉴스",
-      "date": "2026.09.18",
-      "title": "대한미용사회 안산시 상록구지부, ‘경기도지사배 뷰티예술 경연대회’ 수상 쾌거",
-      "snippet": "대한미용사회 안산시 상록구지부, ‘경기도지사배 뷰티예술 경연대회’ 수상 쾌거 참좋은뉴스",
-      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTFBhckRlRlJfc0JUTjZrS2tmREJWaEs3NFoxenBsUEEtU3VlOW5pRi1iU01tRVNMbzdaci11UGdMd0ZFa3p3VlpxRUxzR3hBemFiQkFyVjh0ZXN0Qy1OWDNUbmpqWmo1Nm9mM1I3elNtbERtc3c?oc=5"
     },
     {
       "source": "naver",
@@ -1299,18 +1291,18 @@
     },
     {
       "source": "google",
-      "press": "newscj.com",
+      "press": "천지일보",
       "date": "2026.09.10",
       "title": "장윤정 경기도의원 “햇빛발전·통합돌봄 사업, 안산시와 부지 협의 없었다”",
-      "snippet": "장윤정 경기도의원 “햇빛발전·통합돌봄 사업, 안산시와 부지 협의 없었다” newscj.com",
+      "snippet": "장윤정 경기도의원 “햇빛발전·통합돌봄 사업, 안산시와 부지 협의 없었다” 천지일보",
       "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9aRUNQcjlieHMtTl83dXhVR05vR1RyTndtQkRUakhoVVp1YVhkb294UWRlWWZGSzdxYmtYNEtwcDN3bk1kZjh4emE5OE5nU21fRUdIWm5iSHZDb3VvYzZtcDB5LWdaMTNONFE?oc=5"
     },
     {
       "source": "google",
-      "press": "newsfire.co.kr",
+      "press": "뉴스파이어",
       "date": "2026.09.10",
       "title": "장윤정 경기도의원, “경기도 햇빛발전·통합돌봄 융합모델 사업, 부지 협의 누락 및 졸속 행정… 원점 재검토 촉구”",
-      "snippet": "장윤정 경기도의원, “경기도 햇빛발전·통합돌봄 융합모델 사업, 부지 협의 누락 및 졸속 행정… 원점 재검토 촉구” newsfire.co.kr",
+      "snippet": "장윤정 경기도의원, “경기도 햇빛발전·통합돌봄 융합모델 사업, 부지 협의 누락 및 졸속 행정… 원점 재검토 촉구” 뉴스파이어",
       "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE9TalVRXzRra28wNjEzZHlHdzY3bUJGWGhsYkw0NFRxdTE3RjFvX21GaG1TbmczTWNqT0Fxa3ZKazhWMUpMaF9keFJUYzZmTElhQ3NaWTNNN3F1RUNQQVNVTFBZUUp2ZWJCb3podVBScw?oc=5"
     },
     {
@@ -1403,11 +1395,11 @@
     },
     {
       "source": "google",
-      "press": "경기탑뉴스",
+      "press": "비전21뉴스",
       "date": "2026.09.03",
       "title": "경기도의회 장윤정 의원, 안산시 태양광 햇빛발전 협동조합 공모사업 추진과정 다시 살펴야",
-      "snippet": "경기도의회 장윤정 의원, 안산시 태양광 햇빛발전 협동조합 공모사업 추진과정 다시 살펴야 경기탑뉴스",
-      "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE9yQXEtc1gzajZndWYtT0FzUlZDNHlhTDF5QVhyYTEwM2djMVFONkViRldFMGdKS1U2OC1QZWYyU1c3ZlVBOXVkOGtZSlRGWlczVnZ0SWdnczV4bVBaNDIyZQ?oc=5"
+      "snippet": "경기도의회 장윤정 의원, 안산시 태양광 햇빛발전 협동조합 공모사업 추진과정 다시 살펴야 비전21뉴스",
+      "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTFA2N090M1drOGhIZDc5ck5zVzRBZTE1bzc0dWdPOVlGQUNEQi03RFcxMWJfc2g2Q3V4LU1lNHBRUVFHQXZDNHM1ZWxlS1BuMHNYaHZqU3dNRVk0V1F6WU5pSk9Obw?oc=5"
     },
     {
       "source": "naver",
@@ -1835,14 +1827,6 @@
     },
     {
       "source": "google",
-      "press": "ansannews.co.kr",
-      "date": "2026.06.04",
-      "title": "민주당 경기도의원 8석 싹쓸이 당선",
-      "snippet": "민주당 경기도의원 8석 싹쓸이 당선 ansannews.co.kr",
-      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE1iZll6bHdKRmM3OG8tcE5XU0tTRWZicDR3UGJjdEZwOW9PbHNsNUxnX1BESXJ3Mnp1RHN1SFEyX0N5V0dEY01ielJidF9MUmlmbzVFeU5CeGd5amR5VS1MNGd2dXUzb2NxMHJqbQ?oc=5"
-    },
-    {
-      "source": "google",
       "press": "안전신문",
       "date": "2026.06.02",
       "title": "장윤정 \"교육·주거·문화가 함께 성장하는 안산 만들겠다\"",
@@ -1880,6 +1864,14 @@
       "title": "장윤정 경기도의원, 안산 제3선거구 공천 확정... \"무도한 권력에 대한 당원들의 엄중한 심판\"",
       "snippet": "장윤정 경기도의원, 안산 제3선거구 공천 확정... \"무도한 권력에 대한 당원들의 엄중한 심판\" 경인신문",
       "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE1lUTd5aEhXbmtjLTVva3RfUC1DOGdJSkRnVWt4RWlJRThQRm1PR3N1SFpJYXZhclpic0Jsc2xBWHF5UHNQS2pxMl9RU2pzTVpfVWx3aDdZSkhKaFcyNEVUUlRJU1I1WjA?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "일간투데이",
+      "date": "2026.05.09",
+      "title": "기울어진 운동장 안 된다”…장윤정 경기도의원, 안산 정치권 녹취 파장 정면 비판",
+      "snippet": "기울어진 운동장 안 된다”…장윤정 경기도의원, 안산 정치권 녹취 파장 정면 비판 일간투데이",
+      "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE9PNjdvWkxMWnZ6SFlOczZKSW40VnhSd3dXMzFPYnFPckp3b3A0V2taR1lPcnJTc01XR1l6VkJIY3JieHRxYm15ZFdYN25aOEttQmtwbGFlYTJGYmt0REItTzBJVlBETmZvcU5J?oc=5"
     },
     {
       "source": "google",
