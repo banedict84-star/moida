@@ -1,0 +1,25 @@
+name: Poster scene checks
+on:
+  pull_request:
+    paths:
+      - 'gpt-worker.js'
+      - 'poster-scene.js'
+      - 'migrations/0004_poster_scene.sql'
+      - 'tests/poster-scene.test.mjs'
+      - '.github/workflows/poster-scene-check.yml'
+  push:
+    branches:
+      - 'codex/poster-scene-api'
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: npm run check:worker
+      - run: node --check poster-scene.js
+      - run: node --test tests/poster-scene.test.mjs

@@ -1,3 +1,4 @@
+import { handlePosterScene, expirePosterScenes } from "./poster-scene.js";
 import {
   AGENT_SCHEMA_VERSION,
   TEAM_DEFS,
@@ -1634,6 +1635,14 @@ async function googleCalendarDisconnect(request, env, user) {
 }
 
 async function handleFetch(request, env) {
+  // Route-specific CORS/auth; never falls through to the legacy proxy.
+  const posterPath = new URL(request.url).pathname;
+  if (posterPath === "/poster-scene" || posterPath.startsWith("/poster-scene/")) {
+    return handlePosterScene(request, env, {
+      verifyUser: verifyFirebaseUser, generate: geminiRequest,
+      usage: geminiUsage, recordUsage,
+    });
+  }
   if (request.method === "OPTIONS") return new Response(null, { status: 204, headers: corsHeaders(request, env) });
   const url = new URL(request.url);
   const path = url.pathname.replace(/\/+$/, "") || "/";
@@ -1717,5 +1726,6 @@ export default {
   queue: handleQueue,
   scheduled(_controller, env, ctx) {
     ctx.waitUntil(recoverStaleRuns(env));
+    ctx.waitUntil(expirePosterScenes(env));
   },
 };
