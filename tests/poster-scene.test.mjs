@@ -122,3 +122,12 @@ test('seven-day retention is opt-in, removes scene content and keeps idempotency
   const replay = await (await f.run(f.req())).json();
   assert.equal(replay.error.code, 'RESULT_EXPIRED'); assert.equal(replay.scene, undefined); assert.equal(f.calls(), 1);
 });
+
+test('one-attempt trial limit persists beyond day rollover and permits replay only', async () => {
+  const f = fixture(); f.env.POSTER_SCENE_TOTAL_LIMIT = '1';
+  const first = await (await f.run(f.req())).json(); assert.equal(first.status, 'succeeded');
+  f.sqlite.prepare('UPDATE poster_scene_jobs SET created_at=?').run(Date.now() - 2 * 86400000);
+  const next = await f.run(f.req(input(), 'another_request_key')); assert.equal(next.status, 429);
+  assert.equal((await next.json()).error.code, 'TRIAL_LIMIT');
+  assert.equal((await (await f.run(f.req())).json()).jobId, first.jobId); assert.equal(f.calls(), 1);
+});

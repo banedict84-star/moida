@@ -138,11 +138,13 @@ export async function handlePosterScene(request, env, deps) {
     const input = validateInput(await boundedBody(request));
     const digest = await hash(JSON.stringify(input));
     const now = Date.now(), id = crypto.randomUUID();
+    const totalLimit = env.POSTER_SCENE_TOTAL_LIMIT === undefined ? 1000000 : Number(env.POSTER_SCENE_TOTAL_LIMIT);
+    if (!Number.isSafeInteger(totalLimit) || totalLimit < 1) throw fail(503, 'POSTER_SCENE_NOT_CONFIGURED');
     // D1 serializes this single INSERT; concurrent identical requests cannot both claim work.
     await db.prepare(`INSERT OR IGNORE INTO poster_scene_jobs (id, tenant_id, idempotency_key, request_hash, status, created_at, updated_at)
-      SELECT ?, ?, ?, ?, 'pending', ?, ? WHERE (SELECT COUNT(*) FROM poster_scene_jobs WHERE tenant_id = ? AND created_at >= ?) < 10`).bind(id, user.uid, key, digest, now, now, user.uid, now - 86400000).run();
+      SELECT ?, ?, ?, ?, 'pending', ?, ? WHERE (SELECT COUNT(*) FROM poster_scene_jobs WHERE tenant_id = ? AND created_at >= ?) < 10 AND (SELECT COUNT(*) FROM poster_scene_jobs WHERE tenant_id = ?) < ?`).bind(id, user.uid, key, digest, now, now, user.uid, now - 86400000, user.uid, totalLimit).run();
     let row = await db.prepare('SELECT * FROM poster_scene_jobs WHERE tenant_id = ? AND idempotency_key = ?').bind(user.uid, key).first();
-    if (!row) throw fail(429, 'DAILY_LIMIT');
+    if (!row) throw fail(429, env.POSTER_SCENE_TOTAL_LIMIT === undefined ? 'DAILY_LIMIT' : 'TRIAL_LIMIT');
     if (row.request_hash !== digest) throw fail(409, 'IDEMPOTENCY_CONFLICT');
     if (row.id !== id) return reply(publicJob(row), row.status === 'pending' ? 202 : 200);
     // One provider call only; no retry/fallback can silently double spend or fake success.

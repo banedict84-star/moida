@@ -150,3 +150,12 @@ crop 직사각형이 슬롯 비율과 다르면 그 영역이 보존되도록 co
 현재 실행환경에는 Cloudflare 직접 관리 credential이나 Firebase admin credential이 없고, GitHub REST와 Worker 직접 접속은 프록시 403으로 차단됐다(네트워크 escalation 후에도 동일). GitHub connector에서 연결 사용자는 banedict84-star로 확인됐고 git remote 읽기는 가능하다. 기존 main push 배포 workflow는 Cloudflare token을 GitHub secret으로 사용하지만 그 secret의 존재/현재 동작 여부는 확인하지 못했다. 기존 workflow에는 D1 migration 적용 단계가 없으므로, 실제 배포 전에 0004 적용 경로를 확보해야 한다. 새 CI는 외부 API/secret 없이 해당 모듈 테스트만 수행한다.
 
 대표님 Firebase UID는 저장소에서 검증할 수 없었다. admin.html의 t1/이메일/전화번호는 데모 자료이므로 사용하지 않는다. Git 작성자나 GitHub 소유자도 Firebase 대표 계정의 증거가 아니다. 새 Site의 실제 Firebase 로그인에서 얻은 UID를 계정 소유자 확인과 함께 전달하거나 운영자가 Firebase 콘솔에서 확인해야 한다. UID는 비밀번호/ID token이 아니며 credential을 채팅으로 요구하지 않는다. UID와 도메인 설정이 검증될 때까지 route는 비활성으로 유지한다.
+
+
+## GitHub Actions 접근검증 결과
+
+부모의 Firebase 콘솔 실확인으로 banedict84 Google 계정의 owner UID와 새 Site authorized domain 설정이 확인됐다는 인계를 받았다. UID는 배포 시 승인된 계정 하나에만 사용한다.
+
+2026-10-04 Actions run 37186527982: 기존 CLOUDFLARE_API_TOKEN으로 동일 Worker의 secret 이름 조회 성공, GEMINI_API_KEY binding 존재 확인(값 조회/출력 없음). 이어 기존 D1에 SELECT 1 요청이 HTTP 403 / Cloudflare code 7403으로 거절됐다. 따라서 token 부재가 아니라 D1 API 접근권한 부족이 현재 blocker다. 키 유효성/모델 실제 과금 호출은 여전히 미검증이며 DB 변경/배포도 수행하지 않았다. 새 credential 발급이나 기존 token 권한 변경은 하지 않는다.
+
+배포 완료에 필요한 최소 경로는 권한 있는 운영자가 기존 DB에서 0004 SQL을 먼저 실행하고, 기존 token으로 같은 Worker에 코드/설정을 배포하는 것이다. 기존 token에 D1 권한을 추가하는 것은 별도 액세스 확대이므로 자동 실행하지 않는다. 배포 준비용 최초 실테스트 제한은 POSTER_SCENE_TOTAL_LIMIT=1로 설정할 수 있게 구현했다. 실패/취소도 포함해 이 UID의 누적 1건만 허용하며 날짜가 바뀌어도 다시 열리지 않는다. 동일 key 조회/replay는 가능하다. 이후 신규 작업은 429/TRIAL_LIMIT이며 지속 운영 승인 없이는 올리지 않는다. 해당 설정도 아직 실제 적용하지 않았다.
