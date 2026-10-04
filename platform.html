@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MOIDA · 의원실 플랫폼</title>
+<title>MOIDA · 의정비서실</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -227,6 +227,7 @@ body.app-loading #sideAvatar{color:transparent!important;background:#243a5c!impo
   .page[data-page="admin"] .usage-card>div{min-width:0!important}
 }
 </style>
+<link rel="stylesheet" href="office.css?v=20261005">
 </head>
 <body class="app-loading">
 <div style="display:flex;height:100vh;width:100%;font-family:'Pretendard',sans-serif;color:#1a2330;background:#f5f6f8;overflow:hidden">
@@ -298,7 +299,7 @@ body.app-loading #sideAvatar{color:transparent!important;background:#243a5c!impo
         <span>뉴스</span>
       </div>
 
-      
+
 
       <div class="sb-agent-section" style="margin-top:auto;display:flex;flex-direction:column;gap:2px">
         <div class="sb-label" style="font-size:10.5px;font-weight:700;letter-spacing:0.08em;color:#536683;padding:16px 12px 6px">AI 조직</div>
@@ -545,17 +546,19 @@ body.app-loading #sideAvatar{color:transparent!important;background:#243a5c!impo
       <div class="page" data-page="agents">
         <div class="pg agent-control-layout">
           <section class="control-deck">
-            <div class="control-head"><div class="control-logo"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M19.1 4.9l-2.8 2.8M7.7 16.3l-2.8 2.8"/></svg></div><div><div style="font-size:15px;font-weight:800">MOIDA AI CONTROL CENTER</div><div style="margin-top:2px;color:#68849e;font-size:10.5px;letter-spacing:.05em">MULTI-AGENT ORCHESTRATION SYSTEM</div></div><span class="control-live">SYSTEM ONLINE</span></div>
-            <div class="control-metrics"><div class="control-metric"><span>TOTAL RUNS</span><b id="officeTotalRuns">0</b></div><div class="control-metric"><span>ACTIVE</span><b id="officeWorkingCount" class="green">0</b></div><div class="control-metric"><span>COMPLETED</span><b id="officeDoneCount" class="cyan">0</b></div><div class="control-metric"><span>AGENTS ONLINE</span><b class="green">37</b></div></div>
-            <div class="agent-network org-mode">
+            <div class="control-head"><div class="control-logo"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M19.1 4.9l-2.8 2.8M7.7 16.3l-2.8 2.8"/></svg></div><div><div style="font-size:15px;font-weight:800">의정비서실</div><div style="margin-top:2px;color:#68849e;font-size:10.5px;letter-spacing:.05em">비서실장 → 사무실 팀장 → 담당자 → 검토·보고</div></div><span class="control-live" id="officeConnection">연결 확인 중</span></div>
+            <div class="control-metrics"><div class="control-metric"><span>접수 업무</span><b id="officeTotalRuns">0</b></div><div class="control-metric"><span>진행 중</span><b id="officeWorkingCount" class="green">0</b></div><div class="control-metric"><span>완료</span><b id="officeDoneCount" class="cyan">0</b></div><div class="control-metric"><span>배치된 역할</span><b class="green">37</b></div></div>
+            <div class="office-command-bar"><form id="officeCommand"><label for="officeInstruction">비서실장에게 지시</label><div><input id="officeInstruction" maxlength="12000" required placeholder="예: 주민 간담회 일정과 현장 질문, 홍보 문구를 준비해줘"><button type="submit">지시 전달</button></div><p id="officeCommandStatus" role="status">접수된 업무는 서버에서 처리되며, 다시 접속하면 결과를 확인할 수 있습니다.</p></form><div class="office-models"><span>비서실장 대화 <b id="officeChatModel">확인 중</b></span><span>팀장·담당자 <b id="officeAgentModel">확인 중</b></span></div></div><div class="agent-network org-mode">
               <div class="org-secretary agent-node" data-office-agent="secretary" data-status="idle"><div class="agent-node-core"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l1.9 5.6L19.5 10l-5.6 1.9L12 17.5l-1.9-5.6L4.5 10l5.6-1.9z"/></svg></div><div class="agent-node-name">AI 비서실장</div><div class="agent-node-role">전체 지휘·최종 보고</div><span class="agent-node-status"></span><span class="speech"></span></div>
-              <div class="org-division legislative"><div class="org-division-head"><b>의정활동 본부</b><span>조례·예산·행감·의정성과</span></div><div id="officeLegislativeTeams" class="org-team-grid"></div></div>
-              <div class="org-division local"><div class="org-division-head"><b>지역활동 본부</b><span>현장·민원·조직·지역홍보</span></div><div id="officeLocalTeams" class="org-team-grid"></div></div>
-              <div class="org-division direct"><div class="org-division-head"><b>비서실장 직속</b><span>행정기록·독립 검증</span></div><div id="officeDirectTeams" class="org-team-grid"></div></div>
+              <section class="org-division"><div class="org-division-head"><b>일정·의전실</b><span>일정 확인 · 참석 준비 · 동선</span></div><div id="officeScheduleTeams" class="org-team-grid"></div></section>
+<section class="org-division"><div class="org-division-head"><b>정책·자료실</b><span>조례·정책 · 예산·행감 · 현안 자료</span></div><div id="officePolicyTeams" class="org-team-grid"></div></section>
+<section class="org-division"><div class="org-division-head"><b>홍보·콘텐츠실</b><span>의정 성과 · 지역 소식 · 게시 문구</span></div><div id="officePublicityTeams" class="org-team-grid"></div></section>
+<section class="org-division"><div class="org-division-head"><b>지역협력실</b><span>민원 · 주민 의견 · 관계 관리</span></div><div id="officeLocalTeams" class="org-team-grid"></div></section>
+<section class="org-division"><div class="org-division-head"><b>비서실장 직속</b><span>행정 기록 · 독립 검증</span></div><div id="officeDirectTeams" class="org-team-grid"></div></section>
             </div>
           </section>
           <aside class="control-side">
-            <section class="control-panel"><div style="display:flex;align-items:center;justify-content:space-between"><b style="font-size:13px">CURRENT MISSION</b><span id="officeRunStatus" style="font-size:9.5px;font-weight:800;color:#2563eb;background:#eff6ff;padding:4px 7px;border-radius:8px">대기</span></div><div id="officeRunTitle" class="office-run-title">비서실장에게 지시하면 에이전트가 활성화됩니다.</div><div class="office-progress"><span id="officeProgressBar" style="width:0"></span></div><div id="officeProgressText" style="margin-top:7px;font-size:10.5px;color:#8a94a3">배정된 작업 없음</div><button data-go="secretary" style="width:100%;height:36px;margin-top:14px;border:0;border-radius:8px;background:#1d3a6e;color:#fff;font-size:11px;font-weight:800;cursor:pointer">새 지시 입력 →</button></section>
+            <section class="control-panel"><div style="display:flex;align-items:center;justify-content:space-between"><b style="font-size:13px">현재 지시</b><span id="officeRunStatus" style="font-size:9.5px;font-weight:800;color:#2563eb;background:#eff6ff;padding:4px 7px;border-radius:8px">대기</span></div><div id="officeRunTitle" class="office-run-title">비서실장에게 지시하면 에이전트가 활성화됩니다.</div><div class="office-progress"><span id="officeProgressBar" style="width:0"></span></div><div id="officeProgressText" style="margin-top:7px;font-size:10.5px;color:#8a94a3">배정된 작업 없음</div><button data-go="secretary" style="width:100%;height:36px;margin-top:14px;border:0;border-radius:8px;background:#1d3a6e;color:#fff;font-size:11px;font-weight:800;cursor:pointer">새 지시 입력 →</button></section>
             <section class="control-panel"><div style="display:flex;align-items:center;justify-content:space-between"><b style="font-size:13px">실시간 실행 현황</b><span id="officeActiveCount" style="font-size:10px;color:#2563eb;font-weight:800">0명 실행 중</span></div><div id="officeActiveAgents" class="execution-list"><div style="padding:18px 0;text-align:center;color:#a0a9b5;font-size:11px">현재 실행 중인 에이전트가 없습니다.</div></div></section>
             <section class="control-panel">
               <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
@@ -569,8 +572,8 @@ body.app-loading #sideAvatar{color:transparent!important;background:#243a5c!impo
                 <button id="googleCalendarDisconnect" style="display:none;height:34px;padding:0 11px;border:1px solid #e5e7eb;border-radius:8px;background:#fff;color:#9b4b52;font-size:10.5px;font-weight:800;cursor:pointer">해제</button>
               </div>
             </section>
-            <section class="control-panel"><div style="display:flex;align-items:center;justify-content:space-between;gap:8px"><div style="font-size:13px;font-weight:800">AGENT INSPECTOR</div><button id="agentRoleEdit" type="button" disabled style="height:28px;padding:0 9px;border:1px solid #cbd9ed;border-radius:7px;background:#fff;color:#31527f;font-size:10px;font-weight:800;cursor:pointer">역할 수정</button></div><div id="agentInspector" class="agent-detail"><b>에이전트 노드를 선택하세요</b>현재 상태와 담당 업무가 여기에 표시됩니다.</div></section>
-            <section class="control-panel"><div style="font-size:13px;font-weight:800">LIVE ACTIVITY</div><div id="officeActivity" class="office-feed"><div style="padding:24px 0;text-align:center;color:#607b94;font-size:11px">아직 업무 기록이 없습니다.</div></div></section>
+            <section class="control-panel"><div style="display:flex;align-items:center;justify-content:space-between;gap:8px"><div style="font-size:13px;font-weight:800">직원 업무·보고</div><button id="agentRoleEdit" type="button" disabled style="height:28px;padding:0 9px;border:1px solid #cbd9ed;border-radius:7px;background:#fff;color:#31527f;font-size:10px;font-weight:800;cursor:pointer">역할 메모</button></div><div id="agentInspector" class="agent-detail"><b>에이전트 노드를 선택하세요</b>현재 상태와 담당 업무가 여기에 표시됩니다.</div></section>
+            <section class="control-panel"><div style="font-size:13px;font-weight:800">업무 전달 기록</div><div id="officeActivity" class="office-feed"><div style="padding:24px 0;text-align:center;color:#607b94;font-size:11px">아직 업무 기록이 없습니다.</div></div></section>
           </aside>
         </div>
       </div>
@@ -771,7 +774,7 @@ body.app-loading #sideAvatar{color:transparent!important;background:#243a5c!impo
       </div>
       </div>
 
-      
+
 
     </div>
   </main>
@@ -805,7 +808,7 @@ body.app-loading #sideAvatar{color:transparent!important;background:#243a5c!impo
   var META = {
     dashboard:['대시보드','의원실 업무를 한눈에'],
     secretary:['AI 비서실장','AI가 정리한 브리핑과 할 일'],
-    agents:['AI 에이전트 사무실','AI 직원들의 업무 현황과 협업'],
+    agents:['의정비서실','사무실별 팀장 · 담당자 · 업무 보고'],
     crm:['CRM','지지자·후원자·단체 관계 관리'],
     minwon:['민원','민원 접수부터 종결까지'],
     schedule:['일정·행사','의정활동과 지역 일정 관리'],
@@ -2627,6 +2630,18 @@ onAuthStateChanged(_auth, async function(user){
       return null;
     });
   }
+  var officeCommand=document.getElementById('officeCommand');
+  if(officeCommand)officeCommand.addEventListener('submit',async function(e){
+    e.preventDefault();var field=document.getElementById('officeInstruction'),status=document.getElementById('officeCommandStatus'),button=officeCommand.querySelector('button'),text=field.value.trim();if(!text||button.disabled)return;
+    button.disabled=true;status.textContent='비서실장에게 지시를 접수하고 있습니다.';
+    try{addUser(text,[]);var run=await startAgentRun(text);if(run){field.value='';status.textContent='접수 완료 · 팀별 진행 상황은 아래에 표시됩니다.';}else status.textContent='접수하지 못했습니다. 로그인과 연결 상태를 확인해주세요.';}catch(error){status.textContent=error.message||'지시를 접수하지 못했습니다.';}finally{button.disabled=false;}
+  });
+  var chatModelLabel=document.getElementById('officeChatModel');if(chatModelLabel)chatModelLabel.textContent=GPT_MODEL;
+  fetch(gptEndpoint().replace(/\/+$/,'')+'/health').then(function(r){if(!r.ok)throw Error('connection');return r.json();}).then(function(data){
+    var model=document.getElementById('officeAgentModel'),connection=document.getElementById('officeConnection');
+    if(model)model.textContent=data.agentModel||'서버 모델 확인 전';
+    if(connection)connection.textContent=data.queue&&data.database?'서버 연결됨':'연결 확인 필요';
+  }).catch(function(){var connection=document.getElementById('officeConnection');if(connection)connection.textContent='서버 연결 확인 필요';});
   function startBrowserAgentRun(text){
     var now=Date.now(), run={schemaVersion:3,id:'run_'+now.toString(36)+'_'+Math.random().toString(36).slice(2,6),
       tenantId:agentOwner(),instruction:text,status:'planning',createdAt:now,updatedAt:now,summary:'',error:'',tasks:[],taskIds:[]};
@@ -4091,12 +4106,12 @@ onAuthStateChanged(_auth, async function(user){
 /* AI 에이전트 사무실: 멀티에이전트 실행 기록을 직원 상태와 활동으로 표현 */
 (function(){
   'use strict';
-  var LABELS={planning:'계획 중',queued:'대기',running:'작업 중',reviewing:'검수 중',completed:'완료',failed:'오류'};
+  var LABELS={idle:'대기',planning:'업무 분배 중',queued:'대기',retrying:'재시도 대기',delegating:'업무 배분',monitoring:'담당자 작업 관리',running:'작업 중',reviewing:'팀장 검토',reworking:'수정 중',approved:'검토 승인',needs_attention:'확인 필요',completed:'보고 완료',failed:'오류'};
   var NAMES={schedule:'일정·수행팀',policy:'조례·정책팀',audit:'예산·행감팀',civil:'지역현안·민원팀',organization:'지역조직·CRM팀',assemblypr:'의정활동 홍보팀',localpr:'지역활동 홍보팀',records:'행정·기록팀',verification:'직속 검증팀',promotion:'기존 홍보팀',
     schedule_lead:'일정·수행팀장',policy_lead:'조례·정책팀장',audit_lead:'예산·행감팀장',civil_lead:'민원팀장',organization_lead:'조직팀장',assemblypr_lead:'의정홍보팀장',localpr_lead:'지역홍보팀장',records_lead:'기록팀장',verification_lead:'검증팀장',promotion_lead:'기존 홍보팀장'};
   var WORKER_KEYS={schedule:['calendar','protocol','coordination'],policy:['ordinance','analysis','speech'],audit:['budget','request','question'],civil:['triage','response','followup'],organization:['contacts','meeting','opinion'],assemblypr:['briefing','press','content'],localpr:['field','solution','channel'],records:['minutes','documents','archive'],verification:['facts','legal','privacy'],promotion:['press','social','monitoring']};
   var WORKER_NAMES={schedule:['일정관리','의전·동선','연락·조율'],policy:['조례검토','정책분석','도정질문·발언'],audit:['예산·결산','요구자료','행감질의'],civil:['민원분류','답변초안','처리추적'],organization:['연락처관리','간담회관리','지역여론'],assemblypr:['의정성과정리','의정보도자료','의정SNS'],localpr:['현장소식','민원해결홍보','지역채널'],records:['회의록','공문·보고서','자료보관'],verification:['사실·수치검증','법률·조례검토','개인정보·품질']};
-  var ORG_GROUPS={officeLegislativeTeams:['policy','audit','assemblypr'],officeLocalTeams:['schedule','civil','organization','localpr'],officeDirectTeams:['records','verification']};
+  var ORG_GROUPS={officeScheduleTeams:['schedule'],officePolicyTeams:['policy','audit'],officePublicityTeams:['assemblypr','localpr'],officeLocalTeams:['civil','organization'],officeDirectTeams:['records','verification']};
   var TEAM_COLORS={schedule:'#2563eb',policy:'#059669',audit:'#d97706',civil:'#dc5a66',organization:'#0f9f9a',assemblypr:'#7c3aed',localpr:'#db5b8b',records:'#64748b',verification:'#1d4ed8'};
   var ROLE_DEFAULTS={
     secretary:'의원실 전체 업무를 지휘하고, 우선순위를 정해 최종 보고를 통합합니다.',
@@ -4197,7 +4212,7 @@ onAuthStateChanged(_auth, async function(user){
     var items=[];
     runs.slice(0,4).forEach(function(run){
       (run.tasks||[]).slice().reverse().forEach(function(task){
-        if(items.length<7)items.push({name:NAMES[task.agent+'_lead']||'팀장',text:(task.title||'업무')+' · '+(task.review?'검수 승인':(+task.schemaVersion>=2?'진행 관리':'이전 방식 완료')),status:task.leadStatus||task.status,time:time(task.updatedAt)});
+        if(items.length<7)items.push({name:NAMES[task.agent+'_lead']||'팀장',text:(task.title||'업무')+' · '+(task.reviewDecision==='needs_attention'?'보완 필요':task.review?'검토 의견 있음':(+task.schemaVersion>=2?'진행 관리':'이전 방식 완료')),status:task.leadStatus||task.status,time:time(task.updatedAt)});
         (task.subtasks||[]).forEach(function(s){if(items.length<7)items.push({name:s.name||'AI 팀원',text:(LABELS[s.status]||s.status),status:s.status,time:time(s.updatedAt)});});
       });
       if(items.length<7)items.push({name:'AI 비서실장',text:(run.instruction||'지시')+' · '+(LABELS[run.status]||run.status),status:run.status,time:time(run.updatedAt)});
@@ -4209,11 +4224,12 @@ onAuthStateChanged(_auth, async function(user){
   }
   window.addEventListener('moida:agent-runs',function(e){render(e.detail);});
   document.querySelectorAll('[data-office-agent]').forEach(function(node){
+    node.setAttribute('tabindex','0');node.setAttribute('role','button');node.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();node.click();}});
     node.addEventListener('click',function(){
       var type=node.getAttribute('data-office-agent'),isLead=/_lead$/.test(type),baseType=isLead?type.replace('_lead',''):(type==='secretary'?'secretary':type.split('_')[0]),workerId=(!isLead&&type.indexOf('_')>0)?type.slice(type.indexOf('_')+1):'',runs=window.MOIDA_AGENT_RUNS||[],latest=runs[0]||{},task=(latest.tasks||[]).find(function(t){return t.agent===baseType;}),subtask=task&&workerId?(task.subtasks||[]).find(function(s){return s.workerId===workerId;}):null;
       var inspector=document.getElementById('agentInspector');if(!inspector)return;
       selectedAgentType=type;
-      var roleButton=document.getElementById('agentRoleEdit');if(roleButton){roleButton.disabled=false;roleButton.textContent='역할 수정';roleButton.removeAttribute('data-editing');}
+      var roleButton=document.getElementById('agentRoleEdit');if(roleButton){roleButton.disabled=false;roleButton.textContent='역할 메모';roleButton.removeAttribute('data-editing');}
       document.querySelectorAll('[data-office-agent]').forEach(function(n){n.style.outline='';});
       node.style.outline='2px solid var(--node)';
       var name=type==='secretary'?'AI 비서실장':(NAMES[type]||'AI 에이전트');
@@ -4229,11 +4245,11 @@ onAuthStateChanged(_auth, async function(user){
     if(this.getAttribute('data-editing')==='1'){
       var input=document.getElementById('agentRoleInput'),next=input?input.value.trim():'';
       if(next)saveAgentRole(selectedAgentType,next);
-      this.textContent='역할 수정';this.removeAttribute('data-editing');
+      this.textContent='역할 메모';this.removeAttribute('data-editing');
       var selected=document.querySelector('[data-office-agent="'+selectedAgentType+'"]');if(selected)selected.click();
       return;
     }
-    inspector.innerHTML='<b>담당 역할 수정</b><div style="margin-top:8px;color:#6b7585;font-size:10.5px;line-height:1.5">이 역할은 현재 브라우저에 저장되며, 해당 에이전트를 다시 선택하면 바로 확인할 수 있습니다.</div><textarea id="agentRoleInput" style="width:100%;min-height:96px;box-sizing:border-box;margin-top:10px;padding:9px;border:1px solid #bfd0e5;border-radius:8px;resize:vertical;font:11px/1.55 inherit;color:#334155">'+esc(agentRole(selectedAgentType))+'</textarea><div style="margin-top:7px;color:#7b8797;font-size:9.5px">수정 후 오른쪽 상단의 저장 버튼을 눌러주세요.</div>';
+    inspector.innerHTML='<b>담당 역할 메모</b><div style="margin-top:8px;color:#6b7585;font-size:10.5px;line-height:1.5">이 메모는 현재 브라우저에 저장됩니다. AI의 실제 실행 지침은 변경하지 않습니다.</div><textarea id="agentRoleInput" style="width:100%;min-height:96px;box-sizing:border-box;margin-top:10px;padding:9px;border:1px solid #bfd0e5;border-radius:8px;resize:vertical;font:11px/1.55 inherit;color:#334155">'+esc(agentRole(selectedAgentType))+'</textarea><div style="margin-top:7px;color:#7b8797;font-size:9.5px">수정 후 오른쪽 상단의 저장 버튼을 눌러주세요.</div>';
     this.textContent='저장';this.setAttribute('data-editing','1');
     var input=document.getElementById('agentRoleInput');if(input)input.focus();
   });

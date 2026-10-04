@@ -7,6 +7,9 @@ on:
     branches: [main]
     paths:
       - 'gpt-worker.js'
+      - 'agent-core.js'
+      - 'agent-scheduler.js'
+      - 'tests/**'
       - 'wrangler.toml'
       - '.github/workflows/deploy-worker.yml'
   workflow_dispatch:
@@ -19,6 +22,14 @@ jobs:
       HAS_OPENAI: ${{ secrets.OPENAI_API_KEY != '' }}
     steps:
       - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate worker and agent execution
+        run: |
+          node --check gpt-worker.js
+          node --test tests/agent-core.test.mjs tests/agent-scheduler.test.mjs tests/agent-review.test.mjs tests/usage-cost.test.mjs
 
       # (A) GitHub에 OPENAI_API_KEY가 등록돼 있으면: 배포 + 키를 워커에 자동 주입
       #     → 재배포해도 키가 유실되지 않음(권장).
