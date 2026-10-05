@@ -559,15 +559,6 @@ body.secretary-view #aiPanel{border:0!important;border-radius:0!important;box-sh
             </div>
           </div>
           <div id="aiMessages" style="flex:1;overflow-y:auto;padding:22px 20px;display:flex;flex-direction:column;gap:18px;background:#fafbfc">
-            <div style="display:flex;gap:11px;max-width:78%">
-              <div style="width:32px;height:32px;border-radius:9px;background:linear-gradient(135deg,#16305c,#3b6fd4);flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#fff"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.6L19.5 10l-5.6 1.9L12 17.5l-1.9-5.6L4.5 10l5.6-1.9z"/></svg></div>
-              <div id="aiGreet" style="background:#fff;border:1px solid #eef1f5;border-radius:4px 14px 14px 14px;padding:14px 16px;font-size:13.5px;line-height:1.6;color:#27313f">좋은 하루입니다. 의정활동을 도와드리겠습니다.</div>
-            </div>
-            <div style="display:flex;flex-wrap:wrap;gap:8px;margin-left:43px">
-              <button class="ai-chip" style="padding:8px 14px;background:#fff;border:1px solid #d6e0ee;border-radius:20px;font-size:12.5px;font-weight:600;color:#1d3a6e;cursor:pointer" data-hover="background:#eaf1fb">일정등록</button>
-              <button class="ai-chip" style="padding:8px 14px;background:#fff;border:1px solid #d6e0ee;border-radius:20px;font-size:12.5px;font-weight:600;color:#1d3a6e;cursor:pointer" data-hover="background:#eaf1fb">보도자료작성</button>
-              <button class="ai-chip" style="padding:8px 14px;background:#fff;border:1px solid #d6e0ee;border-radius:20px;font-size:12.5px;font-weight:600;color:#1d3a6e;cursor:pointer" data-hover="background:#eaf1fb">홍보글작성</button>
-            </div>
           </div>
           <div style="padding:14px 16px;border-top:1px solid #eef1f5;background:#fff">
             <div id="aiAttach" style="display:none;flex-wrap:wrap;gap:8px;margin-bottom:10px"></div>
@@ -3783,24 +3774,7 @@ onAuthStateChanged(_auth, async function(user){
 
   /* 첫 인사 — 실데이터 기반 브리핑 (하드코딩 제거) */
   function _today(){ var d=new Date(); return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2); }
-  function greetHtml(){
-    var nm=(M.profile&&M.profile.name)||''; var h=new Date().getHours();
-    var sal=h>=6&&h<11?'좋은 아침입니다':(h>=11&&h<18?'안녕하세요':'늦은 시간까지 수고 많으십니다');
-    var head=(nm?M.esc(nm)+' 의원님, ':'')+sal+'.';
-    var lines=[];
-    var ev=(M.events||[]).filter(function(e){return e.date===_today();}).sort(function(a,b){return (a.time||'').localeCompare(b.time||'');});
-    if(ev.length) lines.push('오늘 일정 <b>'+ev.length+'건</b> — 첫 일정 '+M.esc(((ev[0].time||'')+' '+(ev[0].title||'')).trim()));
-    var open=(M.complaints||[]).filter(function(c){var s=c.status||'접수';return s!=='종결'&&s!=='답변완료';}).length;
-    if(open) lines.push('미처리 민원 <b>'+open+'건</b> 답변 대기');
-    var act=(M.policies||[]).filter(function(p){return (+p.progress||0)<100;}).length;
-    if(act) lines.push('추진 중 정책 <b>'+act+'건</b> 점검');
-    var NUM=['①','②','③','④'];
-    var body=lines.length ? '<br>'+lines.slice(0,4).map(function(l,i){return NUM[i]+' '+l;}).join('<br>') : '<br>일정·민원·정책을 등록하시면 오늘의 핵심 업무를 정리해 드립니다.';
-    return head+body+'<br>어떤 업무부터 도와드릴까요?';
-  }
-  function paintGreet(){ if(history.length) return; var g=document.getElementById('aiGreet'); if(!g) return; g.innerHTML=greetHtml(); seed = msgs?msgs.innerHTML:seed; }
-  paintGreet();
-  M.onData(function(){ paintGreet(); });
+
 })();
 </script>
 <!-- ── 공지사항 (중앙당·경기도당·경기도의회 크롤 + MOIDA 공지) ────────── -->
