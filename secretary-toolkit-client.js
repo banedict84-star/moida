@@ -13,7 +13,7 @@
   function card(title,body){var e=node('section');e.className='office-tool-card';e.append(node('strong',title));if(body)e.append(note(body));return e;}
   function closePanel(){panel.hidden=true;panel.open=false;layout.classList.remove('office-tools-visible');launcher.setAttribute('aria-expanded','false');launcher.focus();}
   function createPanel(){if(panel)return;
-   var css=node('link');css.rel='stylesheet';css.href='secretary-toolkit.css?v=2';document.head.append(css);
+   var css=node('link');css.rel='stylesheet';css.href='secretary-toolkit.css?v=3';document.head.append(css);
    layout=document.getElementById('aiPanel').parentElement;
    panel=node('aside');panel.id='officeToolsPanel';panel.className='office-tool-panel';panel.hidden=true;panel.open=false;panel.close=closePanel;panel.setAttribute('aria-label','비서실 도구');
    var head=node('div',undefined,'office-tool-head'),titles=node('div');titles.append(node('span','MOIDA OFFICE','office-tool-eyebrow'),node('h2','비서실 도구'),note('자료를 준비하고, 다음 업무를 이어가세요.'));
