@@ -46,7 +46,7 @@ export async function runToolConversation({messages,tools,invoke,execute,onTool=
  for(let round=0;round<=maxRounds;round++){
   const data=await invoke(history,round<maxRounds?tools:[]),choice=data.choices?.[0],message=choice?.message;
   if(choice?.finish_reason==='stop'&&!message?.tool_calls?.length)return message.content||'';
-  if(choice?.finish_reason!=='tool_calls'||!message?.tool_calls?.length||round===maxRounds)throw Error('AI 도구 응답이 완성되지 않았습니다.');
+  if(!message?.tool_calls?.length||round===maxRounds)throw Error('AI 도구 응답이 완성되지 않았습니다. ('+String(choice?.finish_reason||'응답 누락')+')');
   history.push(message);
   for(const call of message.tool_calls){
    let result;try{if(++calls>4)throw Error('조회 횟수 한도입니다. 추가 확인 필요로 보고하세요.');if(!tools.some(t=>t.function.name===call.function.name))throw Error('허용되지 않은 도구입니다.');result=await execute(call.function.name,JSON.parse(call.function.arguments||'{}'));}catch(e){result={ok:false,error:e.message,requires_confirmation:true};}
