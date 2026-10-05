@@ -238,6 +238,18 @@ body.app-loading #sideAvatar{color:transparent!important;background:#243a5c!impo
 #aiInput{font-size:16px!important}#officeToolsOpen{padding:6px!important;font-size:11px!important}
 .secretary-grid{min-height:0}#appHeader>div:first-of-type{min-width:0}
 }
+
+@media(max-width:760px){
+body>div:first-child{height:100dvh!important}
+body.secretary-view #appContent{min-height:0;overflow:hidden!important;padding:10px 12px!important;display:flex;flex-direction:column}
+body.secretary-view .page[data-page="secretary"]{flex:1;min-height:0}
+body.secretary-view .secretary-grid{height:100%!important}
+#aiPanel>div:last-child>div:last-child{display:grid!important;grid-template-columns:34px minmax(0,1fr) 38px;gap:6px!important}
+#officeToolsOpen{grid-column:1/-1;justify-self:start}#aiAttachBtn{grid-column:1;grid-row:2}#aiInput{grid-column:2;grid-row:2;width:100%}#aiSend{grid-column:3;grid-row:2}
+#aiGreet{padding:10px 12px!important;font-size:13px!important;line-height:1.55!important}
+#aiMessages>div:has(.ai-chip){margin-left:0!important;max-width:100%!important;gap:6px!important;flex-shrink:0}
+.ai-chip{padding:7px 10px!important;font-size:11.5px!important;white-space:nowrap}#aiMessages>div{flex-shrink:0}
+}
 </style>
 <link rel="stylesheet" href="office.css?v=20261005">
 </head>
@@ -855,6 +867,7 @@ body.app-loading #sideAvatar{color:transparent!important;background:#243a5c!impo
     if(!META[page]) page = 'dashboard';
     navItems.forEach(function(n){ n.classList.toggle('active', n.getAttribute('data-page')===page); });
     pages.forEach(function(p){ p.style.display = (p.getAttribute('data-page')===page) ? 'block' : 'none'; });
+    document.body.classList.toggle('secretary-view',page==='secretary');
     titleEl.textContent = META[page][0];
     subEl.textContent = META[page][1];
     /* 최초 로딩에는 움직이지 않고, 사용자가 페이지를 이동할 때만 진입 애니메이션 */
@@ -3727,8 +3740,8 @@ onAuthStateChanged(_auth, async function(user){
   function _today(){ var d=new Date(); return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2); }
   function greetHtml(){
     var nm=(M.profile&&M.profile.name)||''; var h=new Date().getHours();
-    var sal=h<11?'좋은 아침입니다':(h<18?'안녕하세요':'늦은 시간까지 수고 많으십니다');
-    var head=(nm?M.esc(nm)+' 의원님, ':'')+sal+'. 오늘 처리하실 핵심 업무를 정리했습니다.';
+    var sal=h>=6&&h<11?'좋은 아침입니다':(h>=11&&h<18?'안녕하세요':'늦은 시간까지 수고 많으십니다');
+    var head=(nm?M.esc(nm)+' 의원님, ':'')+sal+'.';
     var lines=[];
     var ev=(M.events||[]).filter(function(e){return e.date===_today();}).sort(function(a,b){return (a.time||'').localeCompare(b.time||'');});
     if(ev.length) lines.push('오늘 일정 <b>'+ev.length+'건</b> — 첫 일정 '+M.esc(((ev[0].time||'')+' '+(ev[0].title||'')).trim()));
@@ -3737,8 +3750,8 @@ onAuthStateChanged(_auth, async function(user){
     var act=(M.policies||[]).filter(function(p){return (+p.progress||0)<100;}).length;
     if(act) lines.push('추진 중 정책 <b>'+act+'건</b> 점검');
     var NUM=['①','②','③','④'];
-    var body=lines.length ? '<br><br>'+lines.slice(0,4).map(function(l,i){return NUM[i]+' '+l;}).join('<br>') : '<br><br>아직 등록된 데이터가 적습니다. 일정·민원·정책을 추가하시면 매일 핵심을 브리핑해 드릴게요.';
-    return head+body+'<br><br>먼저 어떤 것부터 도와드릴까요?';
+    var body=lines.length ? '<br>'+lines.slice(0,4).map(function(l,i){return NUM[i]+' '+l;}).join('<br>') : '<br>일정·민원·정책을 등록하시면 오늘의 핵심 업무를 정리해 드립니다.';
+    return head+body+'<br>어떤 업무부터 도와드릴까요?';
   }
   function paintGreet(){ if(history.length) return; var g=document.getElementById('aiGreet'); if(!g) return; g.innerHTML=greetHtml(); seed = msgs?msgs.innerHTML:seed; }
   paintGreet();
