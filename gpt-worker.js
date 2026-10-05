@@ -1,5 +1,5 @@
 import {handleSecretaryRoute} from "./secretary-agent.js";
-import {teamTools,executeTeamTool,runToolConversation} from './agent-tools.js';
+import {teamTools,executeTeamTool,runToolConversation,compactWorkContext} from './agent-tools.js';
 import {executeToolkit,toolkitRoute,toolkitTick,boundedBytes,bytesToBase64} from "./secretary-toolkit.js";
 import {TOOLKIT_NAMES} from "./secretary-toolkit-defs.js";
 import {runTeamTasks} from "./agent-scheduler.js";
@@ -907,7 +907,7 @@ async function createAgentRun(request, env, user) {
   const instruction = String(body.instruction || "").trim();
   if (!instruction) throw new HttpError(400, "지시 내용을 입력해 주세요.");
   if (instruction.length > MAX_INSTRUCTION_LENGTH) throw new HttpError(413, "지시 내용이 너무 깁니다.");
-  const runContext={...(body.context||{})};
+  const runContext=compactWorkContext(body.context);
   // The explicit plan is validated at intake and cannot add unsupported teams.
   if(body.assignments !== undefined){try{runContext.officeAssignments=assignmentPlan(instruction,body.assignments);}catch(e){throw new HttpError(400,e.message);}}
   const contextText = JSON.stringify(runContext);

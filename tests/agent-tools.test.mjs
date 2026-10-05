@@ -1,7 +1,11 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {DatabaseSync} from 'node:sqlite';
-import {teamTools,executeTeamTool,runToolConversation} from '../agent-tools.js';
+import {teamTools,executeTeamTool,runToolConversation,compactWorkContext} from '../agent-tools.js';
+test('대용량 사진·본문을 업무 접수에 넣지 않고 생략 범위를 표시한다',()=>{
+ const result=compactWorkContext({profile:{name:'테스트 의원',photo:'data:image/jpeg;base64,'+'A'.repeat(100000)},policies:Array.from({length:100},()=>({title:'조례',body:'가'.repeat(10000)}))});
+ assert.ok(JSON.stringify(result).length<50000);assert.equal(result.profile.name,'테스트 의원');assert.match(result.contextScope,/생략/);
+});
 test('팀 도구는 담당 범위의 조회만 허용한다',async()=>{
  assert.ok(teamTools('policy').some(t=>t.function.name==='office_search_law'));
  assert.ok(!teamTools('organization').some(t=>t.function.name==='office_calendar'));

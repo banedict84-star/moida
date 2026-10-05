@@ -12,6 +12,17 @@ const DEFINITIONS=[
  fn('office_notices','모이다에 수집된 공식 공지 목록과 원문 링크를 조회한다.',{query:string})
 ];
 export function teamTools(team){const allowed=new Set([...COMMON,...(ACCESS[team]||[])]);return DEFINITIONS.filter(t=>allowed.has(t.function.name));}
+export function compactWorkContext(source){
+ let budget=30000,nodes=0,truncated=false;
+ function trim(value,depth=0){
+  if(++nodes>500||depth>6){truncated=true;return null;}
+  if(typeof value==='string'){if(value.startsWith('data:')){truncated=true;return '[이미지 데이터 생략]';}const limit=Math.max(0,Math.min(1500,budget));const out=value.slice(0,limit);budget-=out.length;if(out.length<value.length)truncated=true;return out;}
+  if(Array.isArray(value)){if(value.length>30)truncated=true;return value.slice(0,30).map(x=>trim(x,depth+1));}
+  if(value&&typeof value==='object'){const result={};for(const [key,item]of Object.entries(value).slice(0,60))result[key.slice(0,80)]=trim(item,depth+1);return result;}
+  return value;
+ }
+ const result=trim(source||{});if(truncated)result.contextScope='참고자료는 용량 제한으로 일부 생략됨. 전체 자료 확인 필요.';return result;
+}
 export async function executeTeamTool({env,run,team,name,args={},services={},fetcher=fetch}){
  if(!teamTools(team).some(t=>t.function.name===name))throw Error('이 팀에 연결되지 않은 도구입니다.');
  if(!run.tenant_id)throw Error('의원실 계정 확인이 필요합니다.');
