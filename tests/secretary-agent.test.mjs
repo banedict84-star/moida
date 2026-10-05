@@ -111,3 +111,11 @@ test('도구 선점 도중 계정이 바뀌면 새 계정 자료를 변경하지
  const client=sandbox.createSecretaryClient({owner:()=>owner,request,status:()=>{},busy:()=>{},execute:async()=>{executions++;}});
  await assert.rejects(client.run('chat_A','연락처 등록',''),/계정이 변경/);assert.equal(executions,0);
 });
+
+test('진행 중 답변 미리보기는 현재 실행만 보여주고 완료 기록으로 저장하지 않는다',async()=>{
+ const f=fixture();await f.start();f.state.items=[{turn_id:'turn_A',type:'message',role:'assistant',phase:'final_answer',content:[{type:'output_text',text:'안녕하세요'}]},{turn_id:'turn_old',type:'message',role:'assistant',phase:'final_answer',content:[{type:'output_text',text:'이전 답변'}]}];
+ const state=await f.route('/secretary/poll',{thread_id:'chat_A',request_id:'request_A',preview:'1'},'owner','GET');
+ assert.equal(state.status,'in_progress');assert.equal(state.partial_text,'안녕하세요');assert.equal(state.output_text,'');
+ assert.equal(f.db.prepare('SELECT output_text FROM secretary_turns').get().output_text,null);
+ assert.equal((await f.route('/secretary/poll',{thread_id:'chat_A',request_id:'request_A',preview:'1'},'another_owner','GET')).partial_text,undefined);f.db.close();
+});

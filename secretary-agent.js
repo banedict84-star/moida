@@ -120,11 +120,12 @@ async function start(env, uid, thread, body, api) {
   }
   return snapshot(env, uid, thread, id);
 }
-async function poll(env, uid, thread, id, api) {
+async function poll(env, uid, thread, id, api, preview = false) {
   const c = await row(env, uid, thread), t = id ? await turn(env, uid, thread, id) : c?.active_request_id ? await turn(env, uid, thread, c.active_request_id) : null;
   if (!t || terminal(t.status)) return snapshot(env, uid, thread, t?.request_id);
   if (!c.session_id) return snapshot(env, uid, thread, t.request_id);
-  const base = '/' + encodeURIComponent(c.session_id), session = await api(base);
+  const base = '/' + encodeURIComponent(c.session_id);
+  const [session, knownResult] = await Promise.all([api(base), t.turn_id ? api(base + '/turns/' + encodeURIComponent(t.turn_id)) : Promise.resolve(null)]);
   if (session.metadata?.moida_thread_id !== thread) fail(409, '에이전트 세션과 대화 기록이 일치하지 않습니다.');
   let turnId = t.turn_id;
   if (!turnId) {
@@ -136,7 +137,7 @@ async function poll(env, uid, thread, id, api) {
     turnId = candidates[0].id;
     await q(env, 'UPDATE secretary_turns SET turn_id=? WHERE tenant_id=? AND thread_id=? AND request_id=? AND turn_id IS NULL', [turnId, uid, thread, t.request_id]).run();
   }
-  const result = await api(base + '/turns/' + encodeURIComponent(turnId));
+  const result = knownResult || await api(base + '/turns/' + encodeURIComponent(turnId));
   if (result.id !== turnId || result.session_id !== c.session_id) fail(502, '실행 결과 ID가 일치하지 않습니다.');
   if (terminal(result.status)) {
     let output = result.status === 'completed' ? finalText(await pages(api, base + '/items?order=asc&limit=100'), turnId) : '';
@@ -151,7 +152,9 @@ async function poll(env, uid, thread, id, api) {
     await q(env, 'INSERT OR IGNORE INTO secretary_calls(tenant_id,thread_id,request_id,call_id,turn_id,name,arguments_json) VALUES(?,?,?,?,?,?,?)', [uid, thread, t.request_id, action.call_id, turnId, action.name, JSON.stringify(action.arguments)]).run();
   }
   await q(env, 'UPDATE secretary_turns SET status=? WHERE tenant_id=? AND thread_id=? AND request_id=?', [(session.required_actions || []).length ? 'requires_action' : result.status, uid, thread, t.request_id]).run();
-  return snapshot(env, uid, thread, t.request_id);
+  const state = await snapshot(env, uid, thread, t.request_id);
+  if (preview && !(session.required_actions || []).length) state.partial_text = finalText(await pages(api, base + "/items?order=asc&limit=100"), turnId);
+  return state;
 }
 async function tool(env, uid, thread, body, api, claim) {
   const id = key(body.request_id, '요청 ID'), callId = key(body.call_id, '도구 ID');
@@ -187,7 +190,7 @@ export async function handleSecretaryRoute({env, user, path, method, body = {}, 
   await ensureSchema(env);
   const api = (p, o) => provider(env, p, o, fetcher);
   if (path === '/secretary/message' && method === 'POST') return start(env, user.uid, thread, body, api);
-  if (path === '/secretary/poll' && method === 'GET') return poll(env, user.uid, thread, query.get('request_id') ? key(query.get('request_id'), '요청 ID') : null, api);
+  if (path === '/secretary/poll' && method === 'GET') return poll(env, user.uid, thread, query.get('request_id') ? key(query.get('request_id'), '요청 ID') : null, api, query.get('preview') === '1');
   if (path === '/secretary/claim' && method === 'POST') return tool(env, user.uid, thread, body, api, true);
   if (path === '/secretary/result' && method === 'POST') return tool(env, user.uid, thread, body, api, false);
   fail(405, '지원하지 않는 에이전트 요청입니다.');

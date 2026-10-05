@@ -7,10 +7,10 @@
     function read(thread){try{return JSON.parse(localStorage.getItem(storeKey(thread))||'null');}catch(e){return null;}}
     function write(thread,value){localStorage.setItem(storeKey(thread),JSON.stringify(value));}
     function post(path,body){return options.request(path,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});}
-    function poll(thread,id){return options.request('/secretary/poll?thread_id='+encodeURIComponent(thread)+(id?'&request_id='+encodeURIComponent(id):''),{method:'GET'});}
+    function poll(thread,id){return options.request('/secretary/poll?preview=1&thread_id='+encodeURIComponent(thread)+(id?'&request_id='+encodeURIComponent(id):''),{method:'GET'});}
     function sameOwner(saved){if(options.owner()!==saved.owner)throw Error('로그인 계정이 변경되어 실행 상태 확인을 중단했습니다.');}
     async function drive(thread,saved,state){
-      for(var i=0;i<120&&!disposed;i++){
+      for(var i=0;i<240&&!disposed;i++){
         sameOwner(saved);
         state=state||await poll(thread,saved.request_id);
         sameOwner(saved);
@@ -22,6 +22,7 @@
           localStorage.removeItem(storeKey(thread));throw Error(state.error||'에이전트 실행이 중단됐습니다.');
         }
         if(state.status==='submission_uncertain')throw Error('메시지 접수 결과를 확인해야 합니다. 같은 메시지를 다시 접수하지 않습니다. 대화 기록에서 이 대화를 열어 상태를 확인해 주세요.');
+        if(state.partial_text&&options.preview)options.preview(thread,state.partial_text);
         options.status(labels[state.status]||'에이전트 실행 상태를 확인합니다.');
         for(var action of state.actions||[]){
           var cached=saved.results[action.call_id];
@@ -42,7 +43,8 @@
           await post('/secretary/result',{thread_id:thread,request_id:saved.request_id,call_id:action.call_id,result:result});
           delete saved.results[action.call_id];write(thread,saved);
         }
-        state=null;await new Promise(function(resolve){setTimeout(resolve,1800);});
+        var delay=(i===0||(state.actions||[]).length)?0:700;
+        state=null;if(delay)await new Promise(function(resolve){setTimeout(resolve,delay);});
       }
       throw Error('처리가 길어지고 있습니다. 이 대화를 다시 열면 같은 요청의 상태를 이어 확인합니다.');
     }

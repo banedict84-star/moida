@@ -780,7 +780,7 @@ body.app-loading #sideAvatar{color:transparent!important;background:#243a5c!impo
   </main>
 </div>
 
-<script src="secretary-client.js?v=2"></script>
+<script src="secretary-client.js?v=3"></script>
 <script>
 /* ── 의원실 플랫폼 SPA 런타임 (디자인 핸드오프 재구현) ──────────────── */
 (function(){
@@ -3480,10 +3480,12 @@ onAuthStateChanged(_auth, async function(user){
     if(forceSchedule)awaitingScheduleDetails=false;
     runLoop(addTyping(), 0, 0, isPosterCreationRequest(text), forceSchedule);
   }
+  var secretaryPreview=null;
   var secretaryClient=window.createSecretaryClient({
     owner:function(){return M.auth&&M.auth.currentUser?M.auth.currentUser.uid:'local';},
     request:agentApi,
     status:setChatStatus,
+    preview:function(thread,text){if(secretaryPreview&&secretaryPreview.thread===thread&&currentThreadId===thread&&M.auth.currentUser&&M.auth.currentUser.uid===secretaryPreview.owner){var bubble=secretaryPreview.element&&secretaryPreview.element.lastElementChild;if(bubble){bubble.textContent=text;bubble.style.whiteSpace="pre-wrap";}}},
     busy:function(busy){var b=document.getElementById('aiSend');if(b)b.disabled=busy;},
     execute:async function(name,args,callId){
       if(name==='delegate_work'){
@@ -3505,6 +3507,7 @@ onAuthStateChanged(_auth, async function(user){
   function runLoop(typing, depth, retry, forcePoster, forceSchedule){
     var threadId=currentThreadId,owner=secretaryClient&&M.auth&&M.auth.currentUser&&M.auth.currentUser.uid;
     if(!owner){if(typing)typing.remove();addAI('로그인 후 비서실장 에이전트를 이용해 주세요.');return;}
+    secretaryPreview={thread:threadId,owner:owner,element:typing};
     var last=history[history.length-1],content=last&&last.role==='user'?last.content:'이전 요청 상태를 확인해 주세요.';
     var text=typeof content==='string'?content:content.filter(function(p){return p.type==='text';}).map(function(p){return p.text;}).join('\n');
     if(forcePoster)text+='\n[요청 실행] create_poster 도구로 웹자보를 생성해 주세요.';
