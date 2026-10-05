@@ -2367,7 +2367,17 @@ onAuthStateChanged(_auth, async function(user){
   M.onData(function(){loadCloudChats();});
   function mdToHtml(s){
     s=M.esc(s);
-    s=s.replace(/\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g,'<a href="$2" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:4px;color:#2563eb;font-weight:700;text-decoration:none;border-bottom:1px solid #b8cef4">$1 <span aria-hidden="true">↗</span></a>');
+    var links=[];
+    function compactLink(url,label){
+      var host='링크';try{host=new URL(url.replace(/&amp;/g,'&')).hostname.replace(/^www\./,'');}catch(e){}
+      if(!label||/^https?:\/\//i.test(label))label=host+' · 열기';
+      if(label.length>80)label=label.slice(0,77)+'…';
+      links.push('<a href="'+url+'" title="'+url+'" target="_blank" rel="noopener noreferrer" style="display:inline;color:#2563eb;font-weight:600;text-decoration:underline;overflow-wrap:anywhere;word-break:break-word">'+label+' <span aria-hidden="true">↗</span></a>');
+      return '\u0001LINK'+(links.length-1)+'\u0001';
+    }
+    s=s.replace(/\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g,function(_,label,url){return compactLink(url,label);});
+    s=s.replace(/https?:\/\/[^\s<>]+/g,function(url){var tail='';while(/[.,!?;:。，！？)\]]$/.test(url)){tail=url.slice(-1)+tail;url=url.slice(0,-1);}return compactLink(url,'')+tail;});
+    s=s.replace(/\u0001LINK(\d+)\u0001/g,function(_,index){return links[+index];});
     s=s.replace(/^###\s+(.+)$/gm,'<b style="display:block;font-size:14px;margin:14px 0 5px">$1</b>')
       .replace(/^##\s+(.+)$/gm,'<b style="display:block;font-size:15px;margin:16px 0 6px;color:#1d3a6e">$1</b>');
     s=s.replace(/\*\*([^*]+)\*\*/g,'<b>$1</b>').replace(/`([^`]+)`/g,'<code style="background:#f1f3f7;padding:1px 5px;border-radius:5px">$1</code>').replace(/\n/g,'<br>');
