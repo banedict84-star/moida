@@ -250,6 +250,8 @@ body.secretary-view .secretary-grid{height:100%!important}
 #aiMessages>div:has(.ai-chip){margin-left:0!important;max-width:100%!important;gap:6px!important;flex-shrink:0}
 .ai-chip{padding:7px 10px!important;font-size:11.5px!important;white-space:nowrap}#aiMessages>div{flex-shrink:0}
 }
+.workroom-return{display:none}
+@media(max-width:1180px){.secretary-aside.open .workroom-return{display:flex;position:sticky;top:0;z-index:2;flex-shrink:0;background:#f5f6f8;padding:8px;border-bottom:1px solid #dbe3ee}.workroom-return button{width:100%;min-height:42px;border:1px solid #cbd5e1;border-radius:9px;background:#fff;color:#1d3a6e;font:600 14px inherit;cursor:pointer}.secretary-aside.open>div{flex-shrink:0}}
 </style>
 <link rel="stylesheet" href="office.css?v=20261005">
 </head>
@@ -545,7 +547,8 @@ body.secretary-view .secretary-grid{height:100%!important}
           </div>
         </div>
 
-        <div class="secretary-aside" style="display:flex;flex-direction:column;gap:16px;overflow-y:auto">
+        <div id="secretaryWorkRoom" class="secretary-aside" style="display:flex;flex-direction:column;gap:16px;overflow-y:auto">
+          <div class="workroom-return"><button id="agentRoomClose" type="button">← 대화로 돌아가기</button></div>
           <div style="background:#fff;border:1px solid #e9ecf1;border-radius:14px;padding:18px;box-shadow:0 1px 2px rgba(16,24,40,0.04)">
             <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:5px">
               <div style="font-size:14px;font-weight:700">AI 에이전트 작업실</div>
@@ -2749,11 +2752,19 @@ onAuthStateChanged(_auth, async function(user){
     if(r&&r.summary){addAI(mdToHtml(r.summary),r.summary);}
   });
   var agentRoomToggle=document.getElementById('agentRoomToggle'), agentRoom=document.querySelector('.secretary-aside');
-  if(agentRoomToggle&&agentRoom) agentRoomToggle.addEventListener('click',function(){
-    var open=agentRoom.classList.toggle('open');
+  function setWorkRoom(open){
+    if(!agentRoomToggle||!agentRoom)return;
+    agentRoom.classList.toggle('open',open);
     agentRoomToggle.setAttribute('aria-expanded',open?'true':'false');
+    agentRoomToggle.setAttribute('aria-controls','secretaryWorkRoom');
     agentRoomToggle.textContent=open?'작업실 닫기':'작업실';
-  });
+    if(open){agentRoom.scrollTop=0;document.getElementById('agentRoomClose').focus();}
+    else agentRoomToggle.focus();
+  }
+  if(agentRoomToggle&&agentRoom)agentRoomToggle.addEventListener('click',function(){setWorkRoom(!agentRoom.classList.contains('open'));});
+  var agentRoomClose=document.getElementById('agentRoomClose');
+  if(agentRoomClose)agentRoomClose.addEventListener('click',function(){setWorkRoom(false);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&agentRoom&&agentRoom.classList.contains('open'))setWorkRoom(false);});
   /* ── 비서실 도구(함수 호출) — 플랫폼 데이터 조회/등록 ───────────────── */
   var TOOLS = [
     {type:'function',function:{name:'list_contacts',description:'CRM에 등록된 연락처 명부와 인원수를 조회한다. 유형·행정동 필터와 오늘 생일 조회가 가능하다. CRM 관련 질문에는 추측하지 말고 이 도구를 사용한다.',parameters:{type:'object',properties:{type:{type:'string',description:'연락처 유형 필터'},dong:{type:'string',description:'행정동·지역 필터'},birthday_today:{type:'boolean',description:'오늘 생일인 연락처만 조회'},limit:{type:'number',description:'반환할 최대 인원(기본 20, 최대 100)'}}}}},
