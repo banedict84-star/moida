@@ -1,5 +1,5 @@
 import test from 'node:test';import assert from 'node:assert/strict';
-import worker,{reviewTask} from '../gpt-worker.js';
+import worker,{reviewTask,workerPrompt} from '../gpt-worker.js';
 const original=globalThis.fetch;
 test.afterEach(()=>globalThis.fetch=original);
 const env={OPENAI_API_KEY:'test-placeholder',AGENT_MODEL:'test-model',AGENT_DB:{prepare(){return {bind(){return this},async run(){return {meta:{changes:1}}},async first(){return {tenant_id:'test'}}}}}};
@@ -17,4 +17,12 @@ test('잘못된 팀장 응답은 승인 처리하지 않는다',async()=>{
 });
 test('서버의 모델과 실행 설정을 공개 상태 조회에서 확인한다',async()=>{
  const response=await worker.fetch(new Request('https://worker.example/health'),env);const data=await response.json();assert.equal(data.agentModel,'test-model');assert.equal(data.executionMode,'parallel-teams');assert.equal(data.leadReview,'model');
+});
+
+test('주민소통 담당은 CRM 자료와 계정의 추가 역할을 실제 실행 지침으로 받는다',()=>{
+ const context={today:'2026-10-06',profile:{district:'안산시제3선거구'},crm:{contacts:[{name:'테스트 단체',dong:'본오동'}]},officeRoles:{organization_contacts:'간담회 연락 대상을 정리'}};
+ const prompt=workerPrompt({...run,context_json:JSON.stringify(context)},{agent:'organization',instruction:'간담회 준비'},['contacts','연락처관리','자료 정리'],'','');
+ assert.match(prompt.user,/테스트 단체/);assert.match(prompt.system,/간담회 연락 대상을 정리/);assert.match(prompt.system,/외부 게시·발송/);
+ const other=workerPrompt({...run,context_json:JSON.stringify({...context,officeRoles:{}})},{agent:'organization',instruction:'간담회 준비'},['contacts','연락처관리','자료 정리'],'','');
+ assert.doesNotMatch(other.system,/간담회 연락 대상을 정리/);
 });

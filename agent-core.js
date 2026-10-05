@@ -1,3 +1,9 @@
+import './office-roles.js';
+export const OFFICE_CONTRACT = globalThis.MOIDA_OFFICE_CONTRACT;
+export function officeRole(context, id, fallback) {
+  const value=context?.officeRoles?.[id];
+  return typeof value==='string' && value.trim() ? value.trim().slice(0,1500) : fallback;
+}
 export const AGENT_SCHEMA_VERSION = 5;
 export const ALLOWED_AGENTS = new Set([
   "schedule", "policy", "audit", "civil", "organization",
@@ -25,7 +31,7 @@ export const TEAM_DEFS = {
     ["response", "답변초안", "민원인에게 전달할 답변 초안을 작성한다."],
     ["followup", "처리추적", "현장 확인과 담당 부서 처리기한을 정리한다."],
   ]},
-  organization: { lead: "조직팀장", workers: [
+  organization: { lead: "주민소통팀장", workers: [
     ["contacts", "연락처관리", "주민·단체·기관 관계 정보를 정리한다."],
     ["meeting", "간담회관리", "간담회 대상·의제·후속조치를 정리한다."],
     ["opinion", "지역여론", "지역별 현안과 주민 의견을 요약한다."],
@@ -40,10 +46,10 @@ export const TEAM_DEFS = {
     ["solution", "민원해결홍보", "민원 해결 과정과 성과를 주민 관점으로 정리한다."],
     ["channel", "지역채널", "지역 커뮤니티와 SNS용 콘텐츠를 작성한다."],
   ]},
-  records: { lead: "기록팀장", workers: [
+  records: { lead: "기록·후속관리팀장", workers: [
     ["minutes", "회의록", "회의와 간담회 내용을 구조화해 기록한다."],
     ["documents", "공문·보고서", "공문과 내부 보고서 초안을 작성한다."],
-    ["archive", "자료보관", "업무 결과와 근거자료의 분류 기준을 정리한다."],
+    ["archive", "후속관리", "결정사항별 담당·기한·미결 항목과 근거자료를 정리한다."],
   ]},
   verification: { lead: "검증팀장", workers: [
     ["facts", "사실·수치검증", "근거, 날짜, 수치, 인용을 검증한다."],
@@ -82,7 +88,7 @@ export function selectTaskWorkers(agent, instruction) {
       ["field", /현장|방문|행사|간담회/], ["solution", /민원|해결|성과/], ["channel", /SNS|게시글|커뮤니티|콘텐츠/],
     ],
     records: [
-      ["minutes", /회의록|간담회\s*기록/], ["documents", /공문|보고서|문서/], ["archive", /보관|아카이브|분류/],
+      ["minutes", /회의록|간담회\s*기록/], ["documents", /공문|보고서|문서/], ["archive", /보관|아카이브|분류|후속|미결|결정사항/],
     ],
     verification: [
       ["legal", /조례|법령|법률|권한/], ["facts", /수치|통계|예산|날짜|인용|사실/], ["privacy", /개인정보|연락처|민감|표현/],
@@ -104,21 +110,21 @@ export function fallbackPlan(instruction) {
   const agents = [];
   const add = (name) => { if (!agents.includes(name)) agents.push(name); };
   if (/일정|행사|시간|장소|방문|회의/.test(text)) add("schedule");
-  if (/정책|법안|조례|질의|공약|법령|법률|시행령|시행규칙|자치법규|조문|상위법|판례/.test(text)) add("policy");
-  if (/예산|결산|행정사무감사|행감|요구자료|피감기관/.test(text)) add("audit");
-  if (/민원|지역현안|현장확인|처리기한|담당부서/.test(text)) add("civil");
-  if (/조직|단체|연락처|CRM|간담회|지역여론/.test(text)) add("organization");
+  if (/정책|법안|조례|도정질문|자유발언|발언문|공약|법령|법률|시행령|시행규칙|자치법규|조문|상위법|판례/.test(text) || (/질의/.test(text) && !/행감|행정사무감사/.test(text))) add("policy");
+  if (/예산|결산|집행|추경|세입|세출|사업비|행정사무감사|행감|요구자료|피감기관/.test(text)) add("audit");
+  if (/민원|지역현안|현장확인|처리기한|담당부서|회신/.test(text)) add("civil");
+  if (/조직|단체|연락처|CRM|간담회|지역여론|주민\s*의견/.test(text)) add("organization");
   if (/홍보|보도|SNS|사진|웹자보|콘텐츠|언론/.test(text)) {
     if (/조례|예산|행감|도정질문|본회의|상임위|의정/.test(text)) add("assemblypr");
     if (/지역|현장|민원|간담회|행사|주민/.test(text)) add("localpr");
     if (!agents.includes("assemblypr") && !agents.includes("localpr")) add("assemblypr");
   }
-  if (/회의록|공문|보고서|기록|보관|아카이브/.test(text)) add("records");
+  if (/회의록|공문|보고서|기록|보관|아카이브|후속\s*(관리|목록|조치|확인)/.test(text)) add("records");
   if (!agents.length) add("policy");
   return agents.map((agent) => ({
     agent,
     title: `${TEAM_DEFS[agent].lead} 담당 업무`,
-    instruction: text,
+    instruction: `${OFFICE_CONTRACT.teams[agent][1]}\n의원 지시 중 해당 분야만 수행한다. 산출물: ${OFFICE_CONTRACT.teams[agent][2]}`,
     dependencies: [],
   }));
 }

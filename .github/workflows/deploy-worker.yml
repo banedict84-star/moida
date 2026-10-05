@@ -7,6 +7,7 @@ on:
     branches: [main]
     paths:
       - 'gpt-worker.js'
+      - 'office-roles.js'
       - 'agent-core.js'
       - 'agent-scheduler.js'
       - 'secretary-*.js'

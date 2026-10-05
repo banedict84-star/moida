@@ -69,3 +69,10 @@ test("D1 내부 필드를 공개 작업 형태로 변환한다", () => {
   assert.equal(run.tasks[0].leadStatus, "approved");
   assert.equal(run.approvalStatus, "pending");
 });
+
+test('의정 질문·행감·민원 후속 업무를 전문 담당과 산출물로 분리한다',()=>{
+ assert.deepEqual(fallbackPlan('도정질문 발언문 작성').map(t=>t.agent),['policy']);
+ assert.deepEqual(fallbackPlan('행감 질의서 준비').map(t=>t.agent),['audit']);
+ const plan=fallbackPlan('민원 회신과 후속 확인 목록 작성');assert.deepEqual(plan.map(t=>t.agent),['civil','records']);
+ assert.notEqual(plan[0].instruction,plan[1].instruction);assert.match(plan[0].instruction,/담당기관/);assert.match(plan[1].instruction,/미결/);
+});

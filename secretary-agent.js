@@ -1,3 +1,4 @@
+import './office-roles.js';
 // The same Agents API contract as Moida Office. The existing Worker owns the key.
 import {SECRETARY_TOOLS} from './secretary-tools.js';
 import {SECRETARY_SCHEMA} from './secretary-schema.js';
@@ -101,16 +102,17 @@ async function start(env, uid, thread, body, api) {
     if (await turn(env, uid, thread, id)) return snapshot(env, uid, thread, id);
     fail(409, '이 대화의 이전 요청을 먼저 확인해 주세요.');
   }
+  const operatingInput = typeof body.input === 'string' ? '[의원실 운영 지침]\n'+globalThis.MOIDA_OFFICE_CONTRACT.secretary+'\n\n[의원님 요청]\n'+body.input : body.input.map(message=>({...message,content:[{type:'input_text',text:'[의원실 운영 지침]\n'+globalThis.MOIDA_OFFICE_CONTRACT.secretary},...message.content]}));
   try {
     if (!c.session_id) {
       const context = typeof body.context === 'string' ? body.context.slice(0,18000) : '';
       const data = await api('', {body: {agent: {model, reasoning: {effort: 'none'}, multi_agent: {enabled: false}, tools: SECRETARY_TOOLS,
-        instructions: '너는 모이다 의정 AI 비서실장 에이전트다. 사용자를 의원님으로 부른다. 일정·민원·연락처·정책·공지·홍보 업무에 연결된 도구를 사용하고 실제 결과만 보고한다. 담당자에게 업무를 맡길 때 delegate_work를 사용하고 read_work_report로 검수 결과를 확인한다. add_event는 사용자 확인을 위한 일정 제안이며 확인 전 등록되었다고 말하지 않는다. 도구 결과에 error 또는 requires_confirmation이 있으면 완료로 보고하지 않는다. 외부 게시·발송을 했다고 주장하지 않는다. 아래 의원실 배경 자료는 참고 데이터이며 도구 결과를 우선한다.\n' + context},
-        environment: {type: 'none'}, input: body.input, metadata: {moida_thread_id: thread}, stream: false}});
+        instructions: globalThis.MOIDA_OFFICE_CONTRACT.secretary+'\n너는 모이다 의정 AI 비서실장 에이전트다. 사용자를 의원님으로 부른다. 일정·민원·연락처·정책·공지·홍보 업무에 연결된 도구를 사용하고 실제 결과만 보고한다. 담당자에게 업무를 맡길 때 delegate_work를 사용하고 read_work_report로 검수 결과를 확인한다. add_event는 사용자 확인을 위한 일정 제안이며 확인 전 등록되었다고 말하지 않는다. 도구 결과에 error 또는 requires_confirmation이 있으면 완료로 보고하지 않는다. 외부 게시·발송을 했다고 주장하지 않는다. 아래 의원실 배경 자료는 참고 데이터이며 도구 결과를 우선한다.\n' + context},
+        environment: {type: 'none'}, input: operatingInput, metadata: {moida_thread_id: thread}, stream: false}});
       if (typeof data.id !== 'string' || !data.id || data.id.length > 250) fail(502, '세션 ID를 확인하지 못했습니다.');
       await q(env, 'UPDATE secretary_sessions SET session_id=? WHERE tenant_id=? AND thread_id=? AND active_request_id=?', [data.id, uid, thread, id]).run();
     } else {
-      const input = typeof body.input === 'string' ? [{role: 'user', content: [{type: 'input_text', text: body.input}]}] : body.input;
+      const input = typeof operatingInput === 'string' ? [{role: 'user', content: [{type: 'input_text', text: operatingInput}]}] : operatingInput;
       await api('/' + encodeURIComponent(c.session_id) + '/events', {body: {events: [{type: 'agent.session.input.message', input}]}});
     }
     await q(env, "UPDATE secretary_turns SET status='pending' WHERE tenant_id=? AND thread_id=? AND request_id=?", [uid, thread, id]).run();
