@@ -26,6 +26,8 @@
         options.status(labels[state.status]||'에이전트 실행 상태를 확인합니다.');
         for(var action of state.actions||[]){
           var cached=saved.results[action.call_id];
+          if(!cached&&action.result!==undefined){cached={result:action.result};saved.results[action.call_id]=cached;write(thread,saved);}
+          if(cached&&options.executed)options.executed(action.name,cached.result);
           if(cached){
             await post('/secretary/result',{thread_id:thread,request_id:saved.request_id,call_id:action.call_id,result:cached.result});
             delete saved.results[action.call_id];write(thread,saved);continue;
@@ -35,9 +37,10 @@
           sameOwner(saved);
           if(!claim.claimed)throw Error('다른 화면에서 업무를 처리하고 있습니다. 잠시 뒤 대화를 다시 열어 주세요.');
           var result;
-          try{result=await options.execute(action.name,action.arguments,action.call_id);}
+          try{result=claim.result!==undefined?claim.result:await options.execute(action.name,action.arguments,action.call_id);}
           catch(e){result={ok:false,error:e.message||'도구 실행 실패'};}
           sameOwner(saved);
+          if(options.executed)options.executed(action.name,result);
           // Save the actual result before posting it. Never execute the function again on reconnect.
           saved.results[action.call_id]={result:result};write(thread,saved);
           await post('/secretary/result',{thread_id:thread,request_id:saved.request_id,call_id:action.call_id,result:result});

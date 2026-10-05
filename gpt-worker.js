@@ -1664,7 +1664,16 @@ async function handleFetch(request, env) {
     if (path.startsWith('/secretary/')) {
       const user = await verifyFirebaseUser(request, env);
       const body = request.method === 'POST' ? await requestBody(request) : {};
-      return json(await handleSecretaryRoute({env, user, path, method: request.method, body, query: url.searchParams}), 200, request, env);
+      return json(await handleSecretaryRoute({env, user, path, method: request.method, body, query: url.searchParams, executeWork:async(name,args,key,context)=>{
+        if(name==='delegate_work'){
+          const internal=new Request(url.origin+'/agent-runs',{method:'POST',headers:{'Content-Type':'application/json','Origin':request.headers.get('Origin')||''},body:JSON.stringify({instruction:args.instruction,context,idempotencyKey:key})});
+          const data=await (await createAgentRun(internal,env,user)).json();
+          return {ok:true,run_id:data.run.id,status:data.run.status,run:data.run,message:'담당 팀에 접수했습니다. 검토 보고는 작업실에서 이어 확인합니다.'};
+        }
+        const run=await getRun(env,args.run_id,user.uid);
+        if(!run)throw new HttpError(404,'현재 계정의 작업을 찾지 못했습니다.');
+        return {ok:true,run_id:run.id,status:run.status,summary:run.summary,error:run.error,tasks:run.tasks,run};
+      }}), 200, request, env);
     }
     if (path === "/health" && request.method === "GET") {
       return json({ ok: true, secretaryApi: "agents-v1", secretaryModel: env.SECRETARY_MODEL || "gpt-6-luna", secretaryEnvironment: "none", queue: Boolean(env.AGENT_QUEUE), database: Boolean(env.AGENT_DB), law: Boolean(env.LAW_OC), gemini: Boolean(env.GEMINI_API_KEY), googleCalendar: Boolean(env.GOOGLE_CLIENT_ID && env.GOOGLE_CLIENT_SECRET), schemaVersion: AGENT_SCHEMA_VERSION, agentModel: env.AGENT_MODEL || "gpt-4o-mini", executionMode: "parallel-teams", maxConcurrentTeams: 3, leadReview: "model" }, 200, request, env);

@@ -30,7 +30,7 @@ function fixture(){
   if(path.endsWith('/items'))return Response.json({data:state.items,has_more:false});
   return Response.json({...state.session,required_actions:state.actions});
  };
- const route=(path,body={},uid='owner',method='POST')=>handleSecretaryRoute({env,user:{uid},path,method,body,query:new URLSearchParams(body),fetcher});
+ const route=(path,body={},uid='owner',method='POST',extra={})=>handleSecretaryRoute({env,user:{uid},path,method,body,query:new URLSearchParams(body),fetcher,...extra});
  const start=(id='request_A',input='오늘 일정 알려줘')=>route('/secretary/message',{thread_id:'chat_A',request_id:id,input});
  const poll=(id='request_A',uid='owner')=>route('/secretary/poll',{thread_id:'chat_A',request_id:id},uid,'GET');
  return{db,env,state,route,start,poll};
@@ -141,4 +141,15 @@ test('진행 중 답변 미리보기는 현재 실행만 보여주고 완료 기
  assert.equal(state.status,'in_progress');assert.equal(state.partial_text,'안녕하세요');assert.equal(state.output_text,'');
  assert.equal(f.db.prepare('SELECT output_text FROM secretary_turns').get().output_text,null);
  assert.equal((await f.route('/secretary/poll',{thread_id:'chat_A',request_id:'request_A',preview:'1'},'another_owner','GET')).partial_text,undefined);f.db.close();
+});
+
+test('담당 배정은 인증된 현재 도구를 서버에서 한 번 실행하고 응답 유실 시 결과를 복구한다',async()=>{
+ const f=fixture();await f.start();f.state.actions=[{type:'function_call',turn_id:'turn_A',call_id:'call_A',name:'delegate_work',arguments:{instruction:'민원 회신 초안'}}];await f.poll();
+ let executions=0;const extra={executeWork:async(name,args,key,context)=>{executions++;assert.equal(name,'delegate_work');assert.equal(args.instruction,'민원 회신 초안');assert.equal(key,'secretary_call_A');assert.equal(context.today,'2026-10-06');return {ok:true,run_id:'run_A'};}};
+ const body={thread_id:'chat_A',request_id:'request_A',call_id:'call_A',work_context:{today:'2026-10-06'}};
+ const claimed=await f.route('/secretary/claim',body,'owner','POST',extra);assert.equal(claimed.result.run_id,'run_A');
+ assert.equal((await f.route('/secretary/claim',body,'owner','POST',extra)).claimed,false);assert.equal(executions,1);
+ const recovered=await f.poll();assert.equal(recovered.actions[0].result.run_id,'run_A');
+ await assert.rejects(f.route('/secretary/claim',body,'another_owner','POST',extra),/대기 중인 도구/);assert.equal(executions,1);
+ await f.route('/secretary/result',{...body,result:claimed.result});assert.equal((await f.poll()).actions.length,0);f.db.close();
 });

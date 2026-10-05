@@ -782,7 +782,7 @@ body.app-loading #sideAvatar{color:transparent!important;background:#243a5c!impo
 </div>
 
 <script src="office-roles.js?v=2"></script>
-<script src="secretary-client.js?v=3"></script>
+<script src="secretary-client.js?v=4"></script>
 <script>
 /* ── 의원실 플랫폼 SPA 런타임 (디자인 핸드오프 재구현) ──────────────── */
 (function(){
@@ -3487,6 +3487,8 @@ onAuthStateChanged(_auth, async function(user){
   var secretaryClient=window.createSecretaryClient({
     owner:function(){return M.auth&&M.auth.currentUser?M.auth.currentUser.uid:'local';},
     request:agentApi,
+    context:agentServerContext,
+    executed:function(name,result){if(result&&result.run){mergeServerRun(result.run);if(name==='delegate_work')pollServerRuns();}},
     status:setChatStatus,
     preview:function(thread,text){if(secretaryPreview&&secretaryPreview.thread===thread&&currentThreadId===thread&&M.auth.currentUser&&M.auth.currentUser.uid===secretaryPreview.owner){var bubble=secretaryPreview.element&&secretaryPreview.element.lastElementChild;if(bubble){bubble.textContent=text;bubble.style.whiteSpace="pre-wrap";}}},
     busy:function(busy){var b=document.getElementById('aiSend');if(b)b.disabled=busy;},

@@ -80,7 +80,7 @@ async function snapshot(env, uid, thread, id) {
   const c = await row(env, uid, thread), t = id ? await turn(env, uid, thread, id) : c?.active_request_id ? await turn(env, uid, thread, c.active_request_id) : null;
   const calls = t ? (await q(env, 'SELECT * FROM secretary_calls WHERE tenant_id=? AND thread_id=? AND request_id=?', [uid, thread, t.request_id]).all()).results : [];
   return {ok: true, model: c?.model || env.SECRETARY_MODEL || 'gpt-6-luna', request_id: t?.request_id, status: t?.status || 'ready',
-    output_text: t?.output_text || '', error: t?.error || '', actions: calls.filter(a => a.status !== 'submitted').map(a => ({call_id: a.call_id, turn_id: a.turn_id, name: a.name, arguments: JSON.parse(a.arguments_json), status: a.status}))};
+    output_text: t?.output_text || '', error: t?.error || '', actions: calls.filter(a => a.status !== 'submitted').map(a => ({call_id: a.call_id, turn_id: a.turn_id, name: a.name, arguments: JSON.parse(a.arguments_json), status: a.status, ...(a.status === "executing" && a.result_json ? {result: JSON.parse(a.result_json)} : {})}))};
 }
 async function start(env, uid, thread, body, api) {
   const id = key(body.request_id, '요청 ID'); validateInput(body.input);
@@ -172,7 +172,7 @@ async function poll(env, uid, thread, id, api, preview = false) {
   if (preview && !(session.required_actions || []).length) state.partial_text = finalText(await pages(api, base + "/items?order=asc&limit=100"), turnId);
   return state;
 }
-async function tool(env, uid, thread, body, api, claim) {
+async function tool(env, uid, thread, body, api, claim, executeWork) {
   const id = key(body.request_id, '요청 ID'), callId = key(body.call_id, '도구 ID');
   const c = await row(env, uid, thread), t = await turn(env, uid, thread, id);
   if (!c?.session_id || c.active_request_id !== id || !t?.turn_id || terminal(t.status)) fail(409, '현재 대화에서 대기 중인 도구가 아닙니다.');
@@ -185,7 +185,17 @@ async function tool(env, uid, thread, body, api, claim) {
   if (!pending || pending.name !== saved.name || JSON.stringify(pending.arguments) !== saved.arguments_json) fail(409, '도구 요청이 변경됐거나 더 이상 대기 중이 아닙니다.');
   if (claim) {
     const written = await q(env, "UPDATE secretary_calls SET status='executing' WHERE tenant_id=? AND thread_id=? AND request_id=? AND call_id=? AND status='pending'", callKeys).run();
-    return {ok: true, claimed: written.meta.changes === 1};
+    if (written.meta.changes !== 1) return {ok:true,claimed:false};
+    if (executeWork && ['delegate_work','read_work_report'].includes(saved.name)) {
+      let result;
+      try {result=await executeWork(saved.name,JSON.parse(saved.arguments_json),'secretary_'+callId,body.work_context || {});}
+      catch(e){result={ok:false,error:String(e.message||'담당 배정 실패').slice(0,2000)};}
+      const encoded=JSON.stringify(result);
+      if(encoded.length>150000) result={ok:false,error:'담당 보고의 용량이 너무 큽니다. 작업실에서 확인해 주세요.'};
+      await q(env, 'UPDATE secretary_calls SET result_json=? WHERE tenant_id=? AND thread_id=? AND request_id=? AND call_id=? AND status=\'executing\'', [JSON.stringify(result),...callKeys]).run();
+      return {ok:true,claimed:true,result};
+    }
+    return {ok: true, claimed: true};
   }
   const output = JSON.stringify(body.result);
   if (!output || output.length > 150000) fail(400, '도구 결과가 너무 큽니다. 조회 범위를 줄여 주세요.');
@@ -200,14 +210,14 @@ async function tool(env, uid, thread, body, api, claim) {
   }
   return {ok: true};
 }
-export async function handleSecretaryRoute({env, user, path, method, body = {}, query, fetcher}) {
+export async function handleSecretaryRoute({env, user, path, method, body = {}, query, fetcher, executeWork}) {
   if (!env.AGENT_DB) fail(503, '에이전트 대화 저장소가 연결되지 않았습니다.');
   const thread = key(body.thread_id || query?.get('thread_id'), '대화 ID');
   await ensureSchema(env);
   const api = (p, o) => provider(env, p, o, fetcher);
   if (path === '/secretary/message' && method === 'POST') return start(env, user.uid, thread, body, api);
   if (path === '/secretary/poll' && method === 'GET') return poll(env, user.uid, thread, query.get('request_id') ? key(query.get('request_id'), '요청 ID') : null, api, query.get('preview') === '1');
-  if (path === '/secretary/claim' && method === 'POST') return tool(env, user.uid, thread, body, api, true);
+  if (path === '/secretary/claim' && method === 'POST') return tool(env, user.uid, thread, body, api, true, executeWork);
   if (path === '/secretary/result' && method === 'POST') return tool(env, user.uid, thread, body, api, false);
   fail(405, '지원하지 않는 에이전트 요청입니다.');
 }
