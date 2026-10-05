@@ -7,7 +7,7 @@
     function read(thread){try{return JSON.parse(localStorage.getItem(storeKey(thread))||'null');}catch(e){return null;}}
     function write(thread,value){localStorage.setItem(storeKey(thread),JSON.stringify(value));}
     function post(path,body){return options.request(path,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});}
-    function poll(thread,id){return options.request('/secretary/poll?preview=1&thread_id='+encodeURIComponent(thread)+(id?'&request_id='+encodeURIComponent(id):''),{method:'GET'});}
+    async function poll(thread,id){for(var attempt=0;attempt<3;attempt++){try{return await options.request('/secretary/poll?preview=1&thread_id='+encodeURIComponent(thread)+(id?'&request_id='+encodeURIComponent(id):''),{method:'GET'});}catch(error){if(!(error.status>=500)||attempt===2)throw error;await new Promise(function(resolve){setTimeout(resolve,700);});}}}
     function sameOwner(saved){if(options.owner()!==saved.owner)throw Error('로그인 계정이 변경되어 실행 상태 확인을 중단했습니다.');}
     async function drive(thread,saved,state){
       for(var i=0;i<240&&!disposed;i++){

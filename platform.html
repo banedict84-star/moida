@@ -782,7 +782,7 @@ body.app-loading #sideAvatar{color:transparent!important;background:#243a5c!impo
 </div>
 
 <script src="office-roles.js?v=2"></script>
-<script src="secretary-client.js?v=4"></script>
+<script src="secretary-client.js?v=5"></script>
 <script>
 /* ── 의원실 플랫폼 SPA 런타임 (디자인 핸드오프 재구현) ──────────────── */
 (function(){
@@ -2567,7 +2567,7 @@ onAuthStateChanged(_auth, async function(user){
     }).then(function(response){
       return response.text().then(function(text){
         var data={};try{data=JSON.parse(text||'{}');}catch(e){}
-        if(!response.ok)throw new Error(data&&data.error&&data.error.message||('서버 HTTP '+response.status));
+        if(!response.ok){var error=new Error(data&&data.error&&data.error.message||('서버 HTTP '+response.status));error.status=response.status;throw error;}
         return data;
       });
     });

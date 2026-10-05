@@ -153,3 +153,10 @@ test('담당 배정은 인증된 현재 도구를 서버에서 한 번 실행하
  await assert.rejects(f.route('/secretary/claim',body,'another_owner','POST',extra),/대기 중인 도구/);assert.equal(executions,1);
  await f.route('/secretary/result',{...body,result:claimed.result});assert.equal((await f.poll()).actions.length,0);f.db.close();
 });
+
+test('일시적인 조회 오류만 재시도하고 메시지 접수는 반복하지 않는다',async()=>{
+ const storage=new Map(),sandbox={localStorage:{getItem:k=>storage.get(k)||null,setItem:(k,v)=>storage.set(k,v),removeItem:k=>storage.delete(k)},crypto:{randomUUID:()=> 'request_A'},setTimeout:fn=>fn()};
+ vm.runInNewContext(readFileSync(new URL('../secretary-client.js',import.meta.url),'utf8'),sandbox);let posts=0,reads=0;
+ const client=sandbox.createSecretaryClient({owner:()=> 'owner',status:()=>{},busy:()=>{},execute:async()=>{},request:async(path)=>{if(path==='/secretary/message'){posts++;return {status:'pending'};}if(!posts)return {status:'ready'};reads++;if(reads===1)throw Object.assign(Error('temporary'),{status:502});return {status:'completed',output_text:'완료'};}});
+ assert.equal(await client.run('chat_A','민원 초안',''),'완료');assert.equal(posts,1);assert.equal(reads,2);
+});

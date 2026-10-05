@@ -949,7 +949,7 @@ async function reserveModelCall(env, runId, maxTokens) {
        reserved_tokens = reserved_tokens + ?, updated_at = ?
      WHERE id = ? AND model_calls < ? AND reserved_tokens + ? <= ?`
   ).bind(maxTokens, Date.now(), runId, MAX_MODEL_CALLS, maxTokens, MAX_RESERVED_TOKENS).run();
-  if (!result.meta?.changes) throw new Error("이 작업의 AI 사용 한도를 초과했습니다.");
+  if (!result.meta?.changes) throw new NonRetryableRunError("이 작업의 AI 사용 한도를 초과했습니다.");
 }
 
 async function runModel(env, runId, system, user, jsonOnly = false, maxTokens = 1400, usageMeta = {}) {
@@ -1242,6 +1242,7 @@ async function processRun(env, runId, tenantId) {
 국가법령정보센터 자료가 포함된 경우 '근거 법령' 항목에 법령·조례명, 시행일자, 공식 sourceUrl과 확인 시각을 빠뜨리지 않는다.
 enforcementDate는 '시행일자'로만 표기하며 제정일자나 개정일자로 바꾸지 않는다.
 검색 결과에 없는 조문이나 법적 결론을 만들어내지 않는다.
+최종 사용 문안은 독립 검증팀이 수정한 문안을 우선해 하나로 제시한다. 서로 다른 초안을 나란히 승인안으로 제시하지 않는다. 원지시에서 자료가 없다고 했거나 내용·수신자·담당기관·기한이 미정이면 해당 항목을 확인 필요로 남기며 확인 필요 없음이라고 말하지 않는다.
 형식: 핵심 결론, 의원님 결정 사항, 팀별 결과·근거, 확인 필요, 다음 조치(담당·기한·상태). 자료에 없는 담당자 이름·기한은 확정하지 않고 제안으로 표시한다. 검수 보완 필요인 보고는 별도로 보존하고 승인된 결과처럼 소개하지 않는다.`,
     `[원지시]\n${run.instruction}\n\n[공식 법령 조회 데이터]\n${JSON.stringify(finalLawContext)}\n\n[검수 완료 보고]\n${prior}`, false, 1800,
     { agent: "secretary", operation: "summary" });
