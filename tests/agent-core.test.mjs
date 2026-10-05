@@ -85,3 +85,5 @@ test('명시한 담당만 배정하며 관계없는 키워드로 팀을 추가�
  assert.throws(()=>assignmentPlan('업무',[{agent:'unknown',instruction:'작업'}]),/담당 팀/);
  assert.throws(()=>assignmentPlan('업무',[{agent:'civil',instruction:'작업'},{agent:'civil',instruction:'중복'}]),/담당 팀/);
 });
+
+test('자료 확인 목록은 회의록이 아닌 후속관리 담당에게 맡긴다',()=>{assert.deepEqual(selectTaskWorkers('records','자료 확인 목록 3개 작성').map(w=>w[0]),['archive']);});

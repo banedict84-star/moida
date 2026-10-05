@@ -98,7 +98,7 @@ export function selectTaskWorkers(agent, instruction) {
 
   return selectedIds.length
     ? selectedIds.map((id) => workers.find((worker) => worker[0] === id)).filter(Boolean)
-    : workers.slice(0, 1);
+    : agent === "records" ? workers.filter(worker => worker[0] === "archive") : workers.slice(0, 1);
 }
 
 export function createRunId(now = Date.now(), random = Math.random()) {
