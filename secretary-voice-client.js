@@ -44,7 +44,7 @@
    if(dialog)return;
    dialog=element('dialog');dialog.className='secretary-voice-dialog';dialog.setAttribute('aria-label','AI 비서실장 음성 통화');
    var head=element('div');head.className='voice-head';head.append(element('span','MOIDA · AI VOICE'),button('닫기',function(){hangup();dialog.close();}));
-   var identity=element('div');identity.className='voice-identity';var avatar=element('img');avatar.src='secretary-avatar.svg';avatar.alt='모이다 비서 캐릭터';avatar.className='voice-avatar';identity.append(avatar,element('h2','모이다 비서실장'),element('p','의원님의 업무를 함께합니다'));
+   var identity=element('div');identity.className='voice-identity';var avatar=element('img');avatar.src='secretary-avatar-office-v1.png';avatar.alt='모이다 비서 캐릭터';avatar.className='voice-avatar';identity.append(avatar,element('h2','모이다 비서실장'),element('p','의원님의 업무를 함께합니다'));
    status=element('p','통화 연결 중…');status.className='voice-call-status';status.setAttribute('role','status');
    var note=element('p','AI 음성 · 업무 기록은 대화와 작업실에 남습니다');note.className='voice-note';
    transcript=element('div');transcript.className='voice-transcript';var details=element('details');details.className='voice-records';details.append(element('summary','통화 내용 보기'),transcript);
