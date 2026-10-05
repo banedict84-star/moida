@@ -330,7 +330,8 @@ export const SECRETARY_TOOLS = [
       "properties": {
         "instruction": {
           "type": "string"
-        }
+        },
+        "assignments": {"type":"array","minItems":1,"maxItems":8,"description":"원요청을 수행할 필요한 팀만 지정한다. 각 팀에는 그 팀의 산출물에 한정한 지시를 준다.","items":{"type":"object","properties":{"agent":{"type":"string","enum":["schedule","policy","audit","civil","organization","assemblypr","localpr","records"]},"instruction":{"type":"string"}},"required":["agent","instruction"]}}
       },
       "required": [
         "instruction"

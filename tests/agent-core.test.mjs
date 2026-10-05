@@ -76,3 +76,12 @@ test('의정 질문·행감·민원 후속 업무를 전문 담당과 산출물�
  const plan=fallbackPlan('민원 회신과 후속 확인 목록 작성');assert.deepEqual(plan.map(t=>t.agent),['civil','records']);
  assert.notEqual(plan[0].instruction,plan[1].instruction);assert.match(plan[0].instruction,/담당기관/);assert.match(plan[1].instruction,/미결/);
 });
+
+test('명시한 담당만 배정하며 관계없는 키워드로 팀을 추가하지 않는다',async()=>{
+ const {assignmentPlan}=await import('../agent-core.js');
+ const plan=assignmentPlan('민원 회신을 준비하되 법령 근거와 일정은 확인 필요',[{agent:'civil',instruction:'민원 회신 초안'},{agent:'organization',instruction:'간담회 의제'},{agent:'records',instruction:'후속 확인 목록'}]);
+ assert.deepEqual(plan.map(t=>t.agent),['civil','organization','records']);
+ assert.deepEqual(selectTaskWorkers('organization',plan[1].instruction).map(w=>w[0]),['meeting']);
+ assert.throws(()=>assignmentPlan('업무',[{agent:'unknown',instruction:'작업'}]),/담당 팀/);
+ assert.throws(()=>assignmentPlan('업무',[{agent:'civil',instruction:'작업'},{agent:'civil',instruction:'중복'}]),/담당 팀/);
+});

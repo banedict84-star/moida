@@ -7,6 +7,7 @@ import {
   officeRole,
   createRunId,
   fallbackPlan,
+  assignmentPlan,
   publicRun,
   safeJson,
   selectTaskWorkers,
@@ -901,7 +902,10 @@ async function createAgentRun(request, env, user) {
   const instruction = String(body.instruction || "").trim();
   if (!instruction) throw new HttpError(400, "지시 내용을 입력해 주세요.");
   if (instruction.length > MAX_INSTRUCTION_LENGTH) throw new HttpError(413, "지시 내용이 너무 깁니다.");
-  const contextText = JSON.stringify(body.context || {});
+  const runContext={...(body.context||{})};
+  // The explicit plan is validated at intake and cannot add unsupported teams.
+  if(body.assignments !== undefined){try{runContext.officeAssignments=assignmentPlan(instruction,body.assignments);}catch(e){throw new HttpError(400,e.message);}}
+  const contextText = JSON.stringify(runContext);
   if (contextText.length > MAX_CONTEXT_LENGTH) throw new HttpError(413, "참고 데이터가 너무 큽니다.");
   const key = String(request.headers.get("Idempotency-Key") || body.idempotencyKey || "").trim().slice(0, 160);
   if (!key) throw new HttpError(400, "Idempotency-Key가 필요합니다.");
@@ -983,7 +987,8 @@ async function updateTask(env, taskId, fields) {
 }
 
 async function planRun(env, run) {
-  return fallbackPlan(run.instruction);
+  let context={};try{context=JSON.parse(run.context_json||"{}");}catch{}
+  return assignmentPlan(run.instruction,context.officeAssignments);
 }
 
 export function workerPrompt(run, task, worker, prior, feedback) {
@@ -1028,8 +1033,9 @@ ${hasLawResearch ? "읽기 전용 참고 데이터의 lawResearch는 국가법�
 }
 
 async function executeWorkers(env, run, task, prior, feedback = "") {
+  let context={};try{context=JSON.parse(run.context_json||'{}');}catch{}
   const workers = selectTaskWorkers(task.agent,
-    run.instruction);
+    task.agent!=='verification' && context.officeAssignments ? task.instruction : run.instruction);
   const subtasks = workers.map((worker, index) => ({
     id: `${task.id}_worker_${index + 1}`, workerId: worker[0], name: worker[1],
     role: worker[2], status: feedback ? "reworking" : "running", result: "", error: "", updatedAt: Date.now(),
@@ -1666,7 +1672,7 @@ async function handleFetch(request, env) {
       const body = request.method === 'POST' ? await requestBody(request) : {};
       return json(await handleSecretaryRoute({env, user, path, method: request.method, body, query: url.searchParams, executeWork:async(name,args,key,context)=>{
         if(name==='delegate_work'){
-          const internal=new Request(url.origin+'/agent-runs',{method:'POST',headers:{'Content-Type':'application/json','Origin':request.headers.get('Origin')||''},body:JSON.stringify({instruction:args.instruction,context,idempotencyKey:key})});
+          const internal=new Request(url.origin+'/agent-runs',{method:'POST',headers:{'Content-Type':'application/json','Origin':request.headers.get('Origin')||''},body:JSON.stringify({instruction:args.instruction,assignments:args.assignments,context,idempotencyKey:key})});
           const data=await (await createAgentRun(internal,env,user)).json();
           return {ok:true,run_id:data.run.id,status:data.run.status,run:data.run,message:'담당 팀에 접수했습니다. 검토 보고는 작업실에서 이어 확인합니다.'};
         }

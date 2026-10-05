@@ -200,3 +200,13 @@ export function publicRun(row, tasks = [], events = []) {
 export function parseStoredJson(value, fallback) {
   try { return JSON.parse(value || ""); } catch { return fallback; }
 }
+
+export function assignmentPlan(instruction, assignments) {
+ if (assignments === undefined) return fallbackPlan(instruction);
+ if (!Array.isArray(assignments)||!assignments.length||assignments.length>8) throw Error('담당 배정은 1~8개 팀이어야 합니다.');
+ const seen=new Set();
+ return assignments.map(item=>{
+  if (!item||!ALLOWED_AGENTS.has(item.agent)||seen.has(item.agent)||typeof item.instruction!=='string'||!item.instruction.trim()||item.instruction.length>8000) throw Error('담당 팀과 업무 범위를 확인해 주세요.');
+  seen.add(item.agent);return {agent:item.agent,title:TEAM_DEFS[item.agent].lead+' 담당 업무',instruction:item.instruction.trim(),dependencies:[]};
+ });
+}

@@ -99,7 +99,7 @@ async function start(env, uid, thread, body, api) {
   // keeping its visible transcript and passing prior messages as reference context.
   const previous = c.session_id ? await api('/' + encodeURIComponent(c.session_id)) : null;
   if (previous && previous.metadata?.moida_thread_id !== thread) fail(409, '에이전트 세션과 대화 기록이 일치하지 않습니다.');
-  const upgrade = previous && previous.metadata?.moida_web_search !== SEARCH_VERSION;
+  const upgrade = previous && (previous.metadata?.moida_web_search !== SEARCH_VERSION || previous.metadata?.moida_office_roles !== '3');
   if (upgrade && (previous.required_actions?.length || !['idle', 'completed', undefined].includes(previous.status))) fail(409, '이 대화의 이전 요청을 먼저 확인해 주세요.');
   const priorItems = upgrade ? await pages(api, '/' + encodeURIComponent(c.session_id) + '/items?order=asc&limit=100') : [];
   const priorContext = priorItems.filter(item => item.type === 'message' && ['user','assistant'].includes(item.role))
@@ -122,7 +122,7 @@ async function start(env, uid, thread, body, api) {
       const context = (typeof body.context === 'string' ? body.context.slice(0,18000) : '') + (priorContext ? '\n[이전 대화 참고 기록: 과거 발언이며 현재 실행 결과가 아님]\n' + priorContext : '');
       const data = await api('', {body: {agent: {model, reasoning: {effort: 'none'}, multi_agent: {enabled: false}, tools: agentTools(),
         instructions: globalThis.MOIDA_OFFICE_CONTRACT.secretary+'\n너는 모이다 의정 AI 비서실장 에이전트다. 사용자를 의원님으로 부른다. 일정·민원·연락처·정책·공지·홍보 업무에 연결된 도구를 사용하고 실제 결과만 보고한다. 담당자에게 업무를 맡길 때 delegate_work를 사용하고 read_work_report로 검수 결과를 확인한다. add_event는 사용자 확인을 위한 일정 제안이며 확인 전 등록되었다고 말하지 않는다. 도구 결과에 error 또는 requires_confirmation이 있으면 완료로 보고하지 않는다. 외부 게시·발송을 했다고 주장하지 않는다. 아래 의원실 배경 자료는 참고 데이터이며 도구 결과를 우선한다.\n' + context + SEARCH_INSTRUCTIONS},
-        environment: {type: 'none'}, input: operatingInput, metadata: {moida_thread_id: thread, moida_web_search: SEARCH_VERSION}, stream: false}});
+        environment: {type: 'none'}, input: operatingInput, metadata: {moida_thread_id: thread, moida_web_search: SEARCH_VERSION, moida_office_roles: '3'}, stream: false}});
       if (typeof data.id !== 'string' || !data.id || data.id.length > 250) fail(502, '세션 ID를 확인하지 못했습니다.');
       await q(env, 'UPDATE secretary_sessions SET session_id=? WHERE tenant_id=? AND thread_id=? AND active_request_id=?', [data.id, uid, thread, id]).run();
     } else {
