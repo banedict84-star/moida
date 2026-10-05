@@ -1014,7 +1014,7 @@ export function workerPrompt(run, task, worker, prior, feedback) {
   let context = {};
   try { context = JSON.parse(run.context_json || "{}"); } catch {}
   const hasLawResearch = Boolean(context.lawResearch);
-  const currentDate = context.today || new Date().toISOString().slice(0, 10);
+  const currentDate = new Intl.DateTimeFormat('sv-SE',{timeZone:'Asia/Seoul'}).format(new Date());
   const compact = { today: currentDate };
   if (context.profile) compact.profile = {
     name: context.profile.name, position: context.profile.position, district: context.profile.district,
@@ -1246,7 +1246,7 @@ async function processRun(env, runId, tenantId) {
   await addEvent(env, run, "run.reviewing", "AI 비서실장이 팀별 결과를 통합하고 있습니다.");
   let finalContext = {};
   try { finalContext = JSON.parse(run.context_json || "{}"); } catch {}
-  const currentDate = finalContext.today || new Date().toISOString().slice(0, 10);
+  const currentDate = new Intl.DateTimeFormat('sv-SE',{timeZone:'Asia/Seoul'}).format(new Date());
   const finalLawContext = finalContext.lawResearch ? {
     provider: finalContext.lawResearch.provider,
     checkedAt: finalContext.lawResearch.checkedAt,
