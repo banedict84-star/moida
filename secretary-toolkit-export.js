@@ -1,0 +1,15 @@
+const enc=new TextEncoder();
+const xml=s=>String(s).replace(/[<>&"']/g,c=>({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;',"'":'&apos;'}[c])).replace(/[\u0000-\u0008\u000b\u000c\u000e-\u001f]/g,'');
+function crc32(bytes){let crc=0xffffffff;for(const b of bytes){crc^=b;for(let i=0;i<8;i++)crc=(crc>>>1)^((crc&1)?0xedb88320:0);}return(crc^0xffffffff)>>>0;}
+function header(size){const b=new Uint8Array(size);return[b,new DataView(b.buffer)];}
+function zip(files){const chunks=[],central=[];let offset=0;
+ for(const[name,text]of Object.entries(files)){const n=enc.encode(name),body=enc.encode(text),crc=crc32(body);const[h,v]=header(30);v.setUint32(0,0x04034b50,true);v.setUint16(4,20,true);v.setUint32(14,crc,true);v.setUint32(18,body.length,true);v.setUint32(22,body.length,true);v.setUint16(26,n.length,true);chunks.push(h,n,body);
+ const[c,w]=header(46);w.setUint32(0,0x02014b50,true);w.setUint16(4,20,true);w.setUint16(6,20,true);w.setUint32(16,crc,true);w.setUint32(20,body.length,true);w.setUint32(24,body.length,true);w.setUint16(28,n.length,true);w.setUint32(42,offset,true);central.push(c,n);offset+=30+n.length+body.length;}
+ const length=central.reduce((n,c)=>n+c.length,0),[end,v]=header(22);v.setUint32(0,0x06054b50,true);v.setUint16(8,Object.keys(files).length,true);v.setUint16(10,Object.keys(files).length,true);v.setUint32(12,length,true);v.setUint32(16,offset,true);const out=new Uint8Array(offset+length+22);let pos=0;for(const c of[...chunks,...central,end]){out.set(c,pos);pos+=c.length;}return out;}
+export function exportDocument(file){
+ const format=file.format||'md';
+ if(format!=='docx')return{bytes:enc.encode((format==='csv'?'\ufeff':'')+file.content),mime:format==='csv'?'text/csv;charset=utf-8':'text/plain;charset=utf-8',extension:format};
+ const p=text=>'<w:p><w:r><w:t xml:space="preserve">'+xml(text)+'</w:t></w:r></w:p>';
+ const doc='<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:body>'+p(file.title)+String(file.content).split('\n').map(p).join('')+'<w:sectPr><w:pgSz w:w="11906" w:h="16838"/><w:pgMar w:top="1134" w:right="1134" w:bottom="1134" w:left="1134"/></w:sectPr></w:body></w:document>';
+ return{bytes:zip({'[Content_Types].xml':'<?xml version="1.0"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/></Types>', '_rels/.rels':'<?xml version="1.0"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/></Relationships>','word/document.xml':doc}),mime:'application/vnd.openxmlformats-officedocument.wordprocessingml.document',extension:'docx'};
+}

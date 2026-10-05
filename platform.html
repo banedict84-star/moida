@@ -782,6 +782,7 @@ body.app-loading #sideAvatar{color:transparent!important;background:#243a5c!impo
 </div>
 
 <script src="office-roles.js?v=2"></script>
+<script src="secretary-toolkit-client.js?v=1"></script>
 <script src="secretary-client.js?v=5"></script>
 <script>
 /* ── 의원실 플랫폼 SPA 런타임 (디자인 핸드오프 재구현) ──────────────── */
@@ -3509,6 +3510,12 @@ onAuthStateChanged(_auth, async function(user){
       return await Promise.resolve(execTool(name,args));
     }
   });
+  var officeToolkit=window.setupOfficeToolkit({
+    owner:function(){return M.auth&&M.auth.currentUser?M.auth.currentUser.uid:null;},
+    request:agentApi,
+    prompt:function(text){var input=document.getElementById('aiInput');if(input){input.value=text;input.focus();}},
+    download:async function(path){var user=M.auth&&M.auth.currentUser;if(!user)throw Error('로그인이 필요합니다.');var owner=user.uid,token=await user.getIdToken();if(!M.auth.currentUser||M.auth.currentUser.uid!==owner)throw Error('계정이 변경되었습니다.');var response=await fetch(gptEndpoint().replace(/\/+$/,'')+path,{headers:{Authorization:'Bearer '+token}});if(!response.ok){var error=await response.json().catch(function(){return {};});throw Error(error.error&&error.error.message||'파일 다운로드 실패');}return response;}
+  });
   function runLoop(typing, depth, retry, forcePoster, forceSchedule){
     var threadId=currentThreadId,owner=secretaryClient&&M.auth&&M.auth.currentUser&&M.auth.currentUser.uid;
     if(!owner){if(typing)typing.remove();addAI('로그인 후 비서실장 에이전트를 이용해 주세요.');return;}
@@ -3528,7 +3535,7 @@ onAuthStateChanged(_auth, async function(user){
       if(proposal&&!pendingScheduleProposal)showScheduleProposal(proposal,true);
       else if(expectingPromotionCopy){expectingPromotionCopy=false;renderPromotionCopy(output);}
       else addAI(mdToHtml(output),output);
-      setChatStatus('에이전트 답변 완료 · 대화 이어가기 가능');
+      setChatStatus('에이전트 답변 완료 · 대화 이어가기 가능');if(officeToolkit)officeToolkit.refresh();
     }).catch(function(error){
       if(!M.auth.currentUser||M.auth.currentUser.uid!==owner)return;
       if(typing)typing.remove();expectingPromotionCopy=false;

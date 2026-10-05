@@ -61,7 +61,7 @@ test('검색 없는 기존 대화는 과거 기록을 참고 자료로 이어받
  await f.start('request_B','최신 경기도당 공지를 웹에서 찾아줘');
  const creation=f.state.writes[1];assert.equal(creation.path,'/v1/agents/sessions');
  assert.match(creation.body.agent.instructions,/이전 의정활동 대화/);
- assert.equal(creation.body.metadata.moida_web_search,'live-v1');
+ assert.equal(creation.body.metadata.moida_web_search,'toolkit-v2');
  assert.deepEqual(JSON.parse(f.db.prepare('SELECT baseline_json FROM secretary_turns WHERE request_id=?').get('request_B').baseline_json),[]);
  f.db.close();
 });
@@ -159,4 +159,13 @@ test('일시적인 조회 오류만 재시도하고 메시지 접수는 반복�
  vm.runInNewContext(readFileSync(new URL('../secretary-client.js',import.meta.url),'utf8'),sandbox);let posts=0,reads=0;
  const client=sandbox.createSecretaryClient({owner:()=> 'owner',status:()=>{},busy:()=>{},execute:async()=>{},request:async(path)=>{if(path==='/secretary/message'){posts++;return {status:'pending'};}if(!posts)return {status:'ready'};reads++;if(reads===1)throw Object.assign(Error('temporary'),{status:502});return {status:'completed',output_text:'완료'};}});
  assert.equal(await client.run('chat_A','민원 초안',''),'완료');assert.equal(posts,1);assert.equal(reads,2);
+});
+test('새 자료 도구는 서버에서 실행하고 브라우저가 바꾼 결과 대신 실제 저장 결과를 전달한다',async()=>{
+ const f=fixture();await f.start();assert.ok(f.state.writes[0].body.agent.tools.some(t=>t.name==='create_document'));
+ f.state.actions=[{type:'function_call',turn_id:'turn_A',call_id:'call_A',name:'create_document',arguments:{title:'보고서',content:'확인 내용'}}];await f.poll();let executions=0;
+ const extra={executeWork:async()=>{executions++;return{ok:true,file_id:'real_file'};}},body={thread_id:'chat_A',request_id:'request_A',call_id:'call_A'};
+ const claim=await f.route('/secretary/claim',body,'owner','POST',extra);assert.equal(claim.result.file_id,'real_file');
+ assert.equal((await f.poll()).actions[0].result.file_id,'real_file');
+ await f.route('/secretary/result',{...body,result:{ok:true,file_id:'forged_file'}});
+ assert.equal(JSON.parse(f.state.writes.at(-1).body.events[0].output).file_id,'real_file');assert.equal(executions,1);f.db.close();
 });

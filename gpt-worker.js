@@ -1,5 +1,7 @@
 import {handleSecretaryRoute} from "./secretary-agent.js";
 import {teamTools,executeTeamTool,runToolConversation} from './agent-tools.js';
+import {executeToolkit,toolkitRoute,toolkitTick,boundedBytes,bytesToBase64} from "./secretary-toolkit.js";
+import {TOOLKIT_NAMES} from "./secretary-toolkit-defs.js";
 import {runTeamTasks} from "./agent-scheduler.js";
 import {
   AGENT_SCHEMA_VERSION,
@@ -21,6 +23,8 @@ const MAX_MODEL_CALLS = 40;
 const MAX_RESERVED_TOKENS = 30000;
 const LEASE_MS = 15 * 60 * 1000;
 const GOOGLE_CALENDAR_SCOPE = "https://www.googleapis.com/auth/calendar";
+const GOOGLE_DRIVE_SCOPE = "https://www.googleapis.com/auth/drive.readonly";
+const GOOGLE_MAIL_SCOPE = "https://www.googleapis.com/auth/gmail.send";
 const GOOGLE_CALLBACK_PATH = "/google/calendar/callback";
 
 function allowedOrigin(origin, env) {
@@ -1499,7 +1503,7 @@ async function googleCalendarConnect(request, env, user) {
     client_id: env.GOOGLE_CLIENT_ID,
     redirect_uri: googleRedirectUri(request),
     response_type: "code",
-    scope: `${GOOGLE_CALENDAR_SCOPE} openid email`,
+    scope: [GOOGLE_CALENDAR_SCOPE,'openid','email',...(connectUrl.searchParams.get('services')||'').split(',').filter(v=>['drive','mail'].includes(v)).map(v=>v==='drive'?GOOGLE_DRIVE_SCOPE:GOOGLE_MAIL_SCOPE)].join(' '),
     access_type: "offline",
     include_granted_scopes: "true",
     prompt: "consent",
@@ -1678,16 +1682,40 @@ async function googleCalendarDisconnect(request, env, user) {
   return json({ ok: true, connected: false }, 200, request, env);
 }
 
+function officeToolServices(env,user,request){
+  async function scopedToken(scope){const value=await googleAccessToken(env,user.uid);if(!String(value.connection.scope).split(' ').includes(scope))throw new HttpError(409,'자료·알림 화면에서 해당 Google 서비스를 연결해 주세요.');return value.accessToken;}
+  return {
+    async connections(){const c=await googleConnection(env,user.uid),scopes=new Set(String(c?.scope||'').split(' '));return{google_configured:!!(env.GOOGLE_CLIENT_ID&&env.GOOGLE_CLIENT_SECRET),google_email:c?.google_email||'',calendar:scopes.has(GOOGLE_CALENDAR_SCOPE),drive:scopes.has(GOOGLE_DRIVE_SCOPE),gmail:scopes.has(GOOGLE_MAIL_SCOPE),sms:false};},
+    searchLaw:(target,query)=>searchLaw(env,target,query,{display:10}),
+    readLaw:async(target,id,mst)=>{if(!['law','ordin'].includes(target)||(!id&&!mst))throw new HttpError(400,'법령 검색 결과의 ID가 필요합니다.');const result=await getLawDetail(env,target,id,mst);const value=JSON.stringify(result);return{content:value.slice(0,80000),truncated:value.length>80000};},
+    async calendar(timeMin,timeMax){const url=new URL('/google/calendar/events',request.url);url.searchParams.set('timeMin',timeMin);url.searchParams.set('timeMax',timeMax);return(await googleCalendarEvents(new Request(url,{headers:request.headers}),env,user)).json();},
+    async searchDrive(query){const token=await scopedToken(GOOGLE_DRIVE_SCOPE),safe=query.replace(/\\/g,'\\\\').replace(/'/g,"\\'");const params=new URLSearchParams({q:"trashed = false and mimeType != 'application/vnd.google-apps.folder' and (name contains '"+safe+"' or fullText contains '"+safe+"')",fields:'nextPageToken,files(id,name,mimeType,modifiedTime,webViewLink,size)',pageSize:'30',orderBy:'modifiedTime desc'});return googleApi(token,'https://www.googleapis.com/drive/v3/files?'+params);},
+    async readDrive(fileId){const token=await scopedToken(GOOGLE_DRIVE_SCOPE);const base='https://www.googleapis.com/drive/v3/files/'+encodeURIComponent(fileId);const meta=await googleApi(token,base+'?fields=id,name,mimeType,size');if(Number(meta.size)>8*1024*1024)throw new HttpError(413,'Drive 파일은 8MB 이하로 가져와 주세요.');let target=base+'?alt=media',name=meta.name,mime=meta.mimeType;
+      if(mime==='application/vnd.google-apps.document'){mime='text/plain';name=name+'.txt';target=base+'/export?mimeType='+encodeURIComponent(mime);}
+      else if(mime==='application/vnd.google-apps.spreadsheet'){mime='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';name=name+'.xlsx';target=base+'/export?mimeType='+encodeURIComponent(mime);}
+      else if(mime.startsWith('application/vnd.google-apps.'))throw new HttpError(400,'이 Google 자료 형식은 아직 가져올 수 없습니다.');
+      const r=await fetch(target,{headers:{Authorization:'Bearer '+token},signal:AbortSignal.timeout(30000)});if(!r.ok)throw new HttpError(502,'Drive 파일 읽기 실패 ('+r.status+')');const bytes=await boundedBytes(r);return /\.(txt|md|csv|tsv|json|log)$/i.test(name)?{name,text:new TextDecoder().decode(bytes)}:{name,mime,bytes};},
+    async sendMail(draft){const token=await scopedToken(GOOGLE_MAIL_SCOPE),encode=value=>bytesToBase64(new TextEncoder().encode(value));const raw='To: '+draft.recipient+'\r\nSubject: =?UTF-8?B?'+encode(draft.subject.replace(/[\r\n]/g,' '))+'?=\r\nMIME-Version: 1.0\r\nContent-Type: text/plain; charset=UTF-8\r\nContent-Transfer-Encoding: base64\r\n\r\n'+encode(draft.body);return googleApi(token,'https://gmail.googleapis.com/gmail/v1/users/me/messages/send',{method:'POST',body:JSON.stringify({raw:encode(raw).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'')})});}
+  };
+}
+
 async function handleFetch(request, env) {
   if (request.method === "OPTIONS") return new Response(null, { status: 204, headers: corsHeaders(request, env) });
   const url = new URL(request.url);
   const path = url.pathname.replace(/\/+$/, "") || "/";
 
   try {
+    if (path.startsWith('/office-tools/')) {
+      const user = await verifyFirebaseUser(request, env);
+      const result = await toolkitRoute({env,user,request,body:request.method==='POST'?await requestBody(request):{},services:officeToolServices(env,user,request)});
+      const headers = new Headers(result.headers);for(const[k,v]of Object.entries(corsHeaders(request,env)))headers.set(k,v);headers.set('Cache-Control','no-store');
+      return new Response(result.body,{status:result.status,headers});
+    }
     if (path.startsWith('/secretary/')) {
       const user = await verifyFirebaseUser(request, env);
       const body = request.method === 'POST' ? await requestBody(request) : {};
       return json(await handleSecretaryRoute({env, user, path, method: request.method, body, query: url.searchParams, executeWork:async(name,args,key,context)=>{
+        if(TOOLKIT_NAMES.has(name))return executeToolkit({env,uid:user.uid,name,args,operationKey:key,services:officeToolServices(env,user,request)});
         if(name==='delegate_work'){
           const internal=new Request(url.origin+'/agent-runs',{method:'POST',headers:{'Content-Type':'application/json','Origin':request.headers.get('Origin')||''},body:JSON.stringify({instruction:args.instruction,assignments:args.assignments,context,idempotencyKey:key})});
           const data=await (await createAgentRun(internal,env,user)).json();
@@ -1699,7 +1727,7 @@ async function handleFetch(request, env) {
       }}), 200, request, env);
     }
     if (path === "/health" && request.method === "GET") {
-      return json({ ok: true, secretaryApi: "agents-v1", secretaryModel: env.SECRETARY_MODEL || "gpt-6-luna", secretaryEnvironment: "none", queue: Boolean(env.AGENT_QUEUE), database: Boolean(env.AGENT_DB), law: Boolean(env.LAW_OC), gemini: Boolean(env.GEMINI_API_KEY), googleCalendar: Boolean(env.GOOGLE_CLIENT_ID && env.GOOGLE_CLIENT_SECRET), schemaVersion: AGENT_SCHEMA_VERSION, agentModel: env.AGENT_MODEL || "gpt-4o-mini", executionMode: "parallel-teams", maxConcurrentTeams: 3, leadReview: "model" }, 200, request, env);
+      return json({ ok: true, secretaryApi: "agents-v1", secretaryModel: env.SECRETARY_MODEL || "gpt-6-luna", secretaryEnvironment: "none", secretaryToolkit: "toolkit-v2", officeTools: [...TOOLKIT_NAMES], webSearch: "live", queue: Boolean(env.AGENT_QUEUE), database: Boolean(env.AGENT_DB), law: Boolean(env.LAW_OC), gemini: Boolean(env.GEMINI_API_KEY), googleCalendar: Boolean(env.GOOGLE_CLIENT_ID && env.GOOGLE_CLIENT_SECRET), schemaVersion: AGENT_SCHEMA_VERSION, agentModel: env.AGENT_MODEL || "gpt-4o-mini", executionMode: "parallel-teams", maxConcurrentTeams: 3, leadReview: "model" }, 200, request, env);
     }
     if (path === GOOGLE_CALLBACK_PATH && request.method === "GET") {
       return await googleCalendarCallback(request, env);
@@ -1776,5 +1804,6 @@ export default {
   queue: handleQueue,
   scheduled(_controller, env, ctx) {
     ctx.waitUntil(recoverStaleRuns(env));
+    ctx.waitUntil(toolkitTick(env));
   },
 };
