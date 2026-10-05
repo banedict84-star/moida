@@ -4219,12 +4219,12 @@ onAuthStateChanged(_auth, async function(user){
       var type=node.getAttribute('data-office-agent'),isLead=/_lead$/.test(type),baseType=isLead?type.replace('_lead',''):(type==='secretary'?'secretary':type.split('_')[0]),workerId=(!isLead&&type.indexOf('_')>0)?type.slice(type.indexOf('_')+1):'',runs=window.MOIDA_AGENT_RUNS||[],latest=runs[0]||{},task=(latest.tasks||[]).find(function(t){return t.agent===baseType;}),subtask=task&&workerId?(task.subtasks||[]).find(function(s){return s.workerId===workerId;}):null;
       var inspector=document.getElementById('agentInspector');if(!inspector)return;
       selectedAgentType=type;
-      var roleButton=document.getElementById('agentRoleEdit');if(roleButton){roleButton.disabled=false;roleButton.textContent='역할 메모';roleButton.removeAttribute('data-editing');}
+      var roleButton=document.getElementById('agentRoleEdit');if(roleButton){roleButton.disabled=false;roleButton.textContent='역할 설정';roleButton.removeAttribute('data-editing');}
       document.querySelectorAll('[data-office-agent]').forEach(function(n){n.style.outline='';});
       node.style.outline='2px solid var(--node)';
       var name=type==='secretary'?'AI 비서실장':(NAMES[type]||'AI 에이전트');
       var state=type==='secretary'?(latest.status||'idle'):(workerId?(subtask?subtask.status:'idle'):(task&&(isLead?(task.leadStatus||task.status):(task.workerStatus||task.status))||'idle'));
-      var detail=type==='secretary'?(latest.instruction||''):(workerId?(subtask?(subtask.role||subtask.result||'전문 업무를 수행하고 있습니다.'):''):(task?(isLead?((task.review?'검수 의견: '+task.review:'팀원 3명의 업무를 배정하고 결과를 통합 검수합니다.')):(task.title||task.instruction||'배정 업무')):''));
+      var detail=type==='secretary'?(latest.error||latest.summary||latest.instruction||''):(workerId?(subtask?(subtask.error||subtask.result||subtask.role||'전문 업무를 수행하고 있습니다.'):''):(task?(isLead?((task.review?'검수 의견: '+task.review:'팀원 3명의 업무를 배정하고 결과를 통합 검수합니다.')):(task.title||task.instruction||'배정 업무')):''));
       inspector.innerHTML='<b>'+esc(name)+' · '+esc(LABELS[state]||'대기')+'</b><div style="margin-top:10px;padding:9px 10px;border-radius:8px;background:#f4f7fb;color:#31527f;font-size:10.5px;line-height:1.55"><strong style="display:block;margin-bottom:3px;font-size:9px;letter-spacing:.06em;color:#6d819b">담당 역할</strong>'+esc(agentRole(type))+'</div>'+(detail?'<div style="margin-top:9px;color:#6b7585;font-size:10.5px;line-height:1.55">'+esc(detail)+'</div>':'');
     });
   });
