@@ -34,7 +34,7 @@ export async function executeTeamTool({env,run,team,name,args={},services={},fet
  if(name==='office_calendar'){
   const start=args.start?Date.parse(args.start):Date.now(),end=args.end?Date.parse(args.end):start+7*86400000;
   if(!Number.isFinite(start)||!Number.isFinite(end)||end<=start||end-start>31*86400000)throw Error('조회 기간은 시작 이후 31일 이내로 지정해 주세요.');
-  return services.calendar(new Date(start).toISOString(),new Date(end).toISOString());
+  return {...await services.calendar(new Date(start).toISOString(),new Date(end).toISOString()),checked_start:new Date(start).toISOString(),checked_end:new Date(end).toISOString(),timezone:'Asia/Seoul'};
  }
  if(name==='office_notices'){
   const results=await Promise.allSettled(['notices_data.json','central_data.json','council_data.json'].map(async file=>{const r=await fetcher('https://banedict84-star.github.io/moida/'+file,{signal:AbortSignal.timeout(10000)});if(!r.ok)throw Error(file+' 조회 실패');const d=await r.json();return{source:file,updated:d.updated,items:(d.items||[]).filter(x=>!query||JSON.stringify(x).includes(query)).slice(0,8)};}));
