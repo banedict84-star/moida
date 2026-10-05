@@ -61,6 +61,6 @@
   var host=document.getElementById('aiAttachBtn');if(host&&host.parentElement){launcher=button('자료·알림',function(){return panel&&panel.open?closePanel():open();});launcher.setAttribute('aria-expanded','false');launcher.setAttribute('aria-controls','officeToolsPanel');launcher.id='officeToolsOpen';launcher.style.cssText='border:1px solid #d2ddee;background:#eef3fc;color:#244c82;border-radius:9px;padding:8px 11px;white-space:nowrap;font:inherit;font-size:12px;font-weight:600;cursor:pointer';host.parentElement.insertBefore(launcher,host);}
   root.openOfficeConnections=function(){activeTab='accounts';return open();};
   if(host){var connectionsButton=button('연결 관리',root.openOfficeConnections);connectionsButton.id='officeConnectionsOpen';connectionsButton.style.cssText=launcher.style.cssText;host.parentElement.insertBefore(connectionsButton,host);}
-  return{open:open,upload:upload,refresh:function(){if(panel&&panel.open)return refresh().catch(showError);},showError:showError};
+  return{open:open,upload:upload,download:download,refresh:function(){if(panel&&panel.open)return refresh().catch(showError);},showError:showError};
  };
 })(window);

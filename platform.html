@@ -284,6 +284,7 @@ body.secretary-view #aiPanel{border:0!important;border-radius:0!important;box-sh
 .dashboard-grid>div{padding:14px!important;height:auto!important}
 .page[data-page="dashboard"] .pg>div:last-child{padding:14px!important;margin-top:12px!important}
 }
+.generated-file-card{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;border:1px solid #dae3ef;border-radius:14px;background:#f7f9fd;max-width:100%;box-sizing:border-box}.generated-file-card>div{display:flex;flex-direction:column;gap:5px;min-width:0;overflow-wrap:anywhere}.generated-file-card strong{font-size:14px}.generated-file-card span{font-size:11px;color:#66758a}.generated-file-card button{flex-shrink:0;min-height:38px;padding:8px 12px;border:1px solid #cdd9e9;border-radius:9px;background:#fff;color:#1d3a6e;font:600 12px sans-serif;cursor:pointer}.generated-file-card button:disabled{opacity:.5}@media(max-width:400px){.generated-file-card{flex-wrap:wrap}.generated-file-card button{width:100%}}
 </style>
 <link rel="stylesheet" href="office.css?v=20261005">
 <link rel="stylesheet" href="secretary-mobile.css?v=2">
@@ -836,7 +837,7 @@ body.secretary-view #aiPanel{border:0!important;border-radius:0!important;box-sh
 
 <script src="secretary-mobile.js?v=2"></script>
 <script src="office-roles.js?v=2"></script>
-<script src="secretary-toolkit-client.js?v=3"></script>
+<script src="secretary-toolkit-client.js?v=download-v4"></script>
 <script src="secretary-voice-client.js?v=4"></script>
 <script src="secretary-client.js?v=5"></script>
 <script>
@@ -3548,12 +3549,28 @@ onAuthStateChanged(_auth, async function(user){
     if(forceSchedule)awaitingScheduleDetails=false;
     runLoop(addTyping(), 0, 0, isPosterCreationRequest(text), forceSchedule);
   }
+  var generatedFileCards={};
+  function showGeneratedFile(file,sourceThread){
+    var user=M.auth&&M.auth.currentUser;if(!user||!msgs||!file.file_id||(sourceThread&&sourceThread!==currentThreadId))return;
+    var owner=user.uid,thread=currentThreadId,key=owner+'_'+thread+'_'+file.file_id;
+    if(generatedFileCards[key])return;generatedFileCards[key]=true;
+    var card=document.createElement('div');card.className='generated-file-card';
+    var details=document.createElement('div'),title=document.createElement('strong'),info=document.createElement('span');
+    title.textContent=file.title;info.textContent=String(file.format||'docx').toUpperCase()+' · 생성 완료';details.append(title,info);
+    var download=document.createElement('button');download.type='button';download.textContent='파일 다운로드';
+    download.addEventListener('click',async function(){
+      if(!M.auth.currentUser||M.auth.currentUser.uid!==owner){info.textContent='파일을 만든 계정으로 로그인해 주세요.';return;}
+      download.disabled=true;info.textContent='다운로드 준비 중…';
+      try{await officeToolkit.download({id:file.file_id,title:file.title,format:file.format});info.textContent='다운로드를 시작했습니다.';}
+      catch(e){info.textContent=e.message||'다운로드 실패';}finally{download.disabled=false;}
+    });card.append(details,download);msgs.append(card);scroll();
+  }
   var secretaryPreview=null;
   var secretaryClient=window.createSecretaryClient({
     owner:function(){return M.auth&&M.auth.currentUser?M.auth.currentUser.uid:'local';},
     request:agentApi,
     context:agentServerContext,
-    executed:function(name,result){if(result&&result.run){mergeServerRun(result.run);if(name==='delegate_work')pollServerRuns();}},
+    executed:function(name,result,thread){if(name==='create_document'&&result&&result.saved)showGeneratedFile(result,thread);if(result&&result.run){mergeServerRun(result.run);if(name==='delegate_work')pollServerRuns();}},
     status:setChatStatus,
     preview:function(thread,text){if(secretaryPreview&&secretaryPreview.thread===thread&&currentThreadId===thread&&M.auth.currentUser&&M.auth.currentUser.uid===secretaryPreview.owner){var bubble=secretaryPreview.element&&secretaryPreview.element.lastElementChild;if(bubble){bubble.textContent=text;bubble.style.whiteSpace="pre-wrap";}}},
     busy:function(busy){var b=document.getElementById('aiSend');if(b)b.disabled=busy;},
