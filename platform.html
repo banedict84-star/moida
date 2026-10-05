@@ -837,6 +837,7 @@ body.secretary-view #aiPanel{border:0!important;border-radius:0!important;box-sh
 <script src="secretary-mobile.js?v=2"></script>
 <script src="office-roles.js?v=2"></script>
 <script src="secretary-toolkit-client.js?v=3"></script>
+<script src="secretary-voice-client.js?v=1"></script>
 <script src="secretary-client.js?v=5"></script>
 <script>
 /* ── 의원실 플랫폼 SPA 런타임 (디자인 핸드오프 재구현) ──────────────── */
@@ -3578,6 +3579,17 @@ onAuthStateChanged(_auth, async function(user){
     request:agentApi,
     prompt:function(text){var input=document.getElementById('aiInput');if(input){input.value=text;input.focus();}},
     download:async function(path){var user=M.auth&&M.auth.currentUser;if(!user)throw Error('로그인이 필요합니다.');var owner=user.uid,token=await user.getIdToken();if(!M.auth.currentUser||M.auth.currentUser.uid!==owner)throw Error('계정이 변경되었습니다.');var response=await fetch(gptEndpoint().replace(/\/+$/,'')+path,{headers:{Authorization:'Bearer '+token}});if(!response.ok){var error=await response.json().catch(function(){return {};});throw Error(error.error&&error.error.message||'파일 다운로드 실패');}return response;}
+  });
+  window.setupSecretaryVoice({
+    owner:function(){return M.auth&&M.auth.currentUser?M.auth.currentUser.uid:null;},
+    thread:function(){return currentThreadId;},request:agentApi,busy:function(){return secretaryClient.isBusy();},
+    record:function(role,text,thread,owner){if(currentThreadId!==thread||!M.auth.currentUser||M.auth.currentUser.uid!==owner)return;history.push({role:role,content:text});if(role==='user')addUser(text,null);else addAI(mdToHtml(text),text);},
+    run:async function(instruction,thread,owner){
+      if(currentThreadId!==thread||!M.auth.currentUser||M.auth.currentUser.uid!==owner)throw Error('대화 또는 계정이 변경되었습니다. 통화를 다시 연결해 주세요.');
+      var output=await secretaryClient.run(thread,instruction,sysPrompt()+'\n[음성 통화 지시] 사용자가 직접 말한 요청입니다. 기존 조회와 실행 권한 및 확인 절차를 그대로 적용합니다.\n[최근 대화]'+JSON.stringify(history.slice(-8)));
+      if(currentThreadId===thread&&M.auth.currentUser&&M.auth.currentUser.uid===owner){var proposal=parseScheduleConfirmation(output);if(proposal&&!pendingScheduleProposal)showScheduleProposal(proposal,true);history.push({role:'assistant',content:output});addAI(mdToHtml(output),output);if(officeToolkit)officeToolkit.refresh();}
+      return output;
+    }
   });
   function runLoop(typing, depth, retry, forcePoster, forceSchedule){
     var threadId=currentThreadId,owner=secretaryClient&&M.auth&&M.auth.currentUser&&M.auth.currentUser.uid;

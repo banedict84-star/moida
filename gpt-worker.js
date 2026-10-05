@@ -1,3 +1,4 @@
+import {createVoiceCall} from './secretary-voice.js';
 import {handleSecretaryRoute} from "./secretary-agent.js";
 import {teamTools,executeTeamTool,runToolConversation,compactWorkContext} from './agent-tools.js';
 import {executeToolkit,toolkitRoute,toolkitTick,boundedBytes,bytesToBase64} from "./secretary-toolkit.js";
@@ -1714,6 +1715,7 @@ async function handleFetch(request, env) {
   const path = url.pathname.replace(/\/+$/, "") || "/";
 
   try {
+    if(path==='/voice/call'&&request.method==='POST'){const user=await verifyFirebaseUser(request,env);return json(await createVoiceCall({env,uid:user.uid,body:await requestBody(request)}),200,request,env);}
     if (path.startsWith('/office-tools/')) {
       const user = await verifyFirebaseUser(request, env);
       const result = await toolkitRoute({env,user,request,body:request.method==='POST'?await requestBody(request):{},services:officeToolServices(env,user,request)});
@@ -1736,7 +1738,7 @@ async function handleFetch(request, env) {
       }}), 200, request, env);
     }
     if (path === "/health" && request.method === "GET") {
-      return json({ ok: true, secretaryApi: "agents-v1", secretaryModel: env.SECRETARY_MODEL || "gpt-6-luna", secretaryEnvironment: "none", secretaryToolkit: "toolkit-v2", officeTools: [...TOOLKIT_NAMES], webSearch: "live", queue: Boolean(env.AGENT_QUEUE), database: Boolean(env.AGENT_DB), law: Boolean(env.LAW_OC), gemini: Boolean(env.GEMINI_API_KEY), googleCalendar: Boolean(env.GOOGLE_CLIENT_ID && env.GOOGLE_CLIENT_SECRET), schemaVersion: AGENT_SCHEMA_VERSION, agentModel: env.AGENT_MODEL || "gpt-4o-mini", executionMode: "parallel-teams", maxConcurrentTeams: 3, leadReview: "model" }, 200, request, env);
+      return json({ ok: true, secretaryApi: "agents-v1", voiceModel: env.SECRETARY_VOICE_MODEL || "gpt-realtime-2.1", voiceCall: Boolean(env.OPENAI_API_KEY), secretaryModel: env.SECRETARY_MODEL || "gpt-6-luna", secretaryEnvironment: "none", secretaryToolkit: "toolkit-v2", officeTools: [...TOOLKIT_NAMES], webSearch: "live", queue: Boolean(env.AGENT_QUEUE), database: Boolean(env.AGENT_DB), law: Boolean(env.LAW_OC), gemini: Boolean(env.GEMINI_API_KEY), googleCalendar: Boolean(env.GOOGLE_CLIENT_ID && env.GOOGLE_CLIENT_SECRET), schemaVersion: AGENT_SCHEMA_VERSION, agentModel: env.AGENT_MODEL || "gpt-4o-mini", executionMode: "parallel-teams", maxConcurrentTeams: 3, leadReview: "model" }, 200, request, env);
     }
     if (path === GOOGLE_CALLBACK_PATH && request.method === "GET") {
       return await googleCalendarCallback(request, env);
