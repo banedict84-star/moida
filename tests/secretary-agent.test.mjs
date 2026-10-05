@@ -1,0 +1,101 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {DatabaseSync} from 'node:sqlite';
+import {readFileSync} from 'node:fs';
+import vm from 'node:vm';
+import {handleSecretaryRoute,finalText} from '../secretary-agent.js';
+import {SECRETARY_TOOLS} from '../secretary-tools.js';
+import worker from '../gpt-worker.js';
+
+function fixture(){
+ const db=new DatabaseSync(':memory:');db.exec(readFileSync(new URL('../migrations/0004_secretary_sessions.sql',import.meta.url),'utf8'));
+ const binding={
+  prepare(sql){return {bind(...args){return {
+   async first(){return db.prepare(sql).get(...args)||null;},
+   async all(){return {results:db.prepare(sql).all(...args)};},
+   async run(){return {meta:{changes:db.prepare(sql).run(...args).changes}};}
+  };}};},
+  async batch(statements){db.exec('BEGIN');try{const rows=[];for(const stmt of statements)rows.push(await stmt.run());db.exec('COMMIT');return rows;}catch(e){db.exec('ROLLBACK');throw e;}}
+ };
+ const env={AGENT_DB:binding,OPENAI_API_KEY:'test-only',SECRETARY_MODEL:'gpt-6-luna'};
+ const state={session:null,turns:[],actions:[],items:[],writes:[],lost:false,invalid:false};
+ const fetcher=async(url,init)=>{
+  const path=new URL(url).pathname,body=init.body?JSON.parse(init.body):null;
+  assert.equal(init.headers['OpenAI-Beta'],'agents=v1');
+  if(body){state.writes.push({path,body});if(state.lost)throw Error('network lost');if(state.invalid)return Response.json({}, {status:403});}
+  if(path==='/v1/agents/sessions'&&body){state.session={id:'session_A',metadata:body.metadata};state.turns.push({id:'turn_A',session_id:'session_A',status:'in_progress'});return Response.json(state.session);}
+  if(path.endsWith('/events')&&body){if(body.events[0].type==='agent.session.input.message')state.turns.push({id:'turn_B',session_id:'session_A',status:'in_progress'});else state.actions=[];return Response.json({ok:true});}
+  if(path.endsWith('/turns'))return Response.json({data:state.turns,has_more:false});
+  if(path.includes('/turns/'))return Response.json(state.turns.find(t=>path.endsWith(t.id)));
+  if(path.endsWith('/items'))return Response.json({data:state.items,has_more:false});
+  return Response.json({...state.session,required_actions:state.actions});
+ };
+ const route=(path,body={},uid='owner',method='POST')=>handleSecretaryRoute({env,user:{uid},path,method,body,query:new URLSearchParams(body),fetcher});
+ const start=(id='request_A',input='오늘 일정 알려줘')=>route('/secretary/message',{thread_id:'chat_A',request_id:id,input});
+ const poll=(id='request_A',uid='owner')=>route('/secretary/poll',{thread_id:'chat_A',request_id:id},uid,'GET');
+ return{db,env,state,route,start,poll};
+}
+
+test('세션 생성과 후속 메시지는 같은 세션을 사용하며 다른 실행의 출력은 섞이지 않는다',async()=>{
+ const f=fixture();await f.start();assert.equal(f.state.writes[0].body.agent.model,'gpt-6-luna');assert.equal(f.state.writes[0].body.environment.type,'none');
+ f.state.turns[0].status='completed';f.state.items=[{turn_id:'turn_A',type:'message',role:'assistant',phase:'final_answer',content:[{type:'output_text',text:'오늘 일정 답변'}]},{turn_id:'turn_other',type:'message',role:'assistant',phase:'final_answer',content:[{type:'output_text',text:'다른 대화'}]}];
+ assert.equal((await f.poll()).output_text,'오늘 일정 답변');
+ await f.start('request_B','내일도 알려줘');assert.equal(f.state.writes[1].path,'/v1/agents/sessions/session_A/events');assert.equal(f.state.writes[1].body.events[0].type,'agent.session.input.message');
+ f.state.turns[1].status='completed';f.state.items.push({turn_id:'turn_B',type:'message',role:'assistant',phase:'final_answer',content:[{type:'output_text',text:'내일 일정 답변'}]});
+ assert.equal((await f.poll('request_B')).output_text,'내일 일정 답변');f.db.close();
+});
+test('같은 요청 재전송은 세션을 복제하지 않고 다른 입력과 다음 요청은 차단한다',async()=>{
+ const f=fixture();await f.start();await f.start();assert.equal(f.state.writes.length,1);
+ await assert.rejects(f.start('request_A','다른 내용'),/다른 메시지/);await assert.rejects(f.start('request_B'),/이전 요청/);f.db.close();
+});
+test('접수 응답 유실은 새 세션 생성으로 재시도하지 않는다',async()=>{
+ const f=fixture();f.state.lost=true;assert.equal((await f.start()).status,'submission_uncertain');await f.start();assert.equal(f.state.writes.length,1);assert.equal((await f.poll()).status,'submission_uncertain');f.db.close();
+});
+test('접근 거절은 완료로 보고하지 않고 실패 사유를 표시한다',async()=>{
+ const f=fixture();f.state.invalid=true;const result=await f.start();assert.equal(result.status,'failed');assert.match(result.error,/403/);f.db.close();
+});
+test('다른 계정은 세션·도구·대화 결과를 읽을 수 없다',async()=>{
+ const f=fixture();await f.start();assert.equal((await f.poll('request_A','another_owner')).status,'ready');
+ await assert.rejects(f.route('/secretary/result',{thread_id:'chat_A',request_id:'request_A',call_id:'call_A',result:{}},'another_owner'),/대기 중인 도구/);f.db.close();
+});
+test('도구는 현재 실행의 대기 요청만 한 번 선점하고 결과를 정확한 turn_id에 전달한다',async()=>{
+ const f=fixture();await f.start();f.state.actions=[{type:'function_call',turn_id:'turn_A',call_id:'call_A',name:'list_schedule',arguments:{date:'2026-10-06'}}];
+ const pending=await f.poll();assert.equal(pending.actions[0].name,'list_schedule');
+ const args={thread_id:'chat_A',request_id:'request_A',call_id:'call_A'};
+ assert.equal((await f.route('/secretary/claim',args)).claimed,true);assert.equal((await f.route('/secretary/claim',args)).claimed,false);
+ await f.route('/secretary/result',{...args,result:{ok:true,events:[]}});await f.route('/secretary/result',{...args,result:{ok:true,events:[]}});
+ assert.equal(f.state.writes.length,2);assert.equal(f.state.writes[1].body.events[0].turn_id,'turn_A');assert.equal(f.state.writes[1].body.events[0].call_id,'call_A');f.db.close();
+});
+test('도구 요청 변경 또는 결과 전송 유실 시 업무를 재실행하지 않는다',async()=>{
+ const f=fixture();await f.start();f.state.actions=[{type:'function_call',turn_id:'turn_A',call_id:'call_A',name:'add_contact',arguments:{name:'테스트'}}];await f.poll();
+ const args={thread_id:'chat_A',request_id:'request_A',call_id:'call_A'};
+ f.state.actions[0].arguments={name:'변경'};await assert.rejects(f.route('/secretary/claim',args),/변경/);f.state.actions[0].arguments={name:'테스트'};
+ await f.route('/secretary/claim',args);f.state.lost=true;await assert.rejects(f.route('/secretary/result',{...args,result:{ok:true}}),/network lost/);
+ assert.equal((await f.route('/secretary/claim',args)).claimed,false);assert.equal((await f.poll()).actions[0].status,'submission_uncertain');f.db.close();
+});
+test('완료 상태만으로 성공 처리하지 않고 최종 답변 누락을 실패로 보고한다',async()=>{
+ const f=fixture();await f.start();f.state.turns[0].status='completed';assert.equal((await f.poll()).status,'failed');f.db.close();
+ assert.equal(finalText([{turn_id:'turn_A',type:'message',role:'assistant',phase:'commentary',content:[{type:'output_text',text:'처리 중'}]}],'turn_A'),'');
+});
+test('기존 업무 도구와 담당자 배정·검수 보고 도구가 포함되며 인증 없는 접근은 거절한다',async()=>{
+ assert.ok(SECRETARY_TOOLS.some(t=>t.name==='delegate_work'));assert.ok(SECRETARY_TOOLS.some(t=>t.name==='read_work_report'));
+ assert.match(SECRETARY_TOOLS.find(t=>t.name==='add_event').description,/확인/);
+ const response=await worker.fetch(new Request('https://worker.test/secretary/poll?thread_id=chat_A'),{});assert.equal(response.status,401);
+ const html=readFileSync(new URL('../platform.html',import.meta.url),'utf8');
+ for(const match of html.matchAll(/<script([^>]*)>([\s\S]*?)<\/script>/g)){if(!/src=|type="module"/.test(match[1]))new vm.Script(match[2]);}
+});
+
+test('브라우저가 도구를 한 번 실행하고 전달 실패 후 저장된 결과를 재사용한다',async()=>{
+ const storage=new Map(),sandbox={localStorage:{getItem:k=>storage.get(k)||null,setItem:(k,v)=>storage.set(k,v),removeItem:k=>storage.delete(k)},crypto:{randomUUID:()=> 'request_A'},setTimeout:fn=>fn()};
+ vm.runInNewContext(readFileSync(new URL('../secretary-client.js',import.meta.url),'utf8'),sandbox);
+ let executions=0,resultPosts=0,completed=false,started=false;
+ const request=async(path)=>{
+  if(path==='/secretary/message'){started=true;return{status:'requires_action',actions:[{call_id:'call_A',name:'list_schedule',arguments:{},status:'pending'}]};}
+  if(path==='/secretary/claim')return{claimed:true};
+  if(path==='/secretary/result'){resultPosts++;if(resultPosts===1)throw Error('response lost before acceptance');completed=true;return{ok:true};}
+  return completed?{status:'completed',request_id:'request_A',output_text:'완료'}:started?{status:'requires_action',request_id:'request_A',actions:[{call_id:'call_A',name:'list_schedule',arguments:{},status:'executing'}]}:{status:'ready'};
+ };
+ const options={owner:()=> 'owner',request,status:()=>{},busy:()=>{},execute:async()=>{executions++;return{ok:true};}};
+ const client=sandbox.createSecretaryClient(options);await assert.rejects(client.run('chat_A','일정 확인',''),/response lost/);
+ const resumed=sandbox.createSecretaryClient(options);assert.equal(await resumed.run('chat_A','새 메시지',''),'완료');assert.equal(executions,1);assert.equal(resultPosts,2);
+});

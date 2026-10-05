@@ -1,3 +1,4 @@
+import {handleSecretaryRoute} from "./secretary-agent.js";
 import {runTeamTasks} from "./agent-scheduler.js";
 import {
   AGENT_SCHEMA_VERSION,
@@ -1649,8 +1650,13 @@ async function handleFetch(request, env) {
   const path = url.pathname.replace(/\/+$/, "") || "/";
 
   try {
+    if (path.startsWith('/secretary/')) {
+      const user = await verifyFirebaseUser(request, env);
+      const body = request.method === 'POST' ? await requestBody(request) : {};
+      return json(await handleSecretaryRoute({env, user, path, method: request.method, body, query: url.searchParams}), 200, request, env);
+    }
     if (path === "/health" && request.method === "GET") {
-      return json({ ok: true, queue: Boolean(env.AGENT_QUEUE), database: Boolean(env.AGENT_DB), law: Boolean(env.LAW_OC), gemini: Boolean(env.GEMINI_API_KEY), googleCalendar: Boolean(env.GOOGLE_CLIENT_ID && env.GOOGLE_CLIENT_SECRET), schemaVersion: AGENT_SCHEMA_VERSION, agentModel: env.AGENT_MODEL || "gpt-4o-mini", executionMode: "parallel-teams", maxConcurrentTeams: 3, leadReview: "model" }, 200, request, env);
+      return json({ ok: true, secretaryApi: "agents-v1", secretaryModel: env.SECRETARY_MODEL || "gpt-6-luna", secretaryEnvironment: "none", queue: Boolean(env.AGENT_QUEUE), database: Boolean(env.AGENT_DB), law: Boolean(env.LAW_OC), gemini: Boolean(env.GEMINI_API_KEY), googleCalendar: Boolean(env.GOOGLE_CLIENT_ID && env.GOOGLE_CLIENT_SECRET), schemaVersion: AGENT_SCHEMA_VERSION, agentModel: env.AGENT_MODEL || "gpt-4o-mini", executionMode: "parallel-teams", maxConcurrentTeams: 3, leadReview: "model" }, 200, request, env);
     }
     if (path === GOOGLE_CALLBACK_PATH && request.method === "GET") {
       return await googleCalendarCallback(request, env);

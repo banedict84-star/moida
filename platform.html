@@ -780,6 +780,7 @@ body.app-loading #sideAvatar{color:transparent!important;background:#243a5c!impo
   </main>
 </div>
 
+<script src="secretary-client.js?v=1"></script>
 <script>
 /* ── 의원실 플랫폼 SPA 런타임 (디자인 핸드오프 재구현) ──────────────── */
 (function(){
@@ -2136,7 +2137,7 @@ onAuthStateChanged(_auth, async function(user){
      · 켜는 법: 워커 배포 후 아래 GPT_ENDPOINT에 URL 입력
        또는 콘솔에서 localStorage.setItem('moida_gpt_endpoint','https://...workers.dev') */
   var GPT_ENDPOINT = 'https://moida-gpt.banedict84.workers.dev';  // Cloudflare Worker 프록시
-  var GPT_MODEL    = 'gpt-4o';  // 디자인 프롬프트·브리핑 품질↑ (ChatGPT 수준). 비용 줄이려면 'gpt-4o-mini'
+  var GPT_MODEL    = 'gpt-6-luna';  // 디자인 프롬프트·브리핑 품질↑ (ChatGPT 수준). 비용 줄이려면 'gpt-4o-mini'
   function gptEndpoint(){ try{ return (localStorage.getItem('moida_gpt_endpoint')||GPT_ENDPOINT).trim(); }catch(e){ return GPT_ENDPOINT; } }
   function aiFetch(url,options){
     options=options||{};
@@ -2268,12 +2269,14 @@ onAuthStateChanged(_auth, async function(user){
     persistChats();
   }
   function resetChat(){
+    if(secretaryClient&&secretaryClient.isBusy()){setChatStatus('처리 중인 대화를 먼저 확인해 주세요.');return;}
     currentThreadId=''; history=[]; attachments=[]; renderAttach();
     if(msgs){msgs.innerHTML=seed;scroll();}
     renderChatThreads();
     var inp=document.getElementById('aiInput'); if(inp) inp.focus();
   }
   function openChat(id){
+    if(secretaryClient&&secretaryClient.isBusy()){setChatStatus('처리 중인 대화를 먼저 확인해 주세요.');return;}
     var t=chatThreads.find(function(x){return x.id===id;}); if(!t||!msgs) return;
     currentThreadId=id; msgs.innerHTML=seed; history=[{role:'system',content:sysPrompt()}];
     t.messages.forEach(function(m){
@@ -3437,6 +3440,8 @@ onAuthStateChanged(_auth, async function(user){
     addAI(html,formatted);
   }
   function send(text){
+    if(secretaryClient&&secretaryClient.isBusy()){setChatStatus("이전 요청을 처리하고 있습니다.");return;}
+    if(currentThreadId&&secretaryClient&&secretaryClient.hasPending(currentThreadId)){runLoop(addTyping(),0,0,false,false);return;}
     text=(text||'').trim();
     if(!text && !attachments.length) return;
     var atts=attachments.slice(); attachments=[]; renderAttach();
@@ -3446,11 +3451,7 @@ onAuthStateChanged(_auth, async function(user){
     if(!atts.length&&pendingScheduleProposal&&/^(등록|등록해|등록해줘|등록해주세요|네|예|응|확인)$/.test(text.replace(/\s+/g,''))){confirmPendingSchedule();return;}
     if(!atts.length&&/^일정\s*등록$/.test(text)){showScheduleRegistrationGuide();return;}
     if(!atts.length&&/^홍보글\s*작성$/.test(text)){showPromotionGuide();return;}
-    if(!atts.length&&answerCrmRead(text))return;
-    if(shouldOrchestrate(text)&&!awaitingScheduleDetails&&!awaitingPromotionContent&&!isPosterCreationRequest(text)&&!isScheduleRegistrationRequest(text)){
-      startAgentRun(text);
-      return;
-    }
+
     var ep=gptEndpoint();
     if(!ep){ var r=reply(text); setTimeout(function(){ addAI(r); }, 350); return; }
     if(!history.length) history.push({role:'system', content:sysPrompt()});
@@ -3479,72 +3480,51 @@ onAuthStateChanged(_auth, async function(user){
     if(forceSchedule)awaitingScheduleDetails=false;
     runLoop(addTyping(), 0, 0, isPosterCreationRequest(text), forceSchedule);
   }
+  var secretaryClient=window.createSecretaryClient({
+    owner:function(){return M.auth&&M.auth.currentUser?M.auth.currentUser.uid:'local';},
+    request:agentApi,
+    status:setChatStatus,
+    busy:function(busy){var b=document.getElementById('aiSend');if(b)b.disabled=busy;},
+    execute:async function(name,args,callId){
+      if(name==='delegate_work'){
+        var data=await agentApi('/agent-runs',{method:'POST',headers:{'Content-Type':'application/json','Idempotency-Key':'secretary_'+callId},body:JSON.stringify({instruction:args.instruction,context:agentServerContext(),idempotencyKey:'secretary_'+callId})});
+        mergeServerRun(data.run);pollServerRuns();
+        return {ok:true,run_id:data.run.id,status:data.run.status,message:'담당자에게 접수됐습니다. 완료 보고는 검수 결과를 확인한 뒤 합니다.'};
+      }
+      if(name==='read_work_report'){
+        var data=await agentApi('/agent-runs/'+encodeURIComponent(args.run_id),{method:'GET'});mergeServerRun(data.run);
+        return {ok:true,run_id:data.run.id,status:data.run.status,summary:data.run.summary||'',error:data.run.error||'',tasks:data.run.tasks};
+      }
+      if(name==='add_event'){
+        showScheduleProposal(args);
+        return {ok:true,requires_confirmation:true,message:'일정 제안만 표시했습니다. 사용자 등록 확인 대기 중입니다.'};
+      }
+      return await Promise.resolve(execTool(name,args));
+    }
+  });
   function runLoop(typing, depth, retry, forcePoster, forceSchedule){
-    retry=retry||0;
-    if(depth>6){ if(typing) typing.remove(); addAI('처리 단계가 너무 많아 중단했습니다. 다시 시도해 주세요.'); return; }
-    var _status=0;
-    var payload={model:GPT_MODEL,messages:history,tools:TOOLS};
-    if(forcePoster&&depth===0)payload.tool_choice={type:'function',function:{name:'create_poster'}};
-    else if(forceSchedule&&depth===0)payload.tool_choice={type:'function',function:{name:'add_event'}};
-    aiFetch(gptEndpoint(), {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload)})
-      .then(function(r){ _status=r.status; return r.text(); })
-      .then(async function(txt){
-        var d=null; try{ d=JSON.parse(txt); }catch(e){}
-        var msg = d && d.choices && d.choices[0] && d.choices[0].message;
-        if(!msg){
-          // 게이트웨이 일시 오류(502/503/504)는 자동 재시도
-          if((_status===502||_status===503||_status===504||_status===429) && retry<2){
-            setTimeout(function(){ runLoop(typing, depth, retry+1, forcePoster, forceSchedule); }, 900*(retry+1));
-            return;
-          }
-          if(typing) typing.remove();
-          var err=(d&&d.error&&d.error.message)
-                ||(d&&Array.isArray(d.errors)&&d.errors.map(function(e){return e&&(e.message||e.code);}).filter(Boolean).join('; '))
-                ||((txt&&txt.trim())? ('HTTP '+_status+' · '+txt.slice(0,400)) : ('HTTP '+_status+' · 빈 응답을 받았습니다.'));
-          if(_status===502||_status===503||_status===504) err='AI 서버가 일시적으로 응답하지 않습니다(HTTP '+_status+'). 잠시 후 다시 시도해 주세요.';
-          addAI('오류: '+M.esc(err)); return;
-        }
-        history.push(msg);
-        if(msg.tool_calls && msg.tool_calls.length){
-          var completedSchedule=null,proposedSchedule=null;
-          for(var ti=0;ti<msg.tool_calls.length;ti++){
-            var tc=msg.tool_calls[ti];
-            var args={}; try{ args=JSON.parse((tc.function&&tc.function.arguments)||'{}'); }catch(e){}
-            if(tc.function&&tc.function.name==='add_event'){
-              proposedSchedule=args;
-              history.push({role:'tool',tool_call_id:tc.id,content:JSON.stringify({ok:true,requires_confirmation:true,message:'사용자 확인 대기 중'})});
-              continue;
-            }
-            var result=await Promise.resolve(execTool(tc.function&&tc.function.name, args));
-            history.push({role:'tool', tool_call_id:tc.id, content:JSON.stringify(result)});
-            if(tc.function&&tc.function.name==='add_event'&&result&&result.ok)completedSchedule={args:args,result:result};
-          }
-          if(proposedSchedule){
-            if(typing)typing.remove();
-            showScheduleProposal(proposedSchedule);
-            return;
-          }
-          if(completedSchedule){
-            if(typing)typing.remove();
-            var scheduleReply=scheduleRegistrationReply(completedSchedule.args,completedSchedule.result);
-            history.push({role:'assistant',content:scheduleReply});
-            addAI(mdToHtml(scheduleReply),scheduleReply);
-            return;
-          }
-          runLoop(typing, depth+1, 0, false, false);
-        } else {
-          if(typing) typing.remove();
-          var parsedProposal=parseScheduleConfirmation(msg.content||'');
-          if(parsedProposal)showScheduleProposal(parsedProposal,true);
-          else if(expectingPromotionCopy){expectingPromotionCopy=false;renderPromotionCopy(msg.content||'');}
-          else addAI(mdToHtml(msg.content||''), msg.content||'');
-        }
-      })
-      .catch(function(e){
-        if(retry<2){ setTimeout(function(){ runLoop(typing, depth, retry+1, forcePoster, forceSchedule); }, 900*(retry+1)); return; }
-        expectingPromotionCopy=false;
-        if(typing) typing.remove(); addAI('연결 오류: '+M.esc(e&&e.message||String(e)));
-      });
+    var threadId=currentThreadId,owner=secretaryClient&&M.auth&&M.auth.currentUser&&M.auth.currentUser.uid;
+    if(!owner){if(typing)typing.remove();addAI('로그인 후 비서실장 에이전트를 이용해 주세요.');return;}
+    var last=history[history.length-1],content=last&&last.role==='user'?last.content:'이전 요청 상태를 확인해 주세요.';
+    var text=typeof content==='string'?content:content.filter(function(p){return p.type==='text';}).map(function(p){return p.text;}).join('\n');
+    if(forcePoster)text+='\n[요청 실행] create_poster 도구로 웹자보를 생성해 주세요.';
+    if(forceSchedule)text+='\n[요청 실행] add_event 도구로 등록할 일정을 제안해 주세요.';
+    var input=text;
+    if(Array.isArray(content))input=[{role:'user',content:[{type:'input_text',text:text}].concat(content.filter(function(p){return p.type==='image_url';}).map(function(p){return {type:'input_image',image_url:p.image_url.url};}))}];
+    var context=sysPrompt()+'\n[기존 대화 참고]\n'+JSON.stringify(history.filter(function(m){return m.role==='user'||m.role==='assistant';}).slice(-7,-1));
+    secretaryClient.run(threadId,input,context).then(function(output){
+      if(typing)typing.remove();
+      if(currentThreadId!==threadId||!M.auth.currentUser||M.auth.currentUser.uid!==owner)return;
+      history.push({role:'assistant',content:output});
+      var proposal=parseScheduleConfirmation(output);
+      if(proposal&&!pendingScheduleProposal)showScheduleProposal(proposal,true);
+      else if(expectingPromotionCopy){expectingPromotionCopy=false;renderPromotionCopy(output);}
+      else addAI(mdToHtml(output),output);
+      setChatStatus('에이전트 답변 완료 · 대화 이어가기 가능');
+    }).catch(function(error){
+      if(typing)typing.remove();expectingPromotionCopy=false;
+      addAI('에이전트 상태 확인: '+M.esc(error.message||String(error)));setChatStatus('대화를 다시 열어 실행 상태를 확인해 주세요.');
+    });
   }
   var input=document.getElementById('aiInput'), sendBtn=document.getElementById('aiSend');
   if(sendBtn) sendBtn.addEventListener('click', function(){ if(input){ send(input.value); input.value=''; input.focus(); } });
