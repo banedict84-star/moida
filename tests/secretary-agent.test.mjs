@@ -48,6 +48,29 @@ test('기존 D1 연결로 새 대화 테이블을 생성하며 기존 테이블�
  const f=fixture();f.db.exec('DROP TABLE secretary_sessions; DROP TABLE secretary_turns; DROP TABLE secretary_calls; CREATE TABLE original_records(value TEXT); INSERT INTO original_records VALUES(\'기존 자료\');');
  await f.start();assert.equal(f.db.prepare('SELECT value FROM original_records').get().value,'기존 자료');assert.equal((await f.poll()).status,'in_progress');f.db.close();
 });
+test('새 대화에 live 웹검색을 연결하며 기존 업무 도구를 유지한다',async()=>{
+ const f=fixture();await f.start();const agent=f.state.writes[0].body.agent;
+ assert.deepEqual(agent.tools.find(tool=>tool.type==='web_search'),{type:'web_search',mode:'live'});
+ assert.ok(agent.tools.some(tool=>tool.name==='list_contacts'));
+ assert.match(agent.instructions,/근거 URL/);f.db.close();
+});
+test('검색 없는 기존 대화는 과거 기록을 참고 자료로 이어받고 새 검색 세션을 만든다',async()=>{
+ const f=fixture();await f.start();f.state.turns[0].status='completed';
+ f.state.items=[{turn_id:'turn_A',type:'message',role:'assistant',phase:'final_answer',content:[{type:'output_text',text:'이전 의정활동 대화'}]}];
+ await f.poll();delete f.state.session.metadata.moida_web_search;
+ await f.start('request_B','최신 경기도당 공지를 웹에서 찾아줘');
+ const creation=f.state.writes[1];assert.equal(creation.path,'/v1/agents/sessions');
+ assert.match(creation.body.agent.instructions,/이전 의정활동 대화/);
+ assert.equal(creation.body.metadata.moida_web_search,'live-v1');
+ assert.deepEqual(JSON.parse(f.db.prepare('SELECT baseline_json FROM secretary_turns WHERE request_id=?').get('request_B').baseline_json),[]);
+ f.db.close();
+});
+test('기존 검색 없는 세션의 작업이 진행 중이면 전환하지 않는다',async()=>{
+ const f=fixture();await f.start();f.state.turns[0].status='completed';
+ f.state.items=[{turn_id:'turn_A',type:'message',role:'assistant',phase:'final_answer',content:[{type:'output_text',text:'완료'}]}];await f.poll();
+ delete f.state.session.metadata.moida_web_search;f.state.session.status='in_progress';
+ await assert.rejects(f.start('request_B','웹검색'),/이전 요청/);assert.equal(f.state.writes.length,1);f.db.close();
+});
 test('같은 요청 재전송은 세션을 복제하지 않고 다른 입력과 다음 요청은 차단한다',async()=>{
  const f=fixture();await f.start();await f.start();assert.equal(f.state.writes.length,1);
  await assert.rejects(f.start('request_A','다른 내용'),/다른 메시지/);await assert.rejects(f.start('request_B'),/이전 요청/);f.db.close();
