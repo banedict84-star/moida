@@ -34,6 +34,21 @@
   function render(){content.replaceChildren();Array.from(tabBar.children).forEach(function(b){var selected=b.dataset.tab===activeTab;b.setAttribute('aria-selected',String(selected));b.setAttribute('aria-controls',content.id);b.tabIndex=selected?0:-1;});content.setAttribute('aria-labelledby','office-tab-'+activeTab);var services=section('외부 서비스','accounts');services.classList.add('office-tool-full');services.append(note('필요한 서비스만 연결해서 사용하세요.'));
    [['calendar','Google 캘린더','일정 조회와 승인된 일정 등록',''],['drive','Google Drive','의원실 자료 검색과 가져오기','drive'],['gmail','Gmail','검토한 메일 초안 보내기','mail']].forEach(function(item){var connected=!!connection[item[0]],row=node('div',undefined,'office-service-row'),body=node('div'),title=node('strong',item[1]),badge=node('span',connected?'연결됨':'연결 필요','office-status '+(connected?'is-connected':'is-pending'));body.append(title,note(item[2]));row.append(body,badge);if(!connected)row.append(button('연결하기',function(){return connect(item[3]);}));services.append(row);});
    if(connection.google_email)services.append(note(connection.google_email));
+   var catalog=section('사용 가능한 도구','accounts');catalog.classList.add('office-tool-full');
+   var registry=[
+    ['웹검색','web_search','최신 웹 자료 조회 · 검색 출처 확인',true],
+    ['의원실 자료·문서','files','현재 계정의 자료 조회·저장·문서 생성',connection.files],
+    ['법령·조례','law','공식 법령과 조례 조회',connection.law],
+    ['할 일·알림','tasks','현재 계정의 할 일 등록·수정 및 앱 알림',connection.tasks],
+    ['뉴스 모니터링','news_monitors','등록한 검색어의 새 기사 확인',connection.news_monitors],
+    ['음성·파일 분석','file_analysis','업로드 자료를 분석 서비스로 전송',connection.file_analysis],
+    ['문자 발송','sms','문자 발송 서비스와 서버 인증 설정 필요',false],
+    ['Microsoft 365','microsoft','Outlook·OneDrive 연동 개발 및 계정 연결 필요',false],
+    ['외부 MCP 도구','mcp','서버별 인증·권한 검토 후 개별 연동 필요',false]
+   ];
+   registry.forEach(function(item){var row=node('div',undefined,'office-service-row'),body=node('div');body.append(node('strong',item[0]),note(item[2]));row.append(body,node('span',item[3]?'사용 가능':'미연동','office-status '+(item[3]?'is-connected':'is-pending')));catalog.append(row);});
+   var permissions=section('접근 권한과 실행 확인','accounts');permissions.classList.add('office-tool-full');permissions.append(note('자료·업무·알림은 로그인한 계정별로 분리됩니다. Google Drive는 읽기 권한, Gmail은 발송 권한을 요청합니다. 메일은 초안 확인 후 보내기를 눌러야 발송됩니다. 작업 실행 결과는 작업실에서 확인할 수 있습니다.'));
+
    var files=section('자료실','files');var actions=node('div',undefined,'office-tool-actions'),uploadButton=button('＋ 파일 올리기',pick);uploadButton.className='office-primary';actions.append(uploadButton,button('문서 만들기',function(){ask('문서를 만들어 자료실에 보관해줘. 문서 종류: , 제목: , 내용: ');}));files.append(actions,note('PDF · Word · HWPX · 엑셀 · 녹음 / 최대 8MB'));
    if(!(data.files||[]).length){var empty=node('div',undefined,'office-tool-empty');empty.append(node('div','▤','office-empty-symbol'),node('strong','첫 자료를 올려보세요'),note('자료를 올리면 비서실장에게 요약과 분석을 요청할 수 있어요.'));files.append(empty);}(data.files||[]).forEach(function(f){var r=node('div');r.className='office-tool-row';r.append(node('span',f.title),button('열기',function(){return preview(f);}),button('받기',function(){return download(f);}));files.append(r);});
    var todos=section('할 일·마감','work');todos.append(button('할 일 추가',function(){ask('할 일을 등록해줘. 제목: , 담당: , 기한: ');}));if(!(data.tasks||[]).length)todos.append(note('아직 등록된 할 일이 없어요. 담당자와 기한을 함께 정해보세요.'));(data.tasks||[]).forEach(function(t){var r=node('div');r.className='office-tool-row';r.append(node('span',t.title+' · '+(t.assignee||'담당 미지정')+' · '+({open:'대기',in_progress:'진행 중',completed:'완료'}[t.status]||t.status)+'\n'+stamp(t.due_at)),button('상태 변경',function(){ask('할 일 ID '+t.id+'의 상태를 완료로 변경해줘.');}));todos.append(r);});
@@ -44,6 +59,8 @@
   async function refresh(){createPanel();var owner=options.owner();ensureOwner(owner);message.style.color='#667085';message.textContent='자료와 연결 상태를 확인하고 있습니다.';var results=await Promise.all([options.request('/office-tools/status',{method:'GET'}),options.request('/office-tools/dashboard',{method:'GET'})]);ensureOwner(owner);currentOwner=owner;connection=results[0];data=results[1];render();message.textContent='계정별 자료와 알림입니다.';}
   async function open(){createPanel();panel.hidden=false;panel.open=true;layout.classList.add('office-tools-visible');launcher.setAttribute('aria-expanded','true');try{await refresh();}catch(e){showError(e);}}
   var host=document.getElementById('aiAttachBtn');if(host&&host.parentElement){launcher=button('자료·알림',function(){return panel&&panel.open?closePanel():open();});launcher.setAttribute('aria-expanded','false');launcher.setAttribute('aria-controls','officeToolsPanel');launcher.id='officeToolsOpen';launcher.style.cssText='border:1px solid #d2ddee;background:#eef3fc;color:#244c82;border-radius:9px;padding:8px 11px;white-space:nowrap;font:inherit;font-size:12px;font-weight:600;cursor:pointer';host.parentElement.insertBefore(launcher,host);}
+  root.openOfficeConnections=function(){activeTab='accounts';return open();};
+  if(host){var connectionsButton=button('연결 관리',root.openOfficeConnections);connectionsButton.id='officeConnectionsOpen';connectionsButton.style.cssText=launcher.style.cssText;host.parentElement.insertBefore(connectionsButton,host);}
   return{open:open,upload:upload,refresh:function(){if(panel&&panel.open)return refresh().catch(showError);},showError:showError};
  };
 })(window);
