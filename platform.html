@@ -252,6 +252,22 @@ body.secretary-view .secretary-grid{height:100%!important}
 }
 .workroom-return{display:none}
 @media(max-width:1180px){.secretary-aside.open .workroom-return{display:flex;position:sticky;top:0;z-index:2;flex-shrink:0;background:#f5f6f8;padding:8px;border-bottom:1px solid #dbe3ee}.workroom-return button{width:100%;min-height:42px;border:1px solid #cbd5e1;border-radius:9px;background:#fff;color:#1d3a6e;font:600 14px inherit;cursor:pointer}.secretary-aside.open>div{flex-shrink:0}}
+
+.chat-plus-menu{display:none}.chat-plus{display:none}
+@media(max-width:760px){
+body.secretary-view #appContent{padding:0!important;background:#fff}body.secretary-view #appHeader{border-bottom:0!important;background:#fff!important}body.secretary-view #pageSub{display:none}
+body.secretary-view #aiPanel{border:0!important;border-radius:0!important;box-shadow:none!important;background:#fff}
+.secretary-chat-head{display:none!important}#aiMessages{background:#fff!important;padding:20px 16px!important;gap:24px!important}
+#aiMessages>div:not(:has(.ai-chip)){max-width:100%!important}#aiMessages>div[style*="gap:11px"]>div:first-child{display:none!important}
+#aiMessages>div[style*="gap:11px"]>div:last-child{border:0!important;background:transparent!important;border-radius:0!important;padding:0!important;font-size:15px!important;line-height:1.7!important}
+#aiMessages>div[style*="justify-content:flex-end"]>div{background:#eef2fa!important;color:#182230!important;border-radius:22px!important;font-size:15px!important;max-width:86%!important}
+#aiPanel>div:last-child{border-top:0!important;padding:10px 12px!important;background:#fff!important}
+#aiPanel>div:last-child>div:last-child{display:flex!important;border-radius:28px!important;background:#f5f5f5!important;border-color:#e5e7eb!important;padding:7px!important;gap:8px!important}
+#aiAttachBtn,#officeToolsOpen{display:none!important}.chat-plus{display:flex;align-items:center;justify-content:center;flex-shrink:0;width:36px;height:36px;border:0;background:transparent;font-size:28px;color:#111;cursor:pointer}
+#aiInput{width:auto!important;flex:1;min-width:0}#aiSend{border-radius:50%!important;background:#172b4d!important}
+.chat-plus-menu.open{display:flex;position:absolute;bottom:80px;left:12px;right:12px;z-index:40;flex-direction:column;padding:8px;background:#fff;border:1px solid #e5e7eb;border-radius:18px;box-shadow:0 8px 30px #0002}
+.chat-plus-menu button{padding:13px 16px;border:0;background:#fff;text-align:left;font:14px inherit;cursor:pointer;border-radius:10px}.chat-plus-menu button:hover{background:#f5f6f8}
+}
 </style>
 <link rel="stylesheet" href="office.css?v=20261005">
 </head>
@@ -4300,5 +4316,16 @@ requestAnimationFrame(function(){
 </script>
 <script src="access-guard.js"></script>
 
+<script>
+(function(){
+var host=document.getElementById('aiAttachBtn'),panel=document.getElementById('aiPanel');if(!host||!panel)return;
+var plus=document.createElement('button');plus.type='button';plus.className='chat-plus';plus.textContent='+';plus.setAttribute('aria-label','도구 메뉴');plus.setAttribute('aria-expanded','false');host.parentElement.insertBefore(plus,host);
+var menu=document.createElement('div');menu.className='chat-plus-menu';menu.id='chatPlusMenu';plus.setAttribute('aria-controls',menu.id);panel.prepend(menu);
+function close(){menu.classList.remove('open');plus.setAttribute('aria-expanded','false');}
+[['파일 첨부','aiAttachBtn'],['자료·알림','officeToolsOpen'],['작업실','agentRoomToggle'],['Google 캘린더 연결','secretaryGoogleCalendarConnect'],['새 대화','aiNew']].forEach(function(item){var b=document.createElement('button');b.type='button';b.textContent=item[0];b.onclick=function(){close();var target=document.getElementById(item[1]);if(target)target.click();};menu.append(b);});
+plus.onclick=function(){var open=menu.classList.toggle('open');plus.setAttribute('aria-expanded',String(open));};document.addEventListener('click',function(e){if(!menu.contains(e.target)&&!plus.contains(e.target))close();});document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+var input=document.getElementById('aiInput');if(input)input.placeholder='비서실장에게 메시지 보내기';
+})();
+</script>
 </body>
 </html>
