@@ -33,12 +33,6 @@ jobs:
           node --check gpt-worker.js
           node --test tests/agent-core.test.mjs tests/agent-scheduler.test.mjs tests/agent-review.test.mjs tests/usage-cost.test.mjs tests/secretary-agent.test.mjs
 
-      - name: Apply additive secretary session tables
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          command: d1 execute moida-agent-queue --remote --file=migrations/0004_secretary_sessions.sql
-
       # (A) GitHub에 OPENAI_API_KEY가 등록돼 있으면: 배포 + 키를 워커에 자동 주입
       #     → 재배포해도 키가 유실되지 않음(권장).
       - name: Deploy (with OPENAI_API_KEY injection)

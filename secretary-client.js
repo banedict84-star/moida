@@ -8,10 +8,12 @@
     function write(thread,value){localStorage.setItem(storeKey(thread),JSON.stringify(value));}
     function post(path,body){return options.request(path,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});}
     function poll(thread,id){return options.request('/secretary/poll?thread_id='+encodeURIComponent(thread)+(id?'&request_id='+encodeURIComponent(id):''),{method:'GET'});}
+    function sameOwner(saved){if(options.owner()!==saved.owner)throw Error('로그인 계정이 변경되어 실행 상태 확인을 중단했습니다.');}
     async function drive(thread,saved,state){
       for(var i=0;i<120&&!disposed;i++){
-        if(options.owner()!==saved.owner)throw Error('로그인 계정이 변경되어 실행 상태 확인을 중단했습니다.');
+        sameOwner(saved);
         state=state||await poll(thread,saved.request_id);
+        sameOwner(saved);
         if(state.status==='ready'&&!state.request_id)throw Error('이 요청이 서버에 접수됐는지 확인할 수 없습니다. 같은 요청을 다시 보내지 않고 저장된 입력을 보관합니다.');
         if(state.status==='completed'){
           localStorage.removeItem(storeKey(thread));return state.output_text;
@@ -29,10 +31,12 @@
           }
           if(action.status!=='pending')throw Error('이 업무 도구는 이미 실행 중이거나 결과 확인이 필요합니다. 중복 실행을 막기 위해 중단했습니다.');
           var claim=await post('/secretary/claim',{thread_id:thread,request_id:saved.request_id,call_id:action.call_id});
+          sameOwner(saved);
           if(!claim.claimed)throw Error('다른 화면에서 업무를 처리하고 있습니다. 잠시 뒤 대화를 다시 열어 주세요.');
           var result;
           try{result=await options.execute(action.name,action.arguments,action.call_id);}
           catch(e){result={ok:false,error:e.message||'도구 실행 실패'};}
+          sameOwner(saved);
           // Save the actual result before posting it. Never execute the function again on reconnect.
           saved.results[action.call_id]={result:result};write(thread,saved);
           await post('/secretary/result',{thread_id:thread,request_id:saved.request_id,call_id:action.call_id,result:result});

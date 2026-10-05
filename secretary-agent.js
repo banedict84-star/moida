@@ -1,5 +1,16 @@
 // The same Agents API contract as Moida Office. The existing Worker owns the key.
 import {SECRETARY_TOOLS} from './secretary-tools.js';
+import {SECRETARY_SCHEMA} from './secretary-schema.js';
+
+const schemaReady = new WeakMap();
+async function ensureSchema(env) {
+  if (!schemaReady.has(env.AGENT_DB)) {
+    const ready = env.AGENT_DB.batch(SECRETARY_SCHEMA.map(sql => env.AGENT_DB.prepare(sql)));
+    schemaReady.set(env.AGENT_DB, ready);
+    ready.catch(() => schemaReady.delete(env.AGENT_DB));
+  }
+  await schemaReady.get(env.AGENT_DB);
+}
 
 export class SecretaryError extends Error {
   constructor(status, message) { super(message); this.status = status; }
@@ -173,6 +184,7 @@ async function tool(env, uid, thread, body, api, claim) {
 export async function handleSecretaryRoute({env, user, path, method, body = {}, query, fetcher}) {
   if (!env.AGENT_DB) fail(503, '에이전트 대화 저장소가 연결되지 않았습니다.');
   const thread = key(body.thread_id || query?.get('thread_id'), '대화 ID');
+  await ensureSchema(env);
   const api = (p, o) => provider(env, p, o, fetcher);
   if (path === '/secretary/message' && method === 'POST') return start(env, user.uid, thread, body, api);
   if (path === '/secretary/poll' && method === 'GET') return poll(env, user.uid, thread, query.get('request_id') ? key(query.get('request_id'), '요청 ID') : null, api);
