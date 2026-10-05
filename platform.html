@@ -268,6 +268,22 @@ body.secretary-view #aiPanel{border:0!important;border-radius:0!important;box-sh
 .chat-plus-menu.open{display:flex;position:absolute;bottom:80px;left:12px;right:12px;z-index:40;flex-direction:column;padding:8px;background:#fff;border:1px solid #e5e7eb;border-radius:18px;box-shadow:0 8px 30px #0002}
 .chat-plus-menu button{padding:13px 16px;border:0;background:#fff;text-align:left;font:14px inherit;cursor:pointer;border-radius:10px}.chat-plus-menu button:hover{background:#f5f6f8}
 }
+
+#appHeader #roleSelect{display:none!important}
+@media(max-width:760px){
+.page[data-page="dashboard"] .pg .dashboard-kpis{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important;margin-bottom:12px!important}
+.dashboard-kpis>div{padding:12px!important;border-radius:12px!important;min-width:0}
+.dashboard-kpis>div>div:first-child>span:first-child{font-size:12px!important}
+.dashboard-kpis>div>div:first-child>span:last-child{width:27px!important;height:27px!important;border-radius:8px!important}
+.dashboard-kpis>div>div:nth-child(2){margin-top:6px!important;gap:4px!important}
+.dashboard-kpis>div>div:nth-child(2)>span:first-child{font-size:25px!important}
+.dashboard-kpis>div>div:last-child{font-size:11px!important;margin-top:4px!important;line-height:1.4}
+.page[data-page="dashboard"] .pg>div:first-child{gap:10px!important;margin-bottom:14px!important}
+#dashGreet{font-size:20px!important;line-height:1.35}#dashGreetSub{font-size:12px!important;line-height:1.5}
+.page[data-page="dashboard"] .dashboard-grid{gap:10px!important}
+.dashboard-grid>div{padding:14px!important;height:auto!important}
+.page[data-page="dashboard"] .pg>div:last-child{padding:14px!important;margin-top:12px!important}
+}
 </style>
 <link rel="stylesheet" href="office.css?v=20261005">
 <link rel="stylesheet" href="secretary-mobile.css?v=1">
