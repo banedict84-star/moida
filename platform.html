@@ -2575,7 +2575,7 @@ onAuthStateChanged(_auth, async function(user){
   }
   function agentServerContext(){
     return {
-      profile:M.profile||{},today:todayKey(),
+      profile:{name:(M.profile||{}).name||'',position:(M.profile||{}).position||'',district:(M.profile||{}).district||''},today:todayKey(),
       officeRoles:(function(){try{return JSON.parse(localStorage.getItem('moida_agent_roles_v2_'+M.uidOf())||'{}');}catch(e){return {};}})(),
       events:(M.events||[]).slice(0,20).map(function(e){return {title:e.title,date:e.date,time:e.time,location:e._location||''};}),
       complaints:(M.complaints||[]).slice(0,20).map(function(c){return {title:c.title,field:c.field,status:c.status,priority:c.priority};}),
