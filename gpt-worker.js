@@ -1783,8 +1783,8 @@ async function handleFetch(request, env) {
     }
     if (path === "/agent-runs" || path.startsWith("/agent-runs/")) {
       const user = await verifyFirebaseUser(request, env);
-      if (path === "/agent-runs" && request.method === "POST") return createAgentRun(request, env, user);
-      if (path === "/agent-runs" && request.method === "GET") return listAgentRuns(request, env, user);
+      if (path === "/agent-runs" && request.method === "POST") return await createAgentRun(request, env, user);
+      if (path === "/agent-runs" && request.method === "GET") return await listAgentRuns(request, env, user);
       if (request.method === "GET") {
         const run = await getRun(env, decodeURIComponent(path.slice("/agent-runs/".length)), user.uid);
         if (!run) throw new HttpError(404, "작업을 찾을 수 없습니다.");
