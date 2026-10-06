@@ -1,6 +1,14 @@
 {
-  "updated": "2026-10-06 17:21 UTC",
+  "updated": "2026-10-06 21:48 UTC",
   "items": [
+    {
+      "source": "naver",
+      "press": "tournews21.com",
+      "date": "2026.10.07",
+      "title": "허태정 대전시장 \"100일 성과보다 중요한 건 시민 삶의 변화\"",
+      "snippet": "0, 통합사관학교 추진 등 그동안의 성과를 기반으로 이제는 시민의 먹거리와 교육, 지역경제, 교통... 안산산업용지 개발사업과 관련해서는 보다 강한 주문을 내놨다. 허 시장은 \"산업용지 공급은 기업에 대한 특혜의...",
+      "url": "https://www.tournews21.com/news/articleView.html?idxno=145094"
+    },
     {
       "source": "naver",
       "press": "kyeongin.com",
@@ -354,14 +362,6 @@
       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBVcVk2S2txUk9oQVYxWW81WHo5SXpIbW5uaDBHSlRON0lWbFVheDlqUTlLeU4yZzZiODFfUDhGaldiSXVwUW1SWG9VSzdsOVZFa1RBMU9sUENqcmdDTTFmZ00wc1M0RkdmaFcwaw?oc=5"
     },
     {
-      "source": "google",
-      "press": "경기탑뉴스",
-      "date": "2026.10.06",
-      "title": "안산시 주거복지센터, 주거복지 담당자 역량강화 교육 실시",
-      "snippet": "안산시 주거복지센터, 주거복지 담당자 역량강화 교육 실시 경기탑뉴스",
-      "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE1UTHExVlV4dnpvTHJnNXk3SnJPR3NtZVpVSGxtNkFTajhDclNKM2VSN2Z5VFM0MU5IMF9lZlBlLXUwbXkwajFRWkRxMk5VZi1UVW5DcWFRd3lZTmkweEszT0tpaw?oc=5"
-    },
-    {
       "source": "naver",
       "press": "incheonilbo.com",
       "date": "2026.10.05",
@@ -507,14 +507,6 @@
     },
     {
       "source": "google",
-      "press": "미디어투데이",
-      "date": "2026.10.05",
-      "title": "안산시, 청년인턴·시민 대상 문화다양성 이해교육 실시",
-      "snippet": "안산시, 청년인턴·시민 대상 문화다양성 이해교육 실시 미디어투데이",
-      "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQUWFablR1ZUc0WkkyZThqYk1tV1FmeHdhTUFkMEtCbFdnRW1uellrWGx3UzFMdHB0elVhZGE5SF85Q2k2dF92dS1UdjVDZzhfTmJpM1d6YUFWTVVIZ1dxcTdhUEhISFBBSmdLUkJRZDRxLTkyUXN4bjl6LUpzWW5HOENqTjNETXhtS04tWGJYTG9ibVVLY2NJUQ?oc=5"
-    },
-    {
-      "source": "google",
       "press": "신아일보",
       "date": "2026.10.05",
       "title": "박은경 경기도의원, 경기교육 현안·안산 발전 방향 제시",
@@ -539,11 +531,11 @@
     },
     {
       "source": "google",
-      "press": "경기평화신문",
+      "press": "미디어투데이",
       "date": "2026.10.05",
-      "title": "안산시, 피부·네일 미용업 영업자 대상 `뷰티아카데미` 운영",
-      "snippet": "안산시, 피부·네일 미용업 영업자 대상 `뷰티아카데미` 운영 경기평화신문",
-      "url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTFBQWXVkX2UwUU1JaHZoUUNRblBtOEhDRjhJM082VUczZ2NTLW80cGFjaXkwU1N6SXpwM2pQbGhpTWZDZHNpWHd3MWd3?oc=5"
+      "title": "안산시, 청년인턴·시민 대상 문화다양성 이해교육 실시",
+      "snippet": "안산시, 청년인턴·시민 대상 문화다양성 이해교육 실시 미디어투데이",
+      "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQUWFablR1ZUc0WkkyZThqYk1tV1FmeHdhTUFkMEtCbFdnRW1uellrWGx3UzFMdHB0elVhZGE5SF85Q2k2dF92dS1UdjVDZzhfTmJpM1d6YUFWTVVIZ1dxcTdhUEhISFBBSmdLUkJRZDRxLTkyUXN4bjl6LUpzWW5HOENqTjNETXhtS04tWGJYTG9ibVVLY2NJUQ?oc=5"
     },
     {
       "source": "google",
@@ -624,14 +616,6 @@
       "title": "[새얼굴] 김제연 안산환경재단 제10대 대표이사",
       "snippet": "안산시 지역환경교육센터 운영위원으로도 활동해 지역 환경정책 참여와 이해도도 높다. 김 대표이사는 \"안산시의 환경정책을 시민의 삶과 지역 현장에서 실질적인 성과로 만들어내는 것이 재단의 중요한 역할\"이라며...",
       "url": "https://www.kgnews.co.kr/news/article.html?no=913892"
-    },
-    {
-      "source": "naver",
-      "press": "kyeongin.com",
-      "date": "2026.10.04",
-      "title": "다문화·젊음·사람·물류… 경기 서남부 4개 도시 ‘미래 키워드’",
-      "snippet": "안산은 외국인과 다문화가 공존하는 대표적인 도시로 자리 잡았고, 오산은 젊은 인구를 기반으로... 전국 최초 외국인 인권조례 제정을 비롯해 긴급 생계·의료·장례비 지원, 이주여성 쉼터, 한국어·취업교육...",
-      "url": "https://www.kyeongin.com/article/1771944"
     },
     {
       "source": "naver",
@@ -1042,6 +1026,14 @@
       "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTFBVV01XUVgxb0t6Tkg1TUZuT2NDS0FmdHZhRVRIUHByLVh4Wm5TczNxOWYzRmRFVEozV0VCWmN4dHF3ai11MGhRdG1ESldMemRJWTdidjRQbnFhVzNkeUY1NtIBeEFVX3lxTFBIbzYzTW1UaGdPdHRqZzQ2YjhaZFpmN0JwcnJvSlNJeVN2LVVsNlFJSnZIWkUtUmhNbFJ6d3NXLUxQcG5vdGZpM0RfdmxxcUxTM3lSSEE0bDVBYlk2ZExzVWtnRGtOQjctVUFWVWNPZHhyaEN3dzRSRw?oc=5"
     },
     {
+      "source": "google",
+      "press": "신아일보",
+      "date": "2026.09.29",
+      "title": "안산교육지원청, 학부모 화해중재단 출범…학교 갈등 예방 지원",
+      "snippet": "안산교육지원청, 학부모 화해중재단 출범…학교 갈등 예방 지원 신아일보",
+      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBIY3FBM1Z6cWVYWEo1aUdzMHBPejdNM3FaTU1FT1l6VC1KM1FxRmhHSHVSQmdpOFlaZ01UTy12d21aZ2tVX1hVUkUtTFRYaTU3X1R2U1d5M3lIQkNna1hHY3EzVmFLazNuYVl5MHpKT2c?oc=5"
+    },
+    {
       "source": "naver",
       "press": "jnilbo.com",
       "date": "2026.09.27",
@@ -1178,6 +1170,30 @@
       "url": "https://www.joongboo.com/news/articleView.html?idxno=363736819"
     },
     {
+      "source": "google",
+      "press": "경인종합일보",
+      "date": "2026.09.15",
+      "title": "경기도의회 장윤정 의원, 2026 경기도교육청 직업계고 취창업 박람회 참석",
+      "snippet": "경기도의회 장윤정 의원, 2026 경기도교육청 직업계고 취창업 박람회 참석 경인종합일보",
+      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE82R210RDJrU2h1a2puNTUtVTlYV0UyOEx4aEZ3alRRY2dIU2NkNGp0Q05Wd3UwVjJWUzNXVUZxODl0RFZIVmZpZ0tOanJjdmtFbGtqMk9OWVR5ak5DQVEzLXN0UmFtRTZiY2ZGQ3ZR0gFyQVVfeXFMTW5jVkxaX2YzcGV3cGVaNmctcUhGN0kyQ2phYzJpTnA0VXVGekdQNVY4Yi1xdXZlWmhvT0JleTgteDlraV9WX0NWay15MVZxTUVOMlVJcU9UdDItVEtKUHBsRjIxY1hpd255ZnVDaXFMc0tR?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "웹이코노미",
+      "date": "2026.09.15",
+      "title": "경기도의회 장윤정 의원, 직업계고 학생들 응원",
+      "snippet": "경기도의회 장윤정 의원, 직업계고 학생들 응원 웹이코노미",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE1aYXJhbjdqVGVid0oxRWx5X2NGYkNrVmg5R0wycGlxbHNHeGNoeXlPRV9YaDlSdVVIVGlWNWhONE4yaXkwR0xMbXFwWEdrVnpkcFY5dmVaM0dNTzBhanlBQ2JGNEpyUWZ2QnFtbzhSdkVkZw?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "중부시사신문",
+      "date": "2026.09.15",
+      "title": "경기도의회 장윤정 의원, 특성화고 출신 선배로서 직업계고 학생들의 꿈과 도전 응원",
+      "snippet": "경기도의회 장윤정 의원, 특성화고 출신 선배로서 직업계고 학생들의 꿈과 도전 응원 중부시사신문",
+      "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE5sYzg0S0tucGQ3aU9TY1c2UV9Pazl1WURxNlJBeUVmVXd2d1RQeVBvbkpPajhJTjlydHJFUUNLNS1acFFfSmpBLVFwaEFWUk9TVVQ3d25rR29wMHFZY2RscUVTMA?oc=5"
+    },
+    {
       "source": "naver",
       "press": "consumernews.co.kr",
       "date": "2026.09.14",
@@ -1192,6 +1208,14 @@
       "title": "[위클리오늘] 경기도의회, 블록체인 기반 모바일 의정지원 서비스 구축...",
       "snippet": "경기도의회(의장 남종섭)는 9월 11일(금) 14시 도의회 예담채에서 「경기도의회 블록체인 기반 모바일... 장윤정 위원장 장윤정 위원장은 \"위원장이기에 앞서 서비스를 직접 쓰는 사용자로서 동료 의원들의 의견을 많이...",
       "url": "http://www.weeklytoday.com/news/articleView.html?idxno=794434"
+    },
+    {
+      "source": "google",
+      "press": "경기일보",
+      "date": "2026.09.14",
+      "title": "안산교육지원청, 이달 19일까지 ‘찾아가는 해아뜰체험’ 운영",
+      "snippet": "안산교육지원청, 이달 19일까지 ‘찾아가는 해아뜰체험’ 운영 경기일보",
+      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE03LUZ6eFcwbnIyV21vT0xPYnJVY3BpRTJSODA2VFhfMDlhVWhKMEZBdDdYZmtoM1RpZk4xV0RhdGt1cjZLOGdFVjkyTmgydEtKX0RWaWFGNEZWaW8?oc=5"
     },
     {
       "source": "naver",
@@ -1314,12 +1338,28 @@
       "url": "https://www.nspna.com/news/?mode=view&newsid=827886"
     },
     {
+      "source": "google",
+      "press": "엔디엔뉴스",
+      "date": "2026.09.10",
+      "title": "경기도의회 장윤정 의원, 경기도 햇빛발전 통합돌봄 융합모델 사업, 부지 협의 누락 및 졸속 행정, 원점 재검토 촉구",
+      "snippet": "경기도의회 장윤정 의원, 경기도 햇빛발전 통합돌봄 융합모델 사업, 부지 협의 누락 및 졸속 행정, 원점 재검토 촉구 엔디엔뉴스",
+      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1yajBaSHBUa0RXc0RGRGNvaTBKbHAzNW11M29qUzZQaUlXbllvcklENGlqUzVnM2sxclJPd1BZelE2eFBpSVBVZmhYWjJIcnhSb09SX1huTEU3VDdOT0hickFqaEUwT18tTDFyeXNR0gFyQVVfeXFMT3diTnRHQzNWa3pmTkJGY1lwTF9wdEllTDdLMUxIMFNLQUNMLUpqUW5hS0NfSTFaSVNhaFpYY19VdkgyY2NoNXBBMExfaUJGSWVxUTU3emNoQUxtMXdmWjgzSGE3a284M2kwXzRpSGM4UWFn?oc=5"
+    },
+    {
       "source": "naver",
       "press": "seoul.co.kr",
       "date": "2026.09.09",
       "title": "장윤정 경기도의원, 민생 정책 성과 높이려면 철저한 홍보와 소통 필수...",
       "snippet": "경기도의회 경제노동위원회 장윤정 부위원장이 경기도의 민생 경제 안정 및 정책 홍보 예산 대폭 감액 조치를 강하게 비판하며, 도민 체감도를 높이기 위한 면밀한 후속 대책 수립을 촉구했다. 장 의원은 9일 열린 경기도...",
       "url": "https://www.seoul.co.kr/news/publicnews/local_govern/kyungki_do/2026/09/09/20260909500345?wlog_tag3=naver"
+    },
+    {
+      "source": "google",
+      "press": "화성인터넷신문",
+      "date": "2026.09.09",
+      "title": "경기도의회 장윤정 의원, 민생 정책 성과 높이려면 철저한 홍보와 소통 필수, 지역 언론 홍보 예산 삭감 우려",
+      "snippet": "경기도의회 장윤정 의원, 민생 정책 성과 높이려면 철저한 홍보와 소통 필수, 지역 언론 홍보 예산 삭감 우려 화성인터넷신문",
+      "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE1MbVktalhjZ3ZkT2xnTVl2el9OQ0xDLXg1cExJSF9iZC11ZFlSdV80eTZwY3djc1RJeU1kN09sZkhjSkhMZFNFc0ZTR1djR0E?oc=5"
     },
     {
       "source": "naver",
@@ -1578,6 +1618,22 @@
       "url": "https://www.naeil.com/news/read/598630?ref=naver"
     },
     {
+      "source": "google",
+      "press": "더코리아",
+      "date": "2026.08.12",
+      "title": "장윤정 경기도의원, 안산시 사회적경제연대와 현장 소통 나서 > 뉴스",
+      "snippet": "장윤정 경기도의원, 안산시 사회적경제연대와 현장 소통 나서 > 뉴스 더코리아",
+      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5MZmlrTkM0V21OazF6QzVUcHFORGp4TGo1bTh6cUZ2MHFqeUJOMUxsVld1b2htdTcwMmlQZzhHdXM4SXhXYi1OUUN1bW5uUnlYS0dpN3pMeXNIMklOR2xsYXBGLWxjd2ZLZVJxLWMwQ1o?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "웹이코노미",
+      "date": "2026.08.12",
+      "title": "경기도의회 장윤정 의원, 안산시 사회적경제연대와 현장 소통",
+      "snippet": "경기도의회 장윤정 의원, 안산시 사회적경제연대와 현장 소통 웹이코노미",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTFBQSF9IMk8zT3dVa1JjSjVrNWFuS2I0ck9sWERyV2dCSGlzSFl2R0Y2TjhCVFF3VHBSelJjdjNKNzN2QzVZRnV1RTNsZ1ZTdDJTS1ZtTnJZVThCTWsyTkg1RXEtbEZOUVBrM0NxcXIyMjVaQQ?oc=5"
+    },
+    {
       "source": "naver",
       "press": "newsclaim.co.kr",
       "date": "2026.08.11",
@@ -1762,12 +1818,28 @@
       "url": "https://www.kyeonggi.com/article/20260727580228"
     },
     {
+      "source": "google",
+      "press": "경기청소년신문",
+      "date": "2026.07.27",
+      "title": "경기도의회 장윤정 의원, 경기도교육청 예산결산특별위원회 위원 선임",
+      "snippet": "경기도의회 장윤정 의원, 경기도교육청 예산결산특별위원회 위원 선임 경기청소년신문",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE52N0VhSE11dlZ2LTZlN3hyY2djMEgxeHJlTm1tQjg4VXJqSGlwc3NndEdHaXAzdzNPWHRIaW9UdUMwNzZDWDAtbjZscnloU08zTjAtbHJ4b29BamlyZGVfNE5FTWJaSXpk?oc=5"
+    },
+    {
       "source": "naver",
       "press": "kyeonggi.com",
       "date": "2026.07.23",
       "title": "경기도의회 예결특위 위원장에 백승기·이채명…윤리특위 위원장 유종상",
       "snippet": "민주당에서는 박은주(파주1)·변재석(고양2)·오민용(하남1)·우현욱(용인10)·윤도희(안양3)·이은미(안산5)·이자형(광주3)·장윤정(안산3)·장정희(수원11)·정종혁(성남7)·채명기(수원8)·최순자(비례) 의원이 위원으로...",
       "url": "https://www.kyeonggi.com/article/20260723580150"
+    },
+    {
+      "source": "google",
+      "press": "반월신문",
+      "date": "2026.07.23",
+      "title": "장윤정 경기도의원, 경제노동위원회 부위원장 선임",
+      "snippet": "장윤정 경기도의원, 경제노동위원회 부위원장 선임 반월신문",
+      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5KSDF6UWdDRzRUellYazRBY0hHaEEyZ09GUFNDcmZ0Q19VdkRmUV9TRXVSczN1TUs3SVczTVdhVTBmREpWWWw0ZHpoNkdqaWkteHZ3bHB5TWdJMUF6T0hjOU8wN0NHQ2s?oc=5"
     },
     {
       "source": "naver",
