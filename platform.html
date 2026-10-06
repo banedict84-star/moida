@@ -837,7 +837,7 @@ body.secretary-view #aiPanel{border:0!important;border-radius:0!important;box-sh
 
 <script src="secretary-mobile.js?v=2"></script>
 <script src="office-roles.js?v=2"></script>
-<script src="secretary-toolkit-client.js?v=download-v4"></script>
+<script src="secretary-toolkit-client.js?v=download-v5"></script>
 <script src="secretary-voice-client.js?v=4"></script>
 <script src="secretary-client.js?v=download-v6"></script>
 <script>
@@ -2367,7 +2367,8 @@ onAuthStateChanged(_auth, async function(user){
   M.onData(function(){loadCloudChats();});
   function mdToHtml(s){
     s=M.esc(s);
-    s=s.replace(/\[([^\]\n]+)\]\(\s*(?:&lt;)?\/office-tools\/files\/([A-Za-z0-9_-]+)\/download(?:&gt;)?\s*\)/g,function(_,label,id){
+    s=s.replace(/\[([^\]\n]+)\]\(\s*(?:&lt;)?(?:sandbox:)?\/office-tools\/files\/([A-Za-z0-9_-]+)\/download(?:&gt;)?\s*\)/g,function(_,label,id){
+      if(msgs.querySelector('.generated-file-card[data-generated-file="'+id+'"]'))return '';
       return '<button type="button" class="office-file-download" data-office-file="'+id+'" style="padding:10px 14px;border:1px solid #cbd5e1;border-radius:12px;background:#f1f5f9;color:#1d3a6e;font-weight:700;cursor:pointer">'+label+'</button>';
     });
     var links=[];
@@ -3575,7 +3576,7 @@ onAuthStateChanged(_auth, async function(user){
     var user=M.auth&&M.auth.currentUser;if(!user||!msgs||!file.file_id||(sourceThread&&sourceThread!==currentThreadId))return;
     var owner=user.uid,thread=currentThreadId,key=owner+'_'+thread+'_'+file.file_id;
     if(generatedFileCards[key])return;generatedFileCards[key]=true;
-    var card=document.createElement('div');card.className='generated-file-card';
+    var card=document.createElement('div');card.className='generated-file-card';card.setAttribute('data-generated-file',file.file_id);
     var details=document.createElement('div'),title=document.createElement('strong'),info=document.createElement('span');
     title.textContent=file.title;info.textContent=String(file.format||'docx').toUpperCase()+' · 생성 완료';details.append(title,info);
     var download=document.createElement('button');download.type='button';download.textContent='파일 다운로드';

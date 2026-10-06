@@ -3,8 +3,8 @@ const xml=s=>String(s).replace(/[<>&"']/g,c=>({'<':'&lt;','>':'&gt;','&':'&amp;'
 function crc32(bytes){let crc=0xffffffff;for(const b of bytes){crc^=b;for(let i=0;i<8;i++)crc=(crc>>>1)^((crc&1)?0xedb88320:0);}return(crc^0xffffffff)>>>0;}
 function header(size){const b=new Uint8Array(size);return[b,new DataView(b.buffer)];}
 function zip(files){const chunks=[],central=[];let offset=0;
- for(const[name,text]of Object.entries(files)){const n=enc.encode(name),body=enc.encode(text),crc=crc32(body);const[h,v]=header(30);v.setUint32(0,0x04034b50,true);v.setUint16(4,20,true);v.setUint32(14,crc,true);v.setUint32(18,body.length,true);v.setUint32(22,body.length,true);v.setUint16(26,n.length,true);chunks.push(h,n,body);
- const[c,w]=header(46);w.setUint32(0,0x02014b50,true);w.setUint16(4,20,true);w.setUint16(6,20,true);w.setUint32(16,crc,true);w.setUint32(20,body.length,true);w.setUint32(24,body.length,true);w.setUint16(28,n.length,true);w.setUint32(42,offset,true);central.push(c,n);offset+=30+n.length+body.length;}
+ for(const[name,text]of Object.entries(files)){const n=enc.encode(name),body=enc.encode(text),crc=crc32(body);const[h,v]=header(30);v.setUint32(0,0x04034b50,true);v.setUint16(4,20,true);v.setUint16(12,33,true);v.setUint32(14,crc,true);v.setUint32(18,body.length,true);v.setUint32(22,body.length,true);v.setUint16(26,n.length,true);chunks.push(h,n,body);
+ const[c,w]=header(46);w.setUint32(0,0x02014b50,true);w.setUint16(4,20,true);w.setUint16(6,20,true);w.setUint16(14,33,true);w.setUint32(16,crc,true);w.setUint32(20,body.length,true);w.setUint32(24,body.length,true);w.setUint16(28,n.length,true);w.setUint32(42,offset,true);central.push(c,n);offset+=30+n.length+body.length;}
  const length=central.reduce((n,c)=>n+c.length,0),[end,v]=header(22);v.setUint32(0,0x06054b50,true);v.setUint16(8,Object.keys(files).length,true);v.setUint16(10,Object.keys(files).length,true);v.setUint32(12,length,true);v.setUint32(16,offset,true);const out=new Uint8Array(offset+length+22);let pos=0;for(const c of[...chunks,...central,end]){out.set(c,pos);pos+=c.length;}return out;}
 export function exportDocument(file){
  const format=file.format||'md';

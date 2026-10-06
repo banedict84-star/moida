@@ -43,6 +43,7 @@ function corsHeaders(request, env) {
     "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
     "Access-Control-Allow-Headers": "Content-Type, Authorization, Idempotency-Key",
     "Access-Control-Max-Age": "86400",
+    "Access-Control-Expose-Headers": "Content-Disposition, Content-Type",
     "Vary": "Origin",
   };
 }
