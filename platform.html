@@ -839,7 +839,7 @@ body.secretary-view #aiPanel{border:0!important;border-radius:0!important;box-sh
 <script src="office-roles.js?v=2"></script>
 <script src="secretary-toolkit-client.js?v=download-v4"></script>
 <script src="secretary-voice-client.js?v=4"></script>
-<script src="secretary-client.js?v=5"></script>
+<script src="secretary-client.js?v=download-v6"></script>
 <script>
 /* ── 의원실 플랫폼 SPA 런타임 (디자인 핸드오프 재구현) ──────────────── */
 (function(){
@@ -2367,6 +2367,9 @@ onAuthStateChanged(_auth, async function(user){
   M.onData(function(){loadCloudChats();});
   function mdToHtml(s){
     s=M.esc(s);
+    s=s.replace(/\[([^\]\n]+)\]\(\s*(?:&lt;)?\/office-tools\/files\/([A-Za-z0-9_-]+)\/download(?:&gt;)?\s*\)/g,function(_,label,id){
+      return '<button type="button" class="office-file-download" data-office-file="'+id+'" style="padding:10px 14px;border:1px solid #cbd5e1;border-radius:12px;background:#f1f5f9;color:#1d3a6e;font-weight:700;cursor:pointer">'+label+'</button>';
+    });
     var links=[];
     function compactLink(url,label){
       var host='링크';try{host=new URL(url.replace(/&amp;/g,'&')).hostname.replace(/^www\./,'');}catch(e){}
@@ -3559,6 +3562,14 @@ onAuthStateChanged(_auth, async function(user){
     if(forceSchedule)awaitingScheduleDetails=false;
     runLoop(addTyping(), 0, 0, isPosterCreationRequest(text), forceSchedule);
   }
+  msgs.addEventListener('click',async function(event){
+    var button=event.target.closest('[data-office-file]');if(!button||!msgs.contains(button))return;
+    var id=button.getAttribute('data-office-file');if(!/^[A-Za-z0-9_-]+$/.test(id))return;
+    var label=button.textContent;button.disabled=true;button.textContent='다운로드 준비 중…';
+    try{await officeToolkit.download({id:id,title:label,format:'docx'});button.textContent=label;}
+    catch(e){button.textContent=label;var error=button.nextElementSibling;if(!error||!error.classList.contains('office-download-error')){error=document.createElement('span');error.className='office-download-error';error.setAttribute('role','alert');button.after(error);}error.textContent=e.message||'다운로드 실패';error.style.color='#b42318';}
+    finally{button.disabled=false;}
+  });
   var generatedFileCards={};
   function showGeneratedFile(file,sourceThread){
     var user=M.auth&&M.auth.currentUser;if(!user||!msgs||!file.file_id||(sourceThread&&sourceThread!==currentThreadId))return;
