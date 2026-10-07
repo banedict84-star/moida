@@ -1,6 +1,14 @@
 {
-  "updated": "2026-10-07 16:48 UTC",
+  "updated": "2026-10-07 22:11 UTC",
   "items": [
+    {
+      "source": "naver",
+      "press": "fnnews.com",
+      "date": "2026.10.08",
+      "title": "\"짜장면 한 그릇 주세요\"…112에 전화한 9살 아이, '폭력 아빠' 막았다",
+      "snippet": "7일 연합뉴스 등에 따르면 경기 안산상록경찰서는 지난 4일 오후 6시 8분께 안산 상록구의 한 다세대주택에서 112 신고를 접수했다. 신고를 한 사람은 9살 초등학생으로, 아이는 집에 가족이 몇 명 있는지 설명하며 짜장면...",
+      "url": "https://www.fnnews.com/news/202610080617202419"
+    },
     {
       "source": "google",
       "press": "화성 투데이",
@@ -155,19 +163,19 @@
     },
     {
       "source": "naver",
-      "press": "joongang.co.kr",
-      "date": "2026.10.07",
-      "title": "“짜장면 한그릇 주세요” 9살 아이 신고…3분만에 경찰 출동했더니",
-      "snippet": "7일 경찰 등에 따르면 지난 4일 오후 6시8분께 경기 안산시 상록구의 한 다세대주택에서 112에 전화 한 통이 걸려 왔다. 전화를 건 사람은 9살 초등학생이었다. 아이는 경찰에 “짜장면 한 그릇 주세요”라고 말하며 집에...",
-      "url": "https://www.joongang.co.kr/article/25467890"
-    },
-    {
-      "source": "naver",
       "press": "hani.co.kr",
       "date": "2026.10.07",
       "title": "112 전화해 “짜장면 한 그릇요”…9살 아이 기지로 ‘폭력 아빠’ 입건",
       "snippet": "ㄱ씨는 지난 4일 저녁 6시께 안산시 상록구의 한 다세대주택에서 아내와 다투다 선풍기로 아내 어깨를 때리고 몸을 밀치는 등 폭행한 혐의를 받는다. 당시 집에는 9살과 5살 두 자녀도 있었다. 방 안에 숨은 9살 아이는...",
       "url": "https://www.hani.co.kr/arti/area/capital/1281333.html"
+    },
+    {
+      "source": "naver",
+      "press": "joongang.co.kr",
+      "date": "2026.10.07",
+      "title": "“짜장면 한그릇 주세요” 9살 아이 신고…3분만에 경찰 출동했더니",
+      "snippet": "7일 경찰 등에 따르면 지난 4일 오후 6시8분께 경기 안산시 상록구의 한 다세대주택에서 112에 전화 한 통이 걸려 왔다. 전화를 건 사람은 9살 초등학생이었다. 아이는 경찰에 “짜장면 한 그릇 주세요”라고 말하며 집에...",
+      "url": "https://www.joongang.co.kr/article/25467890"
     },
     {
       "source": "naver",
@@ -643,11 +651,11 @@
     },
     {
       "source": "google",
-      "press": "투데이안산",
+      "press": "엔디엔뉴스",
       "date": "2026.10.07",
-      "title": "안산교육지원청-안산시도서관, 폰프리로 지역독서 생태계 조성",
-      "snippet": "안산교육지원청-안산시도서관, 폰프리로 지역독서 생태계 조성 투데이안산",
-      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5wZ1lKWWF2djZzU3lDLUZGdzIxc1haMnBhU1lqOWhqYVpORWY0QlRodXFqRUJUNjYwSk1qeksydV90MHQtOUhQWG51Zk5nbVBMYTdHcFhQRV9MTmo0X2FrWWZBM05SUFBCQ2pnSW9xTEdTQdIBckFVX3lxTE5wZ1lKWWF2djZzU3lDLUZGdzIxc1haMnBhU1lqOWhqYVpORWY0QlRodXFqRUJUNjYwSk1qeksydV90MHQtOUhQWG51Zk5nbVBMYTdHcFhQRV9MTmo0X2FrWWZBM05SUFBCQ2pnSW9xTEdTQQ?oc=5"
+      "title": "안산교육지원청, ‘정책이 교육이 되는 시간’ 2026 중등 교감 교육정책 아카데미 개최",
+      "snippet": "안산교육지원청, ‘정책이 교육이 되는 시간’ 2026 중등 교감 교육정책 아카데미 개최 엔디엔뉴스",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE1idmUzbUVhTDZuUTZ5dlhWRjBPQnVSbjhvZzZ4dWRkQlRZUDU1Z2pUQjhXeF9KYXVENHRRbFQ2RGVCY0R4eEZmWGhvdXRtdkV3MU5xMGZmY0ZvOEN2WlVKcl9Eci10Z1RXVk9wTDRSVnlfUdIBckFVX3lxTE1idmUzbUVhTDZuUTZ5dlhWRjBPQnVSbjhvZzZ4dWRkQlRZUDU1Z2pUQjhXeF9KYXVENHRRbFQ2RGVCY0R4eEZmWGhvdXRtdkV3MU5xMGZmY0ZvOEN2WlVKcl9Eci10Z1RXVk9wTDRSVnlfUQ?oc=5"
     },
     {
       "source": "google",
@@ -659,11 +667,11 @@
     },
     {
       "source": "google",
-      "press": "중부시사신문",
+      "press": "투데이안산",
       "date": "2026.10.07",
-      "title": "안산교육지원청, ‘정책이 교육이 되는 시간’ 2026 중등 교감 교육정책 아카데미 개최",
-      "snippet": "안산교육지원청, ‘정책이 교육이 되는 시간’ 2026 중등 교감 교육정책 아카데미 개최 중부시사신문",
-      "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE5HdDhTTkdpMlQ3b2JyMXlZaTJQV0Q1UzNTMGNyNmVXSU9zaWh5RVQtMkJfZUxiRUVueUYtcXlXT3Zoa3J0ZWl3TWVEblhNTXY5a2t3YlhzMkVINFRSWmc?oc=5"
+      "title": "안산교육지원청-안산시도서관, 폰프리로 지역독서 생태계 조성",
+      "snippet": "안산교육지원청-안산시도서관, 폰프리로 지역독서 생태계 조성 투데이안산",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5wZ1lKWWF2djZzU3lDLUZGdzIxc1haMnBhU1lqOWhqYVpORWY0QlRodXFqRUJUNjYwSk1qeksydV90MHQtOUhQWG51Zk5nbVBMYTdHcFhQRV9MTmo0X2FrWWZBM05SUFBCQ2pnSW9xTEdTQdIBckFVX3lxTE5wZ1lKWWF2djZzU3lDLUZGdzIxc1haMnBhU1lqOWhqYVpORWY0QlRodXFqRUJUNjYwSk1qeksydV90MHQtOUhQWG51Zk5nbVBMYTdHcFhQRV9MTmo0X2FrWWZBM05SUFBCQ2pnSW9xTEdTQQ?oc=5"
     },
     {
       "source": "google",
@@ -675,19 +683,19 @@
     },
     {
       "source": "google",
-      "press": "뉴스파노라마",
-      "date": "2026.10.07",
-      "title": "안산시, 청년인턴·시민 대상 문화다양성 이해교육 실시",
-      "snippet": "안산시, 청년인턴·시민 대상 문화다양성 이해교육 실시 뉴스파노라마",
-      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE4zYzVUcEhaYTNCVjRCaVJKUmFsTkxEQkl5OER2T2I0MnJtTmJRclN0ZmlYQ1dQX3htVkswTkRNLWh0dU1mMVl4enJpdzU1dGNfSkFyM05SbmxYUnVxSDk5eHBDTlpVcnNEYTFhaF80UQ?oc=5"
-    },
-    {
-      "source": "google",
       "press": "투데이안산",
       "date": "2026.10.07",
       "title": "안산시 고려인문화센터 ‘나에게 맞는 고등학교 선택하기’ 행사 열어",
       "snippet": "안산시 고려인문화센터 ‘나에게 맞는 고등학교 선택하기’ 행사 열어 투데이안산",
       "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE1LUUp2NFZNTHBYMkVFN3JQQUxfUXlTQVcwZW5BY1lIQk9mVXBlaWZMcE1tZ2s2dlF2YktqQTd3SjhlSUlJeTQ2Y2FPM2ZVZnRDNUN1MFEzT21qb1hyYzYtNGIzRW5nWGNuQ0RhNE5kclp6Z9IBckFVX3lxTE1LUUp2NFZNTHBYMkVFN3JQQUxfUXlTQVcwZW5BY1lIQk9mVXBlaWZMcE1tZ2s2dlF2YktqQTd3SjhlSUlJeTQ2Y2FPM2ZVZnRDNUN1MFEzT21qb1hyYzYtNGIzRW5nWGNuQ0RhNE5kclp6Zw?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "뉴스파노라마",
+      "date": "2026.10.07",
+      "title": "안산시, 청년인턴·시민 대상 문화다양성 이해교육 실시",
+      "snippet": "안산시, 청년인턴·시민 대상 문화다양성 이해교육 실시 뉴스파노라마",
+      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE4zYzVUcEhaYTNCVjRCaVJKUmFsTkxEQkl5OER2T2I0MnJtTmJRclN0ZmlYQ1dQX3htVkswTkRNLWh0dU1mMVl4enJpdzU1dGNfSkFyM05SbmxYUnVxSDk5eHBDTlpVcnNEYTFhaF80UQ?oc=5"
     },
     {
       "source": "google",
@@ -859,6 +867,14 @@
     },
     {
       "source": "google",
+      "press": "매일일보",
+      "date": "2026.10.05",
+      "title": "안산시, 청년인턴과 시민 대상 하반기 문화다양성 이해교육 진행",
+      "snippet": "안산시, 청년인턴과 시민 대상 하반기 문화다양성 이해교육 진행 매일일보",
+      "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE5uT0hVZ09NZVFGRnVXR1RqN2cwVGNjNGhsRkhtQVRvMlVUVFhENGx5UzFaRVZVUVU3a1YtcTVfcURBNTJJZ3Z6YXd2RFBJai1yM1NQNnM2cTl0aGRoN1BSa0p6RUY?oc=5"
+    },
+    {
+      "source": "google",
       "press": "광교신문",
       "date": "2026.10.04",
       "title": "경기도의회 장윤정 의원, “안산사이언스밸리 에이로봇 400억 투자 환영… 로봇산업 생태계 도약 적극 뒷받침할 것”",
@@ -888,14 +904,6 @@
       "title": "홈플러스 떠난 자리, 49층 아파트 솟는다",
       "snippet": "4일 분양업계에 따르면 GS건설은 이달 경기 안산시 상록구 성포동 옛 홈플러스 안산점 용지에 '아르뮤제자이'를 분양한다. 지하 6층~지상 최고 49층, 6개 동 규모로 아파트 984가구와 오피스텔 370실 등 총 1354가구가...",
       "url": "https://www.mk.co.kr/article/12168083"
-    },
-    {
-      "source": "naver",
-      "press": "gukjenews.com",
-      "date": "2026.10.04",
-      "title": "경기 안산 음식점서 불...1시간 50분 만에 진화",
-      "snippet": "119소방차, 화재, 소방, 속보 (사진=국제뉴스DB) 4일 오전 7시 10분 경 경기 안산시 상록구 팔곡일동에 있는 고깃집에서 불이 났다. 당시 식당 안에는 아무도 없어, 인명 피해는 발생하지 않았다. 이날 불은 1시간 50분...",
-      "url": "https://www.gukjenews.com/news/articleView.html?idxno=3712905"
     },
     {
       "source": "google",
@@ -1011,14 +1019,6 @@
     },
     {
       "source": "google",
-      "press": "이코노뉴스",
-      "date": "2026.10.01",
-      "title": "GS건설, 안산 아르뮤제자이 10월 분양…아파트 4개동 984가구-오피스텔 2개동 370실",
-      "snippet": "GS건설, 안산 아르뮤제자이 10월 분양…아파트 4개동 984가구-오피스텔 2개동 370실 이코노뉴스",
-      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE02enZPSFk4aWM5d0NmVVdlRUloOUZLNWR6X1ZwUnlObmRiVjlRRWsyQklJYU9QS3dBNWIydVRyZ0tHWGVBSVFjZTcwa01QbGgyZE1EQVE4V19JR3UwODA2MmJiYk1nZGo2UWFFRmNQNA?oc=5"
-    },
-    {
-      "source": "google",
       "press": "뉴시스",
       "date": "2026.10.01",
       "title": "GS건설, 안산 아르뮤제자이 10월 분양…1354가구",
@@ -1027,11 +1027,11 @@
     },
     {
       "source": "google",
-      "press": "경기헤드뉴스",
+      "press": "이코노뉴스",
       "date": "2026.10.01",
-      "title": "안산교육지원청, 100명의 선생님이 함께한 달리기가 이웃을 위한 나눔으로",
-      "snippet": "안산교육지원청, 100명의 선생님이 함께한 달리기가 이웃을 위한 나눔으로 경기헤드뉴스",
-      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5VTjMyUDh4NkFMcVZsWTV1eXdMci1VUHJTUzUxTFVZTmVSY3N1cWRaSFpjRWhreG0yWDJIZkZDOVpSc2djbnkyVmdBWE5HZnpzaFR6ak5fNFB3QQ?oc=5"
+      "title": "GS건설, 안산 아르뮤제자이 10월 분양…아파트 4개동 984가구-오피스텔 2개동 370실",
+      "snippet": "GS건설, 안산 아르뮤제자이 10월 분양…아파트 4개동 984가구-오피스텔 2개동 370실 이코노뉴스",
+      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE02enZPSFk4aWM5d0NmVVdlRUloOUZLNWR6X1ZwUnlObmRiVjlRRWsyQklJYU9QS3dBNWIydVRyZ0tHWGVBSVFjZTcwa01QbGgyZE1EQVE4V19JR3UwODA2MmJiYk1nZGo2UWFFRmNQNA?oc=5"
     },
     {
       "source": "google",
@@ -1040,6 +1040,14 @@
       "title": "안산교육지원청, 영양·식생활 교육과 친환경 학교급식 활성화를 위한 소통 강화",
       "snippet": "안산교육지원청, 영양·식생활 교육과 친환경 학교급식 활성화를 위한 소통 강화 수도권지역뉴스",
       "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1tZWxSLW5lZ2VsY2lEUzkySlpvSEU0NFVFMHRtajM4NFIwWmNBLUVtVUl6WEYxWUppcnVaeTUzRDdqTkJQOUpFa2k5d250bDRfRlFuRWY4LXB4bkJINmZ2T3VrMUpHM29W?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "경기헤드뉴스",
+      "date": "2026.10.01",
+      "title": "안산교육지원청, 100명의 선생님이 함께한 달리기가 이웃을 위한 나눔으로",
+      "snippet": "안산교육지원청, 100명의 선생님이 함께한 달리기가 이웃을 위한 나눔으로 경기헤드뉴스",
+      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5VTjMyUDh4NkFMcVZsWTV1eXdMci1VUHJTUzUxTFVZTmVSY3N1cWRaSFpjRWhreG0yWDJIZkZDOVpSc2djbnkyVmdBWE5HZnpzaFR6ak5fNFB3QQ?oc=5"
     },
     {
       "source": "naver",
@@ -1192,6 +1200,14 @@
       "title": "\"현장에서 취업까지 한번에~!\" 경기도교육청 직업계고 취창업박람회, 학...",
       "snippet": "15일 오전 고양시 일산서구 킨텍스 제2전시장 6홀에서 열린 '2026 경기도교육청 직업계고 취창업박람회' 개막식에서 채열희 경기도교육청 학교교육국장, 장윤정 경기도의회 경제노동위원회 부위원장, 참석 내빈들과...",
       "url": "https://www.joongboo.com/news/articleView.html?idxno=363736819"
+    },
+    {
+      "source": "google",
+      "press": "더코리아",
+      "date": "2026.09.15",
+      "title": "경기도의회 장윤정 의원 직업계고 박람회 참석 > 뉴스",
+      "snippet": "경기도의회 장윤정 의원 직업계고 박람회 참석 > 뉴스 더코리아",
+      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5Za3JOczFMekNXNDRRTzdfcWRUM2hLb2VVSk9pWHdULXZuS2FKenJEWGFvMXE5bkdCQnZ6aFQ0ZlZmemozM1IwN1hHOFl2OW5hSFBlcm01azNXTEFhdVlydGpTQ2lYOXJndlc5alQzQTM?oc=5"
     },
     {
       "source": "google",
@@ -1960,6 +1976,14 @@
       "title": "'공천 개입' 논란 속 다시 공천받은 장윤정 경기도의원…민주, 20차 경선결과 발표",
       "snippet": "'공천 개입' 논란 속 다시 공천받은 장윤정 경기도의원…민주, 20차 경선결과 발표 경기일보",
       "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE94cXMtSzRfclhwaGFQTS1NYUtLdVBaOUFQaFdhUnpqcm5BNGFHUzFYYVlRQlZmN24zMHVBTVFDS29XWVd3c3htZTFCdTVqMmd4eV9RbDZTaktFRzg?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "일간투데이",
+      "date": "2026.05.09",
+      "title": "기울어진 운동장 안 된다”…장윤정 경기도의원, 안산 정치권 녹취 파장 정면 비판",
+      "snippet": "기울어진 운동장 안 된다”…장윤정 경기도의원, 안산 정치권 녹취 파장 정면 비판 일간투데이",
+      "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE9PNjdvWkxMWnZ6SFlOczZKSW40VnhSd3dXMzFPYnFPckp3b3A0V2taR1lPcnJTc01XR1l6VkJIY3JieHRxYm15ZFdYN25aOEttQmtwbGFlYTJGYmt0REItTzBJVlBETmZvcU5J?oc=5"
     },
     {
       "source": "google",
