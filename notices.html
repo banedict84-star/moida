@@ -268,6 +268,10 @@
   .notice-preview-text{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.85;color:#273449}
   .notice-preview-image{display:block;margin:16px 0}
   .notice-preview-image img{display:block;max-width:100%;height:auto;border:1px solid #e3e8ef;border-radius:8px}
+  .notice-preview-table{overflow-x:auto;margin:16px 0}
+  .notice-preview-table table{border-collapse:collapse;font-size:12px;min-width:450px}
+  .notice-preview-table th,.notice-preview-table td{border:1px solid #dfe5ef;padding:8px;vertical-align:top;line-height:1.6}
+  .notice-preview-table th{background:#f1f5fb}
   .notice-preview-status{font-size:12px;color:#8792a6;line-height:1.7}
   #ndBody .atts{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
   #ndBody .atts strong{width:100%}
@@ -386,7 +390,7 @@
   </main>
 </div>
 
-<script src="notice-preview-client.js?v=1"></script>
+<script src="notice-preview-client.js?v=2"></script>
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
