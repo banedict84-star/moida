@@ -478,8 +478,8 @@ body.secretary-view #aiPanel{border:0!important;border-radius:0!important;box-sh
               <span style="font-size:13px;color:#6b7585;font-weight:500">오늘 일정</span>
               <span style="width:34px;height:34px;border-radius:9px;background:#e8f0fe;color:#2563eb;display:flex;align-items:center;justify-content:center"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg></span>
             </div>
-            <div style="display:flex;align-items:baseline;gap:6px;margin-top:14px"><span id="kpiToday" style="font-size:30px;font-weight:700;letter-spacing:-0.02em">0</span><span style="font-size:14px;color:#8a94a3;font-weight:500">건</span></div>
-            <div id="kpiTodayMeta" style="display:flex;align-items:center;gap:6px;font-size:12px;margin-top:8px"><span style="color:#9aa3b0">예정된 일정 없음</span></div>
+            <div style="display:flex;align-items:baseline;gap:6px;margin-top:14px"><span id="kpiToday" style="font-size:14px;font-weight:700;letter-spacing:-0.02em">확인 중</span><span hidden style="font-size:14px;color:#8a94a3;font-weight:500">건</span></div>
+            <div id="kpiTodayMeta" style="display:flex;align-items:center;gap:6px;font-size:12px;margin-top:8px"><span style="color:#9aa3b0">일정을 불러오고 있습니다</span></div>
           </div>
           <div data-go="crm" style="background:#fff;border:1px solid #e9ecf1;border-radius:14px;padding:18px 20px;box-shadow:0 1px 2px rgba(16,24,40,0.04);cursor:pointer;transition:border-color .15s,box-shadow .15s,transform .15s" data-hover="border-color:#c7d4ea;box-shadow:0 4px 14px rgba(16,24,40,0.08);transform:translateY(-2px)">
             <div style="display:flex;align-items:center;justify-content:space-between">
@@ -1530,15 +1530,15 @@ onAuthStateChanged(_auth, async function(user){
     var nm = (M.profile&&M.profile.name) || (M.sessUser().displayName) || (M.sessUser().email||'').split('@')[0] || '';
     var g = document.getElementById('dashGreet');
     if(g) g.textContent = nm ? ('안녕하세요, '+nm+' 의원님') : '안녕하세요';
-    var todays = (M.events||[]).filter(function(e){ return e.date===todayKey(); }).length;
+    var scheduleReady=window.MOIDA_SCHEDULE_STATUS==='ready';var todays = (M.events||[]).filter(function(e){ return e.date===todayKey(); }).length;
     var sub = document.getElementById('dashGreetSub');
-    if(sub) sub.textContent = '오늘 일정 '+todays+'건 · 등록 연락처 '+((M.members||[]).length).toLocaleString()+'명. AI 비서실장이 브리핑을 준비했어요.';
+    if(sub) sub.textContent = (scheduleReady?'오늘 일정 '+todays+'건':'오늘 일정 확인 중')+' · 등록 연락처 '+((M.members||[]).length).toLocaleString()+'명. AI 비서실장이 브리핑을 준비했어요.';
   }
   function renderKpis(){
     var ev = (M.events||[]).filter(function(e){ return e.date===todayKey(); }).sort(function(a,b){return (a.time||'').localeCompare(b.time||'');});
-    var kt = document.getElementById('kpiToday'); if(kt) kt.textContent = ev.length;
+    var scheduleReady=window.MOIDA_SCHEDULE_STATUS==='ready', scheduleError=window.MOIDA_SCHEDULE_STATUS==='error';var kt = document.getElementById('kpiToday'); if(kt){kt.dataset.loading=String(!scheduleReady);kt.textContent=scheduleReady?ev.length:scheduleError?'확인 실패':'확인 중';kt.style.fontSize=scheduleReady?'30px':'14px';kt.nextElementSibling.hidden=!scheduleReady;}
     var ktm = document.getElementById('kpiTodayMeta');
-    if(ktm) ktm.innerHTML = ev.length ? '<span style="color:#2563eb;font-weight:700">'+M.esc(ev[0].time||'')+'</span><span style="color:#9aa3b0">'+M.esc(ev[0].title||'')+'</span>' : '<span style="color:#9aa3b0">예정된 일정 없음</span>';
+    if(ktm) ktm.innerHTML = !scheduleReady?'<span style="color:#9aa3b0">'+(scheduleError?'일정을 불러오지 못했습니다':'일정을 불러오고 있습니다')+'</span>':ev.length ? '<span style="color:#2563eb;font-weight:700">'+M.esc(ev[0].time||'')+'</span><span style="color:#9aa3b0">'+M.esc(ev[0].title||'')+'</span>' : '<span style="color:#9aa3b0">예정된 일정 없음</span>';
     var km = document.getElementById('kpiMembers'); if(km) km.textContent = ((M.members||[]).length).toLocaleString();
     /* news_data.json은 공용 피드다. 계정별 모니터링 연결 전에는 노출 건수에 포함하지 않는다. */
     var news = [];
@@ -4435,7 +4435,7 @@ var input=document.getElementById('aiInput');if(input)input.placeholder='비서�
 </script>
 <script src="flow-calendar-client.js?v=next-events-v5"></script>
 <script>
-(function(){var M=window.MOIDA,client;if(!M)return;var mount=document.createElement('div');mount.hidden=true;document.body.append(mount);function apply(events){var next=(M.events||[]).filter(function(e){return e.source!=='flow';}).concat(events);if(JSON.stringify(next)===JSON.stringify(M.events))return;M.events=next;M.emit();}window.MOIDA_REFRESH_FLOW_SCHEDULE=async function(){if(!M.auth||!M.auth.currentUser)return;if(!client)client=createFlowCalendarClient({mount:mount,user:function(){return M.auth.currentUser;},apply:apply});var result=await client.refresh(true);if(result&&result.ok===false)throw Error(result.error);};M.onData(function(){if(!M.auth||!M.auth.currentUser)return;if(!client)client=createFlowCalendarClient({mount:mount,user:function(){return M.auth.currentUser;},apply:apply});client.refresh(false);});window.addEventListener('message',function(event){if(event.origin===location.origin&&event.data&&event.data.type==='moida:flow-events-changed')apply(event.data.events||[]);});})();
+(function(){var M=window.MOIDA,client;if(!M)return;var mount=document.createElement('div');mount.hidden=true;document.body.append(mount);function apply(events){var next=(M.events||[]).filter(function(e){return e.source!=='flow';}).concat(events);if(JSON.stringify(next)===JSON.stringify(M.events))return;M.events=next;M.emit();}window.MOIDA_REFRESH_FLOW_SCHEDULE=async function(){if(!M.auth||!M.auth.currentUser)return;if(!client)client=createFlowCalendarClient({mount:mount,user:function(){return M.auth.currentUser;},apply:apply});var result=await client.refresh(true);window.MOIDA_SCHEDULE_STATUS=result&&result.ok===false?'error':'ready';if(window.__dashRefresh)window.__dashRefresh();if(result&&result.ok===false)throw Error(result.error);};M.onData(function(){if(!M.auth||!M.auth.currentUser)return;if(!client)client=createFlowCalendarClient({mount:mount,user:function(){return M.auth.currentUser;},apply:apply});if(window.MOIDA_SCHEDULE_LOADING)return;window.MOIDA_SCHEDULE_LOADING=true;client.refresh(false).then(function(result){window.MOIDA_SCHEDULE_STATUS=result&&result.ok===false?'error':'ready';}).finally(function(){window.MOIDA_SCHEDULE_LOADING=false;if(window.__dashRefresh)window.__dashRefresh();});});window.addEventListener('message',function(event){if(event.origin===location.origin&&event.data&&event.data.type==='moida:flow-events-changed')apply(event.data.events||[]);});})();
 </script>
 <script src="solapi-messaging-client.js?v=4"></script>
 <script type="module" src="birthday-messaging-client.js?v=3"></script>
