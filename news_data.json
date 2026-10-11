@@ -1,6 +1,14 @@
 {
-  "updated": "2026-10-11 15:53 UTC",
+  "updated": "2026-10-11 20:29 UTC",
   "items": [
+    {
+      "source": "naver",
+      "press": "newsis.com",
+      "date": "2026.10.12",
+      "title": "[오늘의 주요일정]경기남부(10월12일 월요일)",
+      "snippet": "2026년 안산시 소상공인 상인대학 졸업식, 상록구청 상록시민홀 ◇시흥시 ▲오전 8시30분, 2026년 제47차 전국양봉인의 날 행사, 전남 나주시 일원 ▲오전 10시, 2026년 제1회 시흥시체육회장기 게이트볼대회...",
+      "url": "https://www.newsis.com/view/NISX20261011_0003821172"
+    },
     {
       "source": "naver",
       "press": "kgnews.co.kr",
@@ -123,19 +131,27 @@
     },
     {
       "source": "google",
-      "press": "누리일보",
-      "date": "2026.10.11",
-      "title": "안산교육지원청, 수영 꿈나무들의 축제 제16회 RAS 안산 상록수 교육장배 학생 수영대회 개최",
-      "snippet": "안산교육지원청, 수영 꿈나무들의 축제 제16회 RAS 안산 상록수 교육장배 학생 수영대회 개최 누리일보",
-      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE1ncEpkQnhoNWNaNGdGR3FZNGJBWXVMb1VISVRhY3hQX1dIVkg3ekFkWXM3cXNCLUVvQVFFYm1MOWtIWW5naDNGM3o4aENYY1NMa0ZXSmljT2NabU42?oc=5"
-    },
-    {
-      "source": "google",
       "press": "시사통신",
       "date": "2026.10.11",
       "title": "안산교육지원청, ‘2026 안산 특성화고 진로·입시 설명회’ 개최",
       "snippet": "안산교육지원청, ‘2026 안산 특성화고 진로·입시 설명회’ 개최 시사통신",
       "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5FVlNCRFBscGFQVTV4ZzA1ZGlIM1dnNGNiOV90c0JqOHlWaVVDZFF6WVo3NTBQbU9vaHhpYmNDTERabHZPSmlxSmw5ZklsbWtEWjBmVWZvaEI5ZllGbEo4azlZNzZpN2N60gFrQVVfeXFMUGFLZTV0YTc1SnljZTRrZXBLdmNYMmV5LVJuZFd2Q3NWMmVQYmI4Nk00SDhycUJCVFZFTlU3N2Q3LWYwbl9fUjViazBkaWZKSnZROUg0TFhFSjI2R0Z3amppUll4cTVEUWNabjg?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "경인투데이뉴스",
+      "date": "2026.10.11",
+      "title": "안산시체육회, ‘2026 안산시장기 배구대회’ 성료…900여 명 참가 열전:경인투데이뉴스",
+      "snippet": "안산시체육회, ‘2026 안산시장기 배구대회’ 성료…900여 명 참가 열전:경인투데이뉴스 경인투데이뉴스",
+      "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE9PS2tUMmwzQ2RKb2d1dG96V2Q4UXo4U1ZjZHdxT2liTk5vaFpEdFJsbGJRX1VvMEUtSWRtbXFHdnVCZ09zd0NCNG5IYzhIZFNtQzdDTXJOWnpSRldxc0000gFfQVVfeXFMT09La1QybDNDZEpvZ3V0b3pXZDhRejhTVmNkd3FPaWJOTm9oWkR0UmxsYlFfVW8wRS1JZG1tcUd2dUJnT3N3Q0I0bkhjOEhkU21DN0NNck5aelJGV3FzTTQ?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "경기종합뉴스",
+      "date": "2026.10.11",
+      "title": "2026 안산시장기 배구대회 및 2026 안산 유니온 x 상록수 RAS 배구 FESTA’ 성료!",
+      "snippet": "2026 안산시장기 배구대회 및 2026 안산 유니온 x 상록수 RAS 배구 FESTA’ 성료! 경기종합뉴스",
+      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE9fbUNWQWF1R09abUhZWjJXTE1XQVBsTjhDLXVRUHRpZjJiVmRBUHEwTGpQakM4VFYwN0c3SjhEZkdYalQ1RWhyYlRGcW93MWlqbGk0YW1hVXEtenZaMG1Mb1V2aVJSME95YVpUUEJtbDBmRW43?oc=5"
     },
     {
       "source": "google",
@@ -147,11 +163,19 @@
     },
     {
       "source": "google",
-      "press": "경기종합뉴스",
+      "press": "한국교회장로닷컴",
       "date": "2026.10.11",
-      "title": "2026 안산시장기 배구대회 및 2026 안산 유니온 x 상록수 RAS 배구 FESTA’ 성료!",
-      "snippet": "2026 안산시장기 배구대회 및 2026 안산 유니온 x 상록수 RAS 배구 FESTA’ 성료! 경기종합뉴스",
-      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE9fbUNWQWF1R09abUhZWjJXTE1XQVBsTjhDLXVRUHRpZjJiVmRBUHEwTGpQakM4VFYwN0c3SjhEZkdYalQ1RWhyYlRGcW93MWlqbGk0YW1hVXEtenZaMG1Mb1V2aVJSME95YVpUUEJtbDBmRW43?oc=5"
+      "title": "“AI로 내 이야기를 한 권의 책으로” 안산서 무료 AI 작가 양성 교육 수강생 모집",
+      "snippet": "“AI로 내 이야기를 한 권의 책으로” 안산서 무료 AI 작가 양성 교육 수강생 모집 한국교회장로닷컴",
+      "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE9aTVVsdmhveTh0MG9VUnJ5QURLbkFtZ0xwOVVlLXdFZloxQW1nTGFnUkozT0JZMk5fY3cwQlppOG1PZTFFbmExclBqNlMwdHpaeEM2OW5qZ0xVVXNNc0RyTGhtc3otQ01qTWVR?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "중부시사신문",
+      "date": "2026.10.11",
+      "title": "안산교육지원청, 수영 꿈나무들의 축제 제16회 RAS 안산 상록수 교육장배 학생 수영대회 개최",
+      "snippet": "안산교육지원청, 수영 꿈나무들의 축제 제16회 RAS 안산 상록수 교육장배 학생 수영대회 개최 중부시사신문",
+      "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE9rNXoxcXk1YmE5azQ5U1BNTEQxOEw1R3ZsZFdkcElvSTJkR1hnclBvNXAtT1FnNGVESDhKSktfenFKNEhtZDhrd2ZzLXRzUG0zaW80Z3VCWEhCWG5xOU5makVoRQ?oc=5"
     },
     {
       "source": "google",
@@ -296,14 +320,6 @@
       "title": "“아름다운 여정, 감사와 존경으로 기억하다” 안산교육지원청, 2026 상반기 퇴직교원 퇴임기념식 개최",
       "snippet": "“아름다운 여정, 감사와 존경으로 기억하다” 안산교육지원청, 2026 상반기 퇴직교원 퇴임기념식 개최 경인투데이뉴스",
       "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTFBkQzFTRi10ckFCTWQ1UDR1Y05TanUzaDZwOHlOTDhuc0tiZTRDbXNCMkFXWGd3WXQ5R0NmalptTV9QYnpJbEZSSU52QlNwbmM?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "반월신문",
-      "date": "2026.10.09",
-      "title": "안산시 2026년 재난안전 역량강화 교육 실시",
-      "snippet": "안산시 2026년 재난안전 역량강화 교육 실시 반월신문",
-      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE50b2dPLVBYSlRPLVI3cGlzdFFJU3JkR1ByLVZ2WUZMUUlER0JXMDFfcmVxUXBoTXYybGxMaDVXaHNNNDVLWktXb2ZJVEpNNVdNUHNFblE2WmhONnRmYlFud3pOV2w0ZGM?oc=5"
     },
     {
       "source": "google",
@@ -579,14 +595,6 @@
     },
     {
       "source": "google",
-      "press": "시흥저널",
-      "date": "2026.10.08",
-      "title": "초록우산, 안산 이주배경아동에 ‘웰컴키트’ 지원",
-      "snippet": "초록우산, 안산 이주배경아동에 ‘웰컴키트’ 지원 시흥저널",
-      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFA2dUlISFVBcUdRSnpjeVc5UDZtSXREQUZhOTRlVmZUQm1MTjVIMjBGX0V6al9RYTc5bVgxSGZKNEZkS2ZMOTE4WGJlYTI3WkZKUzdacE5TVlVvY21wWXVxZndEZUl1cDA?oc=5"
-    },
-    {
-      "source": "google",
       "press": "화성 투데이",
       "date": "2026.10.07",
       "title": "장윤정 도의원, 안산사이언스밸리 에이로봇 400억 투자 환영",
@@ -739,19 +747,19 @@
     },
     {
       "source": "naver",
-      "press": "hani.co.kr",
-      "date": "2026.10.07",
-      "title": "112 전화해 “짜장면 한 그릇요”…9살 아이 기지로 ‘폭력 아빠’ 입건",
-      "snippet": "ㄱ씨는 지난 4일 저녁 6시께 안산시 상록구의 한 다세대주택에서 아내와 다투다 선풍기로 아내 어깨를 때리고 몸을 밀치는 등 폭행한 혐의를 받는다. 당시 집에는 9살과 5살 두 자녀도 있었다. 방 안에 숨은 9살 아이는...",
-      "url": "https://www.hani.co.kr/arti/area/capital/1281333.html"
-    },
-    {
-      "source": "naver",
       "press": "joongang.co.kr",
       "date": "2026.10.07",
       "title": "“짜장면 한그릇 주세요” 9살 아이 신고…3분만에 경찰 출동했더니",
       "snippet": "7일 경찰 등에 따르면 지난 4일 오후 6시8분께 경기 안산시 상록구의 한 다세대주택에서 112에 전화 한 통이 걸려 왔다. 전화를 건 사람은 9살 초등학생이었다. 아이는 경찰에 “짜장면 한 그릇 주세요”라고 말하며 집에...",
       "url": "https://www.joongang.co.kr/article/25467890"
+    },
+    {
+      "source": "naver",
+      "press": "hani.co.kr",
+      "date": "2026.10.07",
+      "title": "112 전화해 “짜장면 한 그릇요”…9살 아이 기지로 ‘폭력 아빠’ 입건",
+      "snippet": "ㄱ씨는 지난 4일 저녁 6시께 안산시 상록구의 한 다세대주택에서 아내와 다투다 선풍기로 아내 어깨를 때리고 몸을 밀치는 등 폭행한 혐의를 받는다. 당시 집에는 9살과 5살 두 자녀도 있었다. 방 안에 숨은 9살 아이는...",
+      "url": "https://www.hani.co.kr/arti/area/capital/1281333.html"
     },
     {
       "source": "naver",
@@ -906,44 +914,12 @@
       "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE1nX2Z0ME5sTkFoZHMxaDJJdGtIQkxVMTlWTnRGMU9WbUFsOFpBTTRlXzFnLV9zbWxrbVRORHdySUM2SVVzV1JrSEpNbjRPa3FpR2c?oc=5"
     },
     {
-      "source": "naver",
-      "press": "kyeongin.com",
-      "date": "2026.10.06",
-      "title": "안산 상록수역 인근서 20대 행인 흉기 위협한 40대 체포",
-      "snippet": "A씨는 이날 오전 5시께 안산 상록구의 상록수역 인근 한 상가 건물 앞에서 20대 남성 B씨에게 흉기를 들이밀며 위협한 혐의를 받는다. 당시 다른 신고가 접수돼 현장에 있던 경찰은 A씨를 체포했다. 이 사건으로 다친...",
-      "url": "https://www.kyeongin.com/article/1772060"
-    },
-    {
       "source": "google",
       "press": "투데이안산",
       "date": "2026.10.06",
       "title": "안산교육지원청-안산시도서관, 폰프리로 지역독서 생태계 조성",
       "snippet": "안산교육지원청-안산시도서관, 폰프리로 지역독서 생태계 조성 투데이안산",
       "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE9nVnhjOWxQazd3MkhLc1ZBS1VqNHBVMkNuaFJnaXZTcTl2c1BxNFVCRWtfaUdmT3NMa20zU2F4NTl4R2g4Z0FUNUkxY3pxMkVMbjkydjNuY0F1aFFUQVR1TmFieXlCSFdtbUp3ZFl30gFyQVVfeXFMTnBnWUpZYXZ2NnNTeUMtRkZ3MjFzWFoycGFTWWo5aGphWk5FZjRCVGh1cWpFQlQ2NjBKTWp6SzJ1X3QwdC05SFBYbnVmTmdtUExhN0dwWFBFX0xOajRfYWtZZkEzTlJQUEJDamdJb3FMR1NB?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "투데이안산",
-      "date": "2026.10.06",
-      "title": "안산시 고려인문화센터 ‘나에게 맞는 고등학교 선택하기’ 행사 열어",
-      "snippet": "안산시 고려인문화센터 ‘나에게 맞는 고등학교 선택하기’ 행사 열어 투데이안산",
-      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE9NSXg5aUo5ZGlXcFppejZLT3VzNEljczc5SE5BaTRNU1h5dkhMVzB3VUF3OThPbWliQXowSDBkVG1nSzhJTnRoVU1zMFJZcEVlQ044RXF1dnlhbUM4dlZ2RktOWUZ4eHVPSDdXMlNB0gFyQVVfeXFMTUtRSnY0Vk1McFgyRUU3clBBTF9ReVNBVzBlbkFjWUhCT2ZVcGVpZkxwTW1nazZ2UXZiS2pBN3dKOGVJSUl5NDZjYU8zZlVmdEM1Q3UwUTNPbWpvWHJjNi00YjNFbmdYY25DRGE0TmRyWnpn?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "경기일보",
-      "date": "2026.10.05",
-      "title": "“선배 경험 듣고 진로 찾는다”… 안산교육청, ‘러시아어권 청소년 고교 진학 설명회’ 지원",
-      "snippet": "“선배 경험 듣고 진로 찾는다”… 안산교육청, ‘러시아어권 청소년 고교 진학 설명회’ 지원 경기일보",
-      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBLeUdyUnF2UV9BSGsyM25RbVV5X3dJVmpsMnRJN3ZpNTNXQW9uN09oME1UcXZCQjYzZWNfVkZ1WlJfaTB3N2c3WVVUczM0OV9PZE1sNTd3UG9VMjA?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "경기헤드뉴스",
-      "date": "2026.10.05",
-      "title": "안산교육지원청,“선배에게 직접 듣는다” 이주배경 청소년 고교 진학 설명회 운영 지원",
-      "snippet": "안산교육지원청,“선배에게 직접 듣는다” 이주배경 청소년 고교 진학 설명회 운영 지원 경기헤드뉴스",
-      "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTFBadTFxV3NROUllRVRXbnBVaVJWcFBXcm1PZzlMZ0xwcU8wbFhHVmFmR0x6MUthVG96cU1yeGMyWmhhT2lsY29mTmVVNWZmXzhZWVJ0WGo0RklwUW9PbEdR?oc=5"
     },
     {
       "source": "google",
@@ -1035,11 +1011,11 @@
     },
     {
       "source": "google",
-      "press": "누리일보",
+      "press": "경기중앙신문",
       "date": "2026.10.01",
-      "title": "경기도의회 장윤정 의원, 안산사이언스밸리 에이로봇 400억 투자 환영, 로봇산업 생태계 도약 적극 뒷받침할 것",
-      "snippet": "경기도의회 장윤정 의원, 안산사이언스밸리 에이로봇 400억 투자 환영, 로봇산업 생태계 도약 적극 뒷받침할 것 누리일보",
-      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE5walBJRkFYT0Y0c2xqQjNjdW5GbDQyLXhSYTJmMnNkRXg3Y2c1Rnl5c0NYMGRrTlVncXVfSjJtX2hmdmtGekgzbWlBV0VxLUF6UEJEU2FsM1R4aEQ2?oc=5"
+      "title": "경기도의회 장윤정 의원, \"안산사이언스밸리(ASV) 에이로봇 400억 투자 환영… 로봇산업 생태계 도약 적극 뒷받침할 것\"",
+      "snippet": "경기도의회 장윤정 의원, \"안산사이언스밸리(ASV) 에이로봇 400억 투자 환영… 로봇산업 생태계 도약 적극 뒷받침할 것\" 경기중앙신문",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5zNzAwTFFZTnJpLVVZMVlBZ2tQNkxvMVV4Q0VCWmc5cFZQdXZrd1V5RjR4bFJ3dkJjSEc1T19OS1NUZ2FFN0tUMFZMNTdFaTZNaE5pTXBRcDNzWkZGRC1Pbks1V2laMk5f?oc=5"
     },
     {
       "source": "naver",
@@ -1144,14 +1120,6 @@
       "title": "안산 자동차 정비업체서 불…8명 긴급 대피·소방 장비 18대 투입",
       "snippet": "안산 자동차 정비업체서 불…8명 긴급 대피·소방 장비 18대 투입 경기일보",
       "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE1RR3JvX3RrMHdQVTE2T0VWZlhuR3FRWmFFNkhseWEzdGpMYWFaQkpOZFBKNkZBSG9ieURETGVidEVxZGEza2VRSzJlM05pWU1GN1BrTDUySXg2cDg?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "안산신문",
-      "date": "2026.09.16",
-      "title": "장윤정 도의원, ‘경기도 햇빛발전·통합돌봄 융합모델 지원 사업’ 졸속 비판",
-      "snippet": "장윤정 도의원, ‘경기도 햇빛발전·통합돌봄 융합모델 지원 사업’ 졸속 비판 안산신문",
-      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE1hN3IzX2FSNUh6NEo4cXA1TU1hWk1yejJGVlllWjNTVHBiZk5fV0RBRmhrWHNQWFBNUUN3QXhLVUtrbWFEaVZ4dnhDanlPZ2RYdmVxQ2pJejJhZGlrZUdaV2lObFBXcjg?oc=5"
     },
     {
       "source": "naver",
@@ -1343,7 +1311,7 @@
       "date": "2026.09.10",
       "title": "장윤정 경기도의원 \"경기도 햇빛발전·통합돌봄 사업, 기초지자체 협의 없는 탁상행정\"",
       "snippet": "장윤정 경기도의원 \"경기도 햇빛발전·통합돌봄 사업, 기초지자체 협의 없는 탁상행정\" Daum",
-      "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFBKbi1rZmNMdVBGQWdONGszWXg5MGZ3YlAtcE1iZnpvMGlSMmJ3MURqTmVGS2JJWGZFcDJHbmJSN25VcjFaeVMyMEpkTUk1VEVNclR6Rg?oc=5"
+      "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE4tWjdBWU5RcjcwaHZhVi0zbUtPaVNXZzZEeDBTdDI4MTNXSTlzZEV1UlAwVkQ3d1NOTV8zQTBIcjk0VDE0RGFwVmxUeWhFUEU?oc=5"
     },
     {
       "source": "google",
@@ -1560,6 +1528,14 @@
       "title": "스프링힐스 골프장 증설 찬성 시민들 거리로…고양시의회는 적법성 조사",
       "snippet": "국토교통부와 경기도의 개발제한구역 관리계획 승인, 전략환경영향평가와 환경영향평가 등을 거쳐 지난해... 장윤정 의원이 대표발의하고 최성원 의원 등 11명이 발의에 찬성했다. 조사는 일산동구 산황동 424-10번지...",
       "url": "https://www.sedaily.com/article/20083175?ref=naver"
+    },
+    {
+      "source": "google",
+      "press": "중부일보",
+      "date": "2026.08.25",
+      "title": "안산교육지원청, 안산시·시의회와 안산교육 발전 방안 논의",
+      "snippet": "안산교육지원청, 안산시·시의회와 안산교육 발전 방안 논의 중부일보",
+      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE5nbi1yMkdVUHJnOFVLTG13Y2xLRG12STBPUllBTVhYLVJEenhPRUNjUDk2Ry1LaXo2aDQyS0JoYk9hOU9zTFVkek9JSWFzT1VHZVJUSXZQXzlIVUpLb1VsbkR3X0twcGZJYlJiMlFsNA?oc=5"
     },
     {
       "source": "naver",
