@@ -1,0 +1,16 @@
+package kr.moida.calllink;
+import android.app.*;import android.os.*;import android.content.*;import android.net.Uri;import android.widget.*;import android.text.InputType;
+public class MainActivity extends Activity {
+ EditText code; TextView status; final Handler handler=new Handler();
+ final Runnable refresh=new Runnable(){public void run(){status.setText(getSharedPreferences("link",0).getString("status","자동 수집을 연결해 주세요."));handler.postDelayed(this,3000);}};
+ @Override public void onCreate(Bundle state){super.onCreate(state);LinearLayout layout=new LinearLayout(this);layout.setOrientation(1);layout.setPadding(40,60,40,40);setContentView(layout);
+ TextView heading=new TextView(this);heading.setText("모이다 통화 녹음 자동 수집");heading.setTextSize(23);layout.addView(heading);TextView help=new TextView(this);help.setText("모이다의 통화 기록에서 연결 코드를 발급해 입력하세요. 삼성 전화가 저장하는 통화 녹음 폴더를 선택하면, 연결 이후 새 녹음만 자동 전송합니다.\n\n전송한 녹음은 모이다/OpenAI에서 전사·요약하며 API 비용이 발생합니다. 원본은 휴대폰에 남습니다.\n\n자동 수집 알림을 유지해야 합니다. 절전 제한·강제 종료·재부팅 시 앱을 다시 열고 자동 수집을 켜 주세요.");layout.addView(help);
+ code=new EditText(this);code.setHint("모이다 연결 코드");code.setSingleLine();code.setInputType(InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_VARIATION_PASSWORD);layout.addView(code);
+ Button folder=new Button(this);folder.setText("통화 녹음 폴더 선택");layout.addView(folder);folder.setOnClickListener(v->{String value=code.getText().toString().trim();if(!value.isEmpty()){if(!value.matches("call_[a-f0-9]{32}:[a-f0-9]{64}")){toast("연결 코드를 확인해 주세요.");return;}getSharedPreferences("link",0).edit().putString("code",value).apply();code.setText("");}if(getSharedPreferences("link",0).getString("code","").isEmpty()){toast("연결 코드를 먼저 입력하세요.");return;}Intent intent=new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION|Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);startActivityForResult(intent,10);});
+ Button start=new Button(this);start.setText("자동 수집 켜기");layout.addView(start);start.setOnClickListener(v->{if(getSharedPreferences("link",0).getString("folder","").isEmpty()){toast("녹음 폴더를 먼저 선택하세요.");return;}if(Build.VERSION.SDK_INT>=33)requestPermissions(new String[]{"android.permission.POST_NOTIFICATIONS"},11);startForegroundService(new Intent(this,UploadService.class));});
+ Button stop=new Button(this);stop.setText("자동 수집 끄기");layout.addView(stop);stop.setOnClickListener(v->{stopService(new Intent(this,UploadService.class));getSharedPreferences("link",0).edit().putString("status","자동 수집을 껐습니다.").apply();});status=new TextView(this);layout.addView(status);
+ }
+ void toast(String s){Toast.makeText(this,s,Toast.LENGTH_LONG).show();}
+ @Override protected void onActivityResult(int request,int result,Intent data){super.onActivityResult(request,result,data);if(request==10&&result==RESULT_OK&&data!=null){Uri uri=data.getData();getContentResolver().takePersistableUriPermission(uri,Intent.FLAG_GRANT_READ_URI_PERMISSION);getSharedPreferences("link",0).edit().putString("folder",uri.toString()).putLong("since",System.currentTimeMillis()).putString("status","폴더가 연결되었습니다. 자동 수집을 켜 주세요.").apply();}}
+ @Override public void onResume(){super.onResume();handler.post(refresh);}@Override public void onPause(){handler.removeCallbacks(refresh);super.onPause();}
+}

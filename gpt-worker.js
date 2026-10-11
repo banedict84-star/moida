@@ -1,3 +1,5 @@
+import {createCallDevices} from './call-devices.js';
+const callDevices=createCallDevices();
 import {createCallRecords} from './call-records.js';
 const callRecords=createCallRecords();
 import {createOfficeLocation} from './office-location.js';
@@ -1731,6 +1733,8 @@ async function handleFetch(request, env) {
   try {
     if(path==='/owntracks/pub'&&request.method==='POST'){const response=json(await officeLocation.receive({env,request}),200,request,env);response.headers.set('Cache-Control','no-store');return response;}
     if(path.startsWith('/office-travel/')){const pending=path==='/office-travel/pending'||path==='/office-travel/ack';const user=pending?null:await verifyFirebaseUser(request,env);const response=json(await officeTravel.route({env,uid:user?.uid,request,body:request.method==='POST'?await requestBody(request):{}}),200,request,env);response.headers.set('Cache-Control','no-store');return response;}
+    if(path==='/call-recordings/upload'&&request.method==='POST'){const uid=await callDevices.authenticate({env,request});return json(await callRecords.route({env,uid,request}),200,request,env);}
+    if(path==='/call-devices'){const user=await verifyFirebaseUser(request,env);const response=json(await callDevices.route({env,uid:user.uid,request,body:request.method==='POST'?await requestBody(request):{}}),200,request,env);response.headers.set('Cache-Control','no-store');return response;}
     if(path==='/call-records'){const user=await verifyFirebaseUser(request,env);const response=json(await callRecords.route({env,uid:user.uid,request}),200,request,env);response.headers.set('Cache-Control','no-store');return response;}
     if(path.startsWith('/office-location/')){const user=await verifyFirebaseUser(request,env);const response=json(await officeLocation.route({env,uid:user.uid,request,body:request.method==='POST'?await requestBody(request):{}}),200,request,env);response.headers.set('Cache-Control','no-store');return response;}
     if(path.startsWith('/messaging/solapi/')){const user=await verifyFirebaseUser(request,env);return json(await solapiMessaging.route({env,uid:user.uid,request,body:request.method==='POST'?await requestBody(request):{}}),200,request,env);}
