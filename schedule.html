@@ -805,7 +805,7 @@ onAuthStateChanged(_auth, async function(user){
   }
 });
 </script>
-<link rel="stylesheet" href="flow-calendar.css?v=1"><link rel="stylesheet" href="schedule-experience.css?v=3">
+<link rel="stylesheet" href="flow-calendar.css?v=1"><link rel="stylesheet" href="schedule-experience.css?v=4">
 </head>
 <body>
 <script>try{if(/[?&]embed=1/.test(location.search))document.documentElement.classList.add('embed');}catch(e){}</script>
@@ -1221,6 +1221,7 @@ onAuthStateChanged(_auth, async function(user){
           cur.setDate(cur.getDate()+1);
         }
       });
+      var lanes=new Map(),laneEnds=[];events.filter(function(e){return e.endDate&&e.endDate>e.date;}).slice().sort(function(a,b){return String(a.date).localeCompare(String(b.date))||String(a.id).localeCompare(String(b.id));}).forEach(function(e){var start=evDate(e.date),end=evDate(e.endDate);if(!start||!end)return;var monthStart=new Date(calY,calM,1),monthEnd=new Date(calY,calM+1,0),from=new Date(start.y,start.m,start.d),to=new Date(end.y,end.m,end.d);if(to<monthStart||from>monthEnd)return;var lane=laneEnds.findIndex(function(last){return last<from;});if(lane<0)lane=laneEnds.length;laneEnds[lane]=to;lanes.set(e,lane);});
       // 생일은 CRM 연락처에서만 읽고, 일반 일정 목록·통계에는 포함하지 않는다.
       if(showBirthdays) birthdayMembers.forEach(function(member){
         var digits=String(member.birthday||member.birth||member.birthDate||member.dob||member.rrn||'').replace(/[^0-9]/g,'');
@@ -1249,11 +1250,10 @@ onAuthStateChanged(_auth, async function(user){
           var dayKey=calY+'-'+String(calM+1).padStart(2,'0')+'-'+String(c.n).padStart(2,'0');
           var scheduleItems=items.filter(function(item){return !item.birthday;}),birthdayItems=items.filter(function(item){return item.birthday;});
           calItemsByDay[dayKey]={schedule:scheduleItems,birthday:birthdayItems};
-          if(birthdayItems.length){
-            evs+='<div class="cal-birthday-row">'+renderCalendarItem(birthdayItems[0])+(birthdayItems.length>1?'<button type="button" class="cal-birthday-more" data-cal-more="'+dayKey+'" data-cal-more-kind="birthday">+'+(birthdayItems.length-1)+'명</button>':'')+'</div>';
-          }
-          evs+=scheduleItems.slice(0,3).map(renderCalendarItem).join('');
-          if(scheduleItems.length>3)evs+='<button type="button" class="cal-more" data-cal-more="'+dayKey+'" data-cal-more-kind="schedule">+'+(scheduleItems.length-3)+'개 더보기</button>';
+          var slots=[];scheduleItems.forEach(function(item){if(lanes.has(item.e))slots[lanes.get(item.e)]=item;});scheduleItems.forEach(function(item){if(lanes.has(item.e))return;var lane=0;while(slots[lane])lane++;slots[lane]=item;});
+          var visible=0;for(var slot=0;slot<Math.min(3,slots.length);slot++){if(slots[slot]){evs+=renderCalendarItem(slots[slot]);visible++;}else evs+='<div class="cal-lane-spacer" aria-hidden="true"></div>';}
+          if(scheduleItems.length>visible)evs+='<button type="button" class="cal-more" data-cal-more="'+dayKey+'" data-cal-more-kind="schedule">+'+(scheduleItems.length-visible)+'개 더보기</button>';
+          if(birthdayItems.length){evs+='<div class="cal-birthday-row">'+renderCalendarItem(birthdayItems[0])+(birthdayItems.length>1?'<button type="button" class="cal-birthday-more" data-cal-more="'+dayKey+'" data-cal-more-kind="birthday">+'+(birthdayItems.length-1)+'명</button>':'')+'</div>';}
         }
         var isToday=(!c.off && calY===today.getFullYear() && calM===today.getMonth() && c.n===today.getDate());
         return '<div class="cal-cell '+(c.off?'off ':'')+(dow===0?'sun ':dow===6?'sat ':'')+(isToday?'today':'')+'"><div class="cal-dnum">'+c.n+'</div>'+evs+'</div>';
