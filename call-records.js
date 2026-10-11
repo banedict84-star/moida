@@ -8,6 +8,10 @@ export function createCallRecords({fetcher=fetch}={}){
  async function api(env,path,options){const base=String(env.OPENAI_BASE||'https://api.openai.com/v1').replace(/\/+$/,'');let response;try{response=await fetcher(base+path,{...options,headers:{...options.headers,Authorization:'Bearer '+env.OPENAI_API_KEY},signal:AbortSignal.timeout(180000)});}catch{fail(502,'AI 처리 연결이 지연됐습니다. 기록에서 처리 상태를 확인해 주세요.');}if(!response.ok)fail(502,'AI 처리에 실패했습니다. 잠시 후 다시 시도해 주세요.');return response.json();}
  async function route({env,uid,request}){
   if(!uid)fail(401,'로그인이 필요합니다.');await schema(env);const url=new URL(request.url),id=url.searchParams.get('id');
+  if(request.method==='GET'&&url.searchParams.get('check')==='api'){
+   const checks=[];for(const [name,base] of [['현재 연결',env.OPENAI_BASE||'https://api.openai.com/v1'],['OpenAI 직접 연결','https://api.openai.com/v1']]){try{const response=await fetcher(String(base).replace(/\/+$/,'')+'/models/gpt-4o-transcribe',{headers:{Authorization:'Bearer '+env.OPENAI_API_KEY},signal:AbortSignal.timeout(20000)});let data={};try{data=await response.json();}catch{}const code=String(data.error?.code||data.error?.type||'').replace(/[^a-zA-Z0-9_-]/g,'').slice(0,80);checks.push({name,status:response.status,ok:response.ok,code});}catch{checks.push({name,status:0,ok:false,code:'connection_failed'});}}
+   return {ok:true,keyConfigured:Boolean(env.OPENAI_API_KEY),checks};
+  }
   if(request.method==='GET'){
    if(id){const record=await query(env,'SELECT * FROM office_call_records WHERE uid=? AND id=?',uid,id).first();if(!record)fail(404,'통화 기록을 찾지 못했습니다.');return {ok:true,record};}
    return {ok:true,records:(await query(env,'SELECT id,title,filename,created_at,status,error FROM office_call_records WHERE uid=? ORDER BY created_at DESC LIMIT 100',uid).all()).results||[]};
