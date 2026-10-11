@@ -1,5 +1,8 @@
 name: Smoke test Moida Android app
 on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/smoke-moida-app.yml']
   workflow_run:
     workflows: ['Build Moida Android app']
     types: [completed]
@@ -8,7 +11,7 @@ permissions:
   contents: read
 jobs:
   smoke:
-    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -45,10 +48,14 @@ jobs:
             sleep 2
             adb shell uiautomator dump /sdcard/moida-home.xml
             adb pull /sdcard/moida-home.xml smoke-results/moida-home.xml
-            grep -q 'MOIDA' smoke-results/moida-home.xml
-            grep -q '앱 업데이트 확인' smoke-results/moida-home.xml
+            grep -q '비서실 들어가기' smoke-results/moida-home.xml
+            grep -q '뉴스 숏츠' smoke-results/moida-home.xml
             adb shell screencap -p /sdcard/moida-home.png
             adb pull /sdcard/moida-home.png smoke-results/moida-home.png
+            adb shell input swipe 250 750 250 200 500
+            adb shell uiautomator dump /sdcard/moida-footer.xml
+            adb pull /sdcard/moida-footer.xml smoke-results/moida-footer.xml
+            grep -q '앱 업데이트 확인' smoke-results/moida-footer.xml
       - uses: actions/upload-artifact@v4
         if: always()
         with:
