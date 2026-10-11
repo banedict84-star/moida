@@ -8,6 +8,10 @@ on:
     - cron: '*/5 * * * *'  # 5분마다 최신 자료 확인
   workflow_dispatch:      # 수동 실행 가능
 
+concurrency:
+  group: moida-official-notice-crawl
+  cancel-in-progress: false
+
 permissions:
   contents: write
 
