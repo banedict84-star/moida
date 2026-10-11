@@ -5,7 +5,7 @@ import {createFlowCalendar,normalizeFlowEvents} from '../flow-calendar.js';
 function fixture(){
  const db=new DatabaseSync(':memory:');const env={AGENT_DB:{prepare(sql){const bind=(...args)=>({first:async()=>db.prepare(sql).get(...args)||null,all:async()=>({results:db.prepare(sql).all(...args)}),run:async()=>({meta:{changes:db.prepare(sql).run(...args).changes}})});return{bind,...bind()};},batch:async list=>Promise.all(list.map(s=>s.run()))}};
  const calls=[];let malformed=false,failEvents=false;
- const fetcher=async(url,init)=>{const payload=init.headers['Content-Type']==='application/json'?JSON.parse(init.body):Object.fromEntries(new URLSearchParams(init.body));calls.push({url,payload,headers:init.headers});
+ const fetcher=async(url,init)=>{assert.equal(init.redirect,'manual','Cloudflare supports manual redirects; redirect responses must be rejected by status');const payload=init.headers['Content-Type']==='application/json'?JSON.parse(init.body):Object.fromEntries(new URLSearchParams(init.body));calls.push({url,payload,headers:init.headers});
   if(url.endsWith('/register'))return Response.json({client_id:'test-client'});
   if(url.endsWith('/token'))return Response.json({access_token:'private-access',refresh_token:'private-refresh',expires_in:3600});
   if(payload.method==='initialize')return Response.json({jsonrpc:'2.0',id:payload.id,result:{protocolVersion:'2025-03-26'}},{headers:{'Mcp-Session-Id':'session'}});
