@@ -36,12 +36,13 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           cp android-call-link/app/build/outputs/apk/debug/app-debug.apk moida-call-link.apk
+          zip moida-call-link.zip moida-call-link.apk
           VERSION=$(sed -n 's/.*versionCode \([0-9]*\);.*/\1/p' android-call-link/app/build.gradle)
           if gh release view call-link-latest > /dev/null 2>&1; then
-            gh release upload call-link-latest moida-call-link.apk --clobber
+            gh release upload call-link-latest moida-call-link.apk moida-call-link.zip --clobber
             gh release edit call-link-latest --title "Moida Call Link build $VERSION"
           else
-            gh release create call-link-latest moida-call-link.apk --title "Moida Call Link build $VERSION" --notes 'Galaxy call recording companion. Download the APK and install on your phone.'
+            gh release create call-link-latest moida-call-link.apk moida-call-link.zip --title "Moida Call Link build $VERSION" --notes 'Galaxy call recording companion. Download the APK and install on your phone.'
           fi
       - uses: actions/upload-artifact@v4
         with:
