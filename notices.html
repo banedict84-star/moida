@@ -264,6 +264,14 @@
   .external-notice .ext-title{ font-size:14px; font-weight:800; color:var(--ink); }
   .external-notice .ext-desc{ margin-top:6px; font-size:12.5px; line-height:1.6; color:var(--ink-3); }
   .external-notice .src-link{ margin-top:14px; background:#fff; }
+
+  .notice-preview-text{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.85;color:#273449}
+  .notice-preview-image{display:block;margin:16px 0}
+  .notice-preview-image img{display:block;max-width:100%;height:auto;border:1px solid #e3e8ef;border-radius:8px}
+  .notice-preview-status{font-size:12px;color:#8792a6;line-height:1.7}
+  #ndBody .atts{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+  #ndBody .atts strong{width:100%}
+  @media(min-width:701px){.ndetail{max-height:calc(100dvh - 150px);overflow-y:auto}}
 </style>
 <style>
 @media(max-width:700px){
@@ -351,7 +359,7 @@
       </div>
     </div>
 
-    <div class="ro-banner"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>MOIDA 공지는 총관리자가 작성하며, 외부 기관 공지는 원문으로 연결됩니다.</div>
+    <div class="ro-banner"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>MOIDA 공지는 총관리자가 작성하며, 외부 기관 공지는 본문 미리보기와 원문을 함께 제공합니다.</div>
 
 
 
@@ -378,6 +386,7 @@
   </main>
 </div>
 
+<script src="notice-preview-client.js?v=1"></script>
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
@@ -647,6 +656,7 @@ c1|2026.03.10|2,051|경기도의회 의정모니터단 모집 공고`;
     nlist.querySelectorAll('.ncard').forEach(c=>c.classList.remove('sel'));
     const card = nlist.querySelector('.ncard[data-id="'+id+'"]');
     if(card) card.classList.add('sel');
+    ndBody._noticePreview=null;
     ndTitle.textContent = n.title;
     ndMeta.innerHTML = srcPill(n)+'<span>'+n.date+'</span>'+(n.views?'<span class="nviews">'+n.views+'회</span>':'');
     var extLabel = n.src==='gyeonggi' ? '경기도당 원문 보기' : (n.src==='council' ? '경기도의회 원문 보기' : '중앙당 원문 보기');
@@ -662,7 +672,7 @@ c1|2026.03.10|2,051|경기도의회 의정모니터단 모집 공고`;
     } else if((n.src==='central'||n.src==='gyeonggi'||n.src==='council') && n.link){
       var sourceName=n.src==='central'?'민주당 중앙당':(n.src==='gyeonggi'?'민주당 경기도당':'경기도의회');
       ndBody.className = 'db';
-      ndBody.innerHTML = '<div class="external-notice"><div class="ext-icon"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14 5h5v5"/><path d="M10 14 19 5"/><path d="M19 13v6H5V5h6"/></svg></div><div class="ext-title">'+sourceName+' 공지</div><div class="ext-desc">이 공지는 제목과 게시일을 연동해 제공하고 있습니다.<br>세부 내용과 첨부파일은 출처의 원문에서 확인해 주세요.</div>'+srcLink+'</div>';
+      window.showNoticePreview(ndBody,n,extLabel);
     } else {
       ndBody.className = 'db plain';
       ndBody.textContent = n.body;

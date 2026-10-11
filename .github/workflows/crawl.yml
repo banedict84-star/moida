@@ -3,7 +3,7 @@ name: 공지사항 크롤링
 on:
   push:
     branches: [main]
-    paths: ['.github/workflows/crawl.yml', 'crawl_gyeonggi.py']
+    paths: ['.github/workflows/crawl.yml', 'crawl_gyeonggi.py', 'crawl_notice_previews.py', 'notice-preview-extract.js']
   schedule:
     - cron: '*/5 * * * *'  # 5분마다 최신 자료 확인
   workflow_dispatch:      # 수동 실행 가능
@@ -57,7 +57,7 @@ jobs:
 
           # 경기도당: 직접 수집 우선, 실패 시 기존 자료 유지
           import subprocess, sys
-          gy_result = subprocess.run([sys.executable, 'crawl_gyeonggi.py'])
+          gy_result = subprocess.run([sys.executable, 'crawl_gyeonggi.py', 'crawl_notice_previews.py', 'notice-preview-extract.js'])
           if gy_result.returncode:
               print('경기도당 수집 실패 — 기존 자료 유지; 실행 로그 확인 필요')
 
@@ -360,10 +360,13 @@ jobs:
 
           EOF
 
+      - name: 공지 본문 미리보기 수집
+        run: python3 crawl_notice_previews.py
+
       - name: 변경사항 커밋
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add notices_data.json central_data.json council_data.json bills_data.json bills_debug.json
+          git add notices_data.json central_data.json council_data.json notice_previews.json bills_data.json bills_debug.json
           git diff --cached --quiet || git commit -m "chore: 공지사항 데이터 업데이트 $(date +'%Y-%m-%d %H:%M')"
           git push
