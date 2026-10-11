@@ -37,6 +37,14 @@ export function createOfficeLocation(){
  }
  async function route({env,uid,request,body={}}){
   if(!uid)fail(401,'로그인이 필요합니다.');await schema(env);const path=new URL(request.url).pathname;
+  if(path==='/office-location/history'&&request.method==='GET'){
+   const url=new URL(request.url),device=url.searchParams.get('device')||'';
+   const owned=await q(env,'SELECT id,label FROM office_location_devices WHERE uid=? AND id=?',[uid,device]).first();if(!owned)fail(404,'연결된 휴대폰을 찾지 못했습니다.');
+   const end=url.searchParams.has('end')?Date.parse(url.searchParams.get('end')):Date.now(),start=url.searchParams.has('start')?Date.parse(url.searchParams.get('start')):end-86400000;
+   if(!Number.isFinite(start)||!Number.isFinite(end)||end<=start||end-start>31*86400000)fail(400,'위치 이력은 최대 31일 범위로 조회해 주세요.');
+   const rows=(await q(env,'SELECT location_json,received_at FROM office_location_history WHERE uid=? AND device_id=? AND tst>=? AND tst<=? ORDER BY tst LIMIT 501',[uid,device,Math.floor(start/1000),Math.floor(end/1000)]).all()).results||[];
+   return {ok:true,deviceId:device,label:owned.label,start,end,points:rows.slice(0,500).map(r=>({...JSON.parse(r.location_json),receivedAt:r.received_at})),truncated:rows.length>500,scope:'측정된 위치 최대 500개, 실제 도로 경로를 보장하지 않음'};
+  }
   if(path==='/office-location/devices'&&request.method==='GET'){
    const rows=(await q(env,'SELECT id,label,created_at,location_json,received_at FROM office_location_devices WHERE uid=? ORDER BY created_at',[uid]).all()).results||[];
    return {ok:true,devices:rows.map(r=>({id:r.id,label:r.label,createdAt:r.created_at,location:r.location_json?JSON.parse(r.location_json):null,receivedAt:r.received_at}))};

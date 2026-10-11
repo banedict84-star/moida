@@ -1,3 +1,4 @@
+import {executeFeatureTool,FEATURE_NAMES} from './secretary-feature-tools.js';
 import {TOOLKIT_NAMES} from './secretary-toolkit-defs.js';
 import {exportDocument} from './secretary-toolkit-export.js';
 import {readHwpx} from './secretary-toolkit-hwpx.js';
@@ -47,6 +48,7 @@ async function notification(env,uid,notificationId,title,body){await q(env,'INSE
 async function notifications(env,uid){return(await q(env,'SELECT id,title,body,created_at,read_at FROM office_notifications WHERE tenant_id=? ORDER BY created_at DESC LIMIT 40',[uid]).all()).results;}
 async function tasks(env,uid,status='all'){if(!['all','open','in_progress','completed'].includes(status))fail(400,'할 일 상태가 올바르지 않습니다.');return(await q(env,"SELECT * FROM office_todos WHERE tenant_id=? AND (?='all' OR status=?) ORDER BY status='completed',due_at IS NULL,due_at,created_at DESC LIMIT 100",[uid,status,status]).all()).results;}
 export async function executeToolkit({env,uid,name,args={},operationKey,services={},fetcher=fetch}){await ensureToolkit(env);if(!TOOLKIT_NAMES.has(name))fail(400,'연결되지 않은 도구입니다.');const key=id(operationKey||crypto.randomUUID());
+ if(FEATURE_NAMES.has(name))return executeFeatureTool({name,args,operationKey:key,services});
  if(name==='tool_connection_status'){const external=services.connections?await services.connections():{};return{ok:true,files:true,documents:true,tasks:true,in_app_notifications:true,news_monitors:true,transcription:!!env.OPENAI_API_KEY,file_analysis:!!env.OPENAI_API_KEY,law:!!env.LAW_OC,...external};}
  if(name==='search_files'){const query=str(args.query,300),limit=Math.min(30,Math.max(1,Number(args.limit)||12));const files=(await q(env,'SELECT id,title,format,category,created_at,substr(content,1,500) AS preview FROM office_files WHERE tenant_id=? AND (instr(title,?)>0 OR instr(content,?)>0) ORDER BY created_at DESC LIMIT ?',[uid,query,query,limit]).all()).results;return{ok:true,files};}
  if(name==='search_drive'){if(!services.searchDrive)fail(409,'Google Drive 연결이 필요합니다.');return{ok:true,...await services.searchDrive(str(args.query,200),{foldersOnly:args.folders_only===true,pageToken:str(args.page_token,2048)})};}
