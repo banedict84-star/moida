@@ -41,7 +41,7 @@ public final class MainActivity extends Activity {
   button(layout,"일정·행사",()->openSite("schedule"),false);
   button(layout,"통화 기록",()->openSite("calls"),false);
   button(layout,"앱 업데이트 확인",()->checkUpdate(true),false);
-  updateStatus=text("앱 1.0 · Android 8 이상\nChrome 또는 기본 브라우저의 로그인·다운로드 기능을 사용합니다.\n통화녹음 자동 수집은 별도의 ‘모이다 통화 연결’ 앱에서 설정하세요.",13,0xFF7E8C9E);layout.addView(updateStatus);
+  updateStatus=text("앱 "+BuildConfig.VERSION_NAME+" · Android 8 이상\nChrome 또는 기본 브라우저의 로그인·다운로드 기능을 사용합니다.\n통화녹음 자동 수집은 별도의 ‘모이다 통화 연결’ 앱에서 설정하세요.",13,0xFF7E8C9E);layout.addView(updateStatus);
   setContentView(scroll);
   if(state==null){openSite("dashboard");checkUpdate(false);}
  }

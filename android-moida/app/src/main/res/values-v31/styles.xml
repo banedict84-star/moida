@@ -1,0 +1,12 @@
+<resources>
+ <style name="AppTheme" parent="android:style/Theme.Material.Light.NoActionBar">
+  <item name="android:fontFamily">sans</item>
+  <item name="android:colorAccent">#244d91</item>
+  <item name="android:statusBarColor">#102139</item>
+  <item name="android:navigationBarColor">#102139</item>
+  <item name="android:windowActionModeOverlay">true</item>
+  <item name="android:windowBackground">@drawable/moida_launch</item>
+  <item name="android:windowSplashScreenBackground">#FFFFFF</item>
+  <item name="android:windowSplashScreenAnimatedIcon">@drawable/ic_moida</item>
+ </style>
+</resources>

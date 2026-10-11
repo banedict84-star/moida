@@ -1,7 +1,7 @@
 plugins { id 'com.android.application' }
 android {
  namespace 'kr.moida.office'; compileSdk 34
- defaultConfig { applicationId 'kr.moida.office'; minSdk 26; targetSdk 34; versionCode 1; versionName '1.0' }
+ defaultConfig { applicationId 'kr.moida.office'; minSdk 26; targetSdk 34; versionCode 2; versionName '1.1' }
  buildFeatures { buildConfig true }
  signingConfigs { retained { storeFile file('../.signing/moida.jks'); storePassword 'android'; keyAlias 'moida'; keyPassword 'android' } }
  buildTypes { release { signingConfig signingConfigs.retained; minifyEnabled false; debuggable false } }
