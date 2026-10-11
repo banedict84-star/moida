@@ -8,7 +8,12 @@ export function locationPayload(value,now=Date.now()){
 export function createOfficeLocation(){
  const schemas=new WeakMap();
  const q=(env,sql,args=[])=>env.AGENT_DB.prepare(sql).bind(...args);
- async function schema(env){if(!env.AGENT_DB)fail(503,'위치 저장소가 준비되지 않았습니다.');if(!schemas.has(env.AGENT_DB)){const p=env.AGENT_DB.prepare('CREATE TABLE IF NOT EXISTS office_location_devices (id TEXT PRIMARY KEY, uid TEXT NOT NULL, label TEXT NOT NULL, secret_hash TEXT NOT NULL, created_at INTEGER NOT NULL, location_json TEXT, received_at INTEGER)').run();schemas.set(env.AGENT_DB,p);p.catch(()=>schemas.delete(env.AGENT_DB));}await schemas.get(env.AGENT_DB);}
+ async function schema(env){if(!env.AGENT_DB)fail(503,'위치 저장소가 준비되지 않았습니다.');if(!schemas.has(env.AGENT_DB)){const p=(async()=>{
+  await env.AGENT_DB.prepare('CREATE TABLE IF NOT EXISTS office_location_devices (id TEXT PRIMARY KEY, uid TEXT NOT NULL, label TEXT NOT NULL, secret_hash TEXT NOT NULL, created_at INTEGER NOT NULL, location_json TEXT, received_at INTEGER)').run();
+  await env.AGENT_DB.prepare('CREATE TABLE IF NOT EXISTS office_location_history (device_id TEXT NOT NULL, uid TEXT NOT NULL, tst INTEGER NOT NULL, location_json TEXT NOT NULL, received_at INTEGER NOT NULL, PRIMARY KEY(device_id,tst))').run();
+  await env.AGENT_DB.prepare('CREATE INDEX IF NOT EXISTS office_location_history_owner_time ON office_location_history(uid,tst)').run();
+  await env.AGENT_DB.prepare("INSERT OR IGNORE INTO office_location_history SELECT id,uid,json_extract(location_json,'$.tst'),location_json,received_at FROM office_location_devices WHERE location_json IS NOT NULL AND received_at IS NOT NULL").run();
+ })();schemas.set(env.AGENT_DB,p);p.catch(()=>schemas.delete(env.AGENT_DB));}await schemas.get(env.AGENT_DB);}
  async function receive({env,request}){
   await schema(env);
   const match=/^Basic ([A-Za-z0-9+/=]+)$/i.exec(request.headers.get('Authorization')||'');if(!match)fail(401,'앱 연결 정보를 확인해 주세요.');
@@ -23,8 +28,11 @@ export function createOfficeLocation(){
   if(!length)return [];
   let body;try{body=JSON.parse(new TextDecoder().decode(bytes));}catch{fail(400,'위치 요청을 읽지 못했습니다.');}
   const location=locationPayload(body);
-  // Queued older fixes must never replace a more recent position. Store only the latest fix.
-  if(location)await q(env,"UPDATE office_location_devices SET location_json=?,received_at=? WHERE id=? AND (location_json IS NULL OR json_extract(location_json,'$.tst') < ?)",[JSON.stringify(location),Date.now(),id,location.tst]).run();
+  // Retain delayed fixes for future routes, while keeping the live pin at the newest fix.
+  if(location){const receivedAt=Date.now();await env.AGENT_DB.batch([
+   q(env,'INSERT OR IGNORE INTO office_location_history (device_id,uid,tst,location_json,received_at) SELECT id,uid,?,?,? FROM office_location_devices WHERE id=?',[location.tst,JSON.stringify(location),receivedAt,id]),
+   q(env,"UPDATE office_location_devices SET location_json=?,received_at=? WHERE id=? AND (location_json IS NULL OR json_extract(location_json,'$.tst') < ?)",[JSON.stringify(location),receivedAt,id,location.tst])
+  ]);}
   return [];
  }
  async function route({env,uid,request,body={}}){
