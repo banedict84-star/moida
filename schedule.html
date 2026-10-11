@@ -805,7 +805,7 @@ onAuthStateChanged(_auth, async function(user){
   }
 });
 </script>
-<link rel="stylesheet" href="flow-calendar.css?v=1"><link rel="stylesheet" href="schedule-experience.css?v=6">
+<link rel="stylesheet" href="flow-calendar.css?v=1"><link rel="stylesheet" href="schedule-experience.css?v=7">
 </head>
 <body>
 <script>try{if(/[?&]embed=1/.test(location.search))document.documentElement.classList.add('embed');}catch(e){}</script>
@@ -1964,7 +1964,7 @@ onAuthStateChanged(_auth, async function(user){
 })();
 </script>
 <script src="access-guard.js"></script>
-<script src="flow-calendar-client.js?v=3"></script>
+<script src="flow-calendar-client.js?v=4"></script>
 <script>
 (function(){var client;window._flowCalendarReady=function(){if(!window._flowAuth||!window._flowAuth.currentUser)return;if(!client)client=createFlowCalendarClient({mount:document.getElementById('flowCalendarMount'),user:function(){return window._flowAuth.currentUser;},apply:function(events){if(window._flowApplyEvents)window._flowApplyEvents(events);}});window._flowWriteState=function(){return client.state();};window._flowCreateSchedule=function(event,requestId,target){return client.create(event,requestId,target);};window._flowRefreshSchedule=function(){return client.refresh(true);};window._flowLoadDetail=function(eventId){return client.detail(eventId);};client.refresh(false);};window._flowCalendarReady();})();
 </script>
