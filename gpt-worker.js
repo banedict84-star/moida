@@ -1,4 +1,5 @@
 import {createVoiceCall} from './secretary-voice.js';
+import {driveListParams,driveListResult} from './drive-query.js';
 import {handleSecretaryRoute} from "./secretary-agent.js";
 import {teamTools,executeTeamTool,runToolConversation,compactWorkContext} from './agent-tools.js';
 import {executeToolkit,toolkitRoute,toolkitTick,boundedBytes,bytesToBase64} from "./secretary-toolkit.js";
@@ -1700,7 +1701,8 @@ function officeToolServices(env,user,request){
     searchLaw:(target,query)=>searchLaw(env,target,query,{display:10}),
     readLaw:async(target,id,mst)=>{if(!['law','ordin'].includes(target)||(!id&&!mst))throw new HttpError(400,'법령 검색 결과의 ID가 필요합니다.');const result=await getLawDetail(env,target,id,mst);const value=JSON.stringify(result);return{content:value.slice(0,80000),truncated:value.length>80000};},
     async calendar(timeMin,timeMax){const url=new URL('/google/calendar/events',request.url);url.searchParams.set('timeMin',timeMin);url.searchParams.set('timeMax',timeMax);return(await googleCalendarEvents(new Request(url,{headers:request.headers}),env,user)).json();},
-    async searchDrive(query){const token=await scopedToken(GOOGLE_DRIVE_SCOPE),safe=query.replace(/\\/g,'\\\\').replace(/'/g,"\\'");const params=new URLSearchParams({q:"trashed = false and mimeType != 'application/vnd.google-apps.folder' and (name contains '"+safe+"' or fullText contains '"+safe+"')",fields:'nextPageToken,files(id,name,mimeType,modifiedTime,webViewLink,size)',pageSize:'30',orderBy:'modifiedTime desc'});return googleApi(token,'https://www.googleapis.com/drive/v3/files?'+params);},
+    async searchDrive(query,options={}){const token=await scopedToken(GOOGLE_DRIVE_SCOPE);return driveListResult(await googleApi(token,'https://www.googleapis.com/drive/v3/files?'+driveListParams({query,...options})));},
+    async listDriveFolder(folderId,pageToken){const token=await scopedToken(GOOGLE_DRIVE_SCOPE);return driveListResult(await googleApi(token,'https://www.googleapis.com/drive/v3/files?'+driveListParams({folderId,pageToken})));},
     async readDrive(fileId){const token=await scopedToken(GOOGLE_DRIVE_SCOPE);const base='https://www.googleapis.com/drive/v3/files/'+encodeURIComponent(fileId);const meta=await googleApi(token,base+'?fields=id,name,mimeType,size');if(Number(meta.size)>8*1024*1024)throw new HttpError(413,'Drive 파일은 8MB 이하로 가져와 주세요.');let target=base+'?alt=media',name=meta.name,mime=meta.mimeType;
       if(mime==='application/vnd.google-apps.document'){mime='text/plain';name=name+'.txt';target=base+'/export?mimeType='+encodeURIComponent(mime);}
       else if(mime==='application/vnd.google-apps.spreadsheet'){mime='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';name=name+'.xlsx';target=base+'/export?mimeType='+encodeURIComponent(mime);}
