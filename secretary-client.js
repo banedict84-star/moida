@@ -2,6 +2,13 @@
   'use strict';
   function createSecretaryClient(options){
     var busy=false, disposed=false;
+    var selector=typeof document!=='undefined'?document.createElement('select'):{style:{},setAttribute:function(){},addEventListener:function(){}};selector.id='secretaryModelSelect';selector.setAttribute('aria-label','비서실장 모델');selector.title='Sol·Astra는 Luna보다 사용 비용이 높습니다.';selector.style.cssText='max-width:105px;flex-shrink:0;border:1px solid #d9e1ed;border-radius:8px;padding:6px;background:#fff;font:inherit;font-size:12px;color:#34557e';
+    if(typeof document!=='undefined')[['gpt-6-luna','Luna'],['gpt-6.1-sol','Sol'],['gpt-6-astra','Astra']].forEach(function(item){var option=document.createElement('option');option.value=item[0];option.textContent=item[1];selector.append(option);});
+    function modelKey(){return 'moida_secretary_model_'+options.owner();}
+    function selectedModel(){var value;try{value=localStorage.getItem(modelKey());}catch(e){}return ['gpt-6-luna','gpt-6.1-sol','gpt-6-astra'].includes(value)?value:'gpt-6-luna';}
+    selector.value=selectedModel();selector.addEventListener('change',function(){try{localStorage.setItem(modelKey(),selector.value);}catch(e){}});
+    var composer=typeof document!=='undefined'&&document.getElementById('aiInput');if(composer)composer.parentElement.parentElement.insertBefore(selector,composer.parentElement);
+
     var labels={pending:'에이전트가 답변을 준비합니다.',queued:'에이전트 실행을 기다립니다.',in_progress:'에이전트가 업무를 처리합니다.',waiting:'도구 결과를 기다립니다.',requires_action:'의원실 업무 도구를 실행합니다.'};
     function storeKey(thread){return 'moida_secretary_pending_'+options.owner()+'_'+thread;}
     function read(thread){try{return JSON.parse(localStorage.getItem(storeKey(thread))||'null');}catch(e){return null;}}
@@ -53,7 +60,7 @@
     }
     async function run(thread,input,context){
       if(busy)throw Error('이전 요청을 처리하고 있습니다.');
-      busy=true;options.busy(true);
+      selector.value=selectedModel();selector.disabled=true;busy=true;options.busy(true);
       try{
         var saved=read(thread),state;
         if(!saved){
@@ -61,12 +68,12 @@
           if(existing.request_id&&!['ready','completed','failed','cancelled'].includes(existing.status)){
             saved={request_id:existing.request_id,owner:options.owner(),results:{}};write(thread,saved);state=existing;
           }else{
-            saved={request_id:crypto.randomUUID(),owner:options.owner(),results:{},input:input,context:context};write(thread,saved);
-            state=await post('/secretary/message',{thread_id:thread,request_id:saved.request_id,input:input,context:context});
+            saved={request_id:crypto.randomUUID(),owner:options.owner(),results:{},input:input,context:context,model:selector.value};write(thread,saved);
+            state=await post('/secretary/message',{thread_id:thread,request_id:saved.request_id,input:input,context:context,model:saved.model});
           }
         }
         return await drive(thread,saved,state);
-      }finally{busy=false;options.busy(false);}
+      }finally{busy=false;selector.disabled=false;options.busy(false);}
     }
     return {run:run,isBusy:function(){return busy;},hasPending:function(thread){return !!read(thread);},dispose:function(){disposed=true;}};
   }
