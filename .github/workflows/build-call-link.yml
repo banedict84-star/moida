@@ -5,7 +5,7 @@ on:
     paths: ['android-call-link/**', '.github/workflows/build-call-link.yml']
   workflow_dispatch:
 permissions:
-  contents: read
+  contents: write
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -18,8 +18,31 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.7'
+      - uses: actions/cache@v4
+        id: signing
+        with:
+          path: ~/.android/debug.keystore
+          key: moida-call-link-signing-v1
+      - name: Protect update signing identity
+        run: |
+          if [ "${{ steps.signing.outputs.cache-hit }}" != "true" ] && ! grep -q 'versionCode 3;' android-call-link/app/build.gradle; then
+            echo 'Signing identity missing. Restore the original signing key before building an update.'
+            exit 1
+          fi
       - run: gradle :app:assembleDebug
         working-directory: android-call-link
+      - name: Publish install file
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cp android-call-link/app/build/outputs/apk/debug/app-debug.apk moida-call-link.apk
+          VERSION=$(sed -n 's/.*versionCode \([0-9]*\);.*/\1/p' android-call-link/app/build.gradle)
+          if gh release view call-link-latest > /dev/null 2>&1; then
+            gh release upload call-link-latest moida-call-link.apk --clobber
+            gh release edit call-link-latest --title "Moida Call Link build $VERSION"
+          else
+            gh release create call-link-latest moida-call-link.apk --title "Moida Call Link build $VERSION" --notes 'Galaxy call recording companion. Download the APK and install on your phone.'
+          fi
       - uses: actions/upload-artifact@v4
         with:
           name: moida-call-link-apk
