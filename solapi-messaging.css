@@ -41,3 +41,15 @@
 #solapiMessaging .sms-history .sms-top{margin-bottom:8px}
 #solapiMessaging button:disabled{cursor:default}
 @media(max-width:760px){#solapiMessaging{padding:16px 12px}#solapiMessaging .sms-columns{grid-template-columns:1fr;gap:0}#solapiMessaging .sms-card{padding:16px;border-radius:14px}#solapiMessaging>.sms-top>div:last-child{flex-wrap:wrap}#solapiMessaging>.sms-top h2{font-size:20px}#solapiMessaging #smsText{height:150px}}
+
+/* Shared type scale for every part of the messaging screen. */
+#solapiMessaging{font-size:14px;line-height:1.6}
+#solapiMessaging>.sms-top h2{font-size:20px;font-weight:700;line-height:1.4}
+#solapiMessaging .sms-card h3{font-size:15px;font-weight:700;line-height:1.5}
+#solapiMessaging label,#solapiMessaging input:not([type=checkbox]),#solapiMessaging select,#solapiMessaging textarea,#solapiMessaging .sms-birthday-list p{font-size:14px;line-height:1.6}
+#solapiMessaging label{font-weight:500}
+#solapiMessaging button,#solapiMessaging a,#solapiMessaging>.sms-top>div:last-child button,#solapiMessaging>.sms-top>div:last-child a,#solapiMessaging .sms-today>button,#solapiMessaging #smsCompose>a{font-size:13px;font-weight:600;line-height:1.5}
+#solapiMessaging #smsConnection,#solapiMessaging .sms-hint,#solapiMessaging .sms-today>p,#solapiMessaging .sms-birthday p,#solapiMessaging label span,#solapiMessaging #smsConnectForm p,#solapiMessaging #smsStatus:not(:empty){font-size:12px;line-height:1.6;color:#697b95}
+#solapiMessaging #smsSettings,#solapiMessaging .sms-automation>summary{font-size:13px;font-weight:500;line-height:1.6}
+#solapiMessaging .sms-history-row strong{font-size:14px;font-weight:600}
+#solapiMessaging .sms-history-row p{font-size:13px;line-height:1.6}
