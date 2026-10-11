@@ -1,3 +1,4 @@
+import {createFlowCalendar} from './flow-calendar.js';
 import {createVoiceCall} from './secretary-voice.js';
 import {driveListParams,driveListResult} from './drive-query.js';
 import {handleSecretaryRoute} from "./secretary-agent.js";
@@ -1712,12 +1713,15 @@ function officeToolServices(env,user,request){
   };
 }
 
+const flowCalendar=createFlowCalendar({encrypt:encryptGoogleToken,decrypt:decryptGoogleToken});
+
 async function handleFetch(request, env) {
   if (request.method === "OPTIONS") return new Response(null, { status: 204, headers: corsHeaders(request, env) });
   const url = new URL(request.url);
   const path = url.pathname.replace(/\/+$/, "") || "/";
 
   try {
+    if(path.startsWith('/flow/calendar/')){const callback=path==='/flow/calendar/callback';const user=callback?null:await verifyFirebaseUser(request,env);const result=await flowCalendar.route({env,uid:user?.uid,request,body:request.method==='POST'?await requestBody(request):{},origin:callback?null:safeAppOrigin(request.headers.get('Origin'),env)});return result instanceof Response?result:json(result,200,request,env);}
     if(path==='/voice/call'&&request.method==='POST'){const user=await verifyFirebaseUser(request,env);return json(await createVoiceCall({env,uid:user.uid,body:await requestBody(request)}),200,request,env);}
     if (path.startsWith('/office-tools/')) {
       const user = await verifyFirebaseUser(request, env);
@@ -1741,7 +1745,7 @@ async function handleFetch(request, env) {
       }}), 200, request, env);
     }
     if (path === "/health" && request.method === "GET") {
-      return json({ ok: true, secretaryApi: "agents-v1", voiceModel: env.SECRETARY_VOICE_MODEL || "gpt-realtime-2.1", voiceCall: Boolean(env.OPENAI_API_KEY), secretaryModel: env.SECRETARY_MODEL || "gpt-6-luna", secretaryEnvironment: "none", secretaryToolkit: "toolkit-v2", officeTools: [...TOOLKIT_NAMES], webSearch: "live", queue: Boolean(env.AGENT_QUEUE), database: Boolean(env.AGENT_DB), law: Boolean(env.LAW_OC), gemini: Boolean(env.GEMINI_API_KEY), googleCalendar: Boolean(env.GOOGLE_CLIENT_ID && env.GOOGLE_CLIENT_SECRET), schemaVersion: AGENT_SCHEMA_VERSION, agentModel: env.AGENT_MODEL || "gpt-4o-mini", executionMode: "parallel-teams", maxConcurrentTeams: 3, leadReview: "model" }, 200, request, env);
+      return json({ ok: true, flowCalendar: Boolean(env.AGENT_DB && env.GOOGLE_CLIENT_SECRET), flowSync: "on-open-and-five-minute-visible", secretaryApi: "agents-v1", voiceModel: env.SECRETARY_VOICE_MODEL || "gpt-realtime-2.1", voiceCall: Boolean(env.OPENAI_API_KEY), secretaryModel: env.SECRETARY_MODEL || "gpt-6-luna", secretaryEnvironment: "none", secretaryToolkit: "toolkit-v2", officeTools: [...TOOLKIT_NAMES], webSearch: "live", queue: Boolean(env.AGENT_QUEUE), database: Boolean(env.AGENT_DB), law: Boolean(env.LAW_OC), gemini: Boolean(env.GEMINI_API_KEY), googleCalendar: Boolean(env.GOOGLE_CLIENT_ID && env.GOOGLE_CLIENT_SECRET), schemaVersion: AGENT_SCHEMA_VERSION, agentModel: env.AGENT_MODEL || "gpt-4o-mini", executionMode: "parallel-teams", maxConcurrentTeams: 3, leadReview: "model" }, 200, request, env);
     }
     if (path === GOOGLE_CALLBACK_PATH && request.method === "GET") {
       return await googleCalendarCallback(request, env);

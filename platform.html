@@ -1071,6 +1071,7 @@ onAuthStateChanged(_auth, async function(user){
 
   /* Firestore 저장 헬퍼 (members/events) — access-guard가 readonly 시 차단 */
   M.save = async function(key, data){
+    if(key==='events'&&Array.isArray(data))data=data.filter(function(e){return e.source!=='flow';});
     try{ localStorage.setItem('moida_'+key+'_'+euid, JSON.stringify(data)); }catch(e){}
     if(window.MOIDA_READONLY){ return; }
     try{ await setDoc(doc(_db,'moida_users',euid), {[key]: JSON.stringify(data)}, {merge:true}); }catch(e){ console.warn('save fail', e); }
@@ -4370,6 +4371,10 @@ function close(){menu.classList.remove('open');plus.setAttribute('aria-expanded'
 plus.onclick=function(){var open=menu.classList.toggle('open');plus.setAttribute('aria-expanded',String(open));};document.addEventListener('click',function(e){if(!menu.contains(e.target)&&!plus.contains(e.target))close();});document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
 var input=document.getElementById('aiInput');if(input)input.placeholder='비서실장에게 메시지 보내기';
 })();
+</script>
+<script src="flow-calendar-client.js?v=1"></script>
+<script>
+(function(){var M=window.MOIDA,client;if(!M)return;var mount=document.createElement('div');mount.hidden=true;document.body.append(mount);function apply(events){var next=(M.events||[]).filter(function(e){return e.source!=='flow';}).concat(events);if(JSON.stringify(next)===JSON.stringify(M.events))return;M.events=next;M.emit();}M.onData(function(){if(!M.auth||!M.auth.currentUser)return;if(!client)client=createFlowCalendarClient({mount:mount,user:function(){return M.auth.currentUser;},apply:apply});client.refresh(false);});window.addEventListener('message',function(event){if(event.origin===location.origin&&event.data&&event.data.type==='moida:flow-events-changed')apply(event.data.events||[]);});})();
 </script>
 </body>
 </html>

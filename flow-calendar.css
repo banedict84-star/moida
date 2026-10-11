@@ -1,0 +1,4 @@
+.flow-calendar-bar{display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:12px 16px;margin:12px 0;background:#fff;border:1px solid #dfe5ee;border-radius:12px;font-size:12px;color:#586579}
+.flow-calendar-bar strong{color:#5947b1;font-size:13px}.flow-calendar-bar span{flex:1;min-width:180px}.flow-calendar-bar button,.flow-calendar-bar select{font:inherit;padding:7px 10px;border:1px solid #dfe5ee;border-radius:8px;background:#fff;color:#273449;max-width:100%;cursor:pointer}.flow-calendar-bar button:disabled{opacity:.55;cursor:wait}.flow-calendar-bar [hidden]{display:none!important}
+[data-edit][hidden],[data-del][hidden],.evd [hidden]{display:none!important}
+@media(max-width:600px){.flow-calendar-bar{gap:8px;padding:12px}.flow-calendar-bar span{flex-basis:calc(100% - 90px)}.flow-calendar-bar select{flex:1;min-width:140px}}

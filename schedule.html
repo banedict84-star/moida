@@ -748,6 +748,7 @@ const _app = initializeApp({apiKey:"AIzaSyAIjhvbCztHoF7YwP2IYIk2C6jCI64uFhs",aut
 const _auth = getAuth(_app);
 const _db = getFirestore(_app);
 window._db = _db;
+window._flowAuth = _auth;
 window._fsSave = async function(uid, key, data){
   try{ await setDoc(doc(_db,'moida_users',uid), {[key]: JSON.stringify(data)}, {merge:true}); }catch(e){ console.warn('fs save err',e); }
 };
@@ -795,6 +796,7 @@ onAuthStateChanged(_auth, async function(user){
     try{ localStorage.setItem(KEY, JSON.stringify(fsEvents)); }catch(e){}
     if(window._reloadEventsFromFS) window._reloadEventsFromFS(fsEvents);
   }
+  if(window._flowCalendarReady)window._flowCalendarReady();
   // CRM 생일 데이터는 일정 목록에 넣지 않고, 달력 표시용으로만 불러온다.
   var fsMembers = await window._fsLoad(fsUid, 'members');
   if(fsMembers && Array.isArray(fsMembers)){
@@ -803,6 +805,7 @@ onAuthStateChanged(_auth, async function(user){
   }
 });
 </script>
+<link rel="stylesheet" href="flow-calendar.css?v=1">
 </head>
 <body>
 <script>try{if(/[?&]embed=1/.test(location.search))document.documentElement.classList.add('embed');}catch(e){}</script>
@@ -854,6 +857,7 @@ onAuthStateChanged(_auth, async function(user){
 
 
 
+    <div id="flowCalendarMount"></div>
     <div class="sched-wrap">
       <div class="sched-main">
         <div class="imp-strip empty" id="impStrip"></div>
@@ -1014,13 +1018,16 @@ onAuthStateChanged(_auth, async function(user){
       if(window.renderCal)window.renderCal();
     });
   }
+  var flowEvents=[];
+  function eventEsc(value){return String(value==null?'':value).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+  window._flowApplyEvents=function(list){flowEvents=list;events=events.filter(function(e){return e.source!=='flow';}).concat(flowEvents);renderFeed();renderStats();renderImp();if(window.renderCal)window.renderCal();try{window.parent.postMessage({type:'moida:flow-events-changed',events:flowEvents},location.origin);}catch(e){}};
   function saveEvents(){
-    localStorage.setItem(EV_KEY, JSON.stringify(events));
-    if(window._fsSave && _uid && _uid!=='default') window._fsSave(_uid, 'events', events);
+    localStorage.setItem(EV_KEY, JSON.stringify(events.filter(function(e){return e.source!=='flow';})));
+    if(window._fsSave && _uid && _uid!=='default') window._fsSave(_uid, 'events', events.filter(function(e){return e.source!=='flow';}));
     try{ window.parent&&window.parent!==window&&window.parent.postMessage({type:'moida:events-changed',events:events},location.origin); }catch(e){}
   }
   window._reloadEventsFromFS = function(fsEvents){
-    events = visibleEvents(fsEvents);
+    events = visibleEvents(fsEvents).filter(function(e){return e.source!=='flow';}).concat(flowEvents);
     localStorage.setItem(EV_KEY, JSON.stringify(events));
     renderFeed(); renderStats(); renderImp(); if(window.renderCal) window.renderCal();
   };
@@ -1063,7 +1070,7 @@ onAuthStateChanged(_auth, async function(user){
       return diff || String(b.id||'').localeCompare(String(a.id||''));
     });
     var feedEl=document.getElementById('feedView');
-    feedEl.innerHTML = list.map(function(e){ var i=events.indexOf(e); return '<div class="ev'+(e.star?' imp':'')+'"><div class="ev-ico">'+calIco+'</div><div class="ev-main"><div class="ev-t">'+e.title+'</div><div class="ev-meta">'+e.author+' · '+e.created+'</div></div><div class="ev-date">'+e.date+' '+e.time+'</div><button class="ev-star'+(e.star?' on':'')+'" data-si="'+i+'" title="중요 일정" onclick="toggleStar(event,'+i+')">'+starSvg(e.star)+'</button></div>'; }).join('');
+    feedEl.innerHTML = list.map(function(e){ var i=events.indexOf(e); return '<div class="ev'+(e.star?' imp':'')+'"><div class="ev-ico">'+calIco+'</div><div class="ev-main"><div class="ev-t">'+eventEsc(e.title)+'</div><div class="ev-meta">'+eventEsc(e.author)+' · '+e.created+'</div></div><div class="ev-date">'+e.date+' '+e.time+'</div><button class="ev-star'+(e.star?' on':'')+'" data-si="'+i+'" title="중요 일정" onclick="toggleStar(event,'+i+')">'+starSvg(e.star)+'</button></div>'; }).join('');
     [].forEach.call(feedEl.querySelectorAll('.ev'), function(node,k){ node._ev=list[k]; }); // 카드 ↔ 이벤트 객체 연결
     var fb=document.querySelector('.fb-all b'); if(fb) fb.textContent=list.length;
   }
@@ -1077,7 +1084,7 @@ onAuthStateChanged(_auth, async function(user){
     if(!imp.length){ strip.classList.add('empty'); strip.innerHTML=''; return; }
     strip.classList.remove('empty');
     var _tn=new Date(); var _tp=function(n){return String(n).padStart(2,'0');}; var todayStr=_tn.getFullYear()+'-'+_tp(_tn.getMonth()+1)+'-'+_tp(_tn.getDate()); var _tmr=new Date(_tn); _tmr.setDate(_tn.getDate()+1); var tmrStr=_tmr.getFullYear()+'-'+_tp(_tmr.getMonth()+1)+'-'+_tp(_tmr.getDate());
-    strip.innerHTML='<div class="imp-head"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 17.8 6.8 19.2l1-5.8L3.5 9.2l5.9-.9z"/></svg>중요 일정 '+imp.length+'</div><div class="imp-list">'+imp.map(function(e){ var md=e.date.slice(5).replace('-','.'); var lab=(e.date===todayStr?'오늘 ':e.date===tmrStr?'내일 ':'')+md; return '<div class="imp-chip" data-title="'+e.title.replace(/"/g,'&quot;')+'"><span class="ic-d">'+lab+'</span><span class="ic-t">'+e.title+'</span><span class="ic-time">'+e.time+'</span></div>'; }).join('')+'</div>';
+    strip.innerHTML='<div class="imp-head"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 17.8 6.8 19.2l1-5.8L3.5 9.2l5.9-.9z"/></svg>중요 일정 '+imp.length+'</div><div class="imp-list">'+imp.map(function(e){ var md=e.date.slice(5).replace('-','.'); var lab=(e.date===todayStr?'오늘 ':e.date===tmrStr?'내일 ':'')+md; return '<div class="imp-chip" data-title="'+eventEsc(e.title)+'"><span class="ic-d">'+lab+'</span><span class="ic-t">'+eventEsc(e.title)+'</span><span class="ic-time">'+e.time+'</span></div>'; }).join('')+'</div>';
   }
   document.getElementById('impStrip').addEventListener('click',function(e){
     var chip=e.target.closest('.imp-chip'); if(!chip) return;
@@ -1145,7 +1152,7 @@ onAuthStateChanged(_auth, async function(user){
       document.getElementById('spCount').textContent=list.length+'건의 일정';
       var body=document.getElementById('spBody');
       if(!list.length){ body.innerHTML='<div class="sp-empty">해당 일정이 없습니다.</div>'; }
-      else body.innerHTML=list.map(function(e){ var d=ymd(e.date); return '<div class="sp-row" data-title="'+e.title.replace(/"/g,'&quot;')+'"><div class="sp-d"><span class="mm">'+(d.getMonth()+1)+'월</span><span class="dd">'+d.getDate()+'</span></div><div class="sp-info"><div class="sp-t">'+e.title+'</div><div class="sp-m">'+e.date+' ('+dows[d.getDay()]+') · '+e.time+'</div></div></div>'; }).join('');
+      else body.innerHTML=list.map(function(e){ var d=ymd(e.date); return '<div class="sp-row" data-title="'+eventEsc(e.title)+'"><div class="sp-d"><span class="mm">'+(d.getMonth()+1)+'월</span><span class="dd">'+d.getDate()+'</span></div><div class="sp-info"><div class="sp-t">'+eventEsc(e.title)+'</div><div class="sp-m">'+e.date+' ('+dows[d.getDay()]+') · '+e.time+'</div></div></div>'; }).join('');
       document.querySelectorAll('.sp-dot').forEach(function(el,i){ el.classList.toggle('on', i===idx); });
       var nx=document.getElementById('spNext');
       nx.innerHTML=(idx<2?'다음 ('+ranges[idx+1].title+') <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>':'확인');
@@ -1229,8 +1236,8 @@ onAuthStateChanged(_auth, async function(user){
         if(item.birthday)return '<div class="cal-ev birthday" data-birthday-key="'+encodeURIComponent(item.birthdayKey||'')+'" title="'+item.title.replace(/"/g,'&quot;')+'">'+item.title+'</div>';
         var e=item.e, span=item.span;
         var cls='cal-ev'+(span?' multi-'+span:'');
-        var inner=span==='m'?'&nbsp;':span==='e'?e.title:('<span class="t">'+e.time+'</span> '+e.title);
-        return '<div class="'+cls+'" data-title="'+e.title.replace(/"/g,'&quot;')+'">'+inner+'</div>';
+        var inner=span==='m'?'&nbsp;':span==='e'?eventEsc(e.title):('<span class="t">'+e.time+'</span> '+eventEsc(e.title));
+        return '<div class="'+cls+'" data-title="'+eventEsc(e.title)+'">'+inner+'</div>';
       }
       html += cells.map(function(c,i){
         var dow=i%7;
@@ -1323,8 +1330,8 @@ onAuthStateChanged(_auth, async function(user){
           var panel=document.createElement('div');panel.className='cal-more-panel';panel.setAttribute('data-cal-more',key);panel.setAttribute('data-cal-more-kind',kind);
           panel.innerHTML=items.slice(skip).map(function(item){
             if(item.birthday)return '<div class="cal-ev birthday" data-birthday-key="'+encodeURIComponent(item.birthdayKey||'')+'" title="'+item.title.replace(/"/g,'&quot;')+'">'+item.title+'</div>';
-            var event=item.e,span=item.span,cls='cal-ev'+(span?' multi-'+span:''),inner=span==='m'?'&nbsp;':span==='e'?event.title:('<span class="t">'+event.time+'</span> '+event.title);
-            return '<div class="'+cls+'" data-title="'+event.title.replace(/"/g,'&quot;')+'">'+inner+'</div>';
+            var event=item.e,span=item.span,cls='cal-ev'+(span?' multi-'+span:''),inner=span==='m'?'&nbsp;':span==='e'?eventEsc(event.title):('<span class="t">'+event.time+'</span> '+eventEsc(event.title));
+            return '<div class="'+cls+'" data-title="'+eventEsc(event.title)+'">'+inner+'</div>';
           }).join('');
           cell.appendChild(panel);
           bindBirthdayClick(panel);
@@ -1562,8 +1569,8 @@ onAuthStateChanged(_auth, async function(user){
       p._curEv=ev;
       const title=ev.querySelector('.ev-t').textContent.trim();
       const meta=ev.querySelector('.ev-meta').textContent.trim();
-      const author=meta.split('·')[0].trim();
-      const created=meta.split('·').slice(1).join('·').trim();
+      const author=ev._ev?ev._ev.author:meta.split('·')[0].trim();
+      const created=ev._ev?String(ev._ev.created):meta.split('·').slice(1).join('·').trim();
       const dt=ev.querySelector('.ev-date').textContent.trim();
       const mm=dt.match(/(\d{4})-(\d{2})-(\d{2})(?:\s*(\d{2}:\d{2}))?/);
       p.querySelector('#evdAuthor').textContent=author;
@@ -1578,7 +1585,8 @@ onAuthStateChanged(_auth, async function(user){
       }
       p.querySelector('#evdCreated').textContent=createdLabel;
       p.querySelector('#evdTitle').textContent=title;
-      var _evArr=events.find(function(e){ return e.title===title && e.created===created; });
+      var _evArr=ev._ev||events.find(function(e){ return e.title===title && e.created===created; });
+      var flowReadOnly=!!(_evArr&&_evArr.source==='flow');p.querySelector('[data-edit]').hidden=flowReadOnly;p.querySelector('[data-del]').hidden=flowReadOnly;p.querySelector('#evdCInput').disabled=flowReadOnly;['.evd-row','.evd-comments','.evd-foot'].forEach(function(selector){p.querySelector(selector).hidden=flowReadOnly;});
       if(mm){
         const dObj=new Date(+mm[1],+mm[2]-1,+mm[3]);
         p.querySelector('#evdMon').textContent=mm[1]+'-'+mm[2];
@@ -1589,7 +1597,7 @@ onAuthStateChanged(_auth, async function(user){
         p.querySelector('#evdTime').textContent=_timeStr;
       } else { p.querySelector('#evdTime').textContent=dt; }
       var data=ev._evData||(_evArr?{ body:_evArr._body, files:_evArr._files, location:_evArr._location }:{}); var ch='';
-      if(data.location){ var enc=encodeURIComponent(mapSearchQuery(data.location)); ch+='<div class="evd-map"><div class="evd-maploc"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-5.6-7-11a7 7 0 0 1 14 0c0 5.4-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>'+data.location+'</div><iframe loading="lazy" src="https://maps.google.com/maps?q='+enc+'&z=15&output=embed"></iframe></div>'; }
+      if(data.location){ var enc=encodeURIComponent(mapSearchQuery(data.location)); ch+='<div class="evd-map"><div class="evd-maploc"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-5.6-7-11a7 7 0 0 1 14 0c0 5.4-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>'+eventEsc(data.location)+'</div><iframe loading="lazy" src="https://maps.google.com/maps?q='+enc+'&z=15&output=embed"></iframe></div>'; }
       if(data.body){ ch+='<div class="evd-text">'+data.body.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/\n/g,'<br>')+'</div>'; }
       if(data.files&&data.files.length){
         var imgs=data.files.filter(function(f){return f.isImage;});
@@ -1598,6 +1606,7 @@ onAuthStateChanged(_auth, async function(user){
         if(docs.length) ch+='<div class="evd-docs">'+docs.map(function(f){var n=f.name.replace(/\\/g,'\\\\').replace(/'/g,"\\'"); return '<div class="evd-doc" onclick="window._openPreview(\''+f.url+'\',\''+n+'\')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v5h5M7 3h8l5 5v11a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/></svg>'+f.name+'</div>';}).join('')+'</div>';
       }
       p.querySelector('#evdContent').innerHTML=ch;
+      if(flowReadOnly){var original=document.createElement('a');original.href=_evArr.sourceUrl;original.target='_blank';original.rel='noopener noreferrer';original.textContent='FLOW 원문에서 보기';p.querySelector('#evdContent').append(original);}
       renderComments(ev);
       p.style.left=(window.innerWidth - (p.offsetWidth||390))+'px'; p.classList.add('show'); ovl.classList.add('show');
     });
@@ -1615,7 +1624,7 @@ onAuthStateChanged(_auth, async function(user){
         if(e.key!=='Enter'||e.shiftKey) return;
         e.preventDefault();
         var t=inp.value.trim(); if(!t) return;
-        var ev=p._curEv; if(!ev) return;
+        var ev=p._curEv; if(!ev||(ev._ev&&ev._ev.source==='flow')) return;
         if(!ev._comments) ev._comments=[];
         var now=new Date(); var pad=function(n){return String(n).padStart(2,'0');};
         ev._comments.push({ name:_myName, time:now.getFullYear()+'-'+pad(now.getMonth()+1)+'-'+pad(now.getDate())+' '+pad(now.getHours())+':'+pad(now.getMinutes()), text:t });
@@ -1625,7 +1634,7 @@ onAuthStateChanged(_auth, async function(user){
 
     // 삭제
     p.querySelector('[data-del]').addEventListener('click',function(){
-      var ev=p._curEv; if(!ev) return;
+      var ev=p._curEv; if(!ev||(ev._ev&&ev._ev.source==='flow')) return;
       moidaConfirm({ title:'일정 삭제', desc:'이 일정을 삭제합니다.<br>삭제한 일정은 복구할 수 없어요.', ok:'삭제' }, function(){
         var item=ev._ev||null;
         var _idx=item?events.indexOf(item):-1;
@@ -1642,7 +1651,7 @@ onAuthStateChanged(_auth, async function(user){
     });
     // 수정 → 작성 모달을 채워 열기
     p.querySelector('[data-edit]').addEventListener('click',function(){
-      var ev=p._curEv; if(!ev) return;
+      var ev=p._curEv; if(!ev||(ev._ev&&ev._ev.source==='flow')) return;
       // 카드 연결(_ev)이 없으면 제목+작성시각으로 실제 이벤트를 찾아 잡아둠(견고)
       var obj=ev._ev;
       if(!obj){ var _t0=ev.querySelector('.ev-t').textContent.trim(); var _c0=(ev.querySelector('.ev-meta').textContent.split('·').slice(1).join('·')).trim(); obj=events.find(function(e){ return e.title===_t0 && e.created===_c0; }); }
@@ -1934,6 +1943,10 @@ onAuthStateChanged(_auth, async function(user){
 })();
 </script>
 <script src="access-guard.js"></script>
+<script src="flow-calendar-client.js?v=1"></script>
+<script>
+(function(){var client;window._flowCalendarReady=function(){if(!window._flowAuth||!window._flowAuth.currentUser)return;if(!client)client=createFlowCalendarClient({mount:document.getElementById('flowCalendarMount'),user:function(){return window._flowAuth.currentUser;},apply:function(events){if(window._flowApplyEvents)window._flowApplyEvents(events);}});client.refresh(false);};window._flowCalendarReady();})();
+</script>
 </body>
 </html>
 
