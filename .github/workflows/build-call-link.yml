@@ -21,13 +21,17 @@ jobs:
       - uses: actions/cache@v4
         id: signing
         with:
-          path: ~/.android/debug.keystore
-          key: moida-call-link-signing-v1
+          path: android-call-link/.signing/call-link.jks
+          key: moida-call-link-signing-v2
       - name: Protect update signing identity
         run: |
-          if [ "${{ steps.signing.outputs.cache-hit }}" != "true" ] && ! grep -q 'versionCode 3;' android-call-link/app/build.gradle; then
-            echo 'Signing identity missing. Restore the original signing key before building an update.'
-            exit 1
+          if [ "${{ steps.signing.outputs.cache-hit }}" != "true" ]; then
+            if ! grep -q 'versionCode 4;' android-call-link/app/build.gradle; then
+              echo 'Signing identity missing. Restore the original signing key before building an update.'
+              exit 1
+            fi
+            mkdir -p android-call-link/.signing
+            keytool -genkeypair -keystore android-call-link/.signing/call-link.jks -storepass android -keypass android -alias androiddebugkey -keyalg RSA -keysize 2048 -validity 10000 -dname 'CN=Moida Call Link'
           fi
       - run: gradle :app:assembleDebug
         working-directory: android-call-link
