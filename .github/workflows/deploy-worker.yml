@@ -15,6 +15,7 @@ on:
       - 'flow-calendar.js'
       - 'office-location.js'
       - 'solapi-messaging.js'
+      - 'birthday-messaging.js'
       - 'migrations/**'
       - 'tests/**'
       - 'wrangler.toml'

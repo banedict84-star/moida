@@ -1830,5 +1830,6 @@ export default {
   scheduled(_controller, env, ctx) {
     ctx.waitUntil(recoverStaleRuns(env));
     ctx.waitUntil(toolkitTick(env));
+    ctx.waitUntil(solapiMessaging.tick(env));
   },
 };
