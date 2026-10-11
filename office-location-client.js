@@ -16,7 +16,7 @@
   async function load(){var data=await options.request('/office-location/devices',{method:'GET'});if(!alive())return;list.replaceChildren();
    (data.devices||[]).forEach(function(device){var row=el('div');row.className='office-service-row';row.style.cssText='display:block';row.append(el('strong',device.label));var p=device.location;
     if(p){var old=Date.now()-p.tst*1000>300000;row.append(note((old?'이전 위치 · ':'위치 확인 · ')+new Date(p.tst*1000).toLocaleString('ko-KR',{timeZone:'Asia/Seoul'})+(p.accuracy!==null?' · 오차 약 '+Math.round(p.accuracy)+'m':'')),note('수신: '+new Date(device.receivedAt).toLocaleString('ko-KR',{timeZone:'Asia/Seoul'})));
-     var a=el('a','카카오맵에서 보기');a.href='https://map.kakao.com/link/map/'+encodeURIComponent(device.label)+','+p.lat+','+p.lon;a.target='_blank';a.rel='noopener noreferrer';row.append(a);
+     var a=el('a','구글 지도에서 보기');a.href='https://www.google.com/maps/search/?'+new URLSearchParams({api:'1',query:p.lat+','+p.lon});a.target='_blank';a.rel='noopener noreferrer';row.append(a);
     }else row.append(note('앱 위치 전송 대기'));
     row.append(button('연결 해제',async function(){if(!alive())return;await post('/office-location/disconnect',{id:device.id});if(alive()){setup.replaceChildren();await load();}}));list.append(row);
    });status.textContent=data.devices.length?'앱에서 전송한 위치를 표시합니다.':'아직 연결한 휴대폰이 없습니다.';
