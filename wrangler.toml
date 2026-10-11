@@ -40,4 +40,4 @@ retry_delay = 30
 dead_letter_queue = "moida-agent-jobs-dlq"
 
 [triggers]
-crons = ["*/5 * * * *"]
+crons = ["*/5 * * * *", "* * * * *"]

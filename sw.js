@@ -7,6 +7,15 @@ const GPROXY = (u) => 'https://api.allorigins.win/raw?url=' + encodeURIComponent
 self.addEventListener('install', (e) => self.skipWaiting());
 self.addEventListener('activate', (e) => e.waitUntil(self.clients.claim()));
 
+// Empty Web Push carries no personal data. Read the notices using this device's scoped token.
+function pushConnection(){return new Promise((resolve,reject)=>{const r=indexedDB.open('moida-push',1);r.onupgradeneeded=()=>r.result.createObjectStore('settings');r.onerror=()=>reject(r.error);r.onsuccess=()=>{const db=r.result,tx=db.transaction('settings'),get=tx.objectStore('settings').get('connection');get.onsuccess=()=>resolve(get.result);get.onerror=()=>reject(get.error);tx.oncomplete=()=>db.close();};});}
+self.addEventListener('push',event=>event.waitUntil((async()=>{
+ let shown=false;
+ try{const connection=await pushConnection();if(connection?.token){const response=await fetch('https://moida-gpt.banedict84.workers.dev/office-travel/pending',{headers:{Authorization:'Bearer '+connection.token},cache:'no-store'});if(!response.ok)throw Error('notice fetch failed');const payload=await response.json();for(const notice of payload.notices||[]){await self.registration.showNotification(notice.title,{body:notice.body,tag:notice.id,icon:'./moida-app-icon.svg',data:{url:notice.url,mapUrl:notice.mapUrl},actions:notice.mapUrl?[{action:'map',title:'카카오맵 길찾기'}]:[]});shown=true;}}}catch{}
+ if(!shown)await self.registration.showNotification('모이다 일정 안내',{body:'모이다에서 일정과 알림 연결 상태를 확인해 주세요.',tag:'moida-push-status',data:{url:'https://banedict84-star.github.io/moida/platform.html#locations'}});
+})()));
+self.addEventListener('notificationclick',event=>{event.notification.close();let target='https://banedict84-star.github.io/moida/platform.html#locations';const proposed=event.action==='map'?event.notification.data?.mapUrl:event.notification.data?.url;try{const u=new URL(proposed);if(u.protocol==='https:'&&(u.hostname==='map.kakao.com'||(u.origin===self.location.origin&&u.pathname.startsWith('/moida/'))))target=u.href;}catch{}event.waitUntil(self.clients.openWindow(target));});
+
 // 페이지에서 검색 요청을 받으면 백그라운드로 수집 (waitUntil로 페이지 이탈 후에도 완료 보장)
 self.addEventListener('message', (e) => {
   const data = e.data || {};

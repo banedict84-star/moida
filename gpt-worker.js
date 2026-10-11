@@ -1,4 +1,5 @@
 import {createOfficeLocation} from './office-location.js';
+import {createOfficeTravel} from './office-travel.js';
 import {createSolapiMessaging} from './solapi-messaging.js';
 import {createFlowCalendar} from './flow-calendar.js';
 import {createVoiceCall} from './secretary-voice.js';
@@ -1718,6 +1719,7 @@ function officeToolServices(env,user,request){
 const solapiMessaging=createSolapiMessaging({encrypt:encryptGoogleToken,decrypt:decryptGoogleToken});
 const flowCalendar=createFlowCalendar({encrypt:encryptGoogleToken,decrypt:decryptGoogleToken});
 const officeLocation=createOfficeLocation();
+const officeTravel=createOfficeTravel({encrypt:encryptGoogleToken,decrypt:decryptGoogleToken,flow:flowCalendar});
 
 async function handleFetch(request, env) {
   if (request.method === "OPTIONS") return new Response(null, { status: 204, headers: corsHeaders(request, env) });
@@ -1726,6 +1728,7 @@ async function handleFetch(request, env) {
 
   try {
     if(path==='/owntracks/pub'&&request.method==='POST'){const response=json(await officeLocation.receive({env,request}),200,request,env);response.headers.set('Cache-Control','no-store');return response;}
+    if(path.startsWith('/office-travel/')){const pending=path==='/office-travel/pending';const user=pending?null:await verifyFirebaseUser(request,env);const response=json(await officeTravel.route({env,uid:user?.uid,request,body:request.method==='POST'?await requestBody(request):{}}),200,request,env);response.headers.set('Cache-Control','no-store');return response;}
     if(path.startsWith('/office-location/')){const user=await verifyFirebaseUser(request,env);const response=json(await officeLocation.route({env,uid:user.uid,request,body:request.method==='POST'?await requestBody(request):{}}),200,request,env);response.headers.set('Cache-Control','no-store');return response;}
     if(path.startsWith('/messaging/solapi/')){const user=await verifyFirebaseUser(request,env);return json(await solapiMessaging.route({env,uid:user.uid,request,body:request.method==='POST'?await requestBody(request):{}}),200,request,env);}
     if(path.startsWith('/flow/calendar/')){const callback=path==='/flow/calendar/callback';const user=callback?null:await verifyFirebaseUser(request,env);const result=await flowCalendar.route({env,uid:user?.uid,request,body:request.method==='POST'?await requestBody(request):{},origin:callback?null:safeAppOrigin(request.headers.get('Origin'),env)});return result instanceof Response?result:json(result,200,request,env);}
@@ -1828,6 +1831,8 @@ export default {
   fetch: handleFetch,
   queue: handleQueue,
   scheduled(_controller, env, ctx) {
+    ctx.waitUntil(officeTravel.tick(env));
+    if(_controller.cron==='* * * * *')return;
     ctx.waitUntil(recoverStaleRuns(env));
     ctx.waitUntil(toolkitTick(env));
     ctx.waitUntil(solapiMessaging.tick(env));
