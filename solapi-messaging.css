@@ -2,6 +2,11 @@
 .sms-birthday{margin-top:20px}.sms-birthday p{font-size:13px;color:#7c879d;line-height:1.7}.sms-birthday input[type=checkbox]{width:auto;display:inline;margin-right:8px}.sms-birthday input[type=time]{max-width:180px}.sms-birthday textarea{min-height:110px}
 
 /* Compact message workspace: contacts and birthdays beside the composer. */
+#solapiMessaging>.sms-top{padding:20px 22px;background:#fff;border:1px solid #e3e8ef;border-radius:16px;position:relative;overflow:hidden}
+#solapiMessaging>.sms-top::before{content:'';position:absolute;left:0;top:20px;bottom:20px;width:4px;background:#315ca3;border-radius:0 4px 4px 0}
+#solapiMessaging #smsConnection{display:inline-flex;align-items:center;gap:7px;background:#f0f5fc;color:#5c7193;padding:5px 9px;border-radius:7px;font-size:11px;line-height:1.5}
+#solapiMessaging>.sms-top>div:last-child button,#solapiMessaging>.sms-top>div:last-child a{padding:8px 10px;font-size:11px;border-radius:8px}
+#solapiMessaging #smsDisconnect{border-color:transparent;background:#f7f8fa;color:#8a94a4}
 #solapiMessaging{max-width:1160px;padding:24px 28px}
 #solapiMessaging>.sms-top{margin-bottom:18px}
 #solapiMessaging>.sms-top h2{font-size:22px;letter-spacing:-.6px;margin-bottom:5px}
@@ -9,9 +14,9 @@
 #solapiMessaging .sms-columns{grid-template-columns:minmax(280px,.8fr) minmax(360px,1.2fr);gap:16px;align-items:start}
 #solapiMessaging .sms-card{padding:18px;margin-bottom:14px;border-radius:16px;box-shadow:0 2px 8px #22365b03}
 #solapiMessaging .sms-card h3{font-size:15px;letter-spacing:-.3px;margin:0 0 14px}
-#solapiMessaging #smsSettings{padding:12px 16px;margin-bottom:12px;background:#f8faff;border-radius:12px}
+#solapiMessaging #smsSettings{padding:11px 14px;margin-bottom:12px;background:transparent;border:1px dashed #dce3ee;border-radius:10px;color:#6d7c94;font-size:12px}
 #solapiMessaging #smsStatus:empty{display:none}
-#solapiMessaging #smsStatus:not(:empty){padding:10px 14px;margin:0 0 14px;border-radius:10px;background:#eef4ff}
+#solapiMessaging #smsStatus:not(:empty){padding:10px 14px;margin:0 0 14px;border:1px solid #dfE9f8;border-left:3px solid #7da0d6;border-radius:9px;background:#f7faff;color:#526d94;font-size:12px}
 #solapiMessaging label{font-size:12px;color:#536178}
 #solapiMessaging input:not([type=checkbox]),#solapiMessaging select,#solapiMessaging textarea{background:#fbfcfe;padding:10px 12px;margin:6px 0 12px;border-color:#e1e7f0;outline:none;transition:border-color .15s,box-shadow .15s}
 #solapiMessaging input:focus,#solapiMessaging select:focus,#solapiMessaging textarea:focus{border-color:#7099d8;box-shadow:0 0 0 3px #eaf1fc;background:#fff}
