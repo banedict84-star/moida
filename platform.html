@@ -650,7 +650,7 @@ body.secretary-view #aiPanel{border:0!important;border-radius:0!important;box-sh
       </div>
       </div>
 
-      <div class="page" data-page="schedule"><iframe src="schedule.html?embed=1&view=feed" title="일정·행사" style="display:block;border:1px solid #e9ecf1;border-radius:12px;background:#fff;width:100%;height:calc(100vh - 130px)"></iframe></div>
+      <div class="page" data-page="schedule"><iframe src="schedule.html?embed=1&view=feed&v=flow-detail-6" title="일정·행사" style="display:block;border:1px solid #e9ecf1;border-radius:12px;background:#fff;width:100%;height:calc(100vh - 130px)"></iframe></div>
 
       <div class="page" data-page="pr">
       <div class="pg" style="max-width:1320px;margin:0 auto">
@@ -3204,7 +3204,7 @@ onAuthStateChanged(_auth, async function(user){
 
   function refreshUI(){ ['__minwonRefresh','__schRefresh','__policyRefresh','__dashRefresh'].forEach(function(k){ try{ if(window[k]) window[k](); }catch(e){} }); }
   function reloadCrm(){ try{ var f=document.querySelector('.page[data-page="crm"] iframe'); if(f) f.contentWindow.location.reload(); }catch(e){} }
-  function reloadSchedule(){ try{ var f=document.querySelector('.page[data-page="schedule"] iframe'); if(f) f.contentWindow.location.reload(); }catch(e){} }
+  function reloadSchedule(){ try{ var f=document.querySelector('.page[data-page="schedule"] iframe'); if(f){var u=new URL(f.src);u.searchParams.set('refresh',Date.now());f.src=u.href;} }catch(e){} }
   function addDays(dateText,days){
     var p=String(dateText||'').split('-').map(Number),d=new Date(Date.UTC(p[0],p[1]-1,p[2]+days));
     return d.getUTCFullYear()+'-'+pad(d.getUTCMonth()+1)+'-'+pad(d.getUTCDate());
