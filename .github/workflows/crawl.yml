@@ -369,4 +369,5 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add notices_data.json central_data.json council_data.json notice_previews.json bills_data.json bills_debug.json
           git diff --cached --quiet || git commit -m "chore: 공지사항 데이터 업데이트 $(date +'%Y-%m-%d %H:%M')"
+          git pull --rebase -X theirs origin main
           git push
