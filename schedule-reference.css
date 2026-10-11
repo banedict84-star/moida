@@ -1,0 +1,41 @@
+/* Compact schedule workspace based on the supplied Flow references. */
+.main.schedule-ui{max-width:1480px;background:#fff;padding:24px 28px;gap:16px}
+.schedule-ui .ph-info h1{font-size:22px}
+.schedule-ui .add-ev{width:124px!important;height:38px!important;min-height:38px!important;border-radius:6px!important;font-size:13px!important}
+.schedule-ui .schedule-tabs{display:flex;gap:24px;border-bottom:1px solid #dfe3e8;height:44px;padding:0;background:transparent;border-radius:0;width:100%}
+.schedule-ui .schedule-tabs .vbtn{height:44px;width:76px;border:0;border-radius:0;background:transparent;color:#77818e;font-weight:600}
+.schedule-ui .schedule-tabs .vbtn.active{background:transparent;color:#21334e;border-bottom:3px solid #2858c7}
+.schedule-ui .flow-calendar-bar{min-height:48px;padding:8px 12px;border-radius:6px;background:#fafbfd}
+.schedule-ui .flow-calendar-bar button{height:32px;width:auto;min-width:0;border-radius:5px;padding:0 12px;font-size:12px}
+.schedule-ui .flow-calendar-bar select{height:32px;font-size:12px}
+.schedule-ui .flow-calendar-bar button span{font-size:12px}
+.schedule-date-bar{min-height:34px}.schedule-date-title{font-size:18px}
+.schedule-day-nav,.schedule-today{height:30px;border-radius:5px}
+.schedule-ui .sched-wrap{grid-template-columns:minmax(0,1fr) 300px;gap:28px}
+.schedule-ui .schedule-list{border-radius:8px;border-color:#dfe3e8}
+.schedule-ui .schedule-tools{padding:12px 16px;gap:8px}
+.schedule-ui .schedule-tools input,.schedule-ui .schedule-tools select{height:34px;min-height:34px;border-radius:5px}
+.schedule-list-heading{padding:10px 16px;background:#fafbfd;border-top:1px solid #edf0f3;border-bottom:1px solid #edf0f3}
+.schedule-ui .feed .ev{min-height:70px;padding:12px 18px;gap:14px;border-bottom-color:#dfe3e8}
+.schedule-ui .feed .ev-ico{font-size:0;min-width:18px;width:18px;height:20px;background:url('assets/schedule/calendar.svg') center/18px 18px no-repeat}
+.schedule-ui .feed .ev-t{font-size:14px;font-weight:500}
+.schedule-ui .feed .ev-meta{font-size:12px;margin-top:4px}
+.schedule-row-time{font-size:13px;font-weight:600;color:#21334e;white-space:nowrap;margin-left:auto}
+.schedule-ui .schedule-row-arrow{display:none}
+.schedule-list-footer{padding:10px 16px;background:#fff}
+.schedule-ui .schedule-selection{width:300px;padding:20px;gap:12px;border-radius:8px;border-color:#dfe3e8;box-shadow:none}
+.schedule-selection h2{font-size:18px}.schedule-selection .selection-place{font-size:14px}
+.schedule-ui .selection-actions{gap:8px}
+.schedule-ui .selection-actions button,.schedule-ui .selection-actions a{height:38px;min-height:38px;border-radius:6px;font-size:13px}
+.schedule-ui .cal-head{padding:4px 0 12px;margin:0}.schedule-ui .cal-title{font-size:22px}
+.schedule-ui .cal{padding:0;border:0;box-shadow:none;border-radius:0}
+.schedule-ui .sched-wrap.calmode .cal-grid{grid-auto-rows:132px;grid-template-rows:28px;border-radius:0;border-color:#dfe3e8;background:#edf0f3}
+.schedule-ui .cal-cell{padding:8px;height:100%;min-height:132px}.schedule-ui .cal-cell.sun{background:#fff8f8}.schedule-ui .cal-cell.sat{background:#f5f9ff}
+.schedule-ui .cal-dow{background:#fff;padding:5px;font-weight:500}
+.schedule-ui .cal-dnum{font-weight:400;margin-bottom:8px}
+.schedule-ui .cal-cell.today .cal-dnum{background:#2858c7;color:#fff;width:26px;height:26px;display:flex;align-items:center;justify-content:center;border-radius:50%;margin-top:-3px;margin-bottom:5px}
+.schedule-ui .cal-ev{background:transparent;border-radius:3px;padding:3px 2px;font-size:12px;font-weight:400}
+.schedule-ui .cal-ev:not(.birthday):not(.multi-s):not(.multi-m):not(.multi-e)::before{content:'';display:inline-block;width:8px;height:8px;background:#2858c7;border-radius:50%;margin-right:5px}
+.schedule-ui .cal-ev.multi-s,.schedule-ui .cal-ev.multi-m,.schedule-ui .cal-ev.multi-e{background:#2858c7;color:#fff}.schedule-ui .cal-ev.multi-s .t,.schedule-ui .cal-ev.multi-m .t,.schedule-ui .cal-ev.multi-e .t{color:#fff}
+@media(max-width:900px) and (min-width:701px){.schedule-ui .sched-wrap{grid-template-columns:minmax(0,1fr) 260px;gap:16px}.schedule-ui .schedule-selection{width:260px}.schedule-row-time{font-size:12px}}
+@media(max-width:700px){.main.schedule-ui{padding:16px;gap:12px}.schedule-ui .schedule-tabs{display:flex!important}.schedule-ui .sched-wrap{display:block}.schedule-ui .schedule-selection{display:none}.schedule-ui .feed{gap:0;background:#fff;border:1px solid #dfe3e8;border-radius:8px;overflow:hidden}.schedule-ui .feed .ev{border:0!important;border-bottom:1px solid #dfe3e8!important;border-radius:0;min-height:70px;padding:12px;align-items:center}.schedule-ui .feed .ev.selected{background:#eef4ff}.schedule-row-time{font-size:12px}.schedule-ui .feed .ev-t{font-size:13px}.schedule-ui .schedule-mobile-actions button,.schedule-ui .schedule-mobile-actions a{height:44px;min-height:44px;border-radius:6px}.schedule-date-left{gap:8px}.schedule-date-title{flex-basis:100%;font-size:18px}.schedule-summary{flex-basis:auto;font-size:12px}.schedule-ui .flow-calendar-bar{background:transparent;padding:0}.schedule-ui .add-ev{width:100px!important}}
