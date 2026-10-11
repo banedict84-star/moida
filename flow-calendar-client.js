@@ -15,7 +15,7 @@
    try{var data=await api('status');connected=data.connected;projectId=data.projectId;syncedAt=data.syncedAt||0;apply(data.events);if(!connected){status.textContent='FLOW 로그인으로 일정을 가져오세요.';return;}if(!select.options.length)await projects();
     if(force||!projectId||Date.now()-syncedAt>300000){if(!select.value){status.textContent='가져올 프로젝트를 선택해 주세요.';return;}status.textContent='최신 일정 가져오는 중…';data=await api('sync',{projectId:select.value});projectId=data.projectId;syncedAt=data.syncedAt;apply(data.events);}
     status.textContent=(data.projectName||'FLOW')+' · '+(data.events||[]).length+'건 · '+new Date(syncedAt).toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'})+' 확인';lastCheck=Date.now();
-   }catch(e){if(e.status===409)connected=false;status.textContent=e.message;}finally{busy=false;controls();}}
+   }catch(e){if(e.status===409)connected=false;status.textContent=e.message;return{ok:false,error:e.message};}finally{busy=false;controls();}return{ok:true};}
   connect.onclick=async function(){if(busy)return;busy=true;controls();try{var data=await api('connect',{});root.top.location.href=data.authorizationUrl;}catch(e){status.textContent=e.message;busy=false;controls();}};
   sync.onclick=function(){refresh(true);};select.onchange=function(){refresh(true);};
   disconnect.onclick=async function(){if(busy)return;busy=true;controls();try{await api('disconnect',{});connected=false;projectId='';select.replaceChildren();apply([]);status.textContent='FLOW 연결을 해제했습니다.';}catch(e){if(e.status===409)connected=false;status.textContent=e.message;}finally{busy=false;controls();}};

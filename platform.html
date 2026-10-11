@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MOIDA · 의정비서실</title>
-<link rel="stylesheet" href="office-location-page.css?v=1">
+<link rel="stylesheet" href="office-location-page.css?v=next-events-v2">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -846,7 +846,9 @@ body.secretary-view #aiPanel{border:0!important;border-radius:0!important;box-sh
 <script src="secretary-mobile.js?v=2"></script>
 <script src="office-roles.js?v=2"></script>
 <script src="office-location-client.js?v=1"></script>
-<script src="office-location-page.js?v=1"></script>
+<script src="office-next-events.js?v=1"></script>
+<script src="office-next-events-client.js?v=1"></script>
+<script src="office-location-page.js?v=next-events-v2"></script>
 <script src="secretary-toolkit-client.js?v=owntracks-v1"></script>
 <script src="secretary-voice-client.js?v=4"></script>
 <script src="secretary-client.js?v=models-v8"></script>
@@ -1029,7 +1031,7 @@ body.secretary-view #aiPanel{border:0!important;border-radius:0!important;box-sh
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-import { getFirestore, doc, getDoc, setDoc, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import { getFirestore, doc, getDoc, setDoc, collection, query, where, getDocs, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 const _app = initializeApp({apiKey:"AIzaSyAIjhvbCztHoF7YwP2IYIk2C6jCI64uFhs",authDomain:"jjj2195-1bd15.firebaseapp.com",projectId:"jjj2195-1bd15",storageBucket:"jjj2195-1bd15.firebasestorage.app",messagingSenderId:"370852437825",appId:"1:370852437825:web:b0a891d6a99b426d230bc0"});
 const _auth = getAuth(_app);
@@ -1082,6 +1084,17 @@ onAuthStateChanged(_auth, async function(user){
       });
     }
   }catch(e){ console.warn('moida_users load fail', e); }
+  if(M._scheduleUnsubscribe)M._scheduleUnsubscribe();
+  M._scheduleUnsubscribe=onSnapshot(doc(_db,'moida_users',euid),function(snapshot){
+    if(!_auth.currentUser||_auth.currentUser.uid!==uid)return;
+    var value=snapshot.exists()?snapshot.data():{},events=[],deleted=[];
+    try{events=typeof value.events==='string'?JSON.parse(value.events):value.events||[];deleted=typeof value.deletedEventIds==='string'?JSON.parse(value.deletedEventIds):value.deletedEventIds||[];}catch(e){return;}
+    if(!Array.isArray(events)||!Array.isArray(deleted))return;
+    M.deletedEventIds=deleted;
+    var next=events.filter(function(e){return e.source!=='flow';}).concat((M.events||[]).filter(function(e){return e.source==='flow';}));
+    try{localStorage.setItem('moida_deleted_events_'+euid,JSON.stringify(deleted));}catch(e){}
+    if(JSON.stringify(next)!==JSON.stringify(M.events)){M.events=next;M.emit();}else if(window.MOIDA_NEXT_EVENTS_REFRESH)window.MOIDA_NEXT_EVENTS_REFRESH();
+  },function(error){console.warn('schedule live update failed',error);});
 
   /* Firestore 저장 헬퍼 (members/events) — access-guard가 readonly 시 차단 */
   M.save = async function(key, data){
@@ -3653,7 +3666,7 @@ onAuthStateChanged(_auth, async function(user){
     prompt:function(text){var input=document.getElementById('aiInput');if(input){input.value=text;input.focus();}},
     download:async function(path){var user=M.auth&&M.auth.currentUser;if(!user)throw Error('로그인이 필요합니다.');var owner=user.uid,token=await user.getIdToken();if(!M.auth.currentUser||M.auth.currentUser.uid!==owner)throw Error('계정이 변경되었습니다.');var response=await fetch(gptEndpoint().replace(/\/+$/,'')+path,{headers:{Authorization:'Bearer '+token}});if(!response.ok){var error=await response.json().catch(function(){return {};});throw Error(error.error&&error.error.message||'파일 다운로드 실패');}return response;}
   });
-  window.setupOfficeLocationPage({owner:function(){return M.auth&&M.auth.currentUser?M.auth.currentUser.uid:null;},request:agentApi});
+  window.setupOfficeLocationPage({owner:function(){return M.auth&&M.auth.currentUser?M.auth.currentUser.uid:null;},request:agentApi,events:function(){return M.events||[];},deleted:function(){try{return JSON.parse(localStorage.getItem('moida_deleted_events_'+M.uidOf())||'[]');}catch(e){return M.deletedEventIds||[];}},subscribe:function(fn){M.onData(fn);window.MOIDA_NEXT_EVENTS_REFRESH=fn;},sync:async function(){if(window.MOIDA_REFRESH_FLOW_SCHEDULE)await window.MOIDA_REFRESH_FLOW_SCHEDULE();}});
   window.setupSecretaryVoice({
     owner:function(){return M.auth&&M.auth.currentUser?M.auth.currentUser.uid:null;},
     thread:function(){return currentThreadId;},request:agentApi,busy:function(){return secretaryClient.isBusy();},
@@ -4407,9 +4420,9 @@ plus.onclick=function(){var open=menu.classList.toggle('open');plus.setAttribute
 var input=document.getElementById('aiInput');if(input)input.placeholder='비서실장에게 메시지 보내기';
 })();
 </script>
-<script src="flow-calendar-client.js?v=4"></script>
+<script src="flow-calendar-client.js?v=next-events-v5"></script>
 <script>
-(function(){var M=window.MOIDA,client;if(!M)return;var mount=document.createElement('div');mount.hidden=true;document.body.append(mount);function apply(events){var next=(M.events||[]).filter(function(e){return e.source!=='flow';}).concat(events);if(JSON.stringify(next)===JSON.stringify(M.events))return;M.events=next;M.emit();}M.onData(function(){if(!M.auth||!M.auth.currentUser)return;if(!client)client=createFlowCalendarClient({mount:mount,user:function(){return M.auth.currentUser;},apply:apply});client.refresh(false);});window.addEventListener('message',function(event){if(event.origin===location.origin&&event.data&&event.data.type==='moida:flow-events-changed')apply(event.data.events||[]);});})();
+(function(){var M=window.MOIDA,client;if(!M)return;var mount=document.createElement('div');mount.hidden=true;document.body.append(mount);function apply(events){var next=(M.events||[]).filter(function(e){return e.source!=='flow';}).concat(events);if(JSON.stringify(next)===JSON.stringify(M.events))return;M.events=next;M.emit();}window.MOIDA_REFRESH_FLOW_SCHEDULE=async function(){if(!M.auth||!M.auth.currentUser)return;if(!client)client=createFlowCalendarClient({mount:mount,user:function(){return M.auth.currentUser;},apply:apply});var result=await client.refresh(true);if(result&&result.ok===false)throw Error(result.error);};M.onData(function(){if(!M.auth||!M.auth.currentUser)return;if(!client)client=createFlowCalendarClient({mount:mount,user:function(){return M.auth.currentUser;},apply:apply});client.refresh(false);});window.addEventListener('message',function(event){if(event.origin===location.origin&&event.data&&event.data.type==='moida:flow-events-changed')apply(event.data.events||[]);});})();
 </script>
 <script src="solapi-messaging-client.js?v=3"></script>
 <script type="module" src="birthday-messaging-client.js?v=1"></script>

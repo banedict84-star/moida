@@ -1,0 +1,10 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import '../office-next-events.js';
+const {next,identity}=globalThis.MoidaNextEvents;
+const now=Date.parse('2026-10-12T13:00:00+09:00');
+const event=(id,time='15:00',extra={})=>({id,title:'행사 '+id,date:'2026-10-12',time,...extra});
+test('same-time events are all kept without selecting or dropping alternatives',()=>{const events=[event('a'),event('b'),event('c'),event('later','17:00')];assert.deepEqual(next(events,now).events.map(e=>e.id),['a','b','c']);assert.equal(events.length,4);});
+test('overlapping events stay visible and an event at the ending boundary is next',()=>{assert.deepEqual(next([event('a','15:00',{endTime:'16:00'}),event('b','15:30'),event('c','16:00')],now).events.map(e=>e.id),['a','b']);});
+test('past, cancelled, deleted and duplicate events are excluded; Korea all-day events are separate',()=>{const a=event('a'),result=next([event('past','12:00'),event('cancel','14:00',{status:'취소'}),event('deleted','14:00'),a,a,event('all','',{allDay:true}),event('bad','99:99')],now,['deleted']);assert.deepEqual(result.events.map(e=>e.id),['a']);assert.deepEqual(result.untimed.map(e=>e.id),['all','bad']);assert.equal(identity(event('a')),'a');});
+test('advancing the clock moves to the next group and unknown-duration events do not hide alternatives',()=>{const list=[event('a'),event('b'),event('c','17:00')];assert.deepEqual(next(list,Date.parse('2026-10-12T15:01:00+09:00')).events.map(e=>e.id),['c']);assert.equal(next([],now).events.length,0);});
