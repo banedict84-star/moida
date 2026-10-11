@@ -1974,7 +1974,7 @@ onAuthStateChanged(_auth, async function(user){
 <script>
 (function(){var client;window._flowCalendarReady=function(){if(!window._flowAuth||!window._flowAuth.currentUser)return;if(!client)client=createFlowCalendarClient({mount:document.getElementById('flowCalendarMount'),user:function(){return window._flowAuth.currentUser;},apply:function(events){if(window._flowApplyEvents)window._flowApplyEvents(events);}});window._flowWriteState=function(){return client.state();};window._flowCreateSchedule=function(event,requestId,target){return client.create(event,requestId,target);};window._flowRefreshSchedule=function(){return client.refresh(true);};window._flowLoadDetail=function(eventId){return client.detail(eventId);};client.refresh(false);};window._flowCalendarReady();})();
 </script>
-<script src="schedule-layout.js?v=1"></script></body>
+<script src="schedule-place.js?v=1"></script><script src="schedule-layout.js?v=2"></script></body>
 </html>
 
 <style id="__om-edit-overrides">
