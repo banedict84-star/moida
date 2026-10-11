@@ -52,7 +52,8 @@ jobs:
             grep -q '뉴스 숏츠' smoke-results/moida-home.xml
             adb shell screencap -p /sdcard/moida-home.png
             adb pull /sdcard/moida-home.png smoke-results/moida-home.png
-            adb shell input swipe 250 750 250 200 500
+            adb shell input swipe 160 500 160 150 500
+            sleep 1
             adb shell uiautomator dump /sdcard/moida-footer.xml
             adb pull /sdcard/moida-footer.xml smoke-results/moida-footer.xml
             grep -q '앱 업데이트 확인' smoke-results/moida-footer.xml
