@@ -1,0 +1,86 @@
+name: Build Moida Android app
+on:
+  push:
+    branches: [main]
+    paths: ['android-moida/**', '.github/workflows/build-moida-app.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: moida-android-release
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.7'
+      - uses: actions/cache/restore@v4
+        id: signing
+        with:
+          path: android-moida/.signing/moida.jks
+          key: moida-office-signing-v1
+      - name: Retain APK update signing identity
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ "${{ steps.signing.outputs.cache-hit }}" != "true" ]; then
+            if gh release view moida-app-latest >/dev/null 2>&1; then
+              echo 'Original signing identity is missing. Restore it before building an update.'
+              exit 1
+            fi
+            mkdir -p android-moida/.signing
+            keytool -genkeypair -keystore android-moida/.signing/moida.jks -storepass android -keypass android -alias moida -keyalg RSA -keysize 2048 -validity 10000 -dname 'CN=Moida Office'
+          fi
+      - uses: actions/cache/save@v4
+        if: steps.signing.outputs.cache-hit != 'true'
+        with:
+          path: android-moida/.signing/moida.jks
+          key: moida-office-signing-v1
+      - name: Test and build installable release
+        working-directory: android-moida
+        run: gradle :app:testReleaseUnitTest :app:lintRelease :app:assembleRelease
+      - name: Verify signed APK and publish download
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cp android-moida/app/build/outputs/apk/release/app-release.apk moida.apk
+          "$ANDROID_HOME/build-tools/34.0.0/apksigner" verify --verbose --print-certs moida.apk
+          VERSION_CODE=$(sed -n 's/.*versionCode \([0-9]*\);.*/\1/p' android-moida/app/build.gradle)
+          VERSION_NAME=$(sed -n "s/.*versionName '\([^']*\)'.*/\1/p" android-moida/app/build.gradle)
+          if gh release view moida-app-latest >/dev/null 2>&1; then
+            mkdir -p previous
+            gh release download moida-app-latest -p moida-app-version.json -D previous
+            PREVIOUS=$(jq -r '.versionCode' previous/moida-app-version.json)
+            if [ "$VERSION_CODE" -le "$PREVIOUS" ]; then
+              echo 'Increase versionCode before publishing another APK.'
+              exit 1
+            fi
+          fi
+          SHA=$(sha256sum moida.apk | cut -d' ' -f1)
+          jq -n --argjson code "$VERSION_CODE" --arg name "$VERSION_NAME" --arg sha "$SHA" '{versionCode:$code,versionName:$name,apkUrl:"https://github.com/banedict84-star/moida/releases/download/moida-app-latest/moida.apk",sha256:$sha}' > moida-app-version.json
+          sha256sum moida.apk > moida.apk.sha256
+          zip moida.zip moida.apk moida-app-version.json moida.apk.sha256
+          printf '%s\n' '모이다 Android 앱. Android 8 이상에서 APK를 설치하세요.' '웹 수정은 다시 열면 반영됩니다. APK 자체의 변경은 업데이트 확인에서 안내합니다.' 'Google 로그인·사진 선택·영상 다운로드는 기본 브라우저의 기능을 사용합니다.' > release-notes.txt
+          gh release create "moida-app-v$VERSION_NAME" moida.apk moida.zip moida-app-version.json moida.apk.sha256 --title "모이다 앱 $VERSION_NAME" --notes-file release-notes.txt
+          if gh release view moida-app-latest >/dev/null 2>&1; then
+            gh release upload moida-app-latest moida.apk moida.zip moida-app-version.json moida.apk.sha256 --clobber
+            gh release edit moida-app-latest --title "모이다 앱 $VERSION_NAME" --notes-file release-notes.txt
+          else
+            gh release create moida-app-latest moida.apk moida.zip moida-app-version.json moida.apk.sha256 --title "모이다 앱 $VERSION_NAME" --notes-file release-notes.txt
+          fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: moida-android-apk
+          path: |
+            moida.apk
+            moida.apk.sha256
+            moida-app-version.json
+            android-moida/app/build/reports/tests/testReleaseUnitTest/
+            android-moida/app/build/reports/lint-results-release.html
