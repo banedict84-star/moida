@@ -2,12 +2,12 @@
   'use strict';
   function createSecretaryClient(options){
     var busy=false, disposed=false;
-    var selector=typeof document!=='undefined'?document.createElement('select'):{style:{},setAttribute:function(){},addEventListener:function(){}};selector.id='secretaryModelSelect';selector.setAttribute('aria-label','비서실장 모델');selector.title='Sol·Astra는 Luna보다 사용 비용이 높습니다.';selector.style.cssText='max-width:105px;flex-shrink:0;border:1px solid #d9e1ed;border-radius:8px;padding:6px;background:#fff;font:inherit;font-size:12px;color:#34557e';
-    if(typeof document!=='undefined')[['gpt-6-luna','Luna'],['gpt-6.1-sol','Sol'],['gpt-6-astra','Astra']].forEach(function(item){var option=document.createElement('option');option.value=item[0];option.textContent=item[1];selector.append(option);});
+    var selector=typeof document!=='undefined'?document.createElement('select'):{style:{},setAttribute:function(){},addEventListener:function(){}};selector.id='secretaryModelSelect';selector.setAttribute('aria-label','비서실장 모델');selector.title='Sol·Astra는 Luna보다 사용 비용이 높습니다.';selector.style.cssText='width:126px;max-width:126px;flex-shrink:0;border:1px solid #d9e1ed;border-radius:8px;padding:6px;background:#fff;font:inherit;font-size:12px;color:#34557e';
+    if(typeof document!=='undefined')[['gpt-6-luna','GPT 6 Luna'],['gpt-6.1-sol','GPT 6.1 Sol'],['gpt-6-astra','GPT 6 Astra']].forEach(function(item){var option=document.createElement('option');option.value=item[0];option.textContent=item[1];selector.append(option);});
     function modelKey(){return 'moida_secretary_model_'+options.owner();}
     function selectedModel(){var value;try{value=localStorage.getItem(modelKey());}catch(e){}return ['gpt-6-luna','gpt-6.1-sol','gpt-6-astra'].includes(value)?value:'gpt-6-luna';}
     selector.value=selectedModel();selector.addEventListener('change',function(){try{localStorage.setItem(modelKey(),selector.value);}catch(e){}});
-    var composer=typeof document!=='undefined'&&document.getElementById('aiInput');if(composer)composer.parentElement.parentElement.insertBefore(selector,composer.parentElement);
+    var composer=typeof document!=='undefined'&&document.getElementById('aiInput');if(composer){var phone=document.getElementById('secretaryVoiceOpen'),send=document.getElementById('aiSend');composer.parentElement.insertBefore(selector,phone||send);}
 
     var labels={pending:'에이전트가 답변을 준비합니다.',queued:'에이전트 실행을 기다립니다.',in_progress:'에이전트가 업무를 처리합니다.',waiting:'도구 결과를 기다립니다.',requires_action:'의원실 업무 도구를 실행합니다.'};
     function storeKey(thread){return 'moida_secretary_pending_'+options.owner()+'_'+thread;}
