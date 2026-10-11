@@ -752,6 +752,12 @@ window._flowAuth = _auth;
 window._fsSave = async function(uid, key, data){
   try{ await setDoc(doc(_db,'moida_users',uid), {[key]: JSON.stringify(data)}, {merge:true}); }catch(e){ console.warn('fs save err',e); }
 };
+window._saveScheduleAttendance = async function(uid, data){
+  if(!_auth.currentUser) throw Error('로그인 연결을 확인해 주세요.');
+  var current=JSON.parse(sessionStorage.getItem('moida_auth_user')||'{}');
+  if(uid!==(current.effectiveUid||current.uid)||current.uid!==_auth.currentUser.uid) throw Error('로그인 계정이 변경되었습니다.');
+  await setDoc(doc(_db,'moida_users',uid), {scheduleAttendance:JSON.stringify(data)}, {merge:true});
+};
 window._fsSaveDeletedEvents = async function(uid, data){
   try{ await setDoc(doc(_db,'moida_users',uid), {deletedEventIds:JSON.stringify(data||[])}, {merge:true}); }catch(e){ console.warn('deleted event save err',e); }
 };
@@ -806,7 +812,7 @@ onAuthStateChanged(_auth, async function(user){
 });
 </script>
 <link rel="stylesheet" href="flow-calendar.css?v=1"><link rel="stylesheet" href="schedule-experience.css?v=10">
-<link rel="stylesheet" href="schedule-design.css?v=2"></head>
+<link rel="stylesheet" href="schedule-layout.css?v=1"></head>
 <body>
 <script>try{if(/[?&]embed=1/.test(location.search))document.documentElement.classList.add('embed');}catch(e){}</script>
 <style>html.embed .sidebar{display:none!important}html.embed .app{grid-template-columns:1fr!important}html.embed .ph-mark,html.embed .ph-info{display:none!important}html.embed .page-head{padding-top:4px!important;padding-bottom:4px!important;border:none!important;background:transparent!important}html.embed .ph-right{margin-left:auto}</style>
@@ -1968,7 +1974,7 @@ onAuthStateChanged(_auth, async function(user){
 <script>
 (function(){var client;window._flowCalendarReady=function(){if(!window._flowAuth||!window._flowAuth.currentUser)return;if(!client)client=createFlowCalendarClient({mount:document.getElementById('flowCalendarMount'),user:function(){return window._flowAuth.currentUser;},apply:function(events){if(window._flowApplyEvents)window._flowApplyEvents(events);}});window._flowWriteState=function(){return client.state();};window._flowCreateSchedule=function(event,requestId,target){return client.create(event,requestId,target);};window._flowRefreshSchedule=function(){return client.refresh(true);};window._flowLoadDetail=function(eventId){return client.detail(eventId);};client.refresh(false);};window._flowCalendarReady();})();
 </script>
-<script src="schedule-design.js?v=1"></script></body>
+<script src="schedule-layout.js?v=1"></script></body>
 </html>
 
 <style id="__om-edit-overrides">
