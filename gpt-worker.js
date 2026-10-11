@@ -1,3 +1,5 @@
+import {createNewsShorts} from './news-shorts.js';
+const newsShorts=createNewsShorts();
 import {createCallDevices} from './call-devices.js';
 const callDevices=createCallDevices();
 import {createCallRecords} from './call-records.js';
@@ -1731,6 +1733,7 @@ async function handleFetch(request, env) {
   const path = url.pathname.replace(/\/+$/, "") || "/";
 
   try {
+    if(path.startsWith('/news-shorts/')){const user=await verifyFirebaseUser(request,env);const response=json(await newsShorts.route({env,uid:user.uid,request,body:request.method==='POST'?await requestBody(request):{}}),200,request,env);response.headers.set('Cache-Control','no-store');return response;}
     if(path==='/owntracks/pub'&&request.method==='POST'){const response=json(await officeLocation.receive({env,request}),200,request,env);response.headers.set('Cache-Control','no-store');return response;}
     if(path.startsWith('/office-travel/')){const pending=path==='/office-travel/pending'||path==='/office-travel/ack';const user=pending?null:await verifyFirebaseUser(request,env);const response=json(await officeTravel.route({env,uid:user?.uid,request,body:request.method==='POST'?await requestBody(request):{}}),200,request,env);response.headers.set('Cache-Control','no-store');return response;}
     if(path==='/call-recordings/upload'&&request.method==='POST'){const uid=await callDevices.authenticate({env,request});return json(await callRecords.route({env,uid,request}),200,request,env);}

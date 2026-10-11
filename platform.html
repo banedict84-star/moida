@@ -362,6 +362,7 @@ body.secretary-view #aiPanel{border:0!important;border-radius:0!important;box-sh
         <span>정책</span>
       </div>
 
+      <div class="nav-item" data-page="shorts" style="position:relative;display:flex;align-items:center;gap:11px;padding:10px 12px;border-radius:9px;font-size:13.5px;font-weight:500;cursor:pointer;transition:background .15s,color .15s" data-hover="background:rgba(255,255,255,0.06)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="4" y="3" width="16" height="18" rx="3"/><path d="m10 8 5 4-5 4z"/></svg><span>오늘의 뉴스 숏츠</span></div>
       <div class="nav-item" data-page="news" style="position:relative;display:flex;align-items:center;gap:11px;padding:10px 12px;border-radius:9px;font-size:13.5px;font-weight:500;cursor:pointer;transition:background .15s,color .15s" data-hover="background:rgba(255,255,255,0.06)">
         <span class="nav-accent" style="position:absolute;left:-14px;top:9px;bottom:9px;width:3px;border-radius:0 3px 3px 0;background:#5b8cff"></span>
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h13v14H5a1 1 0 0 1-1-1z"/><path d="M17 8h3v9a2 2 0 0 1-2 2M8 9h5M8 13h5M8 17h3"/></svg>
@@ -702,7 +703,8 @@ body.secretary-view #aiPanel{border:0!important;border-radius:0!important;box-sh
       </div>
       </div>
 
-      <div class="page" data-page="news"><iframe src="news.html?embed=1" title="뉴스" style="display:block;border:1px solid #e9ecf1;border-radius:12px;background:#fff;width:100%;height:calc(100vh - 130px)"></iframe></div>
+      <div class="page" data-page="shorts"><div id="newsShortsPage"></div></div>
+<div class="page" data-page="news"><iframe src="news.html?embed=1" title="뉴스" style="display:block;border:1px solid #e9ecf1;border-radius:12px;background:#fff;width:100%;height:calc(100vh - 130px)"></iframe></div>
 
       <div class="page" data-page="notices"><iframe src="notices.html?embed=1" title="공지사항" style="display:block;border:1px solid #e9ecf1;border-radius:12px;background:#fff;width:100%;height:calc(100vh - 130px)"></iframe></div>
 
@@ -850,7 +852,8 @@ body.secretary-view #aiPanel{border:0!important;border-radius:0!important;box-sh
 <script src="secretary-mobile.js?v=2"></script>
 <script src="office-roles.js?v=2"></script>
 <script src="office-location-client.js?v=2"></script>
-<link rel="stylesheet" href="call-records.css?v=1"><script src="call-records-client.js?v=2"></script>
+<link rel="stylesheet" href="call-records.css?v=1"><link rel="stylesheet" href="news-shorts.css?v=1"><script src="news-shorts-client.js?v=1"></script>
+<script src="call-records-client.js?v=2"></script>
 <script src="office-google-map.js?v=1"></script>
 <script src="office-travel-client.js?v=4"></script>
 <script src="office-location-page.js?v=history-v1"></script>
@@ -894,6 +897,7 @@ body.secretary-view #aiPanel{border:0!important;border-radius:0!important;box-sh
     locations:['위치 공유','의원님·수행팀 위치와 합류 동선'],
     pr:['홍보','SNS·언론 홍보 콘텐츠 관리'],
     policy:['정책','법안·정책 추진 현황'],
+    shorts:['오늘의 뉴스 숏츠','기사 한 편으로 만드는 30초 뉴스 영상'],
     news:['뉴스','실시간 언론·여론 모니터링'],
     notices:['공지사항','중앙당·경기도당·경기도의회 공지'],
     admin:['관리','사용자·권한 관리'],
@@ -3673,6 +3677,7 @@ onAuthStateChanged(_auth, async function(user){
     prompt:function(text){var input=document.getElementById('aiInput');if(input){input.value=text;input.focus();}},
     download:async function(path){var user=M.auth&&M.auth.currentUser;if(!user)throw Error('로그인이 필요합니다.');var owner=user.uid,token=await user.getIdToken();if(!M.auth.currentUser||M.auth.currentUser.uid!==owner)throw Error('계정이 변경되었습니다.');var response=await fetch(gptEndpoint().replace(/\/+$/,'')+path,{headers:{Authorization:'Bearer '+token}});if(!response.ok){var error=await response.json().catch(function(){return {};});throw Error(error.error&&error.error.message||'파일 다운로드 실패');}return response;}
   });
+  window.setupNewsShorts({owner:function(){return M.auth&&M.auth.currentUser?M.auth.currentUser.uid:null;},request:agentApi,subscribe:function(fn){M.onData(fn);}});
   window.setupCallRecords({owner:function(){return M.auth&&M.auth.currentUser?M.auth.currentUser.uid:null;},request:agentApi,subscribe:function(fn){M.onData(fn);}});
   window.setupOfficeLocationPage({owner:function(){return M.auth&&M.auth.currentUser?M.auth.currentUser.uid:null;},request:agentApi,events:function(){return M.events||[];},deleted:function(){try{return JSON.parse(localStorage.getItem('moida_deleted_events_'+M.uidOf())||'[]');}catch(e){return M.deletedEventIds||[];}},subscribe:function(fn){M.onData(fn);window.MOIDA_NEXT_EVENTS_REFRESH=fn;},sync:async function(){if(window.MOIDA_REFRESH_FLOW_SCHEDULE)await window.MOIDA_REFRESH_FLOW_SCHEDULE();}});
   window.setupSecretaryVoice({

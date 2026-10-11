@@ -14,6 +14,7 @@ on:
       - 'secretary-*.js'
       - 'flow-calendar.js'
       - 'call-devices.js'
+      - 'news-shorts.js'
       - 'call-records.js'
       - 'office-location.js'
       - 'office-travel.js'
@@ -40,6 +41,7 @@ jobs:
       - name: Validate worker and agent execution
         run: |
           node --check gpt-worker.js
+          node --test tests/news-shorts.test.mjs
           node --test tests/call-records.test.mjs
           node --test tests/office-location.test.mjs
           node --test tests/office-travel.test.mjs
