@@ -805,7 +805,7 @@ onAuthStateChanged(_auth, async function(user){
   }
 });
 </script>
-<link rel="stylesheet" href="flow-calendar.css?v=1"><link rel="stylesheet" href="schedule-experience.css?v=2">
+<link rel="stylesheet" href="flow-calendar.css?v=1"><link rel="stylesheet" href="schedule-experience.css?v=3">
 </head>
 <body>
 <script>try{if(/[?&]embed=1/.test(location.search))document.documentElement.classList.add('embed');}catch(e){}</script>
@@ -1609,7 +1609,14 @@ onAuthStateChanged(_auth, async function(user){
         if(docs.length) ch+='<div class="evd-docs">'+docs.map(function(f){var n=f.name.replace(/\\/g,'\\\\').replace(/'/g,"\\'"); return '<div class="evd-doc" onclick="window._openPreview(\''+f.url+'\',\''+n+'\')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v5h5M7 3h8l5 5v11a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/></svg>'+f.name+'</div>';}).join('')+'</div>';
       }
       p.querySelector('#evdContent').innerHTML=ch;
-      if(flowReadOnly){var original=document.createElement('a');original.href=_evArr.sourceUrl;original.target='_blank';original.rel='noopener noreferrer';original.textContent='FLOW 원문에서 보기';p.querySelector('#evdContent').append(original);}
+      p._flowDetailId=flowReadOnly?_evArr.id:null;
+      if(flowReadOnly){
+       var original=document.createElement('a');original.href=_evArr.sourceUrl;original.target='_blank';original.rel='noopener noreferrer';original.textContent='FLOW 원문에서 보기';
+       var detailBox=document.createElement('section');detailBox.className='flow-detail';detailBox.setAttribute('aria-live','polite');detailBox.textContent='FLOW 일정 내용을 불러오는 중…';p.querySelector('#evdContent').replaceChildren(detailBox,original);
+       var detailId=_evArr.id;
+       function showDetail(response){if(p._flowDetailId!==detailId)return;var d=response.detail;detailBox.replaceChildren();function line(label,value){if(!value)return;var node=document.createElement('div');node.className='flow-detail-line';var heading=document.createElement('strong');heading.textContent=label;var text=document.createElement('div');text.textContent=value;node.append(heading,text);detailBox.append(node);}line('작성자',d.author);line('장소',d.location);line('참석자',(d.attendees||[]).join(', '));line('내용',d.body||'등록된 본문이나 메모가 없습니다.');(d.images||[]).forEach(function(image){var img=document.createElement('img');img.src=image.url;img.alt=image.name;img.loading='lazy';img.referrerPolicy='no-referrer';detailBox.append(img);});if(d.attachments&&d.attachments.length){line('첨부파일',d.attachments.map(function(f){return f.name;}).join('\n'));line('파일 열기','첨부파일은 아래 FLOW 원문에서 열 수 있습니다.');}}
+       if(window._flowLoadDetail)window._flowLoadDetail(detailId).then(showDetail).catch(function(error){if(p._flowDetailId!==detailId)return;detailBox.textContent=error.message||'내용을 불러오지 못했습니다.';var retry=document.createElement('button');retry.type='button';retry.textContent='다시 불러오기';retry.onclick=function(){retry.disabled=true;window._flowLoadDetail(detailId).then(showDetail).catch(function(e){retry.disabled=false;detailBox.firstChild.textContent=e.message;});};detailBox.append(retry);});else detailBox.textContent='FLOW 연결을 확인한 뒤 다시 열어 주세요.';
+      }
       renderComments(ev);
       p.style.left=(window.innerWidth - (p.offsetWidth||390))+'px'; p.classList.add('show'); ovl.classList.add('show');
     });
@@ -1946,9 +1953,9 @@ onAuthStateChanged(_auth, async function(user){
 })();
 </script>
 <script src="access-guard.js"></script>
-<script src="flow-calendar-client.js?v=1"></script>
+<script src="flow-calendar-client.js?v=2"></script>
 <script>
-(function(){var client;window._flowCalendarReady=function(){if(!window._flowAuth||!window._flowAuth.currentUser)return;if(!client)client=createFlowCalendarClient({mount:document.getElementById('flowCalendarMount'),user:function(){return window._flowAuth.currentUser;},apply:function(events){if(window._flowApplyEvents)window._flowApplyEvents(events);}});client.refresh(false);};window._flowCalendarReady();})();
+(function(){var client;window._flowCalendarReady=function(){if(!window._flowAuth||!window._flowAuth.currentUser)return;if(!client)client=createFlowCalendarClient({mount:document.getElementById('flowCalendarMount'),user:function(){return window._flowAuth.currentUser;},apply:function(events){if(window._flowApplyEvents)window._flowApplyEvents(events);}});window._flowLoadDetail=function(eventId){return client.detail(eventId);};client.refresh(false);};window._flowCalendarReady();})();
 </script>
 </body>
 </html>
