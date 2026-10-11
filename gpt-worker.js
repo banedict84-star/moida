@@ -1831,8 +1831,7 @@ export default {
   fetch: handleFetch,
   queue: handleQueue,
   scheduled(_controller, env, ctx) {
-    ctx.waitUntil(officeTravel.tick(env));
-    if(_controller.cron==='* * * * *')return;
+    if(_controller.cron==='* * * * *'){ctx.waitUntil(officeTravel.tick(env));return;}
     ctx.waitUntil(recoverStaleRuns(env));
     ctx.waitUntil(toolkitTick(env));
     ctx.waitUntil(solapiMessaging.tick(env));
