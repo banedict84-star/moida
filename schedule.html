@@ -805,7 +805,7 @@ onAuthStateChanged(_auth, async function(user){
   }
 });
 </script>
-<link rel="stylesheet" href="flow-calendar.css?v=1"><link rel="stylesheet" href="schedule-experience.css?v=1">
+<link rel="stylesheet" href="flow-calendar.css?v=1"><link rel="stylesheet" href="schedule-experience.css?v=2">
 </head>
 <body>
 <script>try{if(/[?&]embed=1/.test(location.search))document.documentElement.classList.add('embed');}catch(e){}</script>
@@ -867,7 +867,7 @@ onAuthStateChanged(_auth, async function(user){
           <div class="ev-stat" data-range="month"><span class="es-ic es-all"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg></span><div><div class="es-v" id="st-all">0</div><div class="es-l">이번달</div></div></div>
         </div>
         <div class="feed-bar"><span class="fb-all">전체 <b id="evCount">9</b></span><div class="author-toggle"><button class="at-btn on" data-author="all">전체</button><button class="at-btn" data-author="me">내 일정</button></div></div>
-        <div class="schedule-tools"><label class="schedule-search">일정 검색<input id="scheduleSearch" type="search" placeholder="제목·장소 검색" aria-label="일정 검색"></label><select id="schedulePeriod" aria-label="피드 기간"><option value="upcoming">오늘 이후</option><option value="all">전체 일정</option><option value="past">지난 일정</option></select></div><div id="feedView" class="feed"></div>
+        <div class="schedule-tools"><label class="schedule-search">일정 검색<input id="scheduleSearch" type="search" placeholder="제목·장소 검색" aria-label="일정 검색"></label><select id="schedulePeriod" aria-label="피드 기간"><option value="all">전체 일정</option><option value="upcoming">오늘 이후</option><option value="past">지난 일정</option></select><select id="feedSort" aria-label="피드 정렬"><option value="recent">최근 등록순</option><option value="date">일정 시간순</option></select><button id="feedDensity" type="button" aria-pressed="false">자세히 보기</button></div><div id="feedView" class="feed"></div>
         <div id="calView" class="cal" hidden>
           <div class="cal-head"><button class="cal-nav">‹</button><div class="cal-title">2026년 6월</div><button class="cal-today" type="button">오늘</button><input id="calendarMonth" type="month" aria-label="달력 월 선택"><button class="cal-nav">›</button></div>
           <div class="cal-grid" id="calGrid"></div>
@@ -1067,14 +1067,14 @@ onAuthStateChanged(_auth, async function(user){
     }
     var query=(document.getElementById('scheduleSearch').value||'').trim().toLowerCase(),period=document.getElementById('schedulePeriod').value;
     var now=new Date(),today=now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0')+'-'+String(now.getDate()).padStart(2,'0');
-    var list=events.filter(function(e){return (_authorFilter==='all'||e.author===cur)&&(!query||(String(e.title||'')+' '+String(e._location||'')).toLowerCase().includes(query))&&(period==='all'||(period==='past'?String(e.endDate||e.date)<today:String(e.endDate||e.date)>=today));}).slice().sort(function(a,b){var order=String(a.date+' '+(a.time||'00:00')).localeCompare(String(b.date+' '+(b.time||'00:00')));return period==='past'?-order:order;});
+    var list=events.filter(function(e){return (_authorFilter==='all'||e.author===cur)&&(!query||(String(e.title||'')+' '+String(e._location||'')).toLowerCase().includes(query))&&(period==='all'||(period==='past'?String(e.endDate||e.date)<today:String(e.endDate||e.date)>=today));}).slice().sort(function(a,b){var order=String(a.date+' '+(a.time||'00:00')).localeCompare(String(b.date+' '+(b.time||'00:00')));if(document.getElementById('feedSort').value==='recent')return createdAt(b)-createdAt(a)||String(b.flowId||b.id||'').localeCompare(String(a.flowId||a.id||''),undefined,{numeric:true});return period==='past'?-order:order;});
     var feedEl=document.getElementById('feedView');
-    var lastDate='';feedEl.innerHTML=list.map(function(e){var i=events.indexOf(e),heading='';if(lastDate!==e.date){lastDate=e.date;var d=new Date(e.date+'T00:00:00');heading='<div class="feed-day">'+eventEsc(e.date)+(isNaN(d)?'':' · '+['일','월','화','수','목','금','토'][d.getDay()]+'요일')+(e.date===today?' <span>오늘</span>':'')+'</div>';}
-      return heading+'<div class="ev'+(e.star?' imp':'')+'" tabindex="0" role="button"><div class="ev-ico">'+eventEsc(e.time||'종일')+'</div><div class="ev-main"><div class="ev-t">'+eventEsc(e.title)+'</div><div class="ev-meta">'+eventEsc(e._location||e.author||'의원실')+(e.source==='flow'?' · FLOW':'')+'</div></div><div class="ev-date">'+(e.endDate&&e.endDate!==e.date?'~ '+eventEsc(e.endDate):eventEsc(e.endTime||''))+'</div><button class="ev-star'+(e.star?' on':'')+'" data-si="'+i+'" title="중요 일정" onclick="toggleStar(event,'+i+')">'+starSvg(e.star)+'</button></div>';}).join('')||'<div class="schedule-empty">표시할 일정이 없습니다.<small>기간이나 검색어를 바꿔 확인해 보세요.</small></div>';
+    feedEl.innerHTML=list.map(function(e){var i=events.indexOf(e);return '<div class="ev'+(e.star?' imp':'')+'" tabindex="0" role="button"><div class="ev-ico">'+calIco+'</div><div class="ev-main"><div class="ev-t">'+eventEsc(e.title)+'</div><div class="ev-meta">'+eventEsc(e.author||'의원실')+(e.created&&e.created!=='FLOW 연동'?' · '+eventEsc(e.created):'')+'</div><div class="ev-preview">'+eventEsc(e._location||'')+(e._location&&e._body?' · ':'')+eventEsc(String(e._body||'').slice(0,180))+'</div></div><div class="ev-date">'+eventEsc(e.date)+' <strong>'+eventEsc(e.time||'종일')+'</strong>'+(e.endDate&&e.endDate!==e.date?'<small>~ '+eventEsc(e.endDate)+' '+eventEsc(e.endTime||'')+'</small>':'')+'</div><button class="ev-star'+(e.star?' on':'')+'" data-si="'+i+'" title="중요 일정" onclick="toggleStar(event,'+i+')">'+starSvg(e.star)+'</button></div>';}).join('')||'<div class="schedule-empty">표시할 일정이 없습니다.<small>기간이나 검색어를 바꿔 확인해 보세요.</small></div>';
     [].forEach.call(feedEl.querySelectorAll('.ev'), function(node,k){ node._ev=list[k]; }); // 카드 ↔ 이벤트 객체 연결
     var fb=document.querySelector('.fb-all b'); if(fb) fb.textContent=list.length;
   }
   var _authorFilter='all';
+  document.getElementById('feedSort').addEventListener('change',renderFeed);document.getElementById('feedDensity').addEventListener('click',function(){var detailed=document.getElementById('feedView').classList.toggle('detailed');this.setAttribute('aria-pressed',String(detailed));this.textContent=detailed?'간단히 보기':'자세히 보기';});
   document.getElementById('scheduleSearch').addEventListener('input',renderFeed);document.getElementById('schedulePeriod').addEventListener('change',renderFeed);document.getElementById('feedView').addEventListener('keydown',function(e){if(e.target.classList.contains('ev')&&(e.key==='Enter'||e.key===' ')){e.preventDefault();e.target.click();}});
   function renderImp(){
     var now=new Date(),pad=function(n){return String(n).padStart(2,'0');};
