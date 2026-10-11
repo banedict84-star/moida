@@ -36,7 +36,8 @@ export function createOfficeTravel({encrypt,decrypt,flow,fetcher=fetch,now=Date.
  }
  async function wake(env,sub){const endpoint=await decrypt(env,sub.cipher,sub.iv),url=pushEndpoint(endpoint);if(!url)fail(400,'지원하지 않는 알림 주소입니다.');const k=await keys(env),jwk=JSON.parse(await decrypt(env,k.cipher,k.iv)),key=await crypto.subtle.importKey('jwk',jwk,{name:'ECDSA',namedCurve:'P-256'},false,['sign']);
   const header=b64(bytes.encode(JSON.stringify({typ:'JWT',alg:'ES256'}))),payload=b64(bytes.encode(JSON.stringify({aud:url.origin,exp:Math.floor(now()/1000)+3600,sub:'https://banedict84-star.github.io/moida/'}))),part=header+'.'+payload,sig=b64(await crypto.subtle.sign({name:'ECDSA',hash:'SHA-256'},key,bytes.encode(part)));
-  const r=await fetcher(endpoint,{method:'POST',headers:{Authorization:'vapid t='+part+'.'+sig+', k='+k.public_key,TTL:'300',Urgency:'high','Content-Length':'0'},redirect:'error',signal:AbortSignal.timeout(12000)});
+  const r=await fetcher(endpoint,{method:'POST',headers:{Authorization:'vapid t='+part+'.'+sig+', k='+k.public_key,TTL:'300',Urgency:'high','Content-Length':'0'},redirect:'manual',signal:AbortSignal.timeout(12000)});
+  if(r.status>=300&&r.status<400)fail(502,'알림 서버가 다른 주소로 이동을 요청했습니다. 이 기기의 알림을 끄고 다시 연결해 주세요.');
   if(r.status===404||r.status===410){await q(env,'DELETE FROM office_travel_subscriptions WHERE id=?',[sub.id]).run();return false;}if(!r.ok)fail(502,'휴대폰 알림 전송 실패 ('+r.status+')');return true;
  }
  async function route({env,uid,request,body={}}){await schema(env);const path=new URL(request.url).pathname;
