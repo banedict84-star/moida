@@ -34,6 +34,7 @@
   function render(){content.replaceChildren();Array.from(tabBar.children).forEach(function(b){var selected=b.dataset.tab===activeTab;b.setAttribute('aria-selected',String(selected));b.setAttribute('aria-controls',content.id);b.tabIndex=selected?0:-1;});content.setAttribute('aria-labelledby','office-tab-'+activeTab);var services=section('외부 서비스','accounts');services.classList.add('office-tool-full');services.append(note('필요한 서비스만 연결해서 사용하세요.'));
    [['calendar','Google 캘린더','일정 조회와 승인된 일정 등록',''],['drive','Google Drive','의원실 자료 검색과 가져오기','drive'],['gmail','Gmail','검토한 메일 초안 보내기','mail']].forEach(function(item){var connected=!!connection[item[0]],row=node('div',undefined,'office-service-row'),body=node('div'),title=node('strong',item[1]),badge=node('span',connected?'연결됨':'연결 필요','office-status '+(connected?'is-connected':'is-pending'));body.append(title,note(item[2]));row.append(body,badge);if(!connected)row.append(button('연결하기',function(){return connect(item[3]);}));services.append(row);});
    if(connection.google_email)services.append(note(connection.google_email));
+   if(activeTab==='accounts'&&root.renderOfficeLocation){var locations=section('위치 공유 · OwnTracks','accounts');locations.classList.add('office-tool-full');root.renderOfficeLocation(locations,options);}
    var catalog=section('사용 가능한 도구','accounts');catalog.classList.add('office-tool-full');
    var registry=[
     ['웹검색','web_search','최신 웹 자료 조회 · 검색 출처 확인',true],

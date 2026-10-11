@@ -1,3 +1,4 @@
+import {createOfficeLocation} from './office-location.js';
 import {createFlowCalendar} from './flow-calendar.js';
 import {createVoiceCall} from './secretary-voice.js';
 import {driveListParams,driveListResult} from './drive-query.js';
@@ -1714,6 +1715,7 @@ function officeToolServices(env,user,request){
 }
 
 const flowCalendar=createFlowCalendar({encrypt:encryptGoogleToken,decrypt:decryptGoogleToken});
+const officeLocation=createOfficeLocation();
 
 async function handleFetch(request, env) {
   if (request.method === "OPTIONS") return new Response(null, { status: 204, headers: corsHeaders(request, env) });
@@ -1721,6 +1723,8 @@ async function handleFetch(request, env) {
   const path = url.pathname.replace(/\/+$/, "") || "/";
 
   try {
+    if(path==='/owntracks/pub'&&request.method==='POST'){const response=json(await officeLocation.receive({env,request}),200,request,env);response.headers.set('Cache-Control','no-store');return response;}
+    if(path.startsWith('/office-location/')){const user=await verifyFirebaseUser(request,env);const response=json(await officeLocation.route({env,uid:user.uid,request,body:request.method==='POST'?await requestBody(request):{}}),200,request,env);response.headers.set('Cache-Control','no-store');return response;}
     if(path.startsWith('/flow/calendar/')){const callback=path==='/flow/calendar/callback';const user=callback?null:await verifyFirebaseUser(request,env);const result=await flowCalendar.route({env,uid:user?.uid,request,body:request.method==='POST'?await requestBody(request):{},origin:callback?null:safeAppOrigin(request.headers.get('Origin'),env)});return result instanceof Response?result:json(result,200,request,env);}
     if(path==='/voice/call'&&request.method==='POST'){const user=await verifyFirebaseUser(request,env);return json(await createVoiceCall({env,uid:user.uid,body:await requestBody(request)}),200,request,env);}
     if (path.startsWith('/office-tools/')) {
