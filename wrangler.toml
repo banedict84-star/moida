@@ -10,6 +10,8 @@ account_id = "0a43eeb2c6fe53d7e8e6f38d7ea96905"
 # 평문 변수(비밀 아님): AI Gateway 경유 OpenAI 엔드포인트
 [vars]
 OPENAI_BASE = "https://gateway.ai.cloudflare.com/v1/0a43eeb2c6fe53d7e8e6f38d7ea96905/moida/openai"
+# 뉴스 숏츠는 서버의 기존 키로 OpenAI에 직접 연결합니다.
+NEWS_SHORTS_OPENAI_BASE = "https://api.openai.com/v1"
 FIREBASE_API_KEY = "AIzaSyAIjhvbCztHoF7YwP2IYIk2C6jCI64uFhs"
 AGENT_MODEL = "gpt-4o-mini"
 SECRETARY_MODEL = "gpt-6-luna"
