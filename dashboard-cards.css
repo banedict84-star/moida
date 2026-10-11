@@ -1,0 +1,28 @@
+.page[data-page="dashboard"] .dashboard-cards{max-width:1100px!important;display:flex;flex-direction:column;gap:20px;color:#18324f}
+.dashboard-brand{display:flex;align-items:center;gap:10px}.dashboard-brand img{width:44px;height:44px}.dashboard-brand strong{font-size:18px;letter-spacing:-.5px}.dashboard-brand span{display:block;font-size:11px;color:#718095;margin-top:3px}
+.dashboard-cards .dashboard-greeting{margin:0!important}.dashboard-cards .dashboard-greeting>button{display:none!important}
+.dashboard-cards .dashboard-brief{height:auto!important;background:linear-gradient(120deg,#102c4b,#23546e)!important;padding:24px!important;border-radius:22px!important;box-shadow:0 8px 24px #102c4b18!important}
+.dashboard-cards .dashboard-brief>button{width:100%;justify-content:space-between;height:44px!important;border-radius:12px!important;margin:20px 0 0!important}
+.dashboard-cards .dashboard-brief h2.dashboard-brief-title{font-size:27px;line-height:1.35;letter-spacing:-.8px;color:#fff;margin:18px 0}
+.dashboard-cards h2{font-size:14px;font-weight:700;margin:0 0 12px;letter-spacing:-.2px}
+.dashboard-cards .dashboard-section-title{margin:2px 0 -8px}
+.dashboard-tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.dashboard-tiles button{background:#fff;border:0;border-radius:18px;padding:20px;text-align:left;display:flex;flex-direction:column;gap:17px;box-shadow:0 3px 13px #102c4b08;color:#18324f;font:inherit;cursor:pointer;min-width:0}
+.dashboard-tiles svg{width:24px;height:24px;color:#356779;flex-shrink:0}.dashboard-tiles strong{font-size:14px}.dashboard-tiles strong span{display:block;font-size:12px;color:#718095;font-weight:400;margin-top:6px;line-height:1.5}
+.dashboard-tiles button:hover,.dashboard-shorts-link:hover{box-shadow:0 5px 18px #102c4b16}.dashboard-tiles button:focus-visible,.dashboard-shorts-link:focus-visible,.dashboard-bottom-nav button:focus-visible{outline:3px solid #57d9c2;outline-offset:3px}
+.dashboard-cards .dashboard-live-summary{margin:0!important;gap:12px!important}.dashboard-cards .dashboard-live-summary>div{border-radius:16px!important;border:0!important;box-shadow:0 3px 13px #102c4b06!important}
+.dashboard-cards .dashboard-grid{gap:16px!important;grid-template-columns:repeat(2,minmax(0,1fr))!important}.dashboard-cards .dashboard-grid>div{border-radius:18px!important;padding:20px!important;height:auto!important;border:0!important;box-shadow:0 3px 13px #102c4b06!important}.dashboard-cards .dashboard-grid>div:first-child{grid-column:1/-1}
+.dashboard-shorts-link{border:0;border-radius:18px;padding:20px;display:flex;align-items:center;justify-content:space-between;background:#fff;text-align:left;color:#18324f;font:inherit;cursor:pointer}.dashboard-shorts-link strong{font-size:14px}.dashboard-shorts-link small{display:block;font-size:12px;color:#718095;margin-top:6px}.dashboard-bottom-nav{display:none}
+@media(max-width:760px){
+ html body .page[data-page="dashboard"] .dashboard-cards{gap:20px!important}
+ html body .dashboard-cards .dashboard-greeting{margin:0!important}
+ html body .dashboard-cards #dashGreet{font-size:23px!important;letter-spacing:-.6px}
+ html body .dashboard-cards #dashGreetSub{font-size:13px!important;margin-top:7px!important}
+ .dashboard-tiles{grid-template-columns:repeat(2,minmax(0,1fr))}.dashboard-tiles button{padding:18px 16px;min-height:120px}
+ html body .dashboard-cards .dashboard-live-summary{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}.dashboard-cards .dashboard-live-summary>div{padding:14px!important}
+ .dashboard-cards #kpiCalls,.dashboard-cards #kpiWeek{font-size:18px!important;overflow-wrap:anywhere}
+ html body .dashboard-cards .dashboard-grid{grid-template-columns:minmax(0,1fr)!important;gap:14px!important}
+ html body .dashboard-cards .dashboard-brief{padding:20px!important}.dashboard-cards .dashboard-brief>div:first-child>span:last-child{display:none}
+ .dashboard-bottom-nav{display:flex;justify-content:space-around;gap:4px;border-top:1px solid #e4ebf2;padding:12px 0 max(8px,env(safe-area-inset-bottom));background:#f5f7fb}
+ .dashboard-bottom-nav button{border:0;background:none;color:#718095;font:inherit;font-size:12px;padding:12px 8px;min-height:44px;cursor:pointer}.dashboard-bottom-nav button[aria-current]{color:#184c66;font-weight:700}
+}
