@@ -2817,7 +2817,7 @@ onAuthStateChanged(_auth, async function(user){
     {type:'function',function:{name:'add_complaint',description:'새 민원을 등록',parameters:{type:'object',properties:{title:{type:'string'},field:{type:'string',description:'분야'},name:{type:'string',description:'민원인'},priority:{type:'string',enum:['긴급','중요','일반']},status:{type:'string',enum:['접수','처리중','답변완료','종결']}},required:['title']}}},
     {type:'function',function:{name:'update_complaint_status',description:'민원 상태 변경(제목 일부로 찾음)',parameters:{type:'object',properties:{title:{type:'string'},status:{type:'string',enum:['접수','처리중','답변완료','종결']}},required:['title','status']}}},
     {type:'function',function:{name:'list_schedule',description:'일정 조회(날짜 YYYY-MM-DD로 필터 가능)',parameters:{type:'object',properties:{date:{type:'string'}}}}},
-    {type:'function',function:{name:'add_event',description:'사용자가 일정 등록을 요청하면 MOIDA 일정에 저장하고, 연결된 Google Calendar에도 즉시 등록한다. 날짜나 제목이 없으면 추측하지 말고 사용자에게 확인한다.',parameters:{type:'object',properties:{title:{type:'string'},date:{type:'string',description:'YYYY-MM-DD'},time:{type:'string',description:'HH:MM, 종일 일정이면 빈 문자열'},end_time:{type:'string',description:'HH:MM, 생략하면 시작 1시간 뒤'},duration_minutes:{type:'number',description:'종료 시각이 없을 때 사용할 일정 길이(기본 60분)'},cat:{type:'string',enum:['의정','지역','외부']},location:{type:'string'},description:{type:'string',description:'일정 메모 또는 준비사항'},all_day:{type:'boolean',description:'종일 일정 여부'}},required:['title','date']}}},
+    {type:'function',function:{name:'add_event',description:'사용자가 일정 등록을 요청하면 MOIDA 일정 등록을 제안하고 사용자가 확인창에서 Google 캘린더에도 등록을 선택한 경우에만 함께 등록한다. 날짜나 제목이 없으면 추측하지 말고 사용자에게 확인한다.',parameters:{type:'object',properties:{title:{type:'string'},date:{type:'string',description:'YYYY-MM-DD'},time:{type:'string',description:'HH:MM, 종일 일정이면 빈 문자열'},end_time:{type:'string',description:'HH:MM, 생략하면 시작 1시간 뒤'},duration_minutes:{type:'number',description:'종료 시각이 없을 때 사용할 일정 길이(기본 60분)'},cat:{type:'string',enum:['의정','지역','외부']},location:{type:'string'},description:{type:'string',description:'일정 메모 또는 준비사항'},all_day:{type:'boolean',description:'종일 일정 여부'}},required:['title','date']}}},
     {type:'function',function:{name:'list_policies',description:'발의 법안/정책 목록 조회',parameters:{type:'object',properties:{}}}},
     {type:'function',function:{name:'list_notices',description:'중앙당·경기도당·경기도의회 등 외부 기관 공지사항 조회(최신순). 출처/검색어로 필터 가능.',parameters:{type:'object',properties:{source:{type:'string',enum:['중앙당','경기도당','경기도의회']},query:{type:'string',description:'제목 검색어'},limit:{type:'number',description:'개수(기본 10)'}}}}},
     {type:'function',function:{name:'create_poster',description:'홍보용 웹자보를 코드 템플릿으로 생성한다(1080x1350 PNG, 더불어민주당 네이비 스타일). 제목·슬로건·일시·장소·주최·문의를 정확히 표기하고, 사진은 사용자가 첨부한 현장 사진 + 설정에 등록된 의원 사진을 그대로 사용한다(AI가 새로 그리지 않음 → 글자·얼굴 정확). 반드시 임팩트 있는 한 줄 슬로건(message)을 넣는다.',parameters:{type:'object',properties:{title:{type:'string',description:'핵심 제목/주제(짧게)'},message:{type:'string',description:'핵심 메시지·슬로건 한 문장'},category:{type:'string',description:'상단 분류 배지(예: 의정활동·행사안내·정책)'},date:{type:'string',description:'일시'},place:{type:'string',description:'장소'},host:{type:'string',description:'주최'},phone:{type:'string',description:'문의 연락처'},position:{type:'string',description:'의원 직함·소속(미지정 시 프로필 사용)'},region:{type:'string',description:'하단 지역 표기'},template_key:{type:'string',description:'디자인 템플릿 키(기본 navy). 추가 템플릿 생기면 선택'}},required:['title','message']}}}
@@ -3311,8 +3311,9 @@ onAuthStateChanged(_auth, async function(user){
         if(!a.title||!a.date) return {error:'제목과 날짜(YYYY-MM-DD)가 필요합니다.'};
         var duplicate=(M.events||[]).find(function(e){return e.title===a.title&&e.date===a.date&&(e.time||'')===(a.time||'');});
         if(duplicate) return {ok:true,duplicate:true,added:duplicate.title,date:duplicate.date,googleSynced:!!duplicate.googleEventId,message:'같은 일정이 이미 등록되어 있어 중복 생성하지 않았습니다.'};
-        var ev={id:'e'+Date.now()+Math.random().toString(36).slice(2,6),title:a.title,date:a.date,time:a.time||'',endTime:a.end_time||'',cat:a.cat||'의정',_location:a.location||'',description:a.description||'',author:(M.profile&&M.profile.name)||'',created:Date.now(),googleSyncStatus:'pending'};
+        var ev={id:'e'+Date.now()+Math.random().toString(36).slice(2,6),title:a.title,date:a.date,time:a.time||'',endTime:a.end_time||'',cat:a.cat||'의정',_location:a.location||'',description:a.description||'',author:(M.profile&&M.profile.name)||'',created:Date.now(),googleSyncStatus:a.google_calendar===true?'pending':'not_requested'};
         M.events=M.events||[]; M.events.push(ev); M.save&&M.save('events',M.events); refreshUI(); reloadSchedule();
+        if(a.google_calendar!==true)return {ok:true,added:ev.title,date:ev.date,time:ev.time,googleSkipped:true,message:'모이다에 일정을 등록했습니다. Google Calendar는 선택하지 않았습니다.'};
         return googleCalendarCreate(a).then(function(googleEvent){
           ev.googleSyncStatus='synced';ev.googleEventId=googleEvent.id||'';ev.googleHtmlLink=googleEvent.htmlLink||'';
           M.save&&M.save('events',M.events);refreshUI();reloadSchedule();
@@ -3392,6 +3393,7 @@ onAuthStateChanged(_auth, async function(user){
     if(args.location)lines.push('장소: '+String(args.location));
     lines.push('');
     if(result.duplicate)lines.push('같은 일정이 이미 등록되어 있어 중복으로 만들지 않았습니다.');
+    else if(result.googleSkipped)lines.push('모이다 일정에 반영했습니다. Google 캘린더는 선택하지 않았습니다.');
     else if(result.googleSynced)lines.push('모이다와 Google Calendar에 모두 반영했습니다.');
     else lines.push('모이다에는 등록했지만 Google Calendar 반영에 실패했습니다. 다시 연결한 뒤 동기화해 주세요.');
     return lines.join('\n');
@@ -3408,6 +3410,7 @@ onAuthStateChanged(_auth, async function(user){
       +'<div style="margin-top:10px;font-size:14px;font-weight:750;color:#1f2b3d">'+M.esc(when+' · '+title)+'</div>'
       +(args.location?'<div style="margin-top:3px;font-size:13px;color:#667085">장소: '+M.esc(String(args.location))+'</div>':'')
       +'<div style="margin-top:12px;font-size:13px;color:#344054">이대로 일정을 등록할까요?</div>'
+      +'<label style="display:flex;gap:7px;align-items:center;margin-top:10px;font-size:13px"><input type="checkbox" data-schedule-google '+(args.google_calendar===true?'checked':'')+'>Google 캘린더에도 등록</label>'
       +'<div style="display:flex;gap:8px;margin-top:11px">'
       +'<button type="button" data-schedule-confirm="register" style="height:34px;padding:0 16px;border:0;border-radius:8px;background:#1d3a6e;color:#fff;font-size:12.5px;font-weight:700;cursor:pointer">등록</button>'
       +'<button type="button" data-schedule-confirm="edit" style="height:34px;padding:0 16px;border:1px solid #cfd8e6;border-radius:8px;background:#fff;color:#344054;font-size:12.5px;font-weight:700;cursor:pointer">수정</button>'
@@ -3684,6 +3687,7 @@ onAuthStateChanged(_auth, async function(user){
       showPromotionPrompt();
       return;
     }
+    var googleChoice=e.target.closest('[data-schedule-google]');if(googleChoice&&pendingScheduleProposal){pendingScheduleProposal.google_calendar=googleChoice.checked;return;}
     var scheduleAction=e.target.closest('[data-schedule-confirm]');
     if(scheduleAction){
       var action=scheduleAction.getAttribute('data-schedule-confirm');
