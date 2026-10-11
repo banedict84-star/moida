@@ -18,3 +18,5 @@ test('shorts endpoint override uses the existing key without changing other AI r
  },{OPENAI_BASE:'https://gateway.ai.cloudflare.com/v1/test/moida/openai',NEWS_SHORTS_OPENAI_BASE:'https://api.openai.com/v1'});
  try{await f.run('draft',{text:'기사의 확인된 내용을 전달합니다. '.repeat(20)});}finally{f.db.close();}
 });
+test('detailed briefing preserves duration and legacy drafts',async()=>{const d={...draft,duration:90,scenes:Array(6).fill('기사의 배경과 관계자의 설명을 사실에 따라 전달합니다. '.repeat(4))};assert.equal(validDraft(d).duration,90);assert.equal(validDraft(draft).duration,30);assert.throws(()=>validDraft({...d,duration:30}));const f=fixture();try{await f.run('save',{draft:d});const r=await f.run('drafts',{},'one','GET');assert.equal(JSON.parse(r.drafts[0].draft).duration,90);}finally{f.db.close();}});
+test('substantial articles cannot silently become tiny summaries',async()=>{const f=fixture(async()=>Response.json({choices:[{message:{content:JSON.stringify(draft)}}]}));try{await assert.rejects(f.run('draft',{text:'기사 내용과 배경 설명입니다. '.repeat(100)}),/너무 짧습니다/);}finally{f.db.close();}});
