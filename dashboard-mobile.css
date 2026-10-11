@@ -1,5 +1,5 @@
 @media(max-width:760px){
-  html body #kpiToday[data-loading="true"]{font-size:14px!important}
+  html body .page[data-page="dashboard"] .dashboard-kpis>div>div:nth-child(2)>span[data-loading="true"]{font-size:14px!important}
   html body .page[data-page="dashboard"] .pg .dashboard-kpis{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}
   .page[data-page="dashboard"] .dashboard-kpis>div{padding:12px!important;min-height:0!important;height:auto!important;border-radius:10px!important;box-shadow:none!important}
   .page[data-page="dashboard"] .dashboard-kpis>div>div:first-child{gap:4px!important}
