@@ -19,6 +19,6 @@
   connect.onclick=async function(){if(busy)return;busy=true;controls();try{var data=await api('connect',{});root.top.location.href=data.authorizationUrl;}catch(e){status.textContent=e.message;busy=false;controls();}};
   sync.onclick=function(){refresh(true);};select.onchange=function(){refresh(true);};
   disconnect.onclick=async function(){if(busy)return;busy=true;controls();try{await api('disconnect',{});connected=false;projectId='';select.replaceChildren();apply([]);status.textContent='FLOW 연결을 해제했습니다.';}catch(e){if(e.status===409)connected=false;status.textContent=e.message;}finally{busy=false;controls();}};
-  var timer=setInterval(function(){if(!document.hidden)refresh(false);},300000);root.addEventListener('pagehide',function(){clearInterval(timer);});controls();return{refresh:refresh,detail:function(eventId){return api('detail',{eventId:eventId});}};
+  var timer=setInterval(function(){if(!document.hidden)refresh(false);},300000);root.addEventListener('pagehide',function(){clearInterval(timer);});controls();return{refresh:refresh,state:function(){return{connected:connected,projectId:projectId,projectName:select.selectedOptions[0]?.textContent||''};},create:function(event,requestId,target){return api('create',{event:event,requestId:requestId,projectId:target});},detail:function(eventId){return api('detail',{eventId:eventId});}};
  };
 })(window);

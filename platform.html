@@ -650,7 +650,7 @@ body.secretary-view #aiPanel{border:0!important;border-radius:0!important;box-sh
       </div>
       </div>
 
-      <div class="page" data-page="schedule"><iframe src="schedule.html?embed=1&view=feed&v=flow-detail-6" title="일정·행사" style="display:block;border:1px solid #e9ecf1;border-radius:12px;background:#fff;width:100%;height:calc(100vh - 130px)"></iframe></div>
+      <div class="page" data-page="schedule"><iframe src="schedule.html?embed=1&view=feed&v=flow-write-7" title="일정·행사" style="display:block;border:1px solid #e9ecf1;border-radius:12px;background:#fff;width:100%;height:calc(100vh - 130px)"></iframe></div>
 
       <div class="page" data-page="pr">
       <div class="pg" style="max-width:1320px;margin:0 auto">
@@ -4372,7 +4372,7 @@ plus.onclick=function(){var open=menu.classList.toggle('open');plus.setAttribute
 var input=document.getElementById('aiInput');if(input)input.placeholder='비서실장에게 메시지 보내기';
 })();
 </script>
-<script src="flow-calendar-client.js?v=2"></script>
+<script src="flow-calendar-client.js?v=3"></script>
 <script>
 (function(){var M=window.MOIDA,client;if(!M)return;var mount=document.createElement('div');mount.hidden=true;document.body.append(mount);function apply(events){var next=(M.events||[]).filter(function(e){return e.source!=='flow';}).concat(events);if(JSON.stringify(next)===JSON.stringify(M.events))return;M.events=next;M.emit();}M.onData(function(){if(!M.auth||!M.auth.currentUser)return;if(!client)client=createFlowCalendarClient({mount:mount,user:function(){return M.auth.currentUser;},apply:apply});client.refresh(false);});window.addEventListener('message',function(event){if(event.origin===location.origin&&event.data&&event.data.type==='moida:flow-events-changed')apply(event.data.events||[]);});})();
 </script>

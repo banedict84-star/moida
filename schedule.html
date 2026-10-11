@@ -805,7 +805,7 @@ onAuthStateChanged(_auth, async function(user){
   }
 });
 </script>
-<link rel="stylesheet" href="flow-calendar.css?v=1"><link rel="stylesheet" href="schedule-experience.css?v=5">
+<link rel="stylesheet" href="flow-calendar.css?v=1"><link rel="stylesheet" href="schedule-experience.css?v=6">
 </head>
 <body>
 <script>try{if(/[?&]embed=1/.test(location.search))document.documentElement.classList.add('embed');}catch(e){}</script>
@@ -918,7 +918,7 @@ onAuthStateChanged(_auth, async function(user){
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>
         <select><option>10분 전 미리 알림</option><option>30분 전 미리 알림</option><option>1시간 전 미리 알림</option><option>하루 전 미리 알림</option><option>알림 없음</option></select>
       </div>
-      <textarea class="evm-content" placeholder="여기에 내용을 작성해 주세요"></textarea>
+      <label class="flow-register-choice"><input id="flowRegister" type="checkbox"> <span id="flowRegisterLabel">FLOW에도 등록</span></label><div id="flowRegisterStatus" role="status"></div><textarea class="evm-content" placeholder="여기에 내용을 작성해 주세요"></textarea>
     </div>
     <div class="evm-foot">
       <div class="evm-foot-left">
@@ -927,7 +927,7 @@ onAuthStateChanged(_auth, async function(user){
       <div class="evm-foot-right">
         <span class="evm-scope">프로젝트 참여자만 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
         <button class="evm-draft">임시저장</button>
-        <button class="evm-submit" data-evclose>등록</button>
+        <button class="evm-submit">등록</button>
       </div>
     </div>
   </div>
@@ -1397,6 +1397,7 @@ onAuthStateChanged(_auth, async function(user){
         var _d0=document.querySelectorAll('.evm-input.date')[0]; if(_d0) _d0.value=_ds;
         var _d1=document.querySelectorAll('.evm-input.date')[1]; if(_d1) _d1.value=_es;
       }
+      var state=window._flowWriteState?window._flowWriteState():{};var check=document.getElementById('flowRegister');check.disabled=!!window._editEv||!state.connected||!state.projectId;check.checked=!check.disabled;document.getElementById('flowRegisterLabel').textContent=state.connected&&state.projectId?'FLOW · '+state.projectName+'에 등록':'FLOW 연결 후 함께 등록 가능';document.getElementById('flowRegisterStatus').textContent='';
       m.classList.add('show');
     }
     function close(){ m.classList.remove('show'); }
@@ -1465,7 +1466,8 @@ onAuthStateChanged(_auth, async function(user){
     const sb=document.querySelector('.evm-submit'); if(!sb) return;
     const feed=document.getElementById('feedView');
     const ico='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="4.5" width="17" height="16" rx="3"/><path d="M3.5 9h17M8 3v3M16 3v3"/></svg>';
-    sb.addEventListener('click',function(){
+    sb.addEventListener('click',async function(){
+      if(sb.disabled)return;
       const ti=document.querySelector('.evm-titleinput');
       const title=(ti.value||'').trim()||'(제목 없음)';
       const start=document.querySelectorAll('.evm-input.date')[0].value;
@@ -1484,6 +1486,15 @@ onAuthStateChanged(_auth, async function(user){
       const files=(modal&&modal._files)?modal._files.slice():[];
       var datePart=mt?mt[1]:''; var timePart=mt?mt[2]:''; var dayNum=datePart?parseInt(datePart.split('-')[2],10):null;
       var endDate=mte?mte[1]:''; var endTime=mte?mte[2]:'';
+      var flowCheck=document.getElementById('flowRegister'),flowStatus=document.getElementById('flowRegisterStatus');
+      if(flowCheck.checked&&!window._editEv){
+       const state=window._flowWriteState?window._flowWriteState():{};const payload={title:title,date:datePart,time:timePart,endDate:endDate,endTime:endTime,_body:bodyTxt,_location:locVal,_files:files};var fingerprint=JSON.stringify({projectId:state.projectId,event:payload}),attempt;try{attempt=JSON.parse(sessionStorage.getItem('moida_flow_create_'+_uid)||'null');}catch(e){}if(!attempt||attempt.fingerprint!==fingerprint){attempt={fingerprint:fingerprint,requestId:crypto.randomUUID()};sessionStorage.setItem('moida_flow_create_'+_uid,JSON.stringify(attempt));}
+       sb.disabled=true;sb.textContent='FLOW 등록 중…';flowStatus.textContent='FLOW · '+state.projectName+'에 등록하고 있습니다.';
+       try{var result=await window._flowCreateSchedule(payload,attempt.requestId,state.projectId);flowStatus.textContent=result.needsVerification?'FLOW가 등록 요청을 처리했습니다. 아래 원문에서 결과를 확인해 주세요.':'FLOW에 등록했습니다.';if(result.needsVerification){var source=document.createElement('a');source.href=result.sourceUrl;source.target='_blank';source.rel='noopener noreferrer';source.textContent='FLOW 등록 결과 확인';flowStatus.append(source);}else{modal.classList.remove('show');ti.value='';if(ct)ct.value='';if(modal._resetFiles)modal._resetFiles();switchView('feed');}if(window._flowRefreshSchedule)await window._flowRefreshSchedule();}
+       catch(error){flowStatus.textContent=error.message||'FLOW 등록 결과를 확인하지 못했습니다. 입력 내용은 유지했습니다.';}
+       finally{sb.disabled=false;sb.textContent='등록';}return;
+      }
+      modal.classList.remove('show');
       if(window._editEv){
         var obj=window._editEvObj||window._editEv._ev; // 수정 열 때 잡아둔 실제 이벤트 객체
         if(obj){
@@ -1953,9 +1964,9 @@ onAuthStateChanged(_auth, async function(user){
 })();
 </script>
 <script src="access-guard.js"></script>
-<script src="flow-calendar-client.js?v=2"></script>
+<script src="flow-calendar-client.js?v=3"></script>
 <script>
-(function(){var client;window._flowCalendarReady=function(){if(!window._flowAuth||!window._flowAuth.currentUser)return;if(!client)client=createFlowCalendarClient({mount:document.getElementById('flowCalendarMount'),user:function(){return window._flowAuth.currentUser;},apply:function(events){if(window._flowApplyEvents)window._flowApplyEvents(events);}});window._flowLoadDetail=function(eventId){return client.detail(eventId);};client.refresh(false);};window._flowCalendarReady();})();
+(function(){var client;window._flowCalendarReady=function(){if(!window._flowAuth||!window._flowAuth.currentUser)return;if(!client)client=createFlowCalendarClient({mount:document.getElementById('flowCalendarMount'),user:function(){return window._flowAuth.currentUser;},apply:function(events){if(window._flowApplyEvents)window._flowApplyEvents(events);}});window._flowWriteState=function(){return client.state();};window._flowCreateSchedule=function(event,requestId,target){return client.create(event,requestId,target);};window._flowRefreshSchedule=function(){return client.refresh(true);};window._flowLoadDetail=function(eventId){return client.detail(eventId);};client.refresh(false);};window._flowCalendarReady();})();
 </script>
 </body>
 </html>
