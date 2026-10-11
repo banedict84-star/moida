@@ -805,7 +805,7 @@ onAuthStateChanged(_auth, async function(user){
   }
 });
 </script>
-<link rel="stylesheet" href="flow-calendar.css?v=1">
+<link rel="stylesheet" href="flow-calendar.css?v=1"><link rel="stylesheet" href="schedule-experience.css?v=1">
 </head>
 <body>
 <script>try{if(/[?&]embed=1/.test(location.search))document.documentElement.classList.add('embed');}catch(e){}</script>
@@ -845,7 +845,7 @@ onAuthStateChanged(_auth, async function(user){
       </div>
       <div class="ph-right">
         <div class="view-toggle">
-          <button class="vbtn active" data-view="feed"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>목록</button>
+          <button class="vbtn active" data-view="feed"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>피드</button>
           <button class="vbtn" data-view="cal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="4.5" width="17" height="16" rx="3"/><path d="M3.5 9h17M8 3v3M16 3v3"/></svg>캘린더</button>
         </div>
         <label class="birthday-toggle" title="CRM 연락처 생일 표시"><input id="birthdayVisibility" type="checkbox" checked> 생일자 보기</label>
@@ -867,9 +867,9 @@ onAuthStateChanged(_auth, async function(user){
           <div class="ev-stat" data-range="month"><span class="es-ic es-all"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg></span><div><div class="es-v" id="st-all">0</div><div class="es-l">이번달</div></div></div>
         </div>
         <div class="feed-bar"><span class="fb-all">전체 <b id="evCount">9</b></span><div class="author-toggle"><button class="at-btn on" data-author="all">전체</button><button class="at-btn" data-author="me">내 일정</button></div></div>
-        <div id="feedView" class="feed"></div>
+        <div class="schedule-tools"><label class="schedule-search">일정 검색<input id="scheduleSearch" type="search" placeholder="제목·장소 검색" aria-label="일정 검색"></label><select id="schedulePeriod" aria-label="피드 기간"><option value="upcoming">오늘 이후</option><option value="all">전체 일정</option><option value="past">지난 일정</option></select></div><div id="feedView" class="feed"></div>
         <div id="calView" class="cal" hidden>
-          <div class="cal-head"><button class="cal-nav">‹</button><div class="cal-title">2026년 6월</div><button class="cal-nav">›</button></div>
+          <div class="cal-head"><button class="cal-nav">‹</button><div class="cal-title">2026년 6월</div><button class="cal-today" type="button">오늘</button><input id="calendarMonth" type="month" aria-label="달력 월 선택"><button class="cal-nav">›</button></div>
           <div class="cal-grid" id="calGrid"></div>
           <div class="cal-mobile-list" id="calMobileList"></div>
         </div>
@@ -1065,16 +1065,17 @@ onAuthStateChanged(_auth, async function(user){
       var parsed=Date.parse(text.replace(' ','T'));
       return Number.isFinite(parsed)?parsed:0;
     }
-    var list=events.filter(function(e){ return _authorFilter==='all' || e.author===cur; }).slice().sort(function(a,b){
-      var diff=createdAt(b)-createdAt(a);
-      return diff || String(b.id||'').localeCompare(String(a.id||''));
-    });
+    var query=(document.getElementById('scheduleSearch').value||'').trim().toLowerCase(),period=document.getElementById('schedulePeriod').value;
+    var now=new Date(),today=now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0')+'-'+String(now.getDate()).padStart(2,'0');
+    var list=events.filter(function(e){return (_authorFilter==='all'||e.author===cur)&&(!query||(String(e.title||'')+' '+String(e._location||'')).toLowerCase().includes(query))&&(period==='all'||(period==='past'?String(e.endDate||e.date)<today:String(e.endDate||e.date)>=today));}).slice().sort(function(a,b){var order=String(a.date+' '+(a.time||'00:00')).localeCompare(String(b.date+' '+(b.time||'00:00')));return period==='past'?-order:order;});
     var feedEl=document.getElementById('feedView');
-    feedEl.innerHTML = list.map(function(e){ var i=events.indexOf(e); return '<div class="ev'+(e.star?' imp':'')+'"><div class="ev-ico">'+calIco+'</div><div class="ev-main"><div class="ev-t">'+eventEsc(e.title)+'</div><div class="ev-meta">'+eventEsc(e.author)+' · '+e.created+'</div></div><div class="ev-date">'+e.date+' '+e.time+'</div><button class="ev-star'+(e.star?' on':'')+'" data-si="'+i+'" title="중요 일정" onclick="toggleStar(event,'+i+')">'+starSvg(e.star)+'</button></div>'; }).join('');
+    var lastDate='';feedEl.innerHTML=list.map(function(e){var i=events.indexOf(e),heading='';if(lastDate!==e.date){lastDate=e.date;var d=new Date(e.date+'T00:00:00');heading='<div class="feed-day">'+eventEsc(e.date)+(isNaN(d)?'':' · '+['일','월','화','수','목','금','토'][d.getDay()]+'요일')+(e.date===today?' <span>오늘</span>':'')+'</div>';}
+      return heading+'<div class="ev'+(e.star?' imp':'')+'" tabindex="0" role="button"><div class="ev-ico">'+eventEsc(e.time||'종일')+'</div><div class="ev-main"><div class="ev-t">'+eventEsc(e.title)+'</div><div class="ev-meta">'+eventEsc(e._location||e.author||'의원실')+(e.source==='flow'?' · FLOW':'')+'</div></div><div class="ev-date">'+(e.endDate&&e.endDate!==e.date?'~ '+eventEsc(e.endDate):eventEsc(e.endTime||''))+'</div><button class="ev-star'+(e.star?' on':'')+'" data-si="'+i+'" title="중요 일정" onclick="toggleStar(event,'+i+')">'+starSvg(e.star)+'</button></div>';}).join('')||'<div class="schedule-empty">표시할 일정이 없습니다.<small>기간이나 검색어를 바꿔 확인해 보세요.</small></div>';
     [].forEach.call(feedEl.querySelectorAll('.ev'), function(node,k){ node._ev=list[k]; }); // 카드 ↔ 이벤트 객체 연결
     var fb=document.querySelector('.fb-all b'); if(fb) fb.textContent=list.length;
   }
   var _authorFilter='all';
+  document.getElementById('scheduleSearch').addEventListener('input',renderFeed);document.getElementById('schedulePeriod').addEventListener('change',renderFeed);document.getElementById('feedView').addEventListener('keydown',function(e){if(e.target.classList.contains('ev')&&(e.key==='Enter'||e.key===' ')){e.preventDefault();e.target.click();}});
   function renderImp(){
     var now=new Date(),pad=function(n){return String(n).padStart(2,'0');};
     var today=now.getFullYear()+'-'+pad(now.getMonth()+1)+'-'+pad(now.getDate());
@@ -1291,6 +1292,7 @@ onAuthStateChanged(_auth, async function(user){
       });
     };
     renderCal();
+    document.querySelector('.cal-today').addEventListener('click',function(){var now=new Date();calY=now.getFullYear();calM=now.getMonth();renderCal();});document.getElementById('calendarMonth').addEventListener('change',function(){var parts=this.value.split('-');if(parts.length===2){calY=+parts[0];calM=+parts[1]-1;renderCal();}});
     var navs=document.querySelectorAll('.cal-nav');
     if(navs[0]) navs[0].addEventListener('click',function(){ calM--; if(calM<0){calM=11;calY--;} renderCal(); });
     if(navs[1]) navs[1].addEventListener('click',function(){ calM++; if(calM>11){calM=0;calY++;} renderCal(); });
@@ -1361,6 +1363,7 @@ onAuthStateChanged(_auth, async function(user){
     var ab=document.querySelector('.vbtn[data-view="'+v+'"]'); if(ab) ab.classList.add('active');
     document.getElementById('feedView').style.display = isCal?'none':'flex';
     document.querySelector('.feed-bar').style.display = isCal?'none':'flex';
+    document.querySelector('.schedule-tools').style.display=isCal?'none':'flex';
     document.getElementById('calView').style.display = isCal?'block':'none';
     var imp=document.getElementById('impStrip'); if(imp) imp.style.display = isCal?'none':'';
     var stats=document.querySelector('.ev-stats'); if(stats) stats.style.display = isCal?'none':'grid';
