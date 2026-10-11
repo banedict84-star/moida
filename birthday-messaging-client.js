@@ -1,12 +1,19 @@
-import {birthdayContacts} from './birthday-messaging.js';
+import {birthdayContacts,koreanClock} from './birthday-messaging.js';
 const mount=document.getElementById('solapiMessaging');
 if(mount){
  const panel=document.createElement('section');panel.className='sms-card sms-birthday';panel.innerHTML=`<h3>생일 문자 자동발송</h3><p>등록 연락처의 양력 생일에 축하 문자를 보냅니다. 모이다를 닫아도 실행되며, 같은 날 중복 발송하지 않습니다.</p><p id="birthdayCount">연락처를 확인하고 있습니다.</p><form id="birthdayForm"><label>발송 시간 (한국 시간)<input id="birthdayTime" type="time" value="09:00" required></label><label>축하 문구<textarea id="birthdayText" required>{이름}님, 생일을 진심으로 축하드립니다. 행복한 하루 보내세요. — 장윤정 의원</textarea></label><label><input id="birthdayEnabled" type="checkbox"> 매일 생일 문자 자동발송</label><p>위 메시지 작성 화면의 발신번호를 사용합니다. 켠 다음 날부터 지정 시각 이후 5분 이내 발송합니다. 음력·잘못된 생일·전화번호는 제외하며, 2월 29일은 윤년에만 발송합니다.</p><button type="submit" class="sms-primary">설정 저장</button> <button id="birthdayStop" type="button">자동발송 끄기</button> <button id="birthdaySync" type="button">생일 대상 동기화</button></form><p id="birthdayStatus" role="status" aria-live="polite"></p><p>대상은 마지막으로 동기화한 연락처 기준입니다. 모이다를 열면 갱신하며, 30일 동안 갱신하지 않으면 발송을 멈춥니다.</p>`;
  const history=mount.querySelector('.sms-history');mount.insertBefore(panel,history);
+ const todayPanel=document.createElement('section');todayPanel.className='sms-card';
+ const todayHeading=document.createElement('h3'),todayList=document.createElement('div'),todayImport=document.createElement('button'),todayNote=document.createElement('p');
+ todayHeading.textContent='오늘 생일인 연락처';todayImport.type='button';todayImport.textContent='오늘 생일인 사람을 수신자로 불러오기';todayNote.textContent='등록 연락처의 양력 생일·유효한 휴대폰 번호 기준입니다. 불러오면 직접 입력한 수신자 목록을 교체합니다. 문자는 발송 확인 후 전송됩니다.';
+ todayPanel.append(todayHeading,todayList,todayImport,todayNote);mount.insertBefore(todayPanel,panel);
  const $=id=>document.getElementById(id);let loadedUid='',exists=false,enabled=false,busy=false,timer;
  function owner(){const M=window.MOIDA,u=M?.auth?.currentUser;if(!u||!M.ready)throw Error('로그인과 연락처 로딩이 끝난 뒤 이용해 주세요.');if(M.uidOf&&M.uidOf()!==u.uid||window.MOIDA_READONLY)throw Error('계정 소유자만 생일 자동발송을 설정할 수 있습니다.');return u.uid;}
  const api=(body)=>window.MOIDA_SMS_API('birthday',body);
- function candidates(){const normalized=birthdayContacts(window.MOIDA?.members||[]);$('birthdayCount').textContent='생일·휴대폰 번호 유효 '+normalized.contacts.length+'명 · 정보 누락·음력·중복 제외 '+normalized.skipped+'명';return normalized.contacts.map(c=>({name:c.name,phone:c.phone,birthday:c.md}));}
+ function todayContacts(){return birthdayContacts(window.MOIDA?.members||[]).contacts.filter(c=>c.md===koreanClock().md);}
+ function renderToday(){todayList.replaceChildren();let rows=[];try{owner();rows=todayContacts();todayHeading.textContent='오늘 생일인 연락처 · '+koreanClock().date+' · '+rows.length+'명';for(const c of rows){const row=document.createElement('p');row.textContent=(c.name||'이름 미등록')+' · '+c.phone+' · '+c.md.slice(0,2)+'월 '+c.md.slice(2)+'일';todayList.append(row);}if(!rows.length)todayList.textContent='오늘 생일인 발송 대상이 없습니다.';}catch(e){todayList.textContent=e.message;}todayImport.disabled=!rows.length;}
+ todayImport.onclick=()=>{try{owner();const rows=todayContacts();$('smsNumbers').value=rows.map(c=>c.phone).join('\n');$('smsStatus').textContent='오늘 생일인 '+rows.length+'명을 수신자로 불러왔습니다. 축하 문구를 작성하고 발송 내용을 확인해 주세요.';$('smsNumbers').focus();}catch(e){todayList.textContent=e.message;}};
+ function candidates(){renderToday();const normalized=birthdayContacts(window.MOIDA?.members||[]);$('birthdayCount').textContent='생일·휴대폰 번호 유효 '+normalized.contacts.length+'명 · 정보 누락·음력·중복 제외 '+normalized.skipped+'명';return normalized.contacts.map(c=>({name:c.name,phone:c.phone,birthday:c.md}));}
  function describe(rule){return (rule.enabled?'자동발송 켜짐 · '+rule.time+' · '+rule.startDate+'부터':'자동발송 꺼짐')+(rule.syncedAt?' · 대상 갱신 '+new Date(rule.syncedAt).toLocaleString('ko-KR',{timeZone:'Asia/Seoul'}):'')+(rule.today!=null?' · 오늘 생일 '+rule.today+'명':'');}
  async function load(){if(busy)return;try{const uid=owner();if(loadedUid===uid)return;busy=true;const rule=await api();if(owner()!==uid)return;loadedUid=uid;exists=!!rule.syncedAt;enabled=!!rule.enabled;$('birthdayTime').value=rule.time;$('birthdayText').value=rule.text;$('birthdayEnabled').checked=enabled;$('birthdayStatus').textContent=describe(rule);candidates();}catch(e){$('birthdayStatus').textContent=e.message;}finally{busy=false;}}
  async function sync(){if(busy||!exists)return;try{owner();busy=true;const result=await api({action:'sync',members:candidates()});$('birthdayStatus').textContent=(result.enabled?'자동발송 켜짐':'자동발송 꺼짐')+' · 생일 대상 '+result.total+'명 갱신 완료';}catch(e){$('birthdayStatus').textContent=e.message;}finally{busy=false;}}
@@ -15,5 +22,5 @@ if(mount){
  $('birthdaySync').onclick=sync;
  window.MOIDA?.onData(()=>{candidates();load().then(()=>{if(enabled){clearTimeout(timer);timer=setTimeout(sync,3000);}});});
  window.addEventListener('moida-sms-connection-change',()=>{loadedUid='';load();});
- window.addEventListener('hashchange',()=>{if(location.hash==='#messaging')load();});if(location.hash==='#messaging')load();
+ window.addEventListener('hashchange',()=>{if(location.hash==='#messaging'){renderToday();load();}});setInterval(()=>{if(location.hash==='#messaging')renderToday();},60000);renderToday();if(location.hash==='#messaging')load();
 }
