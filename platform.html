@@ -289,7 +289,8 @@ body.secretary-view #aiPanel{border:0!important;border-radius:0!important;box-sh
 <link rel="stylesheet" href="office.css?v=20261005">
 <link rel="stylesheet" href="secretary-mobile.css?v=2">
 <link rel="stylesheet" href="secretary-toolkit.css?v=4">
-<style>.messaging-workspace{padding:18px 24px}.messaging-toolbar{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:12px}.messaging-toolbar strong{font-size:16px;color:#25344a}.messaging-toolbar p{font-size:12px;color:#778398;margin:5px 0 0}.messaging-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.messaging-actions button,.messaging-actions a{font-family:inherit;font-size:13px;font-weight:600;padding:9px 12px;border:1px solid #e3e8ef;border-radius:9px;background:#fff;color:#536178;text-decoration:none;cursor:pointer}.messaging-actions button:hover{background:#f1f4f8}#twoPyoFrame{display:block;width:100%;height:calc(100dvh - 180px);min-height:500px;border:1px solid #e3e8ef;border-radius:12px;background:#fff}@media(max-width:760px){.messaging-workspace{padding:12px}.messaging-actions{gap:6px}.messaging-actions button,.messaging-actions a{padding:8px 10px;font-size:12px}#twoPyoFrame{height:calc(100dvh - 210px);min-height:480px}}</style>
+
+<link rel="stylesheet" href="solapi-messaging.css?v=1">
 </head>
 <body class="app-loading">
 <div style="display:flex;height:100vh;width:100%;font-family:'Pretendard',sans-serif;color:#1a2330;background:#f5f6f8;overflow:hidden">
@@ -652,7 +653,7 @@ body.secretary-view #aiPanel{border:0!important;border-radius:0!important;box-sh
       </div>
       </div>
 
-      <div class="page" data-page="messaging"><div class="messaging-workspace"><div class="messaging-toolbar"><div><strong>2PYO 문자 발송</strong><p>2PYO 계정으로 로그인해 이용하세요.</p></div><div class="messaging-actions"><button type="button" data-2pyo="/send/xms/elec?manual=N">문자 발송</button><button type="button" data-2pyo="/result/jobs">전송내역</button><button type="button" data-2pyo="/result/bookings">예약관리</button><button type="button" data-2pyo="/account/login">로그인</button><a href="https://www.2pyo.co.kr/" target="_blank" rel="noopener noreferrer">새 창으로 열기 ↗</a></div></div><iframe id="twoPyoFrame" title="2PYO 문자 발송 서비스" referrerpolicy="strict-origin-when-cross-origin"></iframe></div></div>
+      <div class="page" data-page="messaging"><div id="solapiMessaging"></div></div>
       <div class="page" data-page="schedule"><iframe src="schedule.html?embed=1&view=feed&v=feed-simple-9" title="일정·행사" style="display:block;border:1px solid #e9ecf1;border-radius:12px;background:#fff;width:100%;height:calc(100vh - 130px)"></iframe></div>
 
       <div class="page" data-page="pr">
@@ -877,7 +878,7 @@ body.secretary-view #aiPanel{border:0!important;border-radius:0!important;box-sh
     crm:['CRM','지지자·후원자·단체 관계 관리'],
     minwon:['민원','민원 접수부터 종결까지'],
     schedule:['일정·행사','의정활동과 지역 일정 관리'],
-    messaging:['문자 발송','2PYO 문자·예약·전송내역'],
+    messaging:['문자 발송','솔라피 문자·예약·전송내역'],
     pr:['홍보','SNS·언론 홍보 콘텐츠 관리'],
     policy:['정책','법안·정책 추진 현황'],
     news:['뉴스','실시간 언론·여론 모니터링'],
@@ -912,7 +913,7 @@ body.secretary-view #aiPanel{border:0!important;border-radius:0!important;box-sh
       pg.style.animation='none';
       if(navigationReady){ void pg.offsetWidth; pg.style.animation=''; }
     }
-    if(page==='messaging'){var twoPyo=document.getElementById('twoPyoFrame');if(twoPyo&&!twoPyo.hasAttribute('src'))twoPyo.src='https://www.2pyo.co.kr/account/login';}
+    if(page==='messaging'&&window.MOIDA_SOLAPI_INIT)window.MOIDA_SOLAPI_INIT();
     navigationReady = true;
     if(('#'+page) !== location.hash) history.replaceState(null,'','#'+page);
   }
@@ -941,7 +942,7 @@ body.secretary-view #aiPanel{border:0!important;border-radius:0!important;box-sh
     window.MOIDA_CLOSE_MOBILE_MENU=function(){ if(mobileMq.matches) setMobileOpen(false); };
   })();
 
-  document.querySelectorAll('[data-2pyo]').forEach(function(button){button.addEventListener('click',function(){document.getElementById('twoPyoFrame').src='https://www.2pyo.co.kr'+button.getAttribute('data-2pyo');});});
+
   window.__go = show; /* 대시보드 카드 등에서 페이지 전환에 사용 */
   navItems.forEach(function(n){
     n.addEventListener('click', function(){ show(n.getAttribute('data-page')); if(window.MOIDA_CLOSE_MOBILE_MENU) window.MOIDA_CLOSE_MOBILE_MENU(); });
@@ -4403,5 +4404,6 @@ var input=document.getElementById('aiInput');if(input)input.placeholder='비서�
 <script>
 (function(){var M=window.MOIDA,client;if(!M)return;var mount=document.createElement('div');mount.hidden=true;document.body.append(mount);function apply(events){var next=(M.events||[]).filter(function(e){return e.source!=='flow';}).concat(events);if(JSON.stringify(next)===JSON.stringify(M.events))return;M.events=next;M.emit();}M.onData(function(){if(!M.auth||!M.auth.currentUser)return;if(!client)client=createFlowCalendarClient({mount:mount,user:function(){return M.auth.currentUser;},apply:apply});client.refresh(false);});window.addEventListener('message',function(event){if(event.origin===location.origin&&event.data&&event.data.type==='moida:flow-events-changed')apply(event.data.events||[]);});})();
 </script>
+<script src="solapi-messaging-client.js?v=1"></script>
 </body>
 </html>
