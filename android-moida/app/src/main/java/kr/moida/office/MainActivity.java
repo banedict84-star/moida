@@ -13,6 +13,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,19 +33,26 @@ public final class MainActivity extends Activity {
  @Override public void onCreate(Bundle state){
   super.onCreate(state);
   ScrollView scroll=new ScrollView(this);scroll.setFillViewport(true);scroll.setBackgroundColor(Color.rgb(244,247,251));
-  LinearLayout layout=new LinearLayout(this);layout.setOrientation(LinearLayout.VERTICAL);layout.setPadding(dp(28),dp(48),dp(28),dp(32));scroll.addView(layout);
-  TextView brand=text("MOIDA",14,0xFF4772B7);brand.setTypeface(null,Typeface.BOLD);layout.addView(brand);
-  TextView title=text("모이다\nAI 비서실",36,0xFF142C4A);title.setTypeface(null,Typeface.BOLD);layout.addView(title);
-  layout.addView(text("의원실의 업무를 한곳에서.\n웹 기능은 수정·배포 후 다시 열면 반영됩니다.",16,0xFF64758A));
-  button(layout,"모이다 열기",()->openSite("dashboard"),true);
-  button(layout,"오늘의 뉴스 숏츠",()->openSite("shorts"),false);
-  button(layout,"일정·행사",()->openSite("schedule"),false);
-  button(layout,"통화 기록",()->openSite("calls"),false);
-  button(layout,"앱 업데이트 확인",()->checkUpdate(true),false);
-  updateStatus=text("앱 "+BuildConfig.VERSION_NAME+" · Android 8 이상\nChrome 또는 기본 브라우저의 로그인·다운로드 기능을 사용합니다.\n통화녹음 자동 수집은 별도의 ‘모이다 통화 연결’ 앱에서 설정하세요.",13,0xFF7E8C9E);layout.addView(updateStatus);
+  LinearLayout layout=new LinearLayout(this);layout.setOrientation(LinearLayout.VERTICAL);layout.setPadding(dp(22),dp(28),dp(22),dp(24));scroll.addView(layout);
+  LinearLayout header=new LinearLayout(this);header.setGravity(Gravity.CENTER_VERTICAL);
+  ImageView logo=new ImageView(this);logo.setImageResource(kr.moida.office.R.drawable.ic_moida);logo.setContentDescription("모이다 로고");header.addView(logo,new LinearLayout.LayoutParams(dp(48),dp(48)));
+  TextView brand=text("모이다\nAI 비서실",18,0xFF142C4A);brand.setTypeface(null,Typeface.BOLD);brand.setPadding(dp(12),0,0,0);header.addView(brand);layout.addView(header);
+  TextView greeting=text("오늘도, 모이다와 함께.",24,0xFF142C4A);greeting.setTypeface(null,Typeface.BOLD);greeting.setPadding(0,dp(30),0,dp(8));layout.addView(greeting);
+  layout.addView(text("일정과 소통, 콘텐츠를 한곳에서.",14,0xFF64758A));
+  LinearLayout hero=new LinearLayout(this);hero.setOrientation(LinearLayout.VERTICAL);hero.setPadding(dp(22),dp(22),dp(22),dp(10));hero.setBackground(surface(0xFF102C4B,22));
+  hero.addView(text("AI 비서실",13,0xFF88DFCF));TextView title=text("오늘의 업무를\n이어가세요.",27,Color.WHITE);title.setTypeface(null,Typeface.BOLD);hero.addView(title);
+  button(hero,"비서실 들어가기  →",()->openSite("dashboard"),false);layout.addView(hero);
+  TextView quick=text("빠른 시작",14,0xFF142C4A);quick.setTypeface(null,Typeface.BOLD);quick.setPadding(0,dp(24),0,dp(12));layout.addView(quick);
+  LinearLayout row=new LinearLayout(this);row.setOrientation(LinearLayout.HORIZONTAL);
+  tile(row,"뉴스 숏츠\n기사로 영상 만들기",()->openSite("shorts"));tile(row,"일정·행사\n다가오는 일정 보기",()->openSite("schedule"));layout.addView(row);
+  button(layout,"통화 기록  →",()->openSite("calls"),false);
+  Button update=new Button(this);update.setText("앱 업데이트 확인");update.setAllCaps(false);update.setTextSize(13);update.setTextColor(0xFF64758A);update.setBackgroundColor(Color.TRANSPARENT);update.setOnClickListener(v->checkUpdate(true));layout.addView(update);
+  updateStatus=text("MOIDA · v"+BuildConfig.VERSION_NAME+"\n웹 기능은 다시 열면 반영됩니다.",12,0xFF7E8C9E);layout.addView(updateStatus);
   setContentView(scroll);
   if(state==null){openSite("dashboard");checkUpdate(false);}
  }
+ private GradientDrawable surface(int color,int radius){GradientDrawable bg=new GradientDrawable();bg.setColor(color);bg.setCornerRadius(dp(radius));return bg;}
+ private void tile(LinearLayout row,String label,Runnable action){Button b=new Button(this);b.setText(label);b.setAllCaps(false);b.setTextSize(14);b.setTextColor(0xFF264A76);b.setGravity(Gravity.START|Gravity.CENTER_VERTICAL);b.setPadding(dp(16),dp(12),dp(10),dp(12));b.setElevation(0);b.setBackground(surface(Color.WHITE,18));LinearLayout.LayoutParams p=new LinearLayout.LayoutParams(0,dp(106),1);p.bottomMargin=dp(12);if(row.getChildCount()==0)p.rightMargin=dp(10);row.addView(b,p);b.setOnClickListener(v->action.run());}
  private TextView text(String value,int size,int color){TextView t=new TextView(this);t.setText(value);t.setTextSize(size);t.setTextColor(color);t.setPadding(0,0,0,dp(20));t.setLineSpacing(dp(5),1);return t;}
  private void button(LinearLayout layout,String title,Runnable action,boolean primary){
   Button b=new Button(this);b.setText(title);b.setAllCaps(false);b.setTextSize(16);b.setTextColor(primary?Color.WHITE:0xFF264A76);b.setGravity(Gravity.CENTER);b.setElevation(0);

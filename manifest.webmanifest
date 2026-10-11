@@ -1,1 +1,1 @@
-{"id":"/moida/","name":"모이다 의원실","short_name":"모이다","start_url":"./platform.html#locations","scope":"./","display":"standalone","background_color":"#f5f7fb","theme_color":"#244d91","icons":[{"src":"moida-app-icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any"}]}
+{"id":"/moida/","name":"모이다 의원실","short_name":"모이다","start_url":"./platform.html#locations","scope":"./","display":"standalone","background_color":"#f5f7fb","theme_color":"#244d91","icons":[{"src":"moida-app-icon.svg?v=office-logo2","sizes":"any","type":"image/svg+xml","purpose":"any"}]}
