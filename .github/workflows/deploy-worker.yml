@@ -13,6 +13,7 @@ on:
       - 'agent-scheduler.js'
       - 'secretary-*.js'
       - 'flow-calendar.js'
+      - 'call-records.js'
       - 'office-location.js'
       - 'office-travel.js'
       - 'solapi-messaging.js'
@@ -38,6 +39,7 @@ jobs:
       - name: Validate worker and agent execution
         run: |
           node --check gpt-worker.js
+          node --test tests/call-records.test.mjs
           node --test tests/office-location.test.mjs
           node --test tests/office-travel.test.mjs
           node --test tests/agent-core.test.mjs tests/agent-tools.test.mjs tests/agent-scheduler.test.mjs tests/agent-review.test.mjs tests/usage-cost.test.mjs tests/secretary-agent.test.mjs tests/secretary-toolkit.test.mjs tests/secretary-voice.test.mjs tests/flow-calendar.test.mjs tests/solapi-messaging.test.mjs
