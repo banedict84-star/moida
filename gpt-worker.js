@@ -1302,6 +1302,11 @@ enforcementDate는 '시행일자'로만 표기하며 제정일자나 개정일�
 
 async function handleQueue(batch, env) {
   for (const message of batch.messages) {
+    if(message.body?.kind==='call-transcription'){
+      try{const {uid,id}=message.body;await callRecords.route({env,uid,request:new Request('https://internal/call-records?action=retry&id='+encodeURIComponent(id),{method:'POST'}),fromQueue:true});message.ack();}
+      catch{message.retry({delaySeconds:30});}
+      continue;
+    }
     const { runId, tenantId } = message.body || {};
     if (!runId || !tenantId) { message.ack(); continue; }
     try {
@@ -1736,7 +1741,7 @@ async function handleFetch(request, env) {
     if(path.startsWith('/news-shorts/')){const user=await verifyFirebaseUser(request,env);const response=json(await newsShorts.route({env,uid:user.uid,request,body:request.method==='POST'?await requestBody(request):{}}),200,request,env);response.headers.set('Cache-Control','no-store');return response;}
     if(path==='/owntracks/pub'&&request.method==='POST'){const response=json(await officeLocation.receive({env,request}),200,request,env);response.headers.set('Cache-Control','no-store');return response;}
     if(path.startsWith('/office-travel/')){const pending=path==='/office-travel/pending'||path==='/office-travel/ack';const user=pending?null:await verifyFirebaseUser(request,env);const response=json(await officeTravel.route({env,uid:user?.uid,request,body:request.method==='POST'?await requestBody(request):{}}),200,request,env);response.headers.set('Cache-Control','no-store');return response;}
-    if(path==='/call-recordings/upload'&&request.method==='POST'){const uid=await callDevices.authenticate({env,request});return json(await callRecords.route({env,uid,request}),200,request,env);}
+    if(path==='/call-recordings/upload'&&request.method==='POST'){const uid=await callDevices.authenticate({env,request});const response=json(await callRecords.route({env,uid,request}),200,request,env);response.headers.set('Cache-Control','no-store');return response;}
     if(path==='/call-devices'){const user=await verifyFirebaseUser(request,env);const response=json(await callDevices.route({env,uid:user.uid,request,body:request.method==='POST'?await requestBody(request):{}}),200,request,env);response.headers.set('Cache-Control','no-store');return response;}
     if(path==='/call-records'){const user=await verifyFirebaseUser(request,env);const response=json(await callRecords.route({env,uid:user.uid,request}),200,request,env);response.headers.set('Cache-Control','no-store');return response;}
     if(path.startsWith('/office-location/')){const user=await verifyFirebaseUser(request,env);const response=json(await officeLocation.route({env,uid:user.uid,request,body:request.method==='POST'?await requestBody(request):{}}),200,request,env);response.headers.set('Cache-Control','no-store');return response;}
