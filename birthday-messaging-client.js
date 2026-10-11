@@ -3,10 +3,12 @@ const mount=document.getElementById('solapiMessaging');
 if(mount){
  const panel=document.createElement('section');panel.className='sms-card sms-birthday';panel.innerHTML=`<h3>생일 문자 자동발송</h3><p>등록 연락처의 양력 생일에 축하 문자를 보냅니다. 모이다를 닫아도 실행되며, 같은 날 중복 발송하지 않습니다.</p><p id="birthdayCount">연락처를 확인하고 있습니다.</p><form id="birthdayForm"><label>발송 시간 (한국 시간)<input id="birthdayTime" type="time" value="09:00" required></label><label>축하 문구<textarea id="birthdayText" required>{이름}님, 생일을 진심으로 축하드립니다. 행복한 하루 보내세요. — 장윤정 의원</textarea></label><label><input id="birthdayEnabled" type="checkbox"> 매일 생일 문자 자동발송</label><p>위 메시지 작성 화면의 발신번호를 사용합니다. 켠 다음 날부터 지정 시각 이후 5분 이내 발송합니다. 음력·잘못된 생일·전화번호는 제외하며, 2월 29일은 윤년에만 발송합니다.</p><button type="submit" class="sms-primary">설정 저장</button> <button id="birthdayStop" type="button">자동발송 끄기</button> <button id="birthdaySync" type="button">생일 대상 동기화</button></form><p id="birthdayStatus" role="status" aria-live="polite"></p><p>대상은 마지막으로 동기화한 연락처 기준입니다. 모이다를 열면 갱신하며, 30일 동안 갱신하지 않으면 발송을 멈춥니다.</p>`;
  const history=mount.querySelector('.sms-history');mount.insertBefore(panel,history);
- const todayPanel=document.createElement('section');todayPanel.className='sms-card';
+ const todayPanel=document.createElement('section');todayPanel.className='sms-card sms-today';
  const todayHeading=document.createElement('h3'),todayList=document.createElement('div'),todayImport=document.createElement('button'),todayNote=document.createElement('p');
  todayHeading.textContent='오늘 생일인 연락처';todayImport.type='button';todayImport.textContent='오늘 생일인 사람을 수신자로 불러오기';todayNote.textContent='등록 연락처의 양력 생일·유효한 휴대폰 번호 기준입니다. 불러오면 직접 입력한 수신자 목록을 교체합니다. 문자는 발송 확인 후 전송됩니다.';
- todayPanel.append(todayHeading,todayList,todayImport,todayNote);mount.insertBefore(todayPanel,panel);
+ todayPanel.append(todayHeading,todayList,todayImport,todayNote);todayList.className='sms-birthday-list';todayImport.className='sms-primary';
+ const columns=mount.querySelector('.sms-columns'),recipient=columns.querySelector('.sms-card'),left=document.createElement('div');left.className='sms-recipient-column';columns.insertBefore(left,recipient);left.append(todayPanel,recipient);
+ const automation=document.createElement('details'),summary=document.createElement('summary');automation.className='sms-card sms-automation';summary.textContent='생일 문자 자동발송 설정';panel.classList.remove('sms-card');panel.querySelector('h3').remove();automation.append(summary,panel);left.append(automation);
  const $=id=>document.getElementById(id);let loadedUid='',exists=false,enabled=false,busy=false,timer;
  function owner(){const M=window.MOIDA,u=M?.auth?.currentUser;if(!u||!M.ready)throw Error('로그인과 연락처 로딩이 끝난 뒤 이용해 주세요.');if(M.uidOf&&M.uidOf()!==u.uid||window.MOIDA_READONLY)throw Error('계정 소유자만 생일 자동발송을 설정할 수 있습니다.');return u.uid;}
  const api=(body)=>window.MOIDA_SMS_API('birthday',body);

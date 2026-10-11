@@ -293,7 +293,7 @@ body.secretary-view #aiPanel{border:0!important;border-radius:0!important;box-sh
 <link rel="stylesheet" href="secretary-mobile.css?v=2">
 <link rel="stylesheet" href="secretary-toolkit.css?v=4">
 
-<link rel="stylesheet" href="solapi-messaging.css?v=2">
+<link rel="stylesheet" href="solapi-messaging.css?v=3">
 </head>
 <body class="app-loading">
 <div style="display:flex;height:100vh;width:100%;font-family:'Pretendard',sans-serif;color:#1a2330;background:#f5f6f8;overflow:hidden">
@@ -4427,6 +4427,6 @@ var input=document.getElementById('aiInput');if(input)input.placeholder='비서�
 (function(){var M=window.MOIDA,client;if(!M)return;var mount=document.createElement('div');mount.hidden=true;document.body.append(mount);function apply(events){var next=(M.events||[]).filter(function(e){return e.source!=='flow';}).concat(events);if(JSON.stringify(next)===JSON.stringify(M.events))return;M.events=next;M.emit();}window.MOIDA_REFRESH_FLOW_SCHEDULE=async function(){if(!M.auth||!M.auth.currentUser)return;if(!client)client=createFlowCalendarClient({mount:mount,user:function(){return M.auth.currentUser;},apply:apply});var result=await client.refresh(true);if(result&&result.ok===false)throw Error(result.error);};M.onData(function(){if(!M.auth||!M.auth.currentUser)return;if(!client)client=createFlowCalendarClient({mount:mount,user:function(){return M.auth.currentUser;},apply:apply});client.refresh(false);});window.addEventListener('message',function(event){if(event.origin===location.origin&&event.data&&event.data.type==='moida:flow-events-changed')apply(event.data.events||[]);});})();
 </script>
 <script src="solapi-messaging-client.js?v=4"></script>
-<script type="module" src="birthday-messaging-client.js?v=2"></script>
+<script type="module" src="birthday-messaging-client.js?v=3"></script>
 </body>
 </html>
