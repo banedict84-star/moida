@@ -11,7 +11,7 @@ function fixture(){
   if(payload.method==='initialize')return Response.json({jsonrpc:'2.0',id:payload.id,result:{protocolVersion:'2025-03-26'}},{headers:{'Mcp-Session-Id':'session'}});
   if(payload.method==='notifications/initialized')return new Response(null,{status:202});
   const name=payload.params.name;if(name==='flow_find_projects')return Response.json({id:payload.id,result:{structuredContent:{projects:[{projectId:'747538',title:'경기도의원 일정'}],hasNext:false}}});
-  if(failEvents)return Response.json({id:payload.id,result:{isError:true,content:[]}});
+  assert.ok(payload.params.arguments.limit<=100,'FLOW event limit must not exceed 100');if(failEvents)return Response.json({id:payload.id,result:{isError:true,content:[]}});
   const data={events:[{projectId:'747538',postId:'86445531',title:'본회의',startDate:'20261012110000',endDate:'20261012120000',calendarName:'경기도의원 일정'}],hasNext:false,truncated:malformed,searchedRange:{startDateTime:'20260911000000',endDateTime:'20270111235959'}};
   return new Response('event: message\ndata: '+JSON.stringify({id:payload.id,result:{content:[{type:'text',text:JSON.stringify(data)}]}})+'\n\n',{headers:{'content-type':'text/event-stream'}});
  };
