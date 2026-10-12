@@ -11,7 +11,7 @@ const {chromium}=require('C:/Users/User/.cache/codex-runtimes/codex-primary-runt
  assert.equal(await p.locator('.mo-chat').isVisible(),false);
  const assign=await p.evaluate(()=>window.MOIDA_OFFICE_ASSIGNMENTS('담이에게 통화 요약을 부탁해'));assert.deepEqual(assign.map(x=>x.agent),['core_dami']);
  await p.locator('[data-mo-assign=core_semi]').click();assert.equal(await p.evaluate(()=>window.lastPage),'secretary');assert((await p.locator('#aiInput').inputValue()).includes('셈이'));
- await p.screenshot({path:'moida-core-team-desktop.png',fullPage:true});
+ const heights=await p.locator('.mo-core-card').evaluateAll(cards=>cards.map(c=>c.getBoundingClientRect().height));assert(heights.every(h=>h===460));assert.equal(await p.locator('.mo-core-portrait svg').count(),8);await p.screenshot({path:'moida-core-team-desktop.png',fullPage:true});
  await p.setViewportSize({width:390,height:844});assert(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));await p.screenshot({path:'moida-core-team-mobile.png',fullPage:true});
  await p.locator('.mo-tabs [data-mo-tab=hire]').click();assert.equal(await p.locator('.mo-core-card').count(),0);await p.locator('#moSearch').fill('M021');assert(await p.locator('[data-employee-id=M021]').count());assert.deepEqual(errors,[]);await b.close();console.log('PASS core team, preserved hired specialist, delegation, chat handoff and mobile layout');
 })().catch(e=>{console.error(e);process.exit(1)});
