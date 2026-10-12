@@ -29,5 +29,7 @@
   }
   input.addEventListener('change',function(){load(true);});refresh.addEventListener('click',function(){load(true);});
   M.onData(function(){var uid=M.auth&&M.auth.currentUser&&M.auth.currentUser.uid;if(!uid){ticket++;loaded='';owner='';content.innerHTML='<div class="ai-state">로그인 후 모델과 사용량을 확인할 수 있습니다.</div>';refresh.disabled=false;return;}load(false);});
-  window.addEventListener('hashchange',function(){if(location.hash==='#admin')load(true);});load(false);
+  window.addEventListener('hashchange',function(){if(location.hash==='#admin')load(true);});
+  // Firebase initializes after this classic script; do not leave the initial page waiting for a data edit.
+  (function boot(attempt){if(M.auth&&M.auth.currentUser){load(false);return;}if(attempt<60)setTimeout(function(){boot(attempt+1);},500);})(0);
 })();
