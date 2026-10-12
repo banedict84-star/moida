@@ -11,13 +11,9 @@
       "bodyPreview": "경기도의회 | 경기도의회 - 메인페이지"
     },
     {
-      "step": "profile",
+      "step": "profile-error",
       "candidate": "https://www.ggc.go.kr/site/lwmkr/blog/11017/11",
-      "url": "https://www.ggc.go.kr/site/main/home",
-      "title": "경기도의회 | 경기도의회 - 메인페이지",
-      "htmlLength": 1497,
-      "detailLinks": 0,
-      "bodyPreview": "경기도의회 | 경기도의회 - 메인페이지"
+      "error": "Page.content: Unable to retrieve content because the page is navigating and changing the content."
     }
   ],
   "error": "모바일·PC 의원 페이지 모두 발의의안 화면을 열지 못했습니다."
