@@ -98,7 +98,7 @@
       document.body.insertAdjacentHTML('beforeend', html);
       document.documentElement.style.overflow='hidden';
       document.getElementById('mo-guard-logout').addEventListener('click', function(){
-        authMod.signOut(auth).then(function(){ try{ sessionStorage.clear(); }catch(e){} location.href='index.html'; });
+        authMod.signOut(auth).then(function(){ try{ sessionStorage.clear(); }catch(e){} location.href='login.html'; });
       });
     }
     inject();

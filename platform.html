@@ -1049,11 +1049,11 @@ M.fs = { doc:doc, getDoc:getDoc, setDoc:setDoc, collection:collection, query:que
 /* 로그아웃 */
 var pc = document.getElementById('profileCard');
 if(pc) pc.addEventListener('click', function(){
-  if(confirm('로그아웃하시겠습니까?')){ signOut(_auth).then(function(){ sessionStorage.removeItem('moida_auth_user'); location.href='index.html'; }); }
+  if(confirm('로그아웃하시겠습니까?')){ signOut(_auth).then(function(){ sessionStorage.removeItem('moida_auth_user'); location.href='login.html'; }); }
 });
 
 onAuthStateChanged(_auth, async function(user){
-  if(!user){ sessionStorage.removeItem('moida_auth_user'); location.href='index.html'; return; }
+  if(!user){ sessionStorage.removeItem('moida_auth_user'); location.href='login.html?next='+encodeURIComponent('platform.html'+location.hash); return; }
   var prev = M.sessUser();
   var sess = { uid:user.uid, email:user.email, displayName:user.displayName||'', effectiveUid:prev.effectiveUid, ownerInfo:prev.ownerInfo };
   if(prev.uid && prev.uid!==user.uid){ sessionStorage.setItem('moida_auth_user', JSON.stringify({uid:user.uid,email:user.email,displayName:user.displayName||''})); location.reload(); return; }
