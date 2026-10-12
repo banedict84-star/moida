@@ -8,6 +8,7 @@ import {APP_CATALOG,validateAppSelection} from './secretary-app-catalog.js';
 const SCHEMA=[
  'CREATE TABLE IF NOT EXISTS office_app_selections (tenant_id TEXT NOT NULL,app_id TEXT NOT NULL,created_at INTEGER NOT NULL,PRIMARY KEY(tenant_id,app_id))',
  'CREATE TABLE IF NOT EXISTS office_files (tenant_id TEXT NOT NULL,id TEXT NOT NULL,title TEXT NOT NULL,content TEXT NOT NULL,format TEXT NOT NULL,category TEXT NOT NULL,provider_file_id TEXT,source_url TEXT,created_at INTEGER NOT NULL,PRIMARY KEY(tenant_id,id))',
+ 'CREATE TABLE IF NOT EXISTS office_file_trash (tenant_id TEXT NOT NULL,id TEXT NOT NULL,title TEXT NOT NULL,content TEXT NOT NULL,format TEXT NOT NULL,category TEXT NOT NULL,provider_file_id TEXT,source_url TEXT,created_at INTEGER NOT NULL,deleted_at INTEGER NOT NULL,PRIMARY KEY(tenant_id,id))',
  'CREATE TABLE IF NOT EXISTS office_todos (tenant_id TEXT NOT NULL,id TEXT NOT NULL,title TEXT NOT NULL,assignee TEXT NOT NULL DEFAULT \'\',due_at INTEGER,notes TEXT NOT NULL DEFAULT \'\',status TEXT NOT NULL DEFAULT \'open\',notified_at INTEGER,created_at INTEGER NOT NULL,PRIMARY KEY(tenant_id,id))',
  'CREATE TABLE IF NOT EXISTS office_reminders (tenant_id TEXT NOT NULL,id TEXT NOT NULL,title TEXT NOT NULL,at INTEGER NOT NULL,notified_at INTEGER,PRIMARY KEY(tenant_id,id))',
  'CREATE TABLE IF NOT EXISTS office_notifications (tenant_id TEXT NOT NULL,id TEXT NOT NULL,title TEXT NOT NULL,body TEXT NOT NULL,created_at INTEGER NOT NULL,read_at INTEGER,PRIMARY KEY(tenant_id,id))',

@@ -21,7 +21,16 @@ export async function knowledgeRoute({env,uid,path,method,body,query}){
   await stmt(env,'INSERT INTO office_files(tenant_id,id,title,content,format,category,source_url,created_at) VALUES(?,?,?,?,?,?,?,?) ON CONFLICT(tenant_id,id) DO UPDATE SET title=excluded.title,content=excluded.content,category=excluded.category,source_url=excluded.source_url,created_at=excluded.created_at',[uid,id,title,content+(source?'\n\n참고 링크: '+source:''),'txt',category,source,Date.now()]).run();return{ok:true,id};
  }
  if(path==='/office-tools/knowledge/delete'&&method==='POST'){
-  const result=await stmt(env,"DELETE FROM office_files WHERE tenant_id=? AND id=? AND category IN ('기억','링크','업무 정보')",[uid,String(body.id)]).run();if(!result.meta.changes)throw invalid('삭제할 기억을 찾지 못했습니다.');return{ok:true};
+  const id=String(body.id);const found=await stmt(env,'SELECT id FROM office_files WHERE tenant_id=? AND id=?',[uid,id]).first();if(!found)throw invalid('삭제할 자료를 찾지 못했습니다.');
+  await env.AGENT_DB.batch([stmt(env,'INSERT OR REPLACE INTO office_file_trash SELECT tenant_id,id,title,content,format,category,provider_file_id,source_url,created_at,? FROM office_files WHERE tenant_id=? AND id=?',[Date.now(),uid,id]),stmt(env,'DELETE FROM office_files WHERE tenant_id=? AND id=?',[uid,id])]);return{ok:true,recoverable:true};
+ }
+ if(path==='/office-tools/knowledge/trash'&&method==='GET'){
+  return{ok:true,items:(await stmt(env,'SELECT id,title,category,deleted_at FROM office_file_trash WHERE tenant_id=? ORDER BY deleted_at DESC LIMIT 100',[uid]).all()).results};
+ }
+ if(path==='/office-tools/knowledge/restore'&&method==='POST'){
+  const id=String(body.id);const found=await stmt(env,'SELECT id FROM office_file_trash WHERE tenant_id=? AND id=?',[uid,id]).first();if(!found)throw invalid('복원할 자료를 찾지 못했습니다.');
+  if(await stmt(env,'SELECT id FROM office_files WHERE tenant_id=? AND id=?',[uid,id]).first())throw invalid('같은 ID의 자료가 이미 있습니다.');
+  await env.AGENT_DB.batch([stmt(env,'INSERT INTO office_files SELECT tenant_id,id,title,content,format,category,provider_file_id,source_url,created_at FROM office_file_trash WHERE tenant_id=? AND id=?',[uid,id]),stmt(env,'DELETE FROM office_file_trash WHERE tenant_id=? AND id=?',[uid,id])]);return{ok:true};
  }
  return null;
 }
