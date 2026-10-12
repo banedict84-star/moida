@@ -36,6 +36,7 @@
   function staff(active){return catalog.filter(function(e){return e.core||(config[e.id]&&(!active||!config[e.id].paused));});}
   function notice(text){$('moNotice').textContent=text;}
   function assertEditable(){if(!M().auth||!M().auth.currentUser)throw Error('로그인 후 직원을 고용해주세요.');if(window.MOIDA_READONLY)throw Error('읽기 전용 계정은 직원을 변경할 수 없습니다.');if(loadedOwner!==uid())throw Error('직원 설정을 계정에서 먼저 불러와주세요.');if(loading||saving)throw Error('직원 설정을 확인·저장 중입니다. 잠시 후 다시 시도해주세요.');}
+  function confirmDismissal(name){return new Promise(function(resolve){var dialog=document.createElement('dialog');dialog.setAttribute('aria-label','직원 고용 해제');dialog.style.cssText='width:min(400px,85vw);padding:24px;border:1px solid #dfe7ec;border-radius:16px;color:#123456';dialog.innerHTML='<h3 style="margin:0 0 12px">고용을 해제할까요?</h3><p style="font-size:13px;line-height:1.7">'+esc(name)+'의 고용을 해제합니다. 기존 업무와 보고는 유지됩니다.</p><div style="display:flex;gap:8px;justify-content:flex-end"><button class="mo-outline" data-cancel>취소</button><button class="mo-primary" data-confirm>고용 해제 확인</button></div>';var accepted=false;dialog.querySelector('[data-confirm]').onclick=function(){accepted=true;dialog.close();};dialog.querySelector('[data-cancel]').onclick=function(){dialog.close();};dialog.addEventListener('close',function(){dialog.remove();resolve(accepted);},{once:true});root.append(dialog);dialog.showModal();});}
   async function persist(next){
     assertEditable();var me=uid(),gen=generation,previous=config;next=valid(next);saving=true;config=next;render();
     try{
@@ -128,7 +129,7 @@
     if(b.dataset.moRun){chosenRun=b.dataset.moRun;tab='desk';render();return;}
     try{
       if(b.dataset.moAction==='hire'){var next=JSON.parse(JSON.stringify(config));selected.forEach(function(id){next[id]={paused:false};});await persist(next);selected.clear();tab='staff';catalogPage=1;search='';group='전체';releaseOnly=false;render();}
-      if(b.dataset.moRemove&& !employee(b.dataset.moRemove)?.core){var id=b.dataset.moRemove,next=JSON.parse(JSON.stringify(config));if(!next[id])return;if(!confirm(employee(id).name+'의 고용을 해제할까요? 기존 업무와 보고는 유지됩니다.'))return;delete next[id];await persist(next);}
+      if(b.dataset.moRemove&& !employee(b.dataset.moRemove)?.core){var id=b.dataset.moRemove,next=JSON.parse(JSON.stringify(config));if(!next[id])return;if(!await confirmDismissal(employee(id).name))return;delete next[id];await persist(next);}
       if(b.dataset.moAction==='reload'){loadedOwner='';load();}
       if(b.dataset.moAction==='revise'){var r=selectedRun();$('officeInstruction').value='다음 업무의 결과를 수정해줘.\n원지시: '+String(r.instruction||'').slice(0,2500)+'\n기존 보고: '+String(r.summary||'').slice(0,7000)+'\n수정 사항: ';$('officeInstruction').focus();}
       if(b.dataset.moAction==='preview'){var r=selectedRun(),dialog=document.createElement('dialog');dialog.className='mo-preview-dialog';dialog.innerHTML='<h3>비서실장 결과 보고</h3><pre>'+esc(r.summary)+'</pre><button class="mo-outline">닫기</button>';dialog.querySelector('button').onclick=function(){dialog.close();};dialog.addEventListener('close',function(){dialog.remove();});document.body.append(dialog);dialog.showModal();}
