@@ -43,7 +43,7 @@
     ['할 일·알림','tasks','현재 계정의 할 일 등록·수정 및 앱 알림',connection.tasks],
     ['뉴스 모니터링','news_monitors','등록한 검색어의 새 기사 확인',connection.news_monitors],
     ['음성·파일 분석','file_analysis','업로드 자료를 분석 서비스로 전송',connection.file_analysis],
-    ['문자 발송','sms','문자 발송 서비스와 서버 인증 설정 필요',false],
+    ['외부 앱 연결','apps','앱 연결 화면에서 서비스별 연결 상태 확인',true],
     ['Microsoft 365','microsoft','Outlook·OneDrive 연동 개발 및 계정 연결 필요',false],
     ['외부 MCP 도구','mcp','서버별 인증·권한 검토 후 개별 연동 필요',false]
    ];
@@ -60,7 +60,7 @@
   async function refresh(){createPanel();var owner=options.owner();ensureOwner(owner);message.style.color='#667085';message.textContent='자료와 연결 상태를 확인하고 있습니다.';var results=await Promise.all([options.request('/office-tools/status',{method:'GET'}),options.request('/office-tools/dashboard',{method:'GET'})]);ensureOwner(owner);currentOwner=owner;connection=results[0];data=results[1];render();message.textContent='계정별 자료와 알림입니다.';}
   async function open(){createPanel();panel.hidden=false;panel.open=true;layout.classList.add('office-tools-visible');launcher.setAttribute('aria-expanded','true');try{await refresh();}catch(e){showError(e);}}
   var host=document.getElementById('aiAttachBtn');if(host&&host.parentElement){launcher=button('자료·알림',function(){return panel&&panel.open?closePanel():open();});launcher.setAttribute('aria-expanded','false');launcher.setAttribute('aria-controls','officeToolsPanel');launcher.id='officeToolsOpen';launcher.style.cssText='border:1px solid #d2ddee;background:#eef3fc;color:#244c82;border-radius:9px;padding:8px 11px;white-space:nowrap;font:inherit;font-size:12px;font-weight:600;cursor:pointer';host.parentElement.insertBefore(launcher,host);}
-  root.openOfficeConnections=function(){activeTab='accounts';return open();};
+  root.openOfficeConnections=function(){if(root.__go){root.__go('connections');return;}activeTab='accounts';return open();};
   if(host){var connectionsButton=button('연결 관리',root.openOfficeConnections);connectionsButton.id='officeConnectionsOpen';connectionsButton.style.cssText=launcher.style.cssText;host.parentElement.insertBefore(connectionsButton,host);}
   return{open:open,upload:upload,download:download,refresh:function(){if(panel&&panel.open)return refresh().catch(showError);},showError:showError};
  };

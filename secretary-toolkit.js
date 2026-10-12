@@ -3,8 +3,10 @@ import {executeFeatureTool,FEATURE_NAMES} from './secretary-feature-tools.js';
 import {TOOLKIT_NAMES} from './secretary-toolkit-defs.js';
 import {exportDocument} from './secretary-toolkit-export.js';
 import {readHwpx} from './secretary-toolkit-hwpx.js';
+import {APP_CATALOG,validateAppSelection} from './secretary-app-catalog.js';
 
 const SCHEMA=[
+ 'CREATE TABLE IF NOT EXISTS office_app_selections (tenant_id TEXT NOT NULL,app_id TEXT NOT NULL,created_at INTEGER NOT NULL,PRIMARY KEY(tenant_id,app_id))',
  'CREATE TABLE IF NOT EXISTS office_files (tenant_id TEXT NOT NULL,id TEXT NOT NULL,title TEXT NOT NULL,content TEXT NOT NULL,format TEXT NOT NULL,category TEXT NOT NULL,provider_file_id TEXT,source_url TEXT,created_at INTEGER NOT NULL,PRIMARY KEY(tenant_id,id))',
  'CREATE TABLE IF NOT EXISTS office_todos (tenant_id TEXT NOT NULL,id TEXT NOT NULL,title TEXT NOT NULL,assignee TEXT NOT NULL DEFAULT \'\',due_at INTEGER,notes TEXT NOT NULL DEFAULT \'\',status TEXT NOT NULL DEFAULT \'open\',notified_at INTEGER,created_at INTEGER NOT NULL,PRIMARY KEY(tenant_id,id))',
  'CREATE TABLE IF NOT EXISTS office_reminders (tenant_id TEXT NOT NULL,id TEXT NOT NULL,title TEXT NOT NULL,at INTEGER NOT NULL,notified_at INTEGER,PRIMARY KEY(tenant_id,id))',
@@ -83,6 +85,8 @@ export async function toolkitTick(env,fetcher=fetch){await ensureToolkit(env);co
 }
 export async function toolkitRoute({env,user,request,body={},services={},fetcher=fetch}){await ensureToolkit(env);const u=new URL(request.url),path=u.pathname,uid=user.uid;
  const knowledge=await knowledgeRoute({env,uid,path,method:request.method,body,query:u.searchParams});if(knowledge)return Response.json(knowledge);
+ if(path==='/office-tools/apps'&&request.method==='GET')return Response.json({ok:true,apps:APP_CATALOG,selected:(await q(env,'SELECT app_id FROM office_app_selections WHERE tenant_id=? ORDER BY created_at',[uid]).all()).results.map(row=>row.app_id)});
+ if(path==='/office-tools/apps/select'&&request.method==='POST'){const selection=validateAppSelection(body);if(selection.selected)await q(env,'INSERT OR IGNORE INTO office_app_selections(tenant_id,app_id,created_at) VALUES(?,?,?)',[uid,selection.appId,Date.now()]).run();else await q(env,'DELETE FROM office_app_selections WHERE tenant_id=? AND app_id=?',[uid,selection.appId]).run();return Response.json({ok:true,...selection,authorized:false});}
  if(path==='/office-tools/status'&&request.method==='GET')return Response.json(await executeToolkit({env,uid,name:'tool_connection_status',services,fetcher}));
  if(path==='/office-tools/upload'&&request.method==='POST')return Response.json(await uploadFile(env,uid,body,fetcher));
  if(path==='/office-tools/dashboard'&&request.method==='GET')return Response.json({ok:true,files:(await q(env,'SELECT id,title,format,category,created_at FROM office_files WHERE tenant_id=? ORDER BY created_at DESC LIMIT 100',[uid]).all()).results,tasks:await tasks(env,uid),notifications:await notifications(env,uid),monitors:(await q(env,'SELECT id,query,enabled,last_checked,error FROM office_monitors WHERE tenant_id=? ORDER BY next_check LIMIT 30',[uid]).all()).results,mail:(await q(env,'SELECT id,recipient,subject,body,status,created_at FROM office_mail_drafts WHERE tenant_id=? ORDER BY created_at DESC LIMIT 30',[uid]).all()).results});
