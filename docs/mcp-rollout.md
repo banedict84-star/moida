@@ -23,6 +23,7 @@
 ## 검증
 
 - Linear·Firecrawl·Miro·monday.com은 운영 모이다 콜백 주소로 공식 동적 클라이언트 등록 성공. 이 검증은 사용자 계정 승인을 대신하지 않는다.
+- 운영 Worker의 OpenAI 문서 직접 MCP 요청은 403으로 거절됨. 공식 Responses API 경유 연결을 선택할 수 있도록 추가. 경유 방식은 기존 OpenAI API 잔액을 사용하며 문서 도구만 허용한다. 원격 승인 내용이 사용자가 승인한 이름·입력과 정확히 일치해야 실행한다.
 - OpenAI 문서 서버에서 initialize → notifications/initialized → tools/list 실제 응답 확인.
 - 모든 비밀 값은 기존 서버 암호화로 UID별 D1 저장. 토큰·제휴 키는 URL·상태 응답·모델 프롬프트에 넣지 않는다.
 - 키 방식은 실제 MCP 도구 목록 또는 광고 계정 조회에 성공해야 저장. OAuth도 토큰 교환 후 MCP 도구 목록 확인에 성공해야 연결 저장.
