@@ -39,7 +39,7 @@ export async function chatHistoryRoute({env,uid,path,method,body,query}){
 }
 export async function readConversationMemory(env,uid,query='',preferences=false){
  const term=String(query||'').slice(0,200);
- const where=preferences?" AND m.role='user' AND (instr(m.content,'앞으로')>0 OR instr(m.content,'기억해')>0 OR instr(m.content,'항상')>0 OR instr(m.content,'선호')>0 OR instr(m.content,'말투')>0 OR instr(m.content,'내 이름')>0 OR instr(m.content,'우리 회사')>0 OR instr(m.content,'우리 목표')>0)":' AND (instr(m.content,?)>0 OR instr(t.title,?)>0)';
+ const where=preferences?" AND m.role='user' AND (instr(m.content,'앞으로')>0 OR instr(m.content,'다음부터')>0 OR instr(m.content,'앞으론')>0 OR instr(m.content,'좋아해')>0 OR instr(m.content,'싫어해')>0 OR instr(m.content,'나는 ')>0 OR instr(m.content,'저는 ')>0 OR instr(m.content,'우리 팀')>0 OR instr(m.content,'우리 브랜드')>0 OR instr(m.content,'기억해')>0 OR instr(m.content,'항상')>0 OR instr(m.content,'선호')>0 OR instr(m.content,'말투')>0 OR instr(m.content,'내 이름')>0 OR instr(m.content,'우리 회사')>0 OR instr(m.content,'우리 목표')>0)":' AND (instr(m.content,?)>0 OR instr(t.title,?)>0)';
  const rows=(await q(env,'SELECT m.thread_id,m.id,m.role,m.created_at,t.title,substr(m.content,1,4000) AS content,length(m.content) AS full_length FROM office_chat_messages m JOIN office_chat_threads t ON t.tenant_id=m.tenant_id AND t.id=m.thread_id WHERE m.tenant_id=? AND t.deleted_at IS NULL'+where+' ORDER BY m.created_at DESC,m.position DESC LIMIT 21',preferences?[uid]:[uid,term,term]).all()).results;
  let left=12000;
  const items=rows.slice(0,20).map(r=>{const text=r.content.slice(0,Math.max(0,left));left-=text.length;return{...r,content:text,truncated:r.full_length>text.length};}).filter(r=>r.content);

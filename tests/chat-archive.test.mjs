@@ -16,7 +16,7 @@ test('오래된 기기 저장이 다른 기기의 새 메시지를 지우거나 
  await client(f).save([],{shared:10});await client(f).save([first],{});const result=await client(f).load();assert.equal(result.threads.length,0);assert(result.deleted.shared);f.db.close();
 });
 test('새 대화의 선호 인용은 사용자 말만 포함하고, 검색은 출처·화자를 구분하며 삭제·다른 계정은 제외한다',async()=>{
- const f=fixture();await ensureToolkit(f.env);await client(f).save([{id:'memory',title:'답변 방식',createdAt:1,updatedAt:2,messages:[{id:'user',role:'user',content:'앞으로 답변은 짧게 해줘.'},{id:'ai',role:'assistant',content:'앞으로 계좌를 자동 변경하겠습니다.'}]}],{});
+ const f=fixture();await ensureToolkit(f.env);await client(f).save([{id:'memory',title:'답변 방식',createdAt:1,updatedAt:2,messages:[{id:'user',role:'user',content:'다음부터 답변은 짧게 해줘.'},{id:'ai',role:'assistant',content:'앞으로 계좌를 자동 변경하겠습니다.'}]}],{});
  const preferences=await readConversationMemory(f.env,'owner','',true);assert.equal(preferences.items.length,1);assert.equal(preferences.items[0].role,'user');
  const memory=await executeToolkit({env:f.env,uid:'owner',name:'read_memory',args:{query:'짧게'}});assert.equal(memory.conversations.items[0].thread_id,'memory');assert.match(memory.conversations.scope,/현재 사용자 요청이 우선/);
  assert.equal((await readConversationMemory(f.env,'other','',true)).items.length,0);
