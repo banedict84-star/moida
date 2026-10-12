@@ -1,7 +1,5 @@
-# MOIDA AI homepage
+# MOIDA AI mascot homepage
 
-Brand: MOIDA AI. Reuse the user’s original moida-symbol.svg from the MOIDA office asset library and its original office-team-panorama.png. No new characters are generated.
+Completely rebuilt from the user’s three supplied brand/character references on 2026-10-12. Eight exact characters: 모아 (AI 비서), 째깍 (일정·업무), 두리 (조사), 글림 (글쓰기), 담이 (기록), 셈이 (분석), 빛나 (콘텐츠), 이음 (소통). Original transparent sheet is copied unchanged and displayed through CSS sprite positions. No new character imagery, portraits, or legacy government team names.
 
-Eight team members and portraits are taken in their existing order from office-workspace.js and office-staff-portraits-v2.png: 윤서진, 강도윤, 한지우, 박준호, 이서현, 정민재, 김수아, 최현우. Chief of staff coordinates the team. Connected tools support this team.
-
-Reference: Sintra’s broad hero, character cards, product preview and clear conversion flow. Existing authentication remains on login.html. Preview data is explicitly illustrative.
+Reference https://sintra.ai/: dark character-led hero, horizontal employee cards, work examples, four-step onboarding, context section, integrations, benefits, conversion section, FAQ and footer. MOIDA colors: #123456, #38D6CD, #F6F8FA, #526579. Original copy, no invented testimonials, user counts or prices. Existing login/app routes preserved. Character profiles explain roles and sample requests; they do not claim new backend execution has been deployed.
