@@ -53,6 +53,8 @@ jobs:
       # (A) GitHub에 OPENAI_API_KEY가 등록돼 있으면: 배포 + 키를 워커에 자동 주입
       #     → 재배포해도 키가 유실되지 않음(권장).
       - name: Deploy (with OPENAI_API_KEY injection)
+        id: deploy_with_key
+        continue-on-error: true
         if: env.HAS_OPENAI == 'true'
         uses: cloudflare/wrangler-action@v3
         with:
@@ -65,7 +67,7 @@ jobs:
       # (B) GitHub에 키가 없으면: 배포만 수행하고 Cloudflare에 수동 등록된 시크릿은 절대 건드리지 않음.
       #     (wrangler deploy는 기존 시크릿을 보존함)
       - name: Deploy (keep Cloudflare-managed secret)
-        if: env.HAS_OPENAI != 'true'
+        if: env.HAS_OPENAI != 'true' || steps.deploy_with_key.outcome == 'failure'
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
