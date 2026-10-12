@@ -35,6 +35,8 @@
     if(s.email)dialog.append(el('p',s.email,'app-account'));
     dialog.append(el('p',app.id==='gmail'?'현재 지원 범위는 메일 초안 발송입니다. 받은편지함 조회는 제공하지 않습니다.':'Google 연결은 캘린더를 기본으로 사용하고, 선택한 서비스 권한을 함께 요청합니다.'));
     dialog.append(btn(s.connected?'권한 다시 연결':'Google 계정으로 연결',function(){return connectGoogle(app);},'apps-primary'));
+   }else if(app.id==='flow'){
+    dialog.append(el('p',s.error?'FLOW 연결 상태를 확인하지 못했습니다. 상태 새로고침 후 다시 확인해 주세요.':s.connected?'FLOW 계정이 연결되어 있습니다. 앱 카드의 AI 사용 설정으로 모아의 사용을 관리하세요.':'FLOW 계정이 연결되어 있지 않습니다.'));
    }else{
     dialog.append(el('p',s.error?'상태를 확인하지 못했습니다. 설정 화면에서 연결 상태를 확인하세요.':s.connected?'연결되어 있습니다. 기존 설정 화면에서 계정과 권한을 관리하세요.':'설정 화면에서 계정을 연결해 주세요.'));
     dialog.append(btn(app.name+' 설정 열기',function(){dialog.close();root.__go(app.page);},'apps-primary'));
