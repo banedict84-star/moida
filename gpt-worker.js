@@ -11,6 +11,7 @@ import {createFlowCalendar} from './flow-calendar.js';
 import {createVoiceCall} from './secretary-voice.js';
 import {driveListParams,driveListResult} from './drive-query.js';
 import {builtinTick} from './secretary-builtin-tools.js';
+import {TEXT_PRICES,aiModelInfo} from './secretary-pricing.js';
 import {handleSecretaryRoute} from "./secretary-agent.js";
 import {teamTools,executeTeamTool,runToolConversation,compactWorkContext} from './agent-tools.js';
 import {executeToolkit,toolkitRoute,toolkitTick,boundedBytes,bytesToBase64} from "./secretary-toolkit.js";
@@ -351,6 +352,7 @@ function safeAppOrigin(value, env) {
 }
 
 const USAGE_MODEL_RATES = {
+  ...Object.fromEntries(TEXT_PRICES.map(p=>[p.model,p])),
   "gpt-4o-mini": { input: 0.15, cached: 0.075, output: 0.60 },
   "gpt-4o": { input: 2.50, cached: 1.25, output: 10.00 },
   "gpt-image-1": { input: 5.00, cached: 0, output: 40.00 },
@@ -363,7 +365,7 @@ const USAGE_MODEL_RATES = {
 function usageCostMicros(model, usage = {}) {
   const rate = USAGE_MODEL_RATES[model] || { input: 0, cached: 0, output: 0 };
   const prompt = Number(usage.prompt_tokens ?? usage.input_tokens ?? 0);
-  const cached = Number(usage.prompt_tokens_details?.cached_tokens ?? usage.input_tokens_details?.cached_tokens ?? 0);
+  const cached = Math.min(prompt,Math.max(0,Number(usage.prompt_tokens_details?.cached_tokens ?? usage.input_tokens_details?.cached_tokens ?? usage.cached_tokens ?? 0)));
   const completion = Number(usage.completion_tokens ?? usage.output_tokens ?? 0);
   return Math.max(0, prompt - cached) * rate.input + cached * rate.cached + completion * rate.output;
 }
@@ -1384,12 +1386,11 @@ async function recoverStaleRuns(env) {
 
 async function usageSummary(request, env, user) {
   const url = new URL(request.url);
-  const requested = url.searchParams.get("month") || new Date().toISOString().slice(0, 7);
-  if (!/^\d{4}-\d{2}$/.test(requested)) throw new HttpError(400, "month는 YYYY-MM 형식이어야 합니다.");
-  const start = Date.parse(`${requested}-01T00:00:00Z`);
-  const endDate = new Date(start);
-  endDate.setUTCMonth(endDate.getUTCMonth() + 1);
-  const end = endDate.getTime();
+  const requested = url.searchParams.get("month") || new Date(Date.now()+9*3600000).toISOString().slice(0, 7);
+  if (!/^\d{4}-(0[1-9]|1[0-2])$/.test(requested)) throw new HttpError(400, "month는 YYYY-MM 형식이어야 합니다.");
+  const start = Date.parse(`${requested}-01T00:00:00+09:00`);
+  const [year,monthNumber]=requested.split('-').map(Number);
+  const end = Date.UTC(year,monthNumber,1)-9*3600000;
   const rate = Number(env.KRW_PER_USD || 1400);
   const rows = (await env.AGENT_DB.prepare(
     `SELECT model, agent, operation,
@@ -1403,7 +1404,7 @@ async function usageSummary(request, env, user) {
      ORDER BY cost_usd_micros DESC, total_tokens DESC`
   ).bind(user.uid, start, end).all()).results || [];
   const dailyRows = (await env.AGENT_DB.prepare(
-    `SELECT strftime('%Y-%m-%d', created_at / 1000, 'unixepoch') day, model,
+    `SELECT strftime('%Y-%m-%d', created_at / 1000, 'unixepoch', '+9 hours') day, model,
        SUM(prompt_tokens) prompt_tokens, SUM(cached_tokens) cached_tokens,
        SUM(completion_tokens) completion_tokens, SUM(total_tokens) total_tokens,
        SUM(cost_usd_micros) cost_usd_micros
@@ -1424,8 +1425,9 @@ async function usageSummary(request, env, user) {
       total_tokens: Number(row.total_tokens || 0),
       image_count: Number(row.image_count || 0),
       calls: Number(row.calls || 0),
-      costUsd: costMicros / 1_000_000,
-      costKrw: costMicros / 1_000_000 * rate,
+      priceKnown: !!USAGE_MODEL_RATES[row.model] || Number(row.cost_usd_micros)>0,
+      costUsd: USAGE_MODEL_RATES[row.model] || Number(row.cost_usd_micros)>0 ? costMicros / 1_000_000 : null,
+      costKrw: USAGE_MODEL_RATES[row.model] || Number(row.cost_usd_micros)>0 ? costMicros / 1_000_000 * rate : null,
     };
   });
   const dailyByDay = {};
@@ -1445,9 +1447,10 @@ async function usageSummary(request, env, user) {
     calls: sum.calls + row.calls,
     tokens: sum.tokens + row.total_tokens,
     images: sum.images + row.image_count,
-    costUsd: sum.costUsd + row.costUsd,
-    costKrw: sum.costKrw + row.costKrw,
-  }), { calls: 0, tokens: 0, images: 0, costUsd: 0, costKrw: 0 });
+    costUsd: sum.costUsd + (row.costUsd||0),
+    costKrw: sum.costKrw + (row.costKrw||0),
+    unpricedCalls:sum.unpricedCalls+(row.priceKnown?0:row.calls),
+  }), { calls: 0, tokens: 0, images: 0, costUsd: 0, costKrw: 0,unpricedCalls:0 });
   const pricingCatalog = [
     { provider: "OpenAI", model: "gpt-4o-mini", input: 0.15, cached: 0.075, output: 0.60 },
     { provider: "OpenAI", model: "gpt-4o", input: 2.50, cached: 1.25, output: 10.00 },
@@ -1455,7 +1458,7 @@ async function usageSummary(request, env, user) {
     { provider: "Google", model: "gemini-3.1-flash-image", input: 0.50, output: 60.00, image1k: 0.067 },
     { provider: "Anthropic", model: "claude-sonnet-4", input: 3.00, cached: 0.30, output: 15.00 },
   ];
-  return json({ ok: true, month: requested, krwPerUsd: rate, totals, rows: normalized, daily, pricingCatalog }, 200, request, env);
+  return json({ ok: true, month: requested, timezone:'Asia/Seoul', krwPerUsd: rate, totals, rows: normalized, daily, pricingCatalog:[...TEXT_PRICES.map(p=>({...p,provider:'OpenAI'})),...pricingCatalog],ai:aiModelInfo(env) }, 200, request, env);
 }
 
 async function googleTokenRequest(env, params) {
@@ -1847,7 +1850,7 @@ async function handleFetch(request, env) {
     }
     if (path === "/usage" && request.method === "GET") {
       const user = await verifyFirebaseUser(request, env);
-      return usageSummary(request, env, user);
+      return await usageSummary(request, env, user);
     }
     if (path === "/assembly/bills") {
       return await assemblyBills(request, env, url);
