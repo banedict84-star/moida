@@ -93,12 +93,26 @@
 
 /* Connection action is over the photo and takes no extra card height. */
 .mo-office .mo-connect-required{position:absolute;top:8px;left:8px;z-index:2;border:1px solid #ffffffa6;border-radius:999px;background:#fff7e6f2;color:#80521b;padding:4px 8px;font-size:10px;font-weight:700;box-shadow:0 1px 5px #17365920}
-.mo-staff-state~.mo-connect-required{top:38px}
+.mo-office .mo-staff-state~.mo-connect-required{top:38px}
 @media(max-width:760px){.mo-office .mo-connect-required{top:6px;left:6px;padding:3px 6px;font-size:9px}.mo-staff-state~.mo-connect-required{top:32px}}
 
 /* Match the supplied mint status badge. */
 .mo-staff-photo .mo-staff-state .mo-pill.hired{display:inline-flex;align-items:center;gap:5px;background:#e7f6ee;color:#0f9d63;box-shadow:none;border:0;border-radius:999px;font-size:10px;padding:4px 9px}
 .mo-staff-photo .mo-staff-state .mo-pill.hired::before{content:'';width:6px;height:6px;border-radius:50%;background:#0f9d63;flex-shrink:0}
 .mo-office .mo-connect-required{background:#fff;color:#456987;border:1px solid #cddbe8;box-shadow:0 1px 4px #17365912}
-.mo-office .mo-connect-required.is-connected{background:#e7f6ee;color:#0f9d63;border-color:#d1e9e1}
 @media(max-width:760px){.mo-staff-photo .mo-staff-state .mo-pill.hired{font-size:9px;padding:3px 8px}}
+
+/* Keep the card compact while retaining the role-aged v2 portraits and reference colors. */
+.mo-catalog-layout .mo-staff-card.selected{border-width:1px;box-shadow:inset 0 0 0 1px #3685e6}
+.mo-catalog-layout .mo-staff-photo{aspect-ratio:1.5}
+.mo-office .mo-staff-profile .mo-staff-photo .mo-portrait-card{width:94%;margin:0 auto}
+.mo-catalog-layout .mo-staff-overlay{padding:20px 9px 6px}
+.mo-catalog-layout .mo-staff-body{padding:5px 8px}
+.mo-catalog-layout .mo-staff-body .mo-staff-price{padding:3px 0}
+.mo-office .mo-connect-required:focus-visible{outline-offset:-3px}
+@media(max-width:760px){
+ .mo-catalog-layout .mo-staff-grid{gap:8px}
+ .mo-catalog-layout .mo-staff-overlay{padding:18px 8px 5px}
+ .mo-catalog-layout .mo-staff-body{padding:4px 7px}
+ .mo-office .mo-staff-state~.mo-connect-required{top:30px}
+}
