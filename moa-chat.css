@@ -25,3 +25,15 @@ body.secretary-view #aiPanel.moa-chat>div.moa-composer-wrap>div.moa-composer:has
 .moa-message-avatar{width:34px;height:34px;flex:none;display:grid;place-items:center;border-radius:11px;background:#edf7f5}.moa-message-avatar svg{width:32px;height:32px;display:block}.moa-thinking{display:flex;align-items:center;gap:12px;max-width:100%;padding:6px 0}.moa-thinking-body{display:flex;align-items:center;flex-wrap:wrap;gap:12px;color:#728592;font-size:13px;line-height:1.6}.moa-thinking-dots{display:flex;gap:4px;align-items:center}.moa-thinking-dots i{width:5px;height:5px;background:#38b7ad;border-radius:50%;animation:moa-thinking-pulse 1.3s infinite}.moa-thinking-dots i:nth-child(2){animation-delay:.18s}.moa-thinking-dots i:nth-child(3){animation-delay:.36s}@keyframes moa-thinking-pulse{0%,80%,100%{opacity:.35;transform:translateY(0)}40%{opacity:1;transform:translateY(-3px)}}
 body.secretary-view .moa-chat #aiMessages>.moa-thinking{display:flex!important;max-width:100%!important}body.secretary-view .moa-chat #aiMessages>.moa-thinking>.moa-message-avatar{display:grid!important}body.secretary-view .moa-chat #aiMessages>.moa-thinking>.moa-thinking-body{padding:0!important;background:none!important;border:0!important;display:flex!important;font-size:13px!important;color:#728592!important}
 @media(prefers-reduced-motion:reduce){.moa-thinking-dots i{animation:none;opacity:.65}}
+
+/* Conversation history beside the active chat. */
+body.secretary-view .secretary-grid{display:grid!important;grid-template-columns:240px minmax(0,1fr)!important;max-width:none!important;gap:12px!important;position:relative}
+body.secretary-view #aiHistoryPanel{display:flex!important;min-height:0;border-color:#e1e8ec!important;border-radius:16px!important;box-shadow:none!important}
+body.secretary-view #aiPanel.moa-chat{min-width:0}
+.moa-history-head{display:flex;align-items:center;justify-content:space-between;padding:13px 14px 0;color:#123456;font-size:13px}
+.moa-history-head button{border:0;background:transparent;color:#778793;font-size:22px;cursor:pointer;padding:0 4px}
+body.secretary-view .secretary-grid.history-collapsed{grid-template-columns:minmax(0,1fr)!important}
+body.secretary-view .secretary-grid.history-collapsed #aiHistoryPanel{display:none!important}
+body.secretary-view .moa-chat .moa-history{display:inline-flex!important}
+@media(max-width:1000px) and (min-width:761px){body.secretary-view .secretary-grid{grid-template-columns:200px minmax(0,1fr)!important}.moa-chat .secretary-chat-head{padding:12px!important}.moa-chat .secretary-chat-title>div:last-child{display:none!important}}
+@media(max-width:760px){body.secretary-view .secretary-grid{grid-template-columns:minmax(0,1fr)!important;gap:0!important}body.secretary-view #aiHistoryPanel{display:none!important}body.secretary-view .secretary-grid.history-open #aiHistoryPanel{display:flex!important;position:absolute;inset:0 auto 0 0;width:min(280px,85%);z-index:50;border-radius:0!important;box-shadow:12px 0 32px #12345630!important}.moa-history-head{padding-top:16px}}
