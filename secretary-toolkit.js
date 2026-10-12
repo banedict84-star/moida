@@ -7,6 +7,7 @@ import {APP_CATALOG,validateAppSelection} from './secretary-app-catalog.js';
 
 const SCHEMA=[
  'CREATE TABLE IF NOT EXISTS office_app_selections (tenant_id TEXT NOT NULL,app_id TEXT NOT NULL,created_at INTEGER NOT NULL,PRIMARY KEY(tenant_id,app_id))',
+ 'CREATE TABLE IF NOT EXISTS office_ai_apps (tenant_id TEXT NOT NULL,app_id TEXT NOT NULL,created_at INTEGER NOT NULL,PRIMARY KEY(tenant_id,app_id))',
  'CREATE TABLE IF NOT EXISTS office_files (tenant_id TEXT NOT NULL,id TEXT NOT NULL,title TEXT NOT NULL,content TEXT NOT NULL,format TEXT NOT NULL,category TEXT NOT NULL,provider_file_id TEXT,source_url TEXT,created_at INTEGER NOT NULL,PRIMARY KEY(tenant_id,id))',
  'CREATE TABLE IF NOT EXISTS office_file_trash (tenant_id TEXT NOT NULL,id TEXT NOT NULL,title TEXT NOT NULL,content TEXT NOT NULL,format TEXT NOT NULL,category TEXT NOT NULL,provider_file_id TEXT,source_url TEXT,created_at INTEGER NOT NULL,deleted_at INTEGER NOT NULL,PRIMARY KEY(tenant_id,id))',
  'CREATE TABLE IF NOT EXISTS office_todos (tenant_id TEXT NOT NULL,id TEXT NOT NULL,title TEXT NOT NULL,assignee TEXT NOT NULL DEFAULT \'\',due_at INTEGER,notes TEXT NOT NULL DEFAULT \'\',status TEXT NOT NULL DEFAULT \'open\',notified_at INTEGER,created_at INTEGER NOT NULL,PRIMARY KEY(tenant_id,id))',
@@ -86,7 +87,11 @@ export async function toolkitTick(env,fetcher=fetch){await ensureToolkit(env);co
 }
 export async function toolkitRoute({env,user,request,body={},services={},fetcher=fetch}){await ensureToolkit(env);const u=new URL(request.url),path=u.pathname,uid=user.uid;
  const knowledge=await knowledgeRoute({env,uid,path,method:request.method,body,query:u.searchParams});if(knowledge)return Response.json(knowledge);
- if(path==='/office-tools/apps'&&request.method==='GET')return Response.json({ok:true,apps:APP_CATALOG,selected:(await q(env,'SELECT app_id FROM office_app_selections WHERE tenant_id=? ORDER BY created_at',[uid]).all()).results.map(row=>row.app_id)});
+ if(path==='/office-tools/apps'&&request.method==='GET')return Response.json({ok:true,apps:APP_CATALOG,selected:(await q(env,'SELECT app_id FROM office_app_selections WHERE tenant_id=? ORDER BY created_at',[uid]).all()).results.map(row=>row.app_id),aiEnabled:(await q(env,'SELECT app_id FROM office_ai_apps WHERE tenant_id=?',[uid]).all()).results.map(row=>row.app_id)});
+ if(path==='/office-tools/apps/ai-enable'&&request.method==='POST'){
+  if(!['google_drive','google_calendar','gmail','flow','solapi'].includes(body.appId)||typeof body.enabled!=='boolean')fail(400,'AI 사용을 설정할 앱을 확인해 주세요.');
+  if(body.enabled)await q(env,'INSERT OR IGNORE INTO office_ai_apps(tenant_id,app_id,created_at) VALUES(?,?,?)',[uid,body.appId,Date.now()]).run();else await q(env,'DELETE FROM office_ai_apps WHERE tenant_id=? AND app_id=?',[uid,body.appId]).run();return Response.json({ok:true,appId:body.appId,enabled:body.enabled});
+ }
  if(path==='/office-tools/apps/select'&&request.method==='POST'){const selection=validateAppSelection(body);if(selection.selected)await q(env,'INSERT OR IGNORE INTO office_app_selections(tenant_id,app_id,created_at) VALUES(?,?,?)',[uid,selection.appId,Date.now()]).run();else await q(env,'DELETE FROM office_app_selections WHERE tenant_id=? AND app_id=?',[uid,selection.appId]).run();return Response.json({ok:true,...selection,authorized:false});}
  if(path==='/office-tools/status'&&request.method==='GET')return Response.json(await executeToolkit({env,uid,name:'tool_connection_status',services,fetcher}));
  if(path==='/office-tools/upload'&&request.method==='POST')return Response.json(await uploadFile(env,uid,body,fetcher));

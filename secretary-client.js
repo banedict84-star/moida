@@ -10,11 +10,11 @@
     var composer=typeof document!=='undefined'&&document.getElementById('aiInput');if(composer){var phone=document.getElementById('secretaryVoiceOpen'),send=document.getElementById('aiSend');composer.parentElement.insertBefore(selector,phone||send);}
 
     var labels={pending:'에이전트가 답변을 준비합니다.',queued:'에이전트 실행을 기다립니다.',in_progress:'에이전트가 업무를 처리합니다.',waiting:'도구 결과를 기다립니다.',requires_action:'의원실 업무 도구를 실행합니다.'};
-    function storeKey(thread){return 'moida_secretary_pending_'+options.owner()+'_'+thread;}
+    function storeKey(thread){return 'moida_workspace1_pending_'+options.owner()+'_'+thread;}
     function read(thread){try{return JSON.parse(localStorage.getItem(storeKey(thread))||'null');}catch(e){return null;}}
     function write(thread,value){localStorage.setItem(storeKey(thread),JSON.stringify(value));}
-    function post(path,body){return options.request(path,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});}
-    async function poll(thread,id){for(var attempt=0;attempt<3;attempt++){try{return await options.request('/secretary/poll?preview=1&thread_id='+encodeURIComponent(thread)+(id?'&request_id='+encodeURIComponent(id):''),{method:'GET'});}catch(error){if(!(error.status>=500)||attempt===2)throw error;await new Promise(function(resolve){setTimeout(resolve,700);});}}}
+    function post(path,body){body={...body,thread_id:'workspace1_'+body.thread_id};return options.request(path,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});}
+    async function poll(thread,id){for(var attempt=0;attempt<3;attempt++){try{return await options.request('/secretary/poll?preview=1&thread_id='+encodeURIComponent('workspace1_'+thread)+(id?'&request_id='+encodeURIComponent(id):''),{method:'GET'});}catch(error){if(!(error.status>=500)||attempt===2)throw error;await new Promise(function(resolve){setTimeout(resolve,700);});}}}
     function sameOwner(saved){if(options.owner()!==saved.owner)throw Error('로그인 계정이 변경되어 실행 상태 확인을 중단했습니다.');}
     async function drive(thread,saved,state){
       for(var i=0;i<240&&!disposed;i++){

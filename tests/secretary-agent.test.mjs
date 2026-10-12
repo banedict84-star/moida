@@ -30,7 +30,7 @@ function fixture(){
   if(path.endsWith('/items'))return Response.json({data:state.items,has_more:false});
   return Response.json({...state.session,required_actions:state.actions});
  };
- const route=(path,body={},uid='owner',method='POST',extra={})=>handleSecretaryRoute({env,user:{uid},path,method,body,query:new URLSearchParams(body),fetcher,...extra});
+ const route=(path,body={},uid='owner',method='POST',extra={})=>handleSecretaryRoute({env,user:{uid},path,method,body,query:new URLSearchParams(body),fetcher,executeWork:async()=>({ok:true,events:[]}),...extra});
  const start=(id='request_A',input='오늘 일정 알려줘')=>route('/secretary/message',{thread_id:'chat_A',request_id:id,input});
  const poll=(id='request_A',uid='owner')=>route('/secretary/poll',{thread_id:'chat_A',request_id:id},uid,'GET');
  return{db,env,state,route,start,poll};
@@ -48,20 +48,20 @@ test('기존 D1 연결로 새 대화 테이블을 생성하며 기존 테이블�
  const f=fixture();f.db.exec('DROP TABLE secretary_sessions; DROP TABLE secretary_turns; DROP TABLE secretary_calls; CREATE TABLE original_records(value TEXT); INSERT INTO original_records VALUES(\'기존 자료\');');
  await f.start();assert.equal(f.db.prepare('SELECT value FROM original_records').get().value,'기존 자료');assert.equal((await f.poll()).status,'in_progress');f.db.close();
 });
-test('새 대화에 live 웹검색을 연결하며 기존 업무 도구를 유지한다',async()=>{
+test('새 대화는 자료·기억 도구만 제공하며 숨긴 기존 도구는 노출하지 않는다',async()=>{
  const f=fixture();await f.start();const agent=f.state.writes[0].body.agent;
- assert.deepEqual(agent.tools.find(tool=>tool.type==='web_search'),{type:'web_search',mode:'live'});
- assert.ok(agent.tools.some(tool=>tool.name==='list_contacts'));
- assert.match(agent.instructions,/근거 URL/);f.db.close();
+ assert.equal(agent.tools.find(tool=>tool.type==='web_search'),undefined);
+ assert.ok(!agent.tools.some(tool=>tool.name==='list_contacts'));assert.ok(agent.tools.some(tool=>tool.name==='read_memory'));
+ assert.match(agent.instructions,/자료·기억/);f.db.close();
 });
-test('검색 없는 기존 대화는 과거 기록을 참고 자료로 이어받고 새 검색 세션을 만든다',async()=>{
+test('기존 대화에서 자료 정책 전환 시 과거 기록을 넘기지 않는 새 세션을 만든다',async()=>{
  const f=fixture();await f.start();f.state.turns[0].status='completed';
  f.state.items=[{turn_id:'turn_A',type:'message',role:'assistant',phase:'final_answer',content:[{type:'output_text',text:'이전 의정활동 대화'}]}];
  await f.poll();delete f.state.session.metadata.moida_web_search;
  await f.start('request_B','최신 경기도당 공지를 웹에서 찾아줘');
  const creation=f.state.writes[1];assert.equal(creation.path,'/v1/agents/sessions');
- assert.match(creation.body.agent.instructions,/이전 의정활동 대화/);
- assert.equal(creation.body.metadata.moida_web_search,'toolkit-memory-v4');
+ assert.doesNotMatch(creation.body.agent.instructions,/이전 의정활동 대화/);
+ assert.equal(creation.body.metadata.moida_web_search,'workspace-sources-v1:');
  assert.deepEqual(JSON.parse(f.db.prepare('SELECT baseline_json FROM secretary_turns WHERE request_id=?').get('request_B').baseline_json),[]);
  f.db.close();
 });
@@ -86,15 +86,15 @@ test('다른 계정은 세션·도구·대화 결과를 읽을 수 없다',async
  await assert.rejects(f.route('/secretary/result',{thread_id:'chat_A',request_id:'request_A',call_id:'call_A',result:{}},'another_owner'),/대기 중인 도구/);f.db.close();
 });
 test('도구는 현재 실행의 대기 요청만 한 번 선점하고 결과를 정확한 turn_id에 전달한다',async()=>{
- const f=fixture();await f.start();f.state.actions=[{type:'function_call',turn_id:'turn_A',call_id:'call_A',name:'list_schedule',arguments:{date:'2026-10-06'}}];
- const pending=await f.poll();assert.equal(pending.actions[0].name,'list_schedule');
+ const f=fixture();await f.start();f.state.actions=[{type:'function_call',turn_id:'turn_A',call_id:'call_A',name:'search_files',arguments:{date:'2026-10-06'}}];
+ const pending=await f.poll();assert.equal(pending.actions[0].name,'search_files');
  const args={thread_id:'chat_A',request_id:'request_A',call_id:'call_A'};
- assert.equal((await f.route('/secretary/claim',args)).claimed,true);assert.equal((await f.route('/secretary/claim',args)).claimed,false);
+ assert.equal((await f.route('/secretary/claim',args)).claimed,true);assert.equal((await f.route('/secretary/claim',args)).claimed,true);
  await f.route('/secretary/result',{...args,result:{ok:true,events:[]}});await f.route('/secretary/result',{...args,result:{ok:true,events:[]}});
  assert.equal(f.state.writes.length,2);assert.equal(f.state.writes[1].body.events[0].turn_id,'turn_A');assert.equal(f.state.writes[1].body.events[0].call_id,'call_A');f.db.close();
 });
 test('도구 요청 변경 또는 결과 전송 유실 시 업무를 재실행하지 않는다',async()=>{
- const f=fixture();await f.start();f.state.actions=[{type:'function_call',turn_id:'turn_A',call_id:'call_A',name:'add_contact',arguments:{name:'테스트'}}];await f.poll();
+ const f=fixture();await f.start();f.state.actions=[{type:'function_call',turn_id:'turn_A',call_id:'call_A',name:'create_document',arguments:{name:'테스트'}}];await f.poll();
  const args={thread_id:'chat_A',request_id:'request_A',call_id:'call_A'};
  f.state.actions[0].arguments={name:'변경'};await assert.rejects(f.route('/secretary/claim',args),/변경/);f.state.actions[0].arguments={name:'테스트'};
  await f.route('/secretary/claim',args);f.state.lost=true;await assert.rejects(f.route('/secretary/result',{...args,result:{ok:true}}),/network lost/);
@@ -117,10 +117,10 @@ test('브라우저가 도구를 한 번 실행하고 전달 실패 후 저장된
  vm.runInNewContext(readFileSync(new URL('../secretary-client.js',import.meta.url),'utf8'),sandbox);
  let executions=0,resultPosts=0,completed=false,started=false;
  const request=async(path)=>{
-  if(path==='/secretary/message'){started=true;return{status:'requires_action',actions:[{call_id:'call_A',name:'list_schedule',arguments:{},status:'pending'}]};}
+  if(path==='/secretary/message'){started=true;return{status:'requires_action',actions:[{call_id:'call_A',name:'search_files',arguments:{},status:'pending'}]};}
   if(path==='/secretary/claim')return{claimed:true};
   if(path==='/secretary/result'){resultPosts++;if(resultPosts===1)throw Error('response lost before acceptance');completed=true;return{ok:true};}
-  return completed?{status:'completed',request_id:'request_A',output_text:'완료'}:started?{status:'requires_action',request_id:'request_A',actions:[{call_id:'call_A',name:'list_schedule',arguments:{},status:'executing'}]}:{status:'ready'};
+  return completed?{status:'completed',request_id:'request_A',output_text:'완료'}:started?{status:'requires_action',request_id:'request_A',actions:[{call_id:'call_A',name:'search_files',arguments:{},status:'executing'}]}:{status:'ready'};
  };
  const options={owner:()=> 'owner',request,status:()=>{},busy:()=>{},execute:async()=>{executions++;return{ok:true};}};
  const client=sandbox.createSecretaryClient(options);await assert.rejects(client.run('chat_A','일정 확인',''),/response lost/);
@@ -130,7 +130,7 @@ test('도구 선점 도중 계정이 바뀌면 새 계정 자료를 변경하지
  const storage=new Map(),sandbox={localStorage:{getItem:k=>storage.get(k)||null,setItem:(k,v)=>storage.set(k,v),removeItem:k=>storage.delete(k)},crypto:{randomUUID:()=> 'request_A'},setTimeout:fn=>fn()};
  vm.runInNewContext(readFileSync(new URL('../secretary-client.js',import.meta.url),'utf8'),sandbox);
  let owner='owner',executions=0;
- const request=async path=>path==='/secretary/claim'?(owner='another_owner',{claimed:true}):path==='/secretary/message'?{status:'requires_action',actions:[{call_id:'call_A',name:'add_contact',arguments:{},status:'pending'}]}:{status:'ready'};
+ const request=async path=>path==='/secretary/claim'?(owner='another_owner',{claimed:true}):path==='/secretary/message'?{status:'requires_action',actions:[{call_id:'call_A',name:'create_document',arguments:{},status:'pending'}]}:{status:'ready'};
  const client=sandbox.createSecretaryClient({owner:()=>owner,request,status:()=>{},busy:()=>{},execute:async()=>{executions++;}});
  await assert.rejects(client.run('chat_A','연락처 등록',''),/계정이 변경/);assert.equal(executions,0);
 });
@@ -143,12 +143,12 @@ test('진행 중 답변 미리보기는 현재 실행만 보여주고 완료 기
  assert.equal((await f.route('/secretary/poll',{thread_id:'chat_A',request_id:'request_A',preview:'1'},'another_owner','GET')).partial_text,undefined);f.db.close();
 });
 
-test('담당 배정은 인증된 현재 도구를 서버에서 한 번 실행하고 응답 유실 시 결과를 복구한다',async()=>{
- const f=fixture();await f.start();f.state.actions=[{type:'function_call',turn_id:'turn_A',call_id:'call_A',name:'delegate_work',arguments:{instruction:'민원 회신 초안'}}];await f.poll();
- let executions=0;const extra={executeWork:async(name,args,key,context)=>{executions++;assert.equal(name,'delegate_work');assert.equal(args.instruction,'민원 회신 초안');assert.equal(key,'secretary_call_A');assert.equal(context.today,'2026-10-06');return {ok:true,run_id:'run_A'};}};
+test('자료 도구는 한 번 실행하고 숨긴 업무 문맥 없이 결과를 복구한다',async()=>{
+ const f=fixture();await f.start();f.state.actions=[{type:'function_call',turn_id:'turn_A',call_id:'call_A',name:'create_document',arguments:{title:'문서',content:'현재 내용'}}];await f.poll();
+ let executions=0;const extra={executeWork:async(name,args,key,context)=>{executions++;assert.equal(name,'create_document');assert.equal(args.content,'현재 내용');assert.equal(key,'secretary_call_A');assert.deepEqual(context,{});return {ok:true,run_id:'run_A'};}};
  const body={thread_id:'chat_A',request_id:'request_A',call_id:'call_A',work_context:{today:'2026-10-06'}};
  const claimed=await f.route('/secretary/claim',body,'owner','POST',extra);assert.equal(claimed.result.run_id,'run_A');
- assert.equal((await f.route('/secretary/claim',body,'owner','POST',extra)).claimed,false);assert.equal(executions,1);
+ assert.equal((await f.route('/secretary/claim',body,'owner','POST',extra)).claimed,true);assert.equal(executions,1);
  const recovered=await f.poll();assert.equal(recovered.actions[0].result.run_id,'run_A');
  await assert.rejects(f.route('/secretary/claim',body,'another_owner','POST',extra),/대기 중인 도구/);assert.equal(executions,1);
  await f.route('/secretary/result',{...body,result:claimed.result});assert.equal((await f.poll()).actions.length,0);f.db.close();
@@ -169,3 +169,6 @@ test('새 자료 도구는 서버에서 실행하고 브라우저가 바꾼 결�
  await f.route('/secretary/result',{...body,result:{ok:true,file_id:'forged_file'}});
  assert.equal(JSON.parse(f.state.writes.at(-1).body.events[0].output).file_id,'real_file');assert.equal(executions,1);f.db.close();
 });
+test('앱 선택은 AI 접근 승인이 아니며 명시적 AI 사용 승인만 도구를 노출한다',async()=>{const f=fixture();await f.start();f.db.prepare('INSERT INTO office_app_selections VALUES(?,?,?)').run('owner','google_drive',1);const {workspacePolicy}=await import('../secretary-workspace-policy.js');assert(!(await workspacePolicy(f.env,'owner')).allowed.has('search_drive'));f.db.prepare('INSERT INTO office_ai_apps VALUES(?,?,?)').run('owner','google_drive',2);assert((await workspacePolicy(f.env,'owner')).allowed.has('search_drive'));assert(!(await workspacePolicy(f.env,'another_owner')).allowed.has('search_drive'));f.db.prepare('DELETE FROM office_ai_apps').run();assert(!(await workspacePolicy(f.env,'owner')).allowed.has('search_drive'));f.db.close();});
+test('숨긴 CRM·일정·통화·위치·과거 업무 도구는 오래된 세션이 요청해도 실행하지 않는다',async()=>{for(const name of ['list_contacts','list_schedule','delegate_work','list_call_records','shared_locations','daily_briefing','search_drive']){const f=fixture();await f.start();f.state.actions=[{type:'function_call',turn_id:'turn_A',call_id:'call_A',name,arguments:{}}];await f.poll();let executed=0;await assert.rejects(f.route('/secretary/claim',{thread_id:'chat_A',request_id:'request_A',call_id:'call_A'},'owner','POST',{executeWork:async()=>{executed++;}}),/AI 사용/);assert.equal(executed,0);f.db.close();}});
+test('이전 UI가 보내는 숨긴 자료 문맥은 새 서버 지침으로 전달하지 않는다',async()=>{const f=fixture();await f.route('/secretary/message',{thread_id:'chat_A',request_id:'request_A',input:'현재 요청',context:'숨겨진 비밀 CRM 데이터'});const body=f.state.writes[0].body;assert(!JSON.stringify(body).includes('숨겨진 비밀 CRM 데이터'));assert(!body.agent.tools.some(t=>['list_contacts','list_schedule','list_policies','delegate_work'].includes(t.name)));f.db.close();});

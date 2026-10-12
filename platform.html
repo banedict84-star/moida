@@ -611,7 +611,7 @@ body.secretary-view #aiPanel{border:0!important;border-radius:0!important;box-sh
       </div>
       </div>
 
-      <div class="page" data-page="connections"><div class="pg"><section id="moidaAppConnections" aria-label="전체 앱 연결 목록"></section><details style="margin-top:24px"><summary>기존 서비스 연결 관리</summary><section id="dashboardConnections" aria-label="도구 연결"></section></details></div></div>
+      <div class="page" data-page="connections"><div class="pg"><section id="moidaAppConnections" aria-label="전체 앱 연결 목록"></section></div></div>
       <div class="page" data-page="knowledge"><div class="pg"><div id="moidaKnowledge"></div></div></div>
       <div class="page" data-page="agents">
         <div id="moidaOffice" class="pg mo-office">
@@ -864,9 +864,9 @@ body.secretary-view #aiPanel{border:0!important;border-radius:0!important;box-sh
 <script src="office-travel-client.js?v=4"></script>
 <script src="office-location-page.js?v=history-v1"></script>
 <script src="secretary-toolkit-client.js?v=apps-v1"></script>
-<script src="secretary-app-connections.js?v=6"></script>
+<script src="secretary-app-connections.js?v=workspace-sources1-6"></script>
 <script src="secretary-voice-client.js?v=4"></script>
-<script src="secretary-client.js?v=models-v8"></script>
+<script src="secretary-client.js?v=workspace-sources1-models-v8"></script>
 <script>
 /* ── 의원실 플랫폼 SPA 런타임 (디자인 핸드오프 재구현) ──────────────── */
 (function(){
@@ -2256,71 +2256,7 @@ onAuthStateChanged(_auth, async function(user){
       return fetch(url,Object.assign({},options,{headers:headers}));
     });
   }
-  function sysPrompt(){
-    var p=M.profile||{}; var nm=p.name||'의원';
-    var pos=[p.position,p.district].filter(Boolean).join(' ');
-    var ev=(M.events||[]).filter(function(e){return e.date===todayKey();}).sort(function(a,b){return (a.time||'').localeCompare(b.time||'');});
-    var evtxt=ev.length?ev.map(function(e){return (e.time||'')+' '+(e.title||'')+(e._location?' @'+e._location:'');}).join(' / '):'없음';
-    var open=(M.complaints||[]).filter(function(c){return (c.status||'접수')!=='종결';}).length;
-    var pol=(M.policies||[]).length, prc=(M.pr||[]).length;
-    return [
-      '# ROLE',
-      '너는 "'+nm+(pos?' '+pos:'')+'" 의원실의 AI 비서실장이다. 단순히 질문에 답하는 AI가 아니라, 실제 비서실장처럼 생각하고 행동한다.',
-      '최우선 목표는 "사용자의 시간을 절약하는 것"이다. 답변보다 업무 해결을 우선하고, 항상 한 단계 더 생각해 필요한 후속 업무를 함께 제안한다.',
-      '필요하면 스스로 판단해 도구(아래)를 직접 실행해 일을 끝내라(추천만 하지 말 것).',
-      '',
-      '# 업무 범위',
-      '①일정 관리 ②문서 작성 ③SNS 홍보 ④디자인 기획 ⑤사진/자료 분석 ⑥행사 기록 ⑦정책자료 조사 ⑧아이디어 제안 ⑨업무 자동화 ⑩프로젝트 관리. 필요하면 여러 업무를 동시에 수행한다.',
-      '일정 등록 요청은 제목과 날짜가 확인되어도 즉시 저장하지 말고 add_event 도구에 구조화된 정보를 담아 호출한다. 화면에서 사용자에게 최종 확인을 받은 뒤에만 실제 저장된다. 필요한 정보가 빠졌을 때만 누락된 항목을 짧게 질문한다.',
-      '일정 등록 완료 뒤에는 일정명·날짜·시간·장소와 MOIDA/Google Calendar 반영 여부만 간결하게 보고한다. SNS 글, 보도자료 등 관련 없는 후속 업무는 제안하지 않는다.',
-      '일정 등록 전에 사용자 확인이 필요한 경우 정보를 한 문장으로 이어 쓰지 않는다. 반드시 "일정을 확인했습니다." 다음 빈 줄, "**날짜 HH:MM · 일정명**", 다음 줄 "장소: 장소명", 다시 빈 줄, "이대로 일정을 등록할까요?" 순서로 줄을 나눠 표시한다.',
-      '기관·단체·모임 이름과 물리적 장소가 함께 나오면 기관·단체·모임 이름을 일정명으로, 실제 공간을 장소로 정리한다. 예를 들어 "배구협회에서 배구장 관련 일정"은 일정명 "배구협회", 장소 "배구장"으로 이해한다.',
-      '예: "일정을 확인했습니다.\n\n**오늘 18:00 · 배구협회**\n장소: 배구장\n\n이대로 일정을 등록할까요?"',
-      '사용자가 웹자보·포스터·행사 안내 이미지를 첨부해 일정 등록을 요청하면 이미지에서 일정명·날짜·시간·장소를 읽는다. 첫 응답에서는 add_event를 호출하지 말고 반드시 추출한 일정을 보기 좋게 정리해 사용자에게 등록 여부를 확인한다.',
-      '웹자보 일정 확인 형식: "일정을 확인했습니다." 다음 줄에 "**YYYY년 M월 D일 HH:MM · 일정명**", 그 다음 줄에 "장소: 장소명", 마지막에 "이대로 일정을 등록할까요?"라고 묻는다. 불명확하거나 빠진 항목은 추측하지 말고 그 항목만 질문한다.',
-      '사용자가 확인 답변으로 등록을 승인하면 앞서 이미지에서 추출한 정보를 사용해 add_event를 호출한다.',
-      '',
-      '# 핵심 행동원칙 — "질문 → 답변 → 다음 업무 제안"',
-      '답변만 하지 않는다. 항상 "다음 해야 할 일"까지 제안한다.',
-      '예) 사용자가 "오늘 행사 다녀왔어"라고 하면 한 번의 입력으로 비서실 전체가 움직이듯: ✅SNS 글 ✅웹자보 문구 ✅대표 사진 추천 ✅영상 썸네일 문구 ✅보도자료 초안 ✅해시태그 ✅다음 행사 홍보 일정까지 묶어서 제안/작성한다.',
-      '',
-      '# 내부 팀 사고(멀티 역할)',
-      '비서·기획자·디자이너·홍보담당·정책보좌관·업무관리자·자동화전문가 역할을 동시에 수행한다. "내가 실제 비서실장이라면 무엇을 먼저 할까?"를 기준으로 판단한다.',
-      '필요 시 내부적으로 홍보팀장/디자인팀/정책팀/일정비서 관점을 나눠 검토한 뒤 통합해 제시한다.',
-      '',
-      '# 프로젝트 관리',
-      '사용자는 여러 프로젝트를 동시 진행한다(예: 장윤정 의원 의정활동, 당원관리, CRM 개발, AI 비서실, 공예협회, 교육사업, 선거 등). 각 프로젝트 목적을 이해하고 서로 섞이지 않게 구분해 사고한다.',
-      '',
-      '# 디자인 요청 시',
-      '사용자가 웹자보·포스터·행사 홍보 이미지를 만들어 달라고 명확히 요청하면 행사 이름과 내용만으로 부족한 제목·슬로건·분류를 보완하고 create_poster 도구를 즉시 호출한다. 추가 질문은 날짜·장소처럼 결과에 필수인 정보가 전혀 없을 때만 한다. 생성 뒤 PNG 저장과 웹자보 편집기 수정이 가능하다고 안내한다.',
-      '',
-      '# 글쓰기',
-      '글을 쓸 때 목적을 먼저 분석한다(SNS/보도자료/축사/격려사/회의자료/제안서/공문/카카오톡 등). 목적에 맞는 형식·톤으로 바로 쓸 수 있는 완성형으로 작성한다.',
-      '사용자 메시지에 [홍보글 작성 설정]이 있으면 해당 글자 수와 방향을 반드시 지킨다. 행사 후 활동보고용 홍보글로 작성하고, 확인되지 않은 성과·참석자·수치를 만들어내지 않는다. 사용자가 적은 행사 요지의 사실과 표현을 최대한 살려 자연스럽고 담백한 문장으로 쓴다.',
-      '홍보글에서는 "지역 사회의 결속력", "소통의 장", "뜻깊은 시간", "지속적인 협력"처럼 내용 없이 과장되거나 관공서식인 표현을 피한다. 행사에서 만난 사람, 나눈 이야기, 앞으로 챙길 일을 구체적으로 적고, 한 문단은 휴대폰 기준 3줄 정도(약 70자 이내)로 짧게 쓴다. 문단 사이는 반드시 한 줄을 비우고, 해시태그는 맨 마지막 줄에 따로 둔다. 카카오톡과 페이스북에 바로 붙여넣을 수 있도록 제목 없이 본문과 필요한 해시태그만 출력한다.',
-      '',
-      '# 문제 해결',
-      '질문에는 ①질문의 의도 ②가장 좋은 해결책 ③더 좋은 대안 ④자동화 가능 여부까지 함께 제안한다.',
-      '',
-      '# 업무 자동화',
-      '반복 업무(사진 정리·보고서·SNS 업로드·파일명 변경·문자/메일 등)를 발견하면 자동화를 제안한다.',
-      '',
-      '# 보고 방식',
-      '항상 [결론 → 이유 → 실행 방법 → 주의사항] 순으로, 긴 설명보다 실무 중심으로 작성한다. 의원에게는 "의원님"으로 호칭한다.',
-      '',
-      '# 금지사항',
-      '추측하지 않는다. 확인되지 않은 내용을 사실처럼 말하지 않는다(데이터 없으면 도구로 조회하거나 "확인이 필요합니다"). 사용자의 의도와 다른 방향으로 진행하지 않는다. 불필요하게 장황하지 않는다. 정치적 중립·공직선거법·개인정보보호 준수.',
-      '',
-      '# 오늘 의원실 현황(참고 데이터)',
-      '- 오늘 날짜: '+todayKey(),
-      '- 오늘 일정: '+evtxt,
-      '- 미처리 민원: '+open+'건',
-      '- 등록 연락처: '+((M.members||[]).length)+'명',
-      '- CRM 연락처는 현재 시스템에 연결되어 있다. 연락처 명부·인원·유형·지역·생일 확인 요청에는 반드시 list_contacts 또는 search_contacts 도구를 먼저 사용하고 조회하지 않은 내용을 추측하지 않는다.',
-      '- 등록 법안/정책: '+pol+'건, 홍보 콘텐츠: '+prc+'건',
-      '- 외부 공지(중앙당·경기도당·경기도의회): '+((M.notices||[]).length)+'건 적재됨 — 내용은 list_notices 도구로 조회'
-    ].join('\n');
-  }
+  function sysPrompt(){return '모아는 현재 메시지와 첨부, 자료·기억, 도구 연결에서 AI 사용을 켠 서비스만 참고합니다. 숨겨진 기존 자료와 과거 대화는 현재 자료가 아닙니다.';}
   var history=[];
   var chatThreads=[], currentThreadId='', chatLoaded=false, chatSaveTimer=null;
   var historyList=document.getElementById('aiHistoryList'), historyStatus=document.getElementById('aiHistoryStatus');
@@ -3611,12 +3547,7 @@ onAuthStateChanged(_auth, async function(user){
     var _imgs=atts.filter(function(a){return a.kind==='image';});
     if(_imgs.length) lastPhotos=_imgs.map(function(f){return f.dataUrl;});
     addUser(text, atts);
-    if(!atts.length&&pendingScheduleProposal&&/^(등록|등록해|등록해줘|등록해주세요|네|예|응|확인)$/.test(text.replace(/\s+/g,''))){confirmPendingSchedule();return;}
-    if(!atts.length&&/^일정\s*등록$/.test(text)){showScheduleRegistrationGuide();return;}
-    if(!atts.length&&/^홍보글\s*작성$/.test(text)){showPromotionGuide();return;}
-
-    var ep=gptEndpoint();
-    if(!ep){ var r=reply(text); setTimeout(function(){ addAI(r); }, 350); return; }
+    if(!gptEndpoint()){addAI('AI 연결을 확인해 주세요. 기존 자료를 이용한 자동 답변은 중지되어 있습니다.');return;}
     if(!history.length) history.push({role:'system', content:sysPrompt()});
     var fullText=text;
     var usePromotionSettings=awaitingPromotionContent;
@@ -3641,7 +3572,7 @@ onAuthStateChanged(_auth, async function(user){
     }
     var forceSchedule=!usePromotionSettings&&(awaitingScheduleDetails||isScheduleRegistrationRequest(text));
     if(forceSchedule)awaitingScheduleDetails=false;
-    runLoop(addTyping(), 0, 0, isPosterCreationRequest(text), forceSchedule);
+    runLoop(addTyping(), 0, 0, false, false);
   }
   msgs.addEventListener('click',async function(event){
     var button=event.target.closest('[data-office-file]');if(!button||!msgs.contains(button))return;
@@ -3671,35 +3602,15 @@ onAuthStateChanged(_auth, async function(user){
   var secretaryClient=window.createSecretaryClient({
     owner:function(){return M.auth&&M.auth.currentUser?M.auth.currentUser.uid:'local';},
     request:agentApi,
-    context:agentServerContext,
+    context:function(){return {};},
     executed:function(name,result,thread){if(name==='create_document'&&result&&result.saved)showGeneratedFile(result,thread);if(result&&result.run){mergeServerRun(result.run);if(name==='delegate_work')pollServerRuns();}},
     status:setChatStatus,
     preview:function(thread,text){if(secretaryPreview&&secretaryPreview.thread===thread&&currentThreadId===thread&&M.auth.currentUser&&M.auth.currentUser.uid===secretaryPreview.owner){var bubble=secretaryPreview.element&&secretaryPreview.element.lastElementChild;if(bubble){bubble.textContent=text;bubble.style.whiteSpace="pre-wrap";}}},
     busy:function(busy){var b=document.getElementById('aiSend');if(b)b.disabled=busy;},
-    execute:async function(name,args,callId){
-      if(name==='delegate_work'){
-        var data=await agentApi('/agent-runs',{method:'POST',headers:{'Content-Type':'application/json','Idempotency-Key':'secretary_'+callId},body:JSON.stringify({instruction:args.instruction,assignments:window.MOIDA_OFFICE_ASSIGNMENTS?window.MOIDA_OFFICE_ASSIGNMENTS(args.instruction):undefined,context:agentServerContext(),idempotencyKey:'secretary_'+callId})});
-        mergeServerRun(data.run);pollServerRuns();
-        return {ok:true,run_id:data.run.id,status:data.run.status,message:'담당자에게 접수됐습니다. 완료 보고는 검수 결과를 확인한 뒤 합니다.'};
-      }
-      if(name==='read_work_report'){
-        var data=await agentApi('/agent-runs/'+encodeURIComponent(args.run_id),{method:'GET'});mergeServerRun(data.run);
-        return {ok:true,run_id:data.run.id,status:data.run.status,summary:data.run.summary||'',error:data.run.error||'',tasks:data.run.tasks};
-      }
-      if(name==='add_event'){
-        showScheduleProposal(args);
-        return {ok:true,requires_confirmation:true,message:'일정 제안만 표시했습니다. 사용자 등록 확인 대기 중입니다.'};
-      }
-      return await Promise.resolve(execTool(name,args));
-    }
+    execute:async function(){throw Error('기존 브라우저 업무 도구는 비활성화되었습니다. 자료·기억과 도구 연결을 사용해 주세요.');}
   });
   window.setupAppConnections({owner:function(){return M.auth&&M.auth.currentUser?M.auth.currentUser.uid:null;},request:agentApi,subscribe:function(fn){M.onData(fn);}});
-  var officeToolkit=window.setupOfficeToolkit({
-    owner:function(){return M.auth&&M.auth.currentUser?M.auth.currentUser.uid:null;},
-    request:agentApi,
-    prompt:function(text){var input=document.getElementById('aiInput');if(input){input.value=text;input.focus();}},
-    download:async function(path){var user=M.auth&&M.auth.currentUser;if(!user)throw Error('로그인이 필요합니다.');var owner=user.uid,token=await user.getIdToken();if(!M.auth.currentUser||M.auth.currentUser.uid!==owner)throw Error('계정이 변경되었습니다.');var response=await fetch(gptEndpoint().replace(/\/+$/,'')+path,{headers:{Authorization:'Bearer '+token}});if(!response.ok){var error=await response.json().catch(function(){return {};});throw Error(error.error&&error.error.message||'파일 다운로드 실패');}return response;}
-  });
+  var officeToolkit=null;
   window.setupNewsShorts({owner:function(){return M.auth&&M.auth.currentUser?M.auth.currentUser.uid:null;},request:agentApi,subscribe:function(fn){M.onData(fn);}});
   window.setupDashboardCalls({owner:function(){return M.auth&&M.auth.currentUser?M.auth.currentUser.uid:null;},request:agentApi,subscribe:function(fn){M.onData(fn);}});
   window.setupCallRecords({owner:function(){return M.auth&&M.auth.currentUser?M.auth.currentUser.uid:null;},request:agentApi,subscribe:function(fn){M.onData(fn);}});
@@ -3710,8 +3621,8 @@ onAuthStateChanged(_auth, async function(user){
     record:function(role,text,thread,owner){if(currentThreadId!==thread||!M.auth.currentUser||M.auth.currentUser.uid!==owner)return;history.push({role:role,content:text});if(role==='user')addUser(text,null);else addAI(mdToHtml(text),text);},
     run:async function(instruction,thread,owner){
       if(currentThreadId!==thread||!M.auth.currentUser||M.auth.currentUser.uid!==owner)throw Error('대화 또는 계정이 변경되었습니다. 통화를 다시 연결해 주세요.');
-      var output=await secretaryClient.run(thread,instruction,sysPrompt()+'\n[음성 통화 지시] 사용자가 직접 말한 요청입니다. 기존 조회와 실행 권한 및 확인 절차를 그대로 적용합니다.\n[최근 대화]'+JSON.stringify(history.slice(-8)));
-      if(currentThreadId===thread&&M.auth.currentUser&&M.auth.currentUser.uid===owner){var proposal=parseScheduleConfirmation(output);if(proposal&&!pendingScheduleProposal)showScheduleProposal(proposal,true);history.push({role:'assistant',content:output});addAI(mdToHtml(output),output);if(officeToolkit)officeToolkit.refresh();}
+      var output=await secretaryClient.run(thread,instruction,sysPrompt());
+      if(currentThreadId===thread&&M.auth.currentUser&&M.auth.currentUser.uid===owner){history.push({role:'assistant',content:output});addAI(mdToHtml(output),output);if(officeToolkit)officeToolkit.refresh();}
       return output;
     }
   });
@@ -3721,19 +3632,16 @@ onAuthStateChanged(_auth, async function(user){
     secretaryPreview={thread:threadId,owner:owner,element:typing};
     var last=history[history.length-1],content=last&&last.role==='user'?last.content:'이전 요청 상태를 확인해 주세요.';
     var text=typeof content==='string'?content:content.filter(function(p){return p.type==='text';}).map(function(p){return p.text;}).join('\n');
-    if(forcePoster)text+='\n[요청 실행] create_poster 도구로 웹자보를 생성해 주세요.';
-    if(forceSchedule)text+='\n[요청 실행] add_event 도구로 등록할 일정을 제안해 주세요.';
+
+
     var input=text;
     if(Array.isArray(content))input=[{role:'user',content:[{type:'input_text',text:text}].concat(content.filter(function(p){return p.type==='image_url';}).map(function(p){return {type:'input_image',image_url:p.image_url.url};}))}];
-    var context=sysPrompt()+'\n[기존 대화 참고]\n'+JSON.stringify(history.filter(function(m){return m.role==='user'||m.role==='assistant';}).slice(-7,-1));
+    var context=sysPrompt();
     secretaryClient.run(threadId,input,context).then(function(output){
       if(typing)typing.remove();
       if(currentThreadId!==threadId||!M.auth.currentUser||M.auth.currentUser.uid!==owner)return;
       history.push({role:'assistant',content:output});
-      var proposal=parseScheduleConfirmation(output);
-      if(proposal&&!pendingScheduleProposal)showScheduleProposal(proposal,true);
-      else if(expectingPromotionCopy){expectingPromotionCopy=false;renderPromotionCopy(output);}
-      else addAI(mdToHtml(output),output);
+      addAI(mdToHtml(output),output);
       setChatStatus('에이전트 답변 완료 · 대화 이어가기 가능');if(officeToolkit)officeToolkit.refresh();
     }).catch(function(error){
       if(!M.auth.currentUser||M.auth.currentUser.uid!==owner)return;
@@ -4468,6 +4376,6 @@ var input=document.getElementById('aiInput');if(input)input.placeholder='비서�
 <script src="solapi-messaging-client.js?v=4"></script>
 <script type="module" src="birthday-messaging-client.js?v=3"></script>
 <script src="moida-workspace-redesign.js?v=3"></script><script src="moida-knowledge.js?v=trash1"></script><script src="dashboard-connections.js?v=redesign1"></script><script src="dashboard-cards.js?v=workspace-redesign3"></script><script src="office-staff-catalog.js?v=20261012-300"></script><script src="moida-core-team.js?v=1"></script><script src="office-workspace.js?v=core-team-v3"></script>
-<script src="moa-chat.js?v=1"></script></body>
+<script src="moa-chat.js?v=2"></script></body>
 </html>
 
