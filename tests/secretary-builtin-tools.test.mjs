@@ -5,6 +5,28 @@ import {executeToolkit,ensureToolkit,uploadFile,toolkitRoute} from '../secretary
 import {calculate,publicUrl,builtinTick,builtinAsset} from '../secretary-builtin-tools.js';
 import {workspacePolicy} from '../secretary-workspace-policy.js';
 function fixture(){const db=new DatabaseSync(':memory:');const env={OPENAI_API_KEY:'test-only',AGENT_DB:{prepare(sql){const stmt={bind(...args){return{async first(){return db.prepare(sql).get(...args)||null;},async all(){return{results:db.prepare(sql).all(...args)};},async run(){return{meta:{changes:db.prepare(sql).run(...args).changes}};}};}};return{...stmt,...stmt.bind()};},async batch(stmts){db.exec('BEGIN');try{const out=[];for(const s of stmts)out.push(await s.run());db.exec('COMMIT');return out;}catch(e){db.exec('ROLLBACK');throw e;}}}};const requests=[];let completion={id:'resp_test',status:'in_progress',output:[]};const fetcher=async(url,init)=>{requests.push({url,body:init?.body?JSON.parse(init.body):null});return Response.json(init?.method==='POST'?{id:'resp_test',status:'queued'}:completion);};const call=(name,args={},uid='owner',key='operation')=>executeToolkit({env,uid,name,args,operationKey:key,fetcher});return{env,db,requests,call,fetcher,complete(data){completion={id:'resp_test',status:'completed',...data};}};}
+test('image generation and editing use Flare directly and preserve the model override',async()=>{
+ for(const override of [undefined,'gpt-image-2.5-sunburst']){
+  const f=fixture();
+  try{
+   if(override)f.env.BUILTIN_IMAGE_MODEL=override;
+   const bytes=Uint8Array.of(137,80,78,71);
+   await uploadFile(f.env,'owner',{id:'source',name:'source.png',base64:btoa(String.fromCharCode(...bytes)),mime:'image/png'});
+   for(const name of ['generate_image','edit_image']){
+    await f.call(name,{title:'Image test',prompt:'A blue circle',...(name==='edit_image'?{file_id:'source'}:{})},'owner',name);
+    const request=f.requests.at(-1),body=request.body;
+    assert.equal(request.url,'https://api.openai.com/v1/responses');
+    assert.equal(body.model,'gpt-6.1-sol');
+    assert.deepEqual(body.tools,[{type:'image_generation',model:override||'gpt-image-2.5-flare',output_format:'png'}]);
+    assert.deepEqual(body.tool_choice,{type:'image_generation'});
+    assert.equal(body.background,true);
+    assert.equal(body.input[0].content[0].type,'input_text');
+    if(name==='edit_image')assert.match(body.input[0].content[1].image_url,/^data:image\/png;base64,/);
+    else assert.equal(body.input[0].content.length,1);
+   }
+  }finally{f.db.close();}
+ }
+});
 test('산술은 실행 가능한 코드 없이 우선순위·함수·오류를 처리한다',()=>{assert.equal(calculate('(120000*3)*1.1').result,396000.00000000006);assert.equal(calculate('2**3**2').result,512);assert.equal(calculate('-2**2').result,-4);assert.equal(calculate('max(3, sqrt(16))+round(1.6)').result,6);for(const value of ['process.exit()','1/0','sqrt(-1)','round(1,2)','2;alert(1)','Math.random()'])assert.throws(()=>calculate(value));});
 test('공개 웹 도구는 내부주소를 거절하고 실제 검색과 출처를 반환한다',async()=>{for(const url of ['https://127.0.0.1/','https://[::1]/','http://example.com','https://localhost/','https://a.internal/','https://user:pass@example.com'])assert.throws(()=>publicUrl(url));const f=fixture();await ensureToolkit(f.env);const result=await executeToolkit({env:f.env,uid:'owner',name:'read_webpage',args:{url:'https://example.com'},fetcher:async(url,init)=>{assert(url.endsWith('/responses'));assert.equal(JSON.parse(init.body).tool_choice,'required');return Response.json({status:'completed',output:[{type:'web_search_call',status:'completed'},{type:'message',content:[{type:'output_text',text:'확인한 내용',annotations:[{type:'url_citation',url:'https://example.com',title:'출처'}]}]}]});}});assert.equal(result.sources[0].url,'https://example.com/');f.db.close();});
 test('기본 도구를 연결해도 숨긴 CRM·통화·위치와 승인 없는 앱은 차단한다',async()=>{const f=fixture();const p=await workspacePolicy(f.env,'owner');assert(p.tools.some(t=>t.type==='web_search'));for(const name of ['calculate','generate_image','edit_image','deep_research','create_scheduled_task'])assert(p.allowed.has(name));for(const name of ['list_contacts','list_call_records','shared_locations','search_drive','daily_briefing','list_news_monitors'])assert(!p.allowed.has(name));f.db.close();});
