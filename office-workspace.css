@@ -90,3 +90,8 @@
 /* Hired staff use a green pill on the portrait. */
 .mo-staff-photo .mo-staff-state .mo-pill.hired{background:#16a34a;color:#fff;border-radius:999px;padding:4px 10px;font-weight:700;box-shadow:0 2px 6px #14532d26}
 @media(max-width:760px){.mo-staff-photo .mo-staff-state .mo-pill.hired{padding:3px 8px}}
+
+/* Connection action is over the photo and takes no extra card height. */
+.mo-office .mo-connect-required{position:absolute;top:8px;left:8px;z-index:2;border:1px solid #ffffffa6;border-radius:999px;background:#fff7e6f2;color:#80521b;padding:4px 8px;font-size:10px;font-weight:700;box-shadow:0 1px 5px #17365920}
+.mo-staff-state~.mo-connect-required{top:38px}
+@media(max-width:760px){.mo-office .mo-connect-required{top:6px;left:6px;padding:3px 6px;font-size:9px}.mo-staff-state~.mo-connect-required{top:32px}}
