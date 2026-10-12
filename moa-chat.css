@@ -47,3 +47,5 @@ body.secretary-view .secretary-grid.history-collapsed{grid-template-columns:minm
 @media(max-width:760px){body.secretary-view .secretary-grid,body.secretary-view .secretary-grid.history-collapsed{grid-template-columns:minmax(0,1fr)!important}.moa-activity.mobile-open{display:block;position:absolute;inset:0 0 0 auto;width:min(260px,85%);box-sizing:border-box;z-index:51;box-shadow:-12px 0 32px #12345630}}
 
 @media(min-width:761px) and (max-width:1000px){.moa-activity.mobile-open{display:block;position:absolute;inset:0 0 0 auto;width:240px;z-index:51;box-shadow:-12px 0 32px #12345630}}
+
+@media(min-width:1001px){.moa-activity>button,.secretary-chat-actions .moa-activity-toggle{display:none!important}}
