@@ -3,6 +3,8 @@
  root.setupAppConnections=function(options){
   var host=document.getElementById('moidaAppConnections'),apps=[],selected=new Set(),aiEnabled=new Set(),statuses={},owner='',category='전체',query='',filter='all',sequence=0,selectionReady=false;
   if(!host)return;
+  if(host.dataset.connectionsReady==='true')return;
+  host.dataset.connectionsReady='true';
   function el(tag,text,cls){var n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;}
   function owned(uid){if(!uid||options.owner()!==uid)throw Error('로그인 계정이 변경되었습니다. 다시 열어 주세요.');}
   function btn(text,action,cls){var n=el('button',text,cls);n.type='button';n.onclick=async function(){n.disabled=true;try{await action();}catch(e){message.textContent=e.message||'연결 상태를 확인하지 못했습니다.';}finally{n.disabled=false;}};return n;}

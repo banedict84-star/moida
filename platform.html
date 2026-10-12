@@ -3609,7 +3609,7 @@ onAuthStateChanged(_auth, async function(user){
     busy:function(busy){var b=document.getElementById('aiSend');if(b)b.disabled=busy;},
     execute:async function(){throw Error('기존 브라우저 업무 도구는 비활성화되었습니다. 자료·기억과 도구 연결을 사용해 주세요.');}
   });
-  window.setupAppConnections({owner:function(){return M.auth&&M.auth.currentUser?M.auth.currentUser.uid:null;},request:agentApi,subscribe:function(fn){M.onData(fn);}});
+  /* Connections initialize separately in workspace-connections.js. */
   var officeToolkit=null;
   window.setupNewsShorts({owner:function(){return M.auth&&M.auth.currentUser?M.auth.currentUser.uid:null;},request:agentApi,subscribe:function(fn){M.onData(fn);}});
   window.setupDashboardCalls({owner:function(){return M.auth&&M.auth.currentUser?M.auth.currentUser.uid:null;},request:agentApi,subscribe:function(fn){M.onData(fn);}});
@@ -4375,7 +4375,7 @@ var input=document.getElementById('aiInput');if(input)input.placeholder='비서�
 </script>
 <script src="solapi-messaging-client.js?v=4"></script>
 <script type="module" src="birthday-messaging-client.js?v=3"></script>
-<script src="workspace-automations.js?v=1"></script><script src="moida-workspace-redesign.js?v=automations4"></script><script src="moida-knowledge.js?v=trash1"></script><script src="dashboard-cards.js?v=workspace-redesign3"></script><script src="office-staff-catalog.js?v=20261012-300"></script><script src="moida-core-team.js?v=1"></script><script src="office-workspace.js?v=core-team-v3"></script>
+<script src="workspace-connections.js?v=1"></script><script src="workspace-automations.js?v=1"></script><script src="moida-workspace-redesign.js?v=automations4"></script><script src="moida-knowledge.js?v=trash1"></script><script src="dashboard-cards.js?v=workspace-redesign3"></script><script src="office-staff-catalog.js?v=20261012-300"></script><script src="moida-core-team.js?v=1"></script><script src="office-workspace.js?v=core-team-v3"></script>
 <script src="moa-chat.js?v=2"></script></body>
 
 </html>
