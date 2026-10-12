@@ -86,3 +86,7 @@
 .mo-staff-body .mo-staff-price{padding:4px 0}
 .mo-catalog-layout .mo-staff-card .mo-actions{padding-bottom:6px}
 @media(max-width:760px){.mo-staff-photo{aspect-ratio:1.35}.mo-staff-photo .mo-staff-state{top:6px;left:6px}.mo-staff-photo .mo-staff-state .mo-pill{font-size:9px;padding:3px 6px}.mo-staff-body{padding:5px 8px}.mo-staff-body .mo-staff-price{padding:3px 0}}
+
+/* Hired staff use a green pill on the portrait. */
+.mo-staff-photo .mo-staff-state .mo-pill.hired{background:#16a34a;color:#fff;border-radius:999px;padding:4px 10px;font-weight:700;box-shadow:0 2px 6px #14532d26}
+@media(max-width:760px){.mo-staff-photo .mo-staff-state .mo-pill.hired{padding:3px 8px}}
