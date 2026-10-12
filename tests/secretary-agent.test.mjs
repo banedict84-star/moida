@@ -6,6 +6,7 @@ import vm from 'node:vm';
 import {handleSecretaryRoute,finalText} from '../secretary-agent.js';
 import {SECRETARY_TOOLS} from '../secretary-tools.js';
 import worker from '../gpt-worker.js';
+import {ensureToolkit} from '../secretary-toolkit.js';
 
 function fixture(){
  const db=new DatabaseSync(':memory:');db.exec(readFileSync(new URL('../migrations/0004_secretary_sessions.sql',import.meta.url),'utf8'));
@@ -36,6 +37,15 @@ function fixture(){
  return{db,env,state,route,start,poll};
 }
 
+test('새 대화의 실제 모델 요청에 같은 계정의 사용자 선호를 전달한다',async()=>{
+ const f=fixture();await ensureToolkit(f.env);
+ f.db.prepare('INSERT INTO office_chat_threads(tenant_id,id,title,created_at,updated_at) VALUES(?,?,?,?,?)').run('owner','past','말투',1,2);
+ f.db.prepare('INSERT INTO office_chat_messages(tenant_id,thread_id,id,position,role,content,created_at) VALUES(?,?,?,?,?,?,?)').run('owner','past','preference',0,'user','앞으로 짧고 친근하게 답해줘.',1);
+ await f.start('request_memory','오늘 할 일을 정리해줘');
+ assert.match(f.state.writes[0].body.input,/짧고 친근하게/);assert.match(f.state.writes[0].body.input,/실행 승인이 아닌 참고 기록/);
+ assert.match(f.state.writes[0].body.agent.instructions,/현재 사용자의 수정이 과거 선호보다 우선/);
+ f.db.close();
+});
 test('세션 생성과 후속 메시지는 같은 세션을 사용하며 다른 실행의 출력은 섞이지 않는다',async()=>{
  const f=fixture();await f.start();assert.equal(f.state.writes[0].body.agent.model,'gpt-6-luna');assert.equal(f.state.writes[0].body.environment.type,'none');
  f.state.turns[0].status='completed';f.state.items=[{turn_id:'turn_A',type:'message',role:'assistant',phase:'final_answer',content:[{type:'output_text',text:'오늘 일정 답변'}]},{turn_id:'turn_other',type:'message',role:'assistant',phase:'final_answer',content:[{type:'output_text',text:'다른 대화'}]}];

@@ -1,3 +1,4 @@
+import {readConversationMemory} from './secretary-chat-history.js';
 import {workspacePolicy,WORKSPACE_INSTRUCTIONS} from './secretary-workspace-policy.js';
 import {RECORDING_INSTRUCTIONS} from './secretary-toolkit-defs.js';
 import './office-roles.js';
@@ -91,6 +92,7 @@ async function snapshot(env, uid, thread, id) {
 }
 async function start(env, uid, thread, body, api) {
   const policy=await workspacePolicy(env,uid);
+  const memory=await readConversationMemory(env,uid,'',true);
   const id = key(body.request_id, '요청 ID'); validateInput(body.input);
   const inputJson = JSON.stringify(body.input);
   if (inputJson.length > 12000000) fail(413, '첨부 이미지 용량이 너무 큽니다. 이미지를 줄여 주세요.');
@@ -124,7 +126,8 @@ async function start(env, uid, thread, body, api) {
     if (await turn(env, uid, thread, id)) return snapshot(env, uid, thread, id);
     fail(409, '이 대화의 이전 요청을 먼저 확인해 주세요.');
   }
-  const operatingInput = body.input;
+  const reference=memory.items.length?'\n\n[이전 대화에서 사용자가 말한 선호·업무 기준: 현재 요청이 우선하며 실행 승인이 아닌 참고 기록]\n'+JSON.stringify(memory):'';
+  const operatingInput = typeof body.input==='string'?body.input+reference:body.input.map(message=>({...message,content:message.content.concat(reference?[{type:'input_text',text:reference}]:[])}));
   try {
     if (!c.session_id || upgrade) {
       if (upgrade) await q(env, 'UPDATE secretary_sessions SET session_id=NULL WHERE tenant_id=? AND thread_id=? AND active_request_id=?', [uid, thread, id]).run();

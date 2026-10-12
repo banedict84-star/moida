@@ -1,3 +1,4 @@
+import {CHAT_SCHEMA,chatHistoryRoute,readConversationMemory} from './secretary-chat-history.js';
 import {knowledgeRoute,readKnowledge} from './secretary-knowledge.js';
 import {executeFeatureTool,FEATURE_NAMES} from './secretary-feature-tools.js';
 import {TOOLKIT_NAMES} from './secretary-toolkit-defs.js';
@@ -7,7 +8,7 @@ import {APP_CATALOG,validateAppSelection} from './secretary-app-catalog.js';
 import {BUILTIN_NAMES} from './secretary-builtin-defs.js';
 import {executeBuiltin,builtinRoute,builtinAsset,saveBuiltinAsset} from './secretary-builtin-tools.js';
 
-const SCHEMA=[
+const SCHEMA=[...CHAT_SCHEMA,
  'CREATE TABLE IF NOT EXISTS office_app_selections (tenant_id TEXT NOT NULL,app_id TEXT NOT NULL,created_at INTEGER NOT NULL,PRIMARY KEY(tenant_id,app_id))',
  'CREATE TABLE IF NOT EXISTS office_ai_apps (tenant_id TEXT NOT NULL,app_id TEXT NOT NULL,created_at INTEGER NOT NULL,PRIMARY KEY(tenant_id,app_id))',
  'CREATE TABLE IF NOT EXISTS office_files (tenant_id TEXT NOT NULL,id TEXT NOT NULL,title TEXT NOT NULL,content TEXT NOT NULL,format TEXT NOT NULL,category TEXT NOT NULL,provider_file_id TEXT,source_url TEXT,created_at INTEGER NOT NULL,PRIMARY KEY(tenant_id,id))',
@@ -60,7 +61,7 @@ export async function executeToolkit({env,uid,name,args={},operationKey,services
  if(FEATURE_NAMES.has(name))return executeFeatureTool({name,args,operationKey:key,services});
  if(name.startsWith('mcp_')){if(!services.mcp)fail(503,'MCP 연결 서비스를 확인해 주세요.');return services.mcp(name,args,key);}
  if(name==='tool_connection_status'){const external=services.connections?await services.connections():{};return{ok:true,files:true,documents:true,tasks:true,in_app_notifications:true,news_monitors:true,transcription:!!env.OPENAI_API_KEY,file_analysis:!!env.OPENAI_API_KEY,law:!!env.LAW_OC,...external};}
- if(name==='read_memory')return readKnowledge(env,uid,args.query);
+ if(name==='read_memory'){const memory=await readKnowledge(env,uid,args.query);memory.conversations=await readConversationMemory(env,uid,args.query);return memory;}
  if(name==='search_files'){const query=str(args.query,300),limit=Math.min(30,Math.max(1,Number(args.limit)||12));const files=(await q(env,'SELECT id,title,format,category,created_at,substr(content,1,500) AS preview FROM office_files WHERE tenant_id=? AND (instr(title,?)>0 OR instr(content,?)>0) ORDER BY created_at DESC LIMIT ?',[uid,query,query,limit]).all()).results;return{ok:true,files};}
  if(name==='google_contacts'){if(!services.googleContacts)fail(409,'Google Contacts 연결이 필요합니다.');return{ok:true,...await services.googleContacts(str(args.page_token,2048))};}
  if(name==='search_drive'){if(!services.searchDrive)fail(409,'Google Drive 연결이 필요합니다.');return{ok:true,...await services.searchDrive(str(args.query,200),{foldersOnly:args.folders_only===true,pageToken:str(args.page_token,2048)})};}
@@ -93,6 +94,7 @@ export async function toolkitTick(env,fetcher=fetch){await ensureToolkit(env);co
 }
 export async function toolkitRoute({env,user,request,body={},services={},fetcher=fetch}){await ensureToolkit(env);const u=new URL(request.url),path=u.pathname,uid=user.uid;
  const builtin=await builtinRoute({env,uid,request,body,fetcher});if(builtin)return builtin;
+ const chats=await chatHistoryRoute({env,uid,path,method:request.method,body,query:u.searchParams});if(chats)return Response.json(chats);
  const knowledge=await knowledgeRoute({env,uid,path,method:request.method,body,query:u.searchParams});if(knowledge)return Response.json(knowledge);
  if(path==='/office-tools/apps'&&request.method==='GET')return Response.json({ok:true,apps:APP_CATALOG,selected:(await q(env,'SELECT app_id FROM office_app_selections WHERE tenant_id=? ORDER BY created_at',[uid]).all()).results.map(row=>APP_CATALOG.find(a=>a.legacyId===row.app_id)?.id||row.app_id),aiEnabled:(await q(env,'SELECT app_id FROM office_ai_apps WHERE tenant_id=?',[uid]).all()).results.map(row=>row.app_id)});
  if(path==='/office-tools/apps/ai-enable'&&request.method==='POST'){
