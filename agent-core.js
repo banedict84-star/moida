@@ -1,4 +1,7 @@
 import './office-roles.js';
+import './office-staff-catalog.js';
+export const STAFF_ROLES = globalThis.MOIDA_STAFF_CATALOG;
+export const staffRole = id => globalThis.MOIDA_STAFF_ROLES.get(id);
 export const OFFICE_CONTRACT = globalThis.MOIDA_OFFICE_CONTRACT;
 export function officeRole(context, id, fallback) {
   const value=context?.officeRoles?.[id];
@@ -59,6 +62,8 @@ export const TEAM_DEFS = {
 };
 
 export function selectTaskWorkers(agent, instruction) {
+  const specialist = staffRole(agent);
+  if (specialist) return [[specialist.id, specialist.person+' · '+specialist.name, specialist.description]];
   const workers = TEAM_DEFS[agent]?.workers || [];
   const text = String(instruction || "");
   const selectedIds = [];
@@ -207,6 +212,12 @@ export function assignmentPlan(instruction, assignments) {
  const seen=new Set();
  return assignments.map(item=>{
   if (!item||!ALLOWED_AGENTS.has(item.agent)||seen.has(item.agent)||typeof item.instruction!=='string'||!item.instruction.trim()||item.instruction.length>8000) throw Error('담당 팀과 업무 범위를 확인해 주세요.');
-  seen.add(item.agent);return {agent:item.agent,title:TEAM_DEFS[item.agent].lead+' 담당 업무',instruction:item.instruction.trim(),dependencies:[]};
+  seen.add(item.agent);const role=staffRole(item.agent);return {agent:item.agent,title:role?role.person+' · '+role.name:TEAM_DEFS[item.agent].lead+' 담당 업무',instruction:item.instruction.trim(),dependencies:[]};
  });
+}
+
+// Stable source IDs remain distinct tasks; two employees in the same field can work together.
+for (const role of STAFF_ROLES) {
+  ALLOWED_AGENTS.add(role.id);
+  TEAM_DEFS[role.id] = {lead:role.person+' · '+role.name,workers:[[role.id,role.name,role.description]]};
 }
