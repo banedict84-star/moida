@@ -36,6 +36,7 @@
         for(var action of state.actions||[]){
           var cached=saved.results[action.call_id];
           if(!cached&&action.result!==undefined){cached={result:action.result};saved.results[action.call_id]=cached;write(thread,saved);}
+          if(cached)activity({thread:thread,type:'tool',id:action.call_id,name:action.name,status:cached.result&&cached.result.ok===false?'failed':'completed'});
           if(cached&&options.executed)options.executed(action.name,cached.result,thread);
           if(cached){
             await post('/secretary/result',{thread_id:thread,request_id:saved.request_id,call_id:action.call_id,result:cached.result});
