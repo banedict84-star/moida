@@ -74,3 +74,15 @@
 .mo-catalog-layout .mo-check{top:8px;right:8px;z-index:2;padding:3px;display:flex;border-radius:5px;background:#ffffffe6}
 .mo-catalog-layout .mo-check input{margin:0}.mo-catalog-layout .mo-staff-card .mo-actions{padding:0 8px 9px;margin-top:0}
 @media(max-width:760px){.mo-staff-photo{aspect-ratio:1.12}.mo-staff-overlay{padding:22px 9px 8px}.mo-office .mo-staff-profile .mo-staff-overlay h3{font-size:14px}.mo-staff-overlay>span{font-size:8px;padding:2px 5px}.mo-staff-body{padding:8px 9px}.mo-staff-body .mo-staff-job{font-size:10px}.mo-staff-body .mo-staff-price{padding:5px 0}}
+
+/* Compact salary cards; employment status stays on the portrait. */
+.mo-staff-photo{aspect-ratio:1.35}
+.mo-staff-photo .mo-staff-state{position:absolute;top:8px;left:8px;z-index:2;width:auto;padding:0;text-align:left}
+.mo-staff-photo .mo-staff-state .mo-pill{padding:4px 7px;font-size:10px;background:#fffffff0;color:#244767;box-shadow:0 1px 5px #17365920}
+.mo-staff-photo .mo-staff-state .mo-pill.ready{background:#e7f7eef2;color:#168361}
+.mo-staff-body{padding:6px 9px}
+.mo-staff-body .mo-staff-job{margin-bottom:2px}
+.mo-office .mo-staff-profile .mo-staff-body .mo-staff-duty{margin-bottom:3px}
+.mo-staff-body .mo-staff-price{padding:4px 0}
+.mo-catalog-layout .mo-staff-card .mo-actions{padding-bottom:6px}
+@media(max-width:760px){.mo-staff-photo{aspect-ratio:1.35}.mo-staff-photo .mo-staff-state{top:6px;left:6px}.mo-staff-photo .mo-staff-state .mo-pill{font-size:9px;padding:3px 6px}.mo-staff-body{padding:5px 8px}.mo-staff-body .mo-staff-price{padding:3px 0}}
