@@ -1,0 +1,30 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {DatabaseSync} from 'node:sqlite';
+import {createHiggsfieldMcp} from '../secretary-higgsfield-mcp.js';
+import {MCP_PROVIDERS} from '../secretary-mcp-providers.js';
+import {APP_CATALOG} from '../secretary-app-catalog.js';
+import {ensureToolkit} from '../secretary-toolkit.js';
+import {workspacePolicy} from '../secretary-workspace-policy.js';
+import {adsRpc} from '../secretary-ads-adapter.js';
+function fixture(provider,{reject=false}={}){
+ const db=new DatabaseSync(':memory:'),calls=[];
+ const binding={prepare(sql){const make=(args=[])=>({async first(){return db.prepare(sql).get(...args)||null;},async all(){return{results:db.prepare(sql).all(...args)};},async run(){return{meta:{changes:db.prepare(sql).run(...args).changes}};}});return{...make(),bind(...args){return make(args);}};},async batch(items){return Promise.all(items.map(x=>x.run()));}};
+ const env={AGENT_DB:binding};const fetcher=async(url,opt)=>{calls.push({url,opt});if(reject)return new Response(null,{status:401});if(url.endsWith('/register'))return Response.json({client_id:'c'});if(url.endsWith('/token')||url.endsWith('/oauth.v2.user.access')||url.endsWith('/oauth_token'))return Response.json({access_token:'secret',expires_in:3600});if(url.includes('api.ads.openai.com'))return Response.json({id:'account'});const b=JSON.parse(opt.body);if(b.method==='notifications/initialized')return new Response(null,{status:202});return Response.json({jsonrpc:'2.0',id:b.id,result:b.method==='initialize'?{protocolVersion:'2025-03-26'}:{tools:[{name:'read',inputSchema:{type:'object'}}]}});};
+ const service=createHiggsfieldMcp({provider,fetcher,encrypt:async(_,text)=>({cipher:'sealed:'+text,iv:'iv'}),decrypt:async(_,text)=>text.slice(7)});
+ const route=(path,body={},uid='owner',method='POST')=>service.route({env,uid,body,request:new Request('https://worker.test/mcp/'+provider+'/'+path,{method}),origin:'https://banedict84-star.github.io'});
+ return{db,env,calls,route,service};
+}
+test('priority catalog contains every requested service once and does not enable AI by catalog presence',async()=>{
+ const names=['Google Contacts','FLOW','SOLAPI','Canva','Slack','GitHub','Figma','OpenAI Developers','Booking.com','Linear','Firecrawl','ChatGPT Ads Manager'];
+ for(const name of names){const matches=APP_CATALOG.filter(a=>a.name===name);assert.equal(matches.length,1);assert.equal(matches[0].priority,1);assert.notEqual(matches[0].kind,'pending');}
+ const f=fixture('linear');try{assert(!(await workspacePolicy(f.env,'owner')).allowed.has('mcp_tools'));f.db.prepare('INSERT INTO office_ai_apps VALUES(?,?,?)').run('owner','linear',Date.now());assert((await workspacePolicy(f.env,'owner')).allowed.has('mcp_tools'));}finally{f.db.close();}
+});
+for(const provider of ['linear','firecrawl','slack','figma','asana','miro','monday'])test(provider+' authenticates against its official issuer and verifies discovery before saving',async()=>{
+ const f=fixture(provider);try{await ensureToolkit(f.env);if(MCP_PROVIDERS[provider].auth==='client')await f.route('configure',{client_id:'client',client_secret:'private'});const start=await f.route('connect');const url=new URL(start.authorizationUrl);assert.equal(url.origin,new URL(MCP_PROVIDERS[provider].authorizeUrl||MCP_PROVIDERS[provider].issuer).origin);assert(!url.searchParams.has('client_secret'));assert(!url.searchParams.has('access_token'));await assert.rejects(f.route('callback?state='+url.searchParams.get('state')+'&code=c&iss=https://wrong.test',{},null,'GET'),/발급자/);await f.route('callback?state='+url.searchParams.get('state')+'&code=c',{},null,'GET');assert((await f.route('status',{},'owner','GET')).connected);assert(!(await f.route('status',{},'other','GET')).connected);assert(f.calls.some(c=>c.url===MCP_PROVIDERS[provider].server&&JSON.parse(c.opt.body).method==='tools/list'));}finally{f.db.close();}
+});
+for(const provider of ['github','booking','openai_developers','chatgpt_ads'])test(provider+' uses correct auth, validates connection and isolates credentials',async()=>{
+ const f=fixture(provider);try{await ensureToolkit(f.env);if(provider==='openai_developers')await f.route('connect');else await f.route('configure',{access_token:'private',affiliate_id:'00123'});assert((await f.route('status',{},'owner','GET')).connected);assert(!(await f.route('status',{},'other','GET')).connected);assert(!JSON.stringify(await f.route('status',{},'owner','GET')).includes('private'));const request=f.calls.find(c=>c.url===MCP_PROVIDERS[provider].server)||f.calls[0];if(provider==='booking'){assert.equal(request.opt.headers['x-booking-affiliate-id'],'00123');assert.equal(request.opt.headers['x-booking-authorization'],'private');assert(!request.opt.headers.Authorization);}else if(provider==='openai_developers')assert(!request.opt.headers.Authorization);else assert.equal(request.opt.headers.Authorization,'Bearer private');const notified=f.calls.find(c=>c.opt.body&&JSON.parse(c.opt.body).method==='notifications/initialized');if(notified)assert.equal(notified.opt.headers['MCP-Protocol-Version'],'2025-03-26');await f.route('disconnect');assert(!(await f.route('status',{},'owner','GET')).connected);}finally{f.db.close();}
+});
+test('rejected API key never appears as connected',async()=>{const f=fixture('github',{reject:true});try{await assert.rejects(f.route('configure',{access_token:'bad'}),/실패/);assert(!(await f.route('status',{},'owner','GET')).connected);}finally{f.db.close();}});
+test('Ads adapter forces paused status, stable idempotency and fixed endpoint',async()=>{let call;const fetcher=async(url,opt)=>{call={url,opt};return Response.json({id:'campaign'});};await adsRpc(fetcher,'private','tools/call',{name:'ads_create_paused_campaign',arguments:{campaign:{name:'Draft',status:'active'}}},'stable-request');assert.equal(call.url,'https://api.ads.openai.com/v1/campaigns');assert.equal(JSON.parse(call.opt.body).status,'paused');assert.equal(call.opt.headers['Idempotency-Key'],'stable-request');await assert.rejects(adsRpc(fetcher,'private','tools/call',{name:'arbitrary',arguments:{}},'id'),/지원하지/);});

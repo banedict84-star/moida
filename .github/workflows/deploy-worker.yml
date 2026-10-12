@@ -43,7 +43,7 @@ jobs:
       - name: Validate worker and agent execution
         run: |
           node --check gpt-worker.js
-          node --test tests/office-staff-catalog.test.mjs tests/knowledge.test.mjs tests/higgsfield-mcp.test.mjs
+          node --test tests/office-staff-catalog.test.mjs tests/knowledge.test.mjs tests/higgsfield-mcp.test.mjs tests/mcp-priority.test.mjs
           node --test tests/news-shorts.test.mjs
           node --test tests/call-records.test.mjs
           node --test tests/office-location.test.mjs

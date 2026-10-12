@@ -41,6 +41,7 @@ const MAX_RESERVED_TOKENS = 30000;
 const LEASE_MS = 15 * 60 * 1000;
 const GOOGLE_CALENDAR_SCOPE = "https://www.googleapis.com/auth/calendar";
 const GOOGLE_DRIVE_SCOPE = "https://www.googleapis.com/auth/drive.readonly";
+const GOOGLE_CONTACTS_SCOPE = "https://www.googleapis.com/auth/contacts.readonly";
 const GOOGLE_MAIL_SCOPE = "https://www.googleapis.com/auth/gmail.send";
 const GOOGLE_CALLBACK_PATH = "/google/calendar/callback";
 
@@ -1565,7 +1566,7 @@ async function googleCalendarConnect(request, env, user) {
     client_id: env.GOOGLE_CLIENT_ID,
     redirect_uri: googleRedirectUri(request),
     response_type: "code",
-    scope: [GOOGLE_CALENDAR_SCOPE,'openid','email',...(connectUrl.searchParams.get('services')||'').split(',').filter(v=>['drive','mail'].includes(v)).map(v=>v==='drive'?GOOGLE_DRIVE_SCOPE:GOOGLE_MAIL_SCOPE)].join(' '),
+    scope: [GOOGLE_CALENDAR_SCOPE,'openid','email',...(connectUrl.searchParams.get('services')||'').split(',').filter(v=>['drive','mail','contacts'].includes(v)).map(v=>v==='drive'?GOOGLE_DRIVE_SCOPE:v==='contacts'?GOOGLE_CONTACTS_SCOPE:GOOGLE_MAIL_SCOPE)].join(' '),
     access_type: "offline",
     include_granted_scopes: "true",
     prompt: "consent",
@@ -1749,10 +1750,11 @@ function officeToolServices(env,user,request){
   return {
     mcp:(name,args,key)=>{const service=mcpServices[args.provider];if(!service)throw new HttpError(400,'지원하지 않는 MCP 서비스입니다.');return service.tool(env,user.uid,name,args,key);},
     async feature(kind,path,method='GET',body={}){const service={calls:callRecords,flow:flowCalendar,sms:solapiMessaging,location:officeLocation,devices:callDevices}[kind];if(!service)throw new HttpError(400,'지원하지 않는 도구입니다.');const result=await service.route({env,uid:user.uid,request:new Request(new URL(path,request.url),{method,...(method==='POST'?{headers:{'Content-Type':'application/json'},body:JSON.stringify(body)}:{})}),body,origin:new URL(request.url).origin});return result instanceof Response?result.json():result;},
-    async connections(){const c=await googleConnection(env,user.uid),scopes=new Set(String(c?.scope||'').split(' '));return{google_configured:!!(env.GOOGLE_CLIENT_ID&&env.GOOGLE_CLIENT_SECRET),google_email:c?.google_email||'',calendar:scopes.has(GOOGLE_CALENDAR_SCOPE),drive:scopes.has(GOOGLE_DRIVE_SCOPE),gmail:scopes.has(GOOGLE_MAIL_SCOPE),sms:!!(await env.AGENT_DB.prepare('SELECT uid FROM solapi_connections WHERE uid=?').bind(user.uid).first().catch(()=>null)),flow:!!(await env.AGENT_DB.prepare('SELECT uid FROM flow_calendar_connections WHERE uid=?').bind(user.uid).first().catch(()=>null)),call_records:!!env.AGENT_DB,location_history:!!env.AGENT_DB};},
+    async connections(){const c=await googleConnection(env,user.uid),scopes=new Set(String(c?.scope||'').split(' '));return{google_configured:!!(env.GOOGLE_CLIENT_ID&&env.GOOGLE_CLIENT_SECRET),google_email:c?.google_email||'',calendar:scopes.has(GOOGLE_CALENDAR_SCOPE),drive:scopes.has(GOOGLE_DRIVE_SCOPE),gmail:scopes.has(GOOGLE_MAIL_SCOPE),contacts:scopes.has(GOOGLE_CONTACTS_SCOPE),sms:!!(await env.AGENT_DB.prepare('SELECT uid FROM solapi_connections WHERE uid=?').bind(user.uid).first().catch(()=>null)),flow:!!(await env.AGENT_DB.prepare('SELECT uid FROM flow_calendar_connections WHERE uid=?').bind(user.uid).first().catch(()=>null)),call_records:!!env.AGENT_DB,location_history:!!env.AGENT_DB};},
     searchLaw:(target,query)=>searchLaw(env,target,query,{display:10}),
     readLaw:async(target,id,mst)=>{if(!['law','ordin'].includes(target)||(!id&&!mst))throw new HttpError(400,'법령 검색 결과의 ID가 필요합니다.');const result=await getLawDetail(env,target,id,mst);const value=JSON.stringify(result);return{content:value.slice(0,80000),truncated:value.length>80000};},
     async calendar(timeMin,timeMax){const url=new URL('/google/calendar/events',request.url);url.searchParams.set('timeMin',timeMin);url.searchParams.set('timeMax',timeMax);return(await googleCalendarEvents(new Request(url,{headers:request.headers}),env,user)).json();},
+    async googleContacts(pageToken){const token=await scopedToken(GOOGLE_CONTACTS_SCOPE);return googleApi(token,'https://people.googleapis.com/v1/people/me/connections?'+new URLSearchParams({personFields:'names,emailAddresses,phoneNumbers,organizations',pageSize:'100',...(pageToken?{pageToken}:{})}));},
     async searchDrive(query,options={}){const token=await scopedToken(GOOGLE_DRIVE_SCOPE);return driveListResult(await googleApi(token,'https://www.googleapis.com/drive/v3/files?'+driveListParams({query,...options})));},
     async listDriveFolder(folderId,pageToken){const token=await scopedToken(GOOGLE_DRIVE_SCOPE);return driveListResult(await googleApi(token,'https://www.googleapis.com/drive/v3/files?'+driveListParams({folderId,pageToken})));},
     async readDrive(fileId){const token=await scopedToken(GOOGLE_DRIVE_SCOPE);const base='https://www.googleapis.com/drive/v3/files/'+encodeURIComponent(fileId);const meta=await googleApi(token,base+'?fields=id,name,mimeType,size');if(Number(meta.size)>8*1024*1024)throw new HttpError(413,'Drive 파일은 8MB 이하로 가져와 주세요.');let target=base+'?alt=media',name=meta.name,mime=meta.mimeType;
@@ -1776,7 +1778,7 @@ async function handleFetch(request, env) {
   const path = url.pathname.replace(/\/+$/, "") || "/";
 
   try {
-    if(/^\/mcp\/(higgsfield|canva|notion)\//.test(path)){const provider=path.split('/')[2],callback=path.endsWith('/callback');const user=callback?null:await verifyFirebaseUser(request,env);const result=await mcpServices[provider].route({env,uid:user?.uid,request,body:request.method==='POST'?await requestBody(request):{},origin:callback?null:safeAppOrigin(request.headers.get('Origin'),env)});return result instanceof Response?result:json(result,200,request,env);}
+    if(path.startsWith('/mcp/')&&Object.hasOwn(mcpServices,path.split('/')[2])){const provider=path.split('/')[2],callback=path.endsWith('/callback');const user=callback?null:await verifyFirebaseUser(request,env);const result=await mcpServices[provider].route({env,uid:user?.uid,request,body:request.method==='POST'?await requestBody(request):{},origin:callback?null:safeAppOrigin(request.headers.get('Origin'),env)});return result instanceof Response?result:json(result,200,request,env);}
     if(path.startsWith('/news-shorts/')){const user=await verifyFirebaseUser(request,env);const response=json(await newsShorts.route({env,uid:user.uid,request,body:request.method==='POST'?await requestBody(request):{}}),200,request,env);response.headers.set('Cache-Control','no-store');return response;}
     if(path==='/owntracks/pub'&&request.method==='POST'){const response=json(await officeLocation.receive({env,request}),200,request,env);response.headers.set('Cache-Control','no-store');return response;}
     if(path.startsWith('/office-travel/')){const pending=path==='/office-travel/pending'||path==='/office-travel/ack';const user=pending?null:await verifyFirebaseUser(request,env);const response=json(await officeTravel.route({env,uid:user?.uid,request,body:request.method==='POST'?await requestBody(request):{}}),200,request,env);response.headers.set('Cache-Control','no-store');return response;}

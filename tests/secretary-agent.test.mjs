@@ -61,7 +61,7 @@ test('기존 대화에서 자료 정책 전환 시 과거 기록을 넘기지 �
  await f.start('request_B','최신 경기도당 공지를 웹에서 찾아줘');
  const creation=f.state.writes[1];assert.equal(creation.path,'/v1/agents/sessions');
  assert.doesNotMatch(creation.body.agent.instructions,/이전 의정활동 대화/);
- assert.equal(creation.body.metadata.moida_web_search,'workspace-sources-v2:');
+ assert.equal(creation.body.metadata.moida_web_search,'workspace-sources-v3:');
  assert.deepEqual(JSON.parse(f.db.prepare('SELECT baseline_json FROM secretary_turns WHERE request_id=?').get('request_B').baseline_json),[]);
  f.db.close();
 });

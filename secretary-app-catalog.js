@@ -1,3 +1,4 @@
+import {MCP_PROVIDERS,publicMcpConfig} from './secretary-mcp-providers.js';
 // The catalog describes availability, never authorization. Pending selections contain no credentials.
 import {APP_DIRECTORY} from './secretary-app-directory.js';
 import {APP_LOGOS} from './secretary-app-logos.js';
@@ -42,6 +43,18 @@ for (const entry of APP_DIRECTORY) {
  const group=groups.find(g=>g[1].test(entry.name)) || ['개발',null,'개발과 서비스 운영'];
  APP_CATALOG.push({id:'directory_'+entry.sourceId,name:entry.name,category:group[0],mark:entry.name.replace(/[^A-Za-z0-9]/g,'').slice(0,2).toUpperCase(),color:'#345676',description:group[2]+' · 모이다 연동 준비',kind:'pending',provider:entry.name,requirements:'서비스의 외부 API 또는 MCP 제공 여부 · 인증 방식 · 이용 조건을 확인하고 모이다용 연동을 구현합니다.',sourceId:entry.sourceId,keywords:entry.keywords,sourceStatus:entry.sourceStatus});
 }
+// Promote the priority providers without leaving duplicate directory cards.
+for(const [id,c] of Object.entries(MCP_PROVIDERS)){
+ let app=APP_CATALOG.find(a=>a.name===c.name);
+ if(!app){app={id,name:c.name,category:id==='booking'?'여행':id==='firecrawl'?'조사':id==='linear'?'일정':'개발',mark:c.name.slice(0,2),color:'#345676'};APP_CATALOG.push(app);}
+ app.legacyId=app.id!==id?app.id:null;app.id=id;app.kind='mcp';app.mcp=publicMcpConfig(id);
+ if(!app.description||app.description.includes('연동 준비'))app.description='공식 MCP · 계정 권한에 따라 도구 사용';
+}
+const contacts=APP_CATALOG.find(a=>a.name==='Google Contacts');contacts.legacyId=contacts.id;Object.assign(contacts,{id:'google_contacts',kind:'google',service:'contacts',statusKey:'contacts',description:'Google 주소록 · 이름·이메일·전화번호·소속 조회'});
+const ads=APP_CATALOG.find(a=>a.id==='chatgpt_ads');ads.description='공식 광고 API · 계정·캠페인 조회 · 중지 상태 초안 생성';
+const priorityNames=['Gmail','Google Calendar','Google Drive','Google Contacts','FLOW','SOLAPI','Canva','Slack','GitHub','Figma','OpenAI Developers','Booking.com','Linear','Firecrawl','ChatGPT Ads Manager'];
+for(const app of APP_CATALOG){const i=priorityNames.indexOf(app.name);app.priority=i<0?0:1;app.priorityOrder=i<0?100:i;}
+APP_CATALOG.sort((a,b)=>b.priority-a.priority||a.priorityOrder-b.priorityOrder);
 for (const app of APP_CATALOG) app.logo=APP_LOGOS[app.name] || '';
 export function validateAppSelection(body) {
  if (!APP_CATALOG.some(app=>app.id===body.appId) || typeof body.selected!=='boolean') {
