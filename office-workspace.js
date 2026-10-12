@@ -40,7 +40,7 @@
     assertEditable();var me=uid(),gen=generation,previous=config;next=valid(next);saving=true;config=next;render();
     try{
       if(!M().db||!M().fs)throw Error('계정 저장 연결을 확인하지 못했습니다.');
-      await M().fs.setDoc(M().fs.doc(M().db,'tenants',me),{officeEmployees:next,officeEmployeesUpdatedAt:Date.now()},{merge:true});
+      await M().fs.setDoc(M().fs.doc(M().db,'tenants',me),{officeEmployees:next,officeEmployeesUpdatedAt:Date.now()},{mergeFields:['officeEmployees','officeEmployeesUpdatedAt']});
       if(gen!==generation||uid()!==me)return;
       try{localStorage.setItem('moida_office_employees_'+me,JSON.stringify(next));}catch(_){}
       notice('직원 설정이 계정에 저장됐습니다. 새 업무부터 적용됩니다.');

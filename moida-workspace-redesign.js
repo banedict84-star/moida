@@ -2,7 +2,7 @@
 (()=>{
 const $=id=>document.getElementById(id), node=(tag,text,cls)=>{const e=document.createElement(tag);if(text!==undefined)e.textContent=text;if(cls)e.className=cls;return e;},go=route=>window.__go(route);
 const section=document.querySelector('.sb-agent-section');if(!section)return;
-const names={dashboard:'홈',secretary:'모아 · AI 비서',agents:'우리 팀',automations:'자동화',knowledge:'자료·기억',connections:'도구 연결'};
+const names={dashboard:'홈',secretary:'AI 비서실장',agents:'AI에이전트 비서실',automations:'자동화',knowledge:'자료·기억',connections:'도구 연결'};
 const icons={inbox:'M3 4h18v16H3z M3 13h5l2 3h4l2-3h5',automations:'M13 2 4 14h7l-1 8 10-12h-7z',chats:'M3 3h18v14H8l-5 4z'};
 for(const route of Object.keys(names)){
 let item=document.querySelector('#sideBar .nav-item[data-page="'+route+'"]');
@@ -10,10 +10,11 @@ if(!item){item=node('button',undefined,'nav-item');item.type='button';item.datas
 const text=item.querySelector('span:last-child');text.textContent=names[route];item.title=names[route];item.dataset.label=names[route];section.append(item);
 }
 document.querySelectorAll('#sideBar .nav-item[data-page="chats"],#sideBar .nav-item[data-page="inbox"]').forEach(e=>e.remove());
+const system=document.querySelector('#sideBar .sb-system'),connection=document.querySelector('#sideBar .nav-item[data-page="connections"]');if(system&&connection)system.prepend(connection);
 section.querySelector('.sb-label').textContent='나의 작업 공간';
 // Earlier revisions included a second app connection entry. Keep one primary entry.
 document.querySelectorAll('#sideBar .nav-item[data-page="connections"]').forEach((e,i)=>{if(i)e.hidden=true;});
-const title=document.querySelector('.secretary-chat-title>div:first-child');if(title)title.textContent='모아 · AI 비서';
+const title=document.querySelector('.secretary-chat-title>div:first-child');if(title)title.textContent='AI 비서실장';
 function ask(text){go('secretary');const input=$('aiInput');if(input){input.value=text;input.dispatchEvent(new Event('input',{bubbles:true}));input.focus();}}
 function heading(target,title,desc){target.replaceChildren();const h=node('header',undefined,'workspace-view-heading');h.append(node('h1',title),node('p',desc));target.append(h);}
 const history=$('aiHistoryList'),chat=$('workspaceChats');
