@@ -2,6 +2,7 @@
   'use strict';
   function createSecretaryClient(options){
     var busy=false, disposed=false;
+    function activity(detail){if(typeof window!=='undefined')window.dispatchEvent(new CustomEvent('moida:activity',{detail:detail}));}
     var selector=typeof document!=='undefined'?document.createElement('select'):{style:{},setAttribute:function(){},addEventListener:function(){}};selector.id='secretaryModelSelect';selector.setAttribute('aria-label','비서실장 모델');selector.title='Sol·Astra는 Luna보다 사용 비용이 높습니다.';selector.style.cssText='width:126px;max-width:126px;flex-shrink:0;border:1px solid #d9e1ed;border-radius:8px;padding:6px;background:#fff;font:inherit;font-size:12px;color:#34557e';
     if(typeof document!=='undefined')[['gpt-6-luna','GPT 6 Luna'],['gpt-6.1-sol','GPT 6.1 Sol'],['gpt-6-astra','GPT 6 Astra']].forEach(function(item){var option=document.createElement('option');option.value=item[0];option.textContent=item[1];selector.append(option);});
     function modelKey(){return 'moida_secretary_model_'+options.owner();}
@@ -21,6 +22,7 @@
         sameOwner(saved);
         state=state||await poll(thread,saved.request_id);
         sameOwner(saved);
+        activity({thread:thread,type:'state',status:state.status});
         if(state.status==='ready'&&!state.request_id)throw Error('이 요청이 서버에 접수됐는지 확인할 수 없습니다. 같은 요청을 다시 보내지 않고 저장된 입력을 보관합니다.');
         if(state.status==='completed'){
           localStorage.removeItem(storeKey(thread));return state.output_text;
@@ -43,10 +45,12 @@
           var claim=await post('/secretary/claim',{thread_id:thread,request_id:saved.request_id,call_id:action.call_id});
           sameOwner(saved);
           if(!claim.claimed)throw Error('다른 화면에서 업무를 처리하고 있습니다. 잠시 뒤 대화를 다시 열어 주세요.');
+          activity({thread:thread,type:'tool',id:action.call_id,name:action.name,status:'running'});
           var result;
           try{result=claim.result!==undefined?claim.result:await options.execute(action.name,action.arguments,action.call_id);}
           catch(e){result={ok:false,error:e.message||'도구 실행 실패'};}
           sameOwner(saved);
+          activity({thread:thread,type:'tool',id:action.call_id,name:action.name,status:result&&result.ok===false?'failed':'completed'});
           if(options.executed)options.executed(action.name,result,thread);
           // Save the actual result before posting it. Never execute the function again on reconnect.
           saved.results[action.call_id]={result:result};write(thread,saved);
@@ -61,6 +65,7 @@
     async function run(thread,input,context){
       if(busy)throw Error('이전 요청을 처리하고 있습니다.');
       selector.value=selectedModel();selector.disabled=true;busy=true;options.busy(true);
+      activity({thread:thread,type:'start',input:input});
       try{
         var saved=read(thread),state;
         if(!saved){
@@ -73,7 +78,7 @@
           }
         }
         return await drive(thread,saved,state);
-      }finally{busy=false;selector.disabled=false;options.busy(false);}
+      }catch(error){activity({thread:thread,type:'state',status:'failed',error:error.message});throw error;}finally{busy=false;selector.disabled=false;options.busy(false);}
     }
     return {run:run,isBusy:function(){return busy;},hasPending:function(thread){return !!read(thread);},dispose:function(){disposed=true;}};
   }
