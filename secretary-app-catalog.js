@@ -2,6 +2,8 @@
 import {APP_DIRECTORY} from './secretary-app-directory.js';
 import {APP_LOGOS} from './secretary-app-logos.js';
 export const APP_CATALOG = [
+ {id:'notion',name:'Notion',category:'자료',mark:'N',color:'#222222',description:'공식 MCP · 페이지·업무 자료 조회 및 작성',kind:'mcp'},
+ {id:'higgsfield',name:'Higgsfield',category:'제작',mark:'H',color:'#192133',description:'공식 MCP · 이미지·영상 도구 · 계정 로그인으로 연결',kind:'mcp'},
  {id:'gmail',name:'Gmail',category:'메일',mark:'G',color:'#c64235',description:'검토한 메일 초안을 Gmail로 발송',kind:'google',service:'mail',statusKey:'gmail'},
  {id:'google_calendar',name:'Google Calendar',category:'일정',mark:'31',color:'#346de6',description:'일정 조회 · 겹치는 일정 확인 · 일정 등록',kind:'google',service:'',statusKey:'calendar'},
  {id:'google_drive',name:'Google Drive',category:'자료',mark:'D',color:'#178556',description:'자료 검색 · 폴더 조회 · 모이다 자료실로 가져오기',kind:'google',service:'drive',statusKey:'drive'},
@@ -10,7 +12,7 @@ export const APP_CATALOG = [
  {id:'outlook',name:'Outlook Email',category:'메일',mark:'O',color:'#1672c5',description:'Outlook 메일 연결',kind:'pending',provider:'Microsoft',requirements:'Microsoft Entra에 모이다 앱 등록 · 메일 접근 권한 · 관리자 승인 여부 확인'},
  {id:'sharepoint',name:'SharePoint',category:'자료',mark:'S',color:'#087e82',description:'조직 문서와 자료 연결',kind:'pending',provider:'Microsoft',requirements:'Microsoft Entra 앱 등록 · 조직과 사이트 범위 지정 · 조직 관리자 승인'},
  {id:'dropbox',name:'Dropbox',category:'자료',mark:'D',color:'#1261fe',description:'보관한 파일과 폴더 연결',kind:'pending',provider:'Dropbox',requirements:'Dropbox 개발자 앱 등록 · 연결할 폴더 범위와 파일 읽기 권한 지정'},
- {id:'canva',name:'Canva',category:'제작',mark:'C',color:'#0b9da7',description:'홍보 디자인과 제작 자료 연결',kind:'pending',provider:'Canva',requirements:'Canva 개발자 연동 등록 · 사용 가능한 계정과 디자인 접근 권한 확인'},
+ {id:'canva',name:'Canva',category:'제작',mark:'C',color:'#0b9da7',description:'공식 MCP · 디자인 조회·편집·내보내기',kind:'mcp'},
  {id:'adobe',name:'Adobe Acrobat',category:'제작',mark:'A',color:'#d63d38',description:'PDF 문서 작업 연결',kind:'pending',provider:'Adobe',requirements:'Adobe 개발자 프로젝트 등록 · 사용할 PDF 서비스와 인증 방식 확인'},
  {id:'slack',name:'Slack',category:'소통',mark:'S',color:'#6d326b',description:'팀 채널과 업무 대화 연결',kind:'pending',provider:'Slack',requirements:'Slack 앱 등록 · 워크스페이스 승인 · 필요한 채널 접근 권한 지정'},
  {id:'teams',name:'Microsoft Teams',category:'소통',mark:'T',color:'#6258bd',description:'조직의 팀과 업무 대화 연결',kind:'pending',provider:'Microsoft',requirements:'Microsoft Entra 앱 등록 · 팀 접근 권한 지정 · 조직 관리자 승인'},

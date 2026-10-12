@@ -13,6 +13,7 @@ import {driveListParams,driveListResult} from './drive-query.js';
 import {handleSecretaryRoute} from "./secretary-agent.js";
 import {teamTools,executeTeamTool,runToolConversation,compactWorkContext} from './agent-tools.js';
 import {executeToolkit,toolkitRoute,toolkitTick,boundedBytes,bytesToBase64} from "./secretary-toolkit.js";
+import {createHiggsfieldMcp,MCP_PROVIDERS} from './secretary-higgsfield-mcp.js';
 import {TOOLKIT_NAMES} from "./secretary-toolkit-defs.js";
 import {runTeamTasks} from "./agent-scheduler.js";
 import {
@@ -1742,6 +1743,7 @@ async function googleCalendarDisconnect(request, env, user) {
 function officeToolServices(env,user,request){
   async function scopedToken(scope){const value=await googleAccessToken(env,user.uid);if(!String(value.connection.scope).split(' ').includes(scope))throw new HttpError(409,'자료·알림 화면에서 해당 Google 서비스를 연결해 주세요.');return value.accessToken;}
   return {
+    mcp:(name,args,key)=>{const service=mcpServices[args.provider];if(!service)throw new HttpError(400,'지원하지 않는 MCP 서비스입니다.');return service.tool(env,user.uid,name,args,key);},
     async feature(kind,path,method='GET',body={}){const service={calls:callRecords,flow:flowCalendar,sms:solapiMessaging,location:officeLocation,devices:callDevices}[kind];if(!service)throw new HttpError(400,'지원하지 않는 도구입니다.');const result=await service.route({env,uid:user.uid,request:new Request(new URL(path,request.url),{method,...(method==='POST'?{headers:{'Content-Type':'application/json'},body:JSON.stringify(body)}:{})}),body,origin:new URL(request.url).origin});return result instanceof Response?result.json():result;},
     async connections(){const c=await googleConnection(env,user.uid),scopes=new Set(String(c?.scope||'').split(' '));return{google_configured:!!(env.GOOGLE_CLIENT_ID&&env.GOOGLE_CLIENT_SECRET),google_email:c?.google_email||'',calendar:scopes.has(GOOGLE_CALENDAR_SCOPE),drive:scopes.has(GOOGLE_DRIVE_SCOPE),gmail:scopes.has(GOOGLE_MAIL_SCOPE),sms:!!(await env.AGENT_DB.prepare('SELECT uid FROM solapi_connections WHERE uid=?').bind(user.uid).first().catch(()=>null)),flow:!!(await env.AGENT_DB.prepare('SELECT uid FROM flow_calendar_connections WHERE uid=?').bind(user.uid).first().catch(()=>null)),call_records:!!env.AGENT_DB,location_history:!!env.AGENT_DB};},
     searchLaw:(target,query)=>searchLaw(env,target,query,{display:10}),
@@ -1759,6 +1761,7 @@ function officeToolServices(env,user,request){
 }
 
 const solapiMessaging=createSolapiMessaging({encrypt:encryptGoogleToken,decrypt:decryptGoogleToken});
+const mcpServices=Object.fromEntries(Object.keys(MCP_PROVIDERS).map(provider=>[provider,createHiggsfieldMcp({encrypt:encryptGoogleToken,decrypt:decryptGoogleToken,provider})]));
 const flowCalendar=createFlowCalendar({encrypt:encryptGoogleToken,decrypt:decryptGoogleToken});
 const officeLocation=createOfficeLocation();
 const officeTravel=createOfficeTravel({encrypt:encryptGoogleToken,decrypt:decryptGoogleToken,flow:flowCalendar});
@@ -1769,6 +1772,7 @@ async function handleFetch(request, env) {
   const path = url.pathname.replace(/\/+$/, "") || "/";
 
   try {
+    if(/^\/mcp\/(higgsfield|canva|notion)\//.test(path)){const provider=path.split('/')[2],callback=path.endsWith('/callback');const user=callback?null:await verifyFirebaseUser(request,env);const result=await mcpServices[provider].route({env,uid:user?.uid,request,body:request.method==='POST'?await requestBody(request):{},origin:callback?null:safeAppOrigin(request.headers.get('Origin'),env)});return result instanceof Response?result:json(result,200,request,env);}
     if(path.startsWith('/news-shorts/')){const user=await verifyFirebaseUser(request,env);const response=json(await newsShorts.route({env,uid:user.uid,request,body:request.method==='POST'?await requestBody(request):{}}),200,request,env);response.headers.set('Cache-Control','no-store');return response;}
     if(path==='/owntracks/pub'&&request.method==='POST'){const response=json(await officeLocation.receive({env,request}),200,request,env);response.headers.set('Cache-Control','no-store');return response;}
     if(path.startsWith('/office-travel/')){const pending=path==='/office-travel/pending'||path==='/office-travel/ack';const user=pending?null:await verifyFirebaseUser(request,env);const response=json(await officeTravel.route({env,uid:user?.uid,request,body:request.method==='POST'?await requestBody(request):{}}),200,request,env);response.headers.set('Cache-Control','no-store');return response;}
