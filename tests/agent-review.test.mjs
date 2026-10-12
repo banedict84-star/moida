@@ -26,3 +26,14 @@ test('주민소통 담당은 CRM 자료와 계정의 추가 역할을 실제 실
  const other=workerPrompt({...run,context_json:JSON.stringify({...context,officeRoles:{}})},{agent:'organization',instruction:'간담회 준비'},['contacts','연락처관리','자료 정리'],'','');
  assert.doesNotMatch(other.system,/간담회 연락 대상을 정리/);
 });
+
+test('새 사무실의 직원은 팀장 없이 비서실장에게 보고하고 검토받는다',async()=>{
+ const direct={...run,context_json:JSON.stringify({officeMode:'direct'})};
+ const prompt=workerPrompt(direct,task,['calendar','일정관리','일정 확인'],'','');
+ assert.match(prompt.system,/팀장 없이 비서실장에게 보고/);
+ assert.doesNotMatch(prompt.system,/일정·수행팀장 산하/);
+ let payload;globalThis.fetch=async(_url,options)=>{payload=JSON.parse(options.body);return Response.json({choices:[{finish_reason:'stop',message:{content:JSON.stringify({approved:true,feedback:'확인 사항을 표시했습니다.',finalResult:'제공된 일정 자료를 확인했으며 미정 장소는 확인 필요입니다.'})}}]})};
+ const result=await reviewTask(env,direct,task,'제공된 자료를 사용한 충분히 긴 일정 초안입니다.');
+ assert.match(payload.messages[0].content,/너는 이제 AI 비서실장 역할로 검토/);
+ assert.equal(result.approved,true);
+});
