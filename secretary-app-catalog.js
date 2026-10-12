@@ -1,4 +1,5 @@
 // The catalog describes availability, never authorization. Pending selections contain no credentials.
+import {APP_DIRECTORY} from './secretary-app-directory.js';
 export const APP_CATALOG = [
  {id:'gmail',name:'Gmail',category:'메일',mark:'G',color:'#c64235',description:'검토한 메일 초안을 Gmail로 발송',kind:'google',service:'mail',statusKey:'gmail'},
  {id:'google_calendar',name:'Google Calendar',category:'일정',mark:'31',color:'#346de6',description:'일정 조회 · 겹치는 일정 확인 · 일정 등록',kind:'google',service:'',statusKey:'calendar'},
@@ -16,6 +17,28 @@ export const APP_CATALOG = [
  {id:'salesforce',name:'Salesforce',category:'고객',mark:'SF',color:'#159bd4',description:'고객 정보와 업무 자료 연결',kind:'pending',provider:'Salesforce',requirements:'Salesforce 외부 클라이언트 앱 등록 · 조직의 API 사용 가능 여부와 권한 확인'},
  {id:'zoom',name:'Zoom',category:'일정',mark:'Z',color:'#3776e9',description:'회의 일정과 회의 자료 연결',kind:'pending',provider:'Zoom',requirements:'Zoom Marketplace 앱 등록 · 사용할 회의와 녹화 접근 권한 지정'}
 ];
+const groups = [
+ ['메일', /Mail|Resend|Outlook Email|Gmail/i, '메일과 연락 업무'],
+ ['일정', /Calendar|Calendly|TickTick|Todoist|Zoom$|Otter|Read AI|Granola|Fathom|Wispr|Trello|Asana|monday|ClickUp|Smartsheet|Linear|Atlassian/i, '일정 · 업무 · 회의 자료'],
+ ['자료', /Drive|Dropbox|SharePoint|Box$|Notion|Coda|Airtable|Docusign|GitBook|Readwise/i, '문서와 업무 자료'],
+ ['제작', /Figma|Canva|Adobe|MagicPath|Gamma|Miro|tldraw|Runway|HeyGen|Higgsfield|Descript|OpenArt|vidIQ/i, '디자인 · 이미지 · 영상 제작'],
+ ['소통', /Slack|Teams|Quo$|RingCentral|Google Contacts/i, '연락처와 팀 소통'],
+ ['고객', /CRM|HubSpot|HighLevel|Attio|Close$|Salesforce|Gong|ZoomInfo|Clay|Lusha|Apollo/i, '고객과 영업 자료'],
+ ['분석', /Analytics|Amplitude|ThoughtSpot|Alation|Mixpanel|PostHog|Deepnote|Statsig|BigQuery|Hex$|dbt$|Tableau|MotherDuck|Snowflake|ClickHouse|WisdomAI|Databricks/i, '데이터와 성과 분석'],
+ ['홍보', /HYPD|Metricool|Ads Manager|Klaviyo|Windsor|GSC|Supermetrics|Ahrefs|Ubersuggest|Similarweb|Semrush/i, '홍보 · 광고 · 채널 성과'],
+ ['조사', /Firecrawl|Consensus|Scite|Exa$|Parallel Search|Tavily|Acumen|Legal Data|TinyFish|G2 MCP/i, '검색과 조사 자료'],
+ ['여행', /Booking|Tripadvisor|Skyscanner/i, '여행과 출장 정보'],
+ ['교육', /Certified|Udemy/i, '학습 자료와 교육'],
+ ['건강', /Tredict|FitAI|Caliber|COROS|CalorieCam/i, '운동과 건강 기록'],
+ ['운영', /Mercury|Stripe|Shopify|NetSuite|Gusto|Ashby/i, '사업 · 결제 · 인사 업무'],
+ ['보안', /Security|Vanta|Datadog/i, '보안과 서비스 점검']
+];
+for (const entry of APP_DIRECTORY) {
+ const existing=APP_CATALOG.find(a=>a.name===entry.name || (a.id==='teams' && entry.name==='Teams'));
+ if(existing){existing.sourceId=entry.sourceId;existing.keywords=entry.keywords;continue;}
+ const group=groups.find(g=>g[1].test(entry.name)) || ['개발',null,'개발과 서비스 운영'];
+ APP_CATALOG.push({id:'directory_'+entry.sourceId,name:entry.name,category:group[0],mark:entry.name.replace(/[^A-Za-z0-9]/g,'').slice(0,2).toUpperCase(),color:'#345676',description:group[2]+' · 모이다 연동 준비',kind:'pending',provider:entry.name,requirements:'서비스의 외부 API 또는 MCP 제공 여부 · 인증 방식 · 이용 조건을 확인하고 모이다용 연동을 구현합니다.',sourceId:entry.sourceId,keywords:entry.keywords,sourceStatus:entry.sourceStatus});
+}
 export function validateAppSelection(body) {
  if (!APP_CATALOG.some(app=>app.id===body.appId) || typeof body.selected!=='boolean') {
   const error=new Error('앱과 선택 여부를 확인해 주세요.');error.status=400;throw error;
