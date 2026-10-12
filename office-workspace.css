@@ -25,3 +25,34 @@
 @media(max-width:1100px){.mo-catalog-layout{grid-template-columns:minmax(0,1fr) 230px}.mo-catalog-layout .mo-staff-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:760px){.mo-catalog-layout{grid-template-columns:1fr}.mo-catalog-layout .mo-staff-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.mo-office .mo-staff-profile .mo-portrait-card{width:80px;height:80px}.mo-office .mo-staff-profile h3{font-size:14px}.mo-office .mo-staff-profile .mo-staff-duty{font-size:11px;min-height:74px}.mo-catalog-layout .mo-staff-card{padding:32px 12px 14px}.mo-catalog-layout .mo-staff-card.selected{padding:31px 11px 13px}}
 @media(max-width:350px){.mo-catalog-layout .mo-staff-grid{grid-template-columns:1fr}}
+
+/* Denser named employee cards. */
+.mo-catalog-layout .mo-staff-grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px}
+.mo-catalog-layout .mo-staff-card{padding:13px 12px 12px;border-radius:12px}
+.mo-catalog-layout .mo-staff-card.selected{padding:12px 11px 11px}
+.mo-office .mo-staff-profile .mo-portrait-card{width:64px;height:64px;border-radius:12px;margin:0 0 8px}
+.mo-office .mo-staff-profile h3{font-size:15px;margin:0 0 3px;line-height:1.35}
+.mo-staff-job{font-size:11px;font-weight:700;color:#476788;line-height:1.45;margin-bottom:5px}
+.mo-office .mo-staff-profile .mo-staff-duty{font-size:10px;line-height:1.45;min-height:30px;margin:0 0 7px}
+.mo-staff-field{margin-bottom:7px}.mo-staff-field .mo-pill{font-size:10px;padding:3px 9px}
+.mo-staff-price{padding:7px 0;font-size:10px}.mo-staff-price strong{font-size:13px}
+.mo-staff-state{padding-top:0}.mo-staff-state .mo-pill{font-size:9px;padding:3px 7px}
+.mo-staff-connection{font-size:9px;margin-top:4px}.mo-catalog-layout .mo-check{top:10px;right:10px}.mo-check input{width:16px;height:16px}
+@media(min-width:1650px){.mo-catalog-layout .mo-staff-grid{grid-template-columns:repeat(6,minmax(0,1fr))}}
+@media(max-width:1100px){.mo-catalog-layout .mo-staff-grid{grid-template-columns:repeat(auto-fill,minmax(155px,1fr))}}
+@media(max-width:760px){.mo-catalog-layout .mo-staff-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.mo-catalog-layout .mo-staff-card{padding:22px 10px 11px}.mo-catalog-layout .mo-staff-card.selected{padding:21px 9px 10px}.mo-office .mo-staff-profile .mo-portrait-card{width:60px;height:60px}.mo-office .mo-staff-profile .mo-staff-duty{min-height:44px}}
+@media(max-width:350px){.mo-catalog-layout .mo-staff-grid{grid-template-columns:1fr}}
+@media(max-width:760px){
+ .mo-catalog-layout .mo-staff-grid{gap:8px}
+ .mo-catalog-layout .mo-staff-card{padding:19px 9px 9px}
+ .mo-catalog-layout .mo-staff-card.selected{padding:18px 8px 8px}
+ .mo-office .mo-staff-profile .mo-portrait-card{width:48px;height:48px;margin-bottom:5px;border-radius:10px}
+ .mo-office .mo-staff-profile h3{font-size:13px;margin-bottom:2px}
+ .mo-staff-job{font-size:10px;margin-bottom:3px}
+ .mo-office .mo-staff-profile .mo-staff-duty{font-size:10px;line-height:1.35;min-height:27px;height:27px;margin-bottom:5px;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+ .mo-staff-field{margin-bottom:4px}.mo-staff-field .mo-pill{padding:2px 7px;font-size:9px}
+ .mo-staff-price{padding:5px 0}.mo-staff-price strong{font-size:12px}
+ .mo-staff-state .mo-pill{font-size:8px;padding:2px 6px}
+ .mo-staff-connection{font-size:8px;margin-top:3px;line-height:1.3}
+ .mo-catalog-layout .mo-staff-card .mo-actions{margin-top:6px}.mo-catalog-layout .mo-staff-card .mo-actions button{padding:5px 6px;font-size:10px}
+}
