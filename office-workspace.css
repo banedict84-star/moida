@@ -4,3 +4,24 @@
 
 .mo-office .mo-portrait{background-image:url("assets/office-staff-portraits.png");background-size:400% 200%;background-repeat:no-repeat;box-shadow:inset 0 0 0 1px #17365910;border-radius:12px}.mo-office .mo-portrait-card{width:88px;height:88px;border-radius:13px}.mo-office .mo-staff-card .mo-row{gap:16px;align-items:center}.mo-office .mo-person .mo-portrait{width:44px;height:44px}
 @media(max-width:760px){.mo-office .mo-portrait-card{width:72px;height:72px}}
+
+/* Compact vertical hiring cards: portrait, name, duties, field, price. */
+.mo-catalog-layout{grid-template-columns:minmax(0,1fr) 255px;gap:18px}
+.mo-catalog-layout .mo-staff-grid{grid-template-columns:repeat(auto-fit,minmax(205px,1fr));gap:12px}
+.mo-catalog-layout .mo-staff-card{padding:20px 15px 15px;min-width:0}
+.mo-catalog-layout .mo-staff-card.selected{padding:19px 14px 14px}
+.mo-staff-profile{display:flex;flex-direction:column;align-items:center;text-align:center}
+.mo-office .mo-staff-profile .mo-portrait-card{width:100px;height:100px;border-radius:16px;margin:0 0 13px}
+.mo-office .mo-staff-profile h3{font-size:16px;line-height:1.4;margin:0 0 8px}
+.mo-office .mo-staff-profile .mo-staff-duty{font-size:12px;line-height:1.65;color:#718298;min-height:60px;margin:0 0 10px;width:100%}
+.mo-staff-field{margin-bottom:12px}.mo-staff-field .mo-pill{padding:4px 11px;font-size:11px}
+.mo-staff-price{display:flex;justify-content:space-between;align-items:center;width:100%;padding:12px 0;border-top:1px solid #edf1f6;color:#77869b;font-size:12px}
+.mo-staff-price strong{font-size:16px;color:#1d3a6e}
+.mo-staff-state{width:100%;padding-top:3px}.mo-staff-state .mo-pill{font-size:10px;padding:4px 9px}
+.mo-staff-connection{display:block;font-size:10px;color:#8b97a7;line-height:1.5;margin-top:8px}
+.mo-catalog-layout .mo-staff-card .mo-actions{justify-content:center;gap:3px}
+.mo-catalog-layout .mo-check{top:14px;right:14px}
+@media(min-width:1650px){.mo-catalog-layout .mo-staff-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(max-width:1100px){.mo-catalog-layout{grid-template-columns:minmax(0,1fr) 230px}.mo-catalog-layout .mo-staff-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:760px){.mo-catalog-layout{grid-template-columns:1fr}.mo-catalog-layout .mo-staff-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.mo-office .mo-staff-profile .mo-portrait-card{width:80px;height:80px}.mo-office .mo-staff-profile h3{font-size:14px}.mo-office .mo-staff-profile .mo-staff-duty{font-size:11px;min-height:74px}.mo-catalog-layout .mo-staff-card{padding:32px 12px 14px}.mo-catalog-layout .mo-staff-card.selected{padding:31px 11px 13px}}
+@media(max-width:350px){.mo-catalog-layout .mo-staff-grid{grid-template-columns:1fr}}
