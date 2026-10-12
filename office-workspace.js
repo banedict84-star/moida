@@ -26,7 +26,7 @@
   if(!window.MOIDA_STAFF_CATALOG||window.MOIDA_STAFF_CATALOG.length!==300){document.getElementById('moNotice').textContent='직원 목록을 불러오지 못했습니다. 새로고침 후 다시 시도해주세요.';return;}
   catalog=catalog.concat(window.MOIDA_STAFF_CATALOG.map(function(e){return Object.assign({},e,{tools:[['업무 자료·파일','toolkit']]});}));
   var catalogPage=1,pageSize=24,targetEmployee='',releaseOnly=false;
-  var tab='desk',selected=new Set(),config={},runs=[],chosenRun='',owner='',loadedOwner='',generation=0,loadPending=false,loading=false,saving=false,search='',group='전체';
+  var tab='staff',selected=new Set(),config={},runs=[],chosenRun='',owner='',loadedOwner='',generation=0,loadPending=false,loading=false,saving=false,search='',group='전체';
   var statuses={queued:'접수 대기',planning:'업무 배정 중',running:'작업 중',reviewing:'결과 검토 중',reworking:'수정 중',retrying:'재시도 대기',completed:'보고 완료',failed:'오류',needs_attention:'확인 필요'};
   var $=function(id){return document.getElementById(id);};
   function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
