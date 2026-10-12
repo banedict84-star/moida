@@ -8,6 +8,7 @@ on:
     paths:
       - 'gpt-worker.js'
       - 'office-roles.js'
+      - 'moida-core-team.js'
       - 'office-staff-catalog.js'
       - 'agent-core.js'
       - 'agent-tools.js'

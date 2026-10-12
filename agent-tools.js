@@ -1,5 +1,6 @@
 import './office-staff-catalog.js';
-const toolTeam=team=>globalThis.MOIDA_STAFF_ROLES.get(team)?.toolTeam||team;
+import './moida-core-team.js';
+const toolTeam=team=>(globalThis.MOIDA_CORE_ROLE(team)||globalThis.MOIDA_STAFF_ROLES.get(team))?.toolTeam||team;
 const fn=(name,description,properties={},required=[])=>({type:'function',function:{name,description,parameters:{type:'object',properties,required}}});
 const string={type:'string'};
 const COMMON=['office_search_files','office_read_file','office_read_context'];

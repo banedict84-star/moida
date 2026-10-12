@@ -1,7 +1,9 @@
 import './office-roles.js';
+import './moida-core-team.js';
 import './office-staff-catalog.js';
 export const STAFF_ROLES = globalThis.MOIDA_STAFF_CATALOG;
-export const staffRole = id => globalThis.MOIDA_STAFF_ROLES.get(id);
+export const CORE_ROLES = globalThis.MOIDA_CORE_TEAM;
+export const staffRole = id => globalThis.MOIDA_CORE_ROLE(id)||globalThis.MOIDA_STAFF_ROLES.get(id);
 export const OFFICE_CONTRACT = globalThis.MOIDA_OFFICE_CONTRACT;
 export function officeRole(context, id, fallback) {
   const value=context?.officeRoles?.[id];
@@ -217,7 +219,7 @@ export function assignmentPlan(instruction, assignments) {
 }
 
 // Stable source IDs remain distinct tasks; two employees in the same field can work together.
-for (const role of STAFF_ROLES) {
+for (const role of [...STAFF_ROLES,...CORE_ROLES]) {
   ALLOWED_AGENTS.add(role.id);
   TEAM_DEFS[role.id] = {lead:role.person+' · '+role.name,workers:[[role.id,role.name,role.description]]};
 }
