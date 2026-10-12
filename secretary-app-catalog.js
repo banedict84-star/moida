@@ -1,5 +1,6 @@
 // The catalog describes availability, never authorization. Pending selections contain no credentials.
 import {APP_DIRECTORY} from './secretary-app-directory.js';
+import {APP_LOGOS} from './secretary-app-logos.js';
 export const APP_CATALOG = [
  {id:'gmail',name:'Gmail',category:'메일',mark:'G',color:'#c64235',description:'검토한 메일 초안을 Gmail로 발송',kind:'google',service:'mail',statusKey:'gmail'},
  {id:'google_calendar',name:'Google Calendar',category:'일정',mark:'31',color:'#346de6',description:'일정 조회 · 겹치는 일정 확인 · 일정 등록',kind:'google',service:'',statusKey:'calendar'},
@@ -39,6 +40,7 @@ for (const entry of APP_DIRECTORY) {
  const group=groups.find(g=>g[1].test(entry.name)) || ['개발',null,'개발과 서비스 운영'];
  APP_CATALOG.push({id:'directory_'+entry.sourceId,name:entry.name,category:group[0],mark:entry.name.replace(/[^A-Za-z0-9]/g,'').slice(0,2).toUpperCase(),color:'#345676',description:group[2]+' · 모이다 연동 준비',kind:'pending',provider:entry.name,requirements:'서비스의 외부 API 또는 MCP 제공 여부 · 인증 방식 · 이용 조건을 확인하고 모이다용 연동을 구현합니다.',sourceId:entry.sourceId,keywords:entry.keywords,sourceStatus:entry.sourceStatus});
 }
+for (const app of APP_CATALOG) app.logo=APP_LOGOS[app.name] || '';
 export function validateAppSelection(body) {
  if (!APP_CATALOG.some(app=>app.id===body.appId) || typeof body.selected!=='boolean') {
   const error=new Error('앱과 선택 여부를 확인해 주세요.');error.status=400;throw error;
