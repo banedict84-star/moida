@@ -301,11 +301,9 @@ body.secretary-view #aiPanel{border:0!important;border-radius:0!important;box-sh
 
   <aside id="sideBar" style="width:200px;flex-shrink:0;background:#0f1d33;display:flex;flex-direction:column;color:#9fb0c7;transition:width .2s ease">
     <div class="sb-head" style="display:flex;align-items:center;gap:11px;padding:20px 18px 16px">
-      <div style="width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#16305c,#2f5fd0);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(22,48,92,0.32);flex-shrink:0">
-        <svg width="21" height="21" viewBox="0 0 48 48"><path d="M8 21 Q24 3 40 21 Z" fill="#fff"/><circle cx="24" cy="6.4" r="2.7" fill="#7fb0ff"/><rect x="6.5" y="20.3" width="35" height="3.2" rx="1.6" fill="#fff"/><rect x="11" y="25" width="3" height="12.6" rx="1.5" fill="#fff"/><rect x="19" y="25" width="3" height="12.6" rx="1.5" fill="#fff"/><rect x="27" y="25" width="3" height="12.6" rx="1.5" fill="#fff"/><rect x="35" y="25" width="3" height="12.6" rx="1.5" fill="#fff"/><rect x="5.5" y="38.6" width="37" height="3.4" rx="1.7" fill="#fff"/></svg>
-      </div>
+      <img src="assets/moida-office-logo.svg" alt="모이다 로고" style="width:40px;height:40px;flex-shrink:0">
       <div class="sb-brandtext" style="min-width:0">
-        <div id="brandName" style="color:#fff;font-size:14.5px;font-weight:700;letter-spacing:-0.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">MOIDA</div>
+        <div id="brandName" style="color:#fff;font-size:14.5px;font-weight:700;letter-spacing:-0.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">모이다</div>
         <div style="color:#6f84a0;font-size:11px;letter-spacing:0.02em;margin-top:1px;white-space:nowrap">AI 비서실</div>
       </div>
       <button id="sbToggle" title="사이드바 접기/펴기" aria-label="사이드바 접기/펴기" style="margin-left:auto;width:28px;height:28px;flex-shrink:0;border-radius:8px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.06);color:#9fb0c7;display:flex;align-items:center;justify-content:center;cursor:pointer" data-hover="background:rgba(255,255,255,0.13)">
@@ -1008,7 +1006,7 @@ body.secretary-view #aiPanel{border:0!important;border-radius:0!important;box-sh
     var snm = document.getElementById('sideName');
     var spos = document.getElementById('sidePosition');
     var sdist = document.getElementById('sideDistrict');
-    if(brand && disp) brand.textContent = disp + ' 의원실';
+    if(brand) brand.textContent = '모이다';
     if(av){ if(p&&p.photo){ av.style.backgroundImage='url('+p.photo+')'; av.style.backgroundSize='cover'; av.style.backgroundPosition='center'; av.textContent=''; } else { av.style.backgroundImage=''; av.textContent = disp ? disp.charAt(0) : '·'; } }
     if(snm) snm.textContent = disp || '';
     if(spos) spos.textContent = (p&&p.position) || '직함 미등록';
@@ -4440,7 +4438,7 @@ var input=document.getElementById('aiInput');if(input)input.placeholder='비서�
 </script>
 <script src="solapi-messaging-client.js?v=4"></script>
 <script type="module" src="birthday-messaging-client.js?v=3"></script>
-<script src="dashboard-cards.js?v=20261012-card1"></script><script src="office-staff-catalog.js?v=20261012-300"></script><script src="office-workspace.js?v=20261012-office-card2"></script>
+<script src="dashboard-cards.js?v=20261012-brand2"></script><script src="office-staff-catalog.js?v=20261012-300"></script><script src="office-workspace.js?v=20261012-office-card2"></script>
 </body>
 </html>
 

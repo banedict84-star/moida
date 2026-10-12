@@ -5,9 +5,6 @@
  page.classList.add('dashboard-cards');
  const greet=page.firstElementChild,grid=page.querySelector('.dashboard-grid');
  greet.classList.add('dashboard-greeting');
- const brand=document.createElement('div');brand.className='dashboard-brand';
- brand.innerHTML='<img src="assets/moida-office-logo.svg" alt="모이다"><div><strong>모이다</strong><span>AI 비서실</span></div>';
- page.prepend(brand);
  const brief=grid.firstElementChild;brief.classList.add('dashboard-brief');
  const briefTitle=document.createElement('h2');briefTitle.className='dashboard-brief-title';briefTitle.innerHTML='하루의 업무를<br>한눈에 정리하세요.';brief.querySelector('#dashBrief').before(briefTitle);
  page.insertBefore(brief,greet.nextElementSibling);
