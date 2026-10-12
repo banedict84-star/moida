@@ -48,9 +48,9 @@ test('기존 D1 연결로 새 대화 테이블을 생성하며 기존 테이블�
  const f=fixture();f.db.exec('DROP TABLE secretary_sessions; DROP TABLE secretary_turns; DROP TABLE secretary_calls; CREATE TABLE original_records(value TEXT); INSERT INTO original_records VALUES(\'기존 자료\');');
  await f.start();assert.equal(f.db.prepare('SELECT value FROM original_records').get().value,'기존 자료');assert.equal((await f.poll()).status,'in_progress');f.db.close();
 });
-test('새 대화는 자료·기억 도구만 제공하며 숨긴 기존 도구는 노출하지 않는다',async()=>{
+test('새 대화는 기본 도구와 자료·기억을 제공하며 숨긴 기존 도구는 노출하지 않는다',async()=>{
  const f=fixture();await f.start();const agent=f.state.writes[0].body.agent;
- assert.equal(agent.tools.find(tool=>tool.type==='web_search'),undefined);
+ assert.equal(agent.tools.find(tool=>tool.type==='web_search').mode,'live');assert.ok(agent.tools.some(tool=>tool.name==='calculate'));assert.ok(agent.tools.some(tool=>tool.name==='deep_research'));assert.ok(agent.tools.some(tool=>tool.name==='generate_image'));
  assert.ok(!agent.tools.some(tool=>tool.name==='list_contacts'));assert.ok(agent.tools.some(tool=>tool.name==='read_memory'));
  assert.match(agent.instructions,/자료·기억/);f.db.close();
 });
@@ -61,7 +61,7 @@ test('기존 대화에서 자료 정책 전환 시 과거 기록을 넘기지 �
  await f.start('request_B','최신 경기도당 공지를 웹에서 찾아줘');
  const creation=f.state.writes[1];assert.equal(creation.path,'/v1/agents/sessions');
  assert.doesNotMatch(creation.body.agent.instructions,/이전 의정활동 대화/);
- assert.equal(creation.body.metadata.moida_web_search,'workspace-sources-v1:');
+ assert.equal(creation.body.metadata.moida_web_search,'workspace-sources-v2:');
  assert.deepEqual(JSON.parse(f.db.prepare('SELECT baseline_json FROM secretary_turns WHERE request_id=?').get('request_B').baseline_json),[]);
  f.db.close();
 });

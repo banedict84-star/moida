@@ -10,6 +10,7 @@ import {createSolapiMessaging} from './solapi-messaging.js';
 import {createFlowCalendar} from './flow-calendar.js';
 import {createVoiceCall} from './secretary-voice.js';
 import {driveListParams,driveListResult} from './drive-query.js';
+import {builtinTick} from './secretary-builtin-tools.js';
 import {handleSecretaryRoute} from "./secretary-agent.js";
 import {teamTools,executeTeamTool,runToolConversation,compactWorkContext} from './agent-tools.js';
 import {executeToolkit,toolkitRoute,toolkitTick,boundedBytes,bytesToBase64} from "./secretary-toolkit.js";
@@ -1881,7 +1882,7 @@ export default {
   fetch: handleFetch,
   queue: handleQueue,
   scheduled(_controller, env, ctx) {
-    if(_controller.cron==='* * * * *'){ctx.waitUntil(officeTravel.tick(env));return;}
+    if(_controller.cron==='* * * * *'){ctx.waitUntil(officeTravel.tick(env));ctx.waitUntil(toolkitTick(env).then(()=>builtinTick(env)));return;}
     ctx.waitUntil(recoverStaleRuns(env));
     ctx.waitUntil(toolkitTick(env));
     ctx.waitUntil(solapiMessaging.tick(env));

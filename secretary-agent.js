@@ -54,8 +54,12 @@ export async function pages(api, path) {
   fail(502, '에이전트 기록 조회 범위를 초과했습니다.');
 }
 export function finalText(items, turnId) {
-  return items.filter(i => i.turn_id === turnId && i.type === 'message' && i.role === 'assistant' && i.phase === 'final_answer')
-    .flatMap(i => i.content || []).filter(c => c.type === 'output_text').map(c => c.text).join('\n');
+  const content=items.filter(i => i.turn_id === turnId && i.type === 'message' && i.role === 'assistant' && i.phase === 'final_answer')
+    .flatMap(i => i.content || []).filter(c => c.type === 'output_text');
+  let text=content.map(c=>c.text).join('\n');const sources=new Map();
+  for(const part of content)for(const a of part.annotations||[])if(a.type==='url_citation'){try{const u=new URL(a.url);if(u.protocol==='https:'&&!u.username&&!u.password&&!text.includes(u.href))sources.set(u.href,String(a.title||u.hostname).replace(/[\[\]\r\n]/g,' '));}catch{}}
+  if(text&&sources.size)text+='\n\n출처: '+[...sources].slice(0,20).map(([url,title])=>'['+title+']('+url+')').join(' · ');
+  return text;
 }
 function validateInput(input) {
   if (typeof input === 'string' && input.trim() && input.length <= 30000) return;
@@ -196,7 +200,7 @@ async function tool(env, uid, thread, body, api, claim, executeWork) {
     if (written.meta.changes !== 1) return {ok:true,claimed:false};
     if (executeWork && (['delegate_work','read_work_report'].includes(saved.name)||TOOLKIT_NAMES.has(saved.name))) {
       let result;
-      try {result=saved.name==='tool_connection_status'?{ok:true,knowledge:true,ai_enabled_apps:policy.apps}:await executeWork(saved.name,JSON.parse(saved.arguments_json),'secretary_'+callId,{});}
+      try {result=saved.name==='tool_connection_status'?{ok:true,knowledge:true,basic_tools:true,web_search:true,background_jobs:true,scheduled_tasks:true,ai_enabled_apps:policy.apps}:await executeWork(saved.name,JSON.parse(saved.arguments_json),'secretary_'+callId,{});}
       catch(e){result={ok:false,error:String(e.message||'담당 배정 실패').slice(0,2000)};}
       const encoded=JSON.stringify(result);
       if(encoded.length>150000) result={ok:false,error:'담당 보고의 용량이 너무 큽니다. 작업실에서 확인해 주세요.'};
