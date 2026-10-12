@@ -59,3 +59,18 @@
 /* Give faces more presence without restoring the large card padding. */
 .mo-office .mo-staff-profile .mo-portrait-card{width:82px;height:82px}
 @media(max-width:760px){.mo-office .mo-staff-profile .mo-portrait-card{width:66px;height:66px}}
+
+/* Portrait-led cards with names and fields inside the image. */
+.mo-catalog-layout .mo-staff-card,.mo-catalog-layout .mo-staff-card.selected{padding:0;overflow:hidden}
+.mo-staff-profile{display:block;text-align:left}
+.mo-staff-photo{position:relative;width:100%;aspect-ratio:1.15;overflow:hidden;background:#dbe7f1}
+.mo-office .mo-staff-profile .mo-staff-photo .mo-portrait-card{display:block;width:100%;height:auto;aspect-ratio:1;margin:0;border-radius:0;box-shadow:none}
+.mo-staff-overlay{position:absolute;inset:auto 0 0;padding:26px 12px 10px;background:linear-gradient(transparent,rgba(10,29,49,.82));display:flex;align-items:flex-end;justify-content:space-between;gap:5px}
+.mo-office .mo-staff-profile .mo-staff-overlay h3{color:#fff;font-size:16px;margin:0;text-shadow:0 1px 3px #0004}
+.mo-staff-overlay>span{font-size:9px;white-space:nowrap;color:white;background:#ffffff26;border:1px solid #ffffff38;border-radius:12px;padding:3px 7px}
+.mo-staff-body{padding:10px 11px}.mo-staff-body .mo-staff-job{font-size:11px;margin-bottom:4px}
+.mo-office .mo-staff-profile .mo-staff-body .mo-staff-duty{font-size:10px;line-height:1.4;min-height:28px;height:28px;margin:0 0 6px;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.mo-staff-body .mo-staff-state{text-align:right}.mo-staff-body .mo-staff-connection{line-height:1.4}
+.mo-catalog-layout .mo-check{top:8px;right:8px;z-index:2;padding:3px;display:flex;border-radius:5px;background:#ffffffe6}
+.mo-catalog-layout .mo-check input{margin:0}.mo-catalog-layout .mo-staff-card .mo-actions{padding:0 8px 9px;margin-top:0}
+@media(max-width:760px){.mo-staff-photo{aspect-ratio:1.12}.mo-staff-overlay{padding:22px 9px 8px}.mo-office .mo-staff-profile .mo-staff-overlay h3{font-size:14px}.mo-staff-overlay>span{font-size:8px;padding:2px 5px}.mo-staff-body{padding:8px 9px}.mo-staff-body .mo-staff-job{font-size:10px}.mo-staff-body .mo-staff-price{padding:5px 0}}
