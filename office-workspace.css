@@ -167,5 +167,11 @@
 .mo-core-body>p{min-height:62px;overflow-wrap:anywhere}
 .mo-core-body details{min-height:20px;overflow:auto}
 .mo-core-body>.mo-primary{flex:none;min-height:38px;margin-top:auto;white-space:normal}
+.mo-core-details{background:none;border:0;padding:5px 0;text-align:left;color:#526579;font-size:12px;cursor:pointer;margin-top:auto;flex:none}
+.mo-core-dialog{box-sizing:border-box;border:1px solid #e0e7ef;border-radius:18px;width:min(560px,calc(100vw - 32px));max-height:calc(100dvh - 48px);padding:24px;overflow:auto;color:#123456;background:#fff;box-shadow:0 24px 80px #12345640;font-family:inherit;font-size:14px;line-height:1.7}
+.mo-core-dialog::backdrop{background:#0c203d70}
+.mo-core-dialog header{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;border-bottom:1px solid #e0e7ef;padding-bottom:16px}
+.mo-core-dialog header span{font-size:12px;color:#526579}.mo-core-dialog h2{font-size:20px;line-height:1.5;margin:4px 0 0}.mo-core-dialog h3{font-size:14px;margin:20px 0 8px}.mo-core-dialog p{font-size:14px;line-height:1.8;overflow-wrap:anywhere;color:#526579}.mo-core-dialog button{font:inherit;cursor:pointer}.mo-core-dialog header button{flex:none}.mo-core-dialog .mo-info{margin-top:20px}
+@media(max-width:480px){.mo-core-dialog{padding:18px}.mo-core-dialog h2{font-size:18px}}
 .mo-office[data-team-view="staff"] .mo-staff-grid{grid-template-columns:repeat(4,minmax(0,220px));justify-content:center;align-items:start}
 @media(max-width:1000px){.mo-office[data-team-view="staff"] .mo-staff-grid{grid-template-columns:repeat(2,minmax(0,220px))}}

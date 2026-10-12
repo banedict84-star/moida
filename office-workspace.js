@@ -90,7 +90,14 @@
     var tools=new Map();staff(true).forEach(function(e){e.tools.forEach(function(t){tools.set(t[1],t[0]);});});
     $('moTools').innerHTML=tools.size?Array.from(tools).map(function(t){return '<button class="mo-outline" data-mo-tool="'+esc(t[0])+'">'+esc(t[1])+' ↗</button>';}).join(''):'<span class="mo-muted">직원을 고용하면 관련 도구가 표시됩니다.</span>';
   }
-  function renderCard(e,hired){if(e.core)return '<article class="mo-core-card" data-employee-id="'+e.id+'">'+avatar(e,true)+'<div class="mo-core-body"><span class="mo-core-label">기본 팀 · 기본 제공</span><h3>'+esc(e.person)+' <small>'+esc(e.name)+'</small></h3><p>'+esc(e.description)+'</p><details><summary>하는 일과 연결 도구</summary><p>'+esc(e.output)+'</p><p>'+esc(e.requirements)+'</p>'+e.tools.map(function(t){return '<button class="mo-outline" data-mo-tool="'+t[1]+'">'+esc(t[0])+' ↗</button>';}).join('')+'</details><button class="mo-primary mo-full" data-mo-assign="'+e.id+'">'+esc(e.person)+'에게 부탁하기</button></div></article>';
+  function openCoreDetails(e){
+    var dialog=document.createElement('dialog');dialog.className='mo-core-dialog';dialog.setAttribute('aria-labelledby','moCoreDialogTitle');
+    dialog.innerHTML='<header><div><span>'+esc(e.name)+'</span><h2 id="moCoreDialogTitle">'+esc(e.person)+' · 하는 일과 연결 도구</h2></div><button type="button" class="mo-outline" data-close aria-label="팝업 닫기">닫기</button></header><section><h3>하는 일</h3><p>'+esc(e.description)+'</p><h3>작업 결과</h3><p>'+esc(e.output)+'</p><h3>연결 도구</h3><div class="mo-tools">'+e.tools.map(function(t){return '<button type="button" class="mo-outline" data-mo-tool="'+esc(t[1])+'">'+esc(t[0])+' ↗</button>';}).join('')+'</div><p>'+esc(e.requirements)+'</p><p class="mo-info">'+esc(e.approval)+'</p></section>';
+    dialog.addEventListener('click',function(ev){var button=ev.target.closest('button');if(button&&button.hasAttribute('data-close'))dialog.close();if(button&&button.dataset.moTool){dialog.close();openOfficeTool(button.dataset.moTool);}if(ev.target===dialog){var rect=dialog.getBoundingClientRect();if(ev.clientX<rect.left||ev.clientX>rect.right||ev.clientY<rect.top||ev.clientY>rect.bottom)dialog.close();}});
+    dialog.addEventListener('close',function(){dialog.remove();});document.body.append(dialog);dialog.showModal();
+  }
+  function openOfficeTool(target){if(target==='calendar'){var g=$('googleCalendarConnect');if(g)g.click();}else if(target==='toolkit'){window.__go('secretary');var t=$('officeToolsOpen');if(t)t.click();}else window.__go(target);}
+  function renderCard(e,hired){if(e.core)return '<article class="mo-core-card" data-employee-id="'+e.id+'">'+avatar(e,true)+'<div class="mo-core-body"><span class="mo-core-label">기본 팀 · 기본 제공</span><h3>'+esc(e.person)+' <small>'+esc(e.name)+'</small></h3><p>'+esc(e.description)+'</p><button type="button" class="mo-core-details" data-mo-details="'+e.id+'" aria-haspopup="dialog">하는 일과 연결 도구 ↗</button><button class="mo-primary mo-full" data-mo-assign="'+e.id+'">'+esc(e.person)+'에게 부탁하기</button></div></article>';
     var cfg=config[e.id];
     var role=e.output?e:legacyDetails[e.id];
     var details=role?'<details class="mo-role-details"><summary>업무 상세</summary><dl>'+[['직원 ID',e.id],['담당 업무',role.duties||e.description],['결과물',role.output],['필요 자료·연결',role.requirements],[e.output?'계획된 근무 방식':'근무 방식',role.workMode||'요청 시 자료 기반 작성·분석'],[e.output?'계획된 실행 조건':'실행 조건',role.trigger||'직원 선택 또는 해당 업무 지시 시 실행'],['승인·검토',role.approval]].map(function(row){return '<dt>'+esc(row[0])+'</dt><dd>'+esc(row[1])+'</dd>';}).join('')+'</dl><p>현재는 요청 시 자료 기반 작성·분석을 수행합니다. 자동 근무, 외부 변경·발송과 이미지·영상·파일 제작은 별도 도구 연결이 필요합니다.</p></details>':'';
@@ -113,6 +120,7 @@
   root.addEventListener('input',function(ev){if(ev.target.id==='moSearch'){var pos=ev.target.selectionStart;search=ev.target.value;catalogPage=1;renderCatalog();$('moSearch').focus();$('moSearch').setSelectionRange(pos,pos);}});
   root.addEventListener('click',async function(ev){
     var b=ev.target.closest('button');if(!b||b.disabled)return;
+    if(b.dataset.moDetails){openCoreDetails(employee(b.dataset.moDetails));return;}
     if(b.dataset.moTab){tab=b.dataset.moTab;search='';group='전체';catalogPage=1;releaseOnly=false;render();return;}
     if(b.dataset.moPage){catalogPage=Number(b.dataset.moPage);renderCatalog();$('moSearch').focus();return;}
     if(b.dataset.moAssign){targetEmployee=b.dataset.moAssign;var e=employee(targetEmployee);window.__go('secretary');var input=$('aiInput');if(input){input.value=e.person+'에게 부탁할 일: ';input.focus();input.dispatchEvent(new Event('input',{bubbles:true}));}return;}
@@ -125,7 +133,7 @@
       if(b.dataset.moAction==='revise'){var r=selectedRun();$('officeInstruction').value='다음 업무의 결과를 수정해줘.\n원지시: '+String(r.instruction||'').slice(0,2500)+'\n기존 보고: '+String(r.summary||'').slice(0,7000)+'\n수정 사항: ';$('officeInstruction').focus();}
       if(b.dataset.moAction==='preview'){var r=selectedRun(),dialog=document.createElement('dialog');dialog.className='mo-preview-dialog';dialog.innerHTML='<h3>비서실장 결과 보고</h3><pre>'+esc(r.summary)+'</pre><button class="mo-outline">닫기</button>';dialog.querySelector('button').onclick=function(){dialog.close();};dialog.addEventListener('close',function(){dialog.remove();});document.body.append(dialog);dialog.showModal();}
       if(b.dataset.moAction==='download'){var r=selectedRun(),blob=new Blob([r.instruction+'\n\n'+r.summary],{type:'text/plain;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='모이다_업무보고_'+new Date(r.createdAt).toISOString().slice(0,10)+'.txt';a.click();setTimeout(function(){URL.revokeObjectURL(url);},1000);}
-      if(b.dataset.moTool){var target=b.dataset.moTool;if(target==='calendar'){var g=$('googleCalendarConnect');if(g)g.click();}else if(target==='toolkit'){window.__go('secretary');var t=$('officeToolsOpen');if(t)t.click();}else window.__go(target);}
+      if(b.dataset.moTool)openOfficeTool(b.dataset.moTool);
     }catch(e){if(!e.officeHandled)notice(e.message||'작업하지 못했습니다.');}
   });
   $('officeCommand').addEventListener('submit',function(){chosenRun='';},true);
