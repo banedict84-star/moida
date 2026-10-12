@@ -136,3 +136,7 @@
 .mo-office .mo-catalog-toolbar select{max-width:100%}
 .mo-office .mo-staff-grid{align-items:start}
 .mo-office summary:focus-visible,.mo-office select:focus-visible{outline:3px solid #60a5fa;outline-offset:2px}
+
+/* Individual generated portraits use stable employee IDs and lazy-load with the page. */
+.mo-office .mo-staff-portrait{object-fit:cover;object-position:center 35%;display:block}
+.mo-office .mo-staff-profile .mo-staff-photo .mo-staff-portrait{width:94%;height:auto;aspect-ratio:1;margin:0 auto;border-radius:0;object-fit:cover;object-position:center top}

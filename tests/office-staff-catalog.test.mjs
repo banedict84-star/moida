@@ -1,8 +1,22 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {createHash} from 'node:crypto';
 import {STAFF_ROLES,staffRole,assignmentPlan,selectTaskWorkers,ALLOWED_AGENTS} from '../agent-core.js';
 import {workerPrompt,reviewTask} from '../gpt-worker.js';
 import {teamTools,executeTeamTool} from '../agent-tools.js';
+
+test('every employee has a distinct deployable WebP portrait',()=>{
+ const hashes=new Set();
+ for(const role of STAFF_ROLES){
+  const bytes=readFileSync(new URL('../assets/staff/'+role.id+'.webp',import.meta.url));
+  assert.equal(bytes.toString('ascii',0,4),'RIFF',role.id);
+  assert.equal(bytes.toString('ascii',8,12),'WEBP',role.id);
+  assert(bytes.length>1000&&bytes.length<100000,role.id+' portrait size');
+  hashes.add(createHash('sha256').update(bytes).digest('hex'));
+ }
+ assert.equal(hashes.size,300);
+});
 
 test('all 300 source employees have distinct executable identities and complete role contracts',()=>{
  assert.equal(STAFF_ROLES.length,300);
