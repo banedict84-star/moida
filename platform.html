@@ -2326,9 +2326,13 @@ onAuthStateChanged(_auth, async function(user){
     return (s&&s.effectiveUid)||M.uid||(s&&s.uid)||'local';
   }
   function chatStorageKey(){ return 'moida_ai_conversations_'+chatOwner(); }
+  function chatDeletedKey(){return chatStorageKey()+'_deleted';}
+  function deletedChats(){try{return JSON.parse(localStorage.getItem(chatDeletedKey())||'{}')||{};}catch(e){return {};}}
+  function saveDeletedChats(rows){try{localStorage.setItem(chatDeletedKey(),JSON.stringify(rows));}catch(e){}}
   function cleanThreads(rows){
     if(!Array.isArray(rows)) return [];
-    return rows.filter(function(t){return t&&t.id;}).map(function(t){
+    var deleted=deletedChats();
+    return rows.filter(function(t){return t&&t.id&&!deleted[t.id];}).map(function(t){
       return {id:String(t.id),title:String(t.title||'새 대화').slice(0,60),createdAt:+t.createdAt||Date.now(),updatedAt:+t.updatedAt||Date.now(),
         messages:(Array.isArray(t.messages)?t.messages:[]).filter(function(m){return m&&(m.role==='user'||m.role==='assistant');}).slice(-80).map(function(m){return {role:m.role,content:String(m.content||'').slice(0,12000)};})};
     }).sort(function(a,b){return b.updatedAt-a.updatedAt;}).slice(0,40);
@@ -2348,7 +2352,7 @@ onAuthStateChanged(_auth, async function(user){
     clearTimeout(chatSaveTimer);
     chatSaveTimer=setTimeout(function(){
       if(!M.db||!M.fs||!M.uid||window.MOIDA_READONLY){ setChatStatus('이 기기에 저장됨'); return; }
-      M.fs.setDoc(M.fs.doc(M.db,'moida_ai_chats',chatOwner()),{threads:JSON.stringify(chatThreads),updatedAt:Date.now()},{merge:true})
+      M.fs.setDoc(M.fs.doc(M.db,'moida_ai_chats',chatOwner()),{threads:JSON.stringify(chatThreads),deletedThreads:JSON.stringify(deletedChats()),updatedAt:Date.now()},{merge:true})
         .then(function(){setChatStatus('계정에 저장됨');})
         .catch(function(){setChatStatus('이 기기에 저장됨');});
     },350);
@@ -2399,11 +2403,16 @@ onAuthStateChanged(_auth, async function(user){
     chatLoaded=true;
     M.fs.getDoc(M.fs.doc(M.db,'moida_ai_chats',chatOwner())).then(function(s){
       if(s.exists()){
+        var deleted=deletedChats(),remoteDeleted={};
+        try{remoteDeleted=JSON.parse((s.data()&&s.data().deletedThreads)||'{}')||{};}catch(e){}
+        Object.keys(remoteDeleted).forEach(function(id){if(remoteDeleted[id])deleted[id]=remoteDeleted[id];});
+        saveDeletedChats(deleted);
         var remote=cleanThreads(JSON.parse((s.data()&&s.data().threads)||'[]'));
         var map={}; chatThreads.concat(remote).forEach(function(t){if(!map[t.id]||map[t.id].updatedAt<t.updatedAt)map[t.id]=t;});
         chatThreads=cleanThreads(Object.keys(map).map(function(k){return map[k];}));
         try{localStorage.setItem(chatStorageKey(),JSON.stringify(chatThreads));}catch(e){}
         renderChatThreads();
+        persistChats();
       }
       setChatStatus('계정에 저장됨');
     }).catch(function(){setChatStatus('이 기기에 저장됨');});
@@ -3802,6 +3811,7 @@ onAuthStateChanged(_auth, async function(user){
       var did=del.getAttribute('data-chat-delete');
       var target=chatThreads.find(function(t){return t.id===did;});
       if(target&&confirm('"'+target.title+'" 대화를 삭제하시겠습니까?')){
+        var deleted=deletedChats();deleted[did]=Date.now();saveDeletedChats(deleted);
         chatThreads=chatThreads.filter(function(t){return t.id!==did;});
         if(currentThreadId===did) resetChat();
         persistChats();

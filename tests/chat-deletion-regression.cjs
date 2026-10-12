@@ -1,0 +1,10 @@
+const fs=require('fs'),vm=require('vm'),assert=require('assert');
+const source=fs.readFileSync('platform.html','utf8');
+const start=source.indexOf('  var history=[];');
+const end=source.indexOf('  function mdToHtml(s){',start);
+assert(start>=0&&end>start);
+const store=new Map(),writes=[];
+const ctx={M:{uid:'owner',sessUser:()=>({uid:'owner'}),esc:s=>s,onData:()=>{},db:{},fs:{doc:()=>({}),getDoc:async()=>({exists:()=>true,data:()=>({threads:JSON.stringify([{id:'deleted',title:'old',messages:[]},{id:'kept',title:'keep',messages:[]}]),deletedThreads:'{}'})}),setDoc:async(_,v)=>writes.push(v)}},window:{},localStorage:{getItem:k=>store.get(k),setItem:(k,v)=>store.set(k,v)},document:{getElementById:()=>null},setTimeout:fn=>{ctx.save=fn;return 1},clearTimeout:()=>{},console};
+vm.createContext(ctx);vm.runInContext(source.slice(start,end),ctx);
+ctx.saveDeletedChats({deleted:123});ctx.loadCloudChats();
+(async()=>{await new Promise(r=>setImmediate(r));assert.deepEqual(Array.from(ctx.chatThreads,t=>t.id),['kept']);ctx.save();await new Promise(r=>setImmediate(r));assert.equal(JSON.parse(writes[0].deletedThreads).deleted,123);assert(!writes[0].threads.includes('"deleted"'));ctx.M.uid='other';ctx.M.sessUser=()=>({uid:'other'});assert.equal(ctx.cleanThreads([{id:'deleted'}]).length,1);console.log('PASS deleted cloud conversations stay removed, deletion saved to account, account isolation');})().catch(e=>{console.error(e);process.exit(1)});
