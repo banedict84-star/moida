@@ -1,0 +1,26 @@
+const fs=require('fs'),vm=require('vm'),assert=require('assert');
+const source=fs.readFileSync('platform.html','utf8');
+const start=source.indexOf('  var history=[];'),end=source.indexOf('  function mdToHtml(s){',start);
+const store=new Map(),pending=[],writes=[],timers=new Map();let next=0,owner='owner';
+store.set('moida_ai_conversations_owner',JSON.stringify([{id:'cached',title:'cached',updatedAt:10,messages:[]}])) ;
+const ctx={msgs:null,M:{uid:'default',sessUser:()=>({uid:owner}),esc:s=>s,onData:fn=>ctx.notify=fn,db:{},fs:{doc:(_,collection,id)=>({id}),getDoc:ref=>new Promise((resolve,reject)=>pending.push({ref,resolve,reject})),setDoc:async(ref,v)=>writes.push({ref,v})}},window:{addEventListener:()=>{}},localStorage:{getItem:k=>store.get(k),setItem:(k,v)=>store.set(k,v)},document:{getElementById:()=>null},setTimeout:(fn,ms)=>{const id=++next;timers.set(id,{fn,ms});return id;},clearTimeout:id=>timers.delete(id),console};
+const tick=()=>new Promise(r=>setImmediate(r));
+const snapshot=rows=>({exists:()=>true,data:()=>({threads:JSON.stringify(rows),deletedThreads:'{}'})});
+vm.createContext(ctx);vm.runInContext(source.slice(start,end),ctx);
+(async()=>{
+ assert.equal(ctx.chatThreads[0].id,'cached','load signed-in owner cache before Firebase readiness');
+ ctx.notify();assert.equal(pending.length,0,'never read default account');
+ ctx.M.uid='owner';ctx.notify();ctx.notify();assert.equal(pending.length,1,'deduplicate in-flight load');
+ pending.shift().reject(Error('temporary network failure'));await tick();assert.equal(ctx.chatLoaded,false);
+ const retry=[...timers.values()].find(t=>t.ms===5000);assert(retry);retry.fn();
+ pending.shift().resolve(snapshot([{id:'remote',title:'remote',updatedAt:20,messages:[]}]));await tick();
+ assert.equal(ctx.chatThreads.length,2);assert.equal(writes.length,0,'reading history must not overwrite cloud');
+ ctx.M.uid='second';owner='second';ctx.notify();assert.equal(ctx.chatThreads.length,0,'clear former owner data');
+ owner='third';ctx.M.uid='third';ctx.notify();
+ pending.shift().resolve(snapshot([{id:'wrong-owner',messages:[]}]));await tick();assert.equal(ctx.chatThreads.length,0,'ignore late prior-owner response');
+ ctx.chatThreads.push({id:'new',title:'new',updatedAt:40,messages:[]});ctx.persistChats();assert.equal(writes.length,0,'defer writes until cloud load');
+ pending.shift().resolve(snapshot([{id:'old',title:'old',updatedAt:30,messages:[]}]));await tick();
+ const save=[...timers.values()].find(t=>t.ms===350);assert(save);save.fn();await tick();
+ assert.equal(writes[0].ref.id,'third');assert.equal(JSON.parse(writes[0].v.threads).length,2,'preserve remote history before saving new message');
+ console.log('PASS account cache, delayed authentication, retry, stale account responses, read-only loading and deferred saves');
+})().catch(e=>{console.error(e);process.exit(1)});

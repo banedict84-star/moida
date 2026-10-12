@@ -2259,11 +2259,11 @@ onAuthStateChanged(_auth, async function(user){
   }
   function sysPrompt(){return '모아는 현재 메시지와 첨부, 자료·기억, 도구 연결에서 AI 사용을 켠 서비스만 참고합니다. 숨겨진 기존 자료와 과거 대화는 현재 자료가 아닙니다.';}
   var history=[];
-  var chatThreads=[], currentThreadId='', chatLoaded=false, chatSaveTimer=null;
+  var chatThreads=[], currentThreadId='', chatLoaded=false, chatSaveTimer=null, chatLocalOwner='', chatLoading=false, chatLoadGeneration=0, chatDirty=false, chatRetryTimer=null;
   var historyList=document.getElementById('aiHistoryList'), historyStatus=document.getElementById('aiHistoryStatus');
   function chatOwner(){
     var s={}; try{s=M.sessUser?M.sessUser():{};}catch(e){}
-    return (s&&s.effectiveUid)||M.uid||(s&&s.uid)||'local';
+    return (s&&s.effectiveUid)||(s&&s.uid)||(M.uid&&M.uid!=='default'?M.uid:null)||'local';
   }
   function chatStorageKey(){ return 'moida_ai_conversations_'+chatOwner(); }
   function chatDeletedKey(){return chatStorageKey()+'_deleted';}
@@ -2286,14 +2286,18 @@ onAuthStateChanged(_auth, async function(user){
     }).join('');
   }
   function persistChats(){
+    chatDirty=true;
     chatThreads=cleanThreads(chatThreads);
     try{ localStorage.setItem(chatStorageKey(),JSON.stringify(chatThreads)); }catch(e){}
     renderChatThreads();
     clearTimeout(chatSaveTimer);
+    if(!chatLoaded){loadCloudChats();return;}
+    var saveOwner=chatOwner(),saveGeneration=chatLoadGeneration;
     chatSaveTimer=setTimeout(function(){
+      if(saveOwner!==chatOwner()||saveGeneration!==chatLoadGeneration)return;
       if(!M.db||!M.fs||!M.uid||window.MOIDA_READONLY){ setChatStatus('이 기기에 저장됨'); return; }
       M.fs.setDoc(M.fs.doc(M.db,'moida_ai_chats',chatOwner()),{threads:JSON.stringify(chatThreads),deletedThreads:JSON.stringify(deletedChats()),updatedAt:Date.now()},{merge:true})
-        .then(function(){setChatStatus('계정에 저장됨');})
+        .then(function(){if(saveOwner===chatOwner()&&saveGeneration===chatLoadGeneration)setChatStatus('계정에 저장됨');})
         .catch(function(){setChatStatus('이 기기에 저장됨');});
     },350);
   }
@@ -2335,30 +2339,49 @@ onAuthStateChanged(_auth, async function(user){
     attachments=[];renderAttach();renderChatThreads();scroll();
   }
   function loadLocalChats(){
+    chatLocalOwner=chatOwner();
     try{ chatThreads=cleanThreads(JSON.parse(localStorage.getItem(chatStorageKey())||'[]')); }catch(e){chatThreads=[];}
     renderChatThreads(); setChatStatus(chatThreads.length?'이 기기의 기록 불러옴':'새 대화를 시작해 보세요');
   }
   function loadCloudChats(){
-    if(chatLoaded||!M.db||!M.fs||!M.uid) return;
-    chatLoaded=true;
-    M.fs.getDoc(M.fs.doc(M.db,'moida_ai_chats',chatOwner())).then(function(s){
+    var owner=chatOwner();
+    if(chatLocalOwner!==owner){
+      clearTimeout(chatSaveTimer);clearTimeout(chatRetryTimer);
+      chatLoadGeneration++;chatLoaded=false;chatLoading=false;chatDirty=false;currentThreadId='';history=[];
+      if(msgs)msgs.innerHTML=seed;
+      loadLocalChats();
+    }
+    if(chatLoaded||chatLoading||!M.db||!M.fs||!M.uid||M.uid==='default'||owner==='local')return;
+    chatLoading=true;
+    var generation=chatLoadGeneration;
+    setChatStatus('계정의 대화 기록 불러오는 중…');
+    M.fs.getDoc(M.fs.doc(M.db,'moida_ai_chats',owner)).then(function(s){
+      if(owner!==chatOwner()||generation!==chatLoadGeneration)return;
       if(s.exists()){
         var deleted=deletedChats(),remoteDeleted={};
         try{remoteDeleted=JSON.parse((s.data()&&s.data().deletedThreads)||'{}')||{};}catch(e){}
         Object.keys(remoteDeleted).forEach(function(id){if(remoteDeleted[id])deleted[id]=remoteDeleted[id];});
         saveDeletedChats(deleted);
         var remote=cleanThreads(JSON.parse((s.data()&&s.data().threads)||'[]'));
-        var map={}; chatThreads.concat(remote).forEach(function(t){if(!map[t.id]||map[t.id].updatedAt<t.updatedAt)map[t.id]=t;});
+        var map={};chatThreads.concat(remote).forEach(function(t){if(!map[t.id]||map[t.id].updatedAt<t.updatedAt)map[t.id]=t;});
         chatThreads=cleanThreads(Object.keys(map).map(function(k){return map[k];}));
-        try{localStorage.setItem(chatStorageKey(),JSON.stringify(chatThreads));}catch(e){}
-        renderChatThreads();
-        persistChats();
       }
-      setChatStatus('계정에 저장됨');
-    }).catch(function(){setChatStatus('이 기기에 저장됨');});
+      chatLoaded=true;chatLoading=false;
+      try{localStorage.setItem(chatStorageKey(),JSON.stringify(chatThreads));}catch(e){}
+      renderChatThreads();
+      setChatStatus(chatThreads.length?'계정의 기록 불러옴':'저장된 대화가 없습니다.');
+      if(chatDirty)persistChats();
+    }).catch(function(){
+      if(owner!==chatOwner()||generation!==chatLoadGeneration)return;
+      chatLoading=false;chatLoaded=false;
+      setChatStatus('계정 기록 연결 재시도 중 · 기기 기록 표시');
+      clearTimeout(chatRetryTimer);chatRetryTimer=setTimeout(loadCloudChats,5000);
+    });
   }
   loadLocalChats();
   M.onData(function(){loadCloudChats();});
+  window.addEventListener('moida:auth-ready',function(){loadCloudChats();});
+  window.addEventListener('online',function(){loadCloudChats();});
   function mdToHtml(s){
     s=M.esc(s);
     s=s.replace(/\[([^\]\n]+)\]\(\s*(?:&lt;)?(?:sandbox:)?\/office-tools\/files\/([A-Za-z0-9_-]+)\/download(?:&gt;)?\s*\)/g,function(_,label,id){
