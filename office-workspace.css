@@ -93,12 +93,50 @@
 
 /* Connection action is over the photo and takes no extra card height. */
 .mo-office .mo-connect-required{position:absolute;top:8px;left:8px;z-index:2;border:1px solid #ffffffa6;border-radius:999px;background:#fff7e6f2;color:#80521b;padding:4px 8px;font-size:10px;font-weight:700;box-shadow:0 1px 5px #17365920}
-.mo-staff-state~.mo-connect-required{top:38px}
+.mo-office .mo-staff-state~.mo-connect-required{top:38px}
 @media(max-width:760px){.mo-office .mo-connect-required{top:6px;left:6px;padding:3px 6px;font-size:9px}.mo-staff-state~.mo-connect-required{top:32px}}
 
 /* Match the supplied mint status badge. */
 .mo-staff-photo .mo-staff-state .mo-pill.hired{display:inline-flex;align-items:center;gap:5px;background:#e7f6ee;color:#0f9d63;box-shadow:none;border:0;border-radius:999px;font-size:10px;padding:4px 9px}
 .mo-staff-photo .mo-staff-state .mo-pill.hired::before{content:'';width:6px;height:6px;border-radius:50%;background:#0f9d63;flex-shrink:0}
 .mo-office .mo-connect-required{background:#fff;color:#456987;border:1px solid #cddbe8;box-shadow:0 1px 4px #17365912}
-.mo-office .mo-connect-required.is-connected{background:#e7f6ee;color:#0f9d63;border-color:#d1e9e1}
 @media(max-width:760px){.mo-staff-photo .mo-staff-state .mo-pill.hired{font-size:9px;padding:3px 8px}}
+
+/* Keep the card compact while retaining the role-aged v2 portraits and reference colors. */
+.mo-catalog-layout .mo-staff-card.selected{border-width:1px;box-shadow:inset 0 0 0 1px #3685e6}
+.mo-catalog-layout .mo-staff-photo{aspect-ratio:1.5}
+.mo-office .mo-staff-profile .mo-staff-photo .mo-portrait-card{width:94%;margin:0 auto}
+.mo-catalog-layout .mo-staff-overlay{padding:20px 9px 6px}
+.mo-catalog-layout .mo-staff-body{padding:5px 8px}
+.mo-catalog-layout .mo-staff-body .mo-staff-price{padding:3px 0}
+.mo-office .mo-connect-required:focus-visible{outline-offset:-3px}
+@media(max-width:760px){
+ .mo-catalog-layout .mo-staff-grid{gap:8px}
+ .mo-catalog-layout .mo-staff-overlay{padding:18px 8px 5px}
+ .mo-catalog-layout .mo-staff-body{padding:4px 7px}
+ .mo-office .mo-staff-state~.mo-connect-required{top:30px}
+}
+
+/* Large role catalog: scoped controls and expandable details keep browsing compact. */
+.mo-office .mo-initial-avatar{background:#dce8f2;color:#345c80}
+.mo-office .mo-initial-card{width:100%;height:100%;position:absolute;border-radius:0;background:linear-gradient(145deg,#e8f1f8,#b9d1e6);font-size:32px;letter-spacing:4px;padding-bottom:12px}
+.mo-office .mo-role-field{font-size:10px;color:#718298;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin:2px 0 4px}
+.mo-office .mo-role-details{border-top:1px solid #edf1f6;padding-top:5px;font-size:11px}
+.mo-office .mo-role-details summary{cursor:pointer;color:#305a8a;padding:3px 0}
+.mo-office .mo-role-details dl{margin:8px 0;line-height:1.6}
+.mo-office .mo-role-details dt{font-weight:700;margin-top:6px}
+.mo-office .mo-role-details dd{margin:0;color:#64748b;overflow-wrap:anywhere}
+.mo-office .mo-role-details p{min-height:0;font-size:11px;margin:8px 0}
+.mo-office .mo-release-filter{display:flex;gap:6px;align-items:center;color:#526b85;font-size:12px}
+.mo-office .mo-catalog-count{color:#718298;font-size:12px;margin:12px 0}
+.mo-office .mo-pagination{display:flex;justify-content:center;align-items:center;gap:18px;margin:20px 0}
+.mo-office .mo-selected-list{max-height:330px;overflow:auto}
+.mo-office .mo-target-label{display:flex;align-items:center;flex-wrap:wrap;gap:8px}
+.mo-office #moEmployeeTarget{max-width:100%;min-width:0;padding:8px;border:1px solid #cedcea;border-radius:8px;color:#305a8a;background:white}
+.mo-office .mo-catalog-toolbar select{max-width:100%}
+.mo-office .mo-staff-grid{align-items:start}
+.mo-office summary:focus-visible,.mo-office select:focus-visible{outline:3px solid #60a5fa;outline-offset:2px}
+
+/* Individual generated portraits use stable employee IDs and lazy-load with the page. */
+.mo-office .mo-staff-portrait{object-fit:cover;object-position:center 35%;display:block}
+.mo-office .mo-staff-profile .mo-staff-photo .mo-staff-portrait{width:94%;height:auto;aspect-ratio:1;margin:0 auto;border-radius:0;object-fit:cover;object-position:center top}

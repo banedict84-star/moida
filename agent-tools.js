@@ -1,3 +1,5 @@
+import './office-staff-catalog.js';
+const toolTeam=team=>globalThis.MOIDA_STAFF_ROLES.get(team)?.toolTeam||team;
 const fn=(name,description,properties={},required=[])=>({type:'function',function:{name,description,parameters:{type:'object',properties,required}}});
 const string={type:'string'};
 const COMMON=['office_search_files','office_read_file','office_read_context'];
@@ -11,7 +13,7 @@ const DEFINITIONS=[
  fn('office_calendar','현재 계정의 Google 캘린더를 직접 조회한다. 조회 실패는 연결 필요로 표시한다.',{start:string,end:string}),
  fn('office_notices','모이다에 수집된 공식 공지 목록과 원문 링크를 조회한다.',{query:string})
 ];
-export function teamTools(team){const allowed=new Set([...COMMON,...(ACCESS[team]||[])]);return DEFINITIONS.filter(t=>allowed.has(t.function.name));}
+export function teamTools(team){const allowed=new Set([...COMMON,...(ACCESS[toolTeam(team)]||[])]);return DEFINITIONS.filter(t=>allowed.has(t.function.name));}
 export function compactWorkContext(source){
  let budget=30000,nodes=0,truncated=false;
  function trim(value,depth=0){
@@ -25,6 +27,7 @@ export function compactWorkContext(source){
 }
 export async function executeTeamTool({env,run,team,name,args={},services={},fetcher=fetch}){
  if(!teamTools(team).some(t=>t.function.name===name))throw Error('이 팀에 연결되지 않은 도구입니다.');
+ team=toolTeam(team);
  if(!run.tenant_id)throw Error('의원실 계정 확인이 필요합니다.');
  const query=String(args.query||'').slice(0,200),uid=run.tenant_id;
  if(name==='office_search_files'||name==='office_read_file'){

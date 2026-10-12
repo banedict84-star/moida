@@ -294,7 +294,7 @@ body.secretary-view #aiPanel{border:0!important;border-radius:0!important;box-sh
 <link rel="stylesheet" href="secretary-toolkit.css?v=4">
 
 <link rel="stylesheet" href="solapi-messaging.css?v=6">
-<link rel="stylesheet" href="dashboard-mobile.css?v=2"><link rel="stylesheet" href="dashboard-cards.css?v=20261012-card1"><link rel="stylesheet" href="secretary-composer-mobile.css?v=20261012-input1"><link rel="stylesheet" href="office-workspace.css?v=20261012-10">
+<link rel="stylesheet" href="dashboard-mobile.css?v=2"><link rel="stylesheet" href="dashboard-cards.css?v=20261012-card1"><link rel="stylesheet" href="secretary-composer-mobile.css?v=20261012-input1"><link rel="stylesheet" href="office-workspace.css?v=20261012-portraits">
 </head>
 <body class="app-loading">
 <div style="display:flex;height:100vh;width:100%;font-family:'Pretendard',sans-serif;color:#1a2330;background:#f5f6f8;overflow:hidden">
@@ -2719,7 +2719,11 @@ onAuthStateChanged(_auth, async function(user){
       serverPollTimer=setTimeout(pollServerRuns,15000);
     });
   }
-  function startAgentRun(text, officeAssignments){
+  async function startAgentRun(text, officeAssignments){
+    if(officeAssignments&&officeAssignments.some(function(item){return /^M[0-9]{3}$/.test(item.agent);})){
+      var health=await fetch(gptEndpoint().replace(/\/+$/,'')+'/health').then(function(r){if(!r.ok)throw Error('직원 서버 연결을 확인해주세요.');return r.json();});
+      if(health.officeStaffCatalogVersion!==1)throw Error('새 직원의 서버 반영을 기다리고 있습니다. 잠시 후 다시 시도해주세요.');
+    }
     var key='web_'+Date.now().toString(36)+'_'+Math.random().toString(36).slice(2,10);
     var placeholder={schemaVersion:4,id:'pending_'+key,tenantId:agentOwner(),instruction:text,status:'queued',
       createdAt:Date.now(),updatedAt:Date.now(),summary:'',error:'',tasks:[],taskIds:[]};
@@ -4436,7 +4440,7 @@ var input=document.getElementById('aiInput');if(input)input.placeholder='비서�
 </script>
 <script src="solapi-messaging-client.js?v=4"></script>
 <script type="module" src="birthday-messaging-client.js?v=3"></script>
-<script src="dashboard-cards.js?v=20261012-card1"></script><script src="office-workspace.js?v=20261012-10"></script>
+<script src="dashboard-cards.js?v=20261012-card1"></script><script src="office-staff-catalog.js?v=20261012-300"></script><script src="office-workspace.js?v=20261012-portraits"></script>
 </body>
 </html>
 
