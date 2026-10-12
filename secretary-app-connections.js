@@ -1,7 +1,7 @@
 (function(root){
  'use strict';
  root.setupAppConnections=function(options){
-  var host=document.getElementById('moidaAppConnections'),apps=[],selected=new Set(),statuses={},owner='',category='전체',query='',filter='all',sequence=0;
+  var host=document.getElementById('moidaAppConnections'),apps=[],selected=new Set(),statuses={},owner='',category='전체',query='',filter='all',sequence=0,selectionReady=false;
   if(!host)return;
   function el(tag,text,cls){var n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;}
   function owned(uid){if(!uid||options.owner()!==uid)throw Error('로그인 계정이 변경되었습니다. 다시 열어 주세요.');}
@@ -18,11 +18,11 @@
   function updateFilters(){Array.from(filters.children).forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.filter===filter));});}
   function state(app){return statuses[app.id]||{connected:false};}
   function renderCategories(){categories.replaceChildren();['전체'].concat(Array.from(new Set(apps.map(function(a){return a.category;})))).forEach(function(name){var b=btn(name,function(){category=name;renderCategories();renderCards();});b.setAttribute('aria-pressed',String(name===category));categories.append(b);});}
-  async function select(app,value){var uid=owner;owned(uid);await options.request('/office-tools/apps/select',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({appId:app.id,selected:value})});owned(uid);if(value)selected.add(app.id);else selected.delete(app.id);renderCards();message.textContent=value?app.name+'을 선택했습니다. 계정 연결은 별도로 진행합니다.':app.name+'을 선택 목록에서 제외했습니다. 기존 계정 연결은 유지됩니다.';}
+  async function select(app,value){if(!selectionReady)throw Error('선택 목록 저장 서버를 확인하지 못했습니다. 상태 새로고침을 눌러 주세요.');var uid=owner;owned(uid);await options.request('/office-tools/apps/select',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({appId:app.id,selected:value})});owned(uid);if(value)selected.add(app.id);else selected.delete(app.id);renderCards();message.textContent=value?app.name+'을 선택했습니다. 계정 연결은 별도로 진행합니다.':app.name+'을 선택 목록에서 제외했습니다. 기존 계정 연결은 유지됩니다.';}
   function renderCards(){grid.replaceChildren();var visible=apps.filter(function(app){return(category==='전체'||app.category===category)&&(!query||app.name.toLowerCase().includes(query)||app.description.toLowerCase().includes(query))&&(filter!=='selected'||selected.has(app.id))&&(filter!=='connected'||state(app).connected);});
    visible.forEach(function(app){var s=state(app),card=el('article',undefined,'app-connect-card'),top=el('div',undefined,'app-card-top'),mark=el('span',app.mark,'app-mark');mark.style.setProperty('--app-color',app.color);var badge=el('span',s.error?'확인 필요':s.connected?'연결됨':app.kind==='pending'?'앱 등록 필요':'연결 가능','app-badge '+(s.connected?'connected':app.kind==='pending'?'pending':''));top.append(mark,badge);card.append(top,el('h2',app.name),el('p',app.description,'app-description'));
     var actions=el('div',undefined,'app-card-actions');actions.append(btn(app.kind==='pending'?'연결 준비':s.connected?'연결 관리':'연결하기',function(){return detail(app);},'apps-primary'));
-    var choice=el('label',undefined,'app-choice'),check=el('input');check.type='checkbox';check.checked=selected.has(app.id);check.setAttribute('aria-label',app.name+' 선택');check.onchange=async function(){check.disabled=true;try{await select(app,check.checked);}catch(e){check.checked=!check.checked;message.textContent=e.message;}finally{check.disabled=false;}};choice.append(check,el('span','선택'));actions.append(choice);card.append(actions);grid.append(card);
+    var choice=el('label',undefined,'app-choice'),check=el('input');check.type='checkbox';check.checked=selected.has(app.id);check.disabled=!selectionReady;check.setAttribute('aria-label',app.name+' 선택');check.onchange=async function(){check.disabled=true;try{await select(app,check.checked);}catch(e){check.checked=!check.checked;message.textContent=e.message;}finally{check.disabled=false;}};choice.append(check,el('span','선택'));actions.append(choice);card.append(actions);grid.append(card);
    });if(!visible.length)grid.append(el('p',filter==='connected'?'아직 확인된 연결이 없습니다. 연결하기를 눌러 계정을 연결하세요.':'조건에 맞는 앱이 없습니다.','apps-empty'));
   }
   async function connectGoogle(app){var uid=owner;owned(uid);var result=await options.request('/google/calendar/connect?'+new URLSearchParams({services:app.service,origin:location.origin,returnPath:location.pathname}),{method:'GET'});owned(uid);var url=new URL(result.authorizationUrl);if(url.protocol!=='https:'||url.hostname!=='accounts.google.com')throw Error('Google 연결 주소를 확인하지 못했습니다.');location.assign(url.href);}
@@ -30,7 +30,7 @@
    if(app.kind==='pending'){
     dialog.append(el('strong','개발자 앱 등록이 먼저 필요합니다.'),el('p','현재는 연결 준비 단계입니다. 선택 목록에 저장해도 계정에 접근하거나 AI가 자료를 읽지는 않습니다.'));
     var steps=el('ol');[app.requirements,'모이다 서버에 서비스 인증과 자료 조회 기능을 연결합니다.','그 후 이 화면에서 계정 승인 절차를 진행합니다.'].forEach(function(text){steps.append(el('li',text));});dialog.append(steps);
-    dialog.append(btn(selected.has(app.id)?'선택 목록에서 제외':'이 앱 선택하기',async function(){await select(app,!selected.has(app.id));dialog.close();},'apps-primary'));
+    var selectButton=btn(selected.has(app.id)?'선택 목록에서 제외':'이 앱 선택하기',async function(){await select(app,!selected.has(app.id));dialog.close();},'apps-primary');selectButton.disabled=!selectionReady;dialog.append(selectButton);if(!selectionReady)dialog.append(el('p','선택 목록 저장 서버를 확인하지 못했습니다. 상태 새로고침 후 다시 시도해 주세요.'));
    }else if(app.kind==='google'){
     dialog.append(el('p',s.error?'연결 상태를 다시 확인해 주세요.':s.connected?'현재 계정에 연결되어 있습니다.':'Google 승인 화면에서 접근 권한을 확인해 주세요.'));
     if(s.email)dialog.append(el('p',s.email,'app-account'));
@@ -44,15 +44,15 @@
   }
   async function refresh(){var uid=options.owner(),run=++sequence;try{owned(uid);if(owner!==uid){apps=[];selected.clear();statuses={};grid.replaceChildren();}owner=uid;message.textContent='앱과 연결 상태를 확인하고 있습니다.';
     var results=await Promise.allSettled([options.request('/office-tools/apps',{method:'GET'}),options.request('/office-tools/status',{method:'GET'}),options.request('/flow/calendar/status',{method:'GET'}),options.request('/messaging/solapi/status',{method:'GET'})]);owned(uid);if(run!==sequence)return;
-    if(results[0].status!=='fulfilled')throw results[0].reason;apps=results[0].value.apps;selected=new Set(results[0].value.selected);statuses={};
+    selectionReady=results[0].status==='fulfilled';if(selectionReady){apps=results[0].value.apps;selected=new Set(results[0].value.selected);}else{var catalog=await import('./secretary-app-catalog.js');owned(uid);if(run!==sequence)return;apps=catalog.APP_CATALOG;}statuses={};
     var google=results[1];apps.filter(function(a){return a.kind==='google';}).forEach(function(a){statuses[a.id]=google.status==='fulfilled'?{connected:!!google.value[a.statusKey],email:google.value.google_email}:{error:true};});
     ['flow','solapi'].forEach(function(id,i){var r=results[i+2];statuses[id]=r.status==='fulfilled'?{connected:!!r.value.connected}:{error:true};});
-    renderCategories();renderCards();message.textContent=Object.values(statuses).filter(function(s){return s.connected;}).length+'개 연결됨 · '+selected.size+'개 선택됨'+(results.some(function(r){return r.status==='rejected';})?' · 일부 연결 상태 확인 필요':'');
+    renderCategories();renderCards();message.textContent=(selectionReady?'':'선택 목록 저장 서버 확인 필요 · ')+Object.values(statuses).filter(function(s){return s.connected;}).length+'개 연결됨 · '+selected.size+'개 선택됨'+(results.some(function(r){return r.status==='rejected';})?' · 일부 연결 상태 확인 필요':'');
    }catch(e){message.textContent=e.message||'앱 정보를 불러오지 못했습니다.';}
   }
   root.openAppConnections=refresh;
   // Clear all account-specific state immediately when authentication changes.
-  if(options.subscribe)options.subscribe(function(){var uid=options.owner();if(uid!==owner){sequence++;owner=uid||'';apps=[];selected.clear();statuses={};grid.replaceChildren();categories.replaceChildren();if(dialog.open)dialog.close();message.textContent='앱 연결 화면을 다시 열어 주세요.';}if(location.hash==='#connections'&&uid)refresh();});
+  if(options.subscribe)options.subscribe(function(){var uid=options.owner();if(uid!==owner){sequence++;selectionReady=false;owner=uid||'';apps=[];selected.clear();statuses={};grid.replaceChildren();categories.replaceChildren();if(dialog.open)dialog.close();message.textContent='앱 연결 화면을 다시 열어 주세요.';}if(location.hash==='#connections'&&uid)refresh();});
   if(location.hash==='#connections')refresh();
  };
 })(window);
