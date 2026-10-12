@@ -1,8 +1,12 @@
 (function(root){
   'use strict';
   function createSecretaryClient(options){
-    var busy=false, disposed=false;
-    function activity(detail){if(typeof window!=='undefined')window.dispatchEvent(new CustomEvent('moida:activity',{detail:detail}));}
+    var running=new Map(), disposed=false;
+    function isActive(thread){return !options.thread||options.thread()===thread;}
+    function activity(detail){if(isActive(detail.thread)&&typeof window!=='undefined')window.dispatchEvent(new CustomEvent('moida:activity',{detail:detail}));}
+    function activeKey(thread){return options.owner()+'|'+thread;}
+    function isBusy(thread){return thread===undefined?Array.from(running.values()).some(function(r){return r.owner===options.owner();}):running.has(activeKey(thread));}
+    function refreshView(){selector.disabled=options.thread?isBusy(options.thread()):isBusy();if(!selector.disabled)selector.value=selectedModel();options.busy(selector.disabled);}
     var selector=typeof document!=='undefined'?document.createElement('select'):{style:{},setAttribute:function(){},addEventListener:function(){}};selector.id='secretaryModelSelect';selector.setAttribute('aria-label','비서실장 모델');selector.title='Sol·Astra는 Luna보다 사용 비용이 높습니다.';selector.style.cssText='width:126px;max-width:126px;flex-shrink:0;border:1px solid #d9e1ed;border-radius:8px;padding:6px;background:#fff;font:inherit;font-size:12px;color:#34557e';
     if(typeof document!=='undefined')[['gpt-6-luna','GPT 6 Luna'],['gpt-6.1-sol','GPT 6.1 Sol'],['gpt-6-astra','GPT 6 Astra']].forEach(function(item){var option=document.createElement('option');option.value=item[0];option.textContent=item[1];selector.append(option);});
     function modelKey(){return 'moida_secretary_model_'+options.owner();}
@@ -32,7 +36,7 @@
         }
         if(state.status==='submission_uncertain')throw Error('메시지 접수 결과를 확인해야 합니다. 같은 메시지를 다시 접수하지 않습니다. 대화 기록에서 이 대화를 열어 상태를 확인해 주세요.');
         if(state.partial_text&&options.preview)options.preview(thread,state.partial_text);
-        options.status(labels[state.status]||'에이전트 실행 상태를 확인합니다.');
+        if(isActive(thread))options.status(labels[state.status]||'에이전트 실행 상태를 확인합니다.');
         for(var action of state.actions||[]){
           var cached=saved.results[action.call_id];
           if(!cached&&action.result!==undefined){cached={result:action.result};saved.results[action.call_id]=cached;write(thread,saved);}
@@ -63,25 +67,29 @@
       }
       throw Error('처리가 길어지고 있습니다. 이 대화를 다시 열면 같은 요청의 상태를 이어 확인합니다.');
     }
-    async function run(thread,input,context){
-      if(busy)throw Error('이전 요청을 처리하고 있습니다.');
-      selector.value=selectedModel();selector.disabled=true;busy=true;options.busy(true);
+    function run(thread,input,context){
+      var runKey=activeKey(thread),existingRun=running.get(runKey);if(existingRun)return existingRun.promise;
+      var runOwner=options.owner(),entry={owner:runOwner,promise:null};running.set(runKey,entry);
+      selector.value=selectedModel();var model=selector.value;refreshView();
       activity({thread:thread,type:'start',input:input});
+      entry.promise=(async function(){
       try{
         var saved=read(thread),state;
         if(!saved){
           var existing=await poll(thread);
+          sameOwner({owner:runOwner});
           if(existing.request_id&&!['ready','completed','failed','cancelled'].includes(existing.status)){
             saved={request_id:existing.request_id,owner:options.owner(),results:{}};write(thread,saved);state=existing;
           }else{
-            saved={request_id:crypto.randomUUID(),owner:options.owner(),results:{},input:input,context:context,model:selector.value};write(thread,saved);
+            saved={request_id:crypto.randomUUID(),owner:runOwner,results:{},input:input,context:context,model:model};write(thread,saved);
             state=await post('/secretary/message',{thread_id:thread,request_id:saved.request_id,input:input,context:context,model:saved.model});
           }
         }
         return await drive(thread,saved,state);
-      }catch(error){activity({thread:thread,type:'state',status:'failed',error:error.message});throw error;}finally{busy=false;selector.disabled=false;options.busy(false);}
+      }catch(error){activity({thread:thread,type:'state',status:'failed',error:error.message});throw error;}finally{running.delete(runKey);refreshView();}
+      })();return entry.promise;
     }
-    return {run:run,isBusy:function(){return busy;},hasPending:function(thread){return !!read(thread);},dispose:function(){disposed=true;}};
+    return {run:run,isBusy:isBusy,refreshView:refreshView,hasPending:function(thread){return !!read(thread);},dispose:function(){disposed=true;}};
   }
   root.createSecretaryClient=createSecretaryClient;
 })(typeof window==='undefined'?globalThis:window);
