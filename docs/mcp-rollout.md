@@ -1,6 +1,6 @@
 # 모이다 도구 연결 확대 — 2026-10-13
 
-사용자가 지정한 1차 목록을 우선 처리하고 나머지 전체 목록을 후속 범위로 유지한다. 설정 UI와 코드가 있다는 사실, 계정 인증 완료, 실제 도구 실행 성공을 구분한다. 현재 사용자 계정의 로그인·외부 권한 승인·유료 도구 실행은 검증하지 않았다.
+사용자가 지정한 1차 목록을 우선 처리하고 나머지 전체 목록을 후속 범위로 유지한다. 설정 UI와 코드가 있다는 사실, 계정 인증 완료, 실제 도구 실행 성공을 구분한다. OpenAI Developers 공개 문서 MCP는 운영 화면에서 기존 OpenAI API 경유 연결에 성공했다. Google Calendar는 기존 연결을 유지한다. 나머지 사용자 계정의 로그인·외부 권한 승인·유료 도구 실행은 검증하지 않았다.
 
 | 서비스 | 구현 경로 | 실제 계정 연결에 남은 조건 |
 |---|---|---|
@@ -19,6 +19,8 @@
 | ChatGPT Ads Manager | 공식 Advertiser API에 대한 모이다 어댑터 | 광고 전용 API 키. 계정·캠페인 조회, 중지 상태 캠페인 생성. ChatGPT 전용 플러그인 전체 기능·광고 활성화는 미구현 |
 
 1차 외의 Notion·Higgsfield 기존 연결을 유지하고, Asana·Miro·monday.com 공식 MCP 연결도 추가했다. Asana는 MCP 앱 등록이 필요하고 monday.com은 계정 관리자 동적 연결 승인이 필요하다.
+
+추가 확대: Stripe·Neon·Hugging Face OAuth와 Context7 API 키 연결을 추가했다. Stripe·Neon·Hugging Face는 운영 콜백 주소의 동적 등록에 성공했다. Vercel은 운영 콜백의 동적 등록을 거절하여 연결 준비 상태를 유지한다. 제공사 콜백 승인 전에는 연결 기능을 활성화하지 않는다. 추가 서비스의 개인 계정 승인은 아직 수행하지 않았다.
 
 ## 검증
 
@@ -54,3 +56,9 @@
 - [Asana](https://developers.asana.com/docs/integrating-with-asanas-mcp-server)
 - [Miro](https://developers.miro.com/docs/connecting-to-miro-mcp)
 - [monday.com](https://developer.monday.com/api-reference/docs/integrate-with-monday-mcp)
+
+- [Stripe](https://docs.stripe.com/mcp)
+- [Neon](https://neon.com/docs/ai/neon-mcp-server)
+- [Hugging Face](https://huggingface.co/docs/hub/agents-mcp)
+- [Vercel](https://vercel.com/docs/agent-resources/vercel-mcp)
+- [Context7](https://context7.com/docs/resources/troubleshooting)

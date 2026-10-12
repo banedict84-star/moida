@@ -37,7 +37,7 @@
     if(mcp.instructions)dialog.append(el('p',mcp.instructions));
     if(mcp.portal){var link=el('a','공식 설정 안내 열기');link.href=mcp.portal;link.target='_blank';link.rel='noopener noreferrer';dialog.append(link);}
     if((mcp.auth==='client'&&s.setup_required)||mcp.auth==='token'||mcp.auth==='booking'||mcp.auth==='ads'){
-     var fields={};var labels=mcp.auth==='client'?{client_id:'Client ID',client_secret:'Client Secret'}:mcp.auth==='booking'?{affiliate_id:'Affiliate ID',access_token:'Demand API key'}:{access_token:mcp.auth==='ads'?'광고 전용 API 키':'개인 액세스 토큰'};
+     var fields={};var labels=mcp.auth==='client'?{client_id:'Client ID',client_secret:'Client Secret'}:mcp.auth==='booking'?{affiliate_id:'Affiliate ID',access_token:'Demand API key'}:{access_token:mcp.auth==='ads'?'광고 전용 API 키':(mcp.tokenLabel||'개인 액세스 토큰')};
      if(mcp.auth==='client')dialog.append(el('p','콜백 주소: https://moida-gpt.banedict84.workers.dev/mcp/'+app.id+'/callback'));
      Object.keys(labels).forEach(function(key){var field=el('input');field.type=['client_secret','access_token'].includes(key)?'password':'text';field.placeholder=labels[key];field.setAttribute('aria-label',app.name+' '+labels[key]);field.autocomplete='off';dialog.append(field);fields[key]=field;});
      dialog.append(btn(mcp.auth==='client'?'앱 인증 정보 저장':'인증 확인 · 연결',async function(){var uid=owner;owned(uid);var body={};Object.keys(fields).forEach(function(key){body[key]=fields[key].value;});await options.request('/mcp/'+app.id+'/configure',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});owned(uid);Object.values(fields).forEach(function(field){field.value='';});dialog.close();await refresh();},'apps-primary'));

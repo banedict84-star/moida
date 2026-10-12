@@ -1,5 +1,9 @@
 // Only official, verified endpoints are allowed; credentials never travel to arbitrary URLs.
 export const MCP_PROVIDERS = {
+ stripe:{name:'Stripe',server:'https://mcp.stripe.com/',issuer:'https://access.stripe.com/mcp',authorize:'/mcp/oauth2/authorize',token:'/mcp/oauth2/token',register:'/mcp/oauth2/register',scope:'mcp',portal:'https://docs.stripe.com/mcp',instructions:'Stripe 계정 승인 후 연결됩니다. 외부 실행은 요청 내용을 확인하고 승인해야 실행됩니다.'},
+ neon:{name:'Neon',server:'https://mcp.neon.tech/mcp',issuer:'https://mcp.neon.tech',authorize:'/api/authorize',token:'/api/token',register:'/api/register',scope:'read write',portal:'https://neon.com/docs/ai/neon-mcp-server',instructions:'Neon 승인 화면에서 사용할 조직과 프로젝트 접근 권한을 확인하세요.'},
+ huggingface:{name:'Hugging Face',server:'https://huggingface.co/mcp',issuer:'https://huggingface.co',authorize:'/oauth/authorize',token:'/oauth/token',register:'/oauth/register',registrationAuth:'client_secret_post',scope:'openid profile read-mcp read-repos inference-api',portal:'https://huggingface.co/docs/hub/agents-mcp',instructions:'Hugging Face 계정과 MCP·저장소 읽기·모델 추론 권한을 승인하세요. 모델 추론은 서비스 비용이 발생할 수 있습니다.'},
+ context7:{name:'Context7',server:'https://mcp.context7.com/mcp',auth:'token',tokenLabel:'Context7 API 키',portal:'https://context7.com/dashboard',instructions:'Context7 대시보드에서 발급한 API 키를 넣으세요. 공식 라이브러리 문서 검색·읽기 도구를 연결합니다.'},
  asana:{name:'Asana',server:'https://mcp.asana.com/v2/mcp',resource:'https://mcp.asana.com/v2',issuer:'https://app.asana.com',authorize:'/-/oauth_authorize',token:'/-/oauth_token',scope:'',auth:'client',portal:'https://developers.asana.com/docs/integrating-with-asanas-mcp-server',instructions:'Asana 개발자 콘솔에서 MCP 앱을 만들고 콜백 주소와 사용할 워크스페이스를 등록하세요.'},
  miro:{name:'Miro',server:'https://mcp.miro.com/',issuer:'https://mcp.miro.com/',authorize:'/authorize',token:'/token',register:'/register',registrationAuth:'client_secret_post',scope:'boards:read boards:write',instructions:'Miro 승인 화면에서 작업할 보드가 있는 팀을 선택하세요.'},
  monday:{name:'monday.com',server:'https://mcp.monday.com/mcp',issuer:'https://auth.monday.com/mcp',authorize:'/oauth2/authorize',token:'/oauth_ms/oauth/token',register:'/oauth_ms/oauth/register',registrationAuth:'client_secret_post',scope:'',instructions:'monday.com 계정 관리자가 모이다 동적 연결과 콜백 주소를 승인해야 합니다.'},
@@ -16,4 +20,4 @@ export const MCP_PROVIDERS = {
  openai_developers:{name:'OpenAI Developers',server:'https://developers.openai.com/mcp',auth:'public',portal:'https://developers.openai.com/learn/docs-mcp',instructions:'공식 개발 문서 검색·읽기 전용입니다. API 키·잔액 관리나 모델 호출 기능은 포함하지 않습니다.'}
 };
 export const MCP_IDS=Object.keys(MCP_PROVIDERS);
-export function publicMcpConfig(id){const c=MCP_PROVIDERS[id];return c?{auth:c.auth||'oauth',authorizationOrigin:c.issuer?new URL(c.authorizeUrl||new URL(c.authorize,c.issuer).href).origin:null,portal:c.portal||'',instructions:c.instructions||'',server:c.server}:null;}
+export function publicMcpConfig(id){const c=MCP_PROVIDERS[id];return c?{auth:c.auth||'oauth',authorizationOrigin:c.issuer?new URL(c.authorizeUrl||new URL(c.authorize,c.issuer).href).origin:null,tokenLabel:c.tokenLabel||'',portal:c.portal||'',instructions:c.instructions||'',server:c.server}:null;}
