@@ -864,7 +864,7 @@ body.secretary-view #aiPanel{border:0!important;border-radius:0!important;box-sh
 <script src="office-travel-client.js?v=4"></script>
 <script src="office-location-page.js?v=history-v1"></script>
 <script src="secretary-toolkit-client.js?v=apps-v1"></script>
-<script src="secretary-app-connections.js?v=mcp10"></script>
+<script src="secretary-app-connections.js?v=mcp11"></script>
 <script src="secretary-voice-client.js?v=4"></script>
 <script src="secretary-client.js?v=activity2-workspace-sources1-models-v8"></script>
 <script>
@@ -1076,6 +1076,7 @@ onAuthStateChanged(_auth, async function(user){
   var sess = { uid:user.uid, email:user.email, displayName:user.displayName||'', effectiveUid:prev.effectiveUid, ownerInfo:prev.ownerInfo };
   if(prev.uid && prev.uid!==user.uid){ sessionStorage.setItem('moida_auth_user', JSON.stringify({uid:user.uid,email:user.email,displayName:user.displayName||''})); location.reload(); return; }
   sessionStorage.setItem('moida_auth_user', JSON.stringify(sess));
+  window.dispatchEvent(new Event('moida:auth-ready'));
   try{ await setDoc(doc(_db,'moida_auth_users',user.uid),{uid:user.uid,email:user.email||'',displayName:user.displayName||'',lastLogin:Date.now(),provider:(user.providerData&&user.providerData[0]?user.providerData[0].providerId:'')},{merge:true}); }catch(e){}
 
   var uid = user.uid;
@@ -4375,7 +4376,7 @@ var input=document.getElementById('aiInput');if(input)input.placeholder='비서�
 </script>
 <script src="solapi-messaging-client.js?v=4"></script>
 <script type="module" src="birthday-messaging-client.js?v=3"></script>
-<script src="workspace-connections.js?v=1"></script><script src="workspace-automations.js?v=1"></script><script src="moida-workspace-redesign.js?v=automations4"></script><script src="moida-knowledge.js?v=trash1"></script><script src="dashboard-cards.js?v=workspace-redesign3"></script><script src="office-staff-catalog.js?v=20261012-300"></script><script src="moida-core-team.js?v=1"></script><script src="office-workspace.js?v=core-team-v3"></script>
+<script src="workspace-connections.js?v=mcp2"></script><script src="workspace-automations.js?v=1"></script><script src="moida-workspace-redesign.js?v=automations4"></script><script src="moida-knowledge.js?v=trash1"></script><script src="dashboard-cards.js?v=workspace-redesign3"></script><script src="office-staff-catalog.js?v=20261012-300"></script><script src="moida-core-team.js?v=1"></script><script src="office-workspace.js?v=core-team-v3"></script>
 <script src="moa-chat.js?v=history-left1"></script><script src="moa-activity.js?v=2"></script></body>
 
 </html>

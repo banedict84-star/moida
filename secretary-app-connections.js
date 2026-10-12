@@ -7,7 +7,7 @@
   host.dataset.connectionsReady='true';
   function el(tag,text,cls){var n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;}
   function owned(uid){if(!uid||options.owner()!==uid)throw Error('로그인 계정이 변경되었습니다. 다시 열어 주세요.');}
-  function btn(text,action,cls){var n=el('button',text,cls);n.type='button';n.onclick=async function(){n.disabled=true;try{await action();}catch(e){message.textContent=e.message||'연결 상태를 확인하지 못했습니다.';}finally{n.disabled=false;}};return n;}
+  function btn(text,action,cls){var n=el('button',text,cls);n.type='button';n.onclick=async function(){n.disabled=true;try{await action();}catch(e){message.textContent=e.message||'연결 상태를 확인하지 못했습니다.';if(dialog&&dialog.open){var error=dialog.querySelector('[role=alert]');if(!error){error=el('p');error.setAttribute('role','alert');dialog.append(error);}error.textContent=message.textContent;}}finally{n.disabled=false;}};return n;}
   var head=el('div',undefined,'apps-heading'),copy=el('div');copy.append(el('span','MOIDA AI','apps-eyebrow'),el('h1','쓰는 앱을, 모이다에.'),el('p','필요한 앱을 고르고 연결하세요. 연결 준비도 이곳에서 관리합니다.'));
   head.append(copy,btn('상태 새로고침',refresh,'apps-secondary'));host.append(head);
   var toolbar=el('div',undefined,'apps-toolbar'),search=el('input');search.type='search';search.autocomplete='off';search.name='moida-app-catalog-search';search.readOnly=true;search.onfocus=function(){search.readOnly=false;};search.onblur=function(){search.readOnly=true;};search.placeholder='앱 이름 검색';search.setAttribute('aria-label','연결할 앱 검색');search.oninput=function(){if(search.readOnly){search.value=query;return;}query=search.value.toLowerCase().trim();renderCards();};

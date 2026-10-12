@@ -9,8 +9,9 @@
    const token=await user.getIdToken();
    const response=await fetch('https://moida-gpt.banedict84.workers.dev'+path,{...options,headers:{...options.headers,Authorization:'Bearer '+token}});
    const result=await response.json();
-   if(!response.ok)throw Error(result.error||result.message||'연결 상태를 확인하지 못했습니다. 다시 시도해 주세요.');
+   if(!response.ok)throw Error(result.error?.message||(typeof result.error==='string'?result.error:null)||result.message||'연결 상태를 확인하지 못했습니다. 다시 시도해 주세요.');
    return result;
   }
  });
+ window.addEventListener('moida:auth-ready',()=>{if(location.hash==='#connections')window.openAppConnections();});
 })();
