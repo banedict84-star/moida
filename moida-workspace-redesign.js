@@ -2,13 +2,14 @@
 (()=>{
 const $=id=>document.getElementById(id), node=(tag,text,cls)=>{const e=document.createElement(tag);if(text!==undefined)e.textContent=text;if(cls)e.className=cls;return e;},go=route=>window.__go(route);
 const section=document.querySelector('.sb-agent-section');if(!section)return;
-const names={dashboard:'홈',secretary:'모아 · AI 비서',agents:'우리 팀',inbox:'받은함',automations:'자동화',knowledge:'자료·기억',connections:'도구 연결',chats:'대화 기록'};
+const names={dashboard:'홈',secretary:'모아 · AI 비서',agents:'우리 팀',inbox:'받은함',automations:'자동화',knowledge:'자료·기억',connections:'도구 연결'};
 const icons={inbox:'M3 4h18v16H3z M3 13h5l2 3h4l2-3h5',automations:'M13 2 4 14h7l-1 8 10-12h-7z',chats:'M3 3h18v14H8l-5 4z'};
 for(const route of Object.keys(names)){
 let item=document.querySelector('#sideBar .nav-item[data-page="'+route+'"]');
 if(!item){item=node('button',undefined,'nav-item');item.type='button';item.dataset.page=route;item.innerHTML='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="'+icons[route]+'"/></svg><span></span>';item.onclick=()=>go(route);}
 const text=item.querySelector('span:last-child');text.textContent=names[route];item.title=names[route];item.dataset.label=names[route];section.append(item);
 }
+document.querySelectorAll('#sideBar .nav-item[data-page="chats"]').forEach(e=>e.remove());
 section.querySelector('.sb-label').textContent='나의 작업 공간';
 // Earlier revisions included a second app connection entry. Keep one primary entry.
 document.querySelectorAll('#sideBar .nav-item[data-page="connections"]').forEach((e,i)=>{if(i)e.hidden=true;});
