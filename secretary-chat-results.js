@@ -4,7 +4,7 @@
   var jobs=new Map(),saved=new Set(),urls=new Set();
   function validId(id){return typeof id==='string'&&/^[a-zA-Z0-9_-]{1,180}$/.test(id);}
   function marker(value){return '[[MOIDA_RESULT:'+encodeURIComponent(JSON.stringify(value))+']]';}
-  function parse(text){var m=/^\[\[MOIDA_RESULT:([^\n]+)\]\]$/.exec(text||'');if(!m)return null;try{var d=JSON.parse(decodeURIComponent(m[1]));return d&&['job','file'].includes(d.type)&&validId(d.type==='job'?d.job_id:d.file_id)?d:null;}catch(e){return null;}}
+  function parse(text){var m=/^\[\[MOIDA_RESULT:([^\n]+)\]\]$/.exec(text||'');if(!m||m[1].length>250000)return null;try{var d=JSON.parse(decodeURIComponent(m[1]));return d&&['job','file'].includes(d.type)&&validId(d.type==='job'?d.job_id:d.file_id)&&(!d.files||(Array.isArray(d.files)&&d.files.length<=12))?d:null;}catch(e){return null;}}
   function el(tag,text){var n=document.createElement(tag);if(text!==undefined)n.textContent=text;return n;}
   function active(owner,thread){return o.owner()===owner&&o.thread()===thread;}
   function remember(value,owner,thread){if(o.owner()!==owner)return;var key=owner+'|'+thread+'|'+value.type+'|'+(value.job_id||value.file_id)+'|'+(value.status||'');if(saved.has(key)||(o.has&&o.has(value,thread)))return;saved.add(key);o.record(marker(value),thread);}
