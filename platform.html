@@ -297,7 +297,7 @@ body.secretary-view #aiPanel{border:0!important;border-radius:0!important;box-sh
 <link rel="stylesheet" href="solapi-messaging.css?v=6">
 <link rel="stylesheet" href="moida-knowledge.css?v=1"><link rel="stylesheet" href="dashboard-mobile.css?v=2"><link rel="stylesheet" href="dashboard-cards.css?v=workspace-redesign1"><link rel="stylesheet" href="secretary-composer-mobile.css?v=20261012-input1"><link rel="stylesheet" href="office-workspace.css?v=core-team-v3">
 <link rel="stylesheet" href="moida-workspace-redesign.css?v=3">
-<link rel="stylesheet" href="moa-chat.css?v=no-staff1"><link rel="stylesheet" href="workspace-automations.css?v=automation-list2"><link rel="stylesheet" href="admin-ai-usage.css?v=1">
+<link rel="stylesheet" href="moa-chat.css?v=results1"><link rel="stylesheet" href="workspace-automations.css?v=automation-list2"><link rel="stylesheet" href="admin-ai-usage.css?v=1">
 </head>
 <body class="app-loading">
 <div style="display:flex;height:100vh;width:100%;font-family:'Pretendard',sans-serif;color:#1a2330;background:#f5f6f8;overflow:hidden">
@@ -849,6 +849,7 @@ body.secretary-view #aiPanel{border:0!important;border-radius:0!important;box-sh
 <script src="secretary-toolkit-client.js?v=apps-v1"></script>
 <script src="secretary-app-connections.js?v=centered-dialog1"></script>
 <script src="secretary-voice-client.js?v=4"></script>
+<script src="secretary-chat-results.js?v=results1"></script>
 <script src="secretary-client.js?v=parallel-chats1"></script>
 <script>
 /* ── 의원실 플랫폼 SPA 런타임 (디자인 핸드오프 재구현) ──────────────── */
@@ -2280,7 +2281,9 @@ onAuthStateChanged(_auth, async function(user){
     
     var t=chatThreads.find(function(x){return x.id===id;}); if(!t||!msgs) return;
     currentThreadId=id; msgs.innerHTML=seed; history=[{role:'system',content:sysPrompt()}];
+    window.dispatchEvent(new CustomEvent('moida:activity',{detail:{type:'view',thread:id}}));
     t.messages.forEach(function(m){
+      if(m.role==='assistant'&&chatResults&&chatResults.restore(m.content,id))return;
       if(m.role==='user'){addUser(m.content,null,true);history.push({role:'user',content:m.content});}
       else{addAI(mdToHtml(m.content),m.content,true);history.push({role:'assistant',content:m.content});}
     });
@@ -2301,7 +2304,7 @@ onAuthStateChanged(_auth, async function(user){
     var owner=chatOwner();
     if(chatLocalOwner!==owner){
       clearTimeout(chatSaveTimer);clearTimeout(chatRetryTimer);
-      chatLoadGeneration++;chatLoaded=false;chatLoading=false;chatDirty=false;chatArchive=null;chatSaving=false;chatSaveAgain=false;currentThreadId='';history=[];
+      if(chatResults)chatResults.clear();chatLoadGeneration++;chatLoaded=false;chatLoading=false;chatDirty=false;chatArchive=null;chatSaving=false;chatSaveAgain=false;currentThreadId='';history=[];
       if(msgs)msgs.innerHTML=seed;
       loadLocalChats();
     }
@@ -3573,24 +3576,15 @@ onAuthStateChanged(_auth, async function(user){
     catch(e){button.textContent=label;var error=button.nextElementSibling;if(!error||!error.classList.contains('office-download-error')){error=document.createElement('span');error.className='office-download-error';error.setAttribute('role','alert');button.after(error);}error.textContent=e.message||'다운로드 실패';error.style.color='#b42318';}
     finally{button.disabled=false;}
   });
-  var generatedFileCards={};
-  function showGeneratedFile(file,sourceThread){
-    var user=M.auth&&M.auth.currentUser;if(!user||!msgs||!file.file_id||(sourceThread&&sourceThread!==currentThreadId))return;
-    var owner=user.uid,thread=currentThreadId,key=owner+'_'+thread+'_'+file.file_id;
-    if(generatedFileCards[key])return;generatedFileCards[key]=true;
-    var card=document.createElement('div');card.className='generated-file-card';card.setAttribute('data-generated-file',file.file_id);
-    var details=document.createElement('div'),title=document.createElement('strong'),info=document.createElement('span');
-    title.textContent=file.title;info.textContent=String(file.format||'docx').toUpperCase()+' · 생성 완료';details.append(title,info);
-    var download=document.createElement('button');download.type='button';download.textContent='파일 다운로드';
-    download.addEventListener('click',async function(){
-      if(!M.auth.currentUser||M.auth.currentUser.uid!==owner){info.textContent='파일을 만든 계정으로 로그인해 주세요.';return;}
-      download.disabled=true;info.textContent='다운로드 준비 중…';
-      try{await officeToolkit.download({id:file.file_id,title:file.title,format:file.format});info.textContent='다운로드를 시작했습니다.';}
-      catch(e){info.textContent=e.message||'다운로드 실패';}finally{download.disabled=false;}
-    });card.append(details,download);msgs.append(card);scroll();
-  }
-  var backgroundJobCards={};
-  function showBackgroundJob(result,sourceThread){if(!result||!result.job_id||sourceThread!==currentThreadId)return;var user=M.auth&&M.auth.currentUser;if(!user)return;var owner=user.uid,key=owner+'_'+result.job_id;if(backgroundJobCards[key])return;backgroundJobCards[key]=true;var card=document.createElement('div');card.className='generated-file-card';var details=document.createElement('div'),title=document.createElement('strong'),status=document.createElement('span');title.textContent=result.title||'작업 결과';details.append(title,status);var open=document.createElement('button');open.textContent='작업 현황';open.type='button';open.onclick=function(){window.__go('automations');};card.append(details,open);msgs.append(card);var attempts=0;async function update(value){if(!M.auth.currentUser||M.auth.currentUser.uid!==owner||currentThreadId!==sourceThread)return;status.textContent=value.status==='completed'?'완료':value.status==='failed'?'실행 실패':value.status==='submission_uncertain'?'접수 확인 필요':'처리 중 · 완료되면 받은함에 알려드려요';if(value.status==='completed'){(value.files||[]).forEach(function(file){showGeneratedFile(file,sourceThread);});return;}if(value.status==='failed'||value.status==='submission_uncertain'||++attempts>120)return;setTimeout(async function(){try{await update(await agentApi('/office-tools/builtin/jobs?id='+encodeURIComponent(result.job_id),{method:'GET'}));}catch(e){status.textContent='받은함에서 결과를 확인해 주세요.';}},5000);}update(result);scroll();}
+  var chatResults=window.createChatResults({
+    owner:function(){return M.auth&&M.auth.currentUser?M.auth.currentUser.uid:null;},thread:function(){return currentThreadId;},messages:function(){return msgs;},request:agentApi,scroll:scroll,
+    has:function(value,thread){var t=chatThreads.find(function(t){return t.id===thread;});return !!t&&t.messages.some(function(m){var d=chatResults.parse(m.content);return d&&d.type===value.type&&(d.job_id||d.file_id)===(value.job_id||value.file_id)&&d.status===value.status;});},
+    record:function(content,thread){var t=chatThreads.find(function(t){return t.id===thread;});if(t&&!t.messages.some(function(m){return m.content===content;}))recordChatMessage('assistant',content,thread);},
+    blob:async function(id){var user=M.auth&&M.auth.currentUser;if(!user)throw Error('로그인이 필요합니다.');var owner=user.uid,token=await user.getIdToken();var response=await fetch('https://moida-gpt.banedict84.workers.dev/office-tools/files/'+encodeURIComponent(id)+'/download',{headers:{Authorization:'Bearer '+token}});if(!response.ok)throw Error('미리보기를 불러오지 못했습니다.');var blob=await response.blob();if(!M.auth.currentUser||M.auth.currentUser.uid!==owner)throw Error('계정이 변경되었습니다.');return blob;},
+    download:function(file){return officeToolkit.download({id:file.file_id,title:file.title,format:file.format});}
+  });
+  function showGeneratedFile(file,sourceThread){chatResults.file(file,sourceThread||currentThreadId);}
+  function showBackgroundJob(result,sourceThread){chatResults.job(result,sourceThread);}
   var secretaryPreviews={};
   var secretaryClient=window.createSecretaryClient({
     owner:function(){return M.auth&&M.auth.currentUser?M.auth.currentUser.uid:'local';},
@@ -4374,7 +4368,7 @@ var input=document.getElementById('aiInput');if(input)input.placeholder='비서�
 <script src="solapi-messaging-client.js?v=4"></script>
 <script type="module" src="birthday-messaging-client.js?v=3"></script>
 <script src="workspace-connections.js?v=mcp2"></script><script src="workspace-automations.js?v=automation-list2"></script><script src="moida-workspace-redesign.js?v=workspace-labels1"></script><script src="moida-knowledge.js?v=builtin-tools1"></script><script src="dashboard-cards.js?v=workspace-redesign3"></script><script src="office-staff-catalog.js?v=20261012-300"></script><script src="moida-core-team.js?v=chief1"></script><script src="office-workspace.js?v=employee-remove2"></script>
-<script src="moa-chat.js?v=no-staff1"></script><script src="moa-activity.js?v=chief1"></script></body>
+<script src="moa-chat.js?v=no-staff1"></script><script src="moa-activity.js?v=results1"></script></body>
 
 </html>
 
