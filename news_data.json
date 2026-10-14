@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-14 13:56 UTC",
+  "updated": "2026-10-14 18:48 UTC",
   "items": [
     {
       "source": "google",
@@ -275,6 +275,14 @@
     },
     {
       "source": "google",
+      "press": "광교신문",
+      "date": "2026.10.14",
+      "title": "안산시 상록구, ‘혜안 갤러리’ 2027년 대관 신청 접수",
+      "snippet": "안산시 상록구, ‘혜안 갤러리’ 2027년 대관 신청 접수 광교신문",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5CajNhYW15bjlhZzdzNWdiWno2UEQ0Y3VXb1VPZlRndnk2cGU3b0lQcmUxT1RTVXFfQXY0NnVLMUZxVktWZzUwNW5tUHZabEtiYzJQb0ZXU1htYUdNTl8ycnprSDJTdDdt0gFsQVVfeXFMT2JVeXBqdjdHZFRPelpldU1LMXp1LTVaTXdlRjNaNEw4WXJfQ0Z3VGdVQ1JYcmJhbHVCOEkxRVhuYXBEQTh6dTJPU2czZHBEZ2FoUXY3TzFaaWxHUDhlSFF4OE43aWtFaFh1XzRC?oc=5"
+    },
+    {
+      "source": "google",
       "press": "안산뉴스",
       "date": "2026.10.14",
       "title": "상록구 ‘혜안 갤러리’ 내년 대관 접수",
@@ -283,11 +291,35 @@
     },
     {
       "source": "naver",
+      "press": "newscj.com",
+      "date": "2026.10.14",
+      "title": "[민선9기 100일] 이민근 안산시장, 대형 개발·민생정책 청사진… 실행...",
+      "snippet": "2035년까지 외국인을 포함한 인구 85만명을 목표로 주거·교육·교통·의료·일자리가 결합한 도시 경쟁력을 확보하겠다는 구상이다. 산업 분야에서는 약 50만평 규모의 안산사이언스밸리 경제자유구역을 로봇·인공지능...",
+      "url": "https://www.newscj.com/news/articleView.html?idxno=3440353"
+    },
+    {
+      "source": "naver",
+      "press": "newstown.co.kr",
+      "date": "2026.10.14",
+      "title": "한명훈 안산시의회 의장, 제3기 윤리심사자문위원 위촉",
+      "snippet": "위촉 위원은 김민 신안산대학교 평생교육원 원장, 박정수 법무법인 단원 대표변호사, 박재호 박재호·오지혜 법률사무소 대표변호사다. 문인호 신아일보 수도권취재 본부장, 황장하 공직신문 엔디엔뉴스 본부장, 민복숙...",
+      "url": "http://www.newstown.co.kr/news/articleView.html?idxno=718562"
+    },
+    {
+      "source": "naver",
       "press": "suwonilbo.kr",
       "date": "2026.10.14",
       "title": "[분석] 화성 '수' 수원 '미' 성남 '양'…경기 31개 시군 인구 성적표",
       "snippet": "수는 화성·파주·오산·평택·의왕·연천, 가는 포천·동두천·여주·안산·부천·군포다. 전체 표는 기사... 경기도의회에 보고된 교육청 자료는 동탄2-1중학군의 올해 중학생을 7,060명, 학급당 35.7명으로 추산했고...",
       "url": "https://www.suwonilbo.kr/view.html?id=L261014173032e0de"
+    },
+    {
+      "source": "naver",
+      "press": "cnbnews.com",
+      "date": "2026.10.14",
+      "title": "안산시, 한양대 에리카 영재교육원 입학설명회 성료…오는 16일부터 원...",
+      "snippet": "이민근 안산시장은 \"이번 경기도교육청의 공식 설치 승인을 통해 우리 소중한 안산의 학생들이 멀리 나가지 않고 정든 지역 내에서 최고 수준의 과학 영재 교육을 일상생활권 가까이서 직관적으로 받을 수 있는 탄탄한...",
+      "url": "https://www.cnbnews.com/news/articleView.html?idxno=1018976"
     },
     {
       "source": "naver",
@@ -301,25 +333,9 @@
       "source": "naver",
       "press": "cnbnews.com",
       "date": "2026.10.14",
-      "title": "안산시, 한양대 에리카 영재교육원 입학설명회 성료…오는 16일부터 원...",
-      "snippet": "이민근 안산시장은 \"이번 경기도교육청의 공식 설치 승인을 통해 우리 소중한 안산의 학생들이 멀리 나가지 않고 정든 지역 내에서 최고 수준의 과학 영재 교육을 일상생활권 가까이서 직관적으로 받을 수 있는 탄탄한...",
-      "url": "https://www.cnbnews.com/news/articleView.html?idxno=1018976"
-    },
-    {
-      "source": "naver",
-      "press": "cnbnews.com",
-      "date": "2026.10.14",
       "title": "안산시, 평생학습도시 20주년 '영그는 마당' 개막…이민근 시장 비전 특...",
       "snippet": "안산시가 교육부 지정 평생학습도시 선정 20주년과 시 승격 40주년의 위대한 결실을 자축하며, 온·오프라인 전산망을 연계해 시민들의 삶의 질을 한 체급 올릴 평생학습 대축제의 웅장한 막을 올렸다. 이번 축제는 단순...",
       "url": "https://www.cnbnews.com/news/articleView.html?idxno=1019137"
-    },
-    {
-      "source": "naver",
-      "press": "newsclaim.co.kr",
-      "date": "2026.10.14",
-      "title": "안산시의회 제3기 윤리심사자문위원회 출범",
-      "snippet": "이번에 위촉된 위원은 김민 신안산대학교 평생교육원장, 박정수 법무법인 단원 대표변호사, 박재호 박재호·오지혜 법률사무소 대표변호사, 문인호 신아일보 수도권취재본부장, 황장하 공직신문 엔디엔뉴스 본부장...",
-      "url": "https://www.newsclaim.co.kr/news/articleView.html?idxno=3078541"
     },
     {
       "source": "naver",
@@ -328,6 +344,14 @@
       "title": "이민근 안산시장 \"민선8기 씨앗, 민선9기 결실로\"…시민 체감형 성과에...",
       "snippet": "첨단산업 육성과 교통망 확충은 물론 주거·돌봄·교육·문화 등 시민 생활과 밀접한 정책을 연결해 안산의 미래 경쟁력과 삶의 질을 함께 높이겠다는 목표다. 안산시는 민선9기 출범 100일을 맞아 '이음의 시정'을 새로운...",
       "url": "https://www.tournews21.com/news/articleView.html?idxno=145738"
+    },
+    {
+      "source": "naver",
+      "press": "newsclaim.co.kr",
+      "date": "2026.10.14",
+      "title": "안산시의회 제3기 윤리심사자문위원회 출범",
+      "snippet": "이번에 위촉된 위원은 김민 신안산대학교 평생교육원장, 박정수 법무법인 단원 대표변호사, 박재호 박재호·오지혜 법률사무소 대표변호사, 문인호 신아일보 수도권취재본부장, 황장하 공직신문 엔디엔뉴스 본부장...",
+      "url": "https://www.newsclaim.co.kr/news/articleView.html?idxno=3078541"
     },
     {
       "source": "naver",
@@ -387,19 +411,19 @@
     },
     {
       "source": "naver",
-      "press": "newsinside.kr",
-      "date": "2026.10.14",
-      "title": "신한은행, 대림동에 외국인 전용 라운지 개설",
-      "snippet": "금융교육 프로그램도 운영할 예정이다. 특히 중국동포 등 외국인 주민이 밀집한 지역 특성을 고려해 일요일 오전 10시부터 오후 3시까지 운영한다. 신한은행은 현재 안산·김해·독산동에서 외국인 중심영업점을...",
-      "url": "https://www.newsinside.kr/news/articleView.html?idxno=5024307"
-    },
-    {
-      "source": "naver",
       "press": "k-health.com",
       "date": "2026.10.14",
       "title": "에이스병원, 척추·관절 넘어 진료영역 확대…지역의료서비스 강화",
       "snippet": "안산시체육회와 상록수보건소, 단원보건소 등 지역기관 및 단체와 협력해 건강증진과 질환예방을 위한 활동을 진행하고 있으며 치매 조기검진과 건강교육, 의료지원 등 지역주민의 건강과 직접 연결되는 다양한...",
       "url": "https://www.k-health.com/news/articleView.html?idxno=101686"
+    },
+    {
+      "source": "naver",
+      "press": "newsinside.kr",
+      "date": "2026.10.14",
+      "title": "신한은행, 대림동에 외국인 전용 라운지 개설",
+      "snippet": "금융교육 프로그램도 운영할 예정이다. 특히 중국동포 등 외국인 주민이 밀집한 지역 특성을 고려해 일요일 오전 10시부터 오후 3시까지 운영한다. 신한은행은 현재 안산·김해·독산동에서 외국인 중심영업점을...",
+      "url": "https://www.newsinside.kr/news/articleView.html?idxno=5024307"
     },
     {
       "source": "naver",
@@ -435,14 +459,6 @@
     },
     {
       "source": "naver",
-      "press": "thereport.co.kr",
-      "date": "2026.10.14",
-      "title": "안산시, 민선9기 8조원 공약 추진… 안산선 지하화·청년주거 속도 낸다",
-      "snippet": "첨단산업 육성, 안산선 지하화, 청년 주거 지원, 미래교육 확대 등을 내세웠지만, 임기 내 투자 규모가 8조 원을 넘는 만큼 재원 확보와 사업별 이행 관리가 성과를 가를 전망이다. 이민근 안산시장은 14일...",
-      "url": "https://www.thereport.co.kr/news/articleView.html?idxno=92260"
-    },
-    {
-      "source": "naver",
       "press": "dnews.co.kr",
       "date": "2026.10.14",
       "title": "이민근 안산시장, 민선9기 출범 100일 맞이 ‘이음의 시정’ 발표… 5대...",
@@ -451,11 +467,11 @@
     },
     {
       "source": "naver",
-      "press": "whitepaper.co.kr",
+      "press": "thereport.co.kr",
       "date": "2026.10.14",
-      "title": "신한은행, 첫 외국인 특화 라운지 대림동에 개소",
-      "snippet": "신한은행은 라운지 내 다목적 공간에서 외국인 고객의 한국 정착을 돕는 금융교육을 진행할 예정이다.... 신한은행은 안산·김해·독산동에서 외국인 중심 영업점을 운영 중이다. 상반기 안산에서는 금융상품 가입...",
-      "url": "http://www.whitepaper.co.kr/news/articleView.html?idxno=267782"
+      "title": "안산시, 민선9기 8조원 공약 추진… 안산선 지하화·청년주거 속도 낸다",
+      "snippet": "첨단산업 육성, 안산선 지하화, 청년 주거 지원, 미래교육 확대 등을 내세웠지만, 임기 내 투자 규모가 8조 원을 넘는 만큼 재원 확보와 사업별 이행 관리가 성과를 가를 전망이다. 이민근 안산시장은 14일...",
+      "url": "https://www.thereport.co.kr/news/articleView.html?idxno=92260"
     },
     {
       "source": "naver",
@@ -464,6 +480,14 @@
       "title": "[금융픽] 신한은행, 대림동에 외국인 고객 전용 라운지 개소 外",
       "snippet": "신한은행은 라운지 내 다목적 공간을 활용해 외국인 고객의 안정적인 한국 정착을 돕는 금융교육 등을... 안산·김해·독산동에 외국인 중심영업점을 운영하고 있으며, 올해 상반기에는 안산 외국인 중심영업점에...",
       "url": "http://www.newsian.co.kr/news/articleView.html?idxno=97036"
+    },
+    {
+      "source": "naver",
+      "press": "whitepaper.co.kr",
+      "date": "2026.10.14",
+      "title": "신한은행, 첫 외국인 특화 라운지 대림동에 개소",
+      "snippet": "신한은행은 라운지 내 다목적 공간에서 외국인 고객의 한국 정착을 돕는 금융교육을 진행할 예정이다.... 신한은행은 안산·김해·독산동에서 외국인 중심 영업점을 운영 중이다. 상반기 안산에서는 금융상품 가입...",
+      "url": "http://www.whitepaper.co.kr/news/articleView.html?idxno=267782"
     },
     {
       "source": "naver",
@@ -491,19 +515,19 @@
     },
     {
       "source": "naver",
-      "press": "newsroad.co.kr",
-      "date": "2026.10.14",
-      "title": "외국인 밀집 대림동에 '신한 SOL 글로벌 라운지' 첫 선…일요일에도 문...",
-      "snippet": "라운지 내에는 다목적 공간이 마련돼 외국인 고객의 안정적인 한국 정착을 돕는 금융교육 프로그램이... 현재 안산·김해·독산동에 외국인 중심 영업점을 운영 중이며, 올해 상반기에는 안산 외국인 중심영업점에...",
-      "url": "http://www.newsroad.co.kr/news/articleView.html?idxno=65784"
-    },
-    {
-      "source": "naver",
       "press": "wowtv.co.kr",
       "date": "2026.10.14",
       "title": "신한은행, 대림동에 첫 외국인 특화 '글로벌 라운지' 개소",
       "snippet": "신한은행은 라운지 내 다목적 공간을 활용해 외국인 고객의 안정적인 한국 정착을 돕는 금융교육 등을... 안산·김해·독산동에 외국인 중심 영업점을 운영하고 있으며, 올해 상반기에는 안산 외국인 중심 영업점에...",
       "url": "http://www.wowtv.co.kr/NewsCenter/News/Read?articleId=A202610140166&t=NN"
+    },
+    {
+      "source": "naver",
+      "press": "newsroad.co.kr",
+      "date": "2026.10.14",
+      "title": "외국인 밀집 대림동에 '신한 SOL 글로벌 라운지' 첫 선…일요일에도 문...",
+      "snippet": "라운지 내에는 다목적 공간이 마련돼 외국인 고객의 안정적인 한국 정착을 돕는 금융교육 프로그램이... 현재 안산·김해·독산동에 외국인 중심 영업점을 운영 중이며, 올해 상반기에는 안산 외국인 중심영업점에...",
+      "url": "http://www.newsroad.co.kr/news/articleView.html?idxno=65784"
     },
     {
       "source": "naver",
@@ -571,11 +595,11 @@
     },
     {
       "source": "naver",
-      "press": "4th.kr",
+      "press": "newsfreezone.co.kr",
       "date": "2026.10.14",
-      "title": "외국인 금융시장 커지자 일요영업 확대…신한은행, 대림동 거점 강화",
-      "snippet": "평일 은행 방문이 어려운 외국인 근로자들을 위해 일요영업을 늘리고 금융교육과 생활 정착 지원까지... 신한은행은 현재 안산·김해·독산동에서 외국인 중심영업점을 운영하며 외국인 고객과의 접점을 넓히고 있다....",
-      "url": "http://www.4th.kr/news/articleView.html?idxno=2119746"
+      "title": "이민근 안산시장, 미래 투자·시민 체감 성과에 방점",
+      "snippet": "교육 분야에서는 진로진학상담센터 운영과 청소년 활동 공간 확대, AI·로봇 등 미래기술 교육을 강화해 교육 기회를 넓힐 계획이다. 이민근 시장은 \"민선8기가 안산의 미래를 위한 기반을 마련한 시간이었다면 민선9기는...",
+      "url": "https://www.newsfreezone.co.kr/news/articleView.html?idxno=713904"
     },
     {
       "source": "naver",
@@ -587,11 +611,11 @@
     },
     {
       "source": "naver",
-      "press": "newsfreezone.co.kr",
+      "press": "4th.kr",
       "date": "2026.10.14",
-      "title": "이민근 안산시장, 미래 투자·시민 체감 성과에 방점",
-      "snippet": "교육 분야에서는 진로진학상담센터 운영과 청소년 활동 공간 확대, AI·로봇 등 미래기술 교육을 강화해 교육 기회를 넓힐 계획이다. 이민근 시장은 \"민선8기가 안산의 미래를 위한 기반을 마련한 시간이었다면 민선9기는...",
-      "url": "https://www.newsfreezone.co.kr/news/articleView.html?idxno=713904"
+      "title": "외국인 금융시장 커지자 일요영업 확대…신한은행, 대림동 거점 강화",
+      "snippet": "평일 은행 방문이 어려운 외국인 근로자들을 위해 일요영업을 늘리고 금융교육과 생활 정착 지원까지... 신한은행은 현재 안산·김해·독산동에서 외국인 중심영업점을 운영하며 외국인 고객과의 접점을 넓히고 있다....",
+      "url": "http://www.4th.kr/news/articleView.html?idxno=2119746"
     },
     {
       "source": "naver",
@@ -650,20 +674,12 @@
       "url": "https://www.newsis.com/view/NISX20261013_0003824540"
     },
     {
-      "source": "naver",
-      "press": "iminju.net",
+      "source": "google",
+      "press": "대한민국교육신문",
       "date": "2026.10.14",
-      "title": "굽네치킨 한 가맹점, 영업정지 15일…\"소비기한 지난 식품 보관\"",
-      "snippet": "14일 본지 취재를 종합하면 경기 안산시에 위치한 굽네치킨 한 가맹점은 소비기한이 경과한 식품을 보관한... 및 소비기한 관리 교육을 진행하고, 재발 방지를 위해 전 가맹점을 대상으로 관련 사례도 공유했다\"고 말했다.",
-      "url": "http://www.iminju.net/news/articleView.html?idxno=170850"
-    },
-    {
-      "source": "naver",
-      "press": "digitaltoday.co.kr",
-      "date": "2026.10.14",
-      "title": "신한은행, 대림동에 첫 외국인 전용 라운지…일요일에도 금융상담",
-      "snippet": "신한은행은 라운지 내 다목적 공간을 활용해 외국인 고객의 국내 정착을 돕는 금융교육도 진행할 예정이다. 신한은행은 현재 안산·김해·독산동에서 외국인 중심영업점을 운영하고 있다. 올해 상반기에는 안산 외국인...",
-      "url": "https://www.digitaltoday.co.kr/news/articleView.html?idxno=707139"
+      "title": "안산교육지원청, ‘정책이 교육이 되는 시간’ 2026 중등 교감 교육정책 아카데미 개최",
+      "snippet": "안산교육지원청, ‘정책이 교육이 되는 시간’ 2026 중등 교감 교육정책 아카데미 개최 대한민국교육신문",
+      "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE1RcnRzTlotYkRMV0RtT0xNdEdDanFjMFBLSUpEQmpDaG8zTTJoWGVxTTNhQTJZNDk0eUpoZW5QTGxIcTg5MGc1Zmwxb1V3YXd6c2ZTZm1WaVpYanpZWGhCb1l4QQ?oc=5"
     },
     {
       "source": "google",
@@ -675,35 +691,19 @@
     },
     {
       "source": "google",
+      "press": "리버럴미디어",
+      "date": "2026.10.14",
+      "title": "안산교육지원청, RAS로 듣고 예술로 공감하다! 장애인식의 새로운 시선",
+      "snippet": "안산교육지원청, RAS로 듣고 예술로 공감하다! 장애인식의 새로운 시선 리버럴미디어",
+      "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE9mQlR6QVdTMWhUQmt4dENMMEFQOUt0STRqM1lkQ1dfTFNUY29QNDBxRTRDVjBmV3Q1d2NrbnJudEZXeXhHNS1ENXcxVFJ2ZlJ6amNuVGRVeUN1YnpKNlRrSDZ0Mnc?oc=5"
+    },
+    {
+      "source": "google",
       "press": "대한민국교육신문",
       "date": "2026.10.14",
       "title": "안산교육지원청, 그림책으로 아이의 성장을 읽다 'RAS! 유치원 보호자(부모)의 지혜' 교육 실시",
       "snippet": "안산교육지원청, 그림책으로 아이의 성장을 읽다 'RAS! 유치원 보호자(부모)의 지혜' 교육 실시 대한민국교육신문",
       "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE81YjNJa3V5aHVZdFByb3A2SG9IY1ZJX2d2OXFlV2owU3RYTUZraEhmbTM2VDZnUFppNzBWRHBjaHJsMlE2akVfc0ZQanE3SU5rZkRhN0VReWtSVG1mb1FfNjlUVQ?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "미디어투데이",
-      "date": "2026.10.14",
-      "title": "안산교육지원청, RAS로 듣고 예술로 공감하다! 장애인식의 새로운 시선",
-      "snippet": "안산교육지원청, RAS로 듣고 예술로 공감하다! 장애인식의 새로운 시선 미디어투데이",
-      "url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTE9vRmcxUTkzYkhWVEVkd040MXlTQlV0WWdVVlBJbklNNG5PdF9LM3FQVEFQay1yT1BhMDJYY05LVEZqanJnRmhoWnV3?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "경기평화신문",
-      "date": "2026.10.14",
-      "title": "이민근 안산시장 \"민선8기 씨앗, 민선9기 결실로… 중단없는 안산발전\"",
-      "snippet": "이민근 안산시장 \"민선8기 씨앗, 민선9기 결실로… 중단없는 안산발전\" 경기평화신문",
-      "url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTFA4bGJpTzFKYjVsN2pUenE5eUtDeG1hRmdmdDVIUno5WHl1Z29OMVI5V1VGcldJWkJ5TkQ1eU5CLV9SUjVWT1RUckV3?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "머니투데이",
-      "date": "2026.10.14",
-      "title": "\"3040 돌아오라\" 교육·주거 다 잡는 이민근 안산시장의 큰 그림 - 머니투데이",
-      "snippet": "\"3040 돌아오라\" 교육·주거 다 잡는 이민근 안산시장의 큰 그림 - 머니투데이 머니투데이",
-      "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE9lTHJXM1ZQVXJBRm9zdW9VT21iMVdnZDJ4YTF6dHNMQVFDNkxLZDg5WHVlellnNUpFYUowSVdKWXgxSFVOVTlIZ2JVLWszUjFITzZzbUI4MnAxN2hPY0VueHFxY21obzdoUUtxU3UzUjE4c0JzdVFJ0gF8QVVfeXFMTXRyVFhiYV84VGFIendISmxuVmZIdkoyb1pKdncydkx0SVFfWVNMNUdZTkVweWZXYTNUWVdoSS16bmxMVnZ6YUx3Tmw2QVo4YUUtdGxMLWVGdnpTRjdCZnlWWU9FRG9rUVozaWxnSGtQYUNlaGJUaUtKZEJKUA?oc=5"
     },
     {
       "source": "google",
@@ -720,6 +720,22 @@
       "title": "안산상록청소년수련관, 스포츠 가치 캠프 운영",
       "snippet": "안산상록청소년수련관, 스포츠 가치 캠프 운영 투데이안산",
       "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1Ba210dENqdE5TRndvU3g4OThtLV96RjVzLTd4SFd2TGVHQjhQbG9ObnRuS2ROaGltLVZWTzlyWlZ3ZGRvT1p2M2VOakFfU0c3Wm40dW9LOWxPSGxPM1NiOTNCcl9jREtiWUxXbFN30gFyQVVfeXFMT005TTdXR1RYSU1YUVNHMmtjaDgzRzEzZWtLNHN2SlFqVDlHSGREU2s2V3liRXp2Z05Iemg5UjB4NE1qbkdPSEJLN296a1MxQWJlRVVBQXd1SF9jMjgxR0FOM2hOdnFtLTNxNV9MYnNaN293?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "경기평화신문",
+      "date": "2026.10.14",
+      "title": "이민근 안산시장 \"민선8기 씨앗, 민선9기 결실로… 중단없는 안산발전\"",
+      "snippet": "이민근 안산시장 \"민선8기 씨앗, 민선9기 결실로… 중단없는 안산발전\" 경기평화신문",
+      "url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTFA4bGJpTzFKYjVsN2pUenE5eUtDeG1hRmdmdDVIUno5WHl1Z29OMVI5V1VGcldJWkJ5TkQ1eU5CLV9SUjVWT1RUckV3?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "머니투데이",
+      "date": "2026.10.14",
+      "title": "\"3040 돌아오라\" 교육·주거 다 잡는 이민근 안산시장의 큰 그림 - 머니투데이",
+      "snippet": "\"3040 돌아오라\" 교육·주거 다 잡는 이민근 안산시장의 큰 그림 - 머니투데이 머니투데이",
+      "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE9lTHJXM1ZQVXJBRm9zdW9VT21iMVdnZDJ4YTF6dHNMQVFDNkxLZDg5WHVlellnNUpFYUowSVdKWXgxSFVOVTlIZ2JVLWszUjFITzZzbUI4MnAxN2hPY0VueHFxY21obzdoUUtxU3UzUjE4c0JzdVFJ0gF8QVVfeXFMTXRyVFhiYV84VGFIendISmxuVmZIdkoyb1pKdncydkx0SVFfWVNMNUdZTkVweWZXYTNUWVdoSS16bmxMVnZ6YUx3Tmw2QVo4YUUtdGxMLWVGdnpTRjdCZnlWWU9FRG9rUVozaWxnSGtQYUNlaGJUaUtKZEJKUA?oc=5"
     },
     {
       "source": "naver",
@@ -773,14 +789,6 @@
       "source": "naver",
       "press": "newsclaim.co.kr",
       "date": "2026.10.13",
-      "title": "안산시상록구노인복지관 라온카페 개업 1주년 무료 음료 전달",
-      "snippet": "안산시상록구노인복지관,무료 음료 전달,시니어 라온카페 노인일자리사업으로 운영하는 시니어 라온카페가 개업 1주년을 맞아 지역사회의 안전과 복지를 위해 힘쓰는 관계기관 종사자들에게 무료 음료를 전달하고 있다....",
-      "url": "https://www.newsclaim.co.kr/news/articleView.html?idxno=3078228"
-    },
-    {
-      "source": "naver",
-      "press": "newsclaim.co.kr",
-      "date": "2026.10.13",
       "title": "안산문화재단 우키시마호 침몰 사건 '귀국선 1호',경기도 초연",
       "snippet": "극단 58번 국도 제공 안산문화재단은 1945년 광복 직후 발생한 우키시마호 침몰 사건을 법정극 형식으로 재조명한 연극 '귀국선 1호'가 오는 15일 오후 7시 30분 안산시 상록구 소극장 보노마루에서 경기도 초연을...",
       "url": "https://www.newsclaim.co.kr/news/articleView.html?idxno=3078231"
@@ -792,6 +800,14 @@
       "title": "안산시 교통유발부담금 56억원 부과… 다음달 2일까지 납부",
       "snippet": "교통유발부담금,징수,도시교통정비 촉진법 안산시청 전경. 사진=이관희 기자 안산시는 지난해 8월 1일부터... 조정받을 수 있습니다. 자세한 사항은 상록구 도로교통과또는 단원구 도로교통과로 문의하면 됩니다.",
       "url": "https://www.newsclaim.co.kr/news/articleView.html?idxno=3078227"
+    },
+    {
+      "source": "naver",
+      "press": "newsclaim.co.kr",
+      "date": "2026.10.13",
+      "title": "안산시상록구노인복지관 라온카페 개업 1주년 무료 음료 전달",
+      "snippet": "안산시상록구노인복지관,무료 음료 전달,시니어 라온카페 노인일자리사업으로 운영하는 시니어 라온카페가 개업 1주년을 맞아 지역사회의 안전과 복지를 위해 힘쓰는 관계기관 종사자들에게 무료 음료를 전달하고 있다....",
+      "url": "https://www.newsclaim.co.kr/news/articleView.html?idxno=3078228"
     },
     {
       "source": "naver",
@@ -867,11 +883,11 @@
     },
     {
       "source": "google",
-      "press": "안산뉴스",
+      "press": "엔디엔뉴스",
       "date": "2026.10.13",
-      "title": "안산교육청 ‘IB Insight Tour’ 운영",
-      "snippet": "안산교육청 ‘IB Insight Tour’ 운영 안산뉴스",
-      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE93SGNZQzM0OVlQTjE3czA3cWt6SEFFZklJdlhldlBtN2xxZDlHbUZkamJUb3prNEdMZzlpb1FMdUZjNWZQVHZVNUh4R1J2ZF9kOGVmMXhLaVBlNjBnZjdzS215N19PNDdYSHgxRA?oc=5"
+      "title": "안산교육지원청, ‘2026 안산 IB Insight Tour’ 운영",
+      "snippet": "안산교육지원청, ‘2026 안산 IB Insight Tour’ 운영 엔디엔뉴스",
+      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1pQzlNbW0tT3hRVEFCbWJqWTdNc0c2TC03WklBR3ZEbVZuUEI2blVxWDZfVmhmSGV1cTluZDlERVpJQ2lLcUFtLUZEbERfZDhPb0xPM1VfSzRzX2l0dlk2M2RMOXZqdHk3Mnl2S3pB0gFyQVVfeXFMUHQ0RWVqR3FWaFlqOUhFZVZSRlA5U3ZFcldvc3lCOWRGUkxpMlJBejFieHRWVmdPay1zTlFacklfYlVBN29uRGJXcks5dmMwazhCRG9hcnFXeThUd3Y4cFhVOVZvSl84UVJHSmJrcGEtemlR?oc=5"
     },
     {
       "source": "naver",
@@ -987,30 +1003,6 @@
     },
     {
       "source": "google",
-      "press": "수도권지역뉴스",
-      "date": "2026.10.10",
-      "title": "안산교육지원청 \"2026 중등 교감 교육정책 아카데미 진행\"",
-      "snippet": "안산교육지원청 \"2026 중등 교감 교육정책 아카데미 진행\" 수도권지역뉴스",
-      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5oMEgwRkxzMHFRSGxja1R5VDlNQnJrWmRMQmJ4czRCMk1ZZDZDc2EzS0RSeC1OZURfWHRqZU95dFhDZEUxSl9KVmJkUTh1dzBUVGdWWjZjS3hBWnhXdjRBazM0Zkc5THY4?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "반월신문",
-      "date": "2026.10.09",
-      "title": "안산시 상록구청 상거래용 계량기 특별점검",
-      "snippet": "안산시 상록구청 상거래용 계량기 특별점검 반월신문",
-      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5jM2cwdC05d3p6MjFTbGRONGFNWlQ1eThPMktIaHhzbEVfODZfaHlUdlBXcHBwUEJZMEM0S3VkaFRrMHdmZ1R1d2FMRlBRVFRkRm9feVJnWXoxUlFtV1FJbHkyS0F3ODA?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "경인투데이뉴스",
-      "date": "2026.10.09",
-      "title": "“아름다운 여정, 감사와 존경으로 기억하다” 안산교육지원청, 2026 상반기 퇴직교원 퇴임기념식 개최",
-      "snippet": "“아름다운 여정, 감사와 존경으로 기억하다” 안산교육지원청, 2026 상반기 퇴직교원 퇴임기념식 개최 경인투데이뉴스",
-      "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTFBkQzFTRi10ckFCTWQ1UDR1Y05TanUzaDZwOHlOTDhuc0tiZTRDbXNCMkFXWGd3WXQ5R0NmalptTV9QYnpJbEZSSU52QlNwbmM?oc=5"
-    },
-    {
-      "source": "google",
       "press": "대한환경신문",
       "date": "2026.10.08",
       "title": "경기도의회 장윤정 의원, 오성애 후보자 인사청문회...“교육연구원 조직 안정과 연구 공정성 확보 중요”",
@@ -1099,11 +1091,11 @@
     },
     {
       "source": "google",
-      "press": "경기탑뉴스",
+      "press": "climatepol.com",
       "date": "2026.10.01",
       "title": "경기도의회 장윤정 의원, 안산사이언스밸리 에이로봇 400억 투자 환영, 로봇산업 생태계 도약 적극 뒷받침할 것",
-      "snippet": "경기도의회 장윤정 의원, 안산사이언스밸리 에이로봇 400억 투자 환영, 로봇산업 생태계 도약 적극 뒷받침할 것 경기탑뉴스",
-      "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE9MN19CVG5YV1lSNFB3eldKdWpoRDlTdDRQeEh3ejVlREJKR005bDM1b3FDVGhqQ0FjTm15d01rN3E4aHVYZ0FjMnU1VE8xbzkybUI4SEU1RHFmdVJIUW9kd0tOaw?oc=5"
+      "snippet": "경기도의회 장윤정 의원, 안산사이언스밸리 에이로봇 400억 투자 환영, 로봇산업 생태계 도약 적극 뒷받침할 것 climatepol.com",
+      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE5ub1RqcDhWenBqN3pCd1NyWGNvcVI1YXgzRDRQdUFKa09kVGJjQ1lDRTRQUmphQXV6NUtLVVZuR19oRmtXS3pYSjBRRnp4b1RyOExXT3NHLXZaVGFKckZSemJNR25rLVVuUUxCVw?oc=5"
     },
     {
       "source": "naver",
@@ -1610,6 +1602,14 @@
       "url": "https://www.sedaily.com/article/20083175?ref=naver"
     },
     {
+      "source": "google",
+      "press": "중부일보",
+      "date": "2026.08.25",
+      "title": "안산교육지원청, 안산시·시의회와 안산교육 발전 방안 논의",
+      "snippet": "안산교육지원청, 안산시·시의회와 안산교육 발전 방안 논의 중부일보",
+      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE5nbi1yMkdVUHJnOFVLTG13Y2xLRG12STBPUllBTVhYLVJEenhPRUNjUDk2Ry1LaXo2aDQyS0JoYk9hOU9zTFVkek9JSWFzT1VHZVJUSXZQXzlIVUpLb1VsbkR3X0twcGZJYlJiMlFsNA?oc=5"
+    },
+    {
       "source": "naver",
       "press": "weeklytoday.com",
       "date": "2026.08.24",
@@ -1979,11 +1979,11 @@
     },
     {
       "source": "google",
-      "press": "Daum",
+      "press": "경기일보",
       "date": "2026.05.09",
       "title": "'공천 개입' 논란 속 다시 공천받은 장윤정 경기도의원…민주, 20차 경선결과 발표",
-      "snippet": "'공천 개입' 논란 속 다시 공천받은 장윤정 경기도의원…민주, 20차 경선결과 발표 Daum",
-      "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTFBFQ09xdU9UcEF1UVJnRG45VkNwMkxuVHhsVk9OYnN0UngyMnVyYTFPQjRUUUdnMGU2RE16cDJLSW15QTFZMjBaOEkxaDJXODQ?oc=5"
+      "snippet": "'공천 개입' 논란 속 다시 공천받은 장윤정 경기도의원…민주, 20차 경선결과 발표 경기일보",
+      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE94cXMtSzRfclhwaGFQTS1NYUtLdVBaOUFQaFdhUnpqcm5BNGFHUzFYYVlRQlZmN24zMHVBTVFDS29XWVd3c3htZTFCdTVqMmd4eV9RbDZTaktFRzg?oc=5"
     },
     {
       "source": "google",
