@@ -50,7 +50,7 @@ jobs:
           node --test tests/call-records.test.mjs
           node --test tests/office-location.test.mjs
           node --test tests/office-travel.test.mjs
-          node --test tests/agent-core.test.mjs tests/agent-tools.test.mjs tests/agent-scheduler.test.mjs tests/agent-review.test.mjs tests/usage-cost.test.mjs tests/secretary-agent.test.mjs tests/parallel-chats.test.mjs tests/secretary-builtin-tools.test.mjs tests/secretary-toolkit.test.mjs tests/secretary-feature-tools.test.mjs tests/secretary-voice.test.mjs tests/flow-calendar.test.mjs tests/solapi-messaging.test.mjs
+          node --test tests/agent-core.test.mjs tests/agent-tools.test.mjs tests/agent-scheduler.test.mjs tests/agent-review.test.mjs tests/usage-cost.test.mjs tests/secretary-agent.test.mjs tests/core-staff-agents.test.mjs tests/core-staff-client.test.mjs tests/parallel-chats.test.mjs tests/secretary-builtin-tools.test.mjs tests/secretary-toolkit.test.mjs tests/secretary-feature-tools.test.mjs tests/secretary-voice.test.mjs tests/flow-calendar.test.mjs tests/solapi-messaging.test.mjs
 
       # (A) GitHub에 OPENAI_API_KEY가 등록돼 있으면: 배포 + 키를 워커에 자동 주입
       #     → 재배포해도 키가 유실되지 않음(권장).

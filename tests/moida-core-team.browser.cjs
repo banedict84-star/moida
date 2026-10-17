@@ -10,7 +10,7 @@ const {chromium}=require('C:/Users/User/.cache/codex-runtimes/codex-primary-runt
  assert.equal(await p.locator('.mo-tabs button[aria-selected=true]').textContent(),'우리 팀 9');
  assert.equal(await p.locator('.mo-chat').isVisible(),false);
  await p.locator('[data-mo-details=core_tick]').click();assert(await p.locator('.mo-core-dialog').isVisible());assert((await p.locator('.mo-core-dialog').textContent()).includes('작업 결과'));await p.keyboard.press('Escape');await p.waitForFunction(()=>!document.querySelector('.mo-core-dialog'));
- await p.locator('[data-mo-details=core_tick]').click();await p.locator('.mo-core-dialog [data-mo-tool=schedule]').click();assert.equal(await p.evaluate(()=>window.lastPage),'schedule');await p.waitForFunction(()=>!document.querySelector('.mo-core-dialog'));
+ await p.locator('[data-mo-details=core_tick]').click();await p.locator('.mo-core-dialog [data-mo-tool=connections]').click();assert.equal(await p.evaluate(()=>window.lastPage),'connections');await p.waitForFunction(()=>!document.querySelector('.mo-core-dialog'));
  const assign=await p.evaluate(()=>window.MOIDA_OFFICE_ASSIGNMENTS('담이에게 통화 요약을 부탁해'));assert.deepEqual(assign.map(x=>x.agent),['core_dami']);
  await p.locator('[data-mo-assign=core_semi]').click();assert.equal(await p.evaluate(()=>window.lastPage),'secretary');assert((await p.locator('#aiInput').inputValue()).includes('셈이'));
  const heights=await p.locator('.mo-core-card').evaluateAll(cards=>cards.map(c=>c.getBoundingClientRect().height));assert(heights.every(h=>h===460));assert.equal(await p.locator('.mo-core-portrait svg').count(),8);await p.screenshot({path:'moida-core-team-desktop.png',fullPage:true});
