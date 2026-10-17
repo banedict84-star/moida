@@ -967,7 +967,7 @@ html.embed .table-foot{flex-shrink:0}
     s+=av||0;
     if([m.rec,m.rec2,m.rec3,m.sub,m.third].indexOf('장윤정')>=0) s+=3;
     if(m.katalk==='관리중') s+=3;
-    s+=(m.krGrade||0)+(m.smGrade||0);
+    s+=(Number(m.krGrade)||0)+(Number(m.smGrade)||0);
     var fam=famCount(m);
     if(fam!=null){ if(fam>=4) s+=5; else if(fam>=3) s+=4; else if(fam>=2) s+=3; }
     var lm={ours:5,rival:-5,float:3,none:0}; s+=lm[leanOf(m)]||0;
