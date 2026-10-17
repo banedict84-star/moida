@@ -69,3 +69,27 @@ test('revocation prevents cached reply delivery',async()=>{
   assert.doesNotMatch(f.sent.at(-1).text,/민감자료/);assert.match(f.sent.at(-1).text,/승인/);
  }finally{f.close();}
 });
+
+test('webhook dispatches immediate durable work and queue/cron retries do not duplicate replies',async()=>{
+ const f=fixture();try{
+  const queued=[];f.env.AGENT_QUEUE={send:async body=>queued.push(body)};
+  await f.post(1,'/start');assert.deepEqual(queued,[{kind:'telegram-user',userId:'1'}]);
+  await Promise.all([f.bot.tick(f.env,'1'),f.bot.tick(f.env,'1'),f.bot.tick(f.env)]);
+  assert.equal(f.sent.length,1);assert.equal(f.db.prepare("SELECT state FROM telegram_inbox").get().state,'done');
+ }finally{f.close();}
+});
+test('failed queue dispatch falls back to webhook background work without waiting for cron',async()=>{
+ const f=fixture();try{
+  f.env.AGENT_QUEUE={send:async()=>{throw Error('unavailable')}};const tasks=[];
+  const req=new Request('https://example.test/telegram/webhook',{method:'POST',headers:{'X-Telegram-Bot-Api-Secret-Token':'secret'},body:JSON.stringify({update_id:20,message:{from:{id:1},chat:{id:1,type:'private'},text:'/start'}})});
+  const response=await f.bot.route(req,f.env,{waitUntil:p=>tasks.push(p)});assert.equal(response.status,200);assert.equal(tasks.length,1);await Promise.all(tasks);assert.equal(f.sent.length,1);
+ }finally{f.close();}
+});
+test('a leased earlier message blocks following messages only for its own user',async()=>{
+ const f=fixture();try{
+  await f.post(1,'/start');await f.post(1,'/id');await f.post(2,'/start');
+  f.db.prepare('UPDATE telegram_inbox SET lease_until=? WHERE update_id=1').run(Date.now()+60000);
+  await f.bot.tick(f.env);assert.equal(f.sent.length,1);assert.equal(f.sent[0].chat_id,'2');
+  f.db.prepare('UPDATE telegram_inbox SET lease_until=0 WHERE update_id=1').run();await f.bot.tick(f.env,'1');assert.equal(f.sent.length,3);
+ }finally{f.close();}
+});

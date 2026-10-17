@@ -15,7 +15,7 @@ export function createTelegramBot({fetcher = fetch} = {}) {
   if (!res.ok || !data.ok) throw new Error('telegram_delivery_failed');
   return data.result;
  }
- async function route(request, env) {
+ async function route(request, env, ctx) {
   if (request.method !== 'POST') return reply('Method not allowed',405);
   if (!env.TELEGRAM_BOT_TOKEN || !env.TELEGRAM_WEBHOOK_SECRET || !env.AGENT_DB || !admins(env).size) return reply('Not configured',503);
   if (request.headers.get('X-Telegram-Bot-Api-Secret-Token') !== env.TELEGRAM_WEBHOOK_SECRET) return reply('Unauthorized',401);
@@ -31,6 +31,11 @@ export function createTelegramBot({fetcher = fetch} = {}) {
   await statement(env, 'INSERT OR IGNORE INTO telegram_users(user_id) VALUES (?)',uid).run();
   await statement(env, `INSERT OR IGNORE INTO telegram_inbox(update_id,user_id,chat_id,text,created_at) VALUES (?,?,?,?,?)`,
    update.update_id,uid,String(m.chat.id),typeof m.text === 'string' ? m.text.slice(0,12000) : '/unsupported',Date.now()).run();
+  // Durable event delivery starts work without waiting for the minute timer.
+  // Queue consumers also allow AI work to outlive the webhook's short lifetime.
+  let queued=false;
+  if(env.AGENT_QUEUE){try{await env.AGENT_QUEUE.send({kind:'telegram-user',userId:uid});queued=true;}catch{}}
+  if(!queued&&ctx?.waitUntil)ctx.waitUntil(tick(env,uid));
   return reply('OK');
  }
  async function answer(env, item) {
@@ -82,12 +87,15 @@ export function createTelegramBot({fetcher = fetch} = {}) {
   const data = await res.json();
   return data.output?.flatMap(x => x.content || []).filter(x => x.type === 'output_text').map(x => x.text).join('\n') || '답변을 생성하지 못했습니다. 다시 요청해 주세요.';
  }
- async function tick(env) {
+ async function tick(env,userId=null) {
   if (!env.TELEGRAM_BOT_TOKEN || !env.TELEGRAM_WEBHOOK_SECRET || !env.AGENT_DB || !admins(env).size) return;
-  const now = Date.now();
-  const {results} = await statement(env,`SELECT * FROM telegram_inbox WHERE state='pending' AND lease_until<? AND attempts<4 ORDER BY update_id LIMIT 5`,now).all();
-  for (const item of results) {
-   const claim = await statement(env,`UPDATE telegram_inbox SET lease_until=?,attempts=attempts+1 WHERE update_id=? AND state='pending' AND lease_until<?`,Date.now()+300000,item.update_id,now).run();
+  for(let step=0;step<5;step++){
+   const now=Date.now();
+   // Serialize each person's conversation so a name is handled before its memo.
+   const older="NOT EXISTS (SELECT 1 FROM telegram_inbox earlier WHERE earlier.user_id=telegram_inbox.user_id AND earlier.state='pending' AND earlier.attempts<4 AND earlier.update_id<telegram_inbox.update_id)";
+   const item=await statement(env,`SELECT * FROM telegram_inbox WHERE state='pending' AND lease_until<? AND attempts<4 AND ${older} ${userId?'AND user_id=?':''} ORDER BY update_id LIMIT 1`,...([now,...(userId?[userId]:[])])).first();
+   if(!item)break;
+   const claim=await statement(env,`UPDATE telegram_inbox SET lease_until=?,attempts=attempts+1 WHERE update_id=? AND state='pending' AND lease_until<? AND ${older}`,Date.now()+300000,item.update_id,now).run();
    if (!claim.meta.changes) continue;
    try {
     // Recheck authorization even for cached replies: revocation must stop pending data delivery.

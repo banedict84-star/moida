@@ -1343,6 +1343,7 @@ enforcementDate는 '시행일자'로만 표기하며 제정일자나 개정일�
 
 async function handleQueue(batch, env) {
   for (const message of batch.messages) {
+    if(message.body?.kind==='telegram-user'){try{await telegramBot.tick(env,String(message.body.userId));message.ack();}catch{message.retry();}continue;}
     if(message.body?.kind==='call-transcription'){
       try{const {uid,id}=message.body;await callRecords.route({env,uid,request:new Request('https://internal/call-records?action=retry&id='+encodeURIComponent(id),{method:'POST'}),fromQueue:true});message.ack();}
       catch{message.retry({delaySeconds:30});}
@@ -1779,7 +1780,7 @@ const officeLocation=createOfficeLocation();
 const officeTravel=createOfficeTravel({encrypt:encryptGoogleToken,decrypt:decryptGoogleToken,flow:flowCalendar});
 
 async function handleFetch(request, env, ctx) {
-  if(new URL(request.url).pathname==="/telegram/webhook")return await telegramBot.route(request,env);
+  if(new URL(request.url).pathname==="/telegram/webhook")return await telegramBot.route(request,env,ctx);
   if (request.method === "OPTIONS") return new Response(null, { status: 204, headers: corsHeaders(request, env) });
   const url = new URL(request.url);
   const path = url.pathname.replace(/\/+$/, "") || "/";
