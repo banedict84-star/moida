@@ -298,6 +298,11 @@ body.secretary-view #aiPanel{border:0!important;border-radius:0!important;box-sh
 <link rel="stylesheet" href="moida-knowledge.css?v=1"><link rel="stylesheet" href="dashboard-mobile.css?v=2"><link rel="stylesheet" href="dashboard-cards.css?v=workspace-redesign1"><link rel="stylesheet" href="secretary-composer-mobile.css?v=20261012-input1"><link rel="stylesheet" href="office-workspace.css?v=core-team-v3">
 <link rel="stylesheet" href="moida-workspace-redesign.css?v=crm-restore1">
 <link rel="stylesheet" href="moa-chat.css?v=staff-agents1"><link rel="stylesheet" href="workspace-automations.css?v=automation-list2"><link rel="stylesheet" href="admin-ai-usage.css?v=1">
+<style>
+#appContent:has(>.page[data-page="crm"][style*="display: block"]),
+#appContent:has(>.page[data-page="crm"][style*="display:block"]){padding:10px 12px 12px!important}
+.page[data-page="crm"]>iframe{border:0!important;border-radius:0!important;height:calc(100dvh - 92px)!important}
+</style>
 </head>
 <body class="app-loading">
 <div style="display:flex;height:100vh;width:100%;font-family:'Pretendard',sans-serif;color:#1a2330;background:#f5f6f8;overflow:hidden">
@@ -647,7 +652,7 @@ body.secretary-view #aiPanel{border:0!important;border-radius:0!important;box-sh
         </div>
       </div>
 
-      <div class="page" data-page="crm"><iframe src="members.html?embed=1&v=crm-manager4" title="조직관리" style="display:block;border:1px solid #e9ecf1;border-radius:12px;background:#fff;width:100%;height:calc(100vh - 130px)"></iframe></div>
+      <div class="page" data-page="crm"><iframe src="members.html?embed=1&v=crm-flat1" title="조직관리" style="display:block;border:1px solid #e9ecf1;border-radius:12px;background:#fff;width:100%;height:calc(100vh - 130px)"></iframe></div>
 
       <div class="page" data-page="minwon">
       <div class="pg" style="max-width:1320px;margin:0 auto">
