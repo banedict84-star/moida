@@ -1,6 +1,7 @@
 export const FIELDS=['mid','name','phone','dong','addr','type','rec','rec2','rec3','katalk','smsReply','org','age','ageb','family','smGrade','addrDetail','krGrade'];
 export const HEADERS=['연락처ID (수정금지)','이름','전화번호','행정동','주소','유형','추천인','추천인2','추천인3','카톡관리여부','문자답장여부','소속','나이','연령대','가족수','문자관리','상세주소','카톡답장'];
 export const LAST_COLUMN='R';
+const canonicalHeader=h=>({'문자관리여부':'문자관리','문자답장':'문자답장여부'}[String(h).trim()]||String(h).trim());
 const LEGACY_HEADERS=HEADERS.slice(0,7);
 const text=v=>v==null?'':String(v);
 export const project=rows=>rows.map(r=>Object.fromEntries(FIELDS.map(k=>[k,text(r[k])||(['org','ageb'].includes(k)?'—':'')])));
@@ -11,17 +12,18 @@ export function validate(rows){
 }
 export function sheetHeaders(values){
  const headers=values.length?values[0]:HEADERS;
- const valid=expected=>headers.length===expected.length&&new Set(headers).size===headers.length&&expected.every(h=>headers.includes(h));
+ const normalized=headers.map(canonicalHeader);
+ const valid=expected=>normalized.length===expected.length&&new Set(normalized).size===normalized.length&&expected.every(h=>normalized.includes(h));
  if(valid(HEADERS))return {headers,legacy:false};
  if(valid(LEGACY_HEADERS))return {headers,legacy:true};
  throw Error('시트 열 제목이 누락되거나 중복되었습니다. 열 순서는 변경해도 되지만 열 제목은 유지해 주세요.');
 }
-export function sheetValues(contacts,values){const schema=sheetHeaders(values);const headers=schema.legacy?HEADERS:schema.headers;return [headers,...contacts.map(r=>headers.map(h=>r[FIELDS[HEADERS.indexOf(h)]]))];}
+export function sheetValues(contacts,values){const schema=sheetHeaders(values);const headers=schema.legacy?HEADERS:schema.headers;return [headers,...contacts.map(r=>headers.map(h=>r[FIELDS[HEADERS.indexOf(canonicalHeader(h))]]))];}
 export function parseRows(values,known=[]){
  if(!values.length)return [];
  const {headers,legacy}=sheetHeaders(values);
  return validate(values.slice(1).filter(row=>row.some(v=>text(v).trim())).map((cells,i)=>{
-  const row=Object.fromEntries(headers.map((h,j)=>[FIELDS[HEADERS.indexOf(h)],text(cells[j])]));
+  const row=Object.fromEntries(headers.map((h,j)=>[FIELDS[HEADERS.indexOf(canonicalHeader(h))],text(cells[j])]));
   if(!row.mid){if(!row.name)throw Error((i+2)+'행에 이름을 입력해 주세요.');const phone=row.phone.replace(/\D/g,'');const matches=known.filter(r=>phone?text(r.phone).replace(/\D/g,'')===phone:text(r.name)===row.name);if(matches.length>1)throw Error((i+2)+'행은 같은 연락처가 여러 개입니다. 연락처 ID를 지정해 주세요.');row.mid=matches[0]?.mid||'s_'+crypto.randomUUID();}
   const prior=legacy?known.find(r=>r.mid===row.mid):null;
   return Object.fromEntries(FIELDS.map((k,j)=>[k,text(legacy&&j>=7?prior?.[k]:row[k])]));
