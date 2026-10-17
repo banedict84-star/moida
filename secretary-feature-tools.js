@@ -1,6 +1,7 @@
 const text=description=>({type:'string',description});
 const tool=(name,description,properties={},required=[])=>({type:'function',name,description,parameters:{type:'object',properties,required}});
 export const FEATURE_TOOLS=[
+ tool('weekly_events_status','주간행사 담당 한주의 메일·발신자·프로젝트 설정과 실제 연결 준비 상태를 조회한다. 자동 근무가 시작됐다고 추측하지 않는다.'),
  tool('list_call_records','자동 수집한 통화 기록의 전사·요약 처리 상태와 최근 요약을 조회한다.',{query:text('제목 검색어'),status:text('completed, failed, pending, processing 중 하나')}),
  tool('read_call_record','통화 기록의 요약과 실제 화자별 전사를 읽는다. 이름 판정 근거와 불확실성도 반환한다. 긴 전사는 offset으로 이어 읽는다.',{record_id:text('통화 기록 ID'),offset:{type:'integer'}},['record_id']),
  tool('retry_call_record','사용자가 재처리를 요청한 실패 통화의 전사·요약을 다시 접수한다. 접수는 완료가 아니다.',{record_id:text('통화 기록 ID')},['record_id']),
@@ -24,6 +25,7 @@ export async function executeFeatureTool({name,args={},operationKey,services}){
  if(!FEATURE_NAMES.has(name)||!services.feature)throw Object.assign(new Error('기능 연결을 확인해 주세요.'),{status:409});
  const run=(kind,path,method='GET',body={})=>services.feature(kind,path,method,body);
  const recordId=()=>{const value=String(args.record_id||'');if(!/^[a-zA-Z0-9_-]{1,160}$/.test(value))throw Object.assign(new Error('통화 기록 ID를 확인해 주세요.'),{status:400});return encodeURIComponent(value);};
+ if(name==='weekly_events_status')return run('weekly','/weekly-events');
  if(name==='list_call_records'){const result=await run('calls','/call-records');return {...result,scope:'최근 100건',records:result.records.filter(r=>(!args.query||(r.title+' '+r.filename).includes(String(args.query)))&&(!args.status||r.status===args.status))};}
  if(name==='read_call_record'){const result=await run('calls','/call-records?id='+recordId()),r=result.record,offset=Math.max(0,Math.floor(Number(args.offset)||0)),content=String(r.transcript||'');return {ok:true,record:{id:r.id,title:r.title,status:r.status,stage:r.stage,error:r.error,summary:r.summary,speakerIdentification:r.speakerIdentification,transcript:content.slice(offset,offset+18000),offset,next_offset:offset+18000<content.length?offset+18000:null}};}
  if(name==='retry_call_record'||name==='identify_call_speakers'){const result=await run('calls','/call-records?action='+(name==='retry_call_record'?'retry':'identify')+'&id='+recordId(),'POST');return {ok:result.ok,id:result.record.id,status:result.record.status,stage:result.record.stage,speakerIdentification:result.record.speakerIdentification};}

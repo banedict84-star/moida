@@ -5,8 +5,8 @@ import vm from 'node:vm';
 import {STAFF_ROLES,CORE_ROLES,assignmentPlan,staffRole,ALLOWED_AGENTS} from '../agent-core.js';
 import {agentPolicy,DELEGATE_TOOL,agentInstructions} from '../secretary-core-agents.js';
 import {SECRETARY_TOOLS} from '../secretary-tools.js';
-test('기본 8명 외 CRM 담당자 1명만 등록하고 실제 에이전트 배정에 연결한다',()=>{
- assert.equal(CORE_ROLES.length,8);assert.equal(STAFF_ROLES.length,1);const role=STAFF_ROLES[0];assert.equal(role.id,'crm_manager');assert.equal(role.person,'모음');assert(ALLOWED_AGENTS.has(role.id));assert(!ALLOWED_AGENTS.has('M021'));assert(DELEGATE_TOOL.parameters.properties.agent_id.enum.includes(role.id));assert.equal(assignmentPlan('명부 점검',[{agent:role.id,instruction:'중복 후보 확인'}])[0].agent,role.id);assert.equal(staffRole(role.id),role);assert.match(agentInstructions(role.id),/추정·점수화하지 않는다/);assert(readFileSync(new URL('../'+role.portrait,import.meta.url),'utf8').includes('<svg'));
+test('기본 8명 외 CRM 담당자를 보존하고 전문 직원을 등록하고 실제 에이전트 배정에 연결한다',()=>{
+ assert.equal(CORE_ROLES.length,8);assert.equal(STAFF_ROLES.length,2);const role=STAFF_ROLES[0];assert.equal(role.id,'crm_manager');assert.equal(role.person,'모음');assert(ALLOWED_AGENTS.has(role.id));assert(!ALLOWED_AGENTS.has('M021'));assert(DELEGATE_TOOL.parameters.properties.agent_id.enum.includes(role.id));assert.equal(assignmentPlan('명부 점검',[{agent:role.id,instruction:'중복 후보 확인'}])[0].agent,role.id);assert.equal(staffRole(role.id),role);assert.match(agentInstructions(role.id),/추정·점수화하지 않는다/);assert(readFileSync(new URL('../'+role.portrait,import.meta.url),'utf8').includes('<svg'));
  const policy=agentPolicy({tools:SECRETARY_TOOLS,signature:'test'},role.id);assert(policy.allowed.has('crm_contacts'));assert(!policy.allowed.has('add_contact'));assert(!policy.allowed.has('search_contacts'));
 });
 test('CRM 담당 조회는 전체 건수와 다음 페이지를 반환하고 민감·추가 항목을 노출하지 않는다',()=>{

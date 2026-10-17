@@ -1,3 +1,4 @@
+import {weeklyEventsRoute} from './weekly-events.js';
 import {createTelegramBot} from './telegram-bot.js';
 import {crmTelegramRoute} from './crm-telegram.js';
 const telegramBot=createTelegramBot();
@@ -1756,7 +1757,7 @@ function officeToolServices(env,user,request){
   async function scopedToken(scope){const value=await googleAccessToken(env,user.uid);if(!String(value.connection.scope).split(' ').includes(scope))throw new HttpError(409,'자료·알림 화면에서 해당 Google 서비스를 연결해 주세요.');return value.accessToken;}
   return {
     mcp:(name,args,key)=>{const service=mcpServices[args.provider];if(!service)throw new HttpError(400,'지원하지 않는 MCP 서비스입니다.');return service.tool(env,user.uid,name,args,key);},
-    async feature(kind,path,method='GET',body={}){const service={calls:callRecords,flow:flowCalendar,sms:solapiMessaging,location:officeLocation,devices:callDevices}[kind];if(!service)throw new HttpError(400,'지원하지 않는 도구입니다.');const result=await service.route({env,uid:user.uid,request:new Request(new URL(path,request.url),{method,...(method==='POST'?{headers:{'Content-Type':'application/json'},body:JSON.stringify(body)}:{})}),body,origin:new URL(request.url).origin});return result instanceof Response?result.json():result;},
+    async feature(kind,path,method='GET',body={}){const service={weekly:{route:weeklyEventsRoute},calls:callRecords,flow:flowCalendar,sms:solapiMessaging,location:officeLocation,devices:callDevices}[kind];if(!service)throw new HttpError(400,'지원하지 않는 도구입니다.');const result=await service.route({env,uid:user.uid,request:new Request(new URL(path,request.url),{method,...(method==='POST'?{headers:{'Content-Type':'application/json'},body:JSON.stringify(body)}:{})}),body,origin:new URL(request.url).origin});return result instanceof Response?result.json():result;},
     async connections(){const c=await googleConnection(env,user.uid),scopes=new Set(String(c?.scope||'').split(' '));return{google_configured:!!(env.GOOGLE_CLIENT_ID&&env.GOOGLE_CLIENT_SECRET),google_email:c?.google_email||'',calendar:scopes.has(GOOGLE_CALENDAR_SCOPE),drive:scopes.has(GOOGLE_DRIVE_SCOPE),gmail:scopes.has(GOOGLE_MAIL_SCOPE),contacts:scopes.has(GOOGLE_CONTACTS_SCOPE),sheets:scopes.has(GOOGLE_SHEETS_SCOPE),sms:!!(await env.AGENT_DB.prepare('SELECT uid FROM solapi_connections WHERE uid=?').bind(user.uid).first().catch(()=>null)),flow:!!(await env.AGENT_DB.prepare('SELECT uid FROM flow_calendar_connections WHERE uid=?').bind(user.uid).first().catch(()=>null)),call_records:!!env.AGENT_DB,location_history:!!env.AGENT_DB};},
     searchLaw:(target,query)=>searchLaw(env,target,query,{display:10}),
     readLaw:async(target,id,mst)=>{if(!['law','ordin'].includes(target)||(!id&&!mst))throw new HttpError(400,'법령 검색 결과의 ID가 필요합니다.');const result=await getLawDetail(env,target,id,mst);const value=JSON.stringify(result);return{content:value.slice(0,80000),truncated:value.length>80000};},
@@ -1826,6 +1827,7 @@ async function handleFetch(request, env, ctx) {
     if (path === GOOGLE_CALLBACK_PATH && request.method === "GET") {
       return await googleCalendarCallback(request, env);
     }
+    if(path==='/weekly-events'){const user=await verifyFirebaseUser(request,env);const result=await weeklyEventsRoute({env,uid:user.uid,request,body:request.method==='POST'?await requestBody(request):{}});const response=json(result,200,request,env);response.headers.set('Cache-Control','no-store');return response;}
     if(path.startsWith('/crm-telegram/')){const user=await verifyFirebaseUser(request,env);return json(await crmTelegramRoute({env,uid:user.uid,request}),200,request,env);}
     if(path.startsWith('/crm-sheets/')){const user=await verifyFirebaseUser(request,env);const result=await crmSheetsRoute({env,uid:user.uid,request,token:async()=>{const value=await googleAccessToken(env,user.uid);if(!String(value.connection.scope).split(' ').includes(GOOGLE_SHEETS_SCOPE))throw new HttpError(409,'Google 시트 수정 권한을 먼저 연결해 주세요.');return value.accessToken;},api:googleApi});return json(result,200,request,env);}
     if (path === "/google/calendar/connect" && request.method === "GET") {
