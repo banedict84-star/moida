@@ -510,7 +510,9 @@ onAuthStateChanged(_auth, async function(user){
   if(fsVotes && window._mergeVotesFromFS) window._mergeVotesFromFS(fsVotes);
 });
 </script>
-</head>
+<style>
+.crm-telegram-settings{padding-bottom:20px;margin-bottom:22px;border-bottom:1px solid #e4eaf0}.crm-telegram-settings h3{font-size:16px;margin-bottom:10px}.crm-telegram-settings code{display:block;user-select:all;overflow-wrap:anywhere;background:#eef5f8;padding:12px;margin-top:8px;border-radius:8px}.crm-telegram-settings code[hidden]{display:none}.crm-telegram-notes{margin-top:18px}.crm-telegram-notes h4{font-size:13px;margin-bottom:10px}.crm-telegram-notes article{padding:12px 0;border-bottom:1px solid #e6ecf0}.crm-telegram-notes small{font-size:11px;color:#738498}.crm-telegram-notes p{white-space:pre-wrap;overflow-wrap:anywhere;font-size:13px;line-height:1.6;margin-top:5px}.crm-telegram-notes [role=status]{font-size:12px;color:#738498}.crm-telegram-notes button{padding:8px 12px;margin-top:10px;background:white;border:1px solid #dde6ed;border-radius:8px}
+</style></head>
 <body>
 <script>try{if(/[?&]embed=1/.test(location.search))document.documentElement.classList.add('embed');}catch(e){}</script>
 <style>
@@ -1069,7 +1071,7 @@ html.embed .table-foot{flex-shrink:0}
   document.addEventListener('mousedown',function(e){ if(!orgPop.contains(e.target) && !(e.target.closest&&e.target.closest('.org-link'))) orgPop.classList.remove('show'); });
   function saveOrgs(m){ var k='moida_orgs_' + _uid; var store=JSON.parse(localStorage.getItem(k)||'{}'); store[m.mid||m.name]=m.orgs; localStorage.setItem(k, JSON.stringify(store)); }
   function showDetail(){ detailPanel.classList.add('show'); dtOvl.classList.add('show'); }
-  function closeDetail(){ detailPanel.classList.remove('show'); dtOvl.classList.remove('show'); tbody.querySelectorAll('tr').forEach(t=>t.classList.remove('sel')); }
+  function closeDetail(){ window._crmTelegramShow?.(''); detailPanel.classList.remove('show'); dtOvl.classList.remove('show'); tbody.querySelectorAll('tr').forEach(t=>t.classList.remove('sel')); }
   document.getElementById('dtClose').addEventListener('click', closeDetail);
   // 신규 당원 입력 중(curEditIdx==null)에는 바깥 클릭·ESC로 닫히지 않게(X만 닫힘)
   dtOvl.addEventListener('click', function(){ if(curEditIdx!=null) closeDetail(); });
@@ -1493,7 +1495,7 @@ html.embed .table-foot{flex-shrink:0}
     document.querySelectorAll('#dtfType .tseg-opt').forEach(function(o){ o.classList.toggle('on', o.dataset.v===m.type); });
     if(window._setMemberPhoto) window._setMemberPhoto(m.photo||'');
     renderVotes(m.mid||m.name);
-    var memoEl=document.getElementById('dtMemo'); if(memoEl) memoEl.value=memoStore[m.mid||m.name]||'';
+    var memoEl=document.getElementById('dtMemo'); if(memoEl) memoEl.value=memoStore[m.mid||m.name]||''; window._crmTelegramShow?.(m.mid);
     var lbl=document.getElementById('dtSaveLbl'); if(lbl) lbl.textContent='수정';
     // 성향(신호등) 칸을 클릭한 경우 투표활동 탭으로 열기
     var _toVote=e.target.closest('.sig-cell');
@@ -1694,7 +1696,7 @@ html.embed .table-foot{flex-shrink:0}
     document.querySelectorAll('#dtfType .tseg-opt').forEach(function(o){ o.classList.remove('on'); });
     if(window._setMemberPhoto) window._setMemberPhoto('');
     voteStore['__new__']=[]; curVoteName=null; renderVotes('__new__');
-    var memoEl=document.getElementById('dtMemo'); if(memoEl) memoEl.value='';
+    var memoEl=document.getElementById('dtMemo'); if(memoEl) memoEl.value=''; window._crmTelegramShow?.('');
     var rh=document.getElementById('dtfRrnHint'); if(rh){ rh.textContent='입력 시 나이·연령대·성별이 자동 계산됩니다'; rh.style.color=''; rh.style.fontWeight=''; }
     var lbl=document.getElementById('dtSaveLbl'); if(lbl) lbl.textContent='저장';
     document.querySelector('.tab[data-pane="info"]').click();
@@ -2113,5 +2115,6 @@ html.embed .table-foot{flex-shrink:0}
 </script>
 <script src="access-guard.js"></script>
 <script type="module" src="crm-sheets-client.js?v=header2"></script>
+<script type="module" src="crm-telegram-client.js?v=1"></script>
 </body>
 </html>

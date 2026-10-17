@@ -1,3 +1,6 @@
+import {createTelegramBot} from './telegram-bot.js';
+import {crmTelegramRoute} from './crm-telegram.js';
+const telegramBot=createTelegramBot();
 import {crmSheetsRoute} from './crm-sheets.js';
 import {createNewsShorts} from './news-shorts.js';
 const newsShorts=createNewsShorts();
@@ -1776,6 +1779,7 @@ const officeLocation=createOfficeLocation();
 const officeTravel=createOfficeTravel({encrypt:encryptGoogleToken,decrypt:decryptGoogleToken,flow:flowCalendar});
 
 async function handleFetch(request, env, ctx) {
+  if(new URL(request.url).pathname==="/telegram/webhook")return await telegramBot.route(request,env);
   if (request.method === "OPTIONS") return new Response(null, { status: 204, headers: corsHeaders(request, env) });
   const url = new URL(request.url);
   const path = url.pathname.replace(/\/+$/, "") || "/";
@@ -1821,6 +1825,7 @@ async function handleFetch(request, env, ctx) {
     if (path === GOOGLE_CALLBACK_PATH && request.method === "GET") {
       return await googleCalendarCallback(request, env);
     }
+    if(path.startsWith('/crm-telegram/')){const user=await verifyFirebaseUser(request,env);return json(await crmTelegramRoute({env,uid:user.uid,request}),200,request,env);}
     if(path.startsWith('/crm-sheets/')){const user=await verifyFirebaseUser(request,env);const result=await crmSheetsRoute({env,uid:user.uid,request,token:async()=>{const value=await googleAccessToken(env,user.uid);if(!String(value.connection.scope).split(' ').includes(GOOGLE_SHEETS_SCOPE))throw new HttpError(409,'Google 시트 수정 권한을 먼저 연결해 주세요.');return value.accessToken;},api:googleApi});return json(result,200,request,env);}
     if (path === "/google/calendar/connect" && request.method === "GET") {
       const user = await verifyFirebaseUser(request, env);
@@ -1899,6 +1904,7 @@ export default {
   fetch: handleFetch,
   queue: handleQueue,
   scheduled(_controller, env, ctx) {
+    if(_controller.cron==="* * * * *")ctx.waitUntil(telegramBot.tick(env));
     if(_controller.cron==='* * * * *'){ctx.waitUntil(tickSecretary(env));ctx.waitUntil(officeTravel.tick(env));ctx.waitUntil(toolkitTick(env).then(()=>builtinTick(env)));return;}
     ctx.waitUntil(recoverStaleRuns(env));
     ctx.waitUntil(toolkitTick(env));
