@@ -2,7 +2,7 @@
 (()=>{
 const $=id=>document.getElementById(id), node=(tag,text,cls)=>{const e=document.createElement(tag);if(text!==undefined)e.textContent=text;if(cls)e.className=cls;return e;},go=route=>window.__go(route);
 const section=document.querySelector('.sb-agent-section');if(!section)return;
-const names={dashboard:'홈',secretary:'AI 비서실장',agents:'AI에이전트 비서실',automations:'자동화',knowledge:'자료·기억',connections:'도구 연결'};
+const names={dashboard:'홈',secretary:'AI 비서실장',agents:'AI에이전트 비서실',automations:'자동화',knowledge:'자료·기억',connections:'도구 연결',crm:'CRM'};
 const icons={inbox:'M3 4h18v16H3z M3 13h5l2 3h4l2-3h5',automations:'M13 2 4 14h7l-1 8 10-12h-7z',chats:'M3 3h18v14H8l-5 4z'};
 for(const route of Object.keys(names)){
 let item=document.querySelector('#sideBar .nav-item[data-page="'+route+'"]');

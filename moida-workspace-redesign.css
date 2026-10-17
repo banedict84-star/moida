@@ -11,7 +11,7 @@ body,body>div:first-child{background:var(--mw-bg)!important}#sideBar{background:
 .workspace-hero h1{word-break:keep-all}.mo-office[data-team-view="staff"] .mo-staff-grid{justify-content:center}@media(max-width:760px){.workspace-hero h1{font-size:24px!important;max-width:none}}
 
 /* Keep legacy work features available through tools, but remove their sidebar section. */
-#sideBar .sb-legacy-work-label,#sideBar .nav-item:is([data-page="notices"],[data-page="crm"],[data-page="schedule"],[data-page="messaging"],[data-page="locations"],[data-page="calls"],[data-page="minwon"],[data-page="pr"],[data-page="policy"],[data-page="shorts"],[data-page="news"]){display:none!important}
+#sideBar .sb-legacy-work-label,#sideBar .nav-item:is([data-page="notices"],[data-page="schedule"],[data-page="messaging"],[data-page="locations"],[data-page="calls"],[data-page="minwon"],[data-page="pr"],[data-page="policy"],[data-page="shorts"],[data-page="news"]){display:none!important}
 /* Employee-centered navigation, inbox and history. */
 #sideBar .nav-item[hidden]{display:none!important}
 #sideBar button.nav-item{border:0;background:transparent;text-align:left;width:100%;font:inherit;color:inherit;display:flex;align-items:center;gap:11px;padding:10px 12px;border-radius:9px;cursor:pointer;font-size:13.5px}

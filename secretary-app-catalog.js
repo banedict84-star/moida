@@ -3,6 +3,7 @@ import {MCP_PROVIDERS,publicMcpConfig} from './secretary-mcp-providers.js';
 import {APP_DIRECTORY} from './secretary-app-directory.js';
 import {APP_LOGOS} from './secretary-app-logos.js';
 export const APP_CATALOG = [
+ {id:'moida_crm',name:'모이다 CRM',category:'고객',mark:'CRM',color:'#123456',description:'기존 연락처 명부 조회 · 이름·전화번호·지역 검색',kind:'native',page:'crm'},
  {id:'notion',name:'Notion',category:'자료',mark:'N',color:'#222222',description:'공식 MCP · 페이지·업무 자료 조회 및 작성',kind:'mcp'},
  {id:'higgsfield',name:'Higgsfield',category:'제작',mark:'H',color:'#192133',description:'공식 MCP · 이미지·영상 도구 · 계정 로그인으로 연결',kind:'mcp'},
  {id:'gmail',name:'Gmail',category:'메일',mark:'G',color:'#c64235',description:'검토한 메일 초안을 Gmail로 발송',kind:'google',service:'mail',statusKey:'gmail'},
