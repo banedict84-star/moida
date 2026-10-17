@@ -306,7 +306,7 @@ body.secretary-view #aiPanel{border:0!important;border-radius:0!important;box-sh
 <style>
 .crm-header-icon{display:none}
 main:has(#appContent>.page[data-page="crm"]:is([style*="display: block"],[style*="display:block"])) #appHeader{height:52px!important;padding:0 14px!important;gap:10px!important}
-main:has(#appContent>.page[data-page="crm"]:is([style*="display: block"],[style*="display:block"])) .crm-header-icon{display:flex;align-items:center;justify-content:center;flex:none;width:32px;height:32px;border-radius:9px;background:#e4f3f2;color:#16776e}
+main:has(#appContent>.page[data-page="crm"]:is([style*="display: block"],[style*="display:block"])) .crm-header-icon{display:flex;align-items:center;justify-content:center;flex:none;width:32px;height:32px;border-radius:9px;background:linear-gradient(145deg,#173b52,#102b40);color:#73e0d1;border:1px solid #244a5c;box-shadow:inset 0 1px 0 #ffffff20}
 main:has(#appContent>.page[data-page="crm"]:is([style*="display: block"],[style*="display:block"])) #pageTitle{font-size:19px!important;line-height:24px;flex:none}
 main:has(#appContent>.page[data-page="crm"]:is([style*="display: block"],[style*="display:block"])) #pageSub{font-size:11px!important;line-height:14px;margin-top:0!important}
 </style>
@@ -316,6 +316,13 @@ main:has(#appContent>.page[data-page="crm"]:is([style*="display: block"],[style*
 main:has(#appContent>.page[data-page="crm"]:is([style*="display: block"],[style*="display:block"])) #appContent{min-height:0;overflow:hidden!important;display:flex;flex-direction:column}
 main:has(#appContent>.page[data-page="crm"]:is([style*="display: block"],[style*="display:block"])) .page[data-page="crm"]{flex:1;min-height:0;height:100%}
 main:has(#appContent>.page[data-page="crm"]:is([style*="display: block"],[style*="display:block"])) .page[data-page="crm"]>iframe{height:100%!important}
+</style>
+<style>
+#crmHeaderManager{display:none}
+main:has(#appContent>.page[data-page="crm"]:is([style*="display: block"],[style*="display:block"])) #crmHeaderManager{display:flex;flex-shrink:0}
+#crmHeaderManager button{height:34px;padding:0 15px;border:1px solid #dce5eb;border-radius:999px;background:#fff;color:#25465e;font:600 12px inherit;font-family:inherit;font-size:12px;cursor:pointer;white-space:nowrap}
+#crmHeaderManager button:hover{background:#edf6f5;border-color:#a9d4cd}
+#crmHeaderManager button:focus-visible{outline:2px solid #38d6cd;outline-offset:2px}
 </style>
 </head>
 <body class="app-loading">
@@ -444,16 +451,13 @@ main:has(#appContent>.page[data-page="crm"]:is([style*="display: block"],[style*
       <button id="mobileMenuBtn" type="button" aria-label="메뉴 열기" aria-expanded="false">
         <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
       </button>
-      <span class="crm-header-icon" aria-hidden="true"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="15" height="18" rx="3"/><path d="M3 7h4M3 12h4M3 17h4"/><circle cx="12.5" cy="9" r="2.2"/><path d="M9 17v-1a3.5 3.5 0 0 1 7 0v1"/></svg></span>
+      <span class="crm-header-icon" aria-hidden="true"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="3"/><path d="M8 3v18"/><circle cx="12.5" cy="9" r="2.2"/><path d="M9 17v-1a3.5 3.5 0 0 1 7 0v1"/></svg></span>
       <div style="min-width:0">
         <div style="font-size:18px;font-weight:700;letter-spacing:-0.01em;color:#16202e" id="pageTitle">대시보드</div>
         <div style="font-size:12px;color:#8a94a3;margin-top:1px" id="pageSub">의원실 업무를 한눈에</div>
       </div>
       <div style="flex:1"></div>
-      <div style="display:flex;align-items:center;gap:8px;width:240px;height:38px;padding:0 13px;background:#f3f5f8;border:1px solid #e7eaef;border-radius:10px;color:#9aa3b0;font-size:13px;cursor:text">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg>
-        <span>민원·일정·연락처 검색</span>
-      </div>
+      <div id="crmHeaderManager"></div>
       <div style="display:flex;align-items:center;gap:7px;height:38px;padding:0 13px;background:#f3f5f8;border:1px solid #e7eaef;border-radius:10px;color:#5b6675;font-size:12.5px;font-weight:600">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="4.5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg>
         <span id="topDate">2026.06.27 (금)</span>
@@ -667,7 +671,7 @@ main:has(#appContent>.page[data-page="crm"]:is([style*="display: block"],[style*
         </div>
       </div>
 
-      <div class="page" data-page="crm"><iframe src="members.html?embed=1&v=crm-fixed3" title="조직관리" style="display:block;border:1px solid #e9ecf1;border-radius:12px;background:#fff;width:100%;height:calc(100vh - 130px)"></iframe></div>
+      <div class="page" data-page="crm"><iframe src="members.html?embed=1&v=crm-header4" title="조직관리" style="display:block;border:1px solid #e9ecf1;border-radius:12px;background:#fff;width:100%;height:calc(100vh - 130px)"></iframe></div>
 
       <div class="page" data-page="minwon">
       <div class="pg" style="max-width:1320px;margin:0 auto">
