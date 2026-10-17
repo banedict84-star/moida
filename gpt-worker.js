@@ -1,3 +1,5 @@
+import {createTelegramBot} from './telegram-bot.js';
+const telegramBot=createTelegramBot();
 import {crmSheetsRoute} from './crm-sheets.js';
 import {createNewsShorts} from './news-shorts.js';
 const newsShorts=createNewsShorts();
@@ -1776,6 +1778,7 @@ const officeLocation=createOfficeLocation();
 const officeTravel=createOfficeTravel({encrypt:encryptGoogleToken,decrypt:decryptGoogleToken,flow:flowCalendar});
 
 async function handleFetch(request, env, ctx) {
+  if(new URL(request.url).pathname==="/telegram/webhook")return await telegramBot.route(request,env);
   if (request.method === "OPTIONS") return new Response(null, { status: 204, headers: corsHeaders(request, env) });
   const url = new URL(request.url);
   const path = url.pathname.replace(/\/+$/, "") || "/";
@@ -1899,6 +1902,7 @@ export default {
   fetch: handleFetch,
   queue: handleQueue,
   scheduled(_controller, env, ctx) {
+    if(_controller.cron==="* * * * *")ctx.waitUntil(telegramBot.tick(env));
     if(_controller.cron==='* * * * *'){ctx.waitUntil(tickSecretary(env));ctx.waitUntil(officeTravel.tick(env));ctx.waitUntil(toolkitTick(env).then(()=>builtinTick(env)));return;}
     ctx.waitUntil(recoverStaleRuns(env));
     ctx.waitUntil(toolkitTick(env));
