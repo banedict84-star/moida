@@ -304,7 +304,8 @@
   {"id":"M299","group":"지원사업·자료·생활 운영","person":"권태윤","name":"야구기록검수 담당","description":"기록원 입력의 이닝·득점·투구수 불일치 확인","output":"야구 기록 검수표","workMode":"조건부 자동화","trigger":"새 자료·신청·상태 변경 접수 시","requirements":"공고·서식·자료함·운영기록","approval":"결과 확인 후 사용","release":"확장 후보","sourceStatus":"미구현","toolTeam":"records","connection":null},
   {"id":"M300","group":"지원사업·자료·생활 운영","person":"권채원","name":"야구경기보고 담당","description":"확정 경기기록으로 점수와 주요 기록 정리","output":"경기 결과보고","workMode":"조건부 자동화","trigger":"새 자료·신청·상태 변경 접수 시","requirements":"공고·서식·자료함·운영기록","approval":"결과 확인 후 사용","release":"확장 후보","sourceStatus":"미구현","toolTeam":"records","connection":null}
  ];
- var byId=new Map(roles.map(function(r){return [r.id,Object.freeze(r)];}));
+ var activeRoles=[{"id":"crm_manager","person":"모음","name":"CRM 담당자","group":"전문 직원","specialist":true,"portrait":"assets/staff/crm-manager.svg","description":"연락처를 찾아 중복·누락을 점검하고, 제공된 시트와 다른 내용을 정리해요.","duties":"기본 연락처를 조회하고 중복 후보·필수 항목 누락·제공 자료와 차이를 근거와 함께 보고합니다.","output":"조회 범위, 중복 후보, 누락 항목, 비교 결과, 확인이 필요한 수정안","toolTeam":"records","workMode":"요청형","trigger":"사용자가 CRM 명부 정리를 요청할 때","requirements":"현재 계정의 모이다 CRM AI 사용 승인. 시트 비교에는 승인된 Drive 자료 또는 사용자 제공 시트 자료가 필요합니다.","approval":"연락처 추가·수정·삭제와 시트 연결 변경은 실행하지 않습니다. 정리안을 보고하고 사용자 확인을 받습니다.","release":"1차 출시 후보","tools":[["CRM 명부","crm"],["연결 계정·권한","connections"],["비교 자료·파일","knowledge"]]}];
+ var byId=new Map(roles.concat(activeRoles).map(function(r){return [r.id,Object.freeze(r)];}));
  function normalize(value){return String(value||'').toLowerCase().replace(/\s+/g,'');}
  function score(role,text){
   var normalized=normalize(text), title=normalize(role.name.replace(/ 담당$/,''));
@@ -314,6 +315,6 @@
   return words.reduce(function(total,w){return total+(normalized.includes(normalize(w))?Math.min(w.length,6):0);},0);
  }
  root.MOIDA_RETIRED_STAFF_CATALOG=Object.freeze(roles);
- root.MOIDA_STAFF_CATALOG=Object.freeze([]);
+ root.MOIDA_STAFF_CATALOG=Object.freeze(activeRoles);
  root.MOIDA_STAFF_ROLES=Object.freeze({get:function(id){return byId.get(id);},score:score});
 })(typeof window==='undefined'?globalThis:window);

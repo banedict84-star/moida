@@ -1,5 +1,6 @@
 // Existing Moida tools, adapted to the Agents API function schema.
 export const SECRETARY_TOOLS = [
+ {type:'function',name:'crm_contacts',description:'승인된 모이다 CRM의 기본 연락처를 안전하게 검색·조회한다. 한 번에 최대 100명이며 next_offset이 있으면 이어 조회한다. 주민번호·사진·정치적 선호 정보는 반환하지 않는다.',parameters:{type:'object',properties:{query:{type:'string',description:'이름·전화번호·주소 검색어'},offset:{type:'integer',minimum:0,description:'이전 결과의 next_offset'},limit:{type:'integer',minimum:1,maximum:100}},required:[]}},
   {
     "type": "function",
     "name": "list_contacts",

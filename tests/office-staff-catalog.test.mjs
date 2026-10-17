@@ -19,7 +19,7 @@ test('every employee has a distinct deployable WebP portrait',()=>{
 });
 
 test('retired employee identities remain readable for historical reports but cannot receive new assignments',()=>{
- assert.equal(ACTIVE_STAFF_ROLES.length,0);assert.equal(CORE_ROLES.length,8);
+ assert.equal(ACTIVE_STAFF_ROLES.length,1);assert.equal(CORE_ROLES.length,8);
  assert.equal(STAFF_ROLES.length,300);
  assert.equal(new Set(STAFF_ROLES.map(r=>r.id)).size,300);
  const groups=new Map();
