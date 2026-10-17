@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {DatabaseSync} from 'node:sqlite';
 import {readFileSync} from 'node:fs';
 import vm from 'node:vm';
-import {handleSecretaryRoute,finalText} from '../secretary-agent.js';
+import {handleSecretaryRoute,finalText,secretaryTick} from '../secretary-agent.js';
 import {SECRETARY_TOOLS} from '../secretary-tools.js';
 import worker from '../gpt-worker.js';
 import {ensureToolkit} from '../secretary-toolkit.js';
@@ -34,8 +34,83 @@ function fixture(){
  const route=(path,body={},uid='owner',method='POST',extra={})=>handleSecretaryRoute({env,user:{uid},path,method,body,query:new URLSearchParams(body),fetcher,executeWork:async()=>({ok:true,events:[]}),...extra});
  const start=(id='request_A',input='오늘 일정 알려줘')=>route('/secretary/message',{thread_id:'chat_A',request_id:id,input});
  const poll=(id='request_A',uid='owner')=>route('/secretary/poll',{thread_id:'chat_A',request_id:id},uid,'GET');
- return{db,env,state,route,start,poll};
+ return{db,env,state,route,start,poll,fetcher};
 }
+
+test('브라우저 없이 서버가 도구를 실행하고 결과를 저장하며 다른 계정에는 노출하지 않는다',async()=>{
+ const f=fixture();let executions=0;
+ await f.route('/secretary/message',{thread_id:'chat_A',request_id:'request_A',input:'보고서 만들어줘',server_runtime:true});
+ f.state.actions=[{type:'function_call',turn_id:'turn_A',call_id:'call_A',name:'create_document',arguments:{title:'보고서',content:'내용'}}];
+ await assert.rejects(f.route('/secretary/claim',{thread_id:'chat_A',request_id:'request_A',call_id:'call_A'}),/서버에서 처리/);
+ const execute=async(uid,name,args)=>{assert.equal(uid,'owner');assert.equal(name,'create_document');executions++;return{ok:true,saved:true,id:'file_A',title:args.title,format:'txt'};};
+ const now=Date.now();
+ await secretaryTick(f.env,execute,{fetcher:f.fetcher,now});
+ assert.equal(executions,1);assert.equal(f.state.writes.at(-1).body.events[0].type,'agent.session.input.tool_result');
+ f.state.turns[0].status='completed';f.state.items=[{turn_id:'turn_A',type:'message',role:'assistant',phase:'final_answer',content:[{type:'output_text',text:'보고서를 만들었습니다.'}]}];
+ await secretaryTick(f.env,execute,{fetcher:f.fetcher,now:now+2000});
+ const result=await f.route('/secretary/background',{thread_id:'chat_A'},'owner','GET');
+ assert.equal(result.items[0].status,'completed');assert.equal(result.items[0].output_text,'보고서를 만들었습니다.');assert.equal(result.items[0].results[0].result.id,'file_A');
+ assert.deepEqual((await f.route('/secretary/background',{thread_id:'chat_A'},'other','GET')).items,[]);
+ assert.equal(executions,1);f.db.close();
+});
+
+test('서버 실행이 겹쳐도 하나만 도구를 선점한다',async()=>{
+ const f=fixture();await f.route('/secretary/message',{thread_id:'chat_A',request_id:'request_A',input:'검색',server_runtime:true});
+ f.state.actions=[{type:'function_call',turn_id:'turn_A',call_id:'call_A',name:'search_files',arguments:{}}];
+ let executions=0,release;const wait=new Promise(r=>release=r);const execute=async()=>{executions++;await wait;return{ok:true};};
+ const first=secretaryTick(f.env,execute,{fetcher:f.fetcher});
+ while(!executions)await new Promise(r=>setImmediate(r));
+ assert.deepEqual(await secretaryTick(f.env,execute,{fetcher:f.fetcher}),[]);
+ release();await first;assert.equal(executions,1);f.db.close();
+});
+
+test('결과 전송 응답 유실과 실행 도중 재시작은 도구를 재실행하지 않는다',async()=>{
+ const f=fixture();await f.route('/secretary/message',{thread_id:'chat_A',request_id:'request_A',input:'문서',server_runtime:true});
+ f.state.actions=[{type:'function_call',turn_id:'turn_A',call_id:'call_A',name:'create_document',arguments:{}}];
+ let executions=0;const execute=async()=>{executions++;return{ok:true,saved:true,id:'file_A'};};
+ const now=Date.now();f.state.lost=true;
+ await secretaryTick(f.env,execute,{fetcher:f.fetcher,now});f.state.lost=false;
+ await secretaryTick(f.env,execute,{fetcher:f.fetcher,now:now+70000});
+ assert.equal(executions,1);assert.equal(f.db.prepare('SELECT status FROM secretary_runtime').get().status,'needs_attention');
+ assert.equal(f.db.prepare('SELECT status FROM secretary_calls').get().status,'submission_uncertain');f.db.close();
+});
+
+test('도구 권한이 해제되면 백그라운드에서도 실행하지 않는다',async()=>{
+ const f=fixture();await f.route('/secretary/message',{thread_id:'chat_A',request_id:'request_A',input:'주소록',server_runtime:true});
+ f.state.actions=[{type:'function_call',turn_id:'turn_A',call_id:'call_A',name:'google_contacts',arguments:{}}];
+ let executed=0;await secretaryTick(f.env,async()=>{executed++;return{ok:true};},{fetcher:f.fetcher});
+ assert.equal(executed,0);assert.equal(f.db.prepare('SELECT status FROM secretary_calls').get().status,'pending');f.db.close();
+});
+
+test('브라우저 저장소가 없어도 서버 완료 답변과 파일 결과를 복구하고 새 요청은 만들지 않는다',async()=>{
+ const store=new Map(),restored=[],files=[];let posted=0,owner='owner';
+ const sandbox={Map,Set,localStorage:{getItem:k=>store.get(k)||null,setItem:(k,v)=>store.set(k,v),removeItem:k=>store.delete(k)},crypto:{randomUUID:()=> 'id'},setTimeout};
+ vm.runInNewContext(readFileSync(new URL('../secretary-client.js',import.meta.url),'utf8'),sandbox);
+ const client=sandbox.createSecretaryClient({owner:()=>owner,busy:()=>{},status:()=>{},request:async(path,options)=>{if(options.method==='POST')posted++;return{items:[{request_id:'request_A',status:'completed',runtime_status:'completed',output_text:'보고서',results:[{name:'create_document',result:{saved:true,id:'file_A'}}]}]};},recovered:(...args)=>restored.push(args),executed:(...args)=>files.push(args)});
+ await client.recover('chat_A');assert.equal(restored[0][2],'보고서');assert.equal(client.resultId('chat_A'),'secretary_request_A');assert.equal(files[0][1].id,'file_A');assert.equal(posted,0);
+ owner='other';assert.equal(client.resultId('chat_A'),null);
+});
+
+test('서버 관리 업무에서는 브라우저가 도구를 선점하거나 실행하지 않는다',async()=>{
+ const storage=new Map(),paths=[];let polls=0,executions=0;
+ const sandbox={Map,Set,localStorage:{getItem:k=>storage.get(k)||null,setItem:(k,v)=>storage.set(k,v),removeItem:k=>storage.delete(k)},crypto:{randomUUID:()=> 'request_A'},setTimeout:fn=>fn()};
+ vm.runInNewContext(readFileSync(new URL('../secretary-client.js',import.meta.url),'utf8'),sandbox);
+ const client=sandbox.createSecretaryClient({owner:()=> 'owner',busy:()=>{},status:()=>{},execute:()=>executions++,request:async(path,options)=>{
+  paths.push(path);
+  if(path==='/secretary/message'){assert.equal(JSON.parse(options.body).server_runtime,true);return{server_managed:true,request_id:'request_A',status:'requires_action',actions:[{call_id:'call_A',name:'search_files',status:'pending'}]};}
+  if(path.startsWith('/secretary/background'))return{items:[]};
+  return ++polls===1?{status:'ready'}:{server_managed:true,request_id:'request_A',status:'completed',output_text:'완료'};
+ }});
+ assert.equal(await client.run('chat_A','검색',''),'완료');assert.equal(executions,0);assert(!paths.includes('/secretary/claim'));assert(!paths.includes('/secretary/result'));
+});
+
+test('서버 결과 복구 중 계정이 바뀌면 이전 계정 결과를 표시하지 않는다',async()=>{
+ let owner='first',resolve;const results=[];
+ const sandbox={Map,Set,localStorage:{getItem:()=>null,setItem:()=>{},removeItem:()=>{}},setTimeout};
+ vm.runInNewContext(readFileSync(new URL('../secretary-client.js',import.meta.url),'utf8'),sandbox);
+ const client=sandbox.createSecretaryClient({owner:()=>owner,busy:()=>{},status:()=>{},request:()=>new Promise(r=>resolve=r),recovered:(...r)=>results.push(r),executed:(...r)=>results.push(r)});
+ const pending=client.recover('chat_A');owner='second';resolve({items:[{status:'completed',output_text:'private',results:[{name:'create_document',result:{saved:true}}]}]});await pending;assert.deepEqual(results,[]);
+});
 
 test('새 대화의 실제 모델 요청에 같은 계정의 사용자 선호를 전달한다',async()=>{
  const f=fixture();await ensureToolkit(f.env);

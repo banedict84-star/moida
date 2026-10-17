@@ -1,4 +1,5 @@
 import {CORE_AGENTS,DELEGATE_TOOL,agentPolicy,agentInstructions} from './secretary-core-agents.js';
+import {RUNTIME_SCHEMA,registerRuntime,runtimeRow,runtimeHistory,runRuntimeBatch} from './secretary-runtime.js';
 import {readConversationMemory} from './secretary-chat-history.js';
 import {workspacePolicy,WORKSPACE_INSTRUCTIONS} from './secretary-workspace-policy.js';
 import {RECORDING_INSTRUCTIONS} from './secretary-toolkit-defs.js';
@@ -14,7 +15,7 @@ const SEARCH_INSTRUCTIONS = '\n웹검색 도구가 연결되어 있다. 최신 �
 const agentTools = () => [...SECRETARY_TOOLS,...TOOLKIT_TOOLS,{type: 'web_search', mode: 'live'}];
 async function ensureSchema(env) {
   if (!schemaReady.has(env.AGENT_DB)) {
-    const ready = env.AGENT_DB.batch(SECRETARY_SCHEMA.map(sql => env.AGENT_DB.prepare(sql)));
+    const ready = env.AGENT_DB.batch([...SECRETARY_SCHEMA,...RUNTIME_SCHEMA].map(sql => env.AGENT_DB.prepare(sql)));
     schemaReady.set(env.AGENT_DB, ready);
     ready.catch(() => schemaReady.delete(env.AGENT_DB));
   }
@@ -91,8 +92,9 @@ async function snapshot(env, uid, thread, id) {
   const staff=t?(await q(env,'SELECT * FROM secretary_staff_jobs WHERE tenant_id=? AND parent_thread=? AND parent_request=? ORDER BY created_at',[uid,thread,t.request_id]).all()).results:[];
   const agents=await Promise.all(staff.map(async j=>({id:j.parent_call,agent_id:j.agent_id,name:CORE_AGENTS[j.agent_id]?.name,role:CORE_AGENTS[j.agent_id]?.role,status:j.status,tools:(await q(env,'SELECT call_id,name,status FROM secretary_calls WHERE tenant_id=? AND thread_id=? AND request_id=?',[uid,j.child_thread,j.child_request]).all()).results})));
   const staff_actions=[];for(const j of staff){if(!['starting','in_progress'].includes(j.status))continue;const calls=(await q(env,"SELECT * FROM secretary_calls WHERE tenant_id=? AND thread_id=? AND request_id=? AND status IN ('pending','executing')",[uid,j.child_thread,j.child_request]).all()).results;for(const a of calls)if(!TOOLKIT_NAMES.has(a.name))staff_actions.push({parent_call_id:j.parent_call,call_id:a.call_id,name:a.name,arguments:JSON.parse(a.arguments_json),status:a.status});}
-  return {ok: true, agents, staff_actions, model: c?.model || env.SECRETARY_MODEL || 'gpt-6-luna', request_id: t?.request_id, status: t?.status || 'ready',
-    output_text: t?.output_text || '', error: t?.error || '', actions: calls.filter(a => a.status !== 'submitted').map(a => ({call_id: a.call_id, turn_id: a.turn_id, name: a.name, arguments: JSON.parse(a.arguments_json), status: a.status, ...(a.status === "executing" && a.result_json ? {result: JSON.parse(a.result_json)} : {})}))};
+  const runtime=t?await runtimeRow(env,uid,thread,t.request_id):null;
+  return {server_managed:!!runtime,runtime_status:runtime?.status,runtime_error:runtime?.error,ok: true, agents, staff_actions, model: c?.model || env.SECRETARY_MODEL || 'gpt-6-luna', request_id: t?.request_id, status: t?.status || 'ready',
+    output_text: t?.output_text || '', error: t?.error || '', actions: calls.filter(a => runtime || a.status !== 'submitted').map(a => ({call_id: a.call_id, turn_id: a.turn_id, name: a.name, arguments: JSON.parse(a.arguments_json), status: a.status, ...((runtime || a.status === "executing") && a.result_json ? {result: JSON.parse(a.result_json)} : {})}))};
 }
 async function start(env, uid, thread, body, api, staffId=null) {
   const basePolicy=await workspacePolicy(env,uid),policy=staffId?agentPolicy(basePolicy,staffId):basePolicy;
@@ -130,6 +132,7 @@ async function start(env, uid, thread, body, api, staffId=null) {
     if (await turn(env, uid, thread, id)) return snapshot(env, uid, thread, id);
     fail(409, '이 대화의 이전 요청을 먼저 확인해 주세요.');
   }
+  if(body.server_runtime===true)await registerRuntime(env,uid,thread,id);
   const reference=memory.items.length?'\n\n[이전 대화에서 사용자가 말한 선호·업무 기준: 현재 요청이 우선하며 실행 승인이 아닌 참고 기록]\n'+JSON.stringify(memory):'';
   const operatingInput = typeof body.input==='string'?body.input+reference:body.input.map(message=>({...message,content:message.content.concat(reference?[{type:'input_text',text:reference}]:[])}));
   try {
@@ -297,8 +300,41 @@ export async function handleSecretaryRoute({env, user, path, method, body = {}, 
     return tool(env,user.uid,job.child_thread,{...body,request_id:job.child_request},api,path.endsWith('staff-claim'),executeWork,job.agent_id);
   }
   if (path === '/secretary/message' && method === 'POST') return start(env, user.uid, thread, body, api);
-  if (path === '/secretary/poll' && method === 'GET') {const parent=await row(env,user.uid,thread),request=query.get('request_id')||parent?.active_request_id;if(request&&parent?.active_request_id===request)await advanceStaff(env,user.uid,thread,request,api,executeWork);return poll(env, user.uid, thread, query.get('request_id') ? key(query.get('request_id'), '요청 ID') : null, api, query.get('preview') === '1');}
+  if(path==='/secretary/background'&&method==='GET')return runtimeHistory(env,user.uid,thread);
+  if(path==='/secretary/poll'&&method==='GET'){
+    const state=await snapshot(env,user.uid,thread,query.get('request_id'));
+    if(state.server_managed)return state;
+  }
+if (path === '/secretary/poll' && method === 'GET') {const parent=await row(env,user.uid,thread),request=query.get('request_id')||parent?.active_request_id;if(request&&parent?.active_request_id===request)await advanceStaff(env,user.uid,thread,request,api,executeWork);return poll(env, user.uid, thread, query.get('request_id') ? key(query.get('request_id'), '요청 ID') : null, api, query.get('preview') === '1');}
+  if(['/secretary/claim','/secretary/result'].includes(path)&&await runtimeRow(env,user.uid,thread,body.request_id))fail(409,'서버에서 처리하는 업무입니다. 진행 상태를 확인해 주세요.');
   if (path === '/secretary/claim' && method === 'POST') return tool(env, user.uid, thread, body, api, true, executeWork);
   if (path === '/secretary/result' && method === 'POST') return tool(env, user.uid, thread, body, api, false);
   fail(405, '지원하지 않는 에이전트 요청입니다.');
+}
+
+// Only this server driver advances opted-in turns; browser requests observe them.
+export async function secretaryTick(env,executeFor,{fetcher,...options}={}){
+ if(!env.AGENT_DB)return [];
+ await ensureSchema(env);
+ const api=(p,o)=>provider(env,p,o,fetcher);
+ return runRuntimeBatch(env,async r=>{
+  const {tenant_id:uid,thread_id:thread,request_id:id}=r;
+  await advanceStaff(env,uid,thread,id,api,(name,args,key,context)=>executeFor(uid,name,args,key,context));
+  const state=await poll(env,uid,thread,id,api);
+  if(terminal(state.status))return {status:state.status,error:state.error};
+  if(state.status==='submission_uncertain')return {status:'needs_attention',error:'요청 접수 결과를 확인해야 합니다. 자동으로 다시 접수하지 않습니다.'};
+  for(const a of state.actions||[]){
+   if(a.status==='submitted')continue;
+   if(!TOOLKIT_NAMES.has(a.name)&&a.name!==DELEGATE_TOOL.name)return {status:'needs_attention',error:'현재 도구는 서버 실행을 지원하지 않습니다: '+a.name};
+   if(['submitting','submission_uncertain'].includes(a.status))return {status:'needs_attention',error:'도구 결과 전달 여부를 확인해야 합니다. 중복 실행하지 않습니다.'};
+   if(a.status==='executing'&&a.result===undefined&&a.name===DELEGATE_TOOL.name)continue;
+   if(a.status==='executing'&&a.result===undefined)return {status:'needs_attention',error:'도구 실행 결과를 확인해야 합니다. 중복 실행하지 않습니다.'};
+   const body={request_id:id,call_id:a.call_id};
+   const claimed=await tool(env,uid,thread,body,api,true,(name,args,key,context)=>executeFor(uid,name,args,key,context));
+   if(claimed.claimed&&!claimed.pending)await tool(env,uid,thread,{...body,result:claimed.result},api,false);
+   // Bound each tick; subsequent calls continue from their durable state.
+   break;
+  }
+  return {status:'running'};
+ },options);
 }

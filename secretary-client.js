@@ -1,7 +1,7 @@
 (function(root){
   'use strict';
   function createSecretaryClient(options){
-    var running=new Map(), disposed=false;
+    var running=new Map(), finished=new Map(), recovering=new Set(), disposed=false;
     function isActive(thread){return !options.thread||options.thread()===thread;}
     function activity(detail){if(isActive(detail.thread)&&typeof window!=='undefined')window.dispatchEvent(new CustomEvent('moida:activity',{detail:detail}));}
     function activeKey(thread){return options.owner()+'|'+thread;}
@@ -22,15 +22,17 @@
     async function poll(thread,id){for(var attempt=0;attempt<3;attempt++){try{return await options.request('/secretary/poll?preview=1&thread_id='+encodeURIComponent('workspace1_'+thread)+(id?'&request_id='+encodeURIComponent(id):''),{method:'GET'});}catch(error){if(!(error.status>=500)||attempt===2)throw error;await new Promise(function(resolve){setTimeout(resolve,700);});}}}
     function sameOwner(saved){if(options.owner()!==saved.owner)throw Error('로그인 계정이 변경되어 실행 상태 확인을 중단했습니다.');}
     async function drive(thread,saved,state){
+      var lastState=null,toolStates=new Map();
       for(var i=0;i<1200&&!disposed;i++){
         sameOwner(saved);
         state=state||await poll(thread,saved.request_id);
         sameOwner(saved);
-        activity({thread:thread,type:'state',status:state.status});
+        if(lastState!==state.status){activity({thread:thread,type:'state',status:state.status});lastState=state.status;}
         if(state.agents)activity({thread:thread,type:'staff',agents:state.agents});
         if(state.status==='ready'&&!state.request_id)throw Error('이 요청이 서버에 접수됐는지 확인할 수 없습니다. 같은 요청을 다시 보내지 않고 저장된 입력을 보관합니다.');
         if(state.status==='completed'){
-          localStorage.removeItem(storeKey(thread));return state.output_text;
+          if(state.server_managed){try{var recovered=await options.request('/secretary/background?thread_id='+encodeURIComponent('workspace1_'+thread),{method:'GET'});sameOwner(saved);var done=(recovered.items||[]).find(function(item){return item.request_id===saved.request_id;});if(done&&options.executed)(done.results||[]).forEach(function(r){options.executed(r.name,r.result,thread);});}catch(e){sameOwner(saved);}}
+          finished.set(activeKey(thread),state.request_id||saved.request_id);localStorage.removeItem(storeKey(thread));return state.output_text;
         }
         if(state.status==='failed'||state.status==='cancelled'){
           localStorage.removeItem(storeKey(thread));throw Error(state.error||'에이전트 실행이 중단됐습니다.');
@@ -38,7 +40,9 @@
         if(state.status==='submission_uncertain')throw Error('메시지 접수 결과를 확인해야 합니다. 같은 메시지를 다시 접수하지 않습니다. 대화 기록에서 이 대화를 열어 상태를 확인해 주세요.');
         if(state.partial_text&&options.preview)options.preview(thread,state.partial_text);
         if(isActive(thread))options.status(labels[state.status]||'에이전트 실행 상태를 확인합니다.');
-        for(var action of [...(state.actions||[]),...(state.staff_actions||[])]){
+        if(state.server_managed)(state.actions||[]).forEach(function(a){if(toolStates.get(a.call_id)===a.status)return;toolStates.set(a.call_id,a.status);activity({thread:thread,type:'tool',id:a.call_id,name:a.name,status:a.status==='submitted'?(a.result&&a.result.ok===false?'failed':'completed'):a.status==='pending'?'pending':'running'});});
+        if(state.server_managed&&state.runtime_status==='needs_attention')throw Error(state.runtime_error||'서버 업무를 확인해 주세요.');
+        for(var action of [...(state.server_managed?[]:state.actions||[]),...(state.staff_actions||[])]){
           var actionKey=action.parent_call_id?action.parent_call_id+'_'+action.call_id:action.call_id;
           var actionBody={thread_id:thread,request_id:saved.request_id,call_id:action.call_id,...(action.parent_call_id?{parent_call_id:action.parent_call_id}:{})};
           var claimPath=action.parent_call_id?'/secretary/staff-claim':'/secretary/claim',resultPath=action.parent_call_id?'/secretary/staff-result':'/secretary/result';
@@ -68,14 +72,14 @@
           await post(resultPath,{...actionBody,result:result});
           delete saved.results[actionKey];write(thread,saved);
         }
-        var delay=i===0?0:700;
+        var delay=state.server_managed?1500:i===0?0:700;
         state=null;if(delay)await new Promise(function(resolve){setTimeout(resolve,delay);});
       }
-      throw Error('처리가 길어지고 있습니다. 이 대화를 다시 열면 같은 요청의 상태를 이어 확인합니다.');
+      var pendingError=Error('서버에서 업무를 계속 처리하고 있습니다. 대화를 다시 열면 진행 상황과 결과를 확인할 수 있습니다.');pendingError.serverPending=true;throw pendingError;
     }
     function run(thread,input,context){
       var runKey=activeKey(thread),existingRun=running.get(runKey);if(existingRun)return existingRun.promise;
-      var runOwner=options.owner(),entry={owner:runOwner,promise:null};running.set(runKey,entry);
+      finished.delete(runKey);var runOwner=options.owner(),entry={owner:runOwner,promise:null};running.set(runKey,entry);
       selector.value=selectedModel();var model=selector.value;refreshView();
       activity({thread:thread,type:'start',input:input});
       entry.promise=(async function(){
@@ -88,14 +92,28 @@
             saved={request_id:existing.request_id,owner:options.owner(),results:{}};write(thread,saved);state=existing;
           }else{
             saved={request_id:crypto.randomUUID(),owner:runOwner,results:{},input:input,context:context,model:model};write(thread,saved);
-            state=await post('/secretary/message',{thread_id:thread,request_id:saved.request_id,input:input,context:context,model:saved.model});
+            state=await post('/secretary/message',{thread_id:thread,request_id:saved.request_id,input:input,context:context,model:saved.model,server_runtime:true});
           }
         }
         return await drive(thread,saved,state);
-      }catch(error){activity({thread:thread,type:'state',status:'failed',error:error.message});throw error;}finally{running.delete(runKey);refreshView();}
+      }catch(error){activity({thread:thread,type:'state',status:error.serverPending?'in_progress':'failed',error:error.message});throw error;}finally{running.delete(runKey);refreshView();}
       })();return entry.promise;
     }
-    return {run:run,isBusy:isBusy,refreshView:refreshView,hasPending:function(thread){return !!read(thread);},dispose:function(){disposed=true;}};
+    async function recover(thread){
+      var owner=options.owner(),k=activeKey(thread);if(recovering.has(k)||isBusy(thread))return;
+      recovering.add(k);
+      try{
+        var response=await options.request('/secretary/background?thread_id='+encodeURIComponent('workspace1_'+thread),{method:'GET'});
+        if(options.owner()!==owner||disposed)return;
+        for(var item of (response.items||[]).slice().reverse()){
+          if(options.executed)(item.results||[]).forEach(function(r){options.executed(r.name,r.result,thread);});
+          if(item.status==='completed'&&item.output_text){finished.set(k,item.request_id);if(options.recovered)options.recovered(thread,owner,item.output_text);}
+          else if(item.runtime_status==='running'&&!['failed','cancelled','completed'].includes(item.status))write(thread,{request_id:item.request_id,owner:owner,results:{}});
+          else if(item.runtime_status==='needs_attention'&&isActive(thread))options.status(item.runtime_error||'서버 업무 확인이 필요합니다.');
+        }
+      }finally{recovering.delete(k);}
+    }
+    return {recover:recover,resultId:function(thread){var id=finished.get(activeKey(thread));return id?"secretary_"+id:null;},run:run,isBusy:isBusy,refreshView:refreshView,hasPending:function(thread){return !!read(thread);},dispose:function(){disposed=true;}};
   }
   root.createSecretaryClient=createSecretaryClient;
 })(typeof window==='undefined'?globalThis:window);

@@ -13,7 +13,7 @@ import {createVoiceCall} from './secretary-voice.js';
 import {driveListParams,driveListResult} from './drive-query.js';
 import {builtinTick} from './secretary-builtin-tools.js';
 import {TEXT_PRICES,aiModelInfo} from './secretary-pricing.js';
-import {handleSecretaryRoute} from "./secretary-agent.js";
+import {handleSecretaryRoute,secretaryTick} from "./secretary-agent.js";
 import {teamTools,executeTeamTool,runToolConversation,compactWorkContext} from './agent-tools.js';
 import {executeToolkit,toolkitRoute,toolkitTick,boundedBytes,bytesToBase64} from "./secretary-toolkit.js";
 import {createHiggsfieldMcp,MCP_PROVIDERS} from './secretary-higgsfield-mcp.js';
@@ -1774,7 +1774,7 @@ const flowCalendar=createFlowCalendar({encrypt:encryptGoogleToken,decrypt:decryp
 const officeLocation=createOfficeLocation();
 const officeTravel=createOfficeTravel({encrypt:encryptGoogleToken,decrypt:decryptGoogleToken,flow:flowCalendar});
 
-async function handleFetch(request, env) {
+async function handleFetch(request, env, ctx) {
   if (request.method === "OPTIONS") return new Response(null, { status: 204, headers: corsHeaders(request, env) });
   const url = new URL(request.url);
   const path = url.pathname.replace(/\/+$/, "") || "/";
@@ -1800,7 +1800,7 @@ async function handleFetch(request, env) {
     if (path.startsWith('/secretary/')) {
       const user = await verifyFirebaseUser(request, env);
       const body = request.method === 'POST' ? await requestBody(request) : {};
-      return json(await handleSecretaryRoute({env, user, path, method: request.method, body, query: url.searchParams, executeWork:async(name,args,key,context)=>{
+      const secretaryResult=await handleSecretaryRoute({env, user, path, method: request.method, body, query: url.searchParams, executeWork:async(name,args,key,context)=>{
         if(TOOLKIT_NAMES.has(name))return executeToolkit({env,uid:user.uid,name,args,operationKey:key,services:officeToolServices(env,user,request)});
         if(name==='delegate_work'){
           const internal=new Request(url.origin+'/agent-runs',{method:'POST',headers:{'Content-Type':'application/json','Origin':request.headers.get('Origin')||''},body:JSON.stringify({instruction:args.instruction,assignments:args.assignments,context,idempotencyKey:key})});
@@ -1810,7 +1810,9 @@ async function handleFetch(request, env) {
         const run=await getRun(env,args.run_id,user.uid);
         if(!run)throw new HttpError(404,'현재 계정의 작업을 찾지 못했습니다.');
         return {ok:true,run_id:run.id,status:run.status,summary:run.summary,error:run.error,tasks:run.tasks,run};
-      }}), 200, request, env);
+      }});
+      if(secretaryResult.server_managed&&ctx?.waitUntil)ctx.waitUntil(tickSecretary(env,{uid:user.uid,thread:body.thread_id||url.searchParams.get('thread_id')}));
+      return json(secretaryResult,200,request,env);
     }
     if (path === "/health" && request.method === "GET") {
       return json({ ok: true, flowCalendar: Boolean(env.AGENT_DB && env.GOOGLE_CLIENT_SECRET), flowSync: "on-open-and-five-minute-visible", secretaryApi: "agents-v1", voiceModel: env.SECRETARY_VOICE_MODEL || "gpt-realtime-2.1", voiceCall: Boolean(env.OPENAI_API_KEY), secretaryModel: env.SECRETARY_MODEL || "gpt-6-luna", secretaryEnvironment: "none", secretaryToolkit: "toolkit-v3", officeTools: [...TOOLKIT_NAMES], webSearch: "live", queue: Boolean(env.AGENT_QUEUE), database: Boolean(env.AGENT_DB), law: Boolean(env.LAW_OC), gemini: Boolean(env.GEMINI_API_KEY), googleCalendar: Boolean(env.GOOGLE_CLIENT_ID && env.GOOGLE_CLIENT_SECRET), schemaVersion: AGENT_SCHEMA_VERSION, agentModel: env.AGENT_MODEL || "gpt-4o-mini", officeStaffCatalogVersion: 1, officeStaffCount: STAFF_ROLES.length, executionMode: "parallel-teams", maxConcurrentTeams: 3, leadReview: "model" }, 200, request, env);
@@ -1886,11 +1888,17 @@ async function handleFetch(request, env) {
   }
 }
 
+
+function tickSecretary(env,options={}){
+ return secretaryTick(env,(uid,name,args,key)=>executeToolkit({env,uid,name,args,operationKey:key,
+  services:officeToolServices(env,{uid},new Request('https://moida-gpt.banedict84.workers.dev/secretary/background'))}),options);
+}
+
 export default {
   fetch: handleFetch,
   queue: handleQueue,
   scheduled(_controller, env, ctx) {
-    if(_controller.cron==='* * * * *'){ctx.waitUntil(officeTravel.tick(env));ctx.waitUntil(toolkitTick(env).then(()=>builtinTick(env)));return;}
+    if(_controller.cron==='* * * * *'){ctx.waitUntil(tickSecretary(env));ctx.waitUntil(officeTravel.tick(env));ctx.waitUntil(toolkitTick(env).then(()=>builtinTick(env)));return;}
     ctx.waitUntil(recoverStaleRuns(env));
     ctx.waitUntil(toolkitTick(env));
     ctx.waitUntil(solapiMessaging.tick(env));

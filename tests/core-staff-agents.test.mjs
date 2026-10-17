@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {DatabaseSync} from 'node:sqlite';
-import {handleSecretaryRoute} from '../secretary-agent.js';
+import {handleSecretaryRoute,secretaryTick} from '../secretary-agent.js';
 import {CORE_AGENTS,agentPolicy} from '../secretary-core-agents.js';
 function fixture(){
  const db=new DatabaseSync(':memory:');
@@ -31,8 +31,18 @@ function fixture(){
  async function assign(parent,agent='core_semi',call='delegate_A',instruction='실제 계산 도구로 6*7을 계산해줘'){
   parent.actions.push({type:'function_call',turn_id:parent.turn.id,call_id:call,name:'delegate_agent',arguments:{agent_id:agent,instruction}});await poll();const result=await route('/secretary/claim',{...base,call_id:call});return {result,child:creations.at(-1).s};
  }
- return {db,env,sessions,creations,executions,route,base,start,poll,assign};
+ return {db,env,sessions,creations,executions,route,base,start,poll,assign,fetcher};
 }
+
+test('화면 없이 모아 배정부터 직원 도구 실행과 최종 보고까지 이어간다',async()=>{
+ const f=fixture();await f.route('/secretary/message',{...f.base,input:'6*7 계산',server_runtime:true});
+ const parent=f.creations[0].s;parent.actions=[{type:'function_call',turn_id:parent.turn.id,call_id:'delegate_A',name:'delegate_agent',arguments:{agent_id:'core_semi',instruction:'6*7 계산'}}];
+ const now=Date.now();let count=0;const execute=async()=>{count++;return{ok:true,result:42};};
+ await secretaryTick(f.env,execute,{fetcher:f.fetcher,now});
+ const child=f.creations[1].s;child.actions=[{type:'function_call',turn_id:child.turn.id,call_id:'calculate_A',name:'calculate',arguments:{expression:'6*7'}}];
+ for(let i=1;i<=4;i++)await secretaryTick(f.env,execute,{fetcher:f.fetcher,now:now+i*2000});
+ const state=await f.poll();assert.equal(state.status,'completed');assert.equal(state.output_text,'모아 통합 보고');assert.equal(count,1);assert.equal(state.agents[0].status,'completed');f.db.close();
+});
 test('모아 → 셈이 독립 세션 → 실제 계산 → 모아 보고: 중복 실행·위조 결과 차단',async()=>{
  const f=fixture(),parent=await f.start();assert(parent.agent.tools.some(t=>t.name==='delegate_agent'));assert.match(parent.agent.instructions,/반드시 해당 직원에게 배정/);
  const {result,child}=await f.assign(parent);assert(result.pending);assert.notEqual(parent.id,child.id);assert.match(child.agent.instructions,/셈이 · 분석 직원/);assert(child.agent.tools.some(t=>t.name==='calculate'));assert(!child.agent.tools.some(t=>t.name==='generate_image'||t.name==='delegate_agent'));
