@@ -1,6 +1,6 @@
 import {telegramCrmMessage} from './crm-telegram.js';
 // Telegram transport is independent of browser login. Never map Telegram IDs to Firebase IDs implicitly.
-const HELP = 'CRM 연결 후: 홍길동 메모: 내용 — 사람별 메모 저장\n이름만 먼저 보내고 다음 메시지에 내용 입력도 가능합니다.\n/취소 — 메모 입력 취소\n모이다 AI비서실입니다.\n/메모 내용 — 업무 메모 저장\n/목록 — 내 의원실 메모 조회\n/도움말 — 사용 안내\n그 밖의 텍스트는 AI에게 질문합니다.\n현재 파일 분석·일정 연동·예약 보고는 지원하지 않습니다.';
+const HELP = '홍길동 연락처 알려줘 또는 /조회 홍길동 — 연결된 CRM 연락처 조회\nCRM 연결 후: 홍길동 메모: 내용 — 사람별 메모 저장\n이름만 먼저 보내고 다음 메시지에 내용 입력도 가능합니다.\n/취소 — 메모 입력 취소\n모이다 AI비서실입니다.\n/메모 내용 — 업무 메모 저장\n/목록 — 내 의원실 메모 조회\n/도움말 — 사용 안내\n그 밖의 텍스트는 AI에게 질문합니다.\n현재 파일 분석·일정 연동·예약 보고는 지원하지 않습니다.';
 const admins = env => new Set(String(env.TELEGRAM_ADMIN_IDS || '').split(',').map(x => x.trim()).filter(Boolean));
 const statement = (env, sql, ...args) => env.AGENT_DB.prepare(sql).bind(...args);
 const reply = (text, status = 200) => new Response(text, {status});

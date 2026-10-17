@@ -19,7 +19,7 @@ test('pairing is single-use and contact notes stay tenant scoped, append-only an
   await f.msg('7','홍길동 메모: 내일 전화',100);
   assert.equal((await f.api('a','notes?id=1')).notes.length,1);
   assert.equal((await f.api('b','notes?id=1')).notes.length,0);
-  const stored=f.db.prepare('SELECT contacts FROM crm_tg_index WHERE uid=?').get('a').contacts;assert(!stored.includes('not stored'));assert(!stored.includes('0101234'));assert(stored.includes('5678'));
+  const stored=f.db.prepare('SELECT contacts FROM crm_tg_index WHERE uid=?').get('a').contacts;assert(!stored.includes('not stored'));assert(stored.includes('01012345678'));assert(stored.includes('5678'));
   await f.api('a','disconnect',{});assert.match(await f.msg('7','홍길동 메모: 다시'),/연결 코드/);
   assert.equal((await f.api('a','notes?id=1')).notes.length,1);
  }finally{f.db.close();}
@@ -48,5 +48,34 @@ test('expired codes, expired selection and other account pairing do not reuse pe
   await f.msg('7','/CRM '+(await f.api('b','code',{})).code);assert.equal(await f.msg('7','연락 예정입니다'),null);
   assert.equal(f.db.prepare('SELECT COUNT(*) n FROM crm_tg_notes').get().n,0);
   assert.match(await f.msg('7','/선택 1'),/만료/);
+ }finally{f.db.close();}
+});
+
+test('contact lookup bypasses AI, supports natural requests, and never writes a lookup as a memo',async()=>{
+ const f=fixture();try{
+  await f.api('a','index',{contacts:[{id:'1',name:'홍길동',phone:'010-1234-5678',rrn:'secret',type:'secret'}]});
+  assert.match(await f.msg('7','홍길동 연락처 알려줘'),/연결 코드/);
+  await f.msg('7','/CRM '+(await f.api('a','code',{})).code);
+  await f.msg('7','홍길동'); // lookup replaces an unfinished memo prompt
+  for(const text of ['홍길동 연락처 알려줘','홍길동님 전화번호 알려주세요','/조회 홍길동','CRM 홍길동 조회','연락처 홍길동']){
+   const result=await f.msg('7',text);assert.match(result,/010-1234-5678/);assert(!result.includes('secret'));assert.match(result,/CRM 동기화/);
+  }
+  assert.equal((await f.api('a','notes?id=1')).notes.length,0);
+  assert.match(await f.msg('7','/조회 없는이름'),/찾지 못했습니다/);
+  assert.match(await f.msg('7','홍길동 메모: 연락처 알려줘'),/저장/);
+  assert.equal((await f.api('a','notes?id=1')).notes.length,1);
+  await f.api('a','disconnect',{});assert.match(await f.msg('7','홍길동 연락처'),/연결 코드/);
+ }finally{f.db.close();}
+});
+test('lookup selection reveals only chosen contact from paired CRM and legacy index asks to refresh',async()=>{
+ const f=fixture();try{
+  await f.api('a','index',{contacts:[{id:'1',name:'김민수',phone:'010-1111-1111'},{id:'2',name:'김민수',phone:'010-2222-2222'}]});
+  await f.api('b','index',{contacts:[{id:'3',name:'김민수',phone:'010-3333-3333'}]});
+  await f.msg('7','/CRM '+(await f.api('a','code',{})).code);
+  const choices=await f.msg('7','김민수 연락처');assert.match(choices,/번호를 보내/);assert(!choices.includes('010-'));
+  const result=await f.msg('7','2');assert.match(result,/010-2222-2222/);assert(!result.includes('3333'));
+  assert.equal(f.db.prepare('SELECT COUNT(*) n FROM crm_tg_notes').get().n,0);
+  f.db.prepare('UPDATE crm_tg_index SET contacts=? WHERE uid=?').run(JSON.stringify([{id:'1',name:'이전이름',last4:'1111'}]),'a');
+  assert.match(await f.msg('7','이전이름 연락처'),/아직 동기화/);
  }finally{f.db.close();}
 });
