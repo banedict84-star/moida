@@ -1,6 +1,14 @@
 {
-  "updated": "2026-10-16 21:33 UTC",
+  "updated": "2026-10-17 00:41 UTC",
   "items": [
+    {
+      "source": "naver",
+      "press": "kyeonggi.com",
+      "date": "2026.10.17",
+      "title": "“구리가 4천만원?”…‘또 역대 최고’ 찍은 경기도 아파트 분양가",
+      "snippet": "안산시 상록구 성포동에서는 GS건설이 ‘아르뮤제자이’를 분양할 예정이다. 아파트 984가구와 오피스텔 370실 등 총 1천354가구 규모다. 광주시에서는 ‘경기광주역 롯데캐슬 시그니처 2단지’, 평택에서는...",
+      "url": "https://www.kyeonggi.com/article/20261017580003"
+    },
     {
       "source": "naver",
       "press": "segye.com",
@@ -8,6 +16,22 @@
       "title": "경기 분양가도 평당 4000만원?…실수요자 ‘플랜B’ 지역은",
       "snippet": "이달 경기 안산시 상록구 성포동 일대에는 중대형 평형 위주 대단지인 ‘아르뮤제자이’(총 1354가구)가 분양을 앞두고 있다. 이 밖에도 광주 ‘경기광주역 롯데캐슬 시그니처 2단지’, 평택 ‘한화포레나...",
       "url": "https://www.segye.com/newsView/20261016516690?OutUrl=naver"
+    },
+    {
+      "source": "naver",
+      "press": "gukjenews.com",
+      "date": "2026.10.17",
+      "title": "안산시의회 도시환경委, 환경·에너지 시설 운영 현황 점검",
+      "snippet": "안산플러스에너지센터에서는 신재생에너지 전시·체험시설과 교육프로그램 운영 현황을 확인하고, 시설 활성화 방안에 대해 논의했다. 위원들은 센터가 시민들에게 신재생에너지의 중요성을 알리고 탄소중립 실천을...",
+      "url": "https://www.gukjenews.com/news/articleView.html?idxno=3724157"
+    },
+    {
+      "source": "naver",
+      "press": "edu.donga.com",
+      "date": "2026.10.17",
+      "title": "예술·디자인 분야 전문대학 12곳 참여…2027학년도 연합 입학박람회 31...",
+      "snippet": "수험생들에게 대학별 입학 전형과 교육과정에 관한 정보를 제공하고, 전공 탐색 기회를 마련하기 위한 행사다. 참가 대학은 계원예술대학교를 비롯해 경기과학기술대학교, 국제대학교, 대림대학교, 동원대학교, 안산대...",
+      "url": "https://edu.donga.com/news/articleView.html?idxno=112884"
     },
     {
       "source": "naver",
@@ -259,19 +283,19 @@
     },
     {
       "source": "naver",
-      "press": "newsfreezone.co.kr",
-      "date": "2026.10.16",
-      "title": "안산 재향소방동우회, 청소년 대상 소방진로 멘토링 실시",
-      "snippet": "강의를 맡은 제 사무국장 역시 현역 시절부터 안전교육과 소방 관련 활동을 지속해 왔다. 2019년 2월 안산소방서 월피119안전센터 소방위로 근무할 당시 주민 70여명을 대상으로 화재 예방과 초기 대응 요령을 교육했으며...",
-      "url": "https://www.newsfreezone.co.kr/news/articleView.html?idxno=714376"
-    },
-    {
-      "source": "naver",
       "press": "newspim.com",
       "date": "2026.10.16",
       "title": "부영그룹, 하반기 안전·보건관리자 워크숍 개최…'중대재해 제로' 총력",
       "snippet": "부영그룹은 그간 뚝섬부영복합빌딩, 여수안산동, 화성향남 등 주요 사업장을 대상으로... 또한 주요 사업장을 대상으로 규정 및 절차 이행 전반에 걸친 점검을 정기적으로 실시하고 매년 전사적 안전교육을 병행하고...",
       "url": "https://www.newspim.com/news/view/20261016001259"
+    },
+    {
+      "source": "naver",
+      "press": "newsfreezone.co.kr",
+      "date": "2026.10.16",
+      "title": "안산 재향소방동우회, 청소년 대상 소방진로 멘토링 실시",
+      "snippet": "강의를 맡은 제 사무국장 역시 현역 시절부터 안전교육과 소방 관련 활동을 지속해 왔다. 2019년 2월 안산소방서 월피119안전센터 소방위로 근무할 당시 주민 70여명을 대상으로 화재 예방과 초기 대응 요령을 교육했으며...",
+      "url": "https://www.newsfreezone.co.kr/news/articleView.html?idxno=714376"
     },
     {
       "source": "naver",
@@ -445,9 +469,9 @@
       "source": "naver",
       "press": "newsclaim.co.kr",
       "date": "2026.10.16",
-      "title": "이민근 안산시장 ESG 경영자 과정서 안산 미래 발전 구상 설명",
-      "snippet": "지난 2023년 시작된 ESG 경영자 과정은 안산환경재단 탄소중립지원센터와 SDX재단이 공동 주최하는 교육 프로그램입니다. 기후위기에 대응하는 기업의 환경 관련 위험 관리와 탄소중립 경영 역량 강화를 목표로 운영하고...",
-      "url": "https://www.newsclaim.co.kr/news/articleView.html?idxno=3078878"
+      "title": "안산환경재단 ESG경영자 과정서 안산 발전 방향 모색",
+      "snippet": "이날 교육에는 김제연 안산환경재단 대표이사와 윤충오 사업본부장, 안규철 교육원장, ESG경영자 과정 1~5기 수료생과 제6기 교육생, 안산시 환경정책과장 등 60여 명이 참석했습니다. 이번 교육에서는 재단 이사장인...",
+      "url": "https://www.newsclaim.co.kr/news/articleView.html?idxno=3078879"
     },
     {
       "source": "naver",
@@ -461,9 +485,9 @@
       "source": "naver",
       "press": "newsclaim.co.kr",
       "date": "2026.10.16",
-      "title": "안산환경재단 ESG경영자 과정서 안산 발전 방향 모색",
-      "snippet": "이날 교육에는 김제연 안산환경재단 대표이사와 윤충오 사업본부장, 안규철 교육원장, ESG경영자 과정 1~5기 수료생과 제6기 교육생, 안산시 환경정책과장 등 60여 명이 참석했습니다. 이번 교육에서는 재단 이사장인...",
-      "url": "https://www.newsclaim.co.kr/news/articleView.html?idxno=3078879"
+      "title": "이민근 안산시장 ESG 경영자 과정서 안산 미래 발전 구상 설명",
+      "snippet": "지난 2023년 시작된 ESG 경영자 과정은 안산환경재단 탄소중립지원센터와 SDX재단이 공동 주최하는 교육 프로그램입니다. 기후위기에 대응하는 기업의 환경 관련 위험 관리와 탄소중립 경영 역량 강화를 목표로 운영하고...",
+      "url": "https://www.newsclaim.co.kr/news/articleView.html?idxno=3078878"
     },
     {
       "source": "naver",
@@ -498,20 +522,12 @@
       "url": "https://www.thereport.co.kr/news/articleView.html?idxno=92314"
     },
     {
-      "source": "naver",
-      "press": "weekly.hankooki.com",
+      "source": "google",
+      "press": "중부일보",
       "date": "2026.10.16",
-      "title": "안산선 지하화·신길산단 개발…이민근 안산시장, 기업인에 미래 청사진...",
-      "snippet": "이 시장은 지난 15일 경기테크노파크에서 열린 제6기 ESG 경영자 교육과정에 특별강사로 참여해 안산의 주요 현안과 중장기 발전 구상을 소개했다. 안산시에 따르면 이번 강연은 '다시 뛰는 안산'을 주제로 진행됐으며...",
-      "url": "https://weekly.hankooki.com/news/articleView.html?idxno=7189236"
-    },
-    {
-      "source": "naver",
-      "press": "tournews21.com",
-      "date": "2026.10.16",
-      "title": "시각장애인 829명, 소리로 숲을 만나다…'소리산책' 73회 운영",
-      "snippet": "(숲체험·교육사업)'의 일환으로 추진됐다고 밝혔다. '소리산책'은 시각 중심의 기존 숲 체험 방식에서 벗어나... 주요 운영 장소는 안산자락길, 용마산자락길, 인천대공원, 늘솔길공원, 부천자연생태공원 등이다. 이번...",
-      "url": "https://www.tournews21.com/news/articleView.html?idxno=145898"
+      "title": "안산교육지원청, 사립유치원장·유아학비 담당자 역량강화 연수 개회",
+      "snippet": "안산교육지원청, 사립유치원장·유아학비 담당자 역량강화 연수 개회 중부일보",
+      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBvMUNZUXFaNTRIMGI1Ry1hQnBhcENseEpiazFEV2dERzJzcHlHVHZVa0dxaFNDSXJPWU8zRWZ0UmxJRzlDdERBa1g3X3E0cUtOZEdQb0dRWkNobnU5MU0yZGxET0hxTkNKWG8zag?oc=5"
     },
     {
       "source": "google",
@@ -531,19 +547,11 @@
     },
     {
       "source": "google",
-      "press": "경인매일",
-      "date": "2026.10.16",
-      "title": "안산환경재단, 제6기 ESG경영자 과정 8회차 교육 진행",
-      "snippet": "안산환경재단, 제6기 ESG경영자 과정 8회차 교육 진행 경인매일",
-      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE8xb0RCdi1jNnZPVTN4VTNPazNSTVBXUkc0QTI5dGVUT0JUNjRNbzBPcHB2d0xrRzVOVHFUN0dKQXhObGdFMVRwcEtQNGp0Q1hCOEc5a2tJNU9jbmtpVm53dnl5UDJDTE5E?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "리버럴미디어",
+      "press": "경기남부뉴스",
       "date": "2026.10.16",
       "title": "경기도의회 박은경 의원, “안산 다문화교육 특성 살리고, 이주배경 학생 지원 내실화해야”",
-      "snippet": "경기도의회 박은경 의원, “안산 다문화교육 특성 살리고, 이주배경 학생 지원 내실화해야” 리버럴미디어",
-      "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE9lQzRaNC1PSi1iTDVDVEdmNUR3TUFRMGtOVUNEeE44UVREQXI5RmpFWktORlJ6eWdSWVJLWkxKNE8xQ28xWlZxNWpxdzFmS3huNVpwLXp4eWlsTGNITzRYdEZ3YUQ?oc=5"
+      "snippet": "경기도의회 박은경 의원, “안산 다문화교육 특성 살리고, 이주배경 학생 지원 내실화해야” 경기남부뉴스",
+      "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE42Y0dBR3V3Q2w1VmFCX1VidXdIdUluUC1zMFNzaFllNFVxM3o2QUk4OEhfMElFTW5Vay1QdVBFcWpCVENqSE9jNTMtOEFxU0tHV1dUaFlhU2UxbVFFbF9vMHd3?oc=5"
     },
     {
       "source": "google",
@@ -595,19 +603,19 @@
     },
     {
       "source": "google",
-      "press": "경기종합뉴스",
+      "press": "정도일보",
       "date": "2026.10.15",
-      "title": "안산교육지원청, 화면을 끄고 성장을 켜다! 폰프리로 여는 유아기 뇌 발달",
-      "snippet": "안산교육지원청, 화면을 끄고 성장을 켜다! 폰프리로 여는 유아기 뇌 발달 경기종합뉴스",
-      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE1za2lFdzRMckF6WjFJMWpSTjVLTDI2VHBZMDJzODhYcU10ZVRkandfdWtjYU1uZHdaeDBDTXpVVXJRaDVPTHdGM01yNnpZcWN0d0J3NFlMMjhPQTVuOGpNTVZvYjBqN1RmRFphZXZuSmZOMGJo?oc=5"
+      "title": "안산교육지원청, 월드카페토론 방식 활용 중등 기초학력 업무담당자 워크숍 운영",
+      "snippet": "안산교육지원청, 월드카페토론 방식 활용 중등 기초학력 업무담당자 워크숍 운영 정도일보",
+      "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE53bWZLWHFkWHFQbXFVU3VmUE4wd0VXSGNCQ2NDUEhENHA3S2NnS2RRcnp1YXRYczFvRFhYYXVWVFF5MkpLcTBrY1RiS1FwWElXODZuZVAxbXNDQzQwaERxMkRVcHU?oc=5"
     },
     {
       "source": "google",
-      "press": "www.newszoom.kr",
+      "press": "뉴스 따옴",
       "date": "2026.10.15",
-      "title": "안산교육지원청, 월드카페토론 방식 활용 중등 기초학력 업무담당자 워크숍 운영",
-      "snippet": "안산교육지원청, 월드카페토론 방식 활용 중등 기초학력 업무담당자 워크숍 운영 www.newszoom.kr",
-      "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE91aVFGbjc5dXJJZzFlX2NTSUpnY09naktuR3dkeFJjVWVBQXAtN29QRDdHU1VsLTZxd0d0Q0lkZWMxbFpnZlE?oc=5"
+      "title": "안산교육지원청, 화면을 끄고 성장을 켜다! 폰프리로 여는 유아기 뇌 발달",
+      "snippet": "안산교육지원청, 화면을 끄고 성장을 켜다! 폰프리로 여는 유아기 뇌 발달 뉴스 따옴",
+      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE1TR1NrRjVQSmROdzRIdVVsbTg2RWE3SE5WeUVMR0QyRUQ2S0gwNjM1YlNLX1BmaENxV2lRUHpUUkUyRVpvUENHOEJWbV9uSTR2SmROQmlJMERrS3A0RklnVFpRWWJTdXpqaDVkQzBha9IBckFVX3lxTE5lTE9TeHkxVWEtb1JUdkJfdXpEcVczTjgzTC1sM0ZJSDdDR2xDWlc3SjQ1VnJhdE45UFJqZ19JOEZweWRsYm1vVFRTSUo0TEd2YkMwMGM5SEx3RHJaRVJyY1NJSnZzalFmdkhfMDktSnVxUQ?oc=5"
     },
     {
       "source": "google",
@@ -907,11 +915,11 @@
     },
     {
       "source": "google",
-      "press": "경기헤드뉴스",
+      "press": "뉴스다",
       "date": "2026.10.14",
       "title": "안산교육지원청, RAS로 듣고 예술로 공감하다! 장애인식의 새로운 시선",
-      "snippet": "안산교육지원청, RAS로 듣고 예술로 공감하다! 장애인식의 새로운 시선 경기헤드뉴스",
-      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5xRjZaN0ZmdHNrSEpXbWlqV1VFUHJJSUJISlVIRkdyWlF5SXh3Nm1mTDV4dmFxdU5jNDlKcXVJdWhnWlFiTzRWV0VmZlpaVVZhZDh1MkRobUY2QQ?oc=5"
+      "snippet": "안산교육지원청, RAS로 듣고 예술로 공감하다! 장애인식의 새로운 시선 뉴스다",
+      "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE1SSUl0TXM5TWgyOXlMZmhFbXE2UTZmZnJGYmJBc2dwZkRnbTN3THQtUGM5T05Yb1QzSm5QZER1a2FxcHhKMEdpSElvellIZmUxNTZUMUZFa1RVWGZ5c2Zv?oc=5"
     },
     {
       "source": "google",
@@ -962,20 +970,12 @@
       "url": "https://www.getnews.co.kr/news/articleView.html?idxno=883382"
     },
     {
-      "source": "naver",
-      "press": "kihoilbo.co.kr",
-      "date": "2026.10.13",
-      "title": "안산서 우키시마호 침몰 사건 다룬 연극 '귀국선 1호' 공연",
-      "snippet": "기호일보, KIHOILBO 연극 귀국선1호 포스터.<극단58번국도 제공> 광복 직후 강제동원 조선인 수천 명이 희생된 우키시마호 침몰 사건을 법정극으로 재조명한 연극 '귀국선 1호'가 오는 15일 오후 7시 30분 안산시 상록구...",
-      "url": "https://www.kihoilbo.co.kr/news/articleView.html?idxno=3037422"
-    },
-    {
       "source": "google",
       "press": "뉴스클레임",
       "date": "2026.10.13",
       "title": "안산시상록구노인복지관 라온카페 개업 1주년 무료 음료 전달",
       "snippet": "안산시상록구노인복지관 라온카페 개업 1주년 무료 음료 전달 뉴스클레임",
-      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTFBWMGhIUml1M2xOSUZiYmdDUThzNE1DdHZEU3hSVG9YdlM5T29kZ1hiVE5rTUdNeGFFcVVrXzJ5d3hLenBQeGtrTFNpNTROUVVFT1M3THRPQTZOQXU0eEowRjVYOURUby1uZEJVYVhXa3hINGNx0gF0QVVfeXFMUFYwaEhSaXUzbE5JRmJiZ0NROHM0TUN0dkRTeFJUb1h2UzlPb2RnWGJUTmtNR014YUVxVWtfMnl3eEt6cFB4a2tMU2k1NE5RVUVPUzdMdE9BNk5BdTR4SjBGNVg5RFRvLW5kQlVhWFdreEg0Y3E?oc=5"
+      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9zb3lBV01YVktfN2hmakxUT09BakNWYXFIUWthM0pDb1NhODlkMnhoMEhaWldkSlllWHZWYm8zZ2ZteUlJNWdlUm9rLTNFMUhQaGU1ODdSSVhldUpPcWV2Mi1FdVhYbDBVYkVJME9Ody3SAXRBVV95cUxQVjBoSFJpdTNsTklGYmJnQ1E4czRNQ3R2RFN4UlRvWHZTOU9vZGdYYlROa01HTXhhRXFVa18yeXd4S3pwUHhra0xTaTU0TlFVRU9TN0x0T0E2TkF1NHhKMEY1WDlEVG8tbmRCVWFYV2t4SDRjcQ?oc=5"
     },
     {
       "source": "google",
@@ -987,11 +987,11 @@
     },
     {
       "source": "google",
-      "press": "뉴스파노라마",
+      "press": "뉴스줌",
       "date": "2026.10.13",
       "title": "안산교육지원청, ‘2026 안산 IB Insight Tour’ 운영",
-      "snippet": "안산교육지원청, ‘2026 안산 IB Insight Tour’ 운영 뉴스파노라마",
-      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE9qQURiQkZxQmJSUk9oQThXSGloNnNlOXNJV0d4TWpiSl9jY3gycjlpSmJqS2VrdzYyMVFUYllHaW9oMmxxMldCa1c0TnRBbFJpMG9DQ1dGeUQxclExVGstU3dIRlFpcDIzMDZFZENNWQ?oc=5"
+      "snippet": "안산교육지원청, ‘2026 안산 IB Insight Tour’ 운영 뉴스줌",
+      "url": "https://news.google.com/rss/articles/CBMiREFVX3lxTFBSQnhYdVVhMHUxbEF0ZEc2SlBLaW12OGZvazN0cmxjY2xWQ2ljdFhlTGVxSEZjR1R5cWR1X0wyclRFTnhf?oc=5"
     },
     {
       "source": "google",
@@ -1507,11 +1507,11 @@
     },
     {
       "source": "google",
-      "press": "경인신문",
+      "press": "광흥타임즈",
       "date": "2026.09.03",
       "title": "경기도의회 장윤정 의원, 안산시 태양광 햇빛발전 협동조합 공모사업 추진과정 다시 살펴야",
-      "snippet": "경기도의회 장윤정 의원, 안산시 태양광 햇빛발전 협동조합 공모사업 추진과정 다시 살펴야 경인신문",
-      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE1KNncyWmhNS0ZoZUFwTzVDR1FVR09ONUlrbHNoYVNVU3hBZmZqMG5QLS1FNTQ3aWQwUUtuYUdvREZqdmRlZjVDZWxQYTFscUNGYkFtTkVjNWhxVXFFRjBMeENtaDAtS1k?oc=5"
+      "snippet": "경기도의회 장윤정 의원, 안산시 태양광 햇빛발전 협동조합 공모사업 추진과정 다시 살펴야 광흥타임즈",
+      "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE5KekFJczFQcHByZjE4RjhrMDJGbWU2T1ZPRzE4Tmg3VVpiNmI5RHF1RVdrZFAyd3YyWTllR2ZyZkMzNDVnYjg2LUFoUlhoMm0wazFZaFFqZFEyYU9na1c0?oc=5"
     },
     {
       "source": "naver",
