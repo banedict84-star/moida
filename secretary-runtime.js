@@ -16,11 +16,11 @@ export async function runtimeRow(env,uid,thread,id){
  return q(env,'SELECT * FROM secretary_runtime WHERE tenant_id=? AND thread_id=? AND request_id=?',[uid,thread,id]).first();
 }
 export async function runtimeHistory(env,uid,thread){
- const items=(await q(env,`SELECT r.request_id,r.status AS runtime_status,r.error AS runtime_error,t.status,t.output_text,t.error
+ const items=(await q(env,`SELECT r.thread_id AS execution_thread,r.request_id,r.status AS runtime_status,r.error AS runtime_error,t.status,t.output_text,t.error
  FROM secretary_runtime r JOIN secretary_turns t USING(tenant_id,thread_id,request_id)
- WHERE r.tenant_id=? AND r.thread_id=? ORDER BY t.created_at DESC LIMIT 50`,[uid,thread]).all()).results;
+ WHERE r.tenant_id=? AND (r.thread_id=? OR r.thread_id IN(SELECT execution_thread FROM secretary_conversations WHERE tenant_id=? AND conversation_id=?)) ORDER BY t.created_at DESC LIMIT 50`,[uid,thread,uid,thread]).all()).results;
  for(const item of items){
-  const rows=(await q(env,`SELECT name,result_json FROM secretary_calls WHERE tenant_id=? AND thread_id=? AND request_id=? AND result_json IS NOT NULL LIMIT 100`,[uid,thread,item.request_id]).all()).results;
+  const rows=(await q(env,`SELECT name,result_json FROM secretary_calls WHERE tenant_id=? AND thread_id=? AND request_id=? AND result_json IS NOT NULL LIMIT 100`,[uid,item.execution_thread,item.request_id]).all()).results;
   item.results=rows.flatMap(row=>{try{
    const r=JSON.parse(row.result_json);
    const candidates=[{name:row.name,result:r},...(Array.isArray(r.artifacts)?r.artifacts:[])];

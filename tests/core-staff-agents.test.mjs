@@ -44,7 +44,7 @@ test('화면 없이 모아 배정부터 직원 도구 실행과 최종 보고까
  const state=await f.poll();assert.equal(state.status,'completed');assert.equal(state.output_text,'모아 통합 보고');assert.equal(count,1);assert.equal(state.agents[0].status,'completed');f.db.close();
 });
 test('모아 → 셈이 독립 세션 → 실제 계산 → 모아 보고: 중복 실행·위조 결과 차단',async()=>{
- const f=fixture(),parent=await f.start();assert(parent.agent.tools.some(t=>t.name==='delegate_agent'));assert.match(parent.agent.instructions,/반드시 해당 직원에게 배정/);
+ const f=fixture(),parent=await f.start();assert(parent.agent.tools.some(t=>t.name==='delegate_agent'));assert.match(parent.agent.instructions,/간단한 검색·계산·문서·이미지 요청은 직접/);
  const {result,child}=await f.assign(parent);assert(result.pending);assert.notEqual(parent.id,child.id);assert.match(child.agent.instructions,/셈이 · 분석 직원/);assert(child.agent.tools.some(t=>t.name==='calculate'));assert(!child.agent.tools.some(t=>t.name==='generate_image'||t.name==='delegate_agent'));
  child.actions=[{type:'function_call',turn_id:child.turn.id,call_id:'calculate_A',name:'calculate',arguments:{expression:'6*7'}}];
  const running=await f.poll();assert.equal(running.agents[0].name,'셈이');assert.equal(f.executions.length,1);assert.deepEqual(f.executions[0],{name:'calculate',args:{expression:'6*7'}});

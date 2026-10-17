@@ -7,6 +7,31 @@ import {handleSecretaryRoute,finalText,secretaryTick} from '../secretary-agent.j
 import {SECRETARY_TOOLS} from '../secretary-tools.js';
 import worker from '../gpt-worker.js';
 import {ensureToolkit} from '../secretary-toolkit.js';
+import {linkConversation} from '../secretary-conversation.js';
+
+test('대화의 개별 업무를 계정별로 연결하고 이전 완료 답변을 새 요청에 전달한다',async()=>{
+ const f=fixture();
+ await f.route('/secretary/message',{thread_id:'exec_first',conversation_id:'visible',request_id:'first',input:'우리 행사 이름은 가을마당',server_runtime:true});
+ f.db.prepare("UPDATE secretary_turns SET status='completed',output_text='가을마당으로 기억하겠습니다.' WHERE request_id='first'").run();
+ await f.route('/secretary/message',{thread_id:'exec_second',conversation_id:'visible',request_id:'second',input:'행사 이름이 뭐였지?',server_runtime:true});
+ const context=JSON.stringify(f.state.writes.at(-1).body);
+ assert.match(context,/가을마당/);assert.match(context,/completed/);
+ const history=await f.route('/secretary/background',{thread_id:'visible'},'owner','GET');
+ assert.equal(history.items.length,2);assert.deepEqual(new Set(history.items.map(i=>i.execution_thread)),new Set(['exec_first','exec_second']));
+ assert.deepEqual((await f.route('/secretary/background',{thread_id:'visible'},'other','GET')).items,[]);
+ await assert.rejects(linkConversation(f.env,'owner','different','exec_first','first'),/변경/);
+ await assert.rejects(linkConversation(f.env,'owner','visible','another_execution','first'),/기존 업무/);
+ f.db.close();
+});
+
+test('백그라운드 답변 미리보기는 최종 응답 부분만 저장하고 다른 계정에 노출하지 않는다',async()=>{
+ const f=fixture();await f.route('/secretary/message',{thread_id:'chat_A',request_id:'request_A',input:'설명',server_runtime:true});
+ f.state.items=[{turn_id:'turn_A',type:'message',role:'assistant',phase:'analysis',content:[{type:'output_text',text:'private reasoning'}]}, {turn_id:'turn_A',type:'message',role:'assistant',phase:'final_answer',content:[{type:'output_text',text:'답변 작성 중'}]}];
+ await secretaryTick(f.env,async()=>({ok:true}),{fetcher:f.fetcher});
+ assert.equal((await f.poll()).partial_text,'답변 작성 중');
+ assert.doesNotMatch(JSON.stringify(await f.poll()),/private reasoning/);
+ assert.equal((await f.poll('request_A','other')).partial_text,undefined);f.db.close();
+});
 
 function fixture(){
  const db=new DatabaseSync(':memory:');db.exec(readFileSync(new URL('../migrations/0004_secretary_sessions.sql',import.meta.url),'utf8'));

@@ -3,10 +3,10 @@
   function createSecretaryClient(options){
     var running=new Map(), finished=new Map(), recovering=new Set(), disposed=false;
     function isActive(thread){return !options.thread||options.thread()===thread;}
-    function activity(detail){if(isActive(detail.thread)&&typeof window!=='undefined')window.dispatchEvent(new CustomEvent('moida:activity',{detail:detail}));}
+    function activity(detail){if(options.activityThread)detail={...detail,execution:detail.thread,label:options.activityLabel?options.activityLabel(detail.thread):'',thread:options.activityThread(detail.thread)};if((options.activityThread||isActive(detail.thread))&&typeof window!=='undefined')window.dispatchEvent(new CustomEvent('moida:activity',{detail:detail}));}
     function activeKey(thread){return options.owner()+'|'+thread;}
     function isBusy(thread){return thread===undefined?Array.from(running.values()).some(function(r){return r.owner===options.owner();}):running.has(activeKey(thread));}
-    function refreshView(){selector.disabled=options.thread?isBusy(options.thread()):isBusy();if(!selector.disabled)selector.value=selectedModel();options.busy(selector.disabled);}
+    function refreshView(){selector.disabled=options.concurrent?false:options.thread?isBusy(options.thread()):isBusy();if(!selector.disabled)selector.value=selectedModel();options.busy(selector.disabled);}
     var selector=typeof document!=='undefined'?document.createElement('select'):{style:{},setAttribute:function(){},addEventListener:function(){}};selector.id='secretaryModelSelect';selector.setAttribute('aria-label','비서실장 모델');selector.title='Sol·Astra는 Luna보다 사용 비용이 높습니다.';selector.style.cssText='width:126px;max-width:126px;flex-shrink:0;border:1px solid #d9e1ed;border-radius:8px;padding:6px;background:#fff;font:inherit;font-size:12px;color:#34557e';
     if(typeof document!=='undefined')[['gpt-6-luna','GPT 6 Luna'],['gpt-6.1-sol','GPT 6.1 Sol'],['gpt-6-astra','GPT 6 Astra']].forEach(function(item){var option=document.createElement('option');option.value=item[0];option.textContent=item[1];selector.append(option);});
     function modelKey(){return 'moida_secretary_model_'+options.owner();}
@@ -99,6 +99,13 @@
       }catch(error){activity({thread:thread,type:'state',status:error.serverPending?'in_progress':'failed',error:error.message});throw error;}finally{running.delete(runKey);refreshView();}
       })();return entry.promise;
     }
+    function resume(thread,id){
+      var k=activeKey(thread);if(running.has(k))return running.get(k).promise;
+      var saved={request_id:id,owner:options.owner(),results:{}};
+      var previous=read(thread);if(previous&&previous.request_id===id)saved=previous;
+      write(thread,saved);var entry={owner:saved.owner,promise:null};running.set(k,entry);refreshView();
+      entry.promise=drive(thread,saved).finally(function(){running.delete(k);refreshView();});return entry.promise;
+    }
     async function recover(thread){
       var owner=options.owner(),k=activeKey(thread);if(recovering.has(k)||isBusy(thread))return;
       recovering.add(k);
@@ -113,7 +120,7 @@
         }
       }finally{recovering.delete(k);}
     }
-    return {recover:recover,resultId:function(thread){var id=finished.get(activeKey(thread));return id?"secretary_"+id:null;},run:run,isBusy:isBusy,refreshView:refreshView,hasPending:function(thread){return !!read(thread);},dispose:function(){disposed=true;}};
+    return {resume:resume,recover:recover,resultId:function(thread){var id=finished.get(activeKey(thread));return id?"secretary_"+id:null;},run:run,isBusy:isBusy,refreshView:refreshView,hasPending:function(thread){return !!read(thread);},dispose:function(){disposed=true;}};
   }
   root.createSecretaryClient=createSecretaryClient;
 })(typeof window==='undefined'?globalThis:window);

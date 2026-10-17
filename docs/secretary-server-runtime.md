@@ -40,4 +40,17 @@
 
 ## 배포
 
-Worker와 웹 화면을 함께 배포해야 한다. Worker를 먼저 배포하면 이전 클라이언트는 기존 실행 방식을 유지한다. 새 클라이언트는 `server_runtime` 플래그와 `/secretary/background`를 사용한다. 배포된 서버는 `/health`의 `secretaryRuntime: server-runtime2`로 확인한다.
+Worker와 웹 화면을 함께 배포해야 한다. Worker를 먼저 배포하면 이전 클라이언트는 기존 실행 방식을 유지한다. 새 클라이언트는 `server_runtime` 플래그와 `/secretary/background`를 사용한다. 배포된 서버는 `/health`의 `secretaryRuntime: conversation-runtime1`로 확인한다.
+
+
+## 대화 안의 동시 업무 (conversation-runtime1)
+
+- 일반 질문과 간단한 도구 작업은 모아가 직접 처리한다. 전문 기준, 복잡한 분담, 명시적인 직원 지정이 있는 경우 직원에게 배정한다.
+- `secretary-conversation-client.js`는 화면 대화와 개별 실행을 분리한다. 요청별 실행 ID, 미리보기, 최종 메시지 ID를 유지해 긴 작업 중에도 새 질문을 보낼 수 있다.
+- `secretary-conversation.js`는 계정별 대화/실행 연결을 D1에 저장한다. 같은 대화의 최근 8건(요청 최대 2천 자, 답변 최대 3천 자)을 실제 상태와 함께 새 실행에 전달한다. 더 오래된 자료는 기존 자료·기억 검색을 사용한다.
+- 실제 제공자 최종 응답 부분만 미리보기로 저장한다. 숨은 추론은 표시하지 않는다. 현재는 상태 조회 방식이며 토큰 단위 스트리밍은 아니다.
+- 재접속은 서버의 실행 ID로 조회를 재개하며 새 요청을 만들지 않는다. 진행 기록에는 요청 이름을 붙이고 직원 카드는 실행별로 합친다.
+- 진행 중인 기존 요청을 새 메시지로 직접 수정하거나 취소하는 기능은 아직 제공하지 않는다. 모델에 이를 실행했다고 주장하지 않도록 명시한다.
+- 동시 요청 완료 순서는 접수 순서와 다를 수 있다. 자료·기억, 도구 권한 및 외부 변경 승인 절차는 기존 기준을 따른다.
+
+검증: `node --test tests/secretary-conversation-client.test.mjs tests/secretary-agent.test.mjs tests/core-staff-agents.test.mjs tests/core-staff-client.test.mjs tests/parallel-chats.test.mjs` (49건).

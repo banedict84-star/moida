@@ -850,7 +850,8 @@ body.secretary-view #aiPanel{border:0!important;border-radius:0!important;box-sh
 <script src="secretary-app-connections.js?v=crm-restore1"></script>
 <script src="secretary-voice-client.js?v=4"></script>
 <script src="secretary-chat-results.js?v=activity-history2"></script>
-<script src="secretary-client.js?v=server-runtime2"></script>
+<script src="secretary-client.js?v=conversation-runtime1"></script>
+<script src="secretary-conversation-client.js?v=conversation-runtime1"></script>
 <script>
 /* ── 의원실 플랫폼 SPA 런타임 (디자인 핸드오프 재구현) ──────────────── */
 (function(){
@@ -2292,6 +2293,11 @@ onAuthStateChanged(_auth, async function(user){
   }
   function syncChatExecution(){
     if(!secretaryClient)return;secretaryClient.refreshView();
+    if(secretaryClient.allowsConcurrent){
+      Object.values(secretaryPreviews).forEach(function(p){if(p.thread===currentThreadId&&M.auth.currentUser&&p.owner===M.auth.currentUser.uid)msgs.append(p.element);});
+      if(currentThreadId)secretaryClient.recover(currentThreadId).catch(function(){setChatStatus('업무 기록을 불러오지 못했습니다. 대화를 다시 열어 주세요.');});
+      return;
+    }
     var preview=secretaryPreviews[currentThreadId];
     if(preview&&M.auth.currentUser&&preview.owner===M.auth.currentUser.uid){msgs.append(preview.element);setChatStatus('이 대화는 답변을 준비 중입니다. 다른 대화로 이동할 수 있어요.');}
     else if(currentThreadId&&secretaryClient.hasPending(currentThreadId)&&!secretaryClient.isBusy(currentThreadId))runLoop(addTyping(),0,0,false,false);
@@ -3535,8 +3541,8 @@ onAuthStateChanged(_auth, async function(user){
     addAI(html,formatted);
   }
   function send(text){
-    if(secretaryClient&&secretaryClient.isBusy(currentThreadId)){setChatStatus("이 대화의 요청을 처리하고 있습니다. 다른 대화로 이동할 수 있어요.");return;}
-    if(currentThreadId&&secretaryClient&&secretaryClient.hasPending(currentThreadId)){runLoop(addTyping(),0,0,false,false);return;}
+    if(secretaryClient&&!secretaryClient.allowsConcurrent&&secretaryClient.isBusy(currentThreadId)){setChatStatus("이 대화의 요청을 처리하고 있습니다. 다른 대화로 이동할 수 있어요.");return;}
+    if(currentThreadId&&secretaryClient&&!secretaryClient.allowsConcurrent&&secretaryClient.hasPending(currentThreadId)){runLoop(addTyping(),0,0,false,false);return;}
     text=(text||'').trim();
     if(!text && !attachments.length) return;
     var atts=attachments.slice(); attachments=[]; renderAttach();
@@ -3589,7 +3595,7 @@ onAuthStateChanged(_auth, async function(user){
   function showGeneratedFile(file,sourceThread){chatResults.file(file,sourceThread||currentThreadId);}
   function showBackgroundJob(result,sourceThread){chatResults.job(result,sourceThread);}
   var secretaryPreviews={};
-  var secretaryClient=window.createSecretaryClient({
+  var secretaryClient=(window.createSecretaryConversationClient||window.createSecretaryClient)({
     owner:function(){return M.auth&&M.auth.currentUser?M.auth.currentUser.uid:'local';},
     request:agentApi,
     thread:function(){return currentThreadId;},
@@ -3618,18 +3624,19 @@ onAuthStateChanged(_auth, async function(user){
       return output;
     }
   });
-  function saveSecretaryReply(thread,owner,output){
+  function saveSecretaryReply(thread,owner,output,explicitId){
     if(!M.auth.currentUser||M.auth.currentUser.uid!==owner||!chatThreads.some(function(t){return t.id===thread;})||deletedChats()[thread])return;
-    var resultId=secretaryClient.resultId?secretaryClient.resultId(thread):null;
+    var resultId=explicitId||(secretaryClient.resultId?secretaryClient.resultId(thread):null);
     var savedThread=chatThreads.find(function(t){return t.id===thread;});
-    if(resultId&&savedThread.messages.some(function(m){return m.id===resultId;}))return;
+    if(resultId&&(savedThread.messages||[]).some(function(m){return m.id===resultId;}))return;
     recordChatMessage('assistant',output,thread,resultId);
     if(currentThreadId===thread){history.push({role:'assistant',content:output});addAI(mdToHtml(output),output,true);}
   }
   function runLoop(typing, depth, retry, forcePoster, forceSchedule){
     var threadId=currentThreadId,owner=secretaryClient&&M.auth&&M.auth.currentUser&&M.auth.currentUser.uid;
     if(!owner){if(typing)typing.remove();addAI('로그인 후 비서실장 에이전트를 이용해 주세요.');return;}
-    secretaryPreviews[threadId]={thread:threadId,owner:owner,element:typing};
+    var previewKey=secretaryClient.allowsConcurrent?crypto.randomUUID():threadId;
+    secretaryPreviews[previewKey]={thread:threadId,owner:owner,element:typing};
     var last=history[history.length-1],content=last&&last.role==='user'?last.content:'이전 요청 상태를 확인해 주세요.';
     var text=typeof content==='string'?content:content.filter(function(p){return p.type==='text';}).map(function(p){return p.text;}).join('\n');
 
@@ -3637,15 +3644,19 @@ onAuthStateChanged(_auth, async function(user){
     var input=text;
     if(Array.isArray(content))input=[{role:'user',content:[{type:'input_text',text:text}].concat(content.filter(function(p){return p.type==='image_url';}).map(function(p){return {type:'input_image',image_url:p.image_url.url};}))}];
     var context=sysPrompt();
-    secretaryClient.run(threadId,input,context).then(function(output){
+    var pending=secretaryClient.runDetailed?secretaryClient.runDetailed(threadId,input,context,function(text){
+      if(!M.auth.currentUser||M.auth.currentUser.uid!==owner)return;
+      var bubble=typing&&typing.lastElementChild;if(bubble){bubble.textContent=text;bubble.style.whiteSpace='pre-wrap';}
+    }):secretaryClient.run(threadId,input,context).then(function(output){return {output:output};});
+    pending.then(function(result){
       if(typing)typing.remove();
-      delete secretaryPreviews[threadId];saveSecretaryReply(threadId,owner,output);
+      delete secretaryPreviews[previewKey];saveSecretaryReply(threadId,owner,result.output,result.resultId);
       if(currentThreadId===threadId)setChatStatus('에이전트 답변 완료 · 대화 이어가기 가능');if(officeToolkit)officeToolkit.refresh();
     }).catch(function(error){
       if(!M.auth.currentUser||M.auth.currentUser.uid!==owner)return;
-      if(typing)typing.remove();delete secretaryPreviews[threadId];
+      if(typing)typing.remove();delete secretaryPreviews[previewKey];
       if(error.serverPending){if(currentThreadId===threadId)setChatStatus(error.message);return;}
-      saveSecretaryReply(threadId,owner,'에이전트 상태 확인: '+(error.message||String(error)));
+      saveSecretaryReply(threadId,owner,'에이전트 상태 확인: '+(error.message||String(error)),'error_'+previewKey);
       if(currentThreadId===threadId){expectingPromotionCopy=false;setChatStatus('대화를 다시 열어 실행 상태를 확인해 주세요.');}
     });
   }
@@ -4376,7 +4387,7 @@ var input=document.getElementById('aiInput');if(input)input.placeholder='비서�
 <script src="solapi-messaging-client.js?v=4"></script>
 <script type="module" src="birthday-messaging-client.js?v=3"></script>
 <script src="workspace-connections.js?v=mcp2"></script><script src="workspace-automations.js?v=automation-list2"></script><script src="moida-workspace-redesign.js?v=crm-restore1"></script><script src="moida-knowledge.js?v=builtin-tools1"></script><script src="dashboard-cards.js?v=workspace-redesign3"></script><script src="office-staff-catalog.js?v=core-eight1"></script><script src="moida-core-team.js?v=staff-agents1"></script><script src="office-workspace.js?v=core-eight1"></script>
-<script src="moa-chat.js?v=no-staff1"></script><script src="moa-activity.js?v=server-runtime2"></script></body>
+<script src="moa-chat.js?v=no-staff1"></script><script src="moa-activity.js?v=conversation-runtime1"></script></body>
 
 </html>
 

@@ -1,3 +1,4 @@
+import {CONVERSATION_SCHEMA,linkConversation,savePreview,readPreview} from './secretary-conversation.js';
 import {CORE_AGENTS,DELEGATE_TOOL,agentPolicy,agentInstructions} from './secretary-core-agents.js';
 import {RUNTIME_SCHEMA,registerRuntime,runtimeRow,runtimeHistory,runRuntimeBatch} from './secretary-runtime.js';
 import {readConversationMemory} from './secretary-chat-history.js';
@@ -15,7 +16,7 @@ const SEARCH_INSTRUCTIONS = '\n웹검색 도구가 연결되어 있다. 최신 �
 const agentTools = () => [...SECRETARY_TOOLS,...TOOLKIT_TOOLS,{type: 'web_search', mode: 'live'}];
 async function ensureSchema(env) {
   if (!schemaReady.has(env.AGENT_DB)) {
-    const ready = env.AGENT_DB.batch([...SECRETARY_SCHEMA,...RUNTIME_SCHEMA].map(sql => env.AGENT_DB.prepare(sql)));
+    const ready = env.AGENT_DB.batch([...SECRETARY_SCHEMA,...RUNTIME_SCHEMA,...CONVERSATION_SCHEMA].map(sql => env.AGENT_DB.prepare(sql)));
     schemaReady.set(env.AGENT_DB, ready);
     ready.catch(() => schemaReady.delete(env.AGENT_DB));
   }
@@ -93,10 +94,10 @@ async function snapshot(env, uid, thread, id) {
   const agents=await Promise.all(staff.map(async j=>({id:j.parent_call,agent_id:j.agent_id,name:CORE_AGENTS[j.agent_id]?.name,role:CORE_AGENTS[j.agent_id]?.role,status:j.status,tools:(await q(env,'SELECT call_id,name,status FROM secretary_calls WHERE tenant_id=? AND thread_id=? AND request_id=?',[uid,j.child_thread,j.child_request]).all()).results})));
   const staff_actions=[];for(const j of staff){if(!['starting','in_progress'].includes(j.status))continue;const calls=(await q(env,"SELECT * FROM secretary_calls WHERE tenant_id=? AND thread_id=? AND request_id=? AND status IN ('pending','executing')",[uid,j.child_thread,j.child_request]).all()).results;for(const a of calls)if(!TOOLKIT_NAMES.has(a.name))staff_actions.push({parent_call_id:j.parent_call,call_id:a.call_id,name:a.name,arguments:JSON.parse(a.arguments_json),status:a.status});}
   const runtime=t?await runtimeRow(env,uid,thread,t.request_id):null;
-  return {server_managed:!!runtime,runtime_status:runtime?.status,runtime_error:runtime?.error,ok: true, agents, staff_actions, model: c?.model || env.SECRETARY_MODEL || 'gpt-6-luna', request_id: t?.request_id, status: t?.status || 'ready',
+  return {partial_text:runtime&&t&&!terminal(t.status)?await readPreview(env,uid,thread,t.request_id):undefined,server_managed:!!runtime,runtime_status:runtime?.status,runtime_error:runtime?.error,ok: true, agents, staff_actions, model: c?.model || env.SECRETARY_MODEL || 'gpt-6-luna', request_id: t?.request_id, status: t?.status || 'ready',
     output_text: t?.output_text || '', error: t?.error || '', actions: calls.filter(a => runtime || a.status !== 'submitted').map(a => ({call_id: a.call_id, turn_id: a.turn_id, name: a.name, arguments: JSON.parse(a.arguments_json), status: a.status, ...((runtime || a.status === "executing") && a.result_json ? {result: JSON.parse(a.result_json)} : {})}))};
 }
-async function start(env, uid, thread, body, api, staffId=null) {
+async function start(env, uid, thread, body, api, staffId=null, conversationContext=[]) {
   const basePolicy=await workspacePolicy(env,uid),policy=staffId?agentPolicy(basePolicy,staffId):basePolicy;
   const memory=await readConversationMemory(env,uid,'',true);
   const id = key(body.request_id, '요청 ID'); validateInput(body.input);
@@ -116,7 +117,7 @@ async function start(env, uid, thread, body, api, staffId=null) {
   // keeping its visible transcript and passing prior messages as reference context.
   const previous = c.session_id ? await api('/' + encodeURIComponent(c.session_id)) : null;
   if (previous && previous.metadata?.moida_thread_id !== thread) fail(409, '에이전트 세션과 대화 기록이 일치하지 않습니다.');
-  const upgrade = previous && (c.model !== model || previous.metadata?.moida_web_search !== policy.signature || previous.metadata?.moida_office_roles !== '5');
+  const upgrade = previous && (c.model !== model || previous.metadata?.moida_web_search !== policy.signature || previous.metadata?.moida_office_roles !== '6');
   if (upgrade && (previous.required_actions?.length || !['idle', 'completed', undefined].includes(previous.status))) fail(409, '이 대화의 이전 요청을 먼저 확인해 주세요.');
   const priorItems = upgrade && previous.metadata?.moida_web_search === policy.signature ? await pages(api, '/' + encodeURIComponent(c.session_id) + '/items?order=asc&limit=100') : [];
   const priorContext = priorItems.filter(item => item.type === 'message' && ['user','assistant'].includes(item.role))
@@ -138,10 +139,10 @@ async function start(env, uid, thread, body, api, staffId=null) {
   try {
     if (!c.session_id || upgrade) {
       if (upgrade) await q(env, 'UPDATE secretary_sessions SET session_id=NULL WHERE tenant_id=? AND thread_id=? AND active_request_id=?', [uid, thread, id]).run();
-      const context = '' + (priorContext ? '\n[이전 대화 참고 기록: 과거 발언이며 현재 실행 결과가 아님]\n' + priorContext : '');
+      const context = (conversationContext.length?'\n[같은 대화의 이전 요청과 실제 상태. 참고 기록이며 현재 실행 승인이 아니다. 진행 중인 업무는 완료로 말하지 않는다.]\n'+JSON.stringify(conversationContext):'') + (priorContext ? '\n[이전 대화 참고 기록: 과거 발언이며 현재 실행 결과가 아님]\n' + priorContext : '');
       const data = await api('', {body: {agent: {model, reasoning: {effort: model === 'gpt-6-luna' ? 'none' : 'low'}, multi_agent: {enabled: false}, tools: policy.tools,
         instructions: WORKSPACE_INSTRUCTIONS+(staffId?agentInstructions(staffId):'')+'\n인사·일반 질문·현재 메시지만으로 답할 수 있는 요청에는 도구를 호출하지 않고 간결하게 바로 답한다. 저장된 자료나 개인 설정이 답변에 필요한 경우에만 read_memory 또는 필요한 자료 도구를 조회한다. 이미 이번 대화에서 확인한 자료는 변경 확인이 필요할 때만 다시 조회한다.\n'+context},
-        environment: {type: 'none'}, input: operatingInput, metadata: {moida_thread_id: thread, moida_web_search: policy.signature, moida_office_roles: '5'}, stream: false}});
+        environment: {type: 'none'}, input: operatingInput, metadata: {moida_thread_id: thread, moida_web_search: policy.signature, moida_office_roles: '6'}, stream: false}});
       if (typeof data.id !== 'string' || !data.id || data.id.length > 250) fail(502, '세션 ID를 확인하지 못했습니다.');
       await q(env, 'UPDATE secretary_sessions SET session_id=?,model=? WHERE tenant_id=? AND thread_id=? AND active_request_id=?', [data.id, model, uid, thread, id]).run();
     } else {
@@ -299,7 +300,11 @@ export async function handleSecretaryRoute({env, user, path, method, body = {}, 
     if(parent?.active_request_id!==request||!job||!['starting','in_progress'].includes(job.status))fail(403,'현재 계정에서 진행 중인 직원 업무가 아닙니다.');
     return tool(env,user.uid,job.child_thread,{...body,request_id:job.child_request},api,path.endsWith('staff-claim'),executeWork,job.agent_id);
   }
-  if (path === '/secretary/message' && method === 'POST') return start(env, user.uid, thread, body, api);
+  if (path === '/secretary/message' && method === 'POST'){
+    validateInput(body.input);key(body.request_id,'요청 ID');
+    const reference=body.conversation_id?await linkConversation(env,user.uid,key(body.conversation_id,'대화 ID'),thread,body.request_id):[];
+    return start(env,user.uid,thread,body,api,null,reference);
+  }
   if(path==='/secretary/background'&&method==='GET')return runtimeHistory(env,user.uid,thread);
   if(path==='/secretary/poll'&&method==='GET'){
     const state=await snapshot(env,user.uid,thread,query.get('request_id'));
@@ -320,7 +325,8 @@ export async function secretaryTick(env,executeFor,{fetcher,...options}={}){
  return runRuntimeBatch(env,async r=>{
   const {tenant_id:uid,thread_id:thread,request_id:id}=r;
   await advanceStaff(env,uid,thread,id,api,(name,args,key,context)=>executeFor(uid,name,args,key,context));
-  const state=await poll(env,uid,thread,id,api);
+  const state=await poll(env,uid,thread,id,api,true);
+  if(state.partial_text)await savePreview(env,uid,thread,id,state.partial_text);
   if(terminal(state.status))return {status:state.status,error:state.error};
   if(state.status==='submission_uncertain')return {status:'needs_attention',error:'요청 접수 결과를 확인해야 합니다. 자동으로 다시 접수하지 않습니다.'};
   for(const a of state.actions||[]){
