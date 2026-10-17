@@ -1,4 +1,4 @@
-import {FIELDS,HEADERS,LAST_COLUMN,parseRows,validate,mergeContacts} from './crm-sheets-merge.js';
+import {FIELDS,HEADERS,LAST_COLUMN,sheetValues,parseRows,validate,mergeContacts} from './crm-sheets-merge.js';
 const TABLE='crm_sheet_connections',TAB='모이다 CRM';
 const q=(env,sql,args=[])=>env.AGENT_DB.prepare(sql).bind(...args);
 const hash=async value=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(JSON.stringify(value))))).map(v=>v.toString(16).padStart(2,'0')).join('');
@@ -37,7 +37,7 @@ export async function crmSheetsRoute({env,uid,request,token,api}){
   if(!body.lease||config.lease!==body.lease||config.lease_until<Date.now())throw Error('동기화 확인 시간이 지났습니다. 다시 동기화해 주세요.');
   const pending=JSON.parse(config.pending);const values=await readSheet();
   if(await hash(values)!==pending.sheetHash)throw Error('동기화 중 시트가 수정되었습니다. 다시 동기화해 주세요.');
-  const rows=[HEADERS,...pending.rows.map(r=>FIELDS.map(k=>r[k]))];
+  const rows=sheetValues(pending.rows,values);
   await api(access,base+'/values/'+encodeURIComponent("'"+TAB+"'!A1:"+LAST_COLUMN+rows.length)+'?valueInputOption=RAW',{method:'PUT',body:JSON.stringify({values:rows})});
   await q(env,`UPDATE ${TABLE} SET baseline=?,pending=NULL,lease=NULL,lease_until=0,last_sync=? WHERE uid=? AND lease=?`,[JSON.stringify(pending.rows),Date.now(),uid,body.lease]).run();return {ok:true,count:pending.rows.length};
  }
