@@ -1,3 +1,4 @@
+import {crmSheetsRoute} from './crm-sheets.js';
 import {createNewsShorts} from './news-shorts.js';
 const newsShorts=createNewsShorts();
 import {createCallDevices} from './call-devices.js';
@@ -42,6 +43,7 @@ const LEASE_MS = 15 * 60 * 1000;
 const GOOGLE_CALENDAR_SCOPE = "https://www.googleapis.com/auth/calendar";
 const GOOGLE_DRIVE_SCOPE = "https://www.googleapis.com/auth/drive.readonly";
 const GOOGLE_CONTACTS_SCOPE = "https://www.googleapis.com/auth/contacts.readonly";
+const GOOGLE_SHEETS_SCOPE = "https://www.googleapis.com/auth/spreadsheets";
 const GOOGLE_MAIL_SCOPE = "https://www.googleapis.com/auth/gmail.send";
 const GOOGLE_CALLBACK_PATH = "/google/calendar/callback";
 
@@ -1566,7 +1568,7 @@ async function googleCalendarConnect(request, env, user) {
     client_id: env.GOOGLE_CLIENT_ID,
     redirect_uri: googleRedirectUri(request),
     response_type: "code",
-    scope: [GOOGLE_CALENDAR_SCOPE,'openid','email',...(connectUrl.searchParams.get('services')||'').split(',').filter(v=>['drive','mail','contacts'].includes(v)).map(v=>v==='drive'?GOOGLE_DRIVE_SCOPE:v==='contacts'?GOOGLE_CONTACTS_SCOPE:GOOGLE_MAIL_SCOPE)].join(' '),
+    scope: [GOOGLE_CALENDAR_SCOPE,'openid','email',...(connectUrl.searchParams.get('services')||'').split(',').filter(v=>['drive','mail','contacts','sheets'].includes(v)).map(v=>v==='drive'?GOOGLE_DRIVE_SCOPE:v==='contacts'?GOOGLE_CONTACTS_SCOPE:v==='sheets'?GOOGLE_SHEETS_SCOPE:GOOGLE_MAIL_SCOPE)].join(' '),
     access_type: "offline",
     include_granted_scopes: "true",
     prompt: "consent",
@@ -1816,6 +1818,7 @@ async function handleFetch(request, env) {
     if (path === GOOGLE_CALLBACK_PATH && request.method === "GET") {
       return await googleCalendarCallback(request, env);
     }
+    if(path.startsWith('/crm-sheets/')){const user=await verifyFirebaseUser(request,env);const result=await crmSheetsRoute({env,uid:user.uid,request,token:async()=>{const value=await googleAccessToken(env,user.uid);if(!String(value.connection.scope).split(' ').includes(GOOGLE_SHEETS_SCOPE))throw new HttpError(409,'Google 시트 수정 권한을 먼저 연결해 주세요.');return value.accessToken;},api:googleApi});return json(result,200,request,env);}
     if (path === "/google/calendar/connect" && request.method === "GET") {
       const user = await verifyFirebaseUser(request, env);
       return await googleCalendarConnect(request, env, user);

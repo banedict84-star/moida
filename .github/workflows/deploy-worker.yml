@@ -7,6 +7,7 @@ on:
     branches: [main]
     paths:
       - 'gpt-worker.js'
+      - 'crm-sheets*.js'
       - 'office-roles.js'
       - 'moida-core-team.js'
       - 'office-staff-catalog.js'
@@ -43,6 +44,7 @@ jobs:
       - name: Validate worker and agent execution
         run: |
           node --check gpt-worker.js
+          node --test tests/crm-sheets.test.mjs
           node --test tests/office-staff-catalog.test.mjs tests/knowledge.test.mjs tests/higgsfield-mcp.test.mjs tests/mcp-priority.test.mjs tests/docs-mcp-relay.test.mjs
           node --test tests/news-shorts.test.mjs
           node --test tests/call-records.test.mjs

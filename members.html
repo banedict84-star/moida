@@ -472,6 +472,7 @@ import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/fireb
 const _fbCfg = {apiKey:"AIzaSyAIjhvbCztHoF7YwP2IYIk2C6jCI64uFhs",authDomain:"jjj2195-1bd15.firebaseapp.com",projectId:"jjj2195-1bd15",storageBucket:"jjj2195-1bd15.firebasestorage.app",messagingSenderId:"370852437825",appId:"1:370852437825:web:b0a891d6a99b426d230bc0"};
 const _app = initializeApp(_fbCfg);
 const _auth = getAuth(_app);
+window._crmSheetUser=()=>_auth.currentUser;
 const _db = getFirestore(_app);
 
 window._fsSave = async function(uid, key, data){
@@ -891,6 +892,11 @@ onAuthStateChanged(_auth, async function(user){
     if(window._orgStore) members.forEach(function(m){ if(Array.isArray(window._orgStore[m.mid])) m.orgs=window._orgStore[m.mid]; if(!Array.isArray(m.orgs)) m.orgs=(m.org&&m.org!=='—')?[{cat:'단체',name:m.org,title:'',rep:true}]:[]; var _r=orgRep(m); m.org=_r?orgRepText(_r):'—'; });
     if(_cloudChanged) saveMembers();
     recalcScores(); renderRows();
+  };
+  window._crmSheetBridge={
+    ready:function(){return _membersCloudReady&&_uid!=='default'&&window._crmSheetUser?.()?.uid===_uid&&!window.MOIDA_READONLY;},
+    snapshot:async function(){if(!this.ready())throw Error('CRM 자료가 로드된 후 다시 시도해 주세요.');await _membersSaveChain;if(_membersPendingSave)throw Error('CRM 서버 저장을 먼저 완료해 주세요.');var snapshot=JSON.parse(JSON.stringify(members));var cloud=await window._fsLoad(_uid,'members');if(JSON.stringify(cloud)!==JSON.stringify(snapshot))throw Error('CRM이 다른 기기에서 수정되었습니다. 새로고침 후 다시 시도해 주세요.');return snapshot;},
+    apply:async function(before,rows){if(!this.ready()||JSON.stringify(members)!==JSON.stringify(before))throw Error('동기화 중 CRM이 변경되었습니다. 다시 시도해 주세요.');var cloud=await window._fsLoad(_uid,'members');if(!Array.isArray(cloud)||JSON.stringify(cloud)!==JSON.stringify(before))throw Error('다른 기기에서 CRM이 변경되었습니다. 새로고침 후 동기화해 주세요.');if(JSON.stringify(members)!==JSON.stringify(before))throw Error('동기화 중 CRM이 변경되었습니다.');var byId=new Map(before.map(function(m){return [String(m.mid),m];}));members=rows.map(function(r){return Object.assign({},byId.get(r.mid)||{rrn:'—',orgs:[],score:0,no:0},r);});dispMembers=members.slice();searchResultIds=null;if(searchWorker)searchWorker.postMessage({type:'init',records:members.map(function(m){return {id:String(m.mid),text:memberSearchText(m)};})});recalcScores();renderRows();if(!await saveMembers())throw Error('CRM 저장이 지연되어 시트 전송을 중단했습니다.');}
   };
   var members = loadMembers();
   // normalize members: fill missing fields with defaults, assign mid
@@ -2072,5 +2078,6 @@ onAuthStateChanged(_auth, async function(user){
 })();
 </script>
 <script src="access-guard.js"></script>
+<script type="module" src="crm-sheets-client.js?v=1"></script>
 </body>
 </html>
