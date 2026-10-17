@@ -1,4 +1,4 @@
-import {FIELDS,HEADERS,parseRows,validate,mergeContacts} from './crm-sheets-merge.js';
+import {FIELDS,HEADERS,LAST_COLUMN,parseRows,validate,mergeContacts} from './crm-sheets-merge.js';
 const TABLE='crm_sheet_connections',TAB='모이다 CRM';
 const q=(env,sql,args=[])=>env.AGENT_DB.prepare(sql).bind(...args);
 const hash=async value=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(JSON.stringify(value))))).map(v=>v.toString(16).padStart(2,'0')).join('');
@@ -17,13 +17,14 @@ export async function crmSheetsRoute({env,uid,request,token,api}){
   const prior=await read();if(prior&&prior.sheet_id!==id)throw Error('기존 연결을 해제한 뒤 다른 시트를 연결해 주세요.');
   const base='https://sheets.googleapis.com/v4/spreadsheets/'+id;
   const meta=await api(access,base+'?fields=sheets.properties');let tab=meta.sheets?.find(s=>s.properties.title===TAB);
-  if(!tab)await api(access,base+':batchUpdate',{method:'POST',body:JSON.stringify({requests:[{addSheet:{properties:{title:TAB,gridProperties:{rowCount:10001,columnCount:7,frozenRowCount:1}}}}]})});
-  const values=await api(access,base+'/values/'+encodeURIComponent("'"+TAB+"'!A1:G10001"));parseRows(values.values||[]);
+  if(!tab)await api(access,base+':batchUpdate',{method:'POST',body:JSON.stringify({requests:[{addSheet:{properties:{title:TAB,gridProperties:{rowCount:10001,columnCount:FIELDS.length,frozenRowCount:1}}}}]})});
+  if(tab&&Number(tab.properties.gridProperties?.columnCount||0)<FIELDS.length)await api(access,base+':batchUpdate',{method:'POST',body:JSON.stringify({requests:[{updateSheetProperties:{properties:{sheetId:tab.properties.sheetId,gridProperties:{columnCount:FIELDS.length}},fields:'gridProperties.columnCount'}}]})});
+  const values=await api(access,base+'/values/'+encodeURIComponent("'"+TAB+"'!A1:"+LAST_COLUMN+"10001"));parseRows(values.values||[]);
   await q(env,`INSERT OR IGNORE INTO ${TABLE}(uid,sheet_id) VALUES(?,?)`,[uid,id]).run();return {ok:true,tab:TAB};
  }
  const config=await read();if(!config)throw Error('시트를 먼저 연결해 주세요.');
  const base='https://sheets.googleapis.com/v4/spreadsheets/'+config.sheet_id;
- const range=encodeURIComponent("'"+TAB+"'!A1:G10001");
+ const range=encodeURIComponent("'"+TAB+"'!A1:"+LAST_COLUMN+"10001");
  const readSheet=async()=>{const data=await api(access,base+'/values/'+range);return data.values||[];};
  if(path==='/crm-sheets/prepare'){
   const crm=validate(body.contacts);const values=await readSheet();const merged=mergeContacts(crm,parseRows(values,crm),JSON.parse(config.baseline));
@@ -37,7 +38,7 @@ export async function crmSheetsRoute({env,uid,request,token,api}){
   const pending=JSON.parse(config.pending);const values=await readSheet();
   if(await hash(values)!==pending.sheetHash)throw Error('동기화 중 시트가 수정되었습니다. 다시 동기화해 주세요.');
   const rows=[HEADERS,...pending.rows.map(r=>FIELDS.map(k=>r[k]))];
-  await api(access,base+'/values/'+encodeURIComponent("'"+TAB+"'!A1:G"+rows.length)+'?valueInputOption=RAW',{method:'PUT',body:JSON.stringify({values:rows})});
+  await api(access,base+'/values/'+encodeURIComponent("'"+TAB+"'!A1:"+LAST_COLUMN+rows.length)+'?valueInputOption=RAW',{method:'PUT',body:JSON.stringify({values:rows})});
   await q(env,`UPDATE ${TABLE} SET baseline=?,pending=NULL,lease=NULL,lease_until=0,last_sync=? WHERE uid=? AND lease=?`,[JSON.stringify(pending.rows),Date.now(),uid,body.lease]).run();return {ok:true,count:pending.rows.length};
  }
  if(path==='/crm-sheets/release'){await q(env,`UPDATE ${TABLE} SET pending=NULL,lease=NULL,lease_until=0 WHERE uid=? AND lease=?`,[uid,String(body.lease||'')]).run();return {ok:true};}
