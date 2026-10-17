@@ -835,16 +835,6 @@ html.embed .table-foot{border-top:1px solid var(--line);padding:10px 12px}
       await saveMembers();
       return;
     }
-    // 서버의 빈 배열이 기기에 남아 있는 실제 명부를 덮어쓰지 않도록 보호한다.
-    // 의도적으로 전체 삭제한 경우에는 같은 시점의 기기 캐시도 빈 배열이므로 영향이 없다.
-    if(Array.isArray(fsData) && (!fsData.length && (cached.length||currentBeforeSync.length))){
-      members=cached.length?cached:currentBeforeSync;
-      dispMembers=members.slice();
-      localStorage.setItem(_MEM_KEY,JSON.stringify(members));
-      recalcScores(); renderRows();
-      await saveMembers();
-      return;
-    }
     if(Array.isArray(fsData)){
       localStorage.setItem(_MEM_KEY,JSON.stringify(fsData));
       window._reloadMembersFromFS(fsData);
@@ -860,10 +850,6 @@ html.embed .table-foot{border-top:1px solid var(--line);padding:10px 12px}
     if(_membersCloudReady && (_membersPendingSave || localStorage.getItem(pendingKey(_uid))==='1')) saveMembers();
   });
   window._reloadMembersFromFS = function(fsData){
-    // 클라우드 읽기 오류로 빈 배열이 전달된 경우, 이미 화면에 있는 명부를 유지한다.
-    if(Array.isArray(fsData)&&!fsData.length&&Array.isArray(members)&&members.length){
-      saveMembers(); recalcScores(); renderRows(); return;
-    }
     members = fsData;
     var _cloudChanged=false;
     var D={rrn:'—',dong:'—',org:'—',rec:'—',rec2:'—',rec3:'—',sub:'—',third:'—',addr:'—',addrDetail:'',family:null,age:'',ageb:'—',sex:'—',vote:'미확인',voteK:'err',katalk:'—',type:'일반당원',typeK:'old',krGrade:0,smGrade:0,photo:'',orgs:[]};
@@ -906,6 +892,21 @@ html.embed .table-foot{border-top:1px solid var(--line);padding:10px 12px}
   };
   window._crmSheetBridge={
     ready:function(){return _membersCloudReady&&_uid!=='default'&&window._crmSheetUser?.()?.uid===_uid&&!window.MOIDA_READONLY;},
+    clear:async function(){
+      if(!this.ready())throw Error('현재 계정의 CRM이 로드된 후 다시 시도해 주세요.');
+      const uid=_uid;await _membersSaveChain;if(window._crmSheetUser?.()?.uid!==uid)throw Error('로그인 계정이 변경되었습니다.');
+      await window._fsSave(uid,'members',[]);
+      members=[];dispMembers=[];memberById={};memberSearchCache=new WeakMap();searchResultIds=null;curEditIdx=null;
+      _membersPendingSave=false;localStorage.removeItem(pendingKey(uid));localStorage.setItem(_MEM_KEY,'[]');
+      for(const prefix of ['moida_votes_','moida_memos_','moida_orgs_','moida_rec_chains_','moida_grades_'])localStorage.removeItem(prefix+uid);
+      if(typeof GRADE_KEY!=='undefined')localStorage.removeItem(GRADE_KEY);
+      voteStore={};memoStore={};window._orgStore={};
+      if(searchWorker)searchWorker.postMessage({type:'init',records:[]});
+      hideSyncWarning();closeDetail();renderRows();
+      await window._fsSave(uid,'votes',{});
+      const cloud=await window._fsLoad(uid,'members');if(!Array.isArray(cloud)||cloud.length)throw Error('삭제 결과를 확인하지 못했습니다. 새로고침 후 확인해 주세요.');
+      return 0;
+    },
     snapshot:async function(){if(!this.ready())throw Error('CRM 자료가 로드된 후 다시 시도해 주세요.');await _membersSaveChain;if(_membersPendingSave)throw Error('CRM 서버 저장을 먼저 완료해 주세요.');var snapshot=JSON.parse(JSON.stringify(members));var cloud=await window._fsLoad(_uid,'members');if(JSON.stringify(cloud)!==JSON.stringify(snapshot))throw Error('CRM이 다른 기기에서 수정되었습니다. 새로고침 후 다시 시도해 주세요.');return snapshot;},
     apply:async function(before,rows){if(!this.ready()||JSON.stringify(members)!==JSON.stringify(before))throw Error('동기화 중 CRM이 변경되었습니다. 다시 시도해 주세요.');var cloud=await window._fsLoad(_uid,'members');if(!Array.isArray(cloud)||JSON.stringify(cloud)!==JSON.stringify(before))throw Error('다른 기기에서 CRM이 변경되었습니다. 새로고침 후 동기화해 주세요.');if(JSON.stringify(members)!==JSON.stringify(before))throw Error('동기화 중 CRM이 변경되었습니다.');var byId=new Map(before.map(function(m){return [String(m.mid),m];}));members=rows.map(function(r){return Object.assign({},byId.get(r.mid)||{rrn:'—',orgs:[],score:0,no:0},r);});dispMembers=members.slice();searchResultIds=null;if(searchWorker)searchWorker.postMessage({type:'init',records:members.map(function(m){return {id:String(m.mid),text:memberSearchText(m)};})});recalcScores();renderRows();if(!await saveMembers())throw Error('CRM 저장이 지연되어 시트 전송을 중단했습니다.');}
   };
@@ -2089,6 +2090,6 @@ html.embed .table-foot{border-top:1px solid var(--line);padding:10px 12px}
 })();
 </script>
 <script src="access-guard.js"></script>
-<script type="module" src="crm-sheets-client.js?v=manager4"></script>
+<script type="module" src="crm-sheets-client.js?v=reset1"></script>
 </body>
 </html>
