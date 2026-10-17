@@ -3619,9 +3619,9 @@ onAuthStateChanged(_auth, async function(user){
     record:function(role,text,thread,owner){if(currentThreadId!==thread||!M.auth.currentUser||M.auth.currentUser.uid!==owner)return;history.push({role:role,content:text});if(role==='user')addUser(text,null);else addAI(mdToHtml(text),text);},
     run:async function(instruction,thread,owner){
       if(currentThreadId!==thread||!M.auth.currentUser||M.auth.currentUser.uid!==owner)throw Error('대화 또는 계정이 변경되었습니다. 통화를 다시 연결해 주세요.');
-      var output=await secretaryClient.run(thread,instruction,sysPrompt());
-      saveSecretaryReply(thread,owner,output);if(officeToolkit)officeToolkit.refresh();
-      return output;
+      var result=secretaryClient.runDetailed?await secretaryClient.runDetailed(thread,instruction,sysPrompt()):{output:await secretaryClient.run(thread,instruction,sysPrompt())};
+      saveSecretaryReply(thread,owner,result.output,result.resultId);if(officeToolkit)officeToolkit.refresh();
+      return result.output;
     }
   });
   function saveSecretaryReply(thread,owner,output,explicitId){
