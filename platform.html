@@ -307,8 +307,15 @@ body.secretary-view #aiPanel{border:0!important;border-radius:0!important;box-sh
 .crm-header-icon{display:none}
 main:has(#appContent>.page[data-page="crm"]:is([style*="display: block"],[style*="display:block"])) #appHeader{height:52px!important;padding:0 14px!important;gap:10px!important}
 main:has(#appContent>.page[data-page="crm"]:is([style*="display: block"],[style*="display:block"])) .crm-header-icon{display:flex;align-items:center;justify-content:center;flex:none;width:32px;height:32px;border-radius:9px;background:#e4f3f2;color:#16776e}
-main:has(#appContent>.page[data-page="crm"]:is([style*="display: block"],[style*="display:block"])) #pageTitle{font-size:16px!important;line-height:20px}
+main:has(#appContent>.page[data-page="crm"]:is([style*="display: block"],[style*="display:block"])) #pageTitle{font-size:19px!important;line-height:24px;flex:none}
 main:has(#appContent>.page[data-page="crm"]:is([style*="display: block"],[style*="display:block"])) #pageSub{font-size:11px!important;line-height:14px;margin-top:0!important}
+</style>
+<style>
+main:has(#appContent>.page[data-page="crm"]:is([style*="display: block"],[style*="display:block"])) #appHeader>div:has(>#pageTitle){display:flex;align-items:center;gap:10px;min-width:0}
+main:has(#appContent>.page[data-page="crm"]:is([style*="display: block"],[style*="display:block"])) #pageSub{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+main:has(#appContent>.page[data-page="crm"]:is([style*="display: block"],[style*="display:block"])) #appContent{min-height:0;overflow:hidden!important;display:flex;flex-direction:column}
+main:has(#appContent>.page[data-page="crm"]:is([style*="display: block"],[style*="display:block"])) .page[data-page="crm"]{flex:1;min-height:0;height:100%}
+main:has(#appContent>.page[data-page="crm"]:is([style*="display: block"],[style*="display:block"])) .page[data-page="crm"]>iframe{height:100%!important}
 </style>
 </head>
 <body class="app-loading">
@@ -660,7 +667,7 @@ main:has(#appContent>.page[data-page="crm"]:is([style*="display: block"],[style*
         </div>
       </div>
 
-      <div class="page" data-page="crm"><iframe src="members.html?embed=1&v=crm-flat2" title="조직관리" style="display:block;border:1px solid #e9ecf1;border-radius:12px;background:#fff;width:100%;height:calc(100vh - 130px)"></iframe></div>
+      <div class="page" data-page="crm"><iframe src="members.html?embed=1&v=crm-fixed3" title="조직관리" style="display:block;border:1px solid #e9ecf1;border-radius:12px;background:#fff;width:100%;height:calc(100vh - 130px)"></iframe></div>
 
       <div class="page" data-page="minwon">
       <div class="pg" style="max-width:1320px;margin:0 auto">

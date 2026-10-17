@@ -523,6 +523,19 @@ html.embed .work{padding:0 0 12px}
 html.embed .table-card{border:0;border-radius:0;box-shadow:none}
 html.embed .table-foot{border-top:1px solid var(--line);padding:10px 12px}
 @media(min-width:701px){html.embed thead th,html.embed tbody td{padding:11px 12px}}
+/* The embedded CRM owns one scroll area: its contact list. */
+html.embed,html.embed body{height:100%;overflow:hidden}
+html.embed .app{height:100%;min-height:0;overflow:hidden}
+html.embed .main{height:100%;min-height:0;overflow:hidden}
+html.embed .chips,html.embed .toolbar{flex-shrink:0}
+html.embed .chips .chip,html.embed .chips .selbox,html.embed .chips .btn,
+html.embed .toolbar .btn,html.embed .toolbar .selbox{height:34px;min-height:34px;padding-top:0;padding-bottom:0;border-radius:999px;white-space:nowrap;flex-shrink:0}
+html.embed .chips .search{height:34px;border-radius:999px}
+html.embed .work{flex:1;min-height:0;display:flex;flex-direction:column;padding:0;overflow:hidden}
+html.embed .table-card{flex:1;min-height:0;display:flex;flex-direction:column}
+html.embed .table-scroll{flex:1;min-height:0;overflow:auto;overscroll-behavior:contain}
+html.embed thead th{z-index:1}
+html.embed .table-foot{flex-shrink:0}
 </style>
 <div class="app">
 
