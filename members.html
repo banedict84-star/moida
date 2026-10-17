@@ -464,6 +464,7 @@
   .field.row2 button{width:100%}
 }
 </style>
+<script src="crm-storage.js?v=1"></script>
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
@@ -790,14 +791,14 @@ html.embed .table-foot{flex-shrink:0}
   var _membersSaveChain=Promise.resolve();
   var _membersSaveVersion=0;
   function pendingKey(uid){ return 'moida_members_pending_'+uid; }
-  function showSyncWarning(){
+  function showSyncWarning(error){
     var el=document.getElementById('memberSyncWarning');
     if(!el){
       el=document.createElement('div'); el.id='memberSyncWarning';
       el.style.cssText='position:fixed;left:50%;bottom:18px;z-index:4000;transform:translateX(-50%);max-width:calc(100vw - 28px);padding:10px 14px;border-radius:10px;background:#fff1f2;border:1px solid #fecdd3;color:#b42318;font-size:12px;font-weight:700;box-shadow:0 8px 24px rgba(22,26,45,.18);text-align:center';
       document.body.appendChild(el);
     }
-    el.textContent='서버 저장이 지연되고 있습니다. 인터넷 연결 후 자동으로 다시 저장합니다.';
+    el.textContent=window.MOIDA_CRM_STORAGE.errorMessage(error);
     el.style.display='block';
   }
   function hideSyncWarning(){ var el=document.getElementById('memberSyncWarning'); if(el) el.style.display='none'; }
@@ -813,7 +814,13 @@ html.embed .table-foot{flex-shrink:0}
     var snapshot=JSON.parse(JSON.stringify(members));
     var saveVersion=++_membersSaveVersion;
     localStorage.setItem(pendingKey(saveUid),'1');
-    _membersSaveChain=_membersSaveChain.catch(function(){ return false; }).then(function(){
+    _membersSaveChain=_membersSaveChain.catch(function(){ return false; }).then(async function(){
+      snapshot=await window.MOIDA_CRM_STORAGE.prepare(snapshot);
+      if(_uid!==saveUid||window._crmSheetUser?.()?.uid!==saveUid)throw Error('로그인 계정이 변경되었습니다.');
+      if(saveVersion===_membersSaveVersion){
+        for(const row of snapshot){const current=members.find(m=>m.mid===row.mid);if(current)current.photo=row.photo;}
+        localStorage.setItem(_MEM_KEY,JSON.stringify(members));
+      }
       return window._fsSave(saveUid,'members',snapshot);
     }).then(function(){
       if(saveVersion===_membersSaveVersion){
@@ -825,7 +832,7 @@ html.embed .table-foot{flex-shrink:0}
     }).catch(function(e){
       _membersPendingSave=true;
       localStorage.setItem(pendingKey(saveUid),'1');
-      showSyncWarning();
+      showSyncWarning(e);
       console.warn('member save deferred',e);
       return false;
     });
