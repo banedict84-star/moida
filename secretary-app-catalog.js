@@ -51,10 +51,11 @@ for(const [id,c] of Object.entries(MCP_PROVIDERS)){
  app.legacyId=app.id!==id?app.id:null;app.id=id;app.kind='mcp';app.mcp=publicMcpConfig(id);
  if(!app.description||app.description.includes('연동 준비'))app.description='공식 MCP · 계정 권한에 따라 도구 사용';
 }
+const sheets=APP_CATALOG.find(a=>a.name==='Google Sheets');if(sheets){sheets.legacyId=sheets.id;Object.assign(sheets,{id:'google_sheets',kind:'google',service:'sheets',statusKey:'sheets',description:'Google 스프레드시트 수정 권한 · CRM 양방향 동기화'});}else APP_CATALOG.push({id:'google_sheets',name:'Google Sheets',category:'자료',mark:'▦',color:'#178556',kind:'google',service:'sheets',statusKey:'sheets',description:'Google 스프레드시트 수정 권한 · CRM 양방향 동기화'});
 const contacts=APP_CATALOG.find(a=>a.name==='Google Contacts');contacts.legacyId=contacts.id;Object.assign(contacts,{id:'google_contacts',kind:'google',service:'contacts',statusKey:'contacts',description:'Google 주소록 · 이름·이메일·전화번호·소속 조회'});
 APP_CATALOG.find(a=>a.id==='openai_developers').description='공식 개발 문서 검색·읽기 · API 키·잔액 관리 제외';
 const ads=APP_CATALOG.find(a=>a.id==='chatgpt_ads');ads.description='공식 광고 API · 계정·캠페인 조회 · 중지 상태 초안 생성';
-const priorityNames=['Gmail','Google Calendar','Google Drive','Google Contacts','FLOW','SOLAPI','Canva','Slack','GitHub','Figma','OpenAI Developers','Booking.com','Linear','Firecrawl','ChatGPT Ads Manager'];
+const priorityNames=['Gmail','Google Calendar','Google Drive','Google Sheets','Google Contacts','FLOW','SOLAPI','Canva','Slack','GitHub','Figma','OpenAI Developers','Booking.com','Linear','Firecrawl','ChatGPT Ads Manager'];
 for(const app of APP_CATALOG){const i=priorityNames.indexOf(app.name);app.priority=i<0?0:1;app.priorityOrder=i<0?100:i;}
 APP_CATALOG.sort((a,b)=>b.priority-a.priority||a.priorityOrder-b.priorityOrder);
 for (const app of APP_CATALOG) app.logo=APP_LOGOS[app.name] || '';
