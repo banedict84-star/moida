@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
-import {STAFF_ROLES,staffRole,assignmentPlan,selectTaskWorkers,ALLOWED_AGENTS} from '../agent-core.js';
+import {RETIRED_STAFF_ROLES as STAFF_ROLES,STAFF_ROLES as ACTIVE_STAFF_ROLES,CORE_ROLES,staffRole,assignmentPlan,selectTaskWorkers,ALLOWED_AGENTS} from '../agent-core.js';
 import {workerPrompt,reviewTask} from '../gpt-worker.js';
 import {teamTools,executeTeamTool} from '../agent-tools.js';
 
@@ -18,15 +18,17 @@ test('every employee has a distinct deployable WebP portrait',()=>{
  assert.equal(hashes.size,300);
 });
 
-test('all 300 source employees have distinct executable identities and complete role contracts',()=>{
+test('retired employee identities remain readable for historical reports but cannot receive new assignments',()=>{
+ assert.equal(ACTIVE_STAFF_ROLES.length,0);assert.equal(CORE_ROLES.length,8);
  assert.equal(STAFF_ROLES.length,300);
  assert.equal(new Set(STAFF_ROLES.map(r=>r.id)).size,300);
  const groups=new Map();
  for(const role of STAFF_ROLES){
   groups.set(role.group,(groups.get(role.group)||0)+1);
-  assert(ALLOWED_AGENTS.has(role.id));
+  assert(!ALLOWED_AGENTS.has(role.id));
   for(const field of ['person','name','description','output','requirements','approval','trigger','workMode'])assert(role[field]);
-  const [task]=assignmentPlan('자료를 검토해 주세요',[{agent:role.id,instruction:role.description}]);
+  assert.throws(()=>assignmentPlan('자료를 검토해 주세요',[{agent:role.id,instruction:role.description}]));
+  const task={agent:role.id,title:role.person+' · '+role.name,instruction:role.description};
   assert(task.title.includes(role.person));
   const workers=selectTaskWorkers(role.id,task.instruction);assert.equal(workers.length,1);
   const prompt=workerPrompt({instruction:'자료를 검토해 주세요',context_json:'{}'},task,workers[0],'','');
@@ -39,8 +41,9 @@ test('all 300 source employees have distinct executable identities and complete 
 });
 
 test('multiple same-field employees stay separate and task limits reject invalid assignments',()=>{
- const plan=assignmentPlan('견적과 거래명세서를 준비해',[{agent:'M021',instruction:'견적서'},{agent:'M022',instruction:'거래명세서'}]);
- assert.deepEqual(plan.map(t=>t.agent),['M021','M022']);
+ assert.throws(()=>assignmentPlan('업무',[{agent:'M021',instruction:'작업'}]));
+ const plan=assignmentPlan('문서와 분석',[{agent:'core_glim',instruction:'문서 작성'},{agent:'core_semi',instruction:'표 분석'}]);
+ assert.deepEqual(plan.map(t=>t.agent),['core_glim','core_semi']);
  assert.throws(()=>assignmentPlan('업무',[{agent:'M301',instruction:'작업'}]));
  assert.throws(()=>assignmentPlan('업무',Array.from({length:9},(_,i)=>({agent:STAFF_ROLES[i].id,instruction:'작업'}))));
  assert.throws(()=>assignmentPlan('업무',[{agent:'M021',instruction:'작업'},{agent:'M021',instruction:'작업'}]));

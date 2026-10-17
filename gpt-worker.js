@@ -23,6 +23,7 @@ import {
   AGENT_SCHEMA_VERSION,
   TEAM_DEFS,
   STAFF_ROLES,
+  CORE_ROLES,
   staffRole,
   OFFICE_CONTRACT,
   officeRole,
@@ -1815,7 +1816,7 @@ async function handleFetch(request, env, ctx) {
       return json(secretaryResult,200,request,env);
     }
     if (path === "/health" && request.method === "GET") {
-      return json({ ok: true, flowCalendar: Boolean(env.AGENT_DB && env.GOOGLE_CLIENT_SECRET), flowSync: "on-open-and-five-minute-visible", secretaryApi: "agents-v1", secretaryRuntime: "server-runtime2", voiceModel: env.SECRETARY_VOICE_MODEL || "gpt-realtime-2.1", voiceCall: Boolean(env.OPENAI_API_KEY), secretaryModel: env.SECRETARY_MODEL || "gpt-6-luna", secretaryEnvironment: "none", secretaryToolkit: "toolkit-v3", officeTools: [...TOOLKIT_NAMES], webSearch: "live", queue: Boolean(env.AGENT_QUEUE), database: Boolean(env.AGENT_DB), law: Boolean(env.LAW_OC), gemini: Boolean(env.GEMINI_API_KEY), googleCalendar: Boolean(env.GOOGLE_CLIENT_ID && env.GOOGLE_CLIENT_SECRET), schemaVersion: AGENT_SCHEMA_VERSION, agentModel: env.AGENT_MODEL || "gpt-4o-mini", officeStaffCatalogVersion: 1, officeStaffCount: STAFF_ROLES.length, executionMode: "parallel-teams", maxConcurrentTeams: 3, leadReview: "model" }, 200, request, env);
+      return json({ ok: true, flowCalendar: Boolean(env.AGENT_DB && env.GOOGLE_CLIENT_SECRET), flowSync: "on-open-and-five-minute-visible", secretaryApi: "agents-v1", secretaryRuntime: "server-runtime2", voiceModel: env.SECRETARY_VOICE_MODEL || "gpt-realtime-2.1", voiceCall: Boolean(env.OPENAI_API_KEY), secretaryModel: env.SECRETARY_MODEL || "gpt-6-luna", secretaryEnvironment: "none", secretaryToolkit: "toolkit-v3", officeTools: [...TOOLKIT_NAMES], webSearch: "live", queue: Boolean(env.AGENT_QUEUE), database: Boolean(env.AGENT_DB), law: Boolean(env.LAW_OC), gemini: Boolean(env.GEMINI_API_KEY), googleCalendar: Boolean(env.GOOGLE_CLIENT_ID && env.GOOGLE_CLIENT_SECRET), schemaVersion: AGENT_SCHEMA_VERSION, agentModel: env.AGENT_MODEL || "gpt-4o-mini", officeStaffCatalogVersion: 2, officeStaffCount: STAFF_ROLES.length+CORE_ROLES.length, executionMode: "parallel-teams", maxConcurrentTeams: 3, leadReview: "model" }, 200, request, env);
     }
     if (path === GOOGLE_CALLBACK_PATH && request.method === "GET") {
       return await googleCalendarCallback(request, env);

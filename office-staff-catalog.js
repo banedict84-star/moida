@@ -313,6 +313,7 @@
   var words=(role.description+' '+role.output).split(/[\s·,、/]+/).filter(function(w){return w.length>=2&&!/^(담당|정리|자료|확인|구성|작성|초안|목록|제안|준비|맞춰|기준으로|필요한|확인된)$/.test(w);});
   return words.reduce(function(total,w){return total+(normalized.includes(normalize(w))?Math.min(w.length,6):0);},0);
  }
- root.MOIDA_STAFF_CATALOG=Object.freeze(roles);
+ root.MOIDA_RETIRED_STAFF_CATALOG=Object.freeze(roles);
+ root.MOIDA_STAFF_CATALOG=Object.freeze([]);
  root.MOIDA_STAFF_ROLES=Object.freeze({get:function(id){return byId.get(id);},score:score});
 })(typeof window==='undefined'?globalThis:window);
