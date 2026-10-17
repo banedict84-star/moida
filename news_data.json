@@ -1,6 +1,14 @@
 {
-  "updated": "2026-10-17 19:38 UTC",
+  "updated": "2026-10-17 22:32 UTC",
   "items": [
+    {
+      "source": "naver",
+      "press": "newsway.co.kr",
+      "date": "2026.10.18",
+      "title": "경기 집값 '한강 이남'만 뛴다...강남 접근성·반도체 호재 겹쳤다",
+      "snippet": "GS건설은 안산시 상록구 성포동 586번지 일원 옛 홈플러스 안산점 부지에서 '아르뮤제자이'를 내놓는다. 비규제지역에 짓는 이 단지는 지하 6층~지상 최고 49층, 6개 동(아파트 4개 동·오피스텔 2개 동)이며 아파트...",
+      "url": "https://www.newsway.co.kr/news/view?ud=2026101510431863956"
+    },
     {
       "source": "naver",
       "press": "etoday.co.kr",
@@ -467,19 +475,19 @@
     },
     {
       "source": "naver",
-      "press": "joongangenews.com",
-      "date": "2026.10.16",
-      "title": "부영그룹, 하반기 안전·보건관리자 워크숍 개최...현장 안전관리 강화",
-      "snippet": "앞서 부영그룹은 뚝섬부영복합빌딩과 여수안산동 1·2단지, 광주전남혁신 B7블록, 김천혁신 2-1블록... 매년 사업장별 특성을 반영한 안전관리 방침을 수립하고 전사적인 안전교육도 진행하고 있다. 부영그룹 관계자는...",
-      "url": "https://www.joongangenews.com/news/articleView.html?idxno=555701"
-    },
-    {
-      "source": "naver",
       "press": "discoverynews.kr",
       "date": "2026.10.16",
       "title": "부영그룹, '2026년 하반기 안전·보건관리자 워크숍' 실시",
       "snippet": "부영그룹은 앞서 ▲뚝섬부영복합빌딩 ▲여수안산동 1·2단지 ▲광주전남혁신 B7블럭 ▲김천혁신 2-1블럭... 획득한 후 KOSHA-MS 표준으로 전환해 운영 중이며, 매년 사업장별 안전 방침 수립과 교육을 지속 추진하고 있다.",
       "url": "https://www.discoverynews.kr/news/articleView.html?idxno=1104200"
+    },
+    {
+      "source": "naver",
+      "press": "joongangenews.com",
+      "date": "2026.10.16",
+      "title": "부영그룹, 하반기 안전·보건관리자 워크숍 개최...현장 안전관리 강화",
+      "snippet": "앞서 부영그룹은 뚝섬부영복합빌딩과 여수안산동 1·2단지, 광주전남혁신 B7블록, 김천혁신 2-1블록... 매년 사업장별 특성을 반영한 안전관리 방침을 수립하고 전사적인 안전교육도 진행하고 있다. 부영그룹 관계자는...",
+      "url": "https://www.joongangenews.com/news/articleView.html?idxno=555701"
     },
     {
       "source": "naver",
@@ -571,19 +579,19 @@
     },
     {
       "source": "naver",
-      "press": "kgnews.co.kr",
-      "date": "2026.10.15",
-      "title": "안산시 해양동 새마을부녀회, 직접 담근 고추장으로 이웃사랑 실천",
-      "snippet": "취약계층·홀몸어르신 27가구에 고추장 전달 \"올해로 3년째 이어온 훈훈한 이웃 사랑\" 안산시 상록구 해양동 새마을부녀회는 ‘상록수 된장마을’에서 직접 정성껏 담근 고추장을 지역 내 취약계층과 홀몸어르신 27가구에...",
-      "url": "https://www.kgnews.co.kr/news/article.html?no=915231"
-    },
-    {
-      "source": "naver",
       "press": "apnews.kr",
       "date": "2026.10.15",
       "title": "문화 인프라 품은 안산 성포동, 예술 특화 단지 '아르뮤제자이' 공급",
       "snippet": "사진 = 아르뮤제자이 투시도 이미지 경기도 안산시 상록구 노적봉 인근에는 조선 시대 대표 화가인 단원 김홍도의 명칭을 사용한 김홍도미술관이 들어서 있다. 김홍도는 유년 시절을 안산에서 보내며 표암 강세황에게...",
       "url": "https://www.apnews.kr/news/articleView.html?idxno=3052119"
+    },
+    {
+      "source": "naver",
+      "press": "kgnews.co.kr",
+      "date": "2026.10.15",
+      "title": "안산시 해양동 새마을부녀회, 직접 담근 고추장으로 이웃사랑 실천",
+      "snippet": "취약계층·홀몸어르신 27가구에 고추장 전달 \"올해로 3년째 이어온 훈훈한 이웃 사랑\" 안산시 상록구 해양동 새마을부녀회는 ‘상록수 된장마을’에서 직접 정성껏 담근 고추장을 지역 내 취약계층과 홀몸어르신 27가구에...",
+      "url": "https://www.kgnews.co.kr/news/article.html?no=915231"
     },
     {
       "source": "naver",
@@ -962,14 +970,6 @@
       "url": "https://www.kgnews.co.kr/news/article.html?no=914992"
     },
     {
-      "source": "naver",
-      "press": "siminilbo.co.kr",
-      "date": "2026.10.13",
-      "title": "안산시 동 행정복지센터, 어르신 경로잔치·이웃 나눔 잇따라",
-      "snippet": "경기 안산시 각 동 행정복지센터와 지역 봉사단체들이 노인의 날을 맞아 경로잔치와 음식 나눔, 추억 사진 촬영 등 다양한 활동을 펼치며 지역 어르신과 이웃을 위한 나눔을 실천했다. 상록구 일동과 단원구 선부2동에서는...",
-      "url": "https://www.siminilbo.co.kr/news/newsview.php?ncode=1160264420569946"
-    },
-    {
       "source": "google",
       "press": "뉴스클레임",
       "date": "2026.10.13",
@@ -987,11 +987,11 @@
     },
     {
       "source": "google",
-      "press": "뉴스줌",
+      "press": "광흥타임즈",
       "date": "2026.10.13",
       "title": "안산교육지원청, ‘2026 안산 IB Insight Tour’ 운영",
-      "snippet": "안산교육지원청, ‘2026 안산 IB Insight Tour’ 운영 뉴스줌",
-      "url": "https://news.google.com/rss/articles/CBMiREFVX3lxTFBSQnhYdVVhMHUxbEF0ZEc2SlBLaW12OGZvazN0cmxjY2xWQ2ljdFhlTGVxSEZjR1R5cWR1X0wyclRFTnhf?oc=5"
+      "snippet": "안산교육지원청, ‘2026 안산 IB Insight Tour’ 운영 광흥타임즈",
+      "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE9oZWx6dTNReHEyRTdYOHh4aTdCNVE0Y293WGRDY1NnQWFUMkRkWXB3c3F4di1rZzFQTm8yMFlPbmRqRkFBdEwxcWdKeGpvV2xQenRrUlA1OWJpN3dFc2Jv?oc=5"
     },
     {
       "source": "google",
@@ -1115,19 +1115,19 @@
     },
     {
       "source": "google",
+      "press": "김포시민신문",
+      "date": "2026.10.01",
+      "title": "경기도의회 장윤정 의원, 안산사이언스밸리 에이로봇 400억 투자 환영",
+      "snippet": "경기도의회 장윤정 의원, 안산사이언스밸리 에이로봇 400억 투자 환영 김포시민신문",
+      "url": "https://news.google.com/rss/articles/CBMiQ0FVX3lxTE44Q1VTQkRENkFyQ3l4cklzZ2d2c1lRY3UzYkotTDl1dUdjWXNCckNZallVdEYxYnltMjhwQU01d19ldFE?oc=5"
+    },
+    {
+      "source": "google",
       "press": "모닝투데이",
       "date": "2026.10.01",
       "title": "장윤정 경기도의원, 안산사이언스밸리 에이로봇 400억 투자 유치 환영",
       "snippet": "장윤정 경기도의원, 안산사이언스밸리 에이로봇 400억 투자 유치 환영 모닝투데이",
       "url": "https://news.google.com/rss/articles/CBMiTEFVX3lxTE1pYkhqYTh2RzEySVhlUnBOWjVSTnVPRGg1OUZiRmo0a21YY2ZUcWV5dE9WeFR6NGNXMktwMHVCMS1SSFpZVjlXYmQtWWk?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "웹이코노미",
-      "date": "2026.10.01",
-      "title": "경기도의회 장윤정 의원, 안산사이언스밸리 에이로봇 400억 투자 환영",
-      "snippet": "경기도의회 장윤정 의원, 안산사이언스밸리 에이로봇 400억 투자 환영 웹이코노미",
-      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE1TZWdxTU94YngteTJyXy1YX25LeGlmcV8zQjRsZm9OWWhpWm5JS0wzam1zWThiVkhGSGxoemNYbVhNV2tzeVA4V040cWhReHdxX0J4cHdxMGUyNzhqVXVzbmpvNGRyRWxFak9OWGwtSGRmdw?oc=5"
     },
     {
       "source": "naver",
@@ -1165,8 +1165,8 @@
       "source": "google",
       "press": "JTBC",
       "date": "2026.09.26",
-      "title": "추석 연휴에…안산서 노모 살해한 50대 딸 검거",
-      "snippet": "추석 연휴에…안산서 노모 살해한 50대 딸 검거 JTBC",
+      "title": "추석 연휴에…안산서 노모 살해한 50대 딸 검거 - JTBC 뉴스",
+      "snippet": "추석 연휴에…안산서 노모 살해한 50대 딸 검거 - JTBC 뉴스 JTBC",
       "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE5FdHlrVjlsR1NhdXh5X2RCS0lFLUdXVnkxaVdiTlNjc3FPMTFwam5RUmZQaFc1WGdERFBlU1pMa0Jmb09BTzJldDRJdjhhbDFxdzlkMA?oc=5"
     },
     {
@@ -1192,14 +1192,6 @@
       "title": "與 김현, 추석 물가 현장점검…\"애로사항 개선에 총력\"",
       "snippet": "이날 현장에는 김현 국회의원을 비롯해 유재수·이은미·장윤정 경기도의원, 이재복·이상우·윤오일·백승희 안산시의원과 지역 당원들이 함께했다. 이들은 청과·수산물 매장과 시장 일대를 돌며 상인과 시민들에게 명절...",
       "url": "https://news.tvchosun.com/site/data/html_dir/2026/09/25/2026092590027.html"
-    },
-    {
-      "source": "google",
-      "press": "국제뉴스",
-      "date": "2026.09.20",
-      "title": "[속보] 안산 상록구 주택서 화재 발생… \"도로 우회 당부\"",
-      "snippet": "[속보] 안산 상록구 주택서 화재 발생… \"도로 우회 당부\" 국제뉴스",
-      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE82VFR6elRiZVg3Z0ducGlfaS1hMHAzS1BTNEhkOV8wMGYzRWo3alI3Y1hNenY2dlNLd0ExZDIxNk9Fa3BGUXpEcVRPVlkwcVoydzF4RDB4Q0NmNGpydVVzeG5Ga1Fqb2JQOXdyNE5n?oc=5"
     },
     {
       "source": "naver",
@@ -1904,6 +1896,14 @@
       "title": "장윤정 경기도의원, 교육청 예결특위 선임…“학생·현장 중심 예산 총...",
       "snippet": "경기도교육청 예산결산특별위원회 위원에 선임된 더불어민주당 소속 장윤정(안산 3) 의원이 “경기교육 재정의 건전성과 효율성 높이고, 학생과 현장 중심의 예산 편성에 총력 다할 것”이라고 27일 밝혔다. 장 의원은...",
       "url": "https://www.kyeonggi.com/article/20260727580228"
+    },
+    {
+      "source": "google",
+      "press": "경기청소년신문",
+      "date": "2026.07.27",
+      "title": "경기도의회 장윤정 의원, 경기도교육청 예산결산특별위원회 위원 선임",
+      "snippet": "경기도의회 장윤정 의원, 경기도교육청 예산결산특별위원회 위원 선임 경기청소년신문",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE52N0VhSE11dlZ2LTZlN3hyY2djMEgxeHJlTm1tQjg4VXJqSGlwc3NndEdHaXAzdzNPWHRIaW9UdUMwNzZDWDAtbjZscnloU08zTjAtbHJ4b29BamlyZGVfNE5FTWJaSXpk?oc=5"
     },
     {
       "source": "google",
