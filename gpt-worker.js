@@ -1,6 +1,5 @@
 import {weeklyEventsRoute} from './weekly-events.js';
 import {createNaverMail} from './naver-mail.js';
-import {connect as connectNaverSocket} from 'cloudflare:sockets';
 import {createTelegramBot} from './telegram-bot.js';
 import {crmTelegramRoute} from './crm-telegram.js';
 const telegramBot=createTelegramBot();
@@ -1776,7 +1775,7 @@ function officeToolServices(env,user,request){
   };
 }
 
-const naverMail=createNaverMail({connect:connectNaverSocket,encrypt:encryptGoogleToken,decrypt:decryptGoogleToken});
+async function naverMail(args){const {connect}=await import('cloudflare:sockets');return createNaverMail({connect,encrypt:encryptGoogleToken,decrypt:decryptGoogleToken})(args);}
 const solapiMessaging=createSolapiMessaging({encrypt:encryptGoogleToken,decrypt:decryptGoogleToken});
 const mcpServices=Object.fromEntries(Object.keys(MCP_PROVIDERS).map(provider=>[provider,createHiggsfieldMcp({encrypt:encryptGoogleToken,decrypt:decryptGoogleToken,provider})]));
 const flowCalendar=createFlowCalendar({encrypt:encryptGoogleToken,decrypt:decryptGoogleToken});
