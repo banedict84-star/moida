@@ -1,8 +1,8 @@
 <!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>모이다 · 구글 일정</title>
 <link rel="stylesheet" href="google-schedule.css">
 <main><header><div><small>MOIDA CALENDAR</small><h1>일정·행사</h1><p id="account">ansan3work031@gmail.com · Google 캘린더</p></div><button id="add">＋ 일정 등록</button></header>
-<nav><button id="prev" aria-label="이전 달">‹</button><h2 id="month"></h2><button id="next" aria-label="다음 달">›</button><button id="today">이번 달</button><button id="refresh">새로고침</button><a href="schedule.html?embed=1">기존 모이다·FLOW 일정</a></nav>
+<label>표시할 캘린더<select id="calendarSelect"><option value="ansan3work031@gmail.com">의원실 · ansan3work031@gmail.com</option><option value="jyj2195@gmail.com">장윤정 · jyj2195@gmail.com</option></select></label><nav><button id="prev" aria-label="이전 달">‹</button><h2 id="month"></h2><button id="next" aria-label="다음 달">›</button><button id="today">이번 달</button><button id="refresh">새로고침</button><a href="schedule.html?embed=1">기존 모이다·FLOW 일정</a></nav>
 <p id="status" role="status">로그인 확인 중…</p><section id="events" aria-label="구글 캘린더 일정"></section>
 <p class="note">구글 캘린더의 원본 일정을 표시합니다. 여기서 저장한 변경사항은 구글에도 반영됩니다.</p></main>
 <dialog id="editor"><form id="form"><h2 id="formTitle">일정 등록</h2><label>제목<input name="title" required maxlength="500"></label><label class="check"><input type="checkbox" name="allDay">종일</label><div class="dates"><label>시작<input name="start" type="datetime-local" required></label><label>종료<input name="end" type="datetime-local" required></label></div><small id="endHint">종료 시각을 확인해 주세요.</small><label>장소<input name="location" maxlength="1000"></label><label>내용<textarea name="description" rows="5" maxlength="8000"></textarea></label><p id="formStatus" role="status"></p><footer><button type="button" id="cancel">취소</button><button type="submit" id="save">구글 캘린더에 저장</button></footer></form></dialog>
-<script type="module" src="google-schedule.js?v=1"></script></html>
+<script type="module" src="google-schedule.js?v=2"></script></html>
