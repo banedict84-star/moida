@@ -883,7 +883,7 @@ html.embed .table-foot{flex-shrink:0}
   window._reloadMembersFromFS = function(fsData){
     members = fsData;
     var _cloudChanged=false;
-    var D={rrn:'—',dong:'—',org:'—',rec:'—',rec2:'—',rec3:'—',sub:'—',third:'—',addr:'—',addrDetail:'',family:null,age:'',ageb:'—',sex:'—',vote:'미확인',voteK:'err',katalk:'—',type:'일반당원',typeK:'old',krGrade:0,smGrade:0,photo:'',orgs:[]};
+    var D={rrn:'—',dong:'—',org:'—',rec:'—',rec2:'—',rec3:'—',sub:'—',third:'—',addr:'—',addrDetail:'',family:null,age:'',ageb:'—',sex:'—',vote:'미확인',voteK:'err',katalk:'—',type:'—',typeK:'old',krGrade:0,smGrade:0,photo:'',orgs:[]};
     members.forEach(function(m){
       Object.keys(D).forEach(function(k){ if(m[k]===undefined||m[k]===null&&k!=='family') m[k]=D[k]; });
       if(!m.mid){ m.mid='m'+Date.now()+Math.random().toString(36).slice(2,7); _cloudChanged=true; }
@@ -920,7 +920,7 @@ html.embed .table-foot{flex-shrink:0}
     recalcScores(); renderRows();
   };
   window._crmSheetBridge={
-    signature:function(rows){if(!Array.isArray(rows))return null;const fields=["mid","name","phone","dong","addr","type","rec","rec2","rec3","katalk","org","age","ageb","family","sms","addrDetail","krGrade","rrn","sex"];return JSON.stringify(rows.map(r=>fields.map(k=>{var v=r[k];if(k==='rec2')v=r.rec2||r.sub;if(k==='rec3')v=r.rec3||r.third;if(k==='org'&&Array.isArray(r.orgs)&&r.orgs.length)v=r.orgs[0].name+(r.orgs[0].title?' '+r.orgs[0].title:'');return v==null?'':k==='phone'?String(v).replace(/[\s()-]/g,''):String(v);})).sort((a,b)=>a[0].localeCompare(b[0])));},
+    signature:function(rows){if(!Array.isArray(rows))return null;const fields=["mid","name","phone","dong","addr","type","rec","rec2","rec3","katalk","org","age","ageb","family","sms","addrDetail","krGrade","rrn","sex"];return JSON.stringify(rows.map(r=>fields.map(k=>{var v=r[k];if(k==='rec2')v=r.rec2||r.sub;if(k==='rec3')v=r.rec3||r.third;if(k==='org'&&Array.isArray(r.orgs)&&r.orgs.length)v=r.orgs[0].name+(r.orgs[0].title?' '+r.orgs[0].title:'');if(v==null||['—','-','undefined'].includes(String(v).trim()))return '';return k==='phone'?String(v).replace(/[\s()-]/g,''):String(v);})).sort((a,b)=>a[0].localeCompare(b[0])));},
     ready:function(){return _membersCloudReady&&_uid!=='default'&&window._crmSheetUser?.()?.uid===_uid&&!window.MOIDA_READONLY;},
     clear:async function(){
       if(!this.ready())throw Error('현재 계정의 CRM이 로드된 후 다시 시도해 주세요.');
@@ -943,7 +943,7 @@ html.embed .table-foot{flex-shrink:0}
   var members = loadMembers();
   // normalize members: fill missing fields with defaults, assign mid
   (function(){
-    var D={rrn:'—',dong:'—',org:'—',rec:'—',rec2:'—',rec3:'—',sub:'—',third:'—',addr:'—',addrDetail:'',family:null,age:'',ageb:'—',sex:'—',vote:'미확인',voteK:'err',katalk:'—',type:'일반당원',typeK:'old',krGrade:0,smGrade:0,photo:'',orgs:[]};
+    var D={rrn:'—',dong:'—',org:'—',rec:'—',rec2:'—',rec3:'—',sub:'—',third:'—',addr:'—',addrDetail:'',family:null,age:'',ageb:'—',sex:'—',vote:'미확인',voteK:'err',katalk:'—',type:'—',typeK:'old',krGrade:0,smGrade:0,photo:'',orgs:[]};
     members.forEach(function(m){
       Object.keys(D).forEach(function(k){ if(m[k]===undefined||m[k]===null&&k!=='family') m[k]=D[k]; });
       if(!m.mid){ m.mid='m'+Date.now()+Math.random().toString(36).slice(2,7); }
