@@ -1641,6 +1641,23 @@ async function googleCalendarStatus(request, env, user) {
   }, 200, request, env);
 }
 
+async function googleCalendarList(request, env, user) {
+  const { accessToken, connection } = await googleAccessToken(env, user.uid);
+  const calendars = [], query = new URLSearchParams({maxResults:'250',showHidden:'false',showDeleted:'false'});
+  let page;
+  do {
+    page = await googleApi(accessToken, `https://www.googleapis.com/calendar/v3/users/me/calendarList?${query}`);
+    for (const item of page.items || []) {
+      if (item.deleted || !item.id) continue;
+      calendars.push({id:item.id,name:item.summaryOverride || item.summary || item.id,primary:!!item.primary,selected:!!item.selected,accessRole:item.accessRole || 'reader',color:/^#[0-9a-f]{6}$/i.test(item.backgroundColor || '')?item.backgroundColor:'',timeZone:item.timeZone || ''});
+    }
+    if (page.nextPageToken) query.set('pageToken', page.nextPageToken);
+  } while (page.nextPageToken);
+  const response = json({ok:true,email:connection.google_email || '',calendars},200,request,env);
+  response.headers.set('Cache-Control','private, no-store');
+  return response;
+}
+
 async function googleCalendarEvents(request, env, user) {
   const { accessToken, connection } = await googleAccessToken(env, user.uid);
   const calendarId = encodeURIComponent(new URL(request.url).searchParams.get("calendarId") || connection.calendar_id || "primary");
@@ -1847,6 +1864,10 @@ async function handleFetch(request, env, ctx) {
     if (path === "/google/calendar/status" && request.method === "GET") {
       const user = await verifyFirebaseUser(request, env);
       return await googleCalendarStatus(request, env, user);
+    }
+    if (path === "/google/calendar/list" && request.method === "GET") {
+      const user = await verifyFirebaseUser(request, env);
+      return await googleCalendarList(request, env, user);
     }
     if (path === "/google/calendar/events" && ["GET", "POST", "PUT", "DELETE"].includes(request.method)) {
       const user = await verifyFirebaseUser(request, env);
