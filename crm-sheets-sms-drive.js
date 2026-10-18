@@ -22,15 +22,23 @@ export async function readSmsDrive({store,config,uid,token,api,download=fetch}){
  const version=file.id+':'+file.modifiedTime;
  if(config.version===version){await store.query(`UPDATE ${TABLE} SET updated=? WHERE uid=? AND folder_id=? AND version=?`,[now,uid,config.folder_id,version]).run();return JSON.parse(config.records);}
  if(Number(file.size)>300*1024*1024)throw Error('문자 백업은 300MB 이하로 연결해 주세요.');
- const lease=now+120000,result=await store.query(`UPDATE ${TABLE} SET lease_until=? WHERE uid=? AND folder_id=? AND lease_until<?`,[lease,uid,config.folder_id,now]).run();
- if(!result.meta?.changes)throw Error('문자 백업을 처리 중입니다. 잠시 후 다시 확인해 주세요.');
+ const lease=now+30000,result=await store.query(`UPDATE ${TABLE} SET lease_until=? WHERE uid=? AND folder_id=? AND lease_until<?`,[lease,uid,config.folder_id,now]).run();
+ if(!result.meta?.changes)return {processing:true,processedBytes:0,totalBytes:Number(file.size)};
  try{
-  const response=await download('https://www.googleapis.com/drive/v3/files/'+encodeURIComponent(file.id)+'?alt=media',{headers:{Authorization:'Bearer '+access},redirect:'manual'});
+  await store.query('CREATE TABLE IF NOT EXISTS crm_sms_drive_jobs(uid TEXT PRIMARY KEY,version TEXT NOT NULL,payload TEXT NOT NULL)',[]).run();
+  const savedJob=await store.query('SELECT * FROM crm_sms_drive_jobs WHERE uid=?',[uid]).first(),job=savedJob?.version===version?JSON.parse(savedJob.payload):{offset:0,messages:[],checkpoint:null};
+  const chunkSize=2*1024*1024,end=Math.min(Number(file.size)-1,job.offset+chunkSize-1);
+  const response=await download('https://www.googleapis.com/drive/v3/files/'+encodeURIComponent(file.id)+'?alt=media',{headers:{Authorization:'Bearer '+access,Range:`bytes=${job.offset}-${end}`},redirect:'manual'});
   if(!response.ok||!response.body)throw Error('문자 백업 파일을 가져오지 못했습니다. Google Drive 연결을 확인해 주세요.');
-  async function* chunks(){const reader=response.body.getReader(),decoder=new TextDecoder();let bytes=0;try{while(true){const {done,value}=await reader.read();if(done)break;bytes+=value.byteLength;if(bytes>300*1024*1024)throw Error('문자 백업은 300MB 이하로 연결해 주세요.');yield decoder.decode(value,{stream:true});}yield decoder.decode();}finally{await reader.cancel();}}
-  const parsed=await parseSmsXml(chunks()),records=JSON.stringify(parsed.messages);
+  if(Number(file.size)>chunkSize&&response.status!==206){await response.body.cancel();throw Error('Google Drive에서 파일 분할 읽기를 지원하지 않습니다.');}
+  const bytes=new Uint8Array(await response.arrayBuffer());if(!bytes.length||bytes.length>chunkSize)throw Error('문자 백업 파일 구간을 확인하지 못했습니다.');
+  let length=bytes.length,start=length-1;while(start>=0&&(bytes[start]&0xc0)===0x80)start--;if(start>=0){const c=bytes[start],width=c>=0xf0?4:c>=0xe0?3:c>=0xc0?2:1;if(start+width>length)length=start;}
+  const next=job.offset+length,final=next>=Number(file.size),text=new TextDecoder('utf-8',{fatal:true}).decode(bytes.subarray(0,length));
+  const parsed=await parseSmsXml([text],job.checkpoint,final),messages=[...job.messages,...parsed.messages];if(final)messages.sort((a,b)=>b.date.localeCompare(a.date)||b.row-a.row);const records=JSON.stringify(messages);
   if(new TextEncoder().encode(records).length>1500000)throw Error('추출한 문자 텍스트가 너무 많습니다. 기간별로 나눈 백업을 연결해 주세요.');
+  if(!final){await store.query('INSERT INTO crm_sms_drive_jobs(uid,version,payload) VALUES(?,?,?) ON CONFLICT(uid) DO UPDATE SET version=excluded.version,payload=excluded.payload',[uid,version,JSON.stringify({offset:next,messages,checkpoint:parsed.checkpoint})]).run();return {processing:true,processedBytes:next,totalBytes:Number(file.size)};}
+  messages.sort((a,b)=>b.date.localeCompare(a.date)||b.row-a.row);
   const saved=await store.query(`UPDATE ${TABLE} SET file_id=?,version=?,records=?,updated=?,lease_until=0 WHERE uid=? AND folder_id=? AND lease_until=?`,[file.id,version,records,Date.now(),uid,config.folder_id,lease]).run();
-  if(!saved.meta?.changes)throw Error('문자 연결 설정이 변경되었습니다. 다시 열어 주세요.');return parsed.messages;
+  if(!saved.meta?.changes)throw Error('문자 연결 설정이 변경되었습니다. 다시 열어 주세요.');await store.query('DELETE FROM crm_sms_drive_jobs WHERE uid=?',[uid]).run();return messages;
  }finally{await store.query(`UPDATE ${TABLE} SET lease_until=0 WHERE uid=? AND folder_id=? AND lease_until=?`,[uid,config.folder_id,lease]).run();}
 }
