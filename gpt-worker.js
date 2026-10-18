@@ -1643,7 +1643,7 @@ async function googleCalendarStatus(request, env, user) {
 
 async function googleCalendarEvents(request, env, user) {
   const { accessToken, connection } = await googleAccessToken(env, user.uid);
-  const calendarId = encodeURIComponent(connection.calendar_id || "primary");
+  const calendarId = encodeURIComponent(new URL(request.url).searchParams.get("calendarId") || connection.calendar_id || "primary");
   if (request.method === "GET") {
     const url = new URL(request.url);
     const timeMin = url.searchParams.get("timeMin") || new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
@@ -1656,10 +1656,13 @@ async function googleCalendarEvents(request, env, user) {
       timeMax,
       showDeleted: "true",
     });
-    const data = await googleApi(
-      accessToken,
-      `https://www.googleapis.com/calendar/v3/calendars/${calendarId}/events?${query}`,
-    );
+    const data = { items: [] };
+    let page;
+    do {
+      page = await googleApi(accessToken, `https://www.googleapis.com/calendar/v3/calendars/${calendarId}/events?${query}`);
+      data.items.push(...(page.items || []));
+      if (page.nextPageToken) query.set("pageToken", page.nextPageToken);
+    } while (page.nextPageToken);
     return json({
       ok: true,
       events: (data.items || []).map((event) => ({
