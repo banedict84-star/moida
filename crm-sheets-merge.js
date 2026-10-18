@@ -12,7 +12,7 @@ export function sameIdentity(a,b){
  if(cleanName(a.name)!==cleanName(b.name)||ar&&br&&ar!==br)return false;
  return ap&&bp?ap===bp:!ap&&!bp&&/^\d{13}$/.test(ar)&&ar===br;
 }
-export const project=rows=>rows.map(r=>Object.fromEntries(FIELDS.map(k=>[k,(k==='phone'?text(r[k]).replace(/[\s()-]/g,''):k==='rrn'&&['—','-'].includes(text(r[k]))?'':text(r[k]))||(['org','ageb'].includes(k)?'—':'')])));
+export const project=rows=>rows.map(r=>Object.fromEntries(FIELDS.map(k=>{let value=text(r[k]);if(!['mid','name'].includes(k)&&['—','-','undefined'].includes(value.trim()))value='';if(k==='phone')value=value.replace(/[\s()-]/g,'');if(k==='krGrade'&&!value)value='0';return [k,value||(['org','ageb'].includes(k)?'—':'')];})));
 export function validate(rows){
  if(!Array.isArray(rows)||rows.length>MAX_CONTACTS)throw Error('연락처는 50,000건 이하로 연결해 주세요.');
  for(const row of rows){for(const key of ['age','family','smGrade','krGrade']){const value=text(row?.[key]);if(value!==''&&(!/^\d+$/.test(value)||Number(value)>(key==='age'?120:key==='family'?50000:5)))throw Error(HEADERS[FIELDS.indexOf(key)]+' 값의 범위를 확인해 주세요.');}}

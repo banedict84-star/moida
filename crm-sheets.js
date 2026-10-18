@@ -37,16 +37,16 @@ export async function crmSheetsRoute({env,uid,request,token,api}){
   const id=String(body.sheetId||'');if(!/^[a-zA-Z0-9_-]{20,150}$/.test(id))throw Error('Google 시트 주소를 확인해 주세요.');
   const prior=await read();if(prior&&prior.sheet_id!==id)throw Error('기존 연결을 해제한 뒤 다른 시트를 연결해 주세요.');
   const base='https://sheets.googleapis.com/v4/spreadsheets/'+id;
-  const meta=await api(access,base+'?fields=sheets.properties,developerMetadata');let tab=meta.sheets?.find(s=>s.properties.title===TAB);
+  const meta=await api(access,base+'?fields=sheets(properties,developerMetadata),developerMetadata');let tab=meta.sheets?.find(s=>s.properties.title===TAB);
   if(!tab)await api(access,base+':batchUpdate',{method:'POST',body:JSON.stringify({requests:[{addSheet:{properties:{title:TAB,gridProperties:{rowCount:MAX_CONTACTS+1,columnCount:FIELDS.length,frozenRowCount:1}}}}]})});
   const values=await api(access,base+'/values/'+encodeURIComponent("'"+TAB+"'!A1:"+String.fromCharCode(64+Math.min(Number(tab?.properties.gridProperties?.columnCount)||FIELDS.length,26))+"1"));if(values.values?.length)parseRows(values.values);
   await q(env,`INSERT OR IGNORE INTO ${TABLE}(uid,sheet_id) VALUES(?,?)`,[uid,id]).run();return {ok:true,tab:TAB};
  }
  const config=await read();if(!config)throw Error('시트를 먼저 연결해 주세요.');
  const base='https://sheets.googleapis.com/v4/spreadsheets/'+config.sheet_id;
- const meta=await api(access,base+'?fields=sheets.properties,developerMetadata');
+ const meta=await api(access,base+'?fields=sheets(properties,developerMetadata),developerMetadata');
  const sheet=meta.sheets?.find(s=>s.properties.title===TAB),columns=Number(sheet?.properties.gridProperties?.columnCount)||FIELDS.length;
- const derived=meta.developerMetadata?.some(item=>item.metadataKey===DERIVED_METADATA_KEY&&item.metadataValue===DERIVED_METADATA_VALUE&&item.location?.sheetId===sheet?.properties.sheetId)||false;
+ const derived=[...(meta.developerMetadata||[]),...(sheet?.developerMetadata||[])].some(item=>item.metadataKey===DERIVED_METADATA_KEY&&item.metadataValue===DERIVED_METADATA_VALUE&&item.location?.sheetId===sheet?.properties.sheetId)||false;
  const readColumn=String.fromCharCode(64+Math.min(columns,26));
  let gridRows=Math.min(MAX_CONTACTS+2,Number(sheet?.properties.gridProperties?.rowCount)||MAX_CONTACTS+2);
  const readRange=async(start,end,column=readColumn)=>{const data=await api(access,base+'/values/'+encodeURIComponent("'"+TAB+"'!A"+start+':'+column+end));return data.values||[];};
