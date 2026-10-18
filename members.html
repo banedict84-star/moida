@@ -920,7 +920,7 @@ html.embed .table-foot{flex-shrink:0}
     recalcScores(); renderRows();
   };
   window._crmSheetBridge={
-    signature:function(rows){if(!Array.isArray(rows))return null;const fields=["mid","name","phone","dong","addr","type","rec","rec2","rec3","katalk","org","age","ageb","family","sms","addrDetail","krGrade","rrn"];return JSON.stringify(rows.map(r=>fields.map(k=>{var v=r[k];if(k==='rec2')v=r.rec2||r.sub;if(k==='rec3')v=r.rec3||r.third;if(k==='org'&&Array.isArray(r.orgs)&&r.orgs.length)v=r.orgs[0].name+(r.orgs[0].title?' '+r.orgs[0].title:'');return v==null?'':k==='phone'?String(v).replace(/[\s()-]/g,''):String(v);})).sort((a,b)=>a[0].localeCompare(b[0])));},
+    signature:function(rows){if(!Array.isArray(rows))return null;const fields=["mid","name","phone","dong","addr","type","rec","rec2","rec3","katalk","org","age","ageb","family","sms","addrDetail","krGrade","rrn","sex"];return JSON.stringify(rows.map(r=>fields.map(k=>{var v=r[k];if(k==='rec2')v=r.rec2||r.sub;if(k==='rec3')v=r.rec3||r.third;if(k==='org'&&Array.isArray(r.orgs)&&r.orgs.length)v=r.orgs[0].name+(r.orgs[0].title?' '+r.orgs[0].title:'');return v==null?'':k==='phone'?String(v).replace(/[\s()-]/g,''):String(v);})).sort((a,b)=>a[0].localeCompare(b[0])));},
     ready:function(){return _membersCloudReady&&_uid!=='default'&&window._crmSheetUser?.()?.uid===_uid&&!window.MOIDA_READONLY;},
     clear:async function(){
       if(!this.ready())throw Error('현재 계정의 CRM이 로드된 후 다시 시도해 주세요.');
@@ -1677,7 +1677,7 @@ html.embed .table-foot{flex-shrink:0}
     var fam=g('dtFamily');m.family=fam===''?null:Number(fam);m.katalk=g('dtfKatalk')||'미확인';m.sms=g('dtfSms')||'미확인';
     var tsel=document.querySelector('#dtfType .tseg-opt.on'); if(tsel){ m.type=tsel.dataset.v; m.typeK=typeToK(m.type); }
     m.orgs=editOrgs.map(function(o){ return {cat:o.cat,name:o.name,title:o.title}; }); syncOrgStr(m); saveOrgs(m); m.rec=g('dtfRec1')||'—'; m.rec2=g('dtfRec2')||'—'; m.rec3=g('dtfRec3')||'—'; m.sub=m.rec2; m.third=m.rec3;
-    if(m.ageSource==='derived'&&window.MOIDA_CRM_DERIVED){const value=window.MOIDA_CRM_DERIVED.ageFromResidentNumber(m.rrn);m.age=value==null?'':value;m.ageb=value==null?'':Math.floor(value/10)*10+'대';}
+    if(m.ageSource==='derived'&&window.MOIDA_CRM_DERIVED){const value=window.MOIDA_CRM_DERIVED.ageFromResidentNumber(m.rrn);m.age=value==null?'':value;m.ageb=value==null?'':Math.floor(value/10)*10+'대';m.sex=window.MOIDA_CRM_DERIVED.registeredSexFromResidentNumber(m.rrn);}
     var d=m.ageSource==='derived'?null:deriveFromRrn(g('dtfRrn')); if(d){ m.age=d.age; m.ageb=d.ageb; m.sex=d.sex; }
     if(m.ageSource!=='derived'&&(g('dtfAge')!==String(m.age||'')||g('dtfAgeb')!==String(m.ageb||''))){m.age=g('dtfAge')===''?'':Number(g('dtfAge'));m.ageb=g('dtfAgeb');m.ageSource='manual';}
     if(window._getMemberPhoto) m.photo=window._getMemberPhoto();
@@ -2134,7 +2134,7 @@ html.embed .table-foot{flex-shrink:0}
 <script src="access-guard.js"></script>
 <link rel="stylesheet" href="crm-sms-history.css?v=detail1">
 <script src="crm-sms-history.js?v=detail1"></script>
-<script type="module" src="crm-sheets-client.js?v=derived1"></script>
+<script type="module" src="crm-sheets-client.js?v=sex1"></script>
 <script type="module" src="crm-telegram-client.js?v=lookup2"></script>
 </body>
 </html>
