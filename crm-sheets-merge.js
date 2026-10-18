@@ -25,7 +25,8 @@ export function parseRows(values,known=[]){
  const {headers,legacy,missingRrn}=sheetHeaders(values);
  return validate(values.slice(1).filter(row=>row.some(v=>text(v).trim())).map((cells,i)=>{
   const row=Object.fromEntries(headers.map((h,j)=>[FIELDS[HEADERS.indexOf(canonicalHeader(h))],text(cells[j])]).filter(pair=>pair[0]));
-  if(!row.mid){if(!row.name)throw Error((i+2)+'행에 이름을 입력해 주세요.');const phone=row.phone.replace(/\D/g,'');const matches=known.filter(r=>phone?text(r.phone).replace(/\D/g,'')===phone:text(r.name)===row.name);if(matches.length>1)throw Error((i+2)+'행은 같은 연락처가 여러 개입니다. 연락처 ID를 지정해 주세요.');row.mid=matches[0]?.mid||'s_'+crypto.randomUUID();}
+  row.name=text(row.name).trim()||'이름모름';
+  if(!row.mid){const phone=row.phone.replace(/\D/g,'');const matches=known.filter(r=>phone?text(r.phone).replace(/\D/g,'')===phone:text(r.name)===row.name);if(matches.length>1)throw Error((i+2)+'행은 같은 연락처가 여러 개입니다. 연락처 ID를 지정해 주세요.');row.mid=matches[0]?.mid||'s_'+crypto.randomUUID();}
   const prior=legacy||missingRrn?known.find(r=>r.mid===row.mid):null;
   return Object.fromEntries(FIELDS.map((k,j)=>[k,text((legacy&&j>=7&&k!=='rrn')||(missingRrn&&k==='rrn')?prior?.[k]:row[k])]));
  }));
