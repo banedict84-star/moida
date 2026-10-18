@@ -1,3 +1,4 @@
+import {createWeeklyAutomation} from './weekly-mail-automation.js';
 import {weeklyEventsRoute} from './weekly-events.js';
 import {createNaverMail} from './naver-mail.js';
 import {createTelegramBot} from './telegram-bot.js';
@@ -1830,6 +1831,7 @@ async function handleFetch(request, env, ctx) {
       return await googleCalendarCallback(request, env);
     }
     if(path==='/naver-mail'){const user=await verifyFirebaseUser(request,env);const result=await naverMail({env,uid:user.uid,request,body:request.method==='POST'?await requestBody(request):{}});const response=json(result,200,request,env);response.headers.set('Cache-Control','no-store');return response;}
+    if(path==='/weekly-mail-automation'){const user=await verifyFirebaseUser(request,env);const result=await weeklyMailAutomation.route({env,uid:user.uid,request,body:request.method==='POST'?await requestBody(request):{}});return json(result,200,request,env);}
     if(path==='/weekly-events'){const user=await verifyFirebaseUser(request,env);const result=await weeklyEventsRoute({env,uid:user.uid,request,body:request.method==='POST'?await requestBody(request):{}});const response=json(result,200,request,env);response.headers.set('Cache-Control','no-store');return response;}
     if(path.startsWith('/crm-telegram/')){const user=await verifyFirebaseUser(request,env);return json(await crmTelegramRoute({env,uid:user.uid,request}),200,request,env);}
     if(path.startsWith('/crm-sheets/')){const user=await verifyFirebaseUser(request,env);const result=await crmSheetsRoute({env,uid:user.uid,request,token:async(service='sheets')=>{const value=await googleAccessToken(env,user.uid);if(!String(value.connection.scope).split(' ').includes(service==='drive'?GOOGLE_DRIVE_SCOPE:GOOGLE_SHEETS_SCOPE))throw new HttpError(409,service==='drive'?'도구 연결에서 Google Drive 읽기 권한을 먼저 연결해 주세요.':'Google 시트 수정 권한을 먼저 연결해 주세요.');return value.accessToken;},api:googleApi});return json(result,200,request,env);}
@@ -1906,12 +1908,24 @@ function tickSecretary(env,options={}){
   services:officeToolServices(env,{uid},new Request('https://moida-gpt.banedict84.workers.dev/secretary/background'))}),options);
 }
 
+const weeklyMailAutomation=createWeeklyAutomation({
+ decrypt:decryptGoogleToken,
+ connect:async()=> (await import('cloudflare:sockets')).connect,
+ google:async(env,uid)=>{const {accessToken,connection}=await googleAccessToken(env,uid);return {email:connection.google_email||'',api:async(url,init={})=>{
+  const {allowNotFound,...options}=init;
+  const response=await fetch(url,{...options,headers:{Authorization:'Bearer '+accessToken,...(options.body?{'Content-Type':'application/json'}:{})},signal:AbortSignal.timeout(20000)});
+  if(allowNotFound&&response.status===404)return null;
+  const data=await response.json().catch(()=>({}));if(!response.ok)throw Error('구글 캘린더 요청 실패 ('+response.status+'). 계정 연결과 권한을 확인해 주세요.');return data;
+ }};}
+});
+
 export default {
   fetch: handleFetch,
   queue: handleQueue,
   scheduled(_controller, env, ctx) {
     if(_controller.cron==="* * * * *")ctx.waitUntil(telegramBot.tick(env));
     if(_controller.cron==='* * * * *'){ctx.waitUntil(tickSecretary(env));ctx.waitUntil(officeTravel.tick(env));ctx.waitUntil(toolkitTick(env).then(()=>builtinTick(env)));return;}
+    ctx.waitUntil(weeklyMailAutomation.tick(env));
     ctx.waitUntil(recoverStaleRuns(env));
     ctx.waitUntil(toolkitTick(env));
     ctx.waitUntil(solapiMessaging.tick(env));

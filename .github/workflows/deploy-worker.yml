@@ -21,6 +21,8 @@ on:
       - 'agent-scheduler.js'
       - 'secretary-*.js'
       - 'weekly-events.js'
+      - 'weekly-*.js'
+      - 'package*.json'
       - 'naver-mail.js'
       - 'flow-calendar.js'
       - 'call-devices.js'
@@ -48,9 +50,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - run: npm ci --ignore-scripts
       - name: Validate worker and agent execution
         run: |
           node --check gpt-worker.js
+          node --test tests/weekly-mail.test.mjs
           node --test tests/telegram-bot.test.mjs tests/crm-telegram.test.mjs
           node --test tests/crm-sheets.test.mjs tests/crm-sms-history.test.mjs
           node --test tests/crm-manager.test.mjs tests/moida-core-team.test.mjs tests/office-staff-catalog.test.mjs tests/knowledge.test.mjs tests/higgsfield-mcp.test.mjs tests/mcp-priority.test.mjs tests/docs-mcp-relay.test.mjs
