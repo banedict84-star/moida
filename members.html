@@ -898,8 +898,8 @@ html.embed .table-foot{flex-shrink:0}
       else if(!isAdminDong(m.dong,m.addr)) m.dong='—';
       if(_oldDong!==String(m.dong||'')) _cloudChanged=true;
       var _beforeAge=String(m.age||''), _beforeAgeb=String(m.ageb||'');
-      if(m.ageSource!=='manual'&&m.rrn&&m.rrn!=='—'){ var _d=deriveFromRrn(m.rrn); if(_d){ m.age=_d.age; m.ageb=_d.ageb; if(!m.sex||m.sex==='—') m.sex=_d.sex; } }
-      if(!isValidAgeBand(m.ageb) || (+m.age&&(+m.age<0||+m.age>110))){ m.age=''; m.ageb='—'; }
+      if(!['manual','derived'].includes(m.ageSource)&&m.rrn&&m.rrn!=='—'){ var _d=deriveFromRrn(m.rrn); if(_d){ m.age=_d.age; m.ageb=_d.ageb; if(!m.sex||m.sex==='—') m.sex=_d.sex; } }
+      if(!isValidAgeBand(m.ageb) || (+m.age&&(+m.age<0||+m.age>120))){ m.age=''; m.ageb='—'; }
       if(_beforeAge!==String(m.age||'')||_beforeAgeb!==String(m.ageb||'')) _cloudChanged=true;
     });
     // re-apply grades from localStorage so they survive Firestore reload
@@ -938,7 +938,7 @@ html.embed .table-foot{flex-shrink:0}
       return 0;
     },
     snapshot:async function(){if(!this.ready())throw Error('CRM 자료가 로드된 후 다시 시도해 주세요.');await _membersSaveChain;if(_membersPendingSave)throw Error('CRM 서버 저장을 먼저 완료해 주세요.');var snapshot=JSON.parse(JSON.stringify(members));var cloud=await window._fsLoad(_uid,'members');if(this.signature(cloud)!==this.signature(snapshot))throw Error('CRM이 다른 기기에서 수정되었습니다. 새로고침 후 다시 시도해 주세요.');return snapshot;},
-    apply:async function(before,rows){if(!this.ready()||JSON.stringify(members)!==JSON.stringify(before))throw Error('동기화 중 CRM이 변경되었습니다. 다시 시도해 주세요.');var cloud=await window._fsLoad(_uid,'members');if(!Array.isArray(cloud)||this.signature(cloud)!==this.signature(before))throw Error('다른 기기에서 CRM이 변경되었습니다. 새로고침 후 동기화해 주세요.');if(JSON.stringify(members)!==JSON.stringify(before))throw Error('동기화 중 CRM이 변경되었습니다.');var byId=new Map(cloud.map(function(m){return [String(m.mid),m];}));members=rows.map(function(r){return (function(){var old=byId.get(r.mid)||{rrn:'—',orgs:[],score:0,no:0},m=Object.assign({},old,r);m.rec2=r.rec2||'';m.rec3=r.rec3||'';m.sub=m.rec2;m.third=m.rec3;for(var k of ['age','family','smGrade','krGrade'])m[k]=r[k]===''?(k==='family'?null:k==='age'?'':0):Number(r[k]);if(String(old.age||'')!==String(r.age||'')||String(old.ageb||'')!==String(r.ageb||''))m.ageSource='manual';if(String(old.org||'')!==String(r.org||'')){m.orgs=String(r.org||'').split(' / ').filter(v=>v&&v!=='—').map(v=>{var existing=(old.orgs||[]).find(o=>(o.name+(o.title?' '+o.title:''))===v);return existing||{cat:'기타',name:v,title:''};});if((old.orgs||[]).length>1&&m.orgs.length===1)m.orgs=m.orgs.concat(old.orgs.slice(1));if(window._orgStore)window._orgStore[m.mid]=m.orgs;}return m;})();});dispMembers=members.slice();searchResultIds=null;if(searchWorker)searchWorker.postMessage({type:'init',records:members.map(function(m){return {id:String(m.mid),text:memberSearchText(m)};})});if(window._orgStore)window.MOIDA_CRM_STORAGE.cache('moida_orgs_'+_uid,window._orgStore);memberById={};memberSearchCache=new WeakMap();members.forEach(function(m){memberById[String(m.mid)]=m;});if(typeof saveGrades==='function')saveGrades();if(typeof localStorage!=='undefined')window.MOIDA_CRM_STORAGE.cache('moida_rec_chains_'+_uid,Object.fromEntries(members.map(m=>[m.mid,[m.rec,m.rec2,m.rec3]])));recalcScores();renderRows();if(!await saveMembers())throw Error('CRM 저장이 지연되어 시트 전송을 중단했습니다.');}
+    apply:async function(before,rows,options={}){if(!this.ready()||JSON.stringify(members)!==JSON.stringify(before))throw Error('동기화 중 CRM이 변경되었습니다. 다시 시도해 주세요.');var cloud=await window._fsLoad(_uid,'members');if(!Array.isArray(cloud)||this.signature(cloud)!==this.signature(before))throw Error('다른 기기에서 CRM이 변경되었습니다. 새로고침 후 동기화해 주세요.');if(JSON.stringify(members)!==JSON.stringify(before))throw Error('동기화 중 CRM이 변경되었습니다.');var byId=new Map(cloud.map(function(m){return [String(m.mid),m];}));members=rows.map(function(r){return (function(){var old=byId.get(r.mid)||{rrn:'—',orgs:[],score:0,no:0},m=Object.assign({},old,r);m.rec2=r.rec2||'';m.rec3=r.rec3||'';m.sub=m.rec2;m.third=m.rec3;if(options.derived){m.ageSource='derived';m.familySource='address';}for(var k of ['age','family','smGrade','krGrade'])m[k]=r[k]===''?(k==='family'?null:k==='age'?'':0):Number(r[k]);if(!options.derived&&(String(old.age||'')!==String(r.age||'')||String(old.ageb||'')!==String(r.ageb||'')))m.ageSource='manual';if(String(old.org||'')!==String(r.org||'')){m.orgs=String(r.org||'').split(' / ').filter(v=>v&&v!=='—').map(v=>{var existing=(old.orgs||[]).find(o=>(o.name+(o.title?' '+o.title:''))===v);return existing||{cat:'기타',name:v,title:''};});if((old.orgs||[]).length>1&&m.orgs.length===1)m.orgs=m.orgs.concat(old.orgs.slice(1));if(window._orgStore)window._orgStore[m.mid]=m.orgs;}return m;})();});dispMembers=members.slice();searchResultIds=null;if(searchWorker)searchWorker.postMessage({type:'init',records:members.map(function(m){return {id:String(m.mid),text:memberSearchText(m)};})});if(window._orgStore)window.MOIDA_CRM_STORAGE.cache('moida_orgs_'+_uid,window._orgStore);memberById={};memberSearchCache=new WeakMap();members.forEach(function(m){memberById[String(m.mid)]=m;});if(typeof saveGrades==='function')saveGrades();if(typeof localStorage!=='undefined')window.MOIDA_CRM_STORAGE.cache('moida_rec_chains_'+_uid,Object.fromEntries(members.map(m=>[m.mid,[m.rec,m.rec2,m.rec3]])));recalcScores();renderRows();if(!await saveMembers())throw Error('CRM 저장이 지연되어 시트 전송을 중단했습니다.');}
   };
   var members = loadMembers();
   // normalize members: fill missing fields with defaults, assign mid
@@ -956,8 +956,8 @@ html.embed .table-foot{flex-shrink:0}
       if(_adminDong) m.dong=_adminDong;
       else if(!isAdminDong(m.dong,m.addr)) m.dong='—';
       // 주민번호에서 나이·연령대·성별 자동 파생 (기존의 잘못된 연령대도 보정)
-      if(m.ageSource!=='manual'&&m.rrn&&m.rrn!=='—'){ var _d=deriveFromRrn(m.rrn); if(_d){ m.age=_d.age; m.ageb=_d.ageb; if(!m.sex||m.sex==='—') m.sex=_d.sex; } }
-      if(!isValidAgeBand(m.ageb) || (+m.age&&(+m.age<0||+m.age>110))){ m.age=''; m.ageb='—'; }
+      if(!['manual','derived'].includes(m.ageSource)&&m.rrn&&m.rrn!=='—'){ var _d=deriveFromRrn(m.rrn); if(_d){ m.age=_d.age; m.ageb=_d.ageb; if(!m.sex||m.sex==='—') m.sex=_d.sex; } }
+      if(!isValidAgeBand(m.ageb) || (+m.age&&(+m.age<0||+m.age>120))){ m.age=''; m.ageb='—'; }
     });
     // 기기 캐시의 오래된 명부가 로그인 직후 Firestore를 덮어쓰지 않도록
     // 초기 보정값은 로컬에만 저장하고, 서버 데이터를 먼저 불러온다.
@@ -973,12 +973,12 @@ html.embed .table-foot{flex-shrink:0}
     if(m.type==='권리당원') s+=5; else if(m.type==='일반당원') s+=2;
     var ageMap={'70대':3,'60대':4,'50대':5,'40대':4,'30대':3,'20대':2};
     var av=ageMap[m.ageb]; if(av==null && m.ageb){ var an=parseInt(m.ageb,10); if(an>=70) av=3; }
-    s+=av||0;
+    if(m.ageSource!=='derived')s+=av||0;
     if([m.rec,m.rec2,m.rec3,m.sub,m.third].indexOf('장윤정')>=0) s+=3;
     if(m.katalk==='관리중') s+=3;
     s+=(Number(m.krGrade)||0)+(Number(m.smGrade)||0);
     var fam=famCount(m);
-    if(fam!=null){ if(fam>=4) s+=5; else if(fam>=3) s+=4; else if(fam>=2) s+=3; }
+    if(m.familySource!=='address'&&fam!=null){ if(fam>=4) s+=5; else if(fam>=3) s+=4; else if(fam>=2) s+=3; }
     var lm={ours:5,rival:-5,float:3,none:0}; s+=lm[leanOf(m)]||0;
     return s;
   }
@@ -1503,6 +1503,7 @@ html.embed .table-foot{flex-shrink:0}
     V('dtfName',m.name); V('dtfPhone',m.phone); V('dtfRrn',m.rrn); window._crmSmsShow?.(m);
     V('dtfAge',m.age); V('dtfAgeb',m.ageb); V('dtfKatalk',m.katalk&&m.katalk!=='—'?m.katalk:'미확인'); V('dtfSms',m.sms||'미확인'); V('dtAddr',m.addr); V('dtAddrDetail',m.addrDetail); V('dtDong',m.dong);
     V('dtFamily',famCount(m)!=null?famCount(m):''); loadOrgEditor(m.orgs);
+    for(const id of ['dtfAge','dtfAgeb','dtFamily']){const el=document.getElementById(id),automatic=id==='dtFamily'?m.familySource==='address':m.ageSource==='derived';if(el){el.readOnly=automatic;el.title=automatic?'시트 동기화 때 자동 계산됩니다.':'';}}
     V('dtfRec1',m.rec); V('dtfRec2',m.rec2); V('dtfRec3',m.rec3);
     document.querySelectorAll('#dtfType .tseg-opt').forEach(function(o){ o.classList.toggle('on', o.dataset.v===m.type); });
     if(window._setMemberPhoto) window._setMemberPhoto(m.photo||'');
@@ -1595,7 +1596,7 @@ html.embed .table-foot{flex-shrink:0}
     return {age:age, ageb:ageb, sex:sex};
   }
   function isValidAgeBand(value){
-    return /^(?:0|[1-9][0-9]|100|110)대$/.test(String(value||''));
+    return /^(?:0|[1-9][0-9]|100|110|120)대$/.test(String(value||''));
   }
   // 주소에서 행정동만 고른다. "가동·나동·주동" 같은 건물 동과 "휴스토리" 같은 단지명은 제외한다.
   function ansanAdminDongs(){ return ['고잔동','대부동','반월동','백운동','본오1동','본오2동','본오3동','부곡동','사동','사이동','선부1동','선부2동','선부3동','성포동','신길동','안산동','와동','원곡동','월피동','이동','일동','장상동','중앙동','초지동','해양동','호수동']; }
@@ -1676,8 +1677,9 @@ html.embed .table-foot{flex-shrink:0}
     var fam=g('dtFamily');m.family=fam===''?null:Number(fam);m.katalk=g('dtfKatalk')||'미확인';m.sms=g('dtfSms')||'미확인';
     var tsel=document.querySelector('#dtfType .tseg-opt.on'); if(tsel){ m.type=tsel.dataset.v; m.typeK=typeToK(m.type); }
     m.orgs=editOrgs.map(function(o){ return {cat:o.cat,name:o.name,title:o.title}; }); syncOrgStr(m); saveOrgs(m); m.rec=g('dtfRec1')||'—'; m.rec2=g('dtfRec2')||'—'; m.rec3=g('dtfRec3')||'—'; m.sub=m.rec2; m.third=m.rec3;
-    var d=deriveFromRrn(g('dtfRrn')); if(d){ m.age=d.age; m.ageb=d.ageb; m.sex=d.sex; }
-    if(g('dtfAge')!==String(m.age||'')||g('dtfAgeb')!==String(m.ageb||'')){m.age=g('dtfAge')===''?'':Number(g('dtfAge'));m.ageb=g('dtfAgeb');m.ageSource='manual';}
+    if(m.ageSource==='derived'){const value=window.MOIDA_CRM_DERIVED?.ageFromResidentNumber(m.rrn);m.age=value==null?'':value;m.ageb=value==null?'':Math.floor(value/10)*10+'대';}
+    var d=m.ageSource==='derived'?null:deriveFromRrn(g('dtfRrn')); if(d){ m.age=d.age; m.ageb=d.ageb; m.sex=d.sex; }
+    if(m.ageSource!=='derived'&&(g('dtfAge')!==String(m.age||'')||g('dtfAgeb')!==String(m.ageb||''))){m.age=g('dtfAge')===''?'':Number(g('dtfAge'));m.ageb=g('dtfAgeb');m.ageSource='manual';}
     if(window._getMemberPhoto) m.photo=window._getMemberPhoto();
     if(isNew){
       m.no=members.length+1; members.unshift(m); dispMembers.unshift(m); // 목록 맨 위에 추가
@@ -2132,7 +2134,7 @@ html.embed .table-foot{flex-shrink:0}
 <script src="access-guard.js"></script>
 <link rel="stylesheet" href="crm-sms-history.css?v=detail1">
 <script src="crm-sms-history.js?v=detail1"></script>
-<script type="module" src="crm-sheets-client.js?v=50000-1"></script>
+<script type="module" src="crm-sheets-client.js?v=derived1"></script>
 <script type="module" src="crm-telegram-client.js?v=lookup2"></script>
 </body>
 </html>
