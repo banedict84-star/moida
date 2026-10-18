@@ -197,6 +197,7 @@
   html,body{overflow-x:hidden}.login-screen{padding:18px}.login-box{padding:26px 20px 28px}.layout{min-width:0}.main{min-width:0}.content{padding:14px 12px 24px;box-sizing:border-box}.sidebar{padding:12px}.sidebar nav{width:100%;overflow-x:auto;flex-wrap:nowrap}.stat-grid{gap:9px}.stat-card{padding:13px}.mgr-search{min-width:0;width:100%}.modal{width:calc(100vw - 24px);padding:20px 16px;box-sizing:border-box}.ap-file{max-width:100%}}
 </style>
 
+<script src="crm-storage.js?v=2"></script>
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
   import { getFirestore, doc, setDoc, getDoc, getDocs, collection, deleteDoc, query, orderBy, writeBatch, where } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
@@ -319,7 +320,7 @@
       if (!userSnap.exists()) return 0;
       const raw = userSnap.data().members;
       if (!raw) return 0;
-      const arr = JSON.parse(raw);
+      const arr = await window.MOIDA_CRM_STORAGE.decode(raw);
       return Array.isArray(arr) ? arr.length : 0;
     } catch(e) { return 0; }
   };
@@ -335,7 +336,7 @@
       if (!userSnap.exists()) return [];
       const raw = userSnap.data().members;
       if (!raw) return [];
-      const arr = JSON.parse(raw);
+      const arr = await window.MOIDA_CRM_STORAGE.decode(raw);
       return Array.isArray(arr) ? arr : [];
     } catch(e) { return []; }
   };

@@ -464,7 +464,7 @@
   .field.row2 button{width:100%}
 }
 </style>
-<script src="crm-storage.js?v=1"></script>
+<script src="crm-storage.js?v=2"></script>
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
@@ -477,11 +477,11 @@ window._crmSheetUser=()=>_auth.currentUser;
 const _db = getFirestore(_app);
 
 window._fsSave = async function(uid, key, data){
-  try{ await setDoc(doc(_db,'moida_users',uid), {[key]: JSON.stringify(data)}, {merge:true}); return true; }
+  try{ await setDoc(doc(_db,'moida_users',uid), {[key]: key==='members'?await window.MOIDA_CRM_STORAGE.encode(data):JSON.stringify(data)}, {merge:true}); return true; }
   catch(e){ console.warn('fs save err',e); throw e; }
 };
 window._fsLoad = async function(uid, key){
-  try{ var snap=await getDoc(doc(_db,'moida_users',uid)); if(snap.exists()&&snap.data()[key]) return JSON.parse(snap.data()[key]); }catch(e){ console.warn('fs load err',e); } return null;
+  try{ var snap=await getDoc(doc(_db,'moida_users',uid)); if(snap.exists()&&snap.data()[key]) return key==='members'?await window.MOIDA_CRM_STORAGE.decode(snap.data()[key]):JSON.parse(snap.data()[key]); }catch(e){ console.warn('fs load err',e);if(key==='members')throw e; } return null;
 };
 async function _trackLogin(user){
   try{ await setDoc(doc(_db,'moida_auth_users',user.uid), {uid:user.uid, email:user.email||'', displayName:user.displayName||'', lastLogin:Date.now(), provider:(user.providerData&&user.providerData[0]?user.providerData[0].providerId:'')}, {merge:true}); }catch(e){}

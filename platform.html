@@ -671,7 +671,7 @@ main:has(#appContent>.page[data-page="crm"]:is([style*="display: block"],[style*
         </div>
       </div>
 
-      <div class="page" data-page="crm"><iframe src="members.html?embed=1&v=crm-rrn-sync1" title="조직관리" style="display:block;border:1px solid #e9ecf1;border-radius:12px;background:#fff;width:100%;height:calc(100vh - 130px)"></iframe></div>
+      <div class="page" data-page="crm"><iframe src="members.html?embed=1&v=crm-storage2" title="조직관리" style="display:block;border:1px solid #e9ecf1;border-radius:12px;background:#fff;width:100%;height:calc(100vh - 130px)"></iframe></div>
 
       <div class="page" data-page="minwon">
       <div class="pg" style="max-width:1320px;margin:0 auto">
@@ -1061,6 +1061,7 @@ main:has(#appContent>.page[data-page="crm"]:is([style*="display: block"],[style*
 </script>
 
 <!-- ── MOIDA 공통: Firebase 인증 + 데이터 로드 ─────────────────────────── -->
+<script src="crm-storage.js?v=2"></script>
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
@@ -1112,10 +1113,10 @@ onAuthStateChanged(_auth, async function(user){
     var us = await getDoc(doc(_db,'moida_users',euid));
     if(us.exists()){
       var d = us.data();
-      ['members','events','complaints','policies','pr'].forEach(function(k){
-        try{ if(d[k]) M[k] = JSON.parse(d[k]); }catch(e){}
+      for(const k of ['members','events','complaints','policies','pr']){
+        try{ if(d[k]) M[k] = k==='members'?await window.MOIDA_CRM_STORAGE.decode(d[k]):JSON.parse(d[k]); }catch(e){if(k==='members')throw e;}
         try{ localStorage.setItem('moida_'+k+'_'+euid, JSON.stringify(M[k]||[])); }catch(e){}
-      });
+      }
     }
   }catch(e){ console.warn('moida_users load fail', e); }
   if(M._scheduleUnsubscribe)M._scheduleUnsubscribe();
@@ -1135,7 +1136,7 @@ onAuthStateChanged(_auth, async function(user){
     if(key==='events'&&Array.isArray(data))data=data.filter(function(e){return e.source!=='flow';});
     try{ localStorage.setItem('moida_'+key+'_'+euid, JSON.stringify(data)); }catch(e){}
     if(window.MOIDA_READONLY){ return; }
-    try{ await setDoc(doc(_db,'moida_users',euid), {[key]: JSON.stringify(data)}, {merge:true}); }catch(e){ console.warn('save fail', e); }
+    try{ await setDoc(doc(_db,'moida_users',euid), {[key]: key==='members'?await window.MOIDA_CRM_STORAGE.encode(data):JSON.stringify(data)}, {merge:true}); }catch(e){ console.warn('save fail', e); }
   };
 
   /* 임베드된 페이지(일정·조직관리 등)가 localStorage를 바꾸면 부모 대시보드도 즉시 동기화 */
