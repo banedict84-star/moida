@@ -911,7 +911,7 @@ html.embed .table-foot{flex-shrink:0}
     recalcScores(); renderRows();
   };
   window._crmSheetBridge={
-    signature:function(rows){if(!Array.isArray(rows))return null;const fields=["mid","name","phone","dong","addr","type","rec","rec2","rec3","katalk","org","age","ageb","family","sms","addrDetail","krGrade"];return JSON.stringify(rows.map(r=>fields.map(k=>{var v=r[k];if(k==='rec2')v=r.rec2||r.sub;if(k==='rec3')v=r.rec3||r.third;if(k==='org'&&Array.isArray(r.orgs)&&r.orgs.length)v=r.orgs[0].name+(r.orgs[0].title?' '+r.orgs[0].title:'');return v==null?'':String(v);})).sort((a,b)=>a[0].localeCompare(b[0])));},
+    signature:function(rows){if(!Array.isArray(rows))return null;const fields=["mid","name","phone","dong","addr","type","rec","rec2","rec3","katalk","org","age","ageb","family","sms","addrDetail","krGrade","rrn"];return JSON.stringify(rows.map(r=>fields.map(k=>{var v=r[k];if(k==='rec2')v=r.rec2||r.sub;if(k==='rec3')v=r.rec3||r.third;if(k==='org'&&Array.isArray(r.orgs)&&r.orgs.length)v=r.orgs[0].name+(r.orgs[0].title?' '+r.orgs[0].title:'');return v==null?'':String(v);})).sort((a,b)=>a[0].localeCompare(b[0])));},
     ready:function(){return _membersCloudReady&&_uid!=='default'&&window._crmSheetUser?.()?.uid===_uid&&!window.MOIDA_READONLY;},
     clear:async function(){
       if(!this.ready())throw Error('현재 계정의 CRM이 로드된 후 다시 시도해 주세요.');
@@ -2118,7 +2118,7 @@ html.embed .table-foot{flex-shrink:0}
 <script src="access-guard.js"></script>
 <link rel="stylesheet" href="crm-sms-history.css?v=2">
 <script src="crm-sms-history.js?v=4"></script>
-<script type="module" src="crm-sheets-client.js?v=header2"></script>
+<script type="module" src="crm-sheets-client.js?v=rrn3"></script>
 <script type="module" src="crm-telegram-client.js?v=lookup2"></script>
 </body>
 </html>
