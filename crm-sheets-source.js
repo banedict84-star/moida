@@ -9,21 +9,21 @@ export function sourceSchema(headers){const map={};for(const [key,names] of Obje
 export async function sourceContacts(state,known,initial=false){
  const map=sourceSchema(state.headers),byId=new Map(known.map(r=>[r.mid,r])),byPhone=new Map(),claimed=new Set(),locations=new Map();
  for(const r of known){const key=cell(r.phone).replace(/\D/g,'');const group=byPhone.get(key)||[];group.push(r);byPhone.set(key,group);}
- const rows=[];
+ const rows=[],links={...(state.links||{})};
  for(let i=0;i<state.values.length;i++){
   const cells=state.values[i],raw=Object.fromEntries(Object.entries(map).map(([k,c])=>[k,cell(cells[c])]));
   if(!raw.name.trim()&&!raw.phone.trim())continue;raw.name=raw.name.trim()||'이름모름';
   const deterministic='src_'+await digest(state.sheetId+':'+state.tabId+':'+(i+state.headerRow+1)+':'+JSON.stringify([raw.name,raw.phone,raw.rrn||'']));
-  let mid=raw.mid;
+  let mid=raw.mid||links[deterministic];
   if(mid){if(claimed.has(mid))throw Error('원본 연락처 ID가 중복되었습니다. 원본 '+(i+state.headerRow+1)+'행을 확인해 주세요.');}
   else if(byId.has(deterministic)&&sameIdentity(raw,byId.get(deterministic))&&!claimed.has(deterministic))mid=deterministic;
-  else {const matches=(byPhone.get(cell(raw.phone).replace(/\D/g,''))||[]).filter(r=>!claimed.has(r.mid)&&sameIdentity(raw,r));if(matches.length>1)throw Error('원본 '+(i+state.headerRow+1)+'행은 동일 정보의 연락처가 여럿입니다. 연락처 ID를 지정해 주세요.');mid=matches[0]?.mid||deterministic;}
-  claimed.add(mid);const prior=byId.get(mid)||{},row={...prior,mid};
+  else {const matches=(byPhone.get(cell(raw.phone).replace(/\D/g,''))||[]).filter(r=>!claimed.has(r.mid)&&sameIdentity(raw,r));const original=matches.filter(r=>!String(r.mid).startsWith('src_'));if(matches.length>1&&original.length===1)matches.splice(0,matches.length,original[0]);if(matches.length>1)throw Error('원본 '+(i+state.headerRow+1)+'행은 동일 정보의 연락처가 여럿입니다. 연락처 ID를 지정해 주세요.');mid=matches[0]?.mid||deterministic;}
+  links[deterministic]=mid;claimed.add(mid);const prior=byId.get(mid)||{},row={...prior,mid};
   for(const [key,index] of Object.entries(map)){if(key==='mid')continue;let value=cell(cells[index]);if(key==='name')value=value.trim()||'이름모름';if(key==='krGrade'&&!/^\d*$/.test(value))continue;if(initial&&empty(value)&&!empty(prior[key]))continue;row[key]=value;}
   if(map.addr!==undefined&&map.addrDetail===undefined&&prior.addrDetail){const combined=[prior.addr,prior.addrDetail].filter(v=>v&&!['—','-'].includes(v)).join(' ');if(cell(raw.addr).replace(/\s/g,'')===combined.replace(/\s/g,'')){row.addr=prior.addr;row.addrDetail=prior.addrDetail;}else if(cell(row.addr)!==cell(prior.addr))row.addrDetail='';}
   rows.push(row);locations.set(mid,i+state.headerRow+1);
  }
- return {rows:validate(rows),locations,map};
+ return {rows:validate(rows),locations,map,links};
 }
 export function sourceSignature(state){const map=sourceSchema(state.headers),columns=Object.values(map);return JSON.stringify([state.headers,state.values.map((row,i)=>columns.map(c=>{const f=state.formulas?.[i]?.[c];return typeof f==='string'&&f.startsWith('=')?f:cell(row[c]);}))]);}
 export function sourceWritePlan(state,parsed,contacts){
@@ -37,12 +37,12 @@ export function sourceWritePlan(state,parsed,contacts){
    let value=r[key];if(key==='addr'&&map.addrDetail===undefined)value=[r.addr,r.addrDetail].filter(v=>v&&!['—','-'].includes(v)).join(' ');
    if(['age','family','krGrade'].includes(key)&&/^\d+$/.test(cell(value)))value=Number(value);
    const old=state.values[offset]?.[col]??'';if(key==='krGrade'&&!/^\d*$/.test(cell(old)))continue;if(['age','ageb','sex'].includes(key)&&empty(value)&&!empty(old))continue;if(cell(old)===cell(value))continue;
-   edits.push({row,col,value:value??'',old});expected.values[offset][col]=value??'';
+   edits.push({row,col,value:value??'',old,priority:key==='mid'&&parsed.locations.has(r.mid)?0:1});expected.values[offset][col]=value??'';
   }
  }
  // Group consecutive cells in the same column; preserve every unrelated cell and formula.
- edits.sort((a,b)=>a.col-b.col||a.row-b.row);const data=[];
- for(const edit of edits){let group=data.at(-1);if(!group||group.col!==edit.col||group.end+1!==edit.row){group={col:edit.col,start:edit.row,end:edit.row,values:[],old:[]};data.push(group);}group.end=edit.row;group.values.push([edit.value]);group.old.push([edit.old]);}
+ edits.sort((a,b)=>a.priority-b.priority||a.col-b.col||a.row-b.row);const data=[];
+ for(const edit of edits){let group=data.at(-1);if(!group||group.col!==edit.col||group.priority!==edit.priority||group.end+1!==edit.row){group={priority:edit.priority,col:edit.col,start:edit.row,end:edit.row,values:[],old:[]};data.push(group);}group.end=edit.row;group.values.push([edit.value]);group.old.push([edit.old]);}
  const writes=[];let batch=[],size=0;for(const group of data){if(batch.length>=20||size+JSON.stringify(group).length>700000){writes.push(batch);batch=[];size=0;}batch.push(group);size+=JSON.stringify(group).length;}if(batch.length)writes.push(batch);
  return {writes,expected:sourceSignature(expected),rowCount:Math.max(nextRow-1,state.rowCount),headers};
 }

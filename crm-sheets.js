@@ -1,7 +1,7 @@
 import {DERIVED_METADATA_KEY,DERIVED_METADATA_VALUE} from './crm-derived.js';
 import {crmMessagesRoute} from './crm-sheets-messages.js';
 import {FIELDS,MAX_CONTACTS,sheetValues,parseRows,validate,mergeContacts} from './crm-sheets-merge.js';
-import {initChunks,readPayload,writePayload,readContacts} from './crm-chunks.js';
+import {digest,initChunks,readPayload,writePayload,readContacts} from './crm-chunks.js';
 import {readSource,sourceSchema,sourceContacts,sourceSignature,sourceWritePlan,columnName,sourceIdHeader} from './crm-sheets-source.js';
 const TABLE='crm_sheet_connections',TAB='모이다 CRM',BATCH=2500,LEASE=15*60000;
 const q=(env,sql,args=[])=>env.AGENT_DB.prepare(sql).bind(...args);
@@ -11,6 +11,7 @@ const hash=async value=>Array.from(new Uint8Array(await crypto.subtle.digest('SH
 export async function crmSheetsRoute({env,uid,request,token,api}){
  await env.AGENT_DB.prepare(`CREATE TABLE IF NOT EXISTS ${TABLE}(uid TEXT PRIMARY KEY,sheet_id TEXT NOT NULL,baseline TEXT NOT NULL DEFAULT '[]',pending TEXT,lease TEXT,lease_until INTEGER NOT NULL DEFAULT 0,last_sync INTEGER NOT NULL DEFAULT 0)`).run();
  await env.AGENT_DB.prepare(`CREATE TABLE IF NOT EXISTS crm_sheet_sources(uid TEXT PRIMARY KEY,sheet_id TEXT NOT NULL,tab_id INTEGER NOT NULL,tab TEXT NOT NULL,header_row INTEGER NOT NULL,baseline TEXT NOT NULL DEFAULT '[]')`).run();
+ await env.AGENT_DB.prepare('CREATE TABLE IF NOT EXISTS crm_source_links(uid TEXT PRIMARY KEY,links TEXT NOT NULL)').run();
  const readSourceConfig=()=>q(env,'SELECT * FROM crm_sheet_sources WHERE uid=?',[uid]).first();
  const path=new URL(request.url).pathname;if(path.startsWith('/crm-sheets/messages/'))return crmMessagesRoute({env,uid,request,token,api});const read=()=>q(env,`SELECT * FROM ${TABLE} WHERE uid=?`,[uid]).first();
  if(path==='/crm-sheets/status'&&request.method==='GET'){const row=await read(),source=await readSourceConfig();return {connected:!!row,sheetId:row?.sheet_id,lastSync:row?.last_sync||0,tab:TAB,maxContacts:MAX_CONTACTS,source:source?{sheetId:source.sheet_id,tab:source.tab,tabId:source.tab_id,headerRow:source.header_row}:null};}
@@ -18,7 +19,7 @@ export async function crmSheetsRoute({env,uid,request,token,api}){
  if(Number(request.headers.get('content-length'))>3000000)throw Error('요청 용량이 너무 큽니다.');
  const raw=await request.text();if(raw.length>3000000)throw Error('요청 용량이 너무 큽니다.');const body=JSON.parse(raw||'{}');
  await initChunks(env);
- if(path==='/crm-sheets/disconnect'){await q(env,`DELETE FROM ${TABLE} WHERE uid=?`,[uid]).run();await q(env,'DELETE FROM crm_sheet_sources WHERE uid=?',[uid]).run();return {ok:true};}
+ if(path==='/crm-sheets/disconnect'){await q(env,`DELETE FROM ${TABLE} WHERE uid=?`,[uid]).run();await q(env,'DELETE FROM crm_sheet_sources WHERE uid=?',[uid]).run();await q(env,'DELETE FROM crm_source_links WHERE uid=?',[uid]).run();return {ok:true};}
  if(path==='/crm-sheets/release'){await q(env,`UPDATE ${TABLE} SET pending=NULL,lease=NULL,lease_until=0 WHERE uid=? AND lease=?`,[uid,String(body.lease||'')]).run();return {ok:true};}
  const access=await token();
  if(path==='/crm-sheets/source/disconnect'){const config=await read();if(config?.lease_until>Date.now())throw Error('동기화가 끝난 뒤 원본 연결을 변경해 주세요.');await q(env,'DELETE FROM crm_sheet_sources WHERE uid=?',[uid]).run();return {ok:true};}
@@ -53,7 +54,7 @@ export async function crmSheetsRoute({env,uid,request,token,api}){
  if(path==='/crm-sheets/prepare'){
   const crm=validate(body.contactsPayload?await readContacts(env,uid,body.contactsPayload):body.contacts);const values=await readSheet();let merged=mergeContacts(crm,parseRows(values,crm),await readPayload(env,uid,config.baseline),{derived}),sourcePending=null;
   if(merged.conflicts.length)return {ok:false,conflicts:merged.conflicts.slice(0,100)};
-  const sourceConfig=await readSourceConfig();if(sourceConfig){const state=await readSource(api,access,sourceConfig),baseline=await readPayload(env,uid,sourceConfig.baseline),parsed=await sourceContacts(state,merged.rows,baseline.length===0),ids=new Set(parsed.rows.map(r=>r.mid));merged=mergeContacts(merged.rows,parsed.rows,baseline.length?baseline:merged.rows.filter(r=>ids.has(r.mid)),{derived});if(merged.conflicts.length)return {ok:false,conflicts:merged.conflicts.slice(0,100).map(c=>({...c,field:'원본 '+c.field}))};sourcePending={config:{sheet_id:sourceConfig.sheet_id,tab_id:sourceConfig.tab_id,header_row:sourceConfig.header_row},signature:sourceSignature(state),plan:sourceWritePlan(state,parsed,merged.rows),cursor:0,initialized:false};}
+  const sourceConfig=await readSourceConfig();if(sourceConfig){const state=await readSource(api,access,sourceConfig),linkRow=await q(env,'SELECT links FROM crm_source_links WHERE uid=?',[uid]).first();state.links=linkRow?await readPayload(env,uid,linkRow.links):{};const baseline=await readPayload(env,uid,sourceConfig.baseline),parsed=await sourceContacts(state,merged.rows,baseline.length===0),ids=new Set(parsed.rows.map(r=>r.mid));merged=mergeContacts(merged.rows,parsed.rows,baseline.length?baseline:merged.rows.filter(r=>ids.has(r.mid)),{derived});if(merged.conflicts.length)return {ok:false,conflicts:merged.conflicts.slice(0,100).map(c=>({...c,field:'원본 '+c.field}))};await q(env,'INSERT INTO crm_source_links(uid,links) VALUES(?,?) ON CONFLICT(uid) DO UPDATE SET links=excluded.links',[uid,await writePayload(env,uid,parsed.links)]).run();sourcePending={config:{sheet_id:sourceConfig.sheet_id,tab_id:sourceConfig.tab_id,header_row:sourceConfig.header_row},signature:await digest(sourceSignature(state)),plan:sourceWritePlan(state,parsed,merged.rows),cursor:0,initialized:false};sourcePending.plan.expectedHash=await digest(sourcePending.plan.expected);delete sourcePending.plan.expected;}
   const lease=crypto.randomUUID(),pending=await writePayload(env,uid,{rowsRef:await writePayload(env,uid,merged.rows),sheetHash:await hash(values),source:sourcePending});
   const r=await q(env,`UPDATE ${TABLE} SET lease=?,lease_until=?,pending=? WHERE uid=? AND lease_until<?`,[lease,Date.now()+LEASE,pending,uid,Date.now()]).run();if(!r.meta.changes)throw Error('다른 화면에서 동기화 중입니다. 잠시 후 다시 시도해 주세요.');
   return {ok:true,lease,contacts:merged.rows,derived};
@@ -81,13 +82,13 @@ export async function crmSheetsRoute({env,uid,request,token,api}){
   if(await hash(await readSheet())!==pending.expectedHash)throw Error('시트 최종 확인 중 변경을 발견했습니다. 다시 동기화해 주세요.');
   if(pending.source){
    const source=pending.source,current=await readSourceConfig();if(!current||current.sheet_id!==source.config.sheet_id||current.tab_id!==source.config.tab_id)throw Error('원본 연결이 변경되었습니다. 다시 동기화해 주세요.');
-   const state=await readSource(api,access,current);
-   if(!source.initialized){if(sourceSignature(state)!==source.signature)throw Error('동기화 중 원본 명부가 수정되었습니다. 다시 동기화해 주세요.');if(source.plan.rowCount>state.rowCount)await api(access,state.base+':batchUpdate',{method:'POST',body:JSON.stringify({requests:[{updateSheetProperties:{properties:{sheetId:state.tabId,gridProperties:{rowCount:source.plan.rowCount}},fields:'gridProperties.rowCount'}}]})});source.initialized=true;}
+   let state;if(!source.initialized)state=await readSource(api,access,current);else{const base='https://sheets.googleapis.com/v4/spreadsheets/'+current.sheet_id,meta=await api(access,base+'?fields=sheets.properties'),tab=meta.sheets?.find(s=>s.properties.sheetId===current.tab_id)?.properties;if(!tab)throw Error('원본 탭이 변경되었습니다.');state={base,tabId:tab.sheetId,range:"'"+tab.title.replaceAll("'","''")+"'!"};const header=await api(access,base+'/values/'+encodeURIComponent(state.range+'A'+current.header_row+':'+columnName(source.plan.headers.length)+current.header_row)+'?valueRenderOption=UNFORMATTED_VALUE');if(JSON.stringify(header.values?.[0]||[])!==JSON.stringify(source.plan.headers))throw Error('원본 열 제목이 변경되었습니다.');}
+   if(!source.initialized){if(await digest(sourceSignature(state))!==(source.signature.length===64?source.signature:await digest(source.signature)))throw Error('동기화 중 원본 명부가 수정되었습니다. 다시 동기화해 주세요.');if(source.plan.rowCount>state.rowCount)await api(access,state.base+':batchUpdate',{method:'POST',body:JSON.stringify({requests:[{updateSheetProperties:{properties:{sheetId:state.tabId,gridProperties:{rowCount:source.plan.rowCount}},fields:'gridProperties.rowCount'}}]})});source.initialized=true;}
    const batch=source.plan.writes[source.cursor];if(batch){const ranges=batch.map(g=>state.range+columnName(g.col+1)+g.start+':'+columnName(g.col+1)+g.end),query=new URLSearchParams({valueRenderOption:'FORMULA'});for(const range of ranges)query.append('ranges',range);const live=await api(access,state.base+'/values:batchGet?'+query);for(let i=0;i<batch.length;i++){const now=await hash(live.valueRanges?.[i]?.values||[]);if(now!==await hash(batch[i].old)&&now!==await hash(batch[i].values))throw Error('전송할 원본 구간이 수정되었습니다. 다시 동기화해 주세요.');}
     await api(access,state.base+'/values:batchUpdate',{method:'POST',body:JSON.stringify({valueInputOption:'RAW',data:batch.map((g,i)=>({range:ranges[i],values:g.values}))})});source.cursor++;
    }
    if(source.cursor<source.plan.writes.length){await q(env,`UPDATE ${TABLE} SET pending=?,lease_until=? WHERE uid=? AND lease=?`,[await writePayload(env,uid,pending),Date.now()+LEASE,uid,body.lease]).run();return {ok:true,done:false,completed:pending.writes.length+source.cursor,total:pending.writes.length+source.plan.writes.length,count:contacts.length};}
-   if(sourceSignature(await readSource(api,access,current))!==source.plan.expected)throw Error('원본 최종 확인 중 변경을 발견했습니다. 다시 동기화해 주세요.');
+   if(await digest(sourceSignature(await readSource(api,access,current)))!==(source.plan.expectedHash||await digest(source.plan.expected)))throw Error('원본 최종 확인 중 변경을 발견했습니다. 다시 동기화해 주세요.');
    await q(env,'UPDATE crm_sheet_sources SET baseline=? WHERE uid=?',[pending.rowsRef||await writePayload(env,uid,contacts),uid]).run();
   }
   await q(env,`UPDATE ${TABLE} SET baseline=?,pending=NULL,lease=NULL,lease_until=0,last_sync=? WHERE uid=? AND lease=?`,[pending.rowsRef||await writePayload(env,uid,contacts),Date.now(),uid,body.lease]).run();return {ok:true,done:true,count:contacts.length};
