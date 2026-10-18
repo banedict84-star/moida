@@ -19,6 +19,11 @@ test('invalid credentials and IMAP injection are rejected; errors do not echo pa
  assert.throws(()=>validateNaverCredentials({mailbox:'x@naver.com',password:'secret\r\nA2 DELETE INBOX'}));
  const t=transport(true);await assert.rejects(probeNaver({mailbox:'x@naver.com',password:'test-secret',connect:t.connect}),e=>e.status===502&&!e.message.includes('test-secret'));assert(t.closed);
 });
+test('network diagnostic sends no credentials and failures identify their stage without raw server data',async()=>{
+ const t=transport();assert.equal((await probeNaver({connect:t.connect,networkOnly:true})).reachable,true);assert.equal(t.commands.length,0);
+ await assert.rejects(probeNaver({connect:()=>{throw Error('private transport detail');},networkOnly:true}),e=>e.message.includes('NAVER_NETWORK')&&!e.message.includes('private'));
+ const rejected=transport(true);await assert.rejects(probeNaver({connect:rejected.connect,mailbox:'x@naver.com',password:'test-secret'}),/NAVER_LOGIN/);
+});
 test('connection storage isolates owners, encrypts secrets, and only saves after verification',async()=>{
  const db=new DatabaseSync(':memory:');const env={AGENT_DB:{prepare(sql){const bind=(...args)=>({run:async()=>db.prepare(sql).run(...args),first:async()=>db.prepare(sql).get(...args)||null});return {bind,...bind()};}}};
  const vault=new Map();let seq=0;const encrypt=async(_,plain)=>{const cipher='encrypted-'+ ++seq;vault.set(cipher,plain);return {cipher,iv:'random-iv'};},decrypt=async(_,cipher)=>vault.get(cipher);

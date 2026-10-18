@@ -8,12 +8,13 @@ export function validateNaverCredentials(body){
  if(!/^[\x21-\x7e]{8,128}$/.test(password))fail(400,'네이버 애플리케이션 비밀번호를 입력해 주세요.');
  return {mailbox,password};
 }
-export async function probeNaver({mailbox,password,connect,timeoutMs=15000}){
- const socket=connect({hostname:'imap.naver.com',port:993},{secureTransport:'on'});
- socket.closed.catch(()=>{});
- let timer;
+export async function probeNaver({mailbox,password,connect,timeoutMs=15000,networkOnly=false}){
+ let socket,timer,stage='network';
  const work=async()=>{
+  socket=connect({hostname:'imap.naver.com',port:993},{secureTransport:'on'});
+  socket.closed.catch(()=>{});
   await socket.opened;
+  stage='greeting';
   const reader=socket.readable.getReader(),writer=socket.writable.getWriter();
   const decoder=new TextDecoder();let buffer='',total=0;
   async function line(){
@@ -25,14 +26,22 @@ export async function probeNaver({mailbox,password,connect,timeoutMs=15000}){
    const lines=[];while(true){const next=await line();if(next.startsWith(tag+' ')){if(!next.startsWith(tag+' OK'))throw Error('rejected');return lines;}if(next.startsWith('* BYE'))throw Error('closed');lines.push(next);}
   }
   if(!/^\* OK\b/.test(await line()))throw Error('greeting');
+  if(networkOnly)return {ok:true,reachable:true,message:'모이다 서버에서 네이버 IMAP 서버까지 TLS 접속이 정상입니다. 계정 인증은 별도로 확인해야 합니다.'};
+  stage='login';
   await command('A1','LOGIN '+quote(mailbox.split('@')[0])+' '+quote(password));
+  stage='inbox';
   const lines=await command('A2','EXAMINE INBOX');
   const exists=lines.find(l=>/^\* \d+ EXISTS$/.test(l));
   return {inboxCount:exists?Number(exists.split(' ')[1]):null};
  };
  try{return await Promise.race([work(),new Promise((_,reject)=>{timer=setTimeout(()=>reject(Error('timeout')),timeoutMs);})]);}
- catch{fail(502,'네이버 인증 또는 메일함 확인에 실패했습니다. IMAP 사용 설정과 앱 비밀번호를 확인해 주세요. 네이버 보안 정책으로 접속이 차단된 경우에도 실패할 수 있습니다.');}
- finally{clearTimeout(timer);await socket.close().catch(()=>{});}
+ catch(e){
+  const label={network:'서버 접속',greeting:'서버 응답',login:'계정 인증',inbox:'받은메일함 읽기'}[stage];
+  const reason=e.message==='timeout'?'시간 초과':e.message==='rejected'?'네이버 서버가 요청을 거절함':'연결 종료 또는 통신 오류';
+  const guide=stage==='login'?'IMAP 사용 설정과 네이버 앱 비밀번호, 계정 보안 알림을 확인해 주세요.':stage==='inbox'?'로그인은 성공했지만 메일함을 읽지 못했습니다.':'모이다 서버와 네이버 사이의 접속 문제입니다. 비밀번호 오류로 확인된 것은 아닙니다.';
+  fail(502,`[NAVER_${stage.toUpperCase()}] ${label} 실패: ${reason}. ${guide}`);
+ }
+ finally{clearTimeout(timer);if(socket)await socket.close().catch(()=>{});}
 }
 async function schema(env){
  if(!env.AGENT_DB)fail(503,'메일 연결 저장소가 준비되지 않았습니다.');
@@ -48,6 +57,7 @@ export function createNaverMail({connect,encrypt,decrypt}){
   if(!uid)fail(401,'로그인이 필요합니다.');await schema(env);
   if(request.method==='GET')return naverMailStatus(env,uid);
   if(request.method!=='POST')fail(405,'지원하지 않는 요청입니다.');
+  if(body.action==='diagnose')return probeNaver({connect,networkOnly:true});
   if(body.action==='disconnect'){
    await env.AGENT_DB.prepare('DELETE FROM naver_mail_connections WHERE uid=?').bind(uid).run();
    return {ok:true,connected:false,automatic:false,message:'네이버 연결 정보를 삭제했습니다.'};

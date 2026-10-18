@@ -12,6 +12,8 @@
   try{const [data,weekly]=await Promise.all([api(),api(null,'/weekly-events')]);if(!dialog.open)return;show(data);if(!data.mailbox)form.elements.mailbox.value=weekly.config?.mailbox||'';}catch(e){status.textContent=e.message;}finally{busy(false);}
   async function submit(body){busy(true);status.textContent='네이버 서버와 연결을 검사하고 있습니다…';try{show(await api(body));}catch(e){status.textContent=e.message;}finally{form.elements.password.value='';busy(false);}}
   form.onsubmit=event=>{event.preventDefault();const body={action:'connect',mailbox:form.elements.mailbox.value,password:form.elements.password.value};form.elements.password.value='';submit(body);};
+  const diagnose=document.createElement('button');diagnose.type='button';diagnose.textContent='서버 접속 진단';status.after(diagnose);
+  diagnose.onclick=async()=>{diagnose.disabled=true;status.textContent='비밀번호 없이 서버 접속을 확인하고 있습니다…';try{status.textContent=(await api({action:'diagnose'})).message;}catch(e){status.textContent=e.message;}finally{diagnose.disabled=false;}};
   dialog.querySelector('[data-test]').onclick=()=>submit({action:'test'});
   dialog.querySelector('[data-disconnect]').onclick=()=>submit({action:'disconnect'});
  };
