@@ -22,8 +22,9 @@ export async function readSmsDrive({store,config,uid,token,api,download=fetch}){
  const version=file.id+':'+file.modifiedTime;
  if(config.version===version){await store.query(`UPDATE ${TABLE} SET updated=? WHERE uid=? AND folder_id=? AND version=?`,[now,uid,config.folder_id,version]).run();return JSON.parse(config.records);}
  if(Number(file.size)>300*1024*1024)throw Error('문자 백업은 300MB 이하로 연결해 주세요.');
+ await store.query('CREATE TABLE IF NOT EXISTS crm_sms_drive_jobs(uid TEXT PRIMARY KEY,version TEXT NOT NULL,payload TEXT NOT NULL)',[]).run();
  const lease=now+30000,result=await store.query(`UPDATE ${TABLE} SET lease_until=? WHERE uid=? AND folder_id=? AND lease_until<?`,[lease,uid,config.folder_id,now]).run();
- if(!result.meta?.changes)return {processing:true,processedBytes:0,totalBytes:Number(file.size)};
+ if(!result.meta?.changes){const pending=await store.query('SELECT * FROM crm_sms_drive_jobs WHERE uid=?',[uid]).first();return {processing:true,processedBytes:pending?.version===version?JSON.parse(pending.payload).offset:0,totalBytes:Number(file.size),retryAfterMs:1500};}
  try{
   await store.query('CREATE TABLE IF NOT EXISTS crm_sms_drive_jobs(uid TEXT PRIMARY KEY,version TEXT NOT NULL,payload TEXT NOT NULL)',[]).run();
   const savedJob=await store.query('SELECT * FROM crm_sms_drive_jobs WHERE uid=?',[uid]).first(),job=savedJob?.version===version?JSON.parse(savedJob.payload):{offset:0,messages:[],checkpoint:null};
