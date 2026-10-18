@@ -13,7 +13,7 @@
 #solapiMessaging>.sms-top{margin-bottom:18px}
 #solapiMessaging>.sms-top h2{font-size:22px;letter-spacing:-.6px;margin:0}
 #solapiMessaging>.sms-top>div:last-child{display:flex;gap:6px;align-items:center}
-#solapiMessaging .sms-columns{grid-template-columns:minmax(280px,.8fr) minmax(360px,1.2fr);gap:16px;align-items:start}
+#solapiMessaging .sms-columns{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:16px;align-items:start}
 #solapiMessaging .sms-card{padding:18px;margin-bottom:14px;border-radius:16px;box-shadow:0 2px 8px #22365b03}
 #solapiMessaging .sms-card h3{font-size:15px;letter-spacing:-.3px;margin:0 0 14px}
 #solapiMessaging #smsSettings{padding:11px 14px;margin-bottom:12px;background:transparent;border:1px dashed #dce3ee;border-radius:10px;color:#6d7c94;font-size:12px}
@@ -53,3 +53,6 @@
 #solapiMessaging #smsSettings,#solapiMessaging .sms-automation>summary{font-size:13px;font-weight:500;line-height:1.6}
 #solapiMessaging .sms-history-row strong{font-size:14px;font-weight:600}
 #solapiMessaging .sms-history-row p{font-size:13px;line-height:1.6}
+
+#solapiMessaging .sms-recipient-column{min-width:0}
+#solapiMessaging #smsHistory{max-height:480px;overflow:auto;overflow-wrap:anywhere}
