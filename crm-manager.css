@@ -2,3 +2,5 @@
 .crm-manager-intro strong,.crm-manager-intro p{word-break:keep-all}.crm-manager-intro>div{min-width:0}@media(max-width:480px){.crm-manager-intro strong{font-size:15px;letter-spacing:-.6px}.crm-manager-intro p{font-size:10px;line-height:1.5}.crm-manager-intro{gap:10px}.crm-manager-intro img{width:104px}}
 .crm-sheet-actions button[hidden]{display:none!important}
 .crm-reset-section{margin-top:22px;padding-top:16px;border-top:1px solid #e7ecf2}.crm-reset-section summary{font-size:12px;color:#8c5860;cursor:pointer}.crm-reset-section p{margin-top:12px}.crm-reset-section button{border:1px solid #edcdd1;border-radius:8px;color:#a3293e;background:#fff7f8;padding:10px 14px;cursor:pointer}
+
+.crm-source-section{margin-top:22px;border:1px solid #e3eaf1;border-radius:10px;padding:12px 14px}.crm-source-section>summary{cursor:pointer;font-weight:600;font-size:13px;color:#234764}.crm-source-section input[type=number]{max-width:100px}.crm-source-section [data-source-status]{font-size:12px;color:#638498}

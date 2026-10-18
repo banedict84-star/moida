@@ -38,10 +38,12 @@ test('주민번호가 기존 열 순서대로 양방향 반영되고 이전 빈 
 
 test('같은 ID에서 이름이나 전화번호가 달라지면 기존 주민번호를 빈칸에 자동 이식하지 않는다',()=>{const left={...contact,rrn:'000101-1000000'},right={...contact,name:'다른 사람',phone:'01099998888'};const result=mergeContacts([left],[right],[contact]);assert.equal(result.conflicts[0].field,'주민번호(연락처 확인)');assert.equal(result.conflicts[0].crm,'값 있음');assert(!JSON.stringify(result.conflicts).includes(left.rrn));});
 
-test('시트의 빈 이름은 이름모름으로 등록하고 전화번호로 기존 ID를 찾는다',()=>{const blank={...contact,name:'   '};const values=[HEADERS,FIELDS.map(k=>blank[k])];assert.equal(parseRows(values)[0].name,'이름모름');const newBlank=[HEADERS,FIELDS.map(k=>k==='mid'?'':blank[k])];assert.equal(parseRows(newBlank,[contact])[0].mid,contact.mid);assert.equal(parseRows(newBlank,[contact])[0].name,'이름모름');assert.equal(parseRows([HEADERS,[]]).length,0);});
+test('시트의 빈 이름은 이름모름으로 등록하고 이름이 다른 기존 사람과 합치지 않는다',()=>{const blank={...contact,name:'   '};const values=[HEADERS,FIELDS.map(k=>blank[k])];assert.equal(parseRows(values)[0].name,'이름모름');const newBlank=[HEADERS,FIELDS.map(k=>k==='mid'?'':blank[k])];assert.notEqual(parseRows(newBlank,[contact])[0].mid,contact.mid);assert.equal(parseRows(newBlank,[contact])[0].name,'이름모름');assert.equal(parseRows([HEADERS,[]]).length,0);});
 
 test('다른 행에 확정된 ID는 과거 전화번호가 같은 신규 행에 다시 배정하지 않는다',()=>{const explicit={...contact,phone:'01099998888',name:'수정된 이름'},incoming={...contact,mid:'',name:'별도 사람'},values=[HEADERS,FIELDS.map(k=>incoming[k]),FIELDS.map(k=>explicit[k])],parsed=parseRows(values,[contact]);assert.equal(parsed[1].mid,contact.mid);assert.notEqual(parsed[0].mid,contact.mid);assert.match(parsed[0].mid,/^s_/);});
 
 test('전화번호 하이픈·공백 차이만으로 수정 충돌을 만들지 않는다',()=>{const left={...contact,name:'수정 이름',phone:'010-1234-5678'},right={...contact,dong:'이동',phone:'010 1234 5678'},merged=mergeContacts([left],[right],[contact]);assert.equal(merged.conflicts.length,0);assert.equal(merged.rows[0].phone,'01012345678');assert.equal(merged.rows[0].name,'수정 이름');});
 
 test('기존 18열 시트는 성별을 지우지 않고 맨 뒤에 새 열을 추가한다',async()=>{const {sheetValues}=await import('../crm-sheets-merge.js');const headers=HEADERS.filter(h=>h!=='성별'),row={...contact,sex:'여'},values=[headers,headers.map(h=>row[FIELDS[HEADERS.indexOf(h)]])];assert.equal(parseRows(values,[row])[0].sex,'여');assert.deepEqual(sheetValues(project([row]),values)[0],[...headers,'성별']);});
+
+test('전화번호가 같아도 이름 또는 주민번호가 다르면 새 ID를 유지한다',()=>{const known={...contact,rrn:'900101-1000000'};for(const row of [{...known,mid:'',name:'Other'},{...known,mid:'',rrn:'900101-2000000'}]){const parsed=parseRows([HEADERS,FIELDS.map(k=>row[k])],[known]);assert.notEqual(parsed[0].mid,known.mid);assert.equal(mergeContacts([known],parsed,[]).rows.length,2);}});
