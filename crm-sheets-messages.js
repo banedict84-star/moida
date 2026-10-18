@@ -8,6 +8,13 @@ export function smsRecords(values,phone){
  const records=[];for(let i=1;i<values.length;i++){const row=values[i];if(normalizeSmsPhone(row[indices[1]])!==target)continue;const content=String(row[indices[2]]??'');if(!content.trim())continue;const date=String(row[indices[0]]??'');records.push({row:i+1,date,content,preview:content.replace(/\s+/g,' ').trim().slice(0,140),sort:dateKey(date)});}
  records.sort((a,b)=>b.sort-a.sort||b.row-a.row);return records.map(({sort,...record})=>record);
 }
+export function smsCounts(values,phones){
+ const headers=values[0]||[],sender=headers.findIndex(h=>String(h).trim().toLowerCase()==='sender'),content=headers.findIndex(h=>String(h).trim().toLowerCase()==='content');
+ if(sender<0||content<0)throw Error('문자 시트 첫 줄에 Sender, Content 열이 필요합니다.');
+ const counts=Object.fromEntries(phones.map(normalizeSmsPhone).filter(Boolean).map(phone=>[phone,0]));
+ for(const row of values.slice(1)){const phone=normalizeSmsPhone(row[sender]);if(Object.hasOwn(counts,phone)&&String(row[content]??'').trim())counts[phone]++;}
+ return counts;
+}
 export async function crmMessagesRoute({env,uid,request,token,api}){
  await env.AGENT_DB.prepare(`CREATE TABLE IF NOT EXISTS ${TABLE}(uid TEXT PRIMARY KEY,sheet_id TEXT NOT NULL,tab_id INTEGER NOT NULL,tab_title TEXT NOT NULL)`).run();
  const query=(sql,args)=>env.AGENT_DB.prepare(sql).bind(...args),path=new URL(request.url).pathname;
@@ -26,11 +33,15 @@ export async function crmMessagesRoute({env,uid,request,token,api}){
   await query(`INSERT INTO ${TABLE}(uid,sheet_id,tab_id,tab_title) VALUES(?,?,?,?) ON CONFLICT(uid) DO UPDATE SET sheet_id=excluded.sheet_id,tab_id=excluded.tab_id,tab_title=excluded.tab_title`,[uid,match[1],Number(gid),tab.title]).run();
   return publicSource({sheet_id:match[1],tab_id:Number(gid),tab_title:tab.title});
  }
- if(path==='/crm-sheets/messages/read'){
-  if(!stored)throw Error('문자 내역 시트를 먼저 연결해 주세요.');const phone=normalizeSmsPhone(body.phone);if(!phone)throw Error('연락처 전화번호를 확인해 주세요.');
+ if(path==='/crm-sheets/messages/read'||path==='/crm-sheets/messages/counts'){
+  if(!stored){if(path.endsWith('/counts'))return {connected:false,counts:{}};throw Error('문자 내역 시트를 먼저 연결해 주세요.');}
+  const counting=path.endsWith('/counts'),phone=normalizeSmsPhone(body.phone);
+  if(counting){if(!Array.isArray(body.phones)||body.phones.length>100)throw Error('한 번에 100개 이하의 전화번호를 조회해 주세요.');}
+  else if(!phone)throw Error('연락처 전화번호를 확인해 주세요.');
   const access=await token(),base='https://sheets.googleapis.com/v4/spreadsheets/'+stored.sheet_id,meta=await api(access,base+'?fields=sheets.properties');const tab=meta.sheets?.find(s=>s.properties.sheetId===stored.tab_id)?.properties;
   if(!tab)throw Error('문자 원본 탭이 삭제되었거나 접근할 수 없습니다.');const count=Math.min(tab.gridProperties?.rowCount||1000,5001);
   const data=await api(access,base+'/values/'+encodeURIComponent("'"+tab.title.replace(/'/g,"''")+"'!A1:C"+count));
+  if(counting)return {connected:true,counts:smsCounts(data.values||[],body.phones),limited:(tab.gridProperties?.rowCount||0)>5001};
   return {messages:smsRecords(data.values||[],phone),source:publicSource({...stored,tab_title:tab.title}),limited:(tab.gridProperties?.rowCount||0)>5001};
  }
  throw Error('지원하지 않는 요청입니다.');

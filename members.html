@@ -598,7 +598,7 @@ html.embed .table-foot{flex-shrink:0}
           <table>
             <thead>
               <tr>
-                <th>No</th><th data-sort="score">점수<span class="sarr">↕</span></th><th data-sort="name">성명<span class="sarr">↕</span></th><th data-sort="phone">휴대전화<span class="sarr">↕</span></th><th data-sort="rrn">주민번호<span class="sarr">↕</span></th><th data-sort="dong">행정동<span class="sarr">↕</span></th><th data-sort="type">당원구분<span class="sarr">↕</span></th><th data-sort="org">소속<span class="sarr">↕</span></th><th data-sort="lean">성향<span class="sarr">↕</span></th><th data-sort="age">나이<span class="sarr">↕</span></th><th data-sort="ageb">연령대<span class="sarr">↕</span></th><th data-sort="sex">성별<span class="sarr">↕</span></th><th data-sort="rec">추천인<span class="sarr">↕</span></th><th data-sort="katalk">카톡관리<span class="sarr">↕</span></th><th data-sort="krGrade">카톡답장<span class="sarr">↕</span></th><th data-sort="sms">문자관리여부<span class="sarr">↕</span></th><th data-sort="family">가족수<span class="sarr">↕</span></th><th data-sort="addr">주소<span class="sarr">↕</span></th>
+                <th>No</th><th data-sort="score">점수<span class="sarr">↕</span></th><th data-sort="name">성명<span class="sarr">↕</span></th><th data-sort="phone">휴대전화<span class="sarr">↕</span></th><th data-sort="rrn">주민번호<span class="sarr">↕</span></th><th data-sort="dong">행정동<span class="sarr">↕</span></th><th data-sort="type">당원구분<span class="sarr">↕</span></th><th data-sort="org">소속<span class="sarr">↕</span></th><th data-sort="lean">성향<span class="sarr">↕</span></th><th data-sort="age">나이<span class="sarr">↕</span></th><th data-sort="ageb">연령대<span class="sarr">↕</span></th><th data-sort="sex">성별<span class="sarr">↕</span></th><th data-sort="rec">추천인<span class="sarr">↕</span></th><th data-sort="katalk">카톡관리<span class="sarr">↕</span></th><th data-sort="krGrade">카톡답장<span class="sarr">↕</span></th><th >문자 내역</th><th data-sort="family">가족수<span class="sarr">↕</span></th><th data-sort="addr">주소<span class="sarr">↕</span></th>
               </tr>
             </thead>
             <tbody id="tbody"></tbody>
@@ -1282,7 +1282,7 @@ html.embed .table-foot{flex-shrink:0}
       <td class="${m.rec==="—"?"muted-cell":""}">${recCell(m)}</td>
       <td class="kt-cell kt-pick-cell" data-i="${i}"><span class="kt-pick">${ktCell(m.katalk)}</span></td>
       <td class="gcell">${gauge('kr', m.krGrade)}</td>
-      <td><button type="button" class="sms-history-open" data-sms-history="${encodeURIComponent(JSON.stringify({name:m.name,phone:m.phone}))}">${esc(m.sms||"문자")}<span>내역 보기</span></button></td>
+      <td><button type="button" class="sms-history-open" data-sms-history="${encodeURIComponent(JSON.stringify({name:m.name,phone:m.phone}))}"><strong class="sms-total">…</strong><span>내역 보기</span></button></td>
       <td>${famDisplay(m)}</td>
       <td class="${(m.addr||"—")==="—"?"muted-cell":""}">${esc(fullMemberAddress(m))}</td>
     </tr>`; }).join("")+(isPaged?'<tr><td colspan="18" style="padding:14px;text-align:center;background:#fafbfc"><div role="navigation" aria-label="명부 페이지" style="display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;justify-content:center;align-items:center;gap:6px;white-space:nowrap">'+(currentPage>1?'<button type="button" data-member-page="'+(currentPage-1)+'" style="border:1px solid #dbe3ee;border-radius:8px;background:#fff;color:#31527f;padding:7px 11px;font:inherit;font-size:12px;font-weight:700;cursor:pointer">이전</button>':'')+Array.from({length:pageGroupEnd-pageGroupStart+1},function(_,n){var p=pageGroupStart+n;return '<button type="button" data-member-page="'+p+'" aria-current="'+(p===currentPage?'page':'false')+'" style="min-width:32px;border:1px solid '+(p===currentPage?'#31527f':'#dbe3ee')+';border-radius:8px;background:'+(p===currentPage?'#31527f':'#fff')+';color:'+(p===currentPage?'#fff':'#31527f')+';padding:7px 8px;font:inherit;font-size:12px;font-weight:700;cursor:pointer">'+p+'</button>';}).join('')+(pageGroupEnd<totalPages?'<span style="color:#8591a5;font-size:12px;padding:0 2px">…</span><button type="button" data-member-page="'+totalPages+'" style="min-width:32px;border:1px solid #dbe3ee;border-radius:8px;background:#fff;color:#31527f;padding:7px 8px;font:inherit;font-size:12px;font-weight:700;cursor:pointer">'+totalPages+'</button>':'')+(currentPage<totalPages?'<button type="button" data-member-page="'+(currentPage+1)+'" style="border:1px solid #dbe3ee;border-radius:8px;background:#fff;color:#31527f;padding:7px 11px;font:inherit;font-size:12px;font-weight:700;cursor:pointer">다음</button>':'')+'</div></td></tr>':'');
@@ -1907,7 +1907,7 @@ html.embed .table-foot{flex-shrink:0}
   // ── CSV 저장/가져오기/양식 ──
   (function(){
     var COLS=[
-      ['name','이름'],['phone','전화'],['rrn','생년월일'],['dong','동'],['type','당원구분'],
+      ['name','이름'],['phone','전화'],['rrn','주민번호'],['dong','동'],['type','당원구분'],
       ['org','소속'],['age','나이'],['ageb','연령대'],['sex','성별'],['rec','추천인'],
       ['sub','2차추천'],['third','3차추천'],['katalk','카톡'],['sms','문자'],['family','가족수'],
       ['addr','주소'],['lean','성향'],['score','점수']
@@ -2116,8 +2116,8 @@ html.embed .table-foot{flex-shrink:0}
 })();
 </script>
 <script src="access-guard.js"></script>
-<link rel="stylesheet" href="crm-sms-history.css?v=1">
-<script src="crm-sms-history.js?v=1"></script>
+<link rel="stylesheet" href="crm-sms-history.css?v=2">
+<script src="crm-sms-history.js?v=2"></script>
 <script type="module" src="crm-sheets-client.js?v=header2"></script>
 <script type="module" src="crm-telegram-client.js?v=lookup2"></script>
 </body>

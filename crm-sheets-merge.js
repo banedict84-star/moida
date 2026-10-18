@@ -12,13 +12,14 @@ export function validate(rows){
 }
 export function sheetHeaders(values){
  const headers=values.length?values[0]:HEADERS;
- const normalized=headers.map(canonicalHeader).filter(h=>h!=='문자답장여부');
+ const normalized=headers.map(canonicalHeader).filter(h=>!['문자답장여부','주민번호','주민등록번호'].includes(h));
+ if(headers.filter(h=>['주민번호','주민등록번호'].includes(canonicalHeader(h))).length>1)throw Error('주민번호 열이 중복되었습니다.');
  const valid=expected=>normalized.length===expected.length&&new Set(normalized).size===normalized.length&&expected.every(h=>normalized.includes(h));
  if(valid(HEADERS))return {headers,legacy:false};
  if(valid(LEGACY_HEADERS))return {headers,legacy:true};
  throw Error('시트 열 제목이 누락되거나 중복되었습니다. 열 순서는 변경해도 되지만 열 제목은 유지해 주세요.');
 }
-export function sheetValues(contacts,values){const schema=sheetHeaders(values);const headers=schema.legacy?HEADERS:schema.headers.filter(h=>canonicalHeader(h)!=='문자답장여부');return [headers,...contacts.map(r=>headers.map(h=>r[FIELDS[HEADERS.indexOf(canonicalHeader(h))]]))];}
+export function sheetValues(contacts,values){const schema=sheetHeaders(values);const headers=schema.legacy?[...HEADERS,...schema.headers.filter(h=>['주민번호','주민등록번호'].includes(canonicalHeader(h)))]:schema.headers.filter(h=>canonicalHeader(h)!=='문자답장여부');const idColumn=schema.headers.findIndex(h=>canonicalHeader(h)===HEADERS[0]),prior=new Map((values?.slice(1)||[]).map(row=>[text(row[idColumn]),row]));return [headers,...contacts.map(r=>headers.map(h=>['주민번호','주민등록번호'].includes(canonicalHeader(h))?text(prior.get(text(r.mid))?.[schema.headers.indexOf(h)]):r[FIELDS[HEADERS.indexOf(canonicalHeader(h))]]))];}
 export function parseRows(values,known=[]){
  if(!values.length)return [];
  const {headers,legacy}=sheetHeaders(values);
