@@ -8,3 +8,5 @@
 .day{align-content:start}.day-panel #events{max-height:460px;overflow-y:auto;min-height:0;padding-right:3px}@media(max-width:700px){.day-panel #events{max-height:none;overflow:visible;padding-right:0}}
 
 .day{display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start}.day-panel #events{grid-auto-rows:max-content}.day-panel .event{flex-shrink:0}@media(max-width:700px){.day{align-items:center}}
+
+@media(max-width:380px){.view-label{display:none}.month-navigation{width:100%;justify-content:space-between}}
