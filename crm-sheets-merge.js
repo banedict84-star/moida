@@ -4,7 +4,7 @@ export const LAST_COLUMN='R';
 const canonicalHeader=h=>({'문자관리':'문자관리여부','문자답장':'문자답장여부','주민등록번호':'주민번호'}[String(h).trim()]||String(h).trim());
 const LEGACY_HEADERS=HEADERS.slice(0,7);
 const text=v=>v==null?'':String(v);
-export const project=rows=>rows.map(r=>Object.fromEntries(FIELDS.map(k=>[k,(k==='rrn'&&['—','-'].includes(text(r[k]))?'':text(r[k]))||(['org','ageb'].includes(k)?'—':'')])));
+export const project=rows=>rows.map(r=>Object.fromEntries(FIELDS.map(k=>[k,(k==='phone'?text(r[k]).replace(/[\s()-]/g,''):k==='rrn'&&['—','-'].includes(text(r[k]))?'':text(r[k]))||(['org','ageb'].includes(k)?'—':'')])));
 export function validate(rows){
  if(!Array.isArray(rows)||rows.length>10000)throw Error('연락처는 10,000건 이하로 연결해 주세요.');
  for(const row of rows){for(const key of ['age','family','smGrade','krGrade']){const value=text(row?.[key]);if(value!==''&&(!/^\d+$/.test(value)||Number(value)>(key==='age'?120:key==='family'?999:5)))throw Error(HEADERS[FIELDS.indexOf(key)]+' 값의 범위를 확인해 주세요.');}}
