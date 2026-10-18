@@ -38,6 +38,6 @@ export function mergeContacts(crm,sheet,baseline=[]){
   if(!left&&!right)continue;
   if(old&&(!left||!right)){conflicts.push({id,field:'삭제',crm:left?'유지':'없음',sheet:right?'유지':'없음'});continue;}
   if(!left||!right){result.push(left||right);continue;}
-  const row={mid:id};for(const k of FIELDS.slice(1)){const a=left[k],v=right[k],o=old?.[k];if(a===v)row[k]=a;else if(k==='rrn'&&!priorRrn.has(id)&&(!a||!v))row[k]=a||v;else if(old&&a===o)row[k]=v;else if(old&&v===o)row[k]=a;else conflicts.push({id,field:HEADERS[FIELDS.indexOf(k)],crm:a,sheet:v});}result.push(row);
+  const row={mid:id};for(const k of FIELDS.slice(1)){const a=left[k],v=right[k],o=old?.[k];if(k==='rrn'&&a!==v&&(!a||!v)&&(text(left.name).trim()!==text(right.name).trim()||text(left.phone).replace(/\D/g,'').replace(/^82/,'0')!==text(right.phone).replace(/\D/g,'').replace(/^82/,'0'))){conflicts.push({id,field:'주민번호(연락처 확인)',crm:a?'값 있음':'빈칸',sheet:v?'값 있음':'빈칸'});continue;}if(a===v)row[k]=a;else if(k==='rrn'&&!priorRrn.has(id)&&(!a||!v))row[k]=a||v;else if(old&&a===o)row[k]=v;else if(old&&v===o)row[k]=a;else conflicts.push({id,field:HEADERS[FIELDS.indexOf(k)],crm:a,sheet:v});}result.push(row);
  }return {rows:result,conflicts};
 }
