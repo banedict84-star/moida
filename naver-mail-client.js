@@ -1,0 +1,18 @@
+(function(){'use strict';
+ window.openNaverMail=async function(){
+  const dialog=document.createElement('dialog');dialog.className='mo-core-dialog';dialog.setAttribute('aria-label','네이버 메일 연결');
+  dialog.innerHTML='<header><div><span>한주 · 메일 연결</span><h2>네이버 메일 연결</h2></div><button type="button" data-close>닫기</button></header><section><p>네이버에서 IMAP 사용을 켠 다음 애플리케이션 비밀번호를 입력해 주세요. 일반 로그인 비밀번호는 사용하지 않습니다.</p><form><label>네이버 메일 주소<input name="mailbox" type="email" required autocomplete="username"></label><label>애플리케이션 비밀번호<input name="password" type="password" required autocomplete="off" minlength="8" maxlength="128"></label><p>비밀번호는 HTTPS로 모이다 서버에 전달되고, 인증 성공 후 암호화하여 현재 모이다 계정에 저장합니다. 메일 읽기 연결만 검사하며 자동 전달·일정 등록은 시작하지 않습니다.</p><button type="submit" class="mo-primary">연결 검사 및 암호화 저장</button></form><p role="status">연결 상태 확인 중…</p><div><button type="button" data-test disabled>저장된 연결 재검사</button> <button type="button" data-disconnect disabled>연결 해제</button></div><p><a href="https://mail.naver.com/v2/settings/smtp/imap" target="_blank" rel="noopener">네이버 IMAP 설정 열기</a></p></section>';
+  const style=document.createElement('style');style.textContent='.mo-core-dialog form{display:grid;gap:14px}.mo-core-dialog form label{display:grid;gap:6px}.mo-core-dialog input{width:100%;box-sizing:border-box;padding:10px;border:1px solid #ccd9e5;border-radius:8px;font:inherit}.mo-core-dialog section{max-height:75vh;overflow:auto}.mo-core-dialog [role=status]{white-space:pre-wrap}';dialog.append(style);document.body.append(dialog);dialog.showModal();
+  const form=dialog.querySelector('form'),status=dialog.querySelector('[role=status]'),buttons=dialog.querySelectorAll('button:not([data-close])');
+  const user=()=>window.MOIDA?.auth?.currentUser,owner=user()?.uid;let connected=false;
+  const busy=value=>buttons.forEach(b=>b.disabled=value||((b.hasAttribute('data-test')||b.hasAttribute('data-disconnect'))&&!connected));
+  const api=async(body,path='/naver-mail')=>{if(!owner||user()?.uid!==owner)throw Error('로그인 계정을 확인해 주세요.');const token=await user().getIdToken();const response=await fetch('https://moida-gpt.banedict84.workers.dev'+path,{method:body?'POST':'GET',headers:{Authorization:'Bearer '+token,...(body?{'Content-Type':'application/json'}:{})},...(body?{body:JSON.stringify(body)}:{})});const data=await response.json();if(user()?.uid!==owner)throw Error('계정이 변경되었습니다. 창을 다시 열어 주세요.');if(!response.ok)throw Error(data.error?.message||data.error||'연결 요청에 실패했습니다.');return data;};
+  const show=data=>{connected=data.connected;if(data.mailbox)form.elements.mailbox.value=data.mailbox;status.textContent=data.message||(connected?'저장된 연결이 있습니다. 마지막 검사: '+new Date(data.verifiedAt).toLocaleString()+'\n자동 전달·일정 등록은 아직 실행되지 않습니다.':'아직 연결되지 않았습니다.');};
+  dialog.querySelector('[data-close]').onclick=()=>dialog.close();dialog.onclose=()=>{form.reset();dialog.remove();};busy(true);
+  try{const [data,weekly]=await Promise.all([api(),api(null,'/weekly-events')]);if(!dialog.open)return;show(data);if(!data.mailbox)form.elements.mailbox.value=weekly.config?.mailbox||'';}catch(e){status.textContent=e.message;}finally{busy(false);}
+  async function submit(body){busy(true);status.textContent='네이버 서버와 연결을 검사하고 있습니다…';try{show(await api(body));}catch(e){status.textContent=e.message;}finally{form.elements.password.value='';busy(false);}}
+  form.onsubmit=event=>{event.preventDefault();const body={action:'connect',mailbox:form.elements.mailbox.value,password:form.elements.password.value};form.elements.password.value='';submit(body);};
+  dialog.querySelector('[data-test]').onclick=()=>submit({action:'test'});
+  dialog.querySelector('[data-disconnect]').onclick=()=>submit({action:'disconnect'});
+ };
+})();

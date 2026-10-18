@@ -1,3 +1,4 @@
+import {naverMailStatus} from './naver-mail.js';
 const fail=(status,message)=>{throw Object.assign(Error(message),{status});};
 export function normalizeWeeklyConfig(input){
  const mailbox=String(input.mailbox||'').trim().toLowerCase();
@@ -22,7 +23,8 @@ export async function weeklyEventsRoute({env,uid,request,body={}}){
   await env.AGENT_DB.prepare('INSERT INTO weekly_events_config VALUES(?,?,?) ON CONFLICT(uid) DO UPDATE SET config_json=excluded.config_json,updated_at=excluded.updated_at').bind(uid,JSON.stringify(config),Date.now()).run();
  }else if(request.method!=='GET')fail(405,'지원하지 않는 요청입니다.');
  const row=await env.AGENT_DB.prepare('SELECT config_json,updated_at FROM weekly_events_config WHERE uid=?').bind(uid).first();
- return {ok:true,employee:'weekly_events',status:'setup_required',enabled:false,config:row?JSON.parse(row.config_json):null,updated_at:row?.updated_at||null,
-  checks:[{id:'mail',ready:false,message:'네이버 메일 수신 연결이 아직 준비되지 않았습니다. 현재 메일을 읽고 있지 않습니다.'},{id:'flow',ready:false,message:'등록 프로젝트의 실제 ID와 쓰기 권한을 확인해야 합니다.'},{id:'attachments',ready:false,message:'실제 첨부파일 형식으로 날짜·시간 추출을 검증해야 합니다.'}],
+ const config=row?JSON.parse(row.config_json):null,mail=await naverMailStatus(env,uid),mailReady=mail.connected&&mail.mailbox===config?.mailbox;
+ return {ok:true,employee:'weekly_events',status:'setup_required',enabled:false,config,updated_at:row?.updated_at||null,
+  checks:[{id:'mail',ready:mailReady,message:mailReady?'네이버 인증·읽기 검사 완료. 자동 수신은 아직 실행되지 않습니다.':'네이버 메일 연결 버튼에서 담당 메일함 인증 검사를 완료해 주세요.'},{id:'flow',ready:false,message:'등록 프로젝트의 실제 ID와 쓰기 권한을 확인해야 합니다.'},{id:'attachments',ready:false,message:'실제 첨부파일 형식으로 날짜·시간 추출을 검증해야 합니다.'}],
   message:'담당 조건만 저장되었습니다. 메일 감시·일정 자동 등록은 아직 시작되지 않았습니다.'};
 }

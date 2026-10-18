@@ -1,4 +1,6 @@
 import {weeklyEventsRoute} from './weekly-events.js';
+import {createNaverMail} from './naver-mail.js';
+import {connect as connectNaverSocket} from 'cloudflare:sockets';
 import {createTelegramBot} from './telegram-bot.js';
 import {crmTelegramRoute} from './crm-telegram.js';
 const telegramBot=createTelegramBot();
@@ -1774,6 +1776,7 @@ function officeToolServices(env,user,request){
   };
 }
 
+const naverMail=createNaverMail({connect:connectNaverSocket,encrypt:encryptGoogleToken,decrypt:decryptGoogleToken});
 const solapiMessaging=createSolapiMessaging({encrypt:encryptGoogleToken,decrypt:decryptGoogleToken});
 const mcpServices=Object.fromEntries(Object.keys(MCP_PROVIDERS).map(provider=>[provider,createHiggsfieldMcp({encrypt:encryptGoogleToken,decrypt:decryptGoogleToken,provider})]));
 const flowCalendar=createFlowCalendar({encrypt:encryptGoogleToken,decrypt:decryptGoogleToken});
@@ -1827,6 +1830,7 @@ async function handleFetch(request, env, ctx) {
     if (path === GOOGLE_CALLBACK_PATH && request.method === "GET") {
       return await googleCalendarCallback(request, env);
     }
+    if(path==='/naver-mail'){const user=await verifyFirebaseUser(request,env);const result=await naverMail({env,uid:user.uid,request,body:request.method==='POST'?await requestBody(request):{}});const response=json(result,200,request,env);response.headers.set('Cache-Control','no-store');return response;}
     if(path==='/weekly-events'){const user=await verifyFirebaseUser(request,env);const result=await weeklyEventsRoute({env,uid:user.uid,request,body:request.method==='POST'?await requestBody(request):{}});const response=json(result,200,request,env);response.headers.set('Cache-Control','no-store');return response;}
     if(path.startsWith('/crm-telegram/')){const user=await verifyFirebaseUser(request,env);return json(await crmTelegramRoute({env,uid:user.uid,request}),200,request,env);}
     if(path.startsWith('/crm-sheets/')){const user=await verifyFirebaseUser(request,env);const result=await crmSheetsRoute({env,uid:user.uid,request,token:async()=>{const value=await googleAccessToken(env,user.uid);if(!String(value.connection.scope).split(' ').includes(GOOGLE_SHEETS_SCOPE))throw new HttpError(409,'Google 시트 수정 권한을 먼저 연결해 주세요.');return value.accessToken;},api:googleApi});return json(result,200,request,env);}
