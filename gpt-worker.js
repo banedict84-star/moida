@@ -4,6 +4,7 @@ import {createNaverMail} from './naver-mail.js';
 import {createTelegramBot} from './telegram-bot.js';
 import {crmTelegramRoute} from './crm-telegram.js';
 const telegramBot=createTelegramBot();
+import {crmStoreRoute} from './crm-chunks.js';
 import {crmSheetsRoute} from './crm-sheets.js';
 import {createNewsShorts} from './news-shorts.js';
 const newsShorts=createNewsShorts();
@@ -105,7 +106,7 @@ async function verifyFirebaseUser(request, env) {
   const data = await response.json().catch(() => ({}));
   const user = data.users?.[0];
   if (!response.ok || !user?.localId) throw new HttpError(401, "로그인 정보가 만료되었습니다. 다시 로그인해 주세요.");
-  return { uid: user.localId, email: user.email || "" };
+  return { uid: user.localId, email: user.email || "", emailVerified:user.emailVerified===true };
 }
 
 async function openAI(env, body) {
@@ -1834,6 +1835,7 @@ async function handleFetch(request, env, ctx) {
     if(path==='/weekly-mail-automation'){const user=await verifyFirebaseUser(request,env);const result=await weeklyMailAutomation.route({env,uid:user.uid,request,body:request.method==='POST'?await requestBody(request):{}});return json(result,200,request,env);}
     if(path==='/weekly-events'){const user=await verifyFirebaseUser(request,env);const result=await weeklyEventsRoute({env,uid:user.uid,request,body:request.method==='POST'?await requestBody(request):{}});const response=json(result,200,request,env);response.headers.set('Cache-Control','no-store');return response;}
     if(path.startsWith('/crm-telegram/')){const user=await verifyFirebaseUser(request,env);return json(await crmTelegramRoute({env,uid:user.uid,request}),200,request,env);}
+    if(path.startsWith('/crm-store/')){const user=await verifyFirebaseUser(request,env);const target=new URL(request.url).searchParams.get('uid')||user.uid;if(target!==user.uid&&!(path==='/crm-store/get'&&user.emailVerified&&user.email.toLowerCase()==='banedict84@gmail.com'))throw new HttpError(403,'다른 계정의 CRM에 접근할 수 없습니다.');return json(await crmStoreRoute({env,uid:target,request}),200,request,env);}
     if(path.startsWith('/crm-sheets/')){const user=await verifyFirebaseUser(request,env);const result=await crmSheetsRoute({env,uid:user.uid,request,token:async(service='sheets')=>{const value=await googleAccessToken(env,user.uid);if(!String(value.connection.scope).split(' ').includes(service==='drive'?GOOGLE_DRIVE_SCOPE:GOOGLE_SHEETS_SCOPE))throw new HttpError(409,service==='drive'?'도구 연결에서 Google Drive 읽기 권한을 먼저 연결해 주세요.':'Google 시트 수정 권한을 먼저 연결해 주세요.');return value.accessToken;},api:googleApi});return json(result,200,request,env);}
     if (path === "/google/calendar/connect" && request.method === "GET") {
       const user = await verifyFirebaseUser(request, env);

@@ -464,7 +464,7 @@
   .field.row2 button{width:100%}
 }
 </style>
-<script src="crm-storage.js?v=2"></script>
+<script src="crm-storage.js?v=50000-1"></script>
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
@@ -475,13 +475,14 @@ const _app = initializeApp(_fbCfg);
 const _auth = getAuth(_app);
 window._crmSheetUser=()=>_auth.currentUser;
 const _db = getFirestore(_app);
+window.MOIDA_CRM_STORAGE.configure(async function(path,body,targetUid){const user=_auth.currentUser;if(!user)throw Error('로그인이 필요합니다.');const uid=user.uid;const token=await user.getIdToken();const response=await fetch('https://moida-gpt.banedict84.workers.dev'+path+(targetUid?'?uid='+encodeURIComponent(targetUid):''),{method:'POST',headers:{Authorization:'Bearer '+token,'Content-Type':'application/json'},body:JSON.stringify(body)});const data=await response.json();if(_auth.currentUser?.uid!==uid)throw Error('로그인 계정이 변경되었습니다.');if(!response.ok)throw Error(data.error?.message||data.error||'CRM 저장 요청에 실패했습니다.');return data;});
 
 window._fsSave = async function(uid, key, data){
-  try{ await setDoc(doc(_db,'moida_users',uid), {[key]: key==='members'?await window.MOIDA_CRM_STORAGE.encode(data):JSON.stringify(data)}, {merge:true}); return true; }
+  try{ await setDoc(doc(_db,'moida_users',uid), {[key]: key==='members'?await window.MOIDA_CRM_STORAGE.encode(data,{uid}):JSON.stringify(data)}, {merge:true}); if(key==='members'&&data.length>5000)window.MOIDA_CRM_STORAGE.prune(uid).catch(()=>{});return true; }
   catch(e){ console.warn('fs save err',e); throw e; }
 };
 window._fsLoad = async function(uid, key){
-  try{ var snap=await getDoc(doc(_db,'moida_users',uid)); if(snap.exists()&&snap.data()[key]) return key==='members'?await window.MOIDA_CRM_STORAGE.decode(snap.data()[key]):JSON.parse(snap.data()[key]); }catch(e){ console.warn('fs load err',e);if(key==='members')throw e; } return null;
+  try{ var snap=await getDoc(doc(_db,'moida_users',uid)); if(snap.exists()&&snap.data()[key]) return key==='members'?await window.MOIDA_CRM_STORAGE.decode(snap.data()[key],{uid}):JSON.parse(snap.data()[key]); }catch(e){ console.warn('fs load err',e);if(key==='members')throw e; } return null;
 };
 async function _trackLogin(user){
   try{ await setDoc(doc(_db,'moida_auth_users',user.uid), {uid:user.uid, email:user.email||'', displayName:user.displayName||'', lastLogin:Date.now(), provider:(user.providerData&&user.providerData[0]?user.providerData[0].providerId:'')}, {merge:true}); }catch(e){}
@@ -502,7 +503,7 @@ onAuthStateChanged(_auth, async function(user){
   var fsData = await window._fsLoad(user.uid, 'members');
   if(window._finishMembersCloudSync) await window._finishMembersCloudSync(user.uid, fsData);
   else if(Array.isArray(fsData)){
-    try{ localStorage.setItem('moida_members_'+user.uid, JSON.stringify(fsData)); }catch(e){}
+    try{ window.MOIDA_CRM_STORAGE.cache('moida_members_'+user.uid,fsData); }catch(e){}
     if(window._reloadMembersFromFS) window._reloadMembersFromFS(fsData);
   }
   // 투표활동(성향 근거)도 Firestore에서 불러와 복원
@@ -805,8 +806,9 @@ html.embed .table-foot{flex-shrink:0}
   }
   function hideSyncWarning(){ var el=document.getElementById('memberSyncWarning'); if(el) el.style.display='none'; }
   function loadMembers(){ try{ var d=JSON.parse(localStorage.getItem(_MEM_KEY)); return Array.isArray(d)?d:[]; }catch(e){ return []; } }
-  function saveMembers(){
-    localStorage.setItem(_MEM_KEY, JSON.stringify(members));
+  async function saveMembers(){
+    _membersPendingSave=true;try{if(_uid&&_uid!=='default')localStorage.setItem(pendingKey(_uid),'1');}catch(e){}
+    await window.MOIDA_CRM_STORAGE.persist(_MEM_KEY,members).catch(function(e){showSyncWarning(e);});
     if(!_membersCloudReady || !window._fsSave || !_uid || _uid==='default'){
       _membersPendingSave=true;
       if(_uid && _uid!=='default') localStorage.setItem(pendingKey(_uid),'1');
@@ -820,8 +822,8 @@ html.embed .table-foot{flex-shrink:0}
       snapshot=await window.MOIDA_CRM_STORAGE.prepare(snapshot);
       if(_uid!==saveUid||window._crmSheetUser?.()?.uid!==saveUid)throw Error('로그인 계정이 변경되었습니다.');
       if(saveVersion===_membersSaveVersion){
-        for(const row of snapshot){const current=members.find(m=>m.mid===row.mid);if(current)current.photo=row.photo;}
-        localStorage.setItem(_MEM_KEY,JSON.stringify(members));
+        const currentById=new Map(members.map(m=>[m.mid,m]));for(const row of snapshot){const current=currentById.get(row.mid);if(current)current.photo=row.photo;}
+        window.MOIDA_CRM_STORAGE.cache(_MEM_KEY,members);
       }
       return window._fsSave(saveUid,'members',snapshot);
     }).then(function(){
@@ -846,25 +848,25 @@ html.embed .table-foot{flex-shrink:0}
     _uid=uid;
     _MEM_KEY='moida_members_'+uid;
     var cached=[];
-    try{ var raw=JSON.parse(localStorage.getItem(_MEM_KEY)); if(Array.isArray(raw)) cached=raw; }catch(e){}
+    try{ var raw=await window.MOIDA_CRM_STORAGE.restore(_MEM_KEY); if(Array.isArray(raw)) cached=raw; }catch(e){}
     var hasPending=_membersPendingSave || localStorage.getItem(pendingKey(uid))==='1';
     _membersCloudReady=true;
     if(hasPending){
       members=(previousUid===uid && currentBeforeSync.length)?currentBeforeSync:(cached.length?cached:currentBeforeSync);
       dispMembers=members.slice();
-      localStorage.setItem(_MEM_KEY,JSON.stringify(members));
+      window.MOIDA_CRM_STORAGE.cache(_MEM_KEY,members);
       recalcScores(); renderRows();
       await saveMembers();
       return;
     }
     if(Array.isArray(fsData)){
-      localStorage.setItem(_MEM_KEY,JSON.stringify(fsData));
+      window.MOIDA_CRM_STORAGE.cache(_MEM_KEY,fsData);
       window._reloadMembersFromFS(fsData);
       return;
     }
     members=cached.length?cached:((previousUid===uid)?currentBeforeSync:[]);
     dispMembers=members.slice();
-    localStorage.setItem(_MEM_KEY,JSON.stringify(members));
+    window.MOIDA_CRM_STORAGE.cache(_MEM_KEY,members);
     recalcScores(); renderRows();
     if(members.length) await saveMembers();
   };
@@ -899,7 +901,7 @@ html.embed .table-foot{flex-shrink:0}
     // re-apply 추천인 순서(rec chains)도 Firestore 재로드 후 유지
     var _rc=JSON.parse(localStorage.getItem('moida_rec_chains_'+_uid)||'{}');
     members.forEach(function(m){ var c=_rc[m.mid]||_rc[m.name]; if(c){ m.rec=c[0]||'—'; m.sub=c[1]||'—'; m.third=c[2]||'—'; m.rec2=m.sub; m.rec3=m.third; } });
-    localStorage.setItem(_MEM_KEY, JSON.stringify(members));
+    window.MOIDA_CRM_STORAGE.cache(_MEM_KEY,members);
     dispMembers = members.slice();
     memberById={};
     memberSearchCache=new WeakMap();
@@ -918,7 +920,7 @@ html.embed .table-foot{flex-shrink:0}
       const uid=_uid;await _membersSaveChain;if(window._crmSheetUser?.()?.uid!==uid)throw Error('로그인 계정이 변경되었습니다.');
       await window._fsSave(uid,'members',[]);
       members=[];dispMembers=[];memberById={};memberSearchCache=new WeakMap();searchResultIds=null;curEditIdx=null;
-      _membersPendingSave=false;localStorage.removeItem(pendingKey(uid));localStorage.setItem(_MEM_KEY,'[]');
+      _membersPendingSave=false;localStorage.removeItem(pendingKey(uid));await window.MOIDA_CRM_STORAGE.persist(_MEM_KEY,[]);
       for(const prefix of ['moida_votes_','moida_memos_','moida_orgs_','moida_rec_chains_','moida_grades_'])localStorage.removeItem(prefix+uid);
       if(typeof GRADE_KEY!=='undefined')localStorage.removeItem(GRADE_KEY);
       voteStore={};memoStore={};window._orgStore={};
@@ -929,7 +931,7 @@ html.embed .table-foot{flex-shrink:0}
       return 0;
     },
     snapshot:async function(){if(!this.ready())throw Error('CRM 자료가 로드된 후 다시 시도해 주세요.');await _membersSaveChain;if(_membersPendingSave)throw Error('CRM 서버 저장을 먼저 완료해 주세요.');var snapshot=JSON.parse(JSON.stringify(members));var cloud=await window._fsLoad(_uid,'members');if(this.signature(cloud)!==this.signature(snapshot))throw Error('CRM이 다른 기기에서 수정되었습니다. 새로고침 후 다시 시도해 주세요.');return snapshot;},
-    apply:async function(before,rows){if(!this.ready()||JSON.stringify(members)!==JSON.stringify(before))throw Error('동기화 중 CRM이 변경되었습니다. 다시 시도해 주세요.');var cloud=await window._fsLoad(_uid,'members');if(!Array.isArray(cloud)||this.signature(cloud)!==this.signature(before))throw Error('다른 기기에서 CRM이 변경되었습니다. 새로고침 후 동기화해 주세요.');if(JSON.stringify(members)!==JSON.stringify(before))throw Error('동기화 중 CRM이 변경되었습니다.');var byId=new Map(cloud.map(function(m){return [String(m.mid),m];}));members=rows.map(function(r){return (function(){var old=byId.get(r.mid)||{rrn:'—',orgs:[],score:0,no:0},m=Object.assign({},old,r);m.rec2=r.rec2||'';m.rec3=r.rec3||'';m.sub=m.rec2;m.third=m.rec3;for(var k of ['age','family','smGrade','krGrade'])m[k]=r[k]===''?(k==='family'?null:k==='age'?'':0):Number(r[k]);if(String(old.age||'')!==String(r.age||'')||String(old.ageb||'')!==String(r.ageb||''))m.ageSource='manual';if(String(old.org||'')!==String(r.org||'')){m.orgs=String(r.org||'').split(' / ').filter(v=>v&&v!=='—').map(v=>{var existing=(old.orgs||[]).find(o=>(o.name+(o.title?' '+o.title:''))===v);return existing||{cat:'기타',name:v,title:''};});if((old.orgs||[]).length>1&&m.orgs.length===1)m.orgs=m.orgs.concat(old.orgs.slice(1));if(typeof saveOrgs==='function')saveOrgs(m);}return m;})();});dispMembers=members.slice();searchResultIds=null;if(searchWorker)searchWorker.postMessage({type:'init',records:members.map(function(m){return {id:String(m.mid),text:memberSearchText(m)};})});if(typeof saveGrades==='function')saveGrades();if(typeof localStorage!=='undefined')localStorage.setItem('moida_rec_chains_'+_uid,JSON.stringify(Object.fromEntries(members.map(m=>[m.mid,[m.rec,m.rec2,m.rec3]]))));recalcScores();renderRows();if(!await saveMembers())throw Error('CRM 저장이 지연되어 시트 전송을 중단했습니다.');}
+    apply:async function(before,rows){if(!this.ready()||JSON.stringify(members)!==JSON.stringify(before))throw Error('동기화 중 CRM이 변경되었습니다. 다시 시도해 주세요.');var cloud=await window._fsLoad(_uid,'members');if(!Array.isArray(cloud)||this.signature(cloud)!==this.signature(before))throw Error('다른 기기에서 CRM이 변경되었습니다. 새로고침 후 동기화해 주세요.');if(JSON.stringify(members)!==JSON.stringify(before))throw Error('동기화 중 CRM이 변경되었습니다.');var byId=new Map(cloud.map(function(m){return [String(m.mid),m];}));members=rows.map(function(r){return (function(){var old=byId.get(r.mid)||{rrn:'—',orgs:[],score:0,no:0},m=Object.assign({},old,r);m.rec2=r.rec2||'';m.rec3=r.rec3||'';m.sub=m.rec2;m.third=m.rec3;for(var k of ['age','family','smGrade','krGrade'])m[k]=r[k]===''?(k==='family'?null:k==='age'?'':0):Number(r[k]);if(String(old.age||'')!==String(r.age||'')||String(old.ageb||'')!==String(r.ageb||''))m.ageSource='manual';if(String(old.org||'')!==String(r.org||'')){m.orgs=String(r.org||'').split(' / ').filter(v=>v&&v!=='—').map(v=>{var existing=(old.orgs||[]).find(o=>(o.name+(o.title?' '+o.title:''))===v);return existing||{cat:'기타',name:v,title:''};});if((old.orgs||[]).length>1&&m.orgs.length===1)m.orgs=m.orgs.concat(old.orgs.slice(1));if(window._orgStore)window._orgStore[m.mid]=m.orgs;}return m;})();});dispMembers=members.slice();searchResultIds=null;if(searchWorker)searchWorker.postMessage({type:'init',records:members.map(function(m){return {id:String(m.mid),text:memberSearchText(m)};})});if(window._orgStore)window.MOIDA_CRM_STORAGE.cache('moida_orgs_'+_uid,window._orgStore);memberById={};memberSearchCache=new WeakMap();members.forEach(function(m){memberById[String(m.mid)]=m;});if(typeof saveGrades==='function')saveGrades();if(typeof localStorage!=='undefined')window.MOIDA_CRM_STORAGE.cache('moida_rec_chains_'+_uid,Object.fromEntries(members.map(m=>[m.mid,[m.rec,m.rec2,m.rec3]])));recalcScores();renderRows();if(!await saveMembers())throw Error('CRM 저장이 지연되어 시트 전송을 중단했습니다.');}
   };
   var members = loadMembers();
   // normalize members: fill missing fields with defaults, assign mid
@@ -952,7 +954,7 @@ html.embed .table-foot{flex-shrink:0}
     });
     // 기기 캐시의 오래된 명부가 로그인 직후 Firestore를 덮어쓰지 않도록
     // 초기 보정값은 로컬에만 저장하고, 서버 데이터를 먼저 불러온다.
-    localStorage.setItem(_MEM_KEY, JSON.stringify(members));
+    window.MOIDA_CRM_STORAGE.cache(_MEM_KEY,members);
   })();
   const avaColors = ["#3b82f6","#10b981","#f59e0b","#8b5cf6","#ec4899","#06b6d4","#ef4444","#6366f1","#14b8a6","#f97316","#a855f7"];
   const scoreCls = s => s>=18?"sc-hi":s>=11?"sc-mid":"sc-lo";
@@ -1070,7 +1072,7 @@ html.embed .table-foot{flex-shrink:0}
     orgPop.addEventListener('drop',function(e){ e.preventDefault(); var r=e.target.closest('.rp-row'); if(r==null||di==null) return; var to=+r.dataset.oi; var m=orgPop._mem; var it=m.orgs.splice(di,1)[0]; m.orgs.splice(to,0,it); di=null; syncOrgStr(m); saveOrgs(m); renderOrgPop(); renderRows(); });
   })();
   document.addEventListener('mousedown',function(e){ if(!orgPop.contains(e.target) && !(e.target.closest&&e.target.closest('.org-link'))) orgPop.classList.remove('show'); });
-  function saveOrgs(m){ var k='moida_orgs_' + _uid; var store=JSON.parse(localStorage.getItem(k)||'{}'); store[m.mid||m.name]=m.orgs; localStorage.setItem(k, JSON.stringify(store)); }
+  function saveOrgs(m){ var k='moida_orgs_' + _uid; var store=JSON.parse(localStorage.getItem(k)||'{}'); store[m.mid||m.name]=m.orgs; window.MOIDA_CRM_STORAGE.cache(k,store); }
   function showDetail(){ detailPanel.classList.add('show'); dtOvl.classList.add('show'); }
   function closeDetail(){ window._crmTelegramShow?.(''); detailPanel.classList.remove('show'); dtOvl.classList.remove('show'); tbody.querySelectorAll('tr').forEach(t=>t.classList.remove('sel')); }
   document.getElementById('dtClose').addEventListener('click', closeDetail);
@@ -1206,7 +1208,7 @@ html.embed .table-foot{flex-shrink:0}
     m.krGrade = g.kr!=null ? g.kr : (m.krGrade!=null ? m.krGrade : (m.katalkReply==='완료'?5:m.katalkReply==='미답'?2:0));
     m.smGrade = g.sm!=null ? g.sm : (m.smGrade!=null ? m.smGrade : (m.sms==='발송'?4:m.sms==='수신거부'?1:0));
   });
-  function saveGrades(){ var o={}; members.forEach(function(m){ o[m.mid||m.name]={kr:m.krGrade, sm:m.smGrade}; }); localStorage.setItem(GRADE_KEY, JSON.stringify(o)); }
+  function saveGrades(){ var o={}; members.forEach(function(m){ o[m.mid||m.name]={kr:m.krGrade, sm:m.smGrade}; }); window.MOIDA_CRM_STORAGE.cache(GRADE_KEY,o); }
   (function(){
     var saved=JSON.parse(localStorage.getItem('moida_rec_chains_' + _uid)||'{}');
     // migrate rec_chains: name → mid
@@ -2118,7 +2120,7 @@ html.embed .table-foot{flex-shrink:0}
 <script src="access-guard.js"></script>
 <link rel="stylesheet" href="crm-sms-history.css?v=2">
 <script src="crm-sms-history.js?v=4"></script>
-<script type="module" src="crm-sheets-client.js?v=rrn3"></script>
+<script type="module" src="crm-sheets-client.js?v=50000-1"></script>
 <script type="module" src="crm-telegram-client.js?v=lookup2"></script>
 </body>
 </html>
