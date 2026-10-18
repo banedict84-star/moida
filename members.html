@@ -880,7 +880,7 @@ html.embed .table-foot{flex-shrink:0}
   window.addEventListener('online',function(){
     if(_membersCloudReady && (_membersPendingSave || localStorage.getItem(pendingKey(_uid))==='1')) saveMembers();
   });
-  window._reloadMembersFromFS = function(fsData){
+  window._reloadMembersFromFS = function(fsData,authoritative=false){
     members = fsData;
     var _cloudChanged=false;
     var D={rrn:'—',dong:'—',org:'—',rec:'—',rec2:'—',rec3:'—',sub:'—',third:'—',addr:'—',addrDetail:'',family:null,age:'',ageb:'—',sex:'—',vote:'미확인',voteK:'err',katalk:'—',type:'—',typeK:'old',krGrade:0,smGrade:0,photo:'',orgs:[]};
@@ -898,16 +898,16 @@ html.embed .table-foot{flex-shrink:0}
       else if(!isAdminDong(m.dong,m.addr)) m.dong='—';
       if(_oldDong!==String(m.dong||'')) _cloudChanged=true;
       var _beforeAge=String(m.age||''), _beforeAgeb=String(m.ageb||'');
-      if(!['manual','derived'].includes(m.ageSource)&&m.rrn&&m.rrn!=='—'){ var _d=deriveFromRrn(m.rrn); if(_d){ m.age=_d.age; m.ageb=_d.ageb; if(!m.sex||m.sex==='—') m.sex=_d.sex; } }
-      if(!isValidAgeBand(m.ageb) || (+m.age&&(+m.age<0||+m.age>120))){ m.age=''; m.ageb='—'; }
+      if(!authoritative&&!['manual','derived'].includes(m.ageSource)&&m.rrn&&m.rrn!=='—'){ var _d=deriveFromRrn(m.rrn); if(_d){ m.age=_d.age; m.ageb=_d.ageb; if(!m.sex||m.sex==='—') m.sex=_d.sex; } }
+      if(!authoritative&&(!isValidAgeBand(m.ageb) || (+m.age&&(+m.age<0||+m.age>120)))){ m.age=''; m.ageb='—'; }
       if(_beforeAge!==String(m.age||'')||_beforeAgeb!==String(m.ageb||'')) _cloudChanged=true;
     });
     // re-apply grades from localStorage so they survive Firestore reload
     var _sg=JSON.parse(localStorage.getItem(GRADE_KEY)||'{}');
-    members.forEach(function(m){ var g=_sg[m.mid]||_sg[m.name]||{}; if(g.kr!=null) m.krGrade=g.kr; if(g.sm!=null) m.smGrade=g.sm; });
+    members.forEach(function(m){ var g=_sg[m.mid]||_sg[m.name]||{}; if(!authoritative&&g.kr!=null)m.krGrade=g.kr;if(!authoritative&&g.sm!=null)m.smGrade=g.sm; });
     // re-apply 추천인 순서(rec chains)도 Firestore 재로드 후 유지
     var _rc=JSON.parse(localStorage.getItem('moida_rec_chains_'+_uid)||'{}');
-    members.forEach(function(m){ var c=_rc[m.mid]||_rc[m.name]; if(c){ m.rec=c[0]||'—'; m.sub=c[1]||'—'; m.third=c[2]||'—'; m.rec2=m.sub; m.rec3=m.third; } });
+    members.forEach(function(m){ var c=_rc[m.mid]||_rc[m.name]; if(c&&!authoritative){ m.rec=c[0]||'—'; m.sub=c[1]||'—'; m.third=c[2]||'—'; m.rec2=m.sub; m.rec3=m.third; } });
     window.MOIDA_CRM_STORAGE.cache(_MEM_KEY,members);
     dispMembers = members.slice();
     memberById={};
@@ -915,8 +915,8 @@ html.embed .table-foot{flex-shrink:0}
     members.forEach(function(member){ memberById[String(member.mid||'')]=member; });
     searchResultIds=null;
     if(searchWorker) searchWorker.postMessage({type:'init',records:members.map(function(member){ return {id:String(member.mid||''),text:memberSearchText(member)}; })});
-    if(window._orgStore) members.forEach(function(m){ if(Array.isArray(window._orgStore[m.mid])) m.orgs=window._orgStore[m.mid]; if(!Array.isArray(m.orgs)) m.orgs=(m.org&&m.org!=='—')?[{cat:'단체',name:m.org,title:'',rep:true}]:[]; var _r=orgRep(m); m.org=_r?orgRepText(_r):'—'; });
-    if(_cloudChanged) saveMembers();
+    if(window._orgStore&&!authoritative) members.forEach(function(m){ if(Array.isArray(window._orgStore[m.mid])) m.orgs=window._orgStore[m.mid]; if(!Array.isArray(m.orgs)) m.orgs=(m.org&&m.org!=='—')?[{cat:'단체',name:m.org,title:'',rep:true}]:[]; var _r=orgRep(m); m.org=_r?orgRepText(_r):'—'; });
+    if(_cloudChanged&&!authoritative) saveMembers();
     recalcScores(); renderRows();
   };
   window._crmSheetBridge={
@@ -937,7 +937,7 @@ html.embed .table-foot{flex-shrink:0}
       const cloud=await window._fsLoad(uid,'members');if(!Array.isArray(cloud)||cloud.length)throw Error('삭제 결과를 확인하지 못했습니다. 새로고침 후 확인해 주세요.');
       return 0;
     },
-    snapshot:async function(){if(!this.ready())throw Error('CRM 자료가 로드된 후 다시 시도해 주세요.');await _membersSaveChain;if(_membersPendingSave)throw Error('CRM 서버 저장을 먼저 완료해 주세요.');var snapshot=JSON.parse(JSON.stringify(members));var cloud=await window._fsLoad(_uid,'members');if(this.signature(cloud)!==this.signature(snapshot))throw Error('CRM이 다른 기기에서 수정되었습니다. 새로고침 후 다시 시도해 주세요.');return snapshot;},
+    snapshot:async function(){if(!this.ready())throw Error('CRM 자료가 로드된 후 다시 시도해 주세요.');await _membersSaveChain;if(_membersPendingSave)throw Error('CRM 서버 저장을 먼저 완료해 주세요.');var snapshot=JSON.parse(JSON.stringify(members));var cloud=await window._fsLoad(_uid,'members');if(this.signature(cloud)!==this.signature(snapshot)){if(!Array.isArray(cloud)||document.querySelector('#detailPanel.show,#orgPop.show,#recPop.show')||typeof window._reloadMembersFromFS!=='function')throw Error('편집을 마친 뒤 최신 CRM 자료로 다시 동기화해 주세요.');window._reloadMembersFromFS(JSON.parse(JSON.stringify(cloud)),true);snapshot=JSON.parse(JSON.stringify(members));if(this.signature(cloud)!==this.signature(snapshot))throw Error('서버 명부를 다시 불러온 뒤 동기화해 주세요.');}return snapshot;},
     apply:async function(before,rows,options={}){if(!this.ready()||JSON.stringify(members)!==JSON.stringify(before))throw Error('동기화 중 CRM이 변경되었습니다. 다시 시도해 주세요.');var cloud=await window._fsLoad(_uid,'members');if(!Array.isArray(cloud)||this.signature(cloud)!==this.signature(before))throw Error('다른 기기에서 CRM이 변경되었습니다. 새로고침 후 동기화해 주세요.');if(JSON.stringify(members)!==JSON.stringify(before))throw Error('동기화 중 CRM이 변경되었습니다.');var byId=new Map(cloud.map(function(m){return [String(m.mid),m];}));members=rows.map(function(r){return (function(){var old=byId.get(r.mid)||{rrn:'—',orgs:[],score:0,no:0},m=Object.assign({},old,r);m.rec2=r.rec2||'';m.rec3=r.rec3||'';m.sub=m.rec2;m.third=m.rec3;if(options.derived){m.ageSource='derived';m.familySource='address';}for(var k of ['age','family','smGrade','krGrade'])m[k]=r[k]===''?(k==='family'?null:k==='age'?'':0):Number(r[k]);if(!options.derived&&(String(old.age||'')!==String(r.age||'')||String(old.ageb||'')!==String(r.ageb||'')))m.ageSource='manual';if(String(old.org||'')!==String(r.org||'')){m.orgs=String(r.org||'').split(' / ').filter(v=>v&&v!=='—').map(v=>{var existing=(old.orgs||[]).find(o=>(o.name+(o.title?' '+o.title:''))===v);return existing||{cat:'기타',name:v,title:''};});if((old.orgs||[]).length>1&&m.orgs.length===1)m.orgs=m.orgs.concat(old.orgs.slice(1));if(window._orgStore)window._orgStore[m.mid]=m.orgs;}return m;})();});dispMembers=members.slice();searchResultIds=null;if(searchWorker)searchWorker.postMessage({type:'init',records:members.map(function(m){return {id:String(m.mid),text:memberSearchText(m)};})});if(window._orgStore)window.MOIDA_CRM_STORAGE.cache('moida_orgs_'+_uid,window._orgStore);memberById={};memberSearchCache=new WeakMap();members.forEach(function(m){memberById[String(m.mid)]=m;});if(typeof saveGrades==='function')saveGrades();if(typeof localStorage!=='undefined')window.MOIDA_CRM_STORAGE.cache('moida_rec_chains_'+_uid,Object.fromEntries(members.map(m=>[m.mid,[m.rec,m.rec2,m.rec3]])));recalcScores();renderRows();if(!await saveMembers())throw Error('CRM 저장이 지연되어 시트 전송을 중단했습니다.');}
   };
   var members = loadMembers();
