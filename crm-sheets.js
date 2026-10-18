@@ -1,10 +1,11 @@
+import {crmMessagesRoute} from './crm-sheets-messages.js';
 import {FIELDS,HEADERS,LAST_COLUMN,sheetValues,parseRows,validate,mergeContacts} from './crm-sheets-merge.js';
 const TABLE='crm_sheet_connections',TAB='모이다 CRM';
 const q=(env,sql,args=[])=>env.AGENT_DB.prepare(sql).bind(...args);
 const hash=async value=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(JSON.stringify(value))))).map(v=>v.toString(16).padStart(2,'0')).join('');
 export async function crmSheetsRoute({env,uid,request,token,api}){
  await env.AGENT_DB.prepare(`CREATE TABLE IF NOT EXISTS ${TABLE}(uid TEXT PRIMARY KEY,sheet_id TEXT NOT NULL,baseline TEXT NOT NULL DEFAULT '[]',pending TEXT,lease TEXT,lease_until INTEGER NOT NULL DEFAULT 0,last_sync INTEGER NOT NULL DEFAULT 0)`).run();
- const path=new URL(request.url).pathname;const read=()=>q(env,`SELECT * FROM ${TABLE} WHERE uid=?`,[uid]).first();
+ const path=new URL(request.url).pathname;if(path.startsWith('/crm-sheets/messages/'))return crmMessagesRoute({env,uid,request,token,api});const read=()=>q(env,`SELECT * FROM ${TABLE} WHERE uid=?`,[uid]).first();
  if(path==='/crm-sheets/status'&&request.method==='GET'){const row=await read();return {connected:!!row,sheetId:row?.sheet_id,lastSync:row?.last_sync||0,tab:TAB};}
  if(request.method!=='POST')throw Error('지원하지 않는 요청입니다.');
  if(Number(request.headers.get('content-length'))>3000000)throw Error('요청 용량이 너무 큽니다.');

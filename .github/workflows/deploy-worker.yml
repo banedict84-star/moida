@@ -49,7 +49,7 @@ jobs:
         run: |
           node --check gpt-worker.js
           node --test tests/telegram-bot.test.mjs tests/crm-telegram.test.mjs
-          node --test tests/crm-sheets.test.mjs
+          node --test tests/crm-sheets.test.mjs tests/crm-sms-history.test.mjs
           node --test tests/crm-manager.test.mjs tests/moida-core-team.test.mjs tests/office-staff-catalog.test.mjs tests/knowledge.test.mjs tests/higgsfield-mcp.test.mjs tests/mcp-priority.test.mjs tests/docs-mcp-relay.test.mjs
           node --test tests/news-shorts.test.mjs
           node --test tests/call-records.test.mjs
