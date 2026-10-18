@@ -37,13 +37,16 @@ export function sourceWritePlan(state,parsed,contacts){
    let value=r[key];if(key==='addr'&&map.addrDetail===undefined)value=[r.addr,r.addrDetail].filter(v=>v&&!['—','-'].includes(v)).join(' ');
    if(['age','family','krGrade'].includes(key)&&/^\d+$/.test(cell(value)))value=Number(value);
    const old=state.values[offset]?.[col]??'';if(key==='krGrade'&&!/^\d*$/.test(cell(old)))continue;if(['age','ageb','sex'].includes(key)&&empty(value)&&!empty(old))continue;if(cell(old)===cell(value))continue;
-   edits.push({row,col,value:value??'',old,priority:key==='mid'&&parsed.locations.has(r.mid)?0:1});expected.values[offset][col]=value??'';
+   edits.push({row,col,value:value??'',old,append:!parsed.locations.has(r.mid),priority:key==='mid'&&parsed.locations.has(r.mid)?0:1});expected.values[offset][col]=value??'';
   }
  }
  // Group consecutive cells in the same column; preserve every unrelated cell and formula.
  edits.sort((a,b)=>a.priority-b.priority||a.col-b.col||a.row-b.row);const data=[];
- for(const edit of edits){let group=data.at(-1);if(!group||group.col!==edit.col||group.priority!==edit.priority||group.end+1!==edit.row){group={priority:edit.priority,col:edit.col,start:edit.row,end:edit.row,values:[],old:[]};data.push(group);}group.end=edit.row;group.values.push([edit.value]);group.old.push([edit.old]);}
- const writes=[];let batch=[],size=0;for(const group of data){if(batch.length>=20||size+JSON.stringify(group).length>700000){writes.push(batch);batch=[];size=0;}batch.push(group);size+=JSON.stringify(group).length;}if(batch.length)writes.push(batch);
+ for(const edit of edits){let group=data.at(-1);if(!group||group.col!==edit.col||group.append!==edit.append||group.priority!==edit.priority||group.end+1!==edit.row){group={append:edit.append,priority:edit.priority,col:edit.col,start:edit.row,end:edit.row,values:[],old:[]};data.push(group);}group.end=edit.row;group.values.push([edit.value]);group.old.push([edit.old]);}
+ const writes=[],appended=data.filter(g=>g.append),existing=data.filter(g=>!g.append);
+ // All fields and the ID of a new record travel in the same atomic Sheets request.
+ if(appended.length){let start=Math.min(...appended.map(g=>g.start)),last=Math.max(...appended.map(g=>g.end));while(start<=last){let end=Math.min(last,start+999),part;for(;;){part=appended.filter(g=>g.start<=end&&g.end>=start).map(g=>{const a=Math.max(start,g.start),b=Math.min(end,g.end);return {...g,start:a,end:b,values:g.values.slice(a-g.start,b-g.start+1),old:g.old.slice(a-g.start,b-g.start+1)};});if(end===start||part.length<=20&&JSON.stringify(part).length<=700000)break;end=start+Math.floor((end-start)/2);}if(part.length)writes.push(part);start=end+1;}}
+ let batch=[],size=0;for(const group of existing){if(batch.length>=20||size+JSON.stringify(group).length>700000){writes.push(batch);batch=[];size=0;}batch.push(group);size+=JSON.stringify(group).length;}if(batch.length)writes.push(batch);
  return {writes,expected:sourceSignature(expected),rowCount:Math.max(nextRow-1,state.rowCount),headers};
 }
 export async function readSource(api,access,config){
@@ -51,7 +54,8 @@ export async function readSource(api,access,config){
  if(!sheet)throw Error('연결한 원본 탭을 찾지 못했습니다.');const range="'"+sheet.title.replaceAll("'","''")+"'!",column=columnName(sheet.gridProperties.columnCount),headerRow=config.header_row;
  const head=await api(access,base+'/values/'+encodeURIComponent(range+'A'+headerRow+':'+column+headerRow)+'?valueRenderOption=UNFORMATTED_VALUE'),headers=head.values?.[0]||[];const map=sourceSchema(headers);if(map.mid===undefined)throw Error('원본 연락처 ID 열을 찾지 못했습니다. 다시 연결해 주세요.');
  const values=[],formulas=[];const limit=Math.min(50002,sheet.gridProperties.rowCount);
- for(let start=headerRow+1;start<=limit;start+=1000){const end=Math.min(start+999,limit),url=base+'/values/'+encodeURIComponent(range+'A'+start+':'+column+end);const [v,f]=await Promise.all([api(access,url+'?valueRenderOption=UNFORMATTED_VALUE'),api(access,url+'?valueRenderOption=FORMULA')]);for(let i=0;i<end-start+1;i++){values.push(v.values?.[i]||[]);formulas.push(f.values?.[i]||[]);}}
+ const groups=[];for(const c of [...new Set(Object.values(map))].sort((a,b)=>a-b)){const last=groups.at(-1);if(last&&last.end+1===c)last.end=c;else groups.push({start:c,end:c});}
+ for(let start=headerRow+1;start<=limit;start+=1000){const end=Math.min(start+999,limit),query=new URLSearchParams();for(const g of groups)query.append('ranges',range+columnName(g.start+1)+start+':'+columnName(g.end+1)+end);const url=base+'/values:batchGet?'+query;const [v,f]=await Promise.all([api(access,url+'&valueRenderOption=UNFORMATTED_VALUE'),api(access,url+'&valueRenderOption=FORMULA')]);for(let i=0;i<end-start+1;i++){const row=[],raw=[];for(let j=0;j<groups.length;j++){for(let c=groups[j].start;c<=groups[j].end;c++){row[c]=v.valueRanges?.[j]?.values?.[i]?.[c-groups[j].start]??'';raw[c]=f.valueRanges?.[j]?.values?.[i]?.[c-groups[j].start]??'';}}values.push(row);formulas.push(raw);}}
  while(values.length&&!values.at(-1).some(v=>cell(v)!=='')&&!formulas.at(-1)?.some(v=>typeof v==='string'&&v.startsWith('='))){values.pop();formulas.pop();}
  return {sheetId:config.sheet_id,tabId:sheet.sheetId,title:sheet.title,headerRow,headers,values,formulas,rowCount:sheet.gridProperties.rowCount,base,range};
 }
