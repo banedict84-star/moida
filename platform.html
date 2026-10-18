@@ -4028,14 +4028,7 @@ onAuthStateChanged(_auth, async function(user){
   }
   connectBtn.addEventListener('click',function(){connectGoogleCalendar(connectBtn);});
   if(secretaryConnectBtn)secretaryConnectBtn.addEventListener('click',function(){connectGoogleCalendar(secretaryConnectBtn);});
-  syncBtn.addEventListener('click',async function(){
-    syncBtn.disabled=true;syncBtn.textContent='확인 중…';
-    try{
-      var result=await api('/google/calendar/events');
-      alert('Google Calendar에서 향후 일정 '+result.events.length+'건을 확인했습니다.\\n다음 단계에서 MOIDA 일정 목록과 자동 동기화됩니다.');
-    }catch(error){alert(error.message);}
-    syncBtn.disabled=false;syncBtn.textContent='일정 확인';
-  });
+  syncBtn.addEventListener('click',function(){window.__go('schedule');});
   var agentRunClear=document.getElementById('agentRunClear');
   if(agentRunClear)agentRunClear.addEventListener('click',function(){agentRuns.forEach(function(run){hiddenAgentRuns[run.id]=true;});saveHiddenAgentRuns();renderAgentRuns();});
   disconnectBtn.addEventListener('click',async function(){
