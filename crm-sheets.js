@@ -38,30 +38,32 @@ export async function crmSheetsRoute({env,uid,request,token,api}){
  if(path==='/crm-sheets/prepare'){
   const crm=validate(body.contactsPayload?await readContacts(env,uid,body.contactsPayload):body.contacts);const values=await readSheet();const merged=mergeContacts(crm,parseRows(values,crm),await readPayload(env,uid,config.baseline));
   if(merged.conflicts.length)return {ok:false,conflicts:merged.conflicts.slice(0,100)};
-  const lease=crypto.randomUUID(),pending=await writePayload(env,uid,{rows:merged.rows,sheetHash:await hash(values)});
+  const lease=crypto.randomUUID(),pending=await writePayload(env,uid,{rowsRef:await writePayload(env,uid,merged.rows),sheetHash:await hash(values)});
   const r=await q(env,`UPDATE ${TABLE} SET lease=?,lease_until=?,pending=? WHERE uid=? AND lease_until<?`,[lease,Date.now()+LEASE,pending,uid,Date.now()]).run();if(!r.meta.changes)throw Error('다른 화면에서 동기화 중입니다. 잠시 후 다시 시도해 주세요.');
   return {ok:true,lease,contacts:merged.rows};
  }
  if(path==='/crm-sheets/commit'){
   if(!body.lease||config.lease!==body.lease||config.lease_until<Date.now())throw Error('동기화 확인 시간이 지났습니다. 다시 동기화해 주세요.');
   const pending=await readPayload(env,uid,config.pending);
+  const contacts=pending.rowsRef?await readPayload(env,uid,pending.rowsRef):pending.rows;
   if(!pending.writes){
    const values=await readSheet();if(await hash(values)!==pending.sheetHash)throw Error('동기화 중 시트가 수정되었습니다. 다시 동기화해 주세요.');
    const removed=values[0]?.findIndex(h=>['문자답장','문자답장여부'].includes(String(h).trim()))??-1;
    const requests=[];if(removed>=0){requests.push({deleteDimension:{range:{sheetId:sheet.properties.sheetId,dimension:'COLUMNS',startIndex:removed,endIndex:removed+1}}});}
-   const rows=sheetValues(pending.rows,values);
+   const rows=sheetValues(contacts,values);
    if(sheet?.properties.sheetId!==undefined)requests.push({updateSheetProperties:{properties:{sheetId:sheet.properties.sheetId,gridProperties:{rowCount:Math.max(Number(sheet.properties.gridProperties?.rowCount)||0,rows.length),columnCount:Math.max(columns-(removed>=0?1:0),rows[0].length)}},fields:'gridProperties.rowCount,gridProperties.columnCount'}});
    gridRows=Math.max(gridRows,rows.length);
    if(requests.length)await api(access,base+':batchUpdate',{method:'POST',body:JSON.stringify({requests})});
    if(removed>=0)for(const row of values)row.splice(removed,1);
-   pending.column=String.fromCharCode(64+rows[0].length);pending.expectedHash=await hash(rows);pending.writes=[];pending.cursor=0;
-   for(let start=0;start<rows.length;){let end=Math.min(start+BATCH,rows.length);while(end>start+1&&new TextEncoder().encode(JSON.stringify(rows.slice(start,end))).length>1000000)end=start+Math.ceil((end-start)/2);const next=rows.slice(start,end),old=values.slice(start,end);if(await hash(next)!==await hash(old))pending.writes.push({start:start+1,values:next,oldHash:await hash(old)});start=end;}
+   pending.headers=rows[0];pending.column=String.fromCharCode(64+rows[0].length);pending.expectedHash=await hash(rows);pending.writes=[];pending.cursor=0;
+   for(let start=0;start<rows.length;){let end=Math.min(start+BATCH,rows.length);while(end>start+1&&new TextEncoder().encode(JSON.stringify(rows.slice(start,end))).length>1000000)end=start+Math.ceil((end-start)/2);const next=rows.slice(start,end),old=values.slice(start,end);if(await hash(next)!==await hash(old))pending.writes.push({start:start+1,end,oldHash:await hash(old)});start=end;}
   }
-  const write=pending.writes[pending.cursor];
+  const write=pending.writes[pending.cursor];if(write&&!write.values){const first=write.start-1;const batch=sheetValues(contacts.slice(Math.max(0,first-1),write.end-1),[pending.headers]);write.values=first===0?batch:batch.slice(1);}
+
   if(write){const current=await readRange(write.start,write.start+write.values.length-1,pending.column);if(await hash(current)!==write.oldHash&&await hash(current)!==await hash(write.values))throw Error('전송할 구간이 시트에서 수정되었습니다. 다시 동기화해 주세요.');if(await hash(current)!==await hash(write.values))await api(access,base+'/values/'+encodeURIComponent("'"+TAB+"'!A"+write.start+':'+pending.column+(write.start+write.values.length-1))+'?valueInputOption=RAW',{method:'PUT',body:JSON.stringify({values:write.values})});pending.cursor++;}
-  if(pending.cursor<pending.writes.length){await q(env,`UPDATE ${TABLE} SET pending=?,lease_until=? WHERE uid=? AND lease=?`,[await writePayload(env,uid,pending),Date.now()+LEASE,uid,body.lease]).run();return {ok:true,done:false,completed:pending.cursor,total:pending.writes.length,count:pending.rows.length};}
+  if(pending.cursor<pending.writes.length){if(write)delete write.values;await q(env,`UPDATE ${TABLE} SET pending=?,lease_until=? WHERE uid=? AND lease=?`,[await writePayload(env,uid,pending),Date.now()+LEASE,uid,body.lease]).run();return {ok:true,done:false,completed:pending.cursor,total:pending.writes.length,count:contacts.length};}
   if(await hash(await readSheet())!==pending.expectedHash)throw Error('시트 최종 확인 중 변경을 발견했습니다. 다시 동기화해 주세요.');
-  await q(env,`UPDATE ${TABLE} SET baseline=?,pending=NULL,lease=NULL,lease_until=0,last_sync=? WHERE uid=? AND lease=?`,[await writePayload(env,uid,pending.rows),Date.now(),uid,body.lease]).run();return {ok:true,done:true,count:pending.rows.length};
+  await q(env,`UPDATE ${TABLE} SET baseline=?,pending=NULL,lease=NULL,lease_until=0,last_sync=? WHERE uid=? AND lease=?`,[pending.rowsRef||await writePayload(env,uid,contacts),Date.now(),uid,body.lease]).run();return {ok:true,done:true,count:contacts.length};
  }
  throw Error('지원하지 않는 요청입니다.');
 }

@@ -27,7 +27,7 @@ export async function crmStoreRoute({env,uid,request}){
   if(!response.ok)throw Error('현재 명부의 저장 주소를 확인하지 못했습니다.');
   const document=await response.json(),raw=document.fields?.members?.stringValue;if(!raw)throw Error('현재 명부가 저장된 후 다시 시도해 주세요.');
   const live=new Set(),add=value=>{if(value?.format==='moida-crm-remote-v1'||value?.format==='crm-payload-v1')for(const id of value.parts||[])live.add(id);};add(JSON.parse(raw));
-  const sync=await query(env,'SELECT baseline,pending FROM crm_sheet_connections WHERE uid=?',[uid]).first().catch(()=>null);if(sync){for(const raw of [sync.baseline,sync.pending])if(raw)add(JSON.parse(raw));}
+  const sync=await query(env,'SELECT baseline,pending FROM crm_sheet_connections WHERE uid=?',[uid]).first().catch(()=>null);if(sync){for(const raw of [sync.baseline,sync.pending])if(raw){add(JSON.parse(raw));if(raw===sync.pending){const pending=await readPayload(env,uid,raw);if(pending?.rowsRef)add(JSON.parse(pending.rowsRef));}}}
   // In-flight reads and uncommitted uploads get a full day of grace.
   await query(env,'DELETE FROM crm_payload_chunks WHERE uid=? AND created<? AND id NOT IN (SELECT value FROM json_each(?))',[uid,Date.now()-86400000,JSON.stringify([...live])]).run();return {ok:true};
  }
