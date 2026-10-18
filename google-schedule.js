@@ -18,7 +18,7 @@ function renderDay(){
  for(const e of list){const row=node('article','','event'),edit=node('button','일정 확인 ↗');edit.type='button';edit.setAttribute('aria-label',(e.title||'제목 없는 일정')+' 확인·수정');edit.onclick=()=>openEditor(e);row.append(node('span',timeLabel(e,selected),'event-time'),node('h3',e.title||'제목 없는 일정'),node('p',e.location||'장소 미등록','event-place'),edit);$('events').append(row);}
 }
 function renderCalendar(focusKey){
- $('month').textContent=Number(month.slice(0,4))+'년 '+Number(month.slice(5,7))+'월';const today=koreaDay();$('calendar').replaceChildren();
+ $('month').textContent=Number(month.slice(0,4))+'년 '+Number(month.slice(5,7))+'월';const today=koreaDay();$('calendar').replaceChildren();$('calendar').style.setProperty('--weeks',monthGrid(month).length/7);
  for(const [index,key] of monthGrid(month).entries()){
   const list=eventsFor(key),button=node('button','','day');button.type='button';button.dataset.date=key;
   button.classList.toggle('outside',key.slice(0,7)!==month.slice(0,7));button.classList.toggle('selected',key===selected);button.classList.toggle('is-today',key===today);button.classList.toggle('sunday',index%7===0);button.classList.toggle('saturday',index%7===6);
