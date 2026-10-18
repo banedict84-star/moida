@@ -255,7 +255,7 @@
   .detail.show{ opacity:1; pointer-events:auto; transform:translate(-50%,-50%); }
   .detail{ width:740px; border-radius:20px; height:850px; max-height:96vh; overflow:hidden; }
   .dt-head,.tabs,.dt-foot{ flex:0 0 auto; }
-  #paneInfo,#paneVote,#paneMemo{ flex:1 1 auto; min-height:0; overflow-y:auto; }
+  #paneInfo,#paneVote,#paneMemo,#paneSms{ flex:1 1 auto; min-height:0; overflow-y:auto; }
   /* 당원구분 세그먼트 버튼 */
   .tseg{ display:flex; gap:6px; flex-wrap:wrap; }
   .tseg-opt{ flex:1; min-width:72px; text-align:center; font-size:12.5px; font-weight:700; padding:9px 6px; border-radius:9px; border:1.5px solid var(--line); color:var(--ink-3); cursor:pointer; transition:all .12s; }
@@ -627,6 +627,7 @@ html.embed .table-foot{flex-shrink:0}
           <div class="tab active" data-pane="info">기본정보</div>
           <div class="tab" data-pane="vote">투표활동</div>
           <div class="tab" data-pane="memo">메모</div>
+          <div class="tab" data-pane="sms" role="button" tabindex="0">문자 내역</div>
         </div>
         <div class="dt-body" id="paneInfo">
           <div class="grp-label" style="grid-column:1/-1">기본 정보</div>
@@ -684,6 +685,12 @@ html.embed .table-foot{flex-shrink:0}
         <div class="dt-pane" id="paneMemo" style="display:none">
           <div class="vfield"><label>메모</label><textarea id="dtMemo" class="dt-memo" placeholder="이 당원에 대한 메모를 입력하세요"></textarea></div>
         </div>
+        <section class="dt-pane crm-sms-detail" id="paneSms" style="display:none" aria-label="연락처 문자 내역">
+          <div class="crm-sms-detail-head"><div><strong>받은 문자</strong><p class="crm-sms-detail-person"></p></div><button type="button" class="crm-sms-detail-refresh">새로고침</button></div>
+          <div class="crm-sms-detail-toolbar"><span class="crm-sms-detail-count">연락처를 선택해 주세요</span><select aria-label="문자 날짜 정렬"><option value="desc">최신순</option><option value="asc">오래된순</option></select></div>
+          <p role="status" class="sms-status crm-sms-detail-status"></p><div class="sms-records crm-sms-detail-records"></div>
+          <button type="button" class="crm-sms-detail-source">문자 자료 연결 확인</button>
+        </section>
         <div class="dt-foot">
           <button class="btn save" id="dtSave"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg><span id="dtSaveLbl">저장</span></button>
           <button class="btn add"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>신규</button>
@@ -1074,7 +1081,7 @@ html.embed .table-foot{flex-shrink:0}
   document.addEventListener('mousedown',function(e){ if(!orgPop.contains(e.target) && !(e.target.closest&&e.target.closest('.org-link'))) orgPop.classList.remove('show'); });
   function saveOrgs(m){ var k='moida_orgs_' + _uid; var store=JSON.parse(localStorage.getItem(k)||'{}'); store[m.mid||m.name]=m.orgs; window.MOIDA_CRM_STORAGE.cache(k,store); }
   function showDetail(){ detailPanel.classList.add('show'); dtOvl.classList.add('show'); }
-  function closeDetail(){ window._crmTelegramShow?.(''); detailPanel.classList.remove('show'); dtOvl.classList.remove('show'); tbody.querySelectorAll('tr').forEach(t=>t.classList.remove('sel')); }
+  function closeDetail(){ window._crmSmsShow?.(null); window._crmTelegramShow?.(''); detailPanel.classList.remove('show'); dtOvl.classList.remove('show'); tbody.querySelectorAll('tr').forEach(t=>t.classList.remove('sel')); }
   document.getElementById('dtClose').addEventListener('click', closeDetail);
   // 신규 당원 입력 중(curEditIdx==null)에는 바깥 클릭·ESC로 닫히지 않게(X만 닫힘)
   dtOvl.addEventListener('click', function(){ if(curEditIdx!=null) closeDetail(); });
@@ -1493,7 +1500,7 @@ html.embed .table-foot{flex-shrink:0}
     if(m.age&&m.age!=='—'&&m.age!=='undefined') _sub+=(_sub?' · ':'')+m.age+'세';
     dtSub.textContent=_sub||'정보 없음';
     var V=function(id,val){ var el=document.getElementById(id); if(el) el.value=(val==null||val==='—')?'':val; };
-    V('dtfName',m.name); V('dtfPhone',m.phone); V('dtfRrn',m.rrn);
+    V('dtfName',m.name); V('dtfPhone',m.phone); V('dtfRrn',m.rrn); window._crmSmsShow?.(m);
     V('dtfAge',m.age); V('dtfAgeb',m.ageb); V('dtfKatalk',m.katalk&&m.katalk!=='—'?m.katalk:'미확인'); V('dtfSms',m.sms||'미확인'); V('dtAddr',m.addr); V('dtAddrDetail',m.addrDetail); V('dtDong',m.dong);
     V('dtFamily',famCount(m)!=null?famCount(m):''); loadOrgEditor(m.orgs);
     V('dtfRec1',m.rec); V('dtfRec2',m.rec2); V('dtfRec3',m.rec3);
@@ -1692,6 +1699,7 @@ html.embed .table-foot{flex-shrink:0}
 
   // 신규 당원 추가 포림 열기
   function openNew(){
+    window._crmSmsShow?.(null);
     curEditIdx=null;
     dtAva.textContent='+';
     dtAva.style.background='linear-gradient(140deg,#94a3b8,#64748b)';
@@ -1867,10 +1875,12 @@ html.embed .table-foot{flex-shrink:0}
   document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{
     document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active')); t.classList.add('active');
     var p=t.getAttribute('data-pane');
-    var pi=document.getElementById('paneInfo'), pv=document.getElementById('paneVote'), pm=document.getElementById('paneMemo');
+    var pi=document.getElementById('paneInfo'), pv=document.getElementById('paneVote'), pm=document.getElementById('paneMemo'), ps=document.getElementById('paneSms');
     if(pi) pi.style.display = p==='info'?'grid':'none';
     if(pv) pv.style.display = p==='vote'?'block':'none';
     if(pm) pm.style.display = p==='memo'?'block':'none';
+    if(ps) ps.style.display = p==='sms'?'block':'none';
+    if(p==='sms')window._crmSmsLoad?.();
   }));
 
   // sidebar collapse
@@ -2120,8 +2130,8 @@ html.embed .table-foot{flex-shrink:0}
 })();
 </script>
 <script src="access-guard.js"></script>
-<link rel="stylesheet" href="crm-sms-history.css?v=2">
-<script src="crm-sms-history.js?v=sort1"></script>
+<link rel="stylesheet" href="crm-sms-history.css?v=detail1">
+<script src="crm-sms-history.js?v=detail1"></script>
 <script type="module" src="crm-sheets-client.js?v=50000-1"></script>
 <script type="module" src="crm-telegram-client.js?v=lookup2"></script>
 </body>
