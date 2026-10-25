@@ -95,6 +95,7 @@ html body tbody tr:hover{background:#f0faf6}
 html body :is(.btn.primary,.btn.save){box-shadow:none}
 html body :is(.sidebar .nav-item.active,.tab.active){background:var(--moida-soft);color:var(--moida-teal)}
 html body .content>nav{background:var(--moida-navy)!important}
+html body .content>nav :is(#period,h2){color:#fff!important}
 html body .views #add{background:var(--moida-mint)!important;color:var(--moida-navy)!important;border-color:var(--moida-mint)!important}
 html body .agenda-day{background:#edf5f4!important;border-left-color:var(--moida-mint)!important;color:var(--moida-navy)!important}
 html body .views button[aria-pressed=true]{background:#ffffff!important;color:var(--moida-navy)!important}
