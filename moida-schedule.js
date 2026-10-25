@@ -1,6 +1,6 @@
 import {applyTabler} from './moida-tabler.js?v=7';
 import {createGoogleOverlay} from './moida-google-overlay.js?v=7';
-import {createScheduleFeed} from './moida-schedule-feed.js?v=7';
+import {createScheduleFeed} from './moida-schedule-feed.js?v=8';
 import {koreaDay,shiftDay,monthGrid} from './google-schedule-dates.js';
 import {categories,validateEvent} from './moida-schedule-model.js?v=3';
 const $=id=>document.getElementById(id),form=$('form'),f=form.elements;
