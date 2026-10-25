@@ -6,7 +6,7 @@ export function createScheduleFeed({host,model,canWrite,allEvents,events,categor
  const unread=e=>Number(e.readBy?.[uid()]||0)<stamp(e);
  const format=value=>{const d=new Date(value);return isNaN(d)?String(value||''):new Intl.DateTimeFormat('ko-KR',{timeZone:'Asia/Seoul',month:'long',day:'numeric',hour:'2-digit',minute:'2-digit',hour12:false}).format(d);};
  const when=e=>e.date+' '+(e.allDay||!e.time?'종일':e.time)+' ~ '+((e.endDate||e.date)!==e.date?(e.endDate+' '):'')+(e.allDay||!e.time?'종일':e.endTime||'종료 미정');
- let selected=null,pending=false,filter='all',sort='recent',compact=false,draft='',commentId='',writeError='';
+ let selected=null,pending=false,filter='all',sort='recent',compact=true,draft='',commentId='',writeError='';
  const detail=el('dialog',null,'schedule-detail'),box=el('div',null,'detail-inner');detail.append(box);document.body.append(detail);
  detail.addEventListener('cancel',e=>{if(pending)e.preventDefault();else selected=null;});
  async function action(e,kind,value){
@@ -39,9 +39,11 @@ export function createScheduleFeed({host,model,canWrite,allEvents,events,categor
  }
  function card(e){
   const card=el('article',null,'feed-card');card.style.setProperty('--color',category(e)[2]);
-  const head=el('div',null,'feed-card-head'),meta=el('div',null,'post-author');meta.append(el('span',(e.author||'의원실').slice(0,1),'author-avatar'),el('div',(e.author||'의원실')+' · '+format(e.created)));head.append(meta);if(e.pinned)head.append(el('span','상단 고정','feed-tag'));if(unread(e))head.append(el('span','새 소식','unread-badge'));card.append(head);
-  const body=button('',()=>open(e),'feed-open');body.append(el('span',category(e)[1],'feed-tag'),el('h3',e.title),el('p',when(e),'feed-time'));if(e._location)body.append(el('p','장소 · '+e._location));if(!compact&&e._body)body.append(el('p',e._body,'feed-body'));card.append(body);
-  const foot=el('div',null,'feed-card-foot');foot.append(button('댓글 '+(e.comments||[]).length,()=>open(e)),el('span','참석 '+Object.values(e.responses||{}).filter(r=>r.status==='attending').length),button(e.bookmarkedBy?.[uid()]?'★ 북마크':'☆ 북마크',()=>action(e,'bookmark',!e.bookmarkedBy?.[uid()])));foot.lastChild.disabled=pending||!canWrite()||e.source==='google';card.append(foot);return card;
+  const date=el('div',null,'feed-date');date.setAttribute('aria-hidden','true');const day=new Date(e.date+'T12:00:00+09:00');date.append(el('small',Number(e.date.slice(5,7))+'월'),el('strong',String(Number(e.date.slice(8)))),el('span',isNaN(day)?'':new Intl.DateTimeFormat('ko-KR',{timeZone:'Asia/Seoul',weekday:'short'}).format(day)));card.append(date);
+  const body=button('',()=>open(e),'feed-open');body.setAttribute('aria-label',e.title+' · '+when(e));body.append(el('h3',e.title));
+  const meta=el('div',null,'feed-row-meta');meta.append(el('span',(e.allDay||!e.time?'종일':e.time+(e.endTime?' – '+e.endTime:''))+((e.endDate||e.date)!==e.date?' · ~ '+e.endDate:''),'feed-time'));if(e._location)meta.append(el('span',e._location,'feed-place'));body.append(meta);if(!compact&&e._body)body.append(el('p',e._body,'feed-body'));card.append(body);
+  const source=el('div',null,'feed-source');source.append(el('span',category(e)[1]));source.title=category(e)[1];if(e.source!=='google')source.append(el('small',e.author||'의원실'));if(e.pinned)source.append(el('small','상단 고정','feed-tag'));if(unread(e)&&e.source!=='google')source.append(el('small','새 소식','unread-badge'));card.append(source);
+  const foot=el('div',null,'feed-card-foot');if(e.source==='google'){foot.append(button('보기 ›',()=>open(e)));}else{if(e.comments?.length)foot.append(button('댓글 '+e.comments.length,()=>open(e)));const count=Object.values(e.responses||{}).filter(r=>r.status==='attending').length;if(count)foot.append(el('span','참석 '+count));const bookmark=button(e.bookmarkedBy?.[uid()]?'★':'☆',()=>action(e,'bookmark',!e.bookmarkedBy?.[uid()]));bookmark.setAttribute('aria-label',e.bookmarkedBy?.[uid()]?'북마크 해제':'북마크');bookmark.disabled=pending||!canWrite();foot.append(bookmark);}card.append(foot);return card;
  }
  function render(){
   let peoplePanel=document.querySelector('.feed-people');if(!peoplePanel){peoplePanel=el('section',null,'feed-people');document.querySelector('.day-panel').append(peoplePanel);}
