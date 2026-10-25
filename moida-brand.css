@@ -1,0 +1,100 @@
+/* MOIDA brand theme on Tabler 1.7.1 (MIT). Shared by the shell and embedded apps. */
+:root,[data-bs-theme="light"]{
+ --moida-navy:#102c4b;--moida-mint:#57d9c2;--moida-teal:#146b60;
+ --moida-soft:#e8f8f3;--moida-bg:#f3f6f8;--moida-border:#dce5eb;--moida-muted:#64788a;
+ --tblr-primary:#102c4b;--tblr-primary-rgb:16,44,75;--tblr-body-bg:#f3f6f8;--tblr-body-color:#243e55;
+ --tblr-border-color:#dce5eb;--tblr-border-radius:8px;--tblr-link-color:#146b60;
+ --tblr-font-sans-serif:'Pretendard',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+ --primary:#102c4b;--primary-600:#0b223b;--primary-soft:#e8f8f3;--bg:#f3f6f8;--line:#dce5eb;--line-soft:#f2f7f8;
+ --ink:#243e55;--ink-2:#526b80;--ink-3:#64788a;
+ --mw-navy:#102c4b;--mw-mint:#57d9c2;--mw-bg:#f3f6f8;--mw-border:#dce5eb;
+}
+body{font-family:var(--tblr-font-sans-serif);color:#243e55;background:var(--moida-bg)}
+button,input,textarea,select{font-family:inherit}button,input[type=checkbox],input[type=radio]{accent-color:var(--moida-teal)}
+:is(button,a,input,select,textarea):focus-visible{outline:2px solid var(--moida-teal)!important;outline-offset:3px}
+.page[data-page]{min-height:0}
+/* The persistent navigation is the strongest expression of the logo. */
+html body #sideBar{background:var(--moida-navy)!important;border-right:0;color:#c0d0df!important}
+html body #sideBar #brandName,html body #sideBar #sideName{color:#fff!important}
+html body #sideBar :is(.sb-brandtext>div:last-child,#sidePosition,#sideDistrict,.sb-label){color:#a0b9cc!important}
+html body #sideBar .sb-head{padding-top:16px;padding-bottom:16px}
+html body #sideBar .nav-item{color:#c4d5e4!important;border-radius:7px!important;padding:10px 12px!important;font-weight:500}
+html body #sideBar .nav-item svg{color:inherit!important}
+html body #sideBar .nav-item:hover{background:#ffffff10!important;color:#fff!important}
+html body #sideBar .nav-item.active{background:var(--moida-mint)!important;color:var(--moida-navy)!important;font-weight:750}
+html body #sideBar #sbToggle{background:#203f5e!important;border-color:#466079!important;color:#d6e7ee!important}
+html body #sideBar #profileCard{background:#1a3957!important;border:1px solid #34516a!important;border-radius:8px!important}
+html body #sideBar #sideAvatar{background-color:var(--moida-mint)!important;color:var(--moida-navy)!important}
+html body #appHeader{height:56px!important;min-height:56px;background:#fff!important;border-bottom:1px solid var(--moida-border)!important;box-shadow:0 1px 3px #102c4b04}
+#pageTitle{color:var(--moida-navy)!important;font-weight:750!important}
+html body #appContent{background:var(--moida-bg)}
+#appContent:not(:has(>.page[data-page="schedule"][style*="block"])):not(:has(>.page[data-page="crm"][style*="block"])){padding:18px 20px 28px!important}
+.page .pg{width:100%}
+/* Tabler surfaces: small radii, visible dividers and restrained shadows. */
+:is(.moida-card,.mo-panel,.mo-report,.mo-core-card,.office-tool-panel,.sms-card,#smsSettings,.automation-instance,.workspace-inbox-item,.workspace-automation-card,.table-card,.crm-sheet-panel,.dc-dialog,.mk-dialog){border:1px solid var(--moida-border)!important;border-radius:10px!important;box-shadow:0 2px 5px #102c4b04!important}
+:is(.moida-card,.mo-panel,.mo-report,.sms-card,.automation-instance){background:#fff}
+html body :is(.mo-primary,.sms-primary,.btn.primary,.btn.save,.btn-primary,.mbtn.primary,.mbtn2.primary,#aiSend,.workspace-prompt button){background:var(--moida-navy)!important;border-color:var(--moida-navy)!important;color:#fff!important;border-radius:7px!important}
+html body :is(.mo-primary,.sms-primary,.btn.primary,.btn.save,.btn-primary,#aiSend):hover{background:#204563!important;border-color:#204563!important}
+.moida-control{--tblr-btn-border-radius:7px;--tblr-btn-font-size:12px;box-shadow:none;gap:6px}
+.moida-control:not(.btn-primary):not(.btn-outline-danger){border-color:var(--moida-border);color:var(--moida-navy);background:#fff}
+.moida-control:disabled{opacity:.5}
+:is(.form-control,.form-select){--tblr-input-border-color:var(--moida-border);border-radius:7px}
+:is(.form-control,.form-select):focus{border-color:var(--moida-teal);box-shadow:0 0 0 3px #57d9c226}
+:is(.mo-tabs,.automation-filters,.mk-tabs) button[aria-selected=true],:is(.automation-filters,.mk-tabs) button[aria-pressed=true]{background:var(--moida-soft)!important;color:var(--moida-teal)!important;border-color:#b9e7dc!important}
+/* Keep the restored dashboard's sections and live data, with a compact grid. */
+html body .page[data-page="dashboard"] .dashboard-cards{max-width:1240px!important;gap:16px!important}
+html body .dashboard-cards #dashGreet{font-size:22px!important;color:var(--moida-navy)!important}
+html body .dashboard-cards .dashboard-brief{border:1px solid #254a66!important;border-radius:10px!important;padding:20px 24px!important;background:linear-gradient(115deg,#102c4b,#183e59)!important;box-shadow:none!important;position:relative;overflow:hidden}
+.dashboard-brief::after{content:'';position:absolute;right:-55px;top:-110px;width:260px;height:260px;border:40px solid #57d9c20a;border-radius:50%;pointer-events:none}
+html body .dashboard-cards .dashboard-brief h2.dashboard-brief-title{font-size:24px;margin:12px 0;letter-spacing:-.7px}
+html body .dashboard-cards .dashboard-brief>button{height:36px!important;background:var(--moida-mint)!important;color:var(--moida-navy)!important;border-radius:6px!important;margin-top:14px!important;border:0!important}
+html body .dashboard-tiles{gap:10px}
+html body .dashboard-tiles button{border:1px solid var(--moida-border);border-radius:9px;padding:16px;gap:12px;box-shadow:none;position:relative}
+.dashboard-tiles button:not(:disabled):hover{border-color:#70c9b9;background:#f5fcfa;transform:translateY(-1px)}
+html body .dashboard-tiles svg{color:var(--moida-teal);width:23px;height:23px}
+html body .dashboard-cards .dashboard-live-summary{gap:10px!important}
+html body .dashboard-cards .dashboard-live-summary>div{border:1px solid var(--moida-border)!important;border-top:3px solid var(--moida-mint)!important;border-radius:9px!important;box-shadow:none!important;padding:16px!important}
+html body .dashboard-cards .dashboard-live-summary>div>div:nth-child(2)>span:first-child{color:var(--moida-navy)!important}
+html body .dashboard-cards .dashboard-grid{gap:12px!important}
+html body .dashboard-cards .dashboard-grid>div,html body .dashboard-shorts-link{border:1px solid var(--moida-border)!important;border-radius:9px!important;box-shadow:none!important;padding:16px!important}
+html body .dashboard-cards h2{color:var(--moida-navy)}
+html body .dashboard-cards .dashboard-brief h2{color:#fff}
+/* Workspaces and messaging share the same compact header and card treatment. */
+html body .mo-heading h1{font-size:24px!important;color:var(--moida-navy)}
+html body :is(.mo-office .mo-selection,.mo-office .mo-summary,.office-tool-head,.secretary-chat-head){border-color:var(--moida-border)!important}
+html body .mo-office .mo-core-body>.mo-primary{min-height:36px}
+html body .mo-office .mo-tabs{background:#e7eef1;border-radius:8px;margin-bottom:16px}
+html body .mo-office .mo-tabs button[aria-selected=true]{background:#fff!important;color:var(--moida-teal)!important}
+.office-tool-head{padding:16px!important}.office-tool-eyebrow{color:var(--moida-teal)}
+html body #solapiMessaging{padding:0;max-width:1240px}
+html body #solapiMessaging>.sms-top{padding:16px 18px;border-radius:10px;border-color:var(--moida-border)}
+html body #solapiMessaging>.sms-top::before{background:var(--moida-mint)}
+html body #solapiMessaging #smsConnection{background:var(--moida-soft);color:var(--moida-teal)}
+.sms-card,#smsSettings{padding:16px!important}.automation-instance{padding:18px!important}
+html body :is(.dc-card,.workspace-automation-card,.workspace-inbox-item,.ai-management-card,.call-record-card){border-color:var(--moida-border)!important;border-radius:9px!important;box-shadow:none!important}
+html body :is(.dc-connect,.workspace-primary,.call-primary){background:var(--moida-navy)!important;color:#fff!important}
+html body .page :is(button[style*="background:#1d3a6e"],button[style*="background:#16305c"],button[style*="background:#254d94"]){background:var(--moida-navy)!important;border-radius:7px!important;color:#fff!important;box-shadow:none!important}
+html body .page .pg>div[style*="background:#fff"]{border-color:var(--moida-border)!important;border-radius:10px!important;box-shadow:none!important}
+html body :is(.dashboard-live-summary>div>div:first-child>div,.dashboard-live-summary>div>div:first-child>span:last-child){background:var(--moida-soft)!important;color:var(--moida-teal)!important}
+/* Embedded CRM, announcements and calendar. Semantic status/category colors are retained. */
+html body .logo-mark{background:var(--moida-navy);box-shadow:none}
+html body .table-card{border-color:var(--moida-border)}
+html body :is(table thead th,.table-head){background:#edf3f5;color:#526b80;font-size:11px;font-weight:700}
+html body tbody tr:hover{background:#f0faf6}
+html body :is(.btn.primary,.btn.save){box-shadow:none}
+html body :is(.sidebar .nav-item.active,.tab.active){background:var(--moida-soft);color:var(--moida-teal)}
+html body .content>nav{background:var(--moida-navy)!important}
+html body .views #add{background:var(--moida-mint)!important;color:var(--moida-navy)!important;border-color:var(--moida-mint)!important}
+html body .agenda-day{background:#edf5f4!important;border-left-color:var(--moida-mint)!important;color:var(--moida-navy)!important}
+html body .views button[aria-pressed=true]{background:#ffffff!important;color:var(--moida-navy)!important}
+html body :is(.feed-filter[aria-pressed=true],.feed-filters button[aria-pressed=true]){background:var(--moida-soft)!important;color:var(--moida-teal)!important;border-color:#abdcd0!important}
+@media(min-width:761px){html body #appContent>.page[data-page="dashboard"] .dashboard-brief{padding-right:28%!important}.dashboard-brief>button{max-width:320px}}
+@media(max-width:760px){
+ html body #appHeader{height:52px!important;min-height:52px}
+ #appContent:not(:has(>.page[data-page="schedule"][style*="block"])):not(:has(>.page[data-page="crm"][style*="block"])){padding:12px!important}
+ html body .dashboard-cards .dashboard-brief{padding:18px!important}
+ html body .dashboard-tiles button{padding:14px;min-height:104px}
+ html body .dashboard-cards .dashboard-live-summary>div{padding:12px!important}
+ .dashboard-bottom-nav{background:#fff;border-radius:8px}.dashboard-bottom-nav button[aria-current]{color:var(--moida-teal)}
+}
+@media(prefers-reduced-motion:reduce){.dashboard-tiles button{transform:none!important;transition:none!important}}
