@@ -331,7 +331,10 @@ main:has(#appContent>.page[data-page="crm"]:is([style*="display: block"],[style*
 main:has(#appContent>.page[data-page="schedule"]:is([style*="display: block"],[style*="display:block"])) #appHeader{height:52px!important;padding:0 14px!important}
 .page[data-page="schedule"]{flex:1;min-height:0;height:100%}
 .page[data-page="schedule"]>iframe{height:100%!important;border:0!important;border-radius:0!important}
-</style><style>.workspace-launchers{grid-template-columns:repeat(2,minmax(0,1fr))!important}.workspace-bottom{grid-template-columns:repeat(3,minmax(0,1fr))!important}</style></head>
+</style><style>.workspace-launchers{grid-template-columns:repeat(2,minmax(0,1fr))!important}.workspace-bottom{grid-template-columns:repeat(3,minmax(0,1fr))!important}</style><link rel="stylesheet" href="call-records.css?v=5">
+<link rel="stylesheet" href="news-shorts.css?v=20261012-studio1">
+<link rel="stylesheet" href="moida-brand.css?v=3">
+</head>
 <body class="app-loading">
 <div style="display:flex;height:100vh;width:100%;font-family:'Pretendard',sans-serif;color:#1a2330;background:#f5f6f8;overflow:hidden">
 
@@ -675,7 +678,7 @@ main:has(#appContent>.page[data-page="schedule"]:is([style*="display: block"],[s
         </div>
       </div>
 
-      <div class="page" data-page="crm"><iframe src="members.html?embed=1&v=brand3" title="조직관리" style="display:block;border:1px solid #e9ecf1;border-radius:12px;background:#fff;width:100%;height:calc(100vh - 130px)"></iframe></div>
+      <div class="page" data-page="crm"><iframe src="members.html?embed=1&v=brand4" title="조직관리" style="display:block;border:1px solid #e9ecf1;border-radius:12px;background:#fff;width:100%;height:calc(100vh - 130px)"></iframe></div>
 
       <div class="page" data-page="minwon">
       <div class="pg" style="max-width:1320px;margin:0 auto">
@@ -697,7 +700,7 @@ main:has(#appContent>.page[data-page="schedule"]:is([style*="display: block"],[s
       <div class="page" data-page="automations"><div class="pg"><div id="workspaceAutomations"></div></div></div>
       <div class="page" data-page="chats"><div class="pg"><div id="workspaceChats"></div></div></div>
       <div class="page" data-page="messaging"><div id="solapiMessaging"></div></div>
-      <div class="page" data-page="schedule"><iframe src="moida-schedule.html?v=brand3" title="일정·행사" style="display:block;border:1px solid #e9ecf1;border-radius:12px;background:#fff;width:100%;height:calc(100dvh - 108px)"></iframe></div>
+      <div class="page" data-page="schedule"><iframe src="moida-schedule.html?v=brand4" title="일정·행사" style="display:block;border:1px solid #e9ecf1;border-radius:12px;background:#fff;width:100%;height:calc(100dvh - 108px)"></iframe></div>
 
       <div class="page" data-page="pr">
       <div class="pg" style="max-width:1320px;margin:0 auto">
@@ -739,9 +742,9 @@ main:has(#appContent>.page[data-page="schedule"]:is([style*="display: block"],[s
       </div>
 
       <div class="page" data-page="shorts"><div id="newsShortsPage"></div></div>
-<div class="page" data-page="news"><iframe src="news.html?embed=1&v=brand3" title="뉴스" style="display:block;border:1px solid #e9ecf1;border-radius:12px;background:#fff;width:100%;height:calc(100vh - 130px)"></iframe></div>
+<div class="page" data-page="news"><iframe src="news.html?embed=1&v=brand4" title="뉴스" style="display:block;border:1px solid #e9ecf1;border-radius:12px;background:#fff;width:100%;height:calc(100vh - 130px)"></iframe></div>
 
-      <div class="page" data-page="notices"><iframe src="notices.html?embed=1&v=brand3" title="공지사항" style="display:block;border:1px solid #e9ecf1;border-radius:12px;background:#fff;width:100%;height:calc(100vh - 130px)"></iframe></div>
+      <div class="page" data-page="notices"><iframe src="notices.html?embed=1&v=brand4" title="공지사항" style="display:block;border:1px solid #e9ecf1;border-radius:12px;background:#fff;width:100%;height:calc(100vh - 130px)"></iframe></div>
 
       <div class="page" data-page="admin">
       <div class="pg" style="max-width:1100px;margin:0 auto">
@@ -868,7 +871,7 @@ main:has(#appContent>.page[data-page="schedule"]:is([style*="display: block"],[s
 <script src="secretary-mobile.js?v=2"></script>
 <script src="office-roles.js?v=2"></script>
 <script src="office-location-client.js?v=2"></script>
-<link rel="stylesheet" href="call-records.css?v=5"><link rel="stylesheet" href="news-shorts.css?v=20261012-studio1"><script src="news-shorts-client.js?v=20261012-studio1"></script>
+<script src="news-shorts-client.js?v=20261012-studio1"></script>
 <script src="call-records-client.js?v=9"></script><script src="dashboard-calls.js?v=1"></script>
 <script src="office-google-map.js?v=1"></script>
 <script src="office-travel-client.js?v=4"></script>
@@ -4417,7 +4420,7 @@ var input=document.getElementById('aiInput');if(input)input.placeholder='비서�
 <script src="workspace-connections.js?v=mcp2"></script><script src="workspace-automations.js?v=automation-list2"></script><script src="moida-workspace-redesign.js?v=dashboard-label1"></script><script src="moida-knowledge.js?v=builtin-tools1"></script><script src="dashboard-cards.js?v=restore-dashboard1"></script><script src="crm-contact-reader.js?v=1"></script><script src="office-staff-catalog.js?v=weekly-events1"></script><script src="moida-core-team.js?v=staff-agents1"></script><script src="naver-mail-client.js?v=2"></script>
 <script src="weekly-events-client.js?v=4"></script>
 <script src="weekly-mail-client.js?v=3"></script><script src="office-workspace.js?v=staff-compact2"></script>
-<script src="moa-chat.js?v=no-staff1"></script><script src="moa-activity.js?v=conversation-runtime1"></script><script type="module" src="sidebar-order-cloud.js?v=1"></script><script type="module" src="dashboard-schedule.js?v=1"></script><link rel="stylesheet" href="moida-brand.css?v=3">
+<script src="moa-chat.js?v=no-staff1"></script><script src="moa-activity.js?v=conversation-runtime1"></script><script type="module" src="sidebar-order-cloud.js?v=1"></script><script type="module" src="dashboard-schedule.js?v=1"></script>
 <script src="moida-brand.js?v=3"></script>
 </body>
 
