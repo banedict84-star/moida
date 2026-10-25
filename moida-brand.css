@@ -76,6 +76,17 @@ html body :is(.dc-connect,.workspace-primary,.call-primary){background:var(--moi
 html body .page :is(button[style*="background:#1d3a6e"],button[style*="background:#16305c"],button[style*="background:#254d94"]){background:var(--moida-navy)!important;border-radius:7px!important;color:#fff!important;box-shadow:none!important}
 html body .page .pg>div[style*="background:#fff"]{border-color:var(--moida-border)!important;border-radius:10px!important;box-shadow:none!important}
 html body :is(.dashboard-live-summary>div>div:first-child>div,.dashboard-live-summary>div>div:first-child>span:last-child){background:var(--moida-soft)!important;color:var(--moida-teal)!important}
+html body :is(#moidaAppConnections,#callRecordsPage){max-width:1240px;padding:0 0 24px}
+html body :is(.app-connect-card,.apps-dialog,.apps-builtins,.call-card,.call-list,.call-metric,.ai-management .ai-section,.ai-management .ai-model,.ns-card){border:1px solid var(--moida-border)!important;border-radius:10px!important;box-shadow:none!important}
+html body .app-connect-card{padding:18px}
+html body .apps-heading h1{font-size:26px;color:var(--moida-navy)}
+html body :is(#moidaAppConnections .apps-primary,.apps-dialog .apps-primary,.ns-primary){background:var(--moida-navy)!important;border-color:var(--moida-navy)!important;color:#fff!important}
+html body :is(.apps-filters,.apps-categories) button[aria-pressed=true],html body #callRecordsPage .call-tabs button.active{background:var(--moida-soft)!important;color:var(--moida-teal)!important}
+html body #callRecordsPage .call-hero{background:var(--moida-navy);padding:20px 24px;border-radius:10px}
+html body #callRecordsPage :is(.call-card,.call-list){padding:18px}
+html body #callRecordsPage .call-row.selected{border-color:#80cabb;background:#f0faf6}
+html body .ai-management .ai-section{padding:18px}
+html body .ai-management .ai-kpi:first-child{background:var(--moida-navy);border-color:var(--moida-navy)}
 /* Embedded CRM, announcements and calendar. Semantic status/category colors are retained. */
 html body .logo-mark{background:var(--moida-navy);box-shadow:none}
 html body .table-card{border-color:var(--moida-border)}

@@ -8,6 +8,6 @@
 <aside class="day-panel"><div class="panel-head"><small id="weekday"></small><h2 id="selectedDate"></h2><span id="dayCount"></span></div><div id="dayEvents"></div><button id="addDay">＋ 이 날짜에 일정 추가</button></aside></div>
 </main>
 <dialog id="editor"><form id="form"><div class="editor-head"><h2 id="editorTitle">일정 등록</h2><button type="button" id="close" aria-label="닫기">×</button></div><label>제목<input name="title" required maxlength="300" placeholder="일정 제목을 입력하세요"></label><div class="pair"><label>카테고리<select name="category"></select></label><label class="check"><input name="allDay" type="checkbox"> 종일</label></div><div class="pair"><label>시작<input name="start" type="datetime-local" required></label><label>종료<input name="end" type="datetime-local" required></label></div><label>장소<input name="location" maxlength="1000" placeholder="장소 또는 주소"></label><label>참석자<input name="attendees" maxlength="1000" placeholder="이름을 쉼표로 구분해 주세요"></label><label>내용<textarea name="body" rows="4" maxlength="8000" placeholder="준비사항과 메모를 남겨 주세요"></textarea></label><p id="author"></p><p id="conflict"></p><p id="formStatus" role="status"></p><footer><button id="remove" type="button" class="danger" hidden>일정 삭제</button><button id="cancel" type="button">취소</button><button id="save" class="primary" type="submit">모이다에 저장</button></footer></form></dialog>
-<script type="module" src="moida-schedule.js?v=8"></script><link rel="stylesheet" href="moida-brand.css?v=1">
-<script src="moida-brand.js?v=1"></script>
+<script type="module" src="moida-schedule.js?v=8"></script><link rel="stylesheet" href="moida-brand.css?v=2">
+<script src="moida-brand.js?v=2"></script>
 </body></html>

@@ -1,7 +1,7 @@
 /* Adapt existing controls to Tabler without changing routes, data or handlers. */
 (() => {
- const primary='.mo-primary,.sms-primary,.btn.primary,.btn.save,.mbtn.primary,.mbtn2.primary,.dc-connect,.workspace-primary';
- const buttons=primary+',.mo-outline,.mo-button,.workspace-button,.automation-actions button,.automation-filters button,.office-tool-panel button,#solapiMessaging button,.crm-sheet-actions button,.dc-dialog button';
+ const primary='.mo-primary,.sms-primary,.btn.primary,.btn.save,.mbtn.primary,.mbtn2.primary,.dc-connect,.workspace-primary,.apps-primary,.ns-primary';
+ const buttons=primary+',.mo-outline,.mo-button,.workspace-button,.automation-actions button,.automation-filters button,.office-tool-panel button,#solapiMessaging button,.crm-sheet-actions button,.dc-dialog button,.apps-secondary,.apps-dialog button,.ai-controls button';
  function enhance(root){
   for(const el of root.querySelectorAll(buttons)){
    if(el.dataset.moidaStyled)continue;
