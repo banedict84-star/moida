@@ -10,13 +10,13 @@ export function createScheduleFeed({host,model,canWrite,allEvents,events,categor
  const detail=el('dialog',null,'schedule-detail'),box=el('div',null,'detail-inner');detail.append(box);document.body.append(detail);
  detail.addEventListener('cancel',e=>{if(pending)e.preventDefault();else selected=null;});
  async function action(e,kind,value){
-  if(pending||!canWrite())return false;pending=true;writeError='';refreshDetail();
+  if(pending||!canWrite()||e.source==='google')return false;pending=true;writeError='';refreshDetail();
   try{await model().saveNativeSchedule({id:e.id},{action:kind,value});changed();return true;}
   catch(error){writeError=error.message||'저장하지 못했습니다. 다시 시도해 주세요.';return false;}
   finally{pending=false;refreshDetail();render();}
  }
- function detailButton(text,fn,cls){const b=button(text,fn,cls);b.disabled=pending||!canWrite();return b;}
- function open(e){selected=e.id;draft='';commentId='';writeError='';refreshDetail();detail.showModal();if(unread(e)&&canWrite())action(e,'read',null);}
+ function detailButton(text,fn,cls){const b=button(text,fn,cls);b.disabled=pending||!canWrite()||allEvents().find(e=>e.id===selected)?.source==='google';return b;}
+ function open(e){selected=e.id;draft='';commentId='';writeError='';refreshDetail();detail.showModal();if(e.source!=='google'&&unread(e)&&canWrite())action(e,'read',null);}
  function refreshDetail(){
   if(!selected)return;const e=allEvents().find(x=>x.id===selected);if(!e){if(detail.open)detail.close();selected=null;return;}
   const textarea=box.querySelector('textarea');if(textarea)draft=textarea.value;const focused=textarea===document.activeElement;
@@ -26,7 +26,9 @@ export function createScheduleFeed({host,model,canWrite,allEvents,events,categor
   const title=el('div',null,'detail-title');title.style.setProperty('--color',category(e)[2]);title.append(el('span',category(e)[1],'feed-tag'),el('h2',e.title),el('p',when(e)));box.append(title);
   if(e._location){const place=el('p','장소 · '+e._location,'detail-place'),map=el('a','지도 보기 ↗');map.href='https://map.kakao.com/link/search/'+encodeURIComponent(e._location);map.target='_blank';map.rel='noopener noreferrer';place.append(map);box.append(place);}
   if(e.attendees)box.append(el('p','참석 대상 · '+e.attendees,'detail-place'));
+  if(e.source==='google'){const link=el('a','구글 캘린더에서 원본 확인·수정 ↗');link.href='google-schedule.html';link.className='google-original';box.append(link);}
   if(e._body)box.append(el('p',e._body,'detail-body'));
+  if(e.source==='google'){box.append(el('p','구글에서 불러온 일정입니다. 내용 변경은 위 원본 보기에서 할 수 있습니다.','people-hint'));return;}
   const responses=Object.values(e.responses||{}),counts=el('div',null,'response-counts');for(const [status,label] of [['attending','참석'],['absent','불참'],['undecided','미정']])counts.append(el('span',label+' '+responses.filter(r=>r.status===status).length));box.append(counts);
   const choices=el('div',null,'response-actions');for(const [status,label] of [['attending','참석할게요'],['absent','참석 어려워요'],['undecided','아직 미정']]){const b=detailButton(label,()=>action(e,'rsvp',status));b.setAttribute('aria-pressed',String(e.responses?.[uid()]?.status===status));choices.append(b);}box.append(choices);
   if(responses.length)box.append(el('p',responses.map(r=>r.name+' · '+({attending:'참석',absent:'불참',undecided:'미정'}[r.status]||'미정')).join(' / '),'response-names'));
@@ -39,7 +41,7 @@ export function createScheduleFeed({host,model,canWrite,allEvents,events,categor
   const card=el('article',null,'feed-card');card.style.setProperty('--color',category(e)[2]);
   const head=el('div',null,'feed-card-head'),meta=el('div',null,'post-author');meta.append(el('span',(e.author||'의원실').slice(0,1),'author-avatar'),el('div',(e.author||'의원실')+' · '+format(e.created)));head.append(meta);if(e.pinned)head.append(el('span','상단 고정','feed-tag'));if(unread(e))head.append(el('span','새 소식','unread-badge'));card.append(head);
   const body=button('',()=>open(e),'feed-open');body.append(el('span',category(e)[1],'feed-tag'),el('h3',e.title),el('p',when(e),'feed-time'));if(e._location)body.append(el('p','장소 · '+e._location));if(!compact&&e._body)body.append(el('p',e._body,'feed-body'));card.append(body);
-  const foot=el('div',null,'feed-card-foot');foot.append(button('댓글 '+(e.comments||[]).length,()=>open(e)),el('span','참석 '+Object.values(e.responses||{}).filter(r=>r.status==='attending').length),button(e.bookmarkedBy?.[uid()]?'★ 북마크':'☆ 북마크',()=>action(e,'bookmark',!e.bookmarkedBy?.[uid()])));foot.lastChild.disabled=pending||!canWrite();card.append(foot);return card;
+  const foot=el('div',null,'feed-card-foot');foot.append(button('댓글 '+(e.comments||[]).length,()=>open(e)),el('span','참석 '+Object.values(e.responses||{}).filter(r=>r.status==='attending').length),button(e.bookmarkedBy?.[uid()]?'★ 북마크':'☆ 북마크',()=>action(e,'bookmark',!e.bookmarkedBy?.[uid()])));foot.lastChild.disabled=pending||!canWrite()||e.source==='google';card.append(foot);return card;
  }
  function render(){
   let peoplePanel=document.querySelector('.feed-people');if(!peoplePanel){peoplePanel=el('section',null,'feed-people');document.querySelector('.day-panel').append(peoplePanel);}
