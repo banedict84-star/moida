@@ -8,7 +8,7 @@ export function validateEvent(e){
  if(!categories.some(c=>c[0]===e.category))throw Error('카테고리를 선택해 주세요.');
  return e;
 }
-export function updateSchedule(data,event,{remove=false,create=false,uid='',name=''}={}){
+export function updateSchedule(data,event,{remove=false,create=false,uid='',name='',action='',value=null}={}){
  if(!event?.id||typeof event.id!=='string')throw Error('일정 식별자를 확인하지 못했습니다. 새로고침해 주세요.');
  const parse=v=>typeof v==='string'?JSON.parse(v):v||[];
  const events=parse(data.events),deleted=parse(data.deletedEventIds);
@@ -17,6 +17,24 @@ export function updateSchedule(data,event,{remove=false,create=false,uid='',name
  if(old?.source==='flow'||event.source==='flow')throw Error('연결된 원본 일정은 별도 보기에서 확인해 주세요.');
  if(!create&&!old)throw Error('이 일정은 이미 삭제되었습니다. 새로고침해 주세요.');
  if(create&&old)throw Error('이미 등록된 일정입니다. 새로고침해 주세요.');
+ if(action){
+  const next={...old};
+  if(action==='comment'){
+   if(!value?.id||typeof value.text!=='string'||!value.text.trim()||value.text.length>3000)throw Error('댓글을 1~3000자로 입력해 주세요.');
+   const comments=Array.isArray(old.comments)?old.comments:[];
+   if(comments.length>=200)throw Error('이 일정의 댓글은 최대 200개까지 등록할 수 있습니다.');
+   next.comments=comments.some(c=>c.id===value.id)?comments:[...comments,{id:value.id,text:value.text.trim(),uid,name,createdAt:Date.now()}];
+   next.updatedAt=Date.now();
+   next.readBy={...old.readBy,[uid]:next.updatedAt};
+  }else if(action==='rsvp'){
+   if(!['attending','absent','undecided'].includes(value))throw Error('참석 상태를 확인해 주세요.');
+   next.responses={...old.responses,[uid]:{name,status:value,updatedAt:Date.now()}};
+  }else if(action==='pin')next.pinned=!!value;
+  else if(action==='bookmark')next.bookmarkedBy={...old.bookmarkedBy,[uid]:!!value};
+  else if(action==='read')next.readBy={...old.readBy,[uid]:Date.now()};
+  else throw Error('지원하지 않는 일정 동작입니다.');
+  return {events:events.map(e=>e.id===old.id?next:e),deletedEventIds:deleted};
+ }
  if(!remove)validateEvent(event);
  const next=events.filter(e=>e.id!==event.id);
  if(!remove)next.push({...old,...event,source:'moida',author:old?.author||name,authorUid:old?.authorUid||uid,created:old?.created||new Date().toISOString(),updatedAt:Date.now()});

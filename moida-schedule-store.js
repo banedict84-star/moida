@@ -1,4 +1,4 @@
-import {updateSchedule} from './moida-schedule-model.js';
+import {updateSchedule} from './moida-schedule-model.js?v=3';
 export function nativeScheduleStore({model,auth,owner,readonly,transaction,reference}){
  return async function(event,options={}){
   const uid=auth.currentUser?.uid;

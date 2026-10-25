@@ -1,7 +1,9 @@
+import {createScheduleFeed} from './moida-schedule-feed.js?v=3';
 import {koreaDay,shiftDay,monthGrid} from './google-schedule-dates.js';
-import {categories,validateEvent} from './moida-schedule-model.js';
+import {categories,validateEvent} from './moida-schedule-model.js?v=3';
 const $=id=>document.getElementById(id),form=$('form'),f=form.elements;
 let M,selected=koreaDay(),view='month',events=[],editing=null,busy=false,ready=false,newId='';
+const feed=createScheduleFeed({host:$('feed'),model:()=>M,canWrite,allEvents:()=>events.filter(e=>e.source!=='flow'&&!(M?.deletedEventIds||[]).includes(e.id)),events:filtered,category,openEditor,register:()=>openEditor(),changed:()=>{events=M.events||[];render();}});
 const visibleCategories=new Set(categories.map(c=>c[0]));
 function node(tag,text,cls){const e=document.createElement(tag);if(text!=null)e.textContent=text;if(cls)e.className=cls;return e;}
 function label(day,options){return new Intl.DateTimeFormat('ko-KR',{timeZone:'Asia/Seoul',...options}).format(new Date(day+'T12:00:00+09:00'));}
@@ -12,19 +14,19 @@ function canWrite(){return ready&&!!M?.saveNativeSchedule&&!parent.MOIDA_READONL
 function filtered(){const q=$('search').value.trim().toLowerCase(),mine=document.querySelector('[name=scope]:checked').value==='mine';return events.filter(e=>e.source!=='flow'&&!(M?.deletedEventIds||[]).includes(e.id)&&visibleCategories.has(category(e)[0])&&(!mine||e.authorUid===own())&&(!q||[e.title,e._location,e.attendees,e._body].join(' ').toLowerCase().includes(q))).sort((a,b)=>(a.date+(a.time||'')).localeCompare(b.date+(b.time||'')));}
 function forDay(d){return filtered().filter(e=>onDay(e,d));}
 function time(e){return e.allDay||!e.time?'종일':e.time+(e.endTime?' – '+e.endTime:'');}
-function eventButton(e){const b=node('button',null,'event');b.type='button';b.style.setProperty('--color',category(e)[2]);b.append(node('small',time(e)+' · '+category(e)[1]),node('strong',e.title),node('p',e._location||'장소 미등록'));if(e.attendees)b.append(node('p','참석 · '+e.attendees));if((e.endDate||e.date)!==e.date)b.append(node('p',e.date+' ~ '+e.endDate));b.onclick=()=>openEditor(e);return b;}
+function eventButton(e){const b=node('button',null,'event');b.type='button';b.style.setProperty('--color',category(e)[2]);b.append(node('small',time(e)+' · '+category(e)[1]),node('strong',e.title),node('p',e._location||'장소 미등록'));if(e.attendees)b.append(node('p','참석 · '+e.attendees));if((e.endDate||e.date)!==e.date)b.append(node('p',e.date+' ~ '+e.endDate));b.onclick=()=>feed.open(e);return b;}
 function renderDay(){const list=forDay(selected);$('weekday').textContent=label(selected,{weekday:'long'})+(selected===koreaDay()?' · 오늘':'');$('selectedDate').textContent=label(selected,{month:'long',day:'numeric'});$('dayCount').textContent=list.length+'건';$('dayEvents').replaceChildren(...list.map(eventButton));if(!list.length)$('dayEvents').append(node('p',ready?'등록된 일정이 없습니다.':'일정을 불러오는 중…','empty'));$('add').disabled=$('addDay').disabled=!canWrite();}
 function weekDays(){const offset=new Date(selected+'T12:00:00Z').getUTCDay(),start=shiftDay(selected,-offset);return Array.from({length:7},(_,i)=>shiftDay(start,i));}
 function render(){
- const days=view==='week'?weekDays():monthGrid(selected);$('period').textContent=label(selected,{year:'numeric',month:'long'});$('calendar').hidden=view==='list';$('list').hidden=view!=='list';$('calendar').style.setProperty('--weeks',String(days.length/7));$('calendar').classList.toggle('week-mode',view==='week');$('calendar').replaceChildren();
+ const days=view==='week'?weekDays():monthGrid(selected);$('period').textContent=view==='feed'?'일정 피드':label(selected,{year:'numeric',month:'long'});for(const id of ['prev','next','today'])$(id).hidden=view==='feed';$('calendar').hidden=view==='list'||view==='feed';$('list').hidden=view!=='list';$('feed').hidden=view!=='feed';document.querySelector('.workspace').classList.toggle('feed-mode',view==='feed');$('calendar').style.setProperty('--weeks',String(days.length/7));$('calendar').classList.toggle('week-mode',view==='week');$('calendar').replaceChildren();
  document.querySelectorAll('[data-view]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.view===view)));
- if(view==='list'){
+ if(view==='feed'){feed.render();}else if(view==='list'){
   $('list').replaceChildren();const month=selected.slice(0,7),last=shiftDay(monthGrid(selected).findLast(d=>d.slice(0,7)===month),0);const list=filtered().filter(e=>e.date<=last&&(e.endDate||e.date)>=month+'-01');let group='';for(const e of list){if(e.date!==group){group=e.date;$('list').append(node('h3',label(group,{month:'long',day:'numeric',weekday:'long'})));}$('list').append(eventButton(e));}if(!list.length)$('list').append(node('p','이번 달에 표시할 일정이 없습니다.','empty'));
  }else{
   for(const d of ['일','월','화','수','목','금','토'])$('calendar').append(node('div',d,'week-label'));
   days.forEach((d,i)=>{const list=forDay(d),b=node('button',null,'day');b.type='button';b.dataset.date=d;b.classList.toggle('selected',d===selected);b.classList.toggle('outside',d.slice(0,7)!==selected.slice(0,7));b.classList.toggle('today',d===koreaDay());b.classList.toggle('sunday',i%7===0);b.classList.toggle('saturday',i%7===6);b.setAttribute('aria-pressed',String(d===selected));b.setAttribute('aria-label',label(d,{month:'long',day:'numeric',weekday:'long'})+', 일정 '+list.length+'건');b.append(node('span',view==='week'?d.slice(5).replace('-','/') :String(Number(d.slice(8))),'number'));const max=view==='week'?12:3;for(const e of list.slice(0,max)){const c=node('span',(e.allDay||!e.time?'':e.time+' ')+e.title,'chip');c.style.setProperty('--color',category(e)[2]);b.append(c);}if(list.length>max)b.append(node('span','+'+(list.length-max)+'개 더','more'));b.onclick=()=>{selected=d;render();};b.ondblclick=()=>{selected=d;openEditor();};b.onkeydown=ev=>{const n={ArrowLeft:-1,ArrowRight:1,ArrowUp:-7,ArrowDown:7}[ev.key];if(n){ev.preventDefault();selected=shiftDay(d,n);render();$('calendar').querySelector('[data-date="'+selected+'"]')?.focus();}};$('calendar').append(b);});
  }
- $('count').textContent='전체 '+filtered().length+'건';renderDay();
+ $('count').textContent='전체 '+filtered().length+'건';if(view!=='feed')feed.refreshDetail();renderDay();
 }
 function setTypes(){for(const name of ['start','end']){const v=f[name].value;f[name].type=f.allDay.checked?'date':'datetime-local';f[name].value=f.allDay.checked?v.slice(0,10):v.slice(0,10)+'T'+(name==='start'?'09:00':'10:00');}}
 function openEditor(e){
