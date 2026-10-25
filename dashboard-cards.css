@@ -26,3 +26,5 @@
  .dashboard-bottom-nav{display:flex;justify-content:space-around;gap:4px;border-top:1px solid #e4ebf2;padding:12px 0 max(8px,env(safe-area-inset-bottom));background:#f5f7fb}
  .dashboard-bottom-nav button{border:0;background:none;color:#718095;font:inherit;font-size:12px;padding:12px 8px;min-height:44px;cursor:pointer}.dashboard-bottom-nav button[aria-current]{color:#184c66;font-weight:700}
 }
+
+.dashboard-tiles button:disabled{opacity:.5;cursor:default;box-shadow:none}.dashboard-cards .dashboard-brief #dashBrief{line-height:1.8}.dashboard-cards .dashboard-brief #dashBrief a{color:#c5f4ed}
