@@ -325,7 +325,12 @@ main:has(#appContent>.page[data-page="crm"]:is([style*="display: block"],[style*
 #crmHeaderManager button:focus-visible{outline:2px solid #38d6cd;outline-offset:2px}
 </style>
 <link rel="stylesheet" href="sidebar-order.css?v=1">
-</head>
+<style>
+#appContent:has(>.page[data-page="schedule"]:is([style*="display: block"],[style*="display:block"])){padding:0!important;min-height:0;overflow:hidden!important;display:flex;flex-direction:column;background:#fff}
+main:has(#appContent>.page[data-page="schedule"]:is([style*="display: block"],[style*="display:block"])) #appHeader{height:52px!important;padding:0 14px!important}
+.page[data-page="schedule"]{flex:1;min-height:0;height:100%}
+.page[data-page="schedule"]>iframe{height:100%!important;border:0!important;border-radius:0!important}
+</style></head>
 <body class="app-loading">
 <div style="display:flex;height:100vh;width:100%;font-family:'Pretendard',sans-serif;color:#1a2330;background:#f5f6f8;overflow:hidden">
 
@@ -694,7 +699,7 @@ main:has(#appContent>.page[data-page="crm"]:is([style*="display: block"],[style*
       <div class="page" data-page="automations"><div class="pg"><div id="workspaceAutomations"></div></div></div>
       <div class="page" data-page="chats"><div class="pg"><div id="workspaceChats"></div></div></div>
       <div class="page" data-page="messaging"><div id="solapiMessaging"></div></div>
-      <div class="page" data-page="schedule"><iframe src="moida-schedule.html?v=3" title="일정·행사" style="display:block;border:1px solid #e9ecf1;border-radius:12px;background:#fff;width:100%;height:calc(100dvh - 108px)"></iframe></div>
+      <div class="page" data-page="schedule"><iframe src="moida-schedule.html?v=4" title="일정·행사" style="display:block;border:1px solid #e9ecf1;border-radius:12px;background:#fff;width:100%;height:calc(100dvh - 108px)"></iframe></div>
 
       <div class="page" data-page="pr">
       <div class="pg" style="max-width:1320px;margin:0 auto">
