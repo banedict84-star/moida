@@ -1,6 +1,22 @@
 {
-  "updated": "2026-10-24 22:40 UTC",
+  "updated": "2026-10-25 01:26 UTC",
   "items": [
+    {
+      "source": "naver",
+      "press": "newsis.com",
+      "date": "2026.10.25",
+      "title": "\"아들 빚 대신 갚아!\"…채무자 어머니 위협 40대, 벌금형",
+      "snippet": "A씨는 지난해 7월 경기 안산시 상록구 B(58·여)씨 운영의 매장을 세차례 찾아가 아들의 채무를 대신 변제할 것을 요구하며 위협한 혐의로 재판에 넘겨졌다. 그는 자신의 외사촌 아들이 고교 동창인 B씨의 아들에게 수차례...",
+      "url": "https://www.newsis.com/view/NISX20261023_0003838275"
+    },
+    {
+      "source": "naver",
+      "press": "shinailbo.co.kr",
+      "date": "2026.10.25",
+      "title": "안산시, 인테그리스에 투자유치 보조금 5억원 지원",
+      "snippet": "안산시는 지난 22일 상록구 해안로에 있는 인테그리스코리아 테크놀로지센터(KTC)에서 투자유치 보조금 5억원을 전달하고 '안산시 제1호 투자유치기업' 현판식을 개최했다고 25일 밝혔다. 이번 지원은 '안산시 투자유치...",
+      "url": "https://www.shinailbo.co.kr/news/articleView.html?idxno=5075449"
+    },
     {
       "source": "naver",
       "press": "newsway.co.kr",
@@ -16,6 +32,14 @@
       "title": "로또 1247회 1등 3매 동시 당첨 판매점은?…1등 6곳·2등 73곳 복권 명당...",
       "snippet": "경기 안산시 상록구 광덕1로 326 102호 노다지복권방: 경기 안산시 단원구 와동로 17 103호 1등 복권: 경기 시흥시 배곧4로 32-27 105호 까치복권방: 경기 시흥시 중심상가로 326 1층102 운수대통: 경기 수원시 권선구...",
       "url": "https://www.econovill.com/news/articleView.html?idxno=754709"
+    },
+    {
+      "source": "naver",
+      "press": "mydaily.co.kr",
+      "date": "2026.10.25",
+      "title": "[MD포커스] 中 투자자·동포·결제망까지…중국 접점 넓히는 국민·신한...",
+      "snippet": "지난 12일 문을 연 이 공간은 금융상담과 금융교육, 소통을 위한 다목적 공간으로 조성됐다. 중국동포 등... 신한은행은 안산·김해·독산동 외국인 중심영업점과 여러 지역의 일요영업점도 운영하며 외국인 고객을...",
+      "url": "https://www.mydaily.co.kr/page/view/2026102311200667395"
     },
     {
       "source": "naver",
@@ -240,14 +264,6 @@
       "title": "안산시, 직업소개사업 종사자 실무교육",
       "snippet": "지난 21일 안산시 상록구청 상록시민홀에서 직업소개사업 대표자와 종사자들이 직무역량 강화 교육을 듣고 있다. /안산시 안산시가 관내 유·무료 직업소개사업 대표자와 종사자 등 180여 명을 대상으로 직업소개 관련...",
       "url": "http://www.newstown.co.kr/news/articleView.html?idxno=719459"
-    },
-    {
-      "source": "google",
-      "press": "화성 투데이",
-      "date": "2026.10.23",
-      "title": "안산시 상록구 본오동 일원 `새로숲` 식재",
-      "snippet": "안산시 상록구 본오동 일원 `새로숲` 식재 화성 투데이",
-      "url": "https://news.google.com/rss/articles/CBMiREFVX3lxTE56aWE2bUNCSUZ1dElaaXZ1cDE3SVhSTFIzcFhESGliTGh5cFE5ZThJR01FNlhXZUlhdHBWZm5EeS1SNzFS?oc=5"
     },
     {
       "source": "naver",
@@ -547,6 +563,14 @@
     },
     {
       "source": "google",
+      "press": "경기헤드뉴스",
+      "date": "2026.10.23",
+      "title": "안산교육지원청, 중3 교사 대상 고교학점제 연수 운영",
+      "snippet": "안산교육지원청, 중3 교사 대상 고교학점제 연수 운영 경기헤드뉴스",
+      "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE1MNEM5eGZRbmswelVScHVwS0RDTHdrRVRYREFvdWQyMmRNNEd6amtmYVNQM3M1YmdQNmVoM250b2Nuc2k3WERLbHE2aGx4XzdUelVKd0lSaHU0aEMySklz?oc=5"
+    },
+    {
+      "source": "google",
       "press": "www.newszoom.kr",
       "date": "2026.10.23",
       "title": "안산교육지원청, 자녀의 미래를 함께 설계하는 학부모 고교학점제 설명회 운영",
@@ -560,14 +584,6 @@
       "title": "안산교육지원청, 유치원 RAS! 동시로 잇는 마음, 초등학교로 잇는 성장",
       "snippet": "안산교육지원청, 유치원 RAS! 동시로 잇는 마음, 초등학교로 잇는 성장 경기헤드뉴스",
       "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE5zOThFYXE2T3JaOFNReGRmdnpFaUlKdTA2ZGpOdmZ2Z3lhb3pOa1Q2VHZsZzFKT3pHVGN2di1tQUIxR0Vnd2VJNk1PSUpJZk9DUUxKZ1pLTWZYSzJZVEFJ?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "메트로타임즈",
-      "date": "2026.10.23",
-      "title": "안산교육지원청, 중3 교사 대상 고교학점제 연수 운영",
-      "snippet": "안산교육지원청, 중3 교사 대상 고교학점제 연수 운영 메트로타임즈",
-      "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE1oMGRCbzNEZHpxTFBlTGRwcmdYYV9QS1BkTktGVF8teXduZG1yUGstWjJTM043WWdCdWdCRzV0Z0pvaklaZzliTXJIcThxdXRIQjBOLXJ4bkE?oc=5"
     },
     {
       "source": "naver",
@@ -834,30 +850,6 @@
       "url": "https://www.fnnews.com/news/202610211542487717"
     },
     {
-      "source": "naver",
-      "press": "fnnews.com",
-      "date": "2026.10.21",
-      "title": "\"큰 집 찾기 어렵네\"…최근 5년간 중·대형 분양 비중, 세종·울산·경기...",
-      "snippet": "GS건설은 경기 안산시 상록구 성포동 옛 홈플러스 안산점 부지에서 '아르뮤제자이'를 공급할 계획이다. 아파트 984가구와 오피스텔 370실 등 총 1354가구 규모로 조성된다. 롯데건설은 이달 경기 광주시 쌍령동에서...",
-      "url": "https://www.fnnews.com/news/202610211425400813"
-    },
-    {
-      "source": "naver",
-      "press": "iminju.net",
-      "date": "2026.10.21",
-      "title": "[경기도 소식] 27일 '경기게임커넥트 2026' 개최 등",
-      "snippet": "◇경기도, 11월 새로숲에 식재 추진…훼손된 땅에 새로운 숲 조성 경기도가 안산시 상록구 본오동 일원에 조성 중인 경기지방정원 '새로숲'에 오는 11월부터 나무를 심는다고 21일 밝혔다. 새로숲은 과거 생활폐기물을...",
-      "url": "http://www.iminju.net/news/articleView.html?idxno=171194"
-    },
-    {
-      "source": "google",
-      "press": "광교신문",
-      "date": "2026.10.21",
-      "title": "안산시, 상록구 일반헤어 뷰티아카데미 교육생 15명 수료",
-      "snippet": "안산시, 상록구 일반헤어 뷰티아카데미 교육생 15명 수료 광교신문",
-      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1aSHlaMnpaNTBCX2tLR0J6QTZOYzJCVGpXR0Q0bWFTVkt4R09UVG1oX3k2djZGdWh5S0k1OWZ6akFmWHZOSnN4UzZXdHBFTDNyMnFEZVlZZjREMExnNERSTTh5ZEo3bXR3?oc=5"
-    },
-    {
       "source": "google",
       "press": "대한민국교육신문",
       "date": "2026.10.21",
@@ -970,14 +962,6 @@
       "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE44NUNKTTdTay1HZ3dRRVhwVUZ6bEFBT09ZekpYRXhyOVBOQ252RW1WcGZUaTJrRno5alowaXM0X2RTRDk4WFQyUVh2Sy13T2RHb0pzcGhocFJoNHM2TUlN?oc=5"
     },
     {
-      "source": "google",
-      "press": "안산신문",
-      "date": "2026.10.15",
-      "title": "귀국선 1호, 상록구 보노마루서 경기도 초연",
-      "snippet": "귀국선 1호, 상록구 보노마루서 경기도 초연 안산신문",
-      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE53MEpxTUJrazhXU3pEY2VheVNONG9PUDdlS3plVnp3WXJwdVVUaFdFUGg0dFVZWU9YSzVYTmtoUXJuWXpOWmxzSHlfdWVXQ0U1cGRBVERRblBUS3UxMUp1Sk5sQlZjY3c?oc=5"
-    },
-    {
       "source": "naver",
       "press": "nocutnews.co.kr",
       "date": "2026.10.15",
@@ -992,30 +976,6 @@
       "title": "경기도 첫 ‘중소기업융합대전’ 한 달 앞으로…성공 개최 기원 발대식",
       "snippet": "이번 행사에는 강환수 중소기업융합중앙회장, 강구만 중소기업융합경기연합회 중소기업융합대전 추진위원장, 경기도의회 경제노동위원회 장태환 위원장(더불어민주당·의왕2), 장윤정 부위원장(민주당·안산3) 등을...",
       "url": "https://www.kyeonggi.com/article/20261014580611"
-    },
-    {
-      "source": "google",
-      "press": "경인신문",
-      "date": "2026.10.14",
-      "title": "안산상록경찰서·상록구자율방범대, 가을 행락철 대비 상록수역 일대 민·경 합동순찰 실시",
-      "snippet": "안산상록경찰서·상록구자율방범대, 가을 행락철 대비 상록수역 일대 민·경 합동순찰 실시 경인신문",
-      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBNTjhPbWJVdXFVNzhMazlTbEhFWXVqV2FNRXl5UE9zTnJocC1fdHhBckNnZXQ0eUZEaXFZd3JhX0dNNk5WYkpsRU90NGRkb0lRLTJLU1VJX080U2piZ0ZvSUN0R0dkTHM?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "매일일보",
-      "date": "2026.10.14",
-      "title": "안산 상록구청 ‘혜안 갤러리’, 내년 전시 참여 예술인 모집",
-      "snippet": "안산 상록구청 ‘혜안 갤러리’, 내년 전시 참여 예술인 모집 매일일보",
-      "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE02bmhyVFBldmUyNHU2bE5tZ2FabXo1WWdpLW9qU0p3bEhsZmxSOGRBSzU2M3dvMEdiYW0tTTdFNjAzOTI1SnNZcFUyVU1jTjFzUy1UVkpkaUNDeEZwcVNTTXZNa24?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "안산뉴스",
-      "date": "2026.10.13",
-      "title": "상록구노인복지관 운영 ‘라온카페’ 무료 음료 나눔",
-      "snippet": "상록구노인복지관 운영 ‘라온카페’ 무료 음료 나눔 안산뉴스",
-      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9YUVNWeDV6M2ttRlNKRWVaTDV4VXNQN2lrekZPd1hyakhadk9Qb2tmY1B5dG8tX2dPZnRZOUVKdjY1aTBiSVlFQUliTzAwSTZ6QUVMLU1TY0s5U3FPNXNnTUU5RmNNSWl1NnJuSw?oc=5"
     },
     {
       "source": "google",
@@ -1155,14 +1115,6 @@
     },
     {
       "source": "google",
-      "press": "JTBC",
-      "date": "2026.09.26",
-      "title": "추석 연휴에…안산서 노모 살해한 50대 딸 검거",
-      "snippet": "추석 연휴에…안산서 노모 살해한 50대 딸 검거 JTBC",
-      "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE5FdHlrVjlsR1NhdXh5X2RCS0lFLUdXVnkxaVdiTlNjc3FPMTFwam5RUmZQaFc1WGdERFBlU1pMa0Jmb09BTzJldDRJdjhhbDFxdzlkMA?oc=5"
-    },
-    {
-      "source": "google",
       "press": "MBC 뉴스",
       "date": "2026.09.26",
       "title": "안산서 노모 살해한 50대 딸 체포‥\"범행 전 음주\" 진술",
@@ -1178,20 +1130,20 @@
       "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE8tbnZyUGhBRVc3NUtrWkU2ZmNoQWdxc3Y4UzloM0U1NEpEcU0tR0FBWW5RY0pnRGlITDFBZHBjbXVhcGI0ZjRNR0JZQUZzclpXUlpWeHljQ0c2NFE?oc=5"
     },
     {
-      "source": "google",
-      "press": "연합뉴스",
-      "date": "2026.09.26",
-      "title": "추석의 비극…안산서 노모 살해한 50대 딸 검거",
-      "snippet": "추석의 비극…안산서 노모 살해한 50대 딸 검거 연합뉴스",
-      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE5EZEFaT1paR0ZwZkhFQkZGY25xMExEd3hhTngxRmRCTnpXTTFGQzZUYVNkRlloVTNIN2Q2UE5UemdFcnZCMTZaWm5vOVBvZU84eGlEMkQwY1FOeGvSAWBBVV95cUxQLWFSX0dzSEdsUVQyR1pGS0VaV0dzR3BuXy1BQm80QkpmX191U3dheUFDVm5PTHgtb1JxYUZNSzJ5Q0hpLVh0S2pYQXJOVW01NDJ4VDlZMDk4VnBvYTc1R0E?oc=5"
-    },
-    {
       "source": "naver",
       "press": "news.tvchosun.com",
       "date": "2026.09.25",
       "title": "與 김현, 추석 물가 현장점검…\"애로사항 개선에 총력\"",
       "snippet": "이날 현장에는 김현 국회의원을 비롯해 유재수·이은미·장윤정 경기도의원, 이재복·이상우·윤오일·백승희 안산시의원과 지역 당원들이 함께했다. 이들은 청과·수산물 매장과 시장 일대를 돌며 상인과 시민들에게 명절...",
       "url": "https://news.tvchosun.com/site/data/html_dir/2026/09/25/2026092590027.html"
+    },
+    {
+      "source": "google",
+      "press": "국제뉴스",
+      "date": "2026.09.20",
+      "title": "[속보] 안산 상록구 주택서 화재 발생… \"도로 우회 당부\"",
+      "snippet": "[속보] 안산 상록구 주택서 화재 발생… \"도로 우회 당부\" 국제뉴스",
+      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE82VFR6elRiZVg3Z0ducGlfaS1hMHAzS1BTNEhkOV8wMGYzRWo3alI3Y1hNenY2dlNLd0ExZDIxNk9Fa3BGUXpEcVRPVlkwcVoydzF4RDB4Q0NmNGpydVVzeG5Ga1Fqb2JQOXdyNE5n?oc=5"
     },
     {
       "source": "naver",
@@ -1891,6 +1843,30 @@
     },
     {
       "source": "google",
+      "press": "반월신문",
+      "date": "2026.07.14",
+      "title": "안산 상록구 도금공장 화재 대응 1단계 발령 후 54분 만에 초진…인명피해 없어",
+      "snippet": "안산 상록구 도금공장 화재 대응 1단계 발령 후 54분 만에 초진…인명피해 없어 반월신문",
+      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBXVi1zZVRQbjhjaDY5UXBTTjNaUXlnRmZtbmx1ZEJqeDRDTENDNW1uTlN1czBabkhUOGV2UXc2NE44cmtkS2Z5YjF6YW1NZkdudUdhQnN3X19lc2pWaG1iajBEcFp2Qzg?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "참좋은뉴스",
+      "date": "2026.07.01",
+      "title": "폭우 예고 속 지하차도 침수 기준 ‘인천 5cm vs 안산 상록구 15cm’",
+      "snippet": "폭우 예고 속 지하차도 침수 기준 ‘인천 5cm vs 안산 상록구 15cm’ 참좋은뉴스",
+      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE56NDJ2QjZTYUFfOUFfX0tpalBVSVh4Q3drRmZQZmdVVWhfQmNwVDFmUnpsRkJrS0NpdHkyUDZhTmdkRlVHNWRHTEhiem16VkFqbHFpVm5PSk5KWFltLS1qbkkyZ0VoSGl3c25Eb24zWTJRMk0?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "데일리굿뉴스",
+      "date": "2026.06.26",
+      "title": "안산 상록구교구협의회, 6·25전쟁 76주년 연합성회 개최",
+      "snippet": "안산 상록구교구협의회, 6·25전쟁 76주년 연합성회 개최 데일리굿뉴스",
+      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9zV0JKSnBJRXl1ZUJuZjNoczlJNzI1UVdEYkVxekVIcU1HYl9WWDItcjhqNkhVSlhIeE5yRm1kX2RZSnRmYVJ5MzVUb0Q1SVotZ29vMmN1U1ZyMVpkOGRvT3U4aGNqUEstM2ZkSw?oc=5"
+    },
+    {
+      "source": "google",
       "press": "뉴스프리존",
       "date": "2026.06.04",
       "title": "[인터뷰] 장윤정 경기도의원 \"초심 잃지 않고 더 공부하는 의원 되겠다\"",
@@ -1923,6 +1899,14 @@
     },
     {
       "source": "google",
+      "press": "반월신문",
+      "date": "2026.05.27",
+      "title": "차량 1대·집기류 화재 안산 상록구 본오동 카센터 화재",
+      "snippet": "차량 1대·집기류 화재 안산 상록구 본오동 카센터 화재 반월신문",
+      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE42WEotQmM5ZHRNeVZacjByMV9yTGNsaDdvZUVnZWhUckZBSzhiMU1ycFZXQjlSSGRMdW1aYXZtQTFMLTd6T01VV0pESExhYlVUakhXNFhHOFFfNFFxNUlMRlFJN3F6RTA?oc=5"
+    },
+    {
+      "source": "google",
       "press": "KBS 뉴스",
       "date": "2026.05.26",
       "title": "경기 안산 상록구 카센터서 불…인명 피해 없어",
@@ -1939,6 +1923,14 @@
     },
     {
       "source": "google",
+      "press": "경향신문",
+      "date": "2026.05.13",
+      "title": "안산 상록구 다세대주택서 화재···1명 숨지고 3명 부상",
+      "snippet": "안산 상록구 다세대주택서 화재···1명 숨지고 3명 부상 경향신문",
+      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE94ZFJWc1liZGRLTWM0aVAxVjY5c0VSOE40bVN0RXA3QlRidXMzdVkwdFljWVIxTG5oOGNwLUtsMl9pT2NJY1VTOEh4OGRMRU02b3Bob0pwa3dSQdIBX0FVX3lxTE52SDdudTdHX3NXYVFOQkhjSnFLR2pmVW5hbmE0aEZYM3B6WXVLNGpoY09DY0xlMVpuZVEzYWIzZVFjY1h1TTYtRHFMVFdPR0RfQ05pWGVIRm5NUG16cTRN?oc=5"
+    },
+    {
+      "source": "google",
       "press": "연합뉴스",
       "date": "2026.05.13",
       "title": "안산 상록구 비닐하우스서 불…1시간 20여분 만에 진화",
@@ -1952,6 +1944,14 @@
       "title": "안산 상록구 다세대 주택서 불…1명 사망·3명 중경상",
       "snippet": "안산 상록구 다세대 주택서 불…1명 사망·3명 중경상 KBS 뉴스",
       "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE1kYlRxczl6dGRHR1JpUkhSTEY1OGdOVjRMVmZtVHAyS0NkajBLbmVsN0EyNUVsREVDREh4ZTM5a2ROTGo5SGhjZnJNaW5hVWFhVk9fMUU0M0k4d0U?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "경기일보",
+      "date": "2026.05.13",
+      "title": "안산 상록구 다세대 주택 화재…1명 사망·3명 부상",
+      "snippet": "안산 상록구 다세대 주택 화재…1명 사망·3명 부상 경기일보",
+      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE53M3hjTDY4NG44T0Q5TkNFaXJrSGZxNzdhM2h4Vjg5SzgyVEs0enRjRGNTa0NpaUxsSTBSRjdjaW42RmVabHdfVGlaakkwOTRFWnRZU0ZpTWFKZ0k?oc=5"
     },
     {
       "source": "google",
@@ -1992,6 +1992,14 @@
       "title": "장윤정 도의원 교육기획위 부위원장 선임",
       "snippet": "장윤정 도의원 교육기획위 부위원장 선임 안산뉴스",
       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE1OR3g0WmZLbHVpZXJqRVVPblJuUU8tNWZ6eEpkMUZvVTFBTUlXbHBvN25wQVpaUlRieGpXSU5yNmRRVEdPeVlsS3pBZmlweV9IRktMUUIteU03Z203R0FmX3UtVVpWWFFzWWJHdw?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "동아일보",
+      "date": "2026.04.25",
+      "title": "안산 상록구 금속 구조물 제작 공장서 불…35분 만에 완진",
+      "snippet": "안산 상록구 금속 구조물 제작 공장서 불…35분 만에 완진 동아일보",
+      "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE9aNk9telFyd253d0xfZ0IxWTgwa3VvaDc3b3ZzZEtCZnZwOVQxbTN3V201dWZNZllWTWVNT2RscWhFM3dMcWdtRm1CZE5Ca3ZmWHBGRGQxV2JfRVQ2UHZtTGVkMS1vSWJaLXdMSUp1TXNhem9PN2fSAWZBVV95cUxNekI3eFlqQTY1bURXeWpzdy1veXhkXzBVN0lIUTQxNGtsbTNZZTFYZzFXNFhDTzZFYnFkS25VSU1fRnd6MUxHTFlRRFhpSEFDY29lRjdRdUdCS0h4SlJxMUhGQk5hQkE?oc=5"
     }
   ]
 }
