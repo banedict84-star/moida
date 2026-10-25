@@ -905,7 +905,7 @@ main:has(#appContent>.page[data-page="schedule"]:is([style*="display: block"],[s
 
   /* 페이지 메타 (상단바 타이틀/서브타이틀) */
   var META = {
-    dashboard:['홈','모아와 함께하는 나의 작업 공간'],
+    dashboard:['대시보드','모아와 함께하는 나의 작업 공간'],
     secretary:['AI 비서실장','우리 팀과 함께 업무를 시작하세요'],
     knowledge:['자료·기억','우리 팀이 함께 참고하는 업무 정보와 자료'],
     connections:['도구 연결','우리 팀이 사용하는 서비스와 계정'],
@@ -4411,7 +4411,7 @@ var input=document.getElementById('aiInput');if(input)input.placeholder='비서�
 (function(){var M=window.MOIDA,client;if(!M)return;var mount=document.createElement('div');mount.hidden=true;document.body.append(mount);function apply(events){var next=(M.events||[]).filter(function(e){return e.source!=='flow';}).concat(events);if(JSON.stringify(next)===JSON.stringify(M.events))return;M.events=next;M.emit();}window.MOIDA_REFRESH_FLOW_SCHEDULE=async function(){if(!M.auth||!M.auth.currentUser)return;if(!client)client=createFlowCalendarClient({mount:mount,user:function(){return M.auth.currentUser;},apply:apply});var result=await client.refresh(true);window.MOIDA_SCHEDULE_STATUS=result&&result.ok===false?'error':'ready';if(window.__dashRefresh)window.__dashRefresh();if(result&&result.ok===false)throw Error(result.error);};M.onData(function(){if(!M.auth||!M.auth.currentUser)return;if(!client)client=createFlowCalendarClient({mount:mount,user:function(){return M.auth.currentUser;},apply:apply});if(window.MOIDA_SCHEDULE_LOADING)return;window.MOIDA_SCHEDULE_LOADING=true;client.refresh(false).then(function(result){window.MOIDA_SCHEDULE_STATUS=result&&result.ok===false?'error':'ready';}).finally(function(){window.MOIDA_SCHEDULE_LOADING=false;if(window.__dashRefresh)window.__dashRefresh();});});window.addEventListener('message',function(event){if(event.origin===location.origin&&event.data&&event.data.type==='moida:flow-events-changed')apply(event.data.events||[]);});})();
 </script>
 <script src="solapi-messaging-client.js?v=compose-left-history1"></script>
-<script src="workspace-connections.js?v=mcp2"></script><script src="workspace-automations.js?v=automation-list2"></script><script src="moida-workspace-redesign.js?v=hide-knowledge-location1"></script><script src="moida-knowledge.js?v=builtin-tools1"></script><script src="dashboard-cards.js?v=hide-knowledge1"></script><script src="crm-contact-reader.js?v=1"></script><script src="office-staff-catalog.js?v=weekly-events1"></script><script src="moida-core-team.js?v=staff-agents1"></script><script src="naver-mail-client.js?v=2"></script>
+<script src="workspace-connections.js?v=mcp2"></script><script src="workspace-automations.js?v=automation-list2"></script><script src="moida-workspace-redesign.js?v=dashboard-label1"></script><script src="moida-knowledge.js?v=builtin-tools1"></script><script src="dashboard-cards.js?v=dashboard-label1"></script><script src="crm-contact-reader.js?v=1"></script><script src="office-staff-catalog.js?v=weekly-events1"></script><script src="moida-core-team.js?v=staff-agents1"></script><script src="naver-mail-client.js?v=2"></script>
 <script src="weekly-events-client.js?v=4"></script>
 <script src="weekly-mail-client.js?v=3"></script><script src="office-workspace.js?v=staff-compact2"></script>
 <script src="moa-chat.js?v=no-staff1"></script><script src="moa-activity.js?v=conversation-runtime1"></script><script type="module" src="sidebar-order-cloud.js?v=1"></script></body>
