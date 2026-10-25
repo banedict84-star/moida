@@ -694,7 +694,7 @@ main:has(#appContent>.page[data-page="crm"]:is([style*="display: block"],[style*
       <div class="page" data-page="automations"><div class="pg"><div id="workspaceAutomations"></div></div></div>
       <div class="page" data-page="chats"><div class="pg"><div id="workspaceChats"></div></div></div>
       <div class="page" data-page="messaging"><div id="solapiMessaging"></div></div>
-      <div class="page" data-page="schedule"><iframe src="google-schedule.html?v=calendar5" title="일정·행사" style="display:block;border:1px solid #e9ecf1;border-radius:12px;background:#fff;width:100%;height:calc(100vh - 130px)"></iframe></div>
+      <div class="page" data-page="schedule"><iframe src="moida-schedule.html?v=1" title="일정·행사" style="display:block;border:1px solid #e9ecf1;border-radius:12px;background:#fff;width:100%;height:calc(100vh - 130px)"></iframe></div>
 
       <div class="page" data-page="pr">
       <div class="pg" style="max-width:1320px;margin:0 auto">
@@ -1066,7 +1066,8 @@ main:has(#appContent>.page[data-page="crm"]:is([style*="display: block"],[style*
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-import { getFirestore, doc, getDoc, setDoc, collection, query, where, getDocs, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import { getFirestore, doc, getDoc, setDoc, collection, query, where, getDocs, onSnapshot, runTransaction } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import { nativeScheduleStore } from './moida-schedule-store.js';
 
 const _app = initializeApp({apiKey:"AIzaSyAIjhvbCztHoF7YwP2IYIk2C6jCI64uFhs",authDomain:"jjj2195-1bd15.firebaseapp.com",projectId:"jjj2195-1bd15",storageBucket:"jjj2195-1bd15.firebasestorage.app",messagingSenderId:"370852437825",appId:"1:370852437825:web:b0a891d6a99b426d230bc0"});
 const _auth = getAuth(_app);
@@ -1140,6 +1141,8 @@ onAuthStateChanged(_auth, async function(user){
     if(window.MOIDA_READONLY){ return; }
     try{ await setDoc(doc(_db,'moida_users',euid), {[key]: key==='members'?await window.MOIDA_CRM_STORAGE.encode(data,{uid:euid}):JSON.stringify(data)}, {merge:true}); }catch(e){ console.warn('save fail', e); }
   };
+
+  M.saveNativeSchedule=nativeScheduleStore({model:M,auth:_auth,owner:euid,readonly:function(){return !!window.MOIDA_READONLY;},reference:doc(_db,'moida_users',euid),transaction:function(callback){return runTransaction(_db,callback);}});
 
   /* 임베드된 페이지(일정·조직관리 등)가 localStorage를 바꾸면 부모 대시보드도 즉시 동기화 */
   if(!window.__moidaStorageSync){
