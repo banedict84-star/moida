@@ -334,6 +334,7 @@ main:has(#appContent>.page[data-page="schedule"]:is([style*="display: block"],[s
 </style><style>.workspace-launchers{grid-template-columns:repeat(2,minmax(0,1fr))!important}.workspace-bottom{grid-template-columns:repeat(3,minmax(0,1fr))!important}</style><link rel="stylesheet" href="call-records.css?v=5">
 <link rel="stylesheet" href="news-shorts.css?v=20261012-studio1">
 <link rel="stylesheet" href="moida-brand.css?v=3">
+<link rel="stylesheet" href="dashboard-workdesk.css?v=1">
 </head>
 <body class="app-loading">
 <div style="display:flex;height:100vh;width:100%;font-family:'Pretendard',sans-serif;color:#1a2330;background:#f5f6f8;overflow:hidden">
@@ -1579,22 +1580,11 @@ onAuthStateChanged(_auth, async function(user){
     var monday=new Date();monday.setHours(0,0,0,0);monday.setDate(monday.getDate()-((monday.getDay()+6)%7));var sunday=new Date(monday);sunday.setDate(sunday.getDate()+6);function localKey(d){return d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate());}var first=localKey(monday),last=localKey(sunday);var week=dashboardEvents().filter(function(e){return e.date<=last&&(e.endDate||e.date)>=first;});var kw=document.getElementById("kpiWeek");if(kw){kw.dataset.loading=String(!scheduleReady);kw.textContent=scheduleReady?week.length:scheduleError?"확인 실패":"확인 중";kw.style.fontSize=scheduleReady?"30px":"14px";kw.nextElementSibling.hidden=!scheduleReady;}var meta=document.getElementById("kpiWeekMeta");if(meta)meta.textContent=scheduleReady?(monday.getMonth()+1)+"/"+monday.getDate()+" ~ "+(sunday.getMonth()+1)+"/"+sunday.getDate():"일정을 확인하고 있습니다";
   }
   function renderToday(){
-    var box = document.getElementById('dashToday'); if(!box) return;
-    var tk = todayKey(), DOW=['일','월','화','수','목','금','토'];
-    var ev = dashboardEvents().filter(function(e){ return e.date && e.date>=tk; })
-      .sort(function(a,b){ return (a.date+(a.time||'')).localeCompare(b.date+(b.time||'')); }).slice(0,4);
-    if(!ev.length){ box.innerHTML = '<div style="padding:18px 0;text-align:center;color:#9aa3b0;font-size:13px">예정된 일정이 없습니다.</div>'; return; }
-    box.innerHTML = ev.map(function(e,i){
-      var c = cat(e.cat); var last = i===ev.length-1;
-      var meta = e._location || '';
-      var d = new Date(e.date+'T00:00:00');
-      var dlabel = e.date===tk ? '오늘' : (isNaN(d)? e.date : ((d.getMonth()+1)+'/'+d.getDate()+' ('+DOW[d.getDay()]+')'));
-      return '<div style="display:flex;align-items:center;gap:12px;min-height:40px;padding:7px 0;'+(last?'':'border-bottom:1px solid #f0f2f5')+'">'
-        +'<div style="width:92px;flex-shrink:0;white-space:nowrap;font-size:12px;color:#8a94a3"><span style="font-weight:700;color:'+(e.date===tk?'#1d3a6e':'#16202e')+'">'+M.esc(dlabel)+'</span>'+(e.time?' <span>'+M.esc(e.time)+'</span>':'')+'</div>'
-        +'<div style="width:3px;height:24px;border-radius:3px;background:'+c.fg+';flex-shrink:0"></div>'
-        +'<div style="flex:1;min-width:0;display:flex;align-items:center;gap:7px;white-space:nowrap;overflow:hidden"><span style="font-size:13.5px;font-weight:600;overflow:hidden;text-overflow:ellipsis">'+M.esc(e.title||'일정')+'</span>'+(meta?'<span style="font-size:12px;color:#8a94a3;overflow:hidden;text-overflow:ellipsis">· '+M.esc(meta)+'</span>':'')+'</div>'
-        +'<span style="font-size:11px;font-weight:600;color:'+c.fg+';background:'+c.bg+';padding:3px 9px;border-radius:6px;height:fit-content">'+M.esc(e.cat||'의정')+'</span></div>';
-    }).join('');
+    var box=document.getElementById('dashToday');if(!box)return;
+    var tk=todayKey(),state=window.MOIDA_DASHBOARD_SCHEDULE_STATUS,onlyToday=window.MOIDA_DASHBOARD_RANGE==='today';
+    var ev=dashboardEvents().filter(function(e){return e.date&&(e.endDate||e.date)>=tk&&(!onlyToday||e.date<=tk);}).sort(function(a,b){return (a.date+(a.time||'')).localeCompare(b.date+(b.time||''));}).slice(0,4);
+    if(!ev.length){box.innerHTML='<div class="desk-agenda-empty"><strong>'+(state==='error'?'일정을 확인하지 못했습니다':state!=='ready'?'일정을 불러오고 있습니다':onlyToday?'오늘은 예정된 일정이 없습니다':'다가오는 일정이 없습니다')+'</strong>'+(state==='error'?'일정 화면에서 연결 상태를 확인해 주세요.':state!=='ready'?'연결된 캘린더를 확인하고 있습니다.':'새 일정을 등록하거나 전체 캘린더를 확인해 보세요.')+'<br><button class="btn btn-sm" data-go="schedule">캘린더 열기 ↗</button></div>';return;}
+    box.innerHTML=ev.map(function(e){var current=e.date<=tk&&(e.endDate||e.date)>=tk;var d=new Date(e.date+'T00:00:00');var label=current?'오늘':(d.getMonth()+1)+'월 '+d.getDate()+'일';var where=e.location||e._location||'';var source=e.source==='google'?'구글':'모이다';return '<div class="desk-event '+(current?'today':'')+'"><div class="desk-event-date"><strong>'+M.esc(label)+'</strong><small>'+M.esc(e.allDay?'종일':e.time||'시간 미정')+'</small></div><div class="desk-event-body"><button class="desk-event-title" data-go="schedule">'+M.esc(e.title||'일정')+'</button><p>'+M.esc(where||e.calendarName||'일정·행사에서 상세 확인')+'</p></div><span class="desk-source">'+source+'</span></div>';}).join('');
   }
   function renderNews(){
     var box = document.getElementById('dashNews'); if(!box) return;
@@ -1649,7 +1639,7 @@ onAuthStateChanged(_auth, async function(user){
     var now = new Date(), todayMd = pad(now.getMonth()+1)+pad(now.getDate());
     var birthdays = (M.members||[]).filter(function(m){
       var value = String(m.birthday||m.birth||m.dob||m.rrn||'').replace(/[^0-9]/g,'');
-      var md = value.length>=8 ? value.slice(4,8) : (value.length>=6 ? value.slice(2,6) : '');
+      var md = value.length===8 ? value.slice(4,8) : (value.length>=6 ? value.slice(2,6) : '');
       return md===todayMd;
     });
     var cs = M.complaints||[];
@@ -1674,7 +1664,7 @@ onAuthStateChanged(_auth, async function(user){
     var summaryCount=document.getElementById("dashBriefCount");if(summaryCount)summaryCount.textContent="오늘의 핵심 "+items.length+"가지";
     box.innerHTML = items.map(function(t,i){ return '<div style="display:flex;gap:10px;font-size:13.5px;line-height:1.5"><span style="color:#7fb0ff;font-weight:700">'+('0'+(i+1)).slice(-2)+'</span><span style="color:#e8f0fe">'+t+'</span></div>'; }).join('');
   }
-  function renderAll(){ renderGreet(); renderKpis(); renderToday(); renderNews(); renderMinwon(); renderPolicy(); renderBrief(); }
+  function renderAll(){ renderGreet(); renderKpis(); renderToday(); renderNews(); renderMinwon(); renderPolicy(); renderBrief(); document.dispatchEvent(new Event("moida:dashboard-data")); }
   window.__dashNews = function(){ renderKpis(); renderNews(); renderBrief(); };
   window.__dashRefresh = renderAll;
   renderAll();
@@ -4417,7 +4407,7 @@ var input=document.getElementById('aiInput');if(input)input.placeholder='비서�
 (function(){var M=window.MOIDA,client;if(!M)return;var mount=document.createElement('div');mount.hidden=true;document.body.append(mount);function apply(events){var next=(M.events||[]).filter(function(e){return e.source!=='flow';}).concat(events);if(JSON.stringify(next)===JSON.stringify(M.events))return;M.events=next;M.emit();}window.MOIDA_REFRESH_FLOW_SCHEDULE=async function(){if(!M.auth||!M.auth.currentUser)return;if(!client)client=createFlowCalendarClient({mount:mount,user:function(){return M.auth.currentUser;},apply:apply});var result=await client.refresh(true);window.MOIDA_SCHEDULE_STATUS=result&&result.ok===false?'error':'ready';if(window.__dashRefresh)window.__dashRefresh();if(result&&result.ok===false)throw Error(result.error);};M.onData(function(){if(!M.auth||!M.auth.currentUser)return;if(!client)client=createFlowCalendarClient({mount:mount,user:function(){return M.auth.currentUser;},apply:apply});if(window.MOIDA_SCHEDULE_LOADING)return;window.MOIDA_SCHEDULE_LOADING=true;client.refresh(false).then(function(result){window.MOIDA_SCHEDULE_STATUS=result&&result.ok===false?'error':'ready';}).finally(function(){window.MOIDA_SCHEDULE_LOADING=false;if(window.__dashRefresh)window.__dashRefresh();});});window.addEventListener('message',function(event){if(event.origin===location.origin&&event.data&&event.data.type==='moida:flow-events-changed')apply(event.data.events||[]);});})();
 </script>
 <script src="solapi-messaging-client.js?v=compose-left-history1"></script>
-<script src="workspace-connections.js?v=mcp2"></script><script src="workspace-automations.js?v=automation-list2"></script><script src="moida-workspace-redesign.js?v=dashboard-label1"></script><script src="moida-knowledge.js?v=builtin-tools1"></script><script src="dashboard-cards.js?v=restore-dashboard1"></script><script src="crm-contact-reader.js?v=1"></script><script src="office-staff-catalog.js?v=weekly-events1"></script><script src="moida-core-team.js?v=staff-agents1"></script><script src="naver-mail-client.js?v=2"></script>
+<script src="workspace-connections.js?v=mcp2"></script><script src="workspace-automations.js?v=automation-list2"></script><script src="moida-workspace-redesign.js?v=dashboard-label1"></script><script src="moida-knowledge.js?v=builtin-tools1"></script><script src="dashboard-cards.js?v=workdesk1"></script><script src="crm-contact-reader.js?v=1"></script><script src="office-staff-catalog.js?v=weekly-events1"></script><script src="moida-core-team.js?v=staff-agents1"></script><script src="naver-mail-client.js?v=2"></script>
 <script src="weekly-events-client.js?v=4"></script>
 <script src="weekly-mail-client.js?v=3"></script><script src="office-workspace.js?v=staff-compact2"></script>
 <script src="moa-chat.js?v=no-staff1"></script><script src="moa-activity.js?v=conversation-runtime1"></script><script type="module" src="sidebar-order-cloud.js?v=1"></script><script type="module" src="dashboard-schedule.js?v=1"></script>
