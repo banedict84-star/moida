@@ -1,5 +1,6 @@
-import {createGoogleOverlay} from './moida-google-overlay.js?v=6';
-import {createScheduleFeed} from './moida-schedule-feed.js?v=6';
+import {applyTabler} from './moida-tabler.js?v=7';
+import {createGoogleOverlay} from './moida-google-overlay.js?v=7';
+import {createScheduleFeed} from './moida-schedule-feed.js?v=7';
 import {koreaDay,shiftDay,monthGrid} from './google-schedule-dates.js';
 import {categories,validateEvent} from './moida-schedule-model.js?v=3';
 const $=id=>document.getElementById(id),form=$('form'),f=form.elements;
@@ -28,7 +29,7 @@ function render(){
   for(const d of ['일','월','화','수','목','금','토'])$('calendar').append(node('div',d,'week-label'));
   days.forEach((d,i)=>{const list=forDay(d),b=node('button',null,'day');b.type='button';b.dataset.date=d;b.classList.toggle('selected',d===selected);b.classList.toggle('outside',d.slice(0,7)!==selected.slice(0,7));b.classList.toggle('today',d===koreaDay());b.classList.toggle('sunday',i%7===0);b.classList.toggle('saturday',i%7===6);b.setAttribute('aria-pressed',String(d===selected));b.setAttribute('aria-label',label(d,{month:'long',day:'numeric',weekday:'long'})+', 일정 '+list.length+'건');b.append(node('span',view==='week'?d.slice(5).replace('-','/') :String(Number(d.slice(8))),'number'));const max=view==='week'?12:3;for(const e of list.slice(0,max)){const c=node('span',(e.allDay||!e.time?'':e.time+' ')+e.title,'chip');c.style.setProperty('--color',category(e)[2]);b.append(c);}if(list.length>max)b.append(node('span','+'+(list.length-max)+'개 더','more'));b.onclick=()=>{selected=d;render();};b.ondblclick=()=>{selected=d;openEditor();};b.onkeydown=ev=>{const n={ArrowLeft:-1,ArrowRight:1,ArrowUp:-7,ArrowDown:7}[ev.key];if(n){ev.preventDefault();selected=shiftDay(d,n);render();$('calendar').querySelector('[data-date="'+selected+'"]')?.focus();}};$('calendar').append(b);});
  }
- $('count').textContent='전체 '+filtered().length+'건';if(view!=='feed')feed.refreshDetail();renderDay();if(ready)google.load(selected);
+ $('count').textContent='전체 '+filtered().length+'건';if(view!=='feed')feed.refreshDetail();renderDay();applyTabler();if(ready)google.load(selected);
 }
 function setTypes(){for(const name of ['start','end']){const v=f[name].value;f[name].type=f.allDay.checked?'date':'datetime-local';f[name].value=f.allDay.checked?v.slice(0,10):v.slice(0,10)+'T'+(name==='start'?'09:00':'10:00');}}
 function openEditor(e){

@@ -1,3 +1,4 @@
+import {applyTabler} from './moida-tabler.js?v=7';
 export function createScheduleFeed({host,model,canWrite,allEvents,events,category,openEditor,register,changed}){
  const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!=null)n.textContent=text;if(cls)n.className=cls;return n;};
  const button=(text,fn,cls)=>{const b=el('button',text,cls);b.type='button';b.onclick=fn;return b;};
@@ -28,14 +29,14 @@ export function createScheduleFeed({host,model,canWrite,allEvents,events,categor
   if(e.attendees)box.append(el('p','참석 대상 · '+e.attendees,'detail-place'));
   if(e.source==='google'){const link=el('a','구글 캘린더에서 원본 확인·수정 ↗');link.href='google-schedule.html';link.className='google-original';box.append(link);}
   if(e._body)box.append(el('p',e._body,'detail-body'));
-  if(e.source==='google'){box.append(el('p','구글에서 불러온 일정입니다. 내용 변경은 위 원본 보기에서 할 수 있습니다.','people-hint'));return;}
+  if(e.source==='google'){box.append(el('p','구글에서 불러온 일정입니다. 내용 변경은 위 원본 보기에서 할 수 있습니다.','people-hint'));applyTabler(box);return;}
   const responses=Object.values(e.responses||{}),counts=el('div',null,'response-counts');for(const [status,label] of [['attending','참석'],['absent','불참'],['undecided','미정']])counts.append(el('span',label+' '+responses.filter(r=>r.status===status).length));box.append(counts);
   const choices=el('div',null,'response-actions');for(const [status,label] of [['attending','참석할게요'],['absent','참석 어려워요'],['undecided','아직 미정']]){const b=detailButton(label,()=>action(e,'rsvp',status));b.setAttribute('aria-pressed',String(e.responses?.[uid()]?.status===status));choices.append(b);}box.append(choices);
   if(responses.length)box.append(el('p',responses.map(r=>r.name+' · '+({attending:'참석',absent:'불참',undecided:'미정'}[r.status]||'미정')).join(' / '),'response-names'));
   const actions=el('div',null,'detail-actions');actions.append(detailButton(e.pinned?'고정 해제':'상단 고정',()=>action(e,'pin',!e.pinned)),detailButton(e.bookmarkedBy?.[uid()]?'북마크 해제':'북마크',()=>action(e,'bookmark',!e.bookmarkedBy?.[uid()])),detailButton('일정 수정',()=>{detail.close();selected=null;openEditor(e);}));box.append(actions);
   const comments=el('section',null,'detail-comments');comments.append(el('h3','댓글 '+(e.comments||[]).length));for(const c of e.comments||[]){const row=el('article',null,'comment');row.append(el('strong',c.name||'의원실'),el('time',format(c.createdAt)),el('p',c.text));comments.append(row);}if(!e.comments?.length)comments.append(el('p','준비사항이나 전달할 내용을 남겨 주세요.','empty'));
   const form=el('form',null,'comment-form'),input=el('textarea');input.rows=3;input.maxLength=3000;input.placeholder='댓글을 입력하세요';input.setAttribute('aria-label','댓글 입력');input.value=draft;input.disabled=pending||!canWrite();input.oninput=()=>{draft=input.value;commentId='';};const submit=el('button',pending?'저장 중…':'댓글 등록','primary');submit.type='submit';submit.disabled=pending||!canWrite();form.append(input,submit);form.onsubmit=async ev=>{ev.preventDefault();if(!draft.trim())return;const text=draft;if(!commentId)commentId=crypto.randomUUID();if(await action(e,'comment',{id:commentId,text})){draft='';commentId='';const current=box.querySelector('textarea');if(current)current.value='';refreshDetail();}};comments.append(form);box.append(comments);
-  const status=el('p',writeError,'detail-status');status.setAttribute('role','status');box.append(status);if(focused&&!pending)box.querySelector('textarea')?.focus();
+  const status=el('p',writeError,'detail-status');status.setAttribute('role','status');box.append(status);applyTabler(box);if(focused&&!pending)box.querySelector('textarea')?.focus();
  }
  function card(e){
   const card=el('article',null,'feed-card');card.style.setProperty('--color',category(e)[2]);
@@ -55,7 +56,7 @@ export function createScheduleFeed({host,model,canWrite,allEvents,events,categor
   const tools=el('div',null,'feed-controls'),tabs=el('div',null,'feed-filters');for(const [key,name] of [['all','전체'],['unread','미확인'],['pinned','상단 고정'],['bookmarked','북마크']]){const b=button(name,()=>{filter=key;render();});b.setAttribute('aria-pressed',String(filter===key));tabs.append(b);}tools.append(tabs);
   const select=el('select');select.setAttribute('aria-label','피드 정렬');for(const [value,text] of [['recent','최근 등록순'],['date','일정 날짜순']]){const o=el('option',text);o.value=value;select.append(o);}select.value=sort;select.onchange=()=>{sort=select.value;render();};tools.append(select,button(compact?'자세히 보기':'간단히 보기',()=>{compact=!compact;render();}));host.append(tools);
   const list=events().filter(e=>filter==='all'||(filter==='unread'&&unread(e))||(filter==='pinned'&&e.pinned)||(filter==='bookmarked'&&e.bookmarkedBy?.[uid()]));list.sort((a,b)=>Number(!!b.pinned)-Number(!!a.pinned)||(sort==='date'?(a.date+(a.time||'')).localeCompare(b.date+(b.time||'')):((Date.parse(b.created)||0)-(Date.parse(a.created)||0))));
-  const summary=el('p','일정 '+list.length+'건','feed-summary');host.append(summary);if(!list.length)host.append(el('p',filter==='all'?'등록된 일정이 없습니다. 새 일정을 등록하면 달력과 피드에 함께 표시됩니다.':'이 조건에 해당하는 일정이 없습니다.','feed-empty'));for(const e of list)host.append(card(e));if(detail.open)refreshDetail();
+  const summary=el('p','일정 '+list.length+'건','feed-summary');host.append(summary);if(!list.length)host.append(el('p',filter==='all'?'등록된 일정이 없습니다. 새 일정을 등록하면 달력과 피드에 함께 표시됩니다.':'이 조건에 해당하는 일정이 없습니다.','feed-empty'));for(const e of list)host.append(card(e));applyTabler(host);if(detail.open)refreshDetail();
  }
  return {render,open,refreshDetail};
 }
