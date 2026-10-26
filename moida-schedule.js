@@ -1,4 +1,4 @@
-import {createProjectUI} from './moida-schedule-projects.js?v=1';
+import {createProjectUI} from './moida-schedule-projects.js?v=colors1';
 import {googleEventPayload} from './schedule-projects.js';
 import {applyTabler} from './moida-tabler.js?v=7';
 import {createGoogleOverlay} from './moida-google-overlay.js?v=projects1';
