@@ -1,3 +1,4 @@
+import {scheduleProjectsRoute} from './schedule-projects.js';
 import {createWeeklyAutomation} from './weekly-mail-automation.js';
 import {weeklyEventsRoute} from './weekly-events.js';
 import {createNaverMail} from './naver-mail.js';
@@ -1864,6 +1865,11 @@ async function handleFetch(request, env, ctx) {
     if (path === "/google/calendar/status" && request.method === "GET") {
       const user = await verifyFirebaseUser(request, env);
       return await googleCalendarStatus(request, env, user);
+    }
+    if(path==='/schedule/projects'){
+      const user=await verifyFirebaseUser(request,env);
+      const result=await scheduleProjectsRoute({env,uid:user.uid,request,body:request.method==='POST'?await requestBody(request):{}});
+      const response=json(result,200,request,env);response.headers.set('Cache-Control','private, no-store');return response;
     }
     if (path === "/google/calendar/list" && request.method === "GET") {
       const user = await verifyFirebaseUser(request, env);

@@ -27,9 +27,9 @@ export function createScheduleFeed({host,model,canWrite,allEvents,events,categor
   const title=el('div',null,'detail-title');title.style.setProperty('--color',category(e)[2]);title.append(el('span',category(e)[1],'feed-tag'),el('h2',e.title),el('p',when(e)));box.append(title);
   if(e._location){const place=el('p','장소 · '+e._location,'detail-place'),map=el('a','지도 보기 ↗');map.href='https://map.kakao.com/link/search/'+encodeURIComponent(e._location);map.target='_blank';map.rel='noopener noreferrer';place.append(map);box.append(place);}
   if(e.attendees)box.append(el('p','참석 대상 · '+e.attendees,'detail-place'));
-  if(e.source==='google'){const link=el('a','구글 캘린더에서 원본 확인·수정 ↗');link.href='google-schedule.html';link.className='google-original';box.append(link);}
+  if(e.source==='google'){const link=button('이 화면에서 일정 확인·수정',()=>{detail.close();selected=null;openEditor(e);});link.className='google-original';box.append(link);}
   if(e._body)box.append(el('p',e._body,'detail-body'));
-  if(e.source==='google'){box.append(el('p','구글에서 불러온 일정입니다. 내용 변경은 위 원본 보기에서 할 수 있습니다.','people-hint'));applyTabler(box);return;}
+  if(e.source==='google'){box.append(el('p','구글에서 불러온 일정입니다. 위 버튼에서 원본 일정을 확인·수정할 수 있습니다.','people-hint'));applyTabler(box);return;}
   const responses=Object.values(e.responses||{}),counts=el('div',null,'response-counts');for(const [status,label] of [['attending','참석'],['absent','불참'],['undecided','미정']])counts.append(el('span',label+' '+responses.filter(r=>r.status===status).length));box.append(counts);
   const choices=el('div',null,'response-actions');for(const [status,label] of [['attending','참석할게요'],['absent','참석 어려워요'],['undecided','아직 미정']]){const b=detailButton(label,()=>action(e,'rsvp',status));b.setAttribute('aria-pressed',String(e.responses?.[uid()]?.status===status));choices.append(b);}box.append(choices);
   if(responses.length)box.append(el('p',responses.map(r=>r.name+' · '+({attending:'참석',absent:'불참',undecided:'미정'}[r.status]||'미정')).join(' / '),'response-names'));

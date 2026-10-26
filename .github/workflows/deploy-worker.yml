@@ -7,6 +7,7 @@ on:
     branches: [main]
     paths:
       - 'gpt-worker.js'
+      - 'schedule-projects.js'
       - 'telegram-bot.js'
       - 'crm-telegram.js'
       - 'crm-sheets*.js'
@@ -56,7 +57,7 @@ jobs:
       - name: Validate worker and agent execution
         run: |
           node --check gpt-worker.js
-          node --test tests/google-calendar-view.test.mjs tests/google-schedule-dates.test.mjs
+          node --test tests/schedule-projects.test.mjs tests/google-calendar-view.test.mjs tests/google-schedule-dates.test.mjs
           node --test tests/weekly-mail.test.mjs
           node --test tests/telegram-bot.test.mjs tests/crm-telegram.test.mjs
           node --test tests/crm-sheets.test.mjs tests/crm-sms-history.test.mjs tests/crm-storage.test.mjs tests/crm-scale.test.mjs tests/crm-chunks.test.mjs tests/crm-derived.test.mjs tests/crm-source.test.mjs
