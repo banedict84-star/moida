@@ -1,6 +1,22 @@
 {
-  "updated": "2026-10-30 07:36 UTC",
+  "updated": "2026-10-30 15:11 UTC",
   "items": [
+    {
+      "source": "naver",
+      "press": "asiatime.co.kr",
+      "date": "2026.10.31",
+      "title": "11월 분양시장 큰 장 선다…전국 4만2393가구 공급",
+      "snippet": "화성 '화성 향남 롯데캐슬 시그니처'(1542가구), 안산 '아르뮤제자이'(984가구), 수원 '광교 자연앤 센트레빌... 매원초와 소화초, 수원다산중 등 교육시설도 인접해 있다. 향후 인덕원~동탄 복선전철 원천역이 들어설...",
+      "url": "https://www.asiatime.co.kr/article/20261030500054"
+    },
+    {
+      "source": "naver",
+      "press": "seoul.co.kr",
+      "date": "2026.10.30",
+      "title": "장윤정 경기도의원, 안산 한대앞역상점가 ‘전통시장 혁신모델 구축’...",
+      "snippet": "경기도의회 장윤정 의원이 지난 29일 안산시 상록구 진성프라자에서 경기도와 안산시, 경기도시장상권진흥원, 안산시상권활성화재단, 한대앞역 상인회 등 유관기관 관계자 및 지역 상인들과 함께 「전통시장 혁신모델...",
+      "url": "https://www.seoul.co.kr/news/publicnews/local_govern/kyungki_do/2026/10/30/20261030500295?wlog_tag3=naver"
+    },
     {
       "source": "naver",
       "press": "globalepic.co.kr",
@@ -59,11 +75,27 @@
     },
     {
       "source": "google",
+      "press": "서울Pn",
+      "date": "2026.10.30",
+      "title": "장윤정 경기도의원, 안산 한대앞역상점가 ‘전통시장 혁신모델 구축’ 현장 간담회 개최",
+      "snippet": "장윤정 경기도의원, 안산 한대앞역상점가 ‘전통시장 혁신모델 구축’ 현장 간담회 개최 서울Pn",
+      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5iN1hHdWdIa0U5NVZ6RUJwbGJRX3B0V21LODlBLVVyWG5YLW1HMDY0TjF4Vk1wcTR1RDMxT05CSzNSTm53V2RXY1hsM1NvQXhOUzlld2xPZjJLeEhiUkFfOVZTZ1JMTHlQbUE?oc=5"
+    },
+    {
+      "source": "google",
       "press": "전국매일신문",
       "date": "2026.10.30",
       "title": "장윤정 경기도의원, 안산 기업인 금융애로 청취",
       "snippet": "장윤정 경기도의원, 안산 기업인 금융애로 청취 전국매일신문",
       "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBQMXRJaHZCX000ZFhCc2ZKOTNGRFJSaUMtLWxlcU9BNUNMWjlkVm1hbkJpTF9PYnRpeXNSQ25LckRWczZqUXVqRzRnUFV2ZnJvWDZaaWR1M19pNUQ3YWM3eVlteHk3dTVOV0dJdktR?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "누리일보",
+      "date": "2026.10.30",
+      "title": "경기도의회 장윤정 의원, 안산 한대앞역상점가 전통시장 혁신모델 구축 간담회 개최",
+      "snippet": "경기도의회 장윤정 의원, 안산 한대앞역상점가 전통시장 혁신모델 구축 간담회 개최 누리일보",
+      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE9ELXpqWWtPTEh6VG9EMk5ZcnFBdjdBOHoxNkRKQVFIVUhtVHhuTXBHaHcza0xHTXNTcmY1VDV1OXJGRlFmY2pHZ0NvU1c1Z29hX2tJdHM1eDA2djVC?oc=5"
     },
     {
       "source": "google",
@@ -75,35 +107,19 @@
     },
     {
       "source": "google",
+      "press": "광교신문",
+      "date": "2026.10.30",
+      "title": "경기도의회 장윤정 의원, 안산 한대앞역상점가",
+      "snippet": "경기도의회 장윤정 의원, 안산 한대앞역상점가 광교신문",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE0wS3ZUU0I5c0JwYkxZanFBZ1lLUENKM0hKT1JPbTc1enExMF9iQkpSUFpuSTFocG9DUGhGUjA2NW9KRmdfUFN4SkVpM1cxTDJaUi1hcWtMUWtHeFZhRU5fR25iSU5rMF9L?oc=5"
+    },
+    {
+      "source": "google",
       "press": "웹이코노미",
       "date": "2026.10.30",
       "title": "경기도의회 장윤정 의원, 안산 중소기업 현장 목소리 청취",
       "snippet": "경기도의회 장윤정 의원, 안산 중소기업 현장 목소리 청취 웹이코노미",
       "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE0xbW9Gck9OWDJBTm4yN3BOYkkyS2VfTFR2TTc5YkN6Nm9ZUnRRd3AxSmJhOXoyOThRWkdyNHg5eGZYb1lUcGlGVVBCUkVkQjJCcFRjNlFvLTFpOFZBU29sSnBLdmdqZFNDVUh0dEliMnBwdw?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "뉴스파이어",
-      "date": "2026.10.30",
-      "title": "경기도의회 장윤정 의원, 안산 한대앞역상점가",
-      "snippet": "경기도의회 장윤정 의원, 안산 한대앞역상점가 뉴스파이어",
-      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE9pODNRUjB6elZiMFY4MWhKX1BCYWUyTmJBbE5ROHktWWRJT1V3WlNvWUhDbjN3ZzJCWWlROGdGOWxXejdNZlFXUE1kS1ZPX05fMmF2ekM0WHRSTElpdlJQRHQ3LUtmUHk5UkJvNFBRNA?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "뉴스 따옴",
-      "date": "2026.10.30",
-      "title": "경기도의회 장윤정 의원, 지역경제 현안 챙겨, 일일명예지점장 맡아 보증 상담, “기업인 목소리를 제도 개선으로 잇겠다”",
-      "snippet": "경기도의회 장윤정 의원, 지역경제 현안 챙겨, 일일명예지점장 맡아 보증 상담, “기업인 목소리를 제도 개선으로 잇겠다” 뉴스 따옴",
-      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5fdGpHT1ZjSk9kUGVaYUNteE1ySVdRbTNqQlZFWGkwLXN0Vy1SU2FRaHUxbVBNNHNQVkJTSTh0TUQ5RVZzRlRSZ3RPZ1ZHdXROc0tLVWs0ZkpoTHRSMk9CRGVueDZBVmJEYlQzdUNQSlJOd9IBckFVX3lxTE5fdGpHT1ZjSk9kUGVaYUNteE1ySVdRbTNqQlZFWGkwLXN0Vy1SU2FRaHUxbVBNNHNQVkJTSTh0TUQ5RVZzRlRSZ3RPZ1ZHdXROc0tLVWs0ZkpoTHRSMk9CRGVueDZBVmJEYlQzdUNQSlJOdw?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "경인매일",
-      "date": "2026.10.30",
-      "title": "장윤정 경기도의회 부위원장, 안산 기업 판매 부진·자금난 청취",
-      "snippet": "장윤정 경기도의회 부위원장, 안산 기업 판매 부진·자금난 청취 경인매일",
-      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE9FSkJWZk85ZE9IMEFmMjhUYmt0OUR4SENoRzF4Wmxzcnhoak40aDhoTmV0VzNQaDRWQ2c4U3A0N3JEX2pTYjJkWGJLM3hJVnlUOXpCTjc2eFRYZVJPd2k3VWpNaTM5aF83?oc=5"
     },
     {
       "source": "naver",
@@ -112,6 +128,14 @@
       "title": "장윤정 경기도의회 경제노동위원회 부위원장 “기업인 목소리를 제도 개...",
       "snippet": "경제노동위원회 장윤정 부위원장(더민주, 안산3)이 29일(목) 경기신용보증재단(이사장 시석중, 이하 경기신보) 안산지점 일일명예지점장으로 위촉돼 안산 지역 중소기업 및 소상공인들의 경영 고충을 청취하고 금융지원...",
       "url": "https://www.seoul.co.kr/news/publicnews/local_govern/kyungki_do/2026/10/30/20261030500094?wlog_tag3=naver"
+    },
+    {
+      "source": "naver",
+      "press": "kmaeil.com",
+      "date": "2026.10.30",
+      "title": "장윤정 경기도의회 부위원장, 안산 기업 판매 부진·자금난 청취",
+      "snippet": "안산 중소기업과 소상공인들이 판매 부진과 금리 부담, 운영자금 부족을 호소했다. 장윤정 경기도의회 경제노동위원회 부위원장은 보증 상담에서 확인한 불편과 현장 의견을 금융지원 제도 개선으로 연결하겠다고 밝혔다....",
+      "url": "https://www.kmaeil.com/news/articleView.html?idxno=656403"
     },
     {
       "source": "naver",
@@ -131,11 +155,75 @@
     },
     {
       "source": "google",
+      "press": "피디언뉴스",
+      "date": "2026.10.30",
+      "title": "경기도의회 장윤정 의원, 안산 한대앞역상점가 혁신 모델 구축 간담회 개최",
+      "snippet": "경기도의회 장윤정 의원, 안산 한대앞역상점가 혁신 모델 구축 간담회 개최 피디언뉴스",
+      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFBHSUNYcU1nTHdxdFhkZEstVFpadFFfTUw5Nmlpb01yUEFkWEdzN3huVFFHMjNMQXVSQkFkemp3NzBCMHlGY3A1N3lTbldLUEVMc2xOZW9icUx2cG5H?oc=5"
+    },
+    {
+      "source": "google",
       "press": "민중의소리",
       "date": "2026.10.30",
       "title": "지자체기사 장윤정 경기도의원, 경기신보 안산지점서 중소기업·소상공인 애로 청취",
       "snippet": "지자체기사 장윤정 경기도의원, 경기신보 안산지점서 중소기업·소상공인 애로 청취 민중의소리",
       "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE45Yl9FRVRqUzZXZGJmYjJzSTNaYjBuRlI0OUUzb3F3UWdTWFIzYWZ0QW1JNVZRSnNOWi16NmRXdG04ZGRYOXB4dUpYbw?oc=5"
+    },
+    {
+      "source": "naver",
+      "press": "news1.kr",
+      "date": "2026.10.30",
+      "title": "안산 보노마루에서 열린 창작뮤지컬 '우리가 사랑을 쓰던 날'",
+      "snippet": "30일 경기 안산시 상록구 소극장 보노마루에서 열린 창작 뮤지컬 '우리가 사랑을 쓰던 날' 프레스콜에서 배우들이 열연을 펼치고 있다. 2026.10.30/뉴스1",
+      "url": "https://www.news1.kr/photos/8189585"
+    },
+    {
+      "source": "naver",
+      "press": "news1.kr",
+      "date": "2026.10.30",
+      "title": "창작뮤지컬 '우리가 사랑을 쓰던 날' 프레스콜",
+      "snippet": "30일 경기 안산시 상록구 소극장 보노마루에서 열린 창작 뮤지컬 '우리가 사랑을 쓰던 날' 프레스콜에서 배우들이 열연을 펼치고 있다. 2026.10.30/뉴스1",
+      "url": "https://www.news1.kr/photos/8189586"
+    },
+    {
+      "source": "naver",
+      "press": "news1.kr",
+      "date": "2026.10.30",
+      "title": "힐링 뮤지컬 '우리가 사랑을 쓰던 날'",
+      "snippet": "30일 경기 안산시 상록구 소극장 보노마루에서 열린 창작 뮤지컬 '우리가 사랑을 쓰던 날' 프레스콜에서 배우들이 열연을 펼치고 있다. 2026.10.30/뉴스1",
+      "url": "https://www.news1.kr/photos/8189593"
+    },
+    {
+      "source": "naver",
+      "press": "news1.kr",
+      "date": "2026.10.30",
+      "title": "엄마의 청춘을 찾아 제주로…뮤지컬 '우리가 사랑을 쓰던 날'",
+      "snippet": "30일 경기 안산시 상록구 소극장 보노마루에서 열린 창작 뮤지컬 '우리가 사랑을 쓰던 날' 프레스콜에서 배우들이 열연을 펼치고 있다. 2026.10.30/뉴스1",
+      "url": "https://www.news1.kr/photos/8189596"
+    },
+    {
+      "source": "naver",
+      "press": "news1.kr",
+      "date": "2026.10.30",
+      "title": "엄마의 청춘을 찾아 제주로",
+      "snippet": "30일 경기 안산시 상록구 소극장 보노마루에서 열린 창작 뮤지컬 '우리가 사랑을 쓰던 날' 프레스콜에서 배우들이 열연을 펼치고 있다. 2026.10.30/뉴스1",
+      "url": "https://www.news1.kr/photos/8189592"
+    },
+    {
+      "source": "naver",
+      "press": "news1.kr",
+      "date": "2026.10.30",
+      "title": "창작뮤지컬 '우리가 사랑을 쓰던 날'",
+      "snippet": "30일 경기 안산시 상록구 소극장 보노마루에서 열린 창작 뮤지컬 '우리가 사랑을 쓰던 날' 프레스콜에서 배우들이 열연을 펼치고 있다. 2026.10.30/뉴스1",
+      "url": "https://www.news1.kr/photos/8189589"
+    },
+    {
+      "source": "naver",
+      "press": "viva100.com",
+      "date": "2026.10.30",
+      "title": "GS건설, 주택사업 부진에 3분기 영업익 35.7% 감소…주택 매출 감소 속 ...",
+      "snippet": "한편 GS건설은 오는 11월 경기도 안산시 상록구 성포동 일원에 ‘아르뮤제자이’를 분양할 예정이다. 단지는 지하 6층~지상 최고 49층, 6개 동 규모로 아파트 984가구(전용면적 84~104㎡)와 오피스텔 370실 등 총...",
+      "url": "https://www.viva100.com/article/20261030500940"
     },
     {
       "source": "naver",
@@ -203,6 +291,174 @@
     },
     {
       "source": "naver",
+      "press": "ccreview.co.kr",
+      "date": "2026.10.30",
+      "title": "대소원면 주민자치위, 역량 강화 벤치마킹",
+      "snippet": "충주시 대소원면 주민자치위원회가 주민자치 역량 강화와 우수 사례 벤치마킹을 위해 29일 경기도 안산시... 한편, 총 26명의 회원으로 구성된 대소원면 주민자치위원회는 신규 위원 역량 강화 교육을 비롯해 폐현수막을...",
+      "url": "https://www.ccreview.co.kr/news/articleView.html?idxno=361462"
+    },
+    {
+      "source": "naver",
+      "press": "bulkyo21.com",
+      "date": "2026.10.30",
+      "title": "진각종 통리원·교육원 부·실·국장 개편 단행",
+      "snippet": "국장급은 통리원 관재국장 겸 문화국장에 인공 정사(부천심인당 주교), 건설국장 학봉 정사(안산심인당 주교)가 보직을 받았다. 교육원 교화연구국장 정목 정사(부산 정정심인당 주교), 교법연구국장 도향 정사(영천...",
+      "url": "http://www.bulkyo21.com/news/articleView.html?idxno=65410"
+    },
+    {
+      "source": "naver",
+      "press": "megaeconomy.co.kr",
+      "date": "2026.10.30",
+      "title": "최병민 고려대 안산병원 교수, 대한소아청소년과학회 회장 취임",
+      "snippet": "고려대학교 안산병원 소아청소년과 최병민 교수가 대한소아청소년과학회 제66대 회장에 취임한다. 임기는... 최 교수는 신생아학 분야의 전문가로, 오랜 기간 미숙아와 고위험 신생아의 진료와 교육에 매진하며 신생아...",
+      "url": "https://www.megaeconomy.co.kr/news/newsview.php?ncode=1065614363993220"
+    },
+    {
+      "source": "naver",
+      "press": "hbnpress.com",
+      "date": "2026.10.30",
+      "title": "안민석 경기교육감, 안산서 ‘찾아가는 교육감실’ 타운홀미팅 개최",
+      "snippet": "박해철 국회의원은 “안산교육지원청·안산시청·학부모가 참여하는 TF를 구성해 기관별 역할과 지역 차원의 지원 방안을 마련하겠다”고 밝혔다. 김수진 안산교육장은 “학부모 교육 참여 활성화 방안 및 중도입국...",
+      "url": "https://hbnpress.com/news/view/1065598441929135"
+    },
+    {
+      "source": "naver",
+      "press": "enewstoday.co.kr",
+      "date": "2026.10.30",
+      "title": "안민석 \"이주배경·내국학생 함께 성장할 교육지원 필요\"",
+      "snippet": "이에 박해철 국회의원은 안산교육지원청과 안산시청, 학부모 등이 참여하는 TF를 구성해 이주배경학생과 내국학생이 함께 어울리는 학교 환경 조성을 위한 기관별 역할과 지역 차원의 지원 방안을 마련할 방침이다....",
+      "url": "http://www.enewstoday.co.kr/news/articleView.html?idxno=2486812"
+    },
+    {
+      "source": "naver",
+      "press": "nspna.com",
+      "date": "2026.10.30",
+      "title": "[학교현장리포트] 경기도교육청, 안산 이주배경학생 교육 해법 찾는다",
+      "snippet": "박해철 국회의원은 안산교육지원청, 안산시청, 학부모가 함께 참여하는 전담 민관 TF를 구성해 이주배경학생과 내국학생이 함께 할 수 있는 환경조성을 위해 기관별 역할 분담과 지역 차원의 지원방안을 만든겠다고...",
+      "url": "https://www.nspna.com/news/?mode=view&newsid=834078"
+    },
+    {
+      "source": "naver",
+      "press": "metroseoul.co.kr",
+      "date": "2026.10.30",
+      "title": "경기도 안민석 교육감 \"이주배경학생·내국학생 함께 성장하는 교육환경...",
+      "snippet": "학부모 300여 명과 이주배경학생 교육, 교복 품질 개선 등 현안 소통 안민석 경기도교육감이 10월 30일 안산문화예술의전당에서 박해철·김남국 국회의원, 김수진 안산교육장 등과 함께 '안산 타운홀 미팅'에 참석해 학부모...",
+      "url": "http://www.metroseoul.co.kr/article/20261030500204"
+    },
+    {
+      "source": "naver",
+      "press": "metroseoul.co.kr",
+      "date": "2026.10.30",
+      "title": "경기도 안민석 교육감, 동두천·양주서 교육 현안 청취",
+      "snippet": "한편 안 교육감은 '교육의 문제는 현장에 답이 있다'는 교문현답을 실천하기 위해 도내 31개 시·군을 찾아 학부모와 교육 현안을 논의하고 있다. 오는 30일 안산과 의정부를 끝으로 타운홀 미팅 일정을 마무리할 예정이다.",
+      "url": "http://www.metroseoul.co.kr/article/20261030500153"
+    },
+    {
+      "source": "naver",
+      "press": "etoday.co.kr",
+      "date": "2026.10.30",
+      "title": "한샘, 만학도 배움터 ‘안산용신학교’ 공간 개선 지원",
+      "snippet": "이투데이=김동효 기자 | 한샘은 경기도 안산시에 위치한 만학도 교육시설인 ‘안산용신학교’의 교육 공간을 개선하고 기념식을 진행했다고 30일 밝혔다. 이번 지원은 한샘의 사회공헌인 ‘공간개선 사업’의 하나로...",
+      "url": "https://www.etoday.co.kr/news/view/2642465"
+    },
+    {
+      "source": "naver",
+      "press": "lawissue.co.kr",
+      "date": "2026.10.30",
+      "title": "경기도교육청, 양주·하남에 교육지원청 신설… 2027년 9월 분리 개청 추...",
+      "snippet": "지방자치단체와 협의해 예산과 공간을 지원하는 방안을 추진하겠다고 밝혔다. 경기도교육청은 30일 안산과 의정부 방문을 마지막으로 도내 31개 시·군을 순회한 타운홀 미팅을 마무리할 예정이다. 차영환 로이슈 기자",
+      "url": "https://www.lawissue.co.kr/view.php?ud=20261030133907916d94aa4ada6_12"
+    },
+    {
+      "source": "naver",
+      "press": "lawissue.co.kr",
+      "date": "2026.10.30",
+      "title": "한샘, 안산용신학교 학습환경 새단장… 만학도 100여 명에 책상·의자 1...",
+      "snippet": "㈜한샘은 지난 21일 경기도 안산시 안산용신학교의 교육시설 개선을 마치고 학생과 교사, 협력기관 관계자 등 60여 명이 참석한 가운데 완공 기념행사를 열었다고 30일 밝혔다. 이번 지원으로 책상과 의자 등 가구 110여...",
+      "url": "https://www.lawissue.co.kr/view.php?ud=20261030172129140307f28b58b8_12"
+    },
+    {
+      "source": "naver",
+      "press": "m-i.kr",
+      "date": "2026.10.30",
+      "title": "안민석 교육감, '찾아가는 교육감실'서 이주 배경 학생 지원 논의",
+      "snippet": "박해철 국회의원은 안산교육지원청과 안산시청, 학부모 등이 참여하는 TF를 구성하겠다고 밝혔다. 이를 통해 이주 배경 학생과 내국 학생이 함께 어울리는 학교 환경을 조성하기 위한 기관별 역할과 지역 차원의 지원...",
+      "url": "https://www.m-i.kr/news/articleView.html?idxno=2012681"
+    },
+    {
+      "source": "naver",
+      "press": "siminilbo.co.kr",
+      "date": "2026.10.30",
+      "title": "안산시의회, 안산 초지역세권 개발 출자동의안 보류 놓고 민주당·국민...",
+      "snippet": "있어” ▲ 안산시의회 전경 경기 안산 초지역세권 도시개발사업 출자동의안 보류를 둘러싸고 안산시의회... 등 교육 기반시설 확충을 종합적으로 고려해야 한다는 설명이다. 단순히 상업시설이나 아이스링크를 조성하는...",
+      "url": "https://www.siminilbo.co.kr/news/newsview.php?ncode=1160269586235163"
+    },
+    {
+      "source": "naver",
+      "press": "getnews.co.kr",
+      "date": "2026.10.30",
+      "title": "안민석 \"이주배경학생과 내국학생이 함께 배우고 성장할 수 있도록 교육...",
+      "snippet": "이에 박해철 국회의원은 안산교육지원청과 안산시청, 학부모 등이 함께 참여하는 TF를 구성해 이주배경학생과 내국학생이 함께 어울리는 학교 환경을 조성하기 위한 기관별 역할과 지역 차원의 지원 방안을 마련하겠다고...",
+      "url": "https://www.getnews.co.kr/news/articleView.html?idxno=885485"
+    },
+    {
+      "source": "naver",
+      "press": "newscj.com",
+      "date": "2026.10.30",
+      "title": "안민석 경기도교육감, 안산서 학부모와 교육현안 논의… 이주배경학생...",
+      "snippet": "이에 박해철 국회의원은 안산교육지원청과 안산시청, 학부모 등이 참여하는 태스크포스(TF)를 구성해 기관별 역할과 지역 차원의 지원 방안을 마련하겠다고 밝혔다. 안김수진 산교육지원청 교육장은 중도입국...",
+      "url": "https://www.newscj.com/news/articleView.html?idxno=3444574"
+    },
+    {
+      "source": "naver",
+      "press": "dongponews.net",
+      "date": "2026.10.30",
+      "title": "사할린동포 영주귀국 대상·신청방법 설명회…11월 5일 서울서 개최",
+      "snippet": "안산과 서울에서 두 차례 진행한 법률교육에 이어 열리는 세 번째 행사다. 이번 설명회에서는 두 차례 개정된 '사할린동포 지원에 관한 특별법'과 이에 따른 시행령 정비 내용을 중심으로 영주귀국 대상자와 선정...",
+      "url": "https://www.dongponews.net/news/articleView.html?idxno=61378"
+    },
+    {
+      "source": "naver",
+      "press": "fieldnews.kr",
+      "date": "2026.10.30",
+      "title": "안민석 경기도교육감, 안산서 이주배경학생 교육현안 점검…한국어교육...",
+      "snippet": "박해철 의원은 안산교육지원청과 안산시청, 학부모 등이 참여하는 태스크포스(TF)를 구성해 학교 현장에서 필요한 지원책과 기관별 역할을 논의하겠다는 뜻을 밝혔다. 김수진 안산교육지원청 교육장은 중도입국...",
+      "url": "http://www.fieldnews.kr/news/articleView.html?idxno=32707"
+    },
+    {
+      "source": "naver",
+      "press": "cnbnews.com",
+      "date": "2026.10.30",
+      "title": "한샘, 만학도 배움터 '안산용신학교'에 가구 110여 점 지원",
+      "snippet": "한샘이 경기도 안산시에 위치한 만학도 교육시설인 '안산용신학교'의 교육 공간을 개선하고 기념식을 진행했다고 30일 밝혔다. 이번 지원은 한샘의 대표 사회공헌 사업인 '공간개선 사업'의 일환으로 진행됐다. 한샘은...",
+      "url": "https://www.cnbnews.com/news/articleView.html?idxno=1021738"
+    },
+    {
+      "source": "naver",
+      "press": "ajunews.com",
+      "date": "2026.10.30",
+      "title": "안민석 교육감, 안산서 이주배경학생 지원 논의...통합 교육환경 조성 ...",
+      "snippet": "com 안민석 경기도교육감이 10월 30일 안산문화예술의전당에서 박해철·김남국 국회의원, 김수진 안산교육장 등과 함께 ‘안산 타운홀 미팅’에 참석해 학부모 질문에 답변하고 있다. [사진=경기도교육청] 안민석...",
+      "url": "https://www.ajunews.com/view/20261030164845232"
+    },
+    {
+      "source": "naver",
+      "press": "newstnt.com",
+      "date": "2026.10.30",
+      "title": "안민석 경기교육감, 동두천·양주 교육현안 논의…교육지원청 분리 추진",
+      "snippet": "한편 경기도교육청은 도내 31개 시·군을 대상으로 '찾아가는 교육감실'을 운영하고 있다. 안 교육감은 30일 안산과 의정부 방문을 끝으로 타운홀 미팅 일정을 마무리할 예정이다.",
+      "url": "https://www.newstnt.com/news/articleView.html?idxno=725969"
+    },
+    {
+      "source": "naver",
+      "press": "news.tf.co.kr",
+      "date": "2026.10.30",
+      "title": "안민석 경기도교육감, 안산 이주배경학생 교육지원 확대 논의",
+      "snippet": "박해철 의원은 안산교육지원청과 안산시청, 학부모 등이 참여하는 태스크포스(TF)를 구성해 이주배경학생과 내국학생이 함께 어울릴 수 있는 학교 환경 조성 방안을 마련하겠다고 밝혔다. 김수진 안산교육장은 학부모의...",
+      "url": "https://news.tf.co.kr/read/national/2383157.htm"
+    },
+    {
+      "source": "naver",
       "press": "kmaeil.com",
       "date": "2026.10.30",
       "title": "광주시, 교육예산 비율 산정 기준 문제 제기···교육경비 지원 확대",
@@ -219,19 +475,19 @@
     },
     {
       "source": "naver",
-      "press": "doctorstimes.com",
-      "date": "2026.10.30",
-      "title": "[제약업계 소식] 10월 30일",
-      "snippet": "구체적으로 디지털 헬스케어와 환자 지원 프로그램, 질환 인식 제고 및 조기 진단 활동, 의학 교육과... ■대웅제약, 안산 클래스병원 90병상에 AI 모니터링 시스템 '씽크' 공급 대웅제약(대표 이창재·박성수)이...",
-      "url": "http://www.doctorstimes.com/news/articleView.html?idxno=240786"
-    },
-    {
-      "source": "naver",
       "press": "consumernews.co.kr",
       "date": "2026.10.30",
       "title": "한샘, 만학도 배움터 '안산용신학교'에 책상·의자 110점 지원",
       "snippet": "한샘이 경기 안산시의 만학도 교육시설 '안산용신학교'에 책상과 의자 등 가구 110여 점을 지원했다. 한샘은 공간 개선을 마친 안산용신학교에서 지난 21일 완공 기념행사를 열었다고 30일 밝혔다. 행사에는 한샘과 협력...",
       "url": "http://www.consumernews.co.kr/news/articleView.html?idxno=767258"
+    },
+    {
+      "source": "naver",
+      "press": "doctorstimes.com",
+      "date": "2026.10.30",
+      "title": "[제약업계 소식] 10월 30일",
+      "snippet": "구체적으로 디지털 헬스케어와 환자 지원 프로그램, 질환 인식 제고 및 조기 진단 활동, 의학 교육과... ■대웅제약, 안산 클래스병원 90병상에 AI 모니터링 시스템 '씽크' 공급 대웅제약(대표 이창재·박성수)이...",
+      "url": "http://www.doctorstimes.com/news/articleView.html?idxno=240786"
     },
     {
       "source": "naver",
@@ -283,19 +539,19 @@
     },
     {
       "source": "naver",
-      "press": "biz.heraldcorp.com",
-      "date": "2026.10.30",
-      "title": "금호건설, ‘시흥 거모 아테라’ 11월 분양 예정… 총 720세대 규모",
-      "snippet": "시흥 거모 아테라는 교육시설과 생활 인프라를 고려한 입지 여건을 갖추고 있다. 단지 앞에는 초등학교... 입지 측면에서는 시흥시와 안산시의 경계에 위치해 양 지역의 생활 인프라를 이용할 수 있다. 인근 안산...",
-      "url": "https://biz.heraldcorp.com/article/10920776?ref=naver"
-    },
-    {
-      "source": "naver",
       "press": "gosiweek.com",
       "date": "2026.10.30",
       "title": "컴퓨터학원 SBS아카데미컴퓨터AIX학원, 가을맞이 이벤트 진행",
       "snippet": "현재 마야학원 SBS아카데미컴퓨터AIX학원은 강남, 홍대(신촌), 인천(부평), 부산(서면), 광주, 대구, 대전, 수원, 일산, 울산, 노원, 분당, 안산, 안양, 천안, 청주 등 전국에 16개 지점을 운영하고 있다. 교육과정과 이벤트...",
       "url": "https://www.gosiweek.com/article/1065595362002704"
+    },
+    {
+      "source": "naver",
+      "press": "biz.heraldcorp.com",
+      "date": "2026.10.30",
+      "title": "금호건설, ‘시흥 거모 아테라’ 11월 분양 예정… 총 720세대 규모",
+      "snippet": "시흥 거모 아테라는 교육시설과 생활 인프라를 고려한 입지 여건을 갖추고 있다. 단지 앞에는 초등학교... 입지 측면에서는 시흥시와 안산시의 경계에 위치해 양 지역의 생활 인프라를 이용할 수 있다. 인근 안산...",
+      "url": "https://biz.heraldcorp.com/article/10920776?ref=naver"
     },
     {
       "source": "naver",
@@ -339,27 +595,19 @@
     },
     {
       "source": "naver",
-      "press": "seoul.co.kr",
-      "date": "2026.10.30",
-      "title": "안산서 ‘찾아가는 교육감실’ 안민석, “이주배경학생과 내국학생이 함...",
-      "snippet": "미팅에 함께 참석한 박해철 국회의원은 안산교육지원청과 안산시청, 학부모 등이 함께 참여하는 TF를 구성해 이주배경학생과 내국학생이 함께 어울리는 학교 환경을 조성하기 위한 기관별 역할과 지역 차원의 지원...",
-      "url": "https://www.seoul.co.kr/news/society/education-news/2026/10/30/20261030500239?wlog_tag3=naver"
-    },
-    {
-      "source": "naver",
-      "press": "newspim.com",
-      "date": "2026.10.30",
-      "title": "한샘, 만학도 배움터 '안산용신학교' 공간 개선 지원",
-      "snippet": "종합 홈 인테리어 전문기업 한샘은 경기도 안산시에 위치한 만학도 교육시설인 '안산용신학교'의 교육 공간을 개선하고 완공식을 진행했다고 30일 밝혔다. 이번 지원은 한샘의 대표 사회공헌 활동인 '공간개선 사업'의...",
-      "url": "https://www.newspim.com/news/view/20261030000570"
-    },
-    {
-      "source": "naver",
       "press": "moneystorm.kr",
       "date": "2026.10.30",
       "title": "[패션·뷰티 돋보기] 한샘, 만학도에 가구 110여 점 지원…에스트라 1,0...",
       "snippet": "30일 업계에 따르면 한샘은 경기도 안산시에 위치한 만학도 교육시설 '안산용신학교'에 책상과 의자 등 가구 110여 점을 지원하고 강의실을 새롭게 단장했다. 1987년 설립된 안산용신학교는 경제적·사회적 어려움으로...",
       "url": "https://www.moneystorm.kr/news/articleView.html?idxno=7876"
+    },
+    {
+      "source": "naver",
+      "press": "seoul.co.kr",
+      "date": "2026.10.30",
+      "title": "안산서 ‘찾아가는 교육감실’ 안민석, “이주배경학생과 내국학생이 함...",
+      "snippet": "미팅에 함께 참석한 박해철 국회의원은 안산교육지원청과 안산시청, 학부모 등이 함께 참여하는 TF를 구성해 이주배경학생과 내국학생이 함께 어울리는 학교 환경을 조성하기 위한 기관별 역할과 지역 차원의 지원...",
+      "url": "https://www.seoul.co.kr/news/society/education-news/2026/10/30/20261030500239?wlog_tag3=naver"
     },
     {
       "source": "naver",
@@ -379,19 +627,19 @@
     },
     {
       "source": "naver",
-      "press": "weeklytoday.com",
-      "date": "2026.10.30",
-      "title": "[위클리오늘] 안민석 교육감, 이주배경학생과 내국학생이 함께 성장하는...",
-      "snippet": "안민석 교육감, 이주배경학생과 내국학생이 함께 성장하는 교육환경 만들어야 안민석 경기도교육감이 10월 30일 안산문화예술의전당에서 박해철·김남국 국회의원, 김수진 안산교육장 등과 함께 '안산 타운홀 미팅'에...",
-      "url": "http://www.weeklytoday.com/news/articleView.html?idxno=800431"
-    },
-    {
-      "source": "naver",
       "press": "m-i.kr",
       "date": "2026.10.30",
       "title": "경기 광주시, 교육예산 비율 산정 오류 지적…경기도교육청에 정정 요구",
       "snippet": "시에 따르면 하남시·이천시·안산시 등은 일반회계만 반영한 반면, 광주시·성남시·남양주시·오산시 등은 일반회계와 기타 특별회계를 합산한 금액을 적용했다. 광주시는 교육예산을 전체 예산으로 나눠 비율을...",
       "url": "https://www.m-i.kr/news/articleView.html?idxno=2012589"
+    },
+    {
+      "source": "naver",
+      "press": "weeklytoday.com",
+      "date": "2026.10.30",
+      "title": "[위클리오늘] 안민석 교육감, 이주배경학생과 내국학생이 함께 성장하는...",
+      "snippet": "안민석 교육감, 이주배경학생과 내국학생이 함께 성장하는 교육환경 만들어야 안민석 경기도교육감이 10월 30일 안산문화예술의전당에서 박해철·김남국 국회의원, 김수진 안산교육장 등과 함께 '안산 타운홀 미팅'에...",
+      "url": "http://www.weeklytoday.com/news/articleView.html?idxno=800431"
     },
     {
       "source": "naver",
@@ -426,188 +674,76 @@
       "url": "https://www.edaily.co.kr/News/Read?newsId=04359126645618168&mediaCodeNo=257&utm_source=naver&utm_medium=referral&utm_campaign=news_syndication&utm_content=original_article"
     },
     {
-      "source": "naver",
-      "press": "gukjenews.com",
-      "date": "2026.10.30",
-      "title": "충주시 대소원면 주민자치위원회, 안산 호수동 찾아 우수사례 벤치마킹",
-      "snippet": "대소원면 주민자치위, 안산시 호수동서 주민자치 역량 강화 벤치마킹 모습(사진=충주시) 충북 충주시... 대소원면 주민자치위원회는 26명의 회원으로 구성되어 있으며, 신규 위원 역량 강화 교육, 폐현수막을 활용한...",
-      "url": "https://www.gukjenews.com/news/articleView.html?idxno=3737695"
-    },
-    {
-      "source": "naver",
-      "press": "btnnews.tv",
-      "date": "2026.10.30",
-      "title": "진각종, 3년 차 맞아 집행부 개편‥포교부장 정일정사 등 임명",
-      "snippet": "이와 함께 통리원 관재국장 겸 문화국장에 부천심인당 주교 인공정사, 건설국장에 안산심인당 주교 학봉정사 등 국장급 인사도 새롭게 구성됐습니다. 진각대학원장엔 수원 유가심인당 주교 수각정사, 교육원...",
-      "url": "https://www.btnnews.tv/news/articleView.html?idxno=92236"
-    },
-    {
-      "source": "naver",
-      "press": "beopbo.com",
-      "date": "2026.10.30",
-      "title": "진각종, 통리원·교육원 집행부 개편…포교부장 정일 정사",
-      "snippet": "국장급 인사에서는 통리원 관재국장 겸 문화국장에 인공(부천심인당 주교), 건설국장에 학봉(안산심인당 주교), 교육원 교화연구국장에 정목(부산 정정심인당 주교), 교법연구국장에 도향(영천 천혜심인당 주교)...",
-      "url": "https://www.beopbo.com/news/articleView.html?idxno=338701"
-    },
-    {
-      "source": "naver",
-      "press": "sateconomy.co.kr",
-      "date": "2026.10.30",
-      "title": "한샘, 안산 만학도 배움터 공간개선…누적 1088곳 지원",
-      "snippet": "만학도 교육시설 ‘안산용신학교’의 교육 공간을 개선했다. 30일 한샘에 따르면 회사는 안산용신학교에 책상과 의자 등 가구 110여점을 지원하고 지난 21일 완공 기념행사를 열었다. 안산용신학교는 경제적·사회적...",
-      "url": "https://sateconomy.co.kr/news/view/1065589037355451"
-    },
-    {
-      "source": "naver",
-      "press": "news1.kr",
-      "date": "2026.10.30",
-      "title": "안민석 경기교육감, 양주교육지원청 분리 추진…내년 9월 개청",
-      "snippet": "안 교육감은 도내 31개 시·군을 찾아 학부모들과 교육현안을 논의하는 타운홀 미팅을 진행해 왔다. 30일 안산과 의정부 일정을 끝으로 '찾아가는 교육감실'을 마무리할 예정이다.",
-      "url": "https://www.news1.kr/local/gyeonggi/6337818"
-    },
-    {
-      "source": "naver",
-      "press": "wsobi.com",
-      "date": "2026.10.30",
-      "title": "KCC·한샘, 울산지역 사회공헌 지속·만학도 배움터 '안산용신학교' 공간...",
-      "snippet": "종합 홈 인테리어 전문기업 ㈜한샘은 경기도 안산시에 위치한 만학도 교육시설인 '안산용신학교'의 교육 공간을 개선하고 기념식을 진행했다고 30일 밝혔다. 이번 지원은 한샘의 대표 사회공헌 사업인 '공간개선 사업'의...",
-      "url": "http://www.wsobi.com/news/articleView.html?idxno=320731"
-    },
-    {
-      "source": "naver",
-      "press": "newscj.com",
-      "date": "2026.10.30",
-      "title": "안산 초지역세권 개발 또 제동… 여야 충돌에 PFV 설립 난항",
-      "snippet": "20년 가까이 표류해 온 경기 안산시 초지역세권 도시개발사업이 민선 9기에도 시의회 문턱을 넘지 못하면서... 등 교육 기반시설 확충을 종합적으로 고려해야 한다고 주장했다. 민주당은 \"중요한 것은 속도가 아니라...",
-      "url": "https://www.newscj.com/news/articleView.html?idxno=3444490"
-    },
-    {
-      "source": "naver",
-      "press": "fieldnews.kr",
-      "date": "2026.10.30",
-      "title": "안민석 경기도교육감, 교육자치 대전환 시동…양주·하남 교육지원청 신...",
-      "snippet": "경기도교육청은 오는 30일 안산과 의정부 일정을 끝으로 31개 시군을 대상으로 진행한 '찾아가는 교육감실'을 마무리하고, 현장에서 제기된 건의사항을 후속 정책에 반영할 계획이다. [필드뉴스 = 유수종] [필드뉴스...",
-      "url": "http://www.fieldnews.kr/news/articleView.html?idxno=32691"
-    },
-    {
-      "source": "naver",
-      "press": "incheonilbo.com",
-      "date": "2026.10.30",
-      "title": "안민석 교육감, 동두천·양주서 교육현안 청취…지역별 해법 모색",
-      "snippet": "'교육의 문제는 현장에 답이 있다'는 취지의 '교문현답'을 실천하기 위해 경기도 내 31개 시·군을 찾아 학부모와 교육 현안을 논의해 온 안 교육감은 오는 30일 안산과 의정부에서 타운홀미팅을 이어갈 예정이다.",
-      "url": "https://www.incheonilbo.com/news/articleView.html?idxno=1335549"
-    },
-    {
-      "source": "naver",
-      "press": "newsworks.co.kr",
-      "date": "2026.10.30",
-      "title": "경기도교육청, 양주교육지원청 내년 9월 개청 추진…동두천과 분리",
-      "snippet": "반영하겠다는 취지로 동두천·양주 타운홀을 진행했다. '찾아가는 교육감실'은 도내 31개 시·군을 순회하는 방식으로 운영되고 있으며, 교육청은 30일 안산과 의정부 일정을 끝으로 이번 순회를 마칠 예정이다. [뉴스웍스=]",
-      "url": "https://www.newsworks.co.kr/news/articleView.html?idxno=901424"
-    },
-    {
-      "source": "naver",
-      "press": "e-science.co.kr",
-      "date": "2026.10.30",
-      "title": "한샘, 안산용신학교 학습공간 개선…고령 학습자 고려한 가구 110여 점 ...",
-      "snippet": "종합 홈 인테리어 기업 한샘은 경기도 안산시에 위치한 만학도 교육시설 안산용신학교의 학습공간을 개선하고 기념식을 진행했다고 밝혔다. 이번 사업은 한샘의 사회공헌 활동인 공간개선 사업의 하나로, '찬란한샘...",
-      "url": "https://www.e-science.co.kr/news/articleView.html?idxno=138568"
-    },
-    {
-      "source": "naver",
-      "press": "discoverynews.kr",
-      "date": "2026.10.30",
-      "title": "광주시, 도교육청 교육예산 통계 기준에 이의 제기",
-      "snippet": "도교육청 발표에서 광주시는 총교육예산과 자체 교육예산 비중이 모두 도내 평균에 미치지 못하는 것으로 분류됐다. 하지만 광주시가 집계 내용을 확인한 결과, 하남·이천·안산시는 일반회계를 기준으로 계산한 반면...",
-      "url": "https://www.discoverynews.kr/news/articleView.html?idxno=1105368"
-    },
-    {
-      "source": "naver",
-      "press": "niceeconomy.co.kr",
-      "date": "2026.10.30",
-      "title": "[산업 브리핑] 한샘·시몬스·에이스침대",
-      "snippet": "◇ 한샘, 안산 만학도 교육시설에 책상·의자 110여개 지원 한샘은 지난 21일 경기 안산시에 있는 '안산용신학교'의 교육 공간을 개선하고 완공 기념행사를 진행했다고 30일 밝혔다. 이날 행사에는 학교 관계자, 학생 등...",
-      "url": "https://www.niceeconomy.co.kr/news/articleView.html?idxno=91618"
-    },
-    {
-      "source": "naver",
-      "press": "discoverynews.kr",
-      "date": "2026.10.30",
-      "title": "안민석 교육감, 동두천·양주 교육현안 점검…지원청 분리 속도",
-      "snippet": "구분하고, 지자체 협력이 필요한 과제는 관계기관과 후속 협의를 진행할 계획이다. 한편 안 교육감은 30일 안산과 의정부 방문을 끝으로 도내 31개 시군을 대상으로 진행한 찾아가는 교육감실 일정을 마무리할 예정이다.",
-      "url": "https://www.discoverynews.kr/news/articleView.html?idxno=1105365"
-    },
-    {
-      "source": "naver",
-      "press": "100ssd.co.kr",
-      "date": "2026.10.30",
-      "title": "한샘, 만학도 교육시설 개선 앞장…안산용신학교에 책상·의자 기부",
-      "snippet": "한샘은 대표 사회공헌 사업인 '공간개선 사업'의 일환으로 경기도 안산시에 위치한 만학도 교육시설 '안산용신학교'의 학습 환경을 개선했다고 30일 밝혔다. 지난 1987년 설립된 안산용신학교는 현재 100여 명의 만학도가...",
-      "url": "https://www.100ssd.co.kr/news/articleView.html?idxno=214000"
-    },
-    {
-      "source": "naver",
-      "press": "ajunews.com",
-      "date": "2026.10.30",
-      "title": "안민석 교육감, 동두천·양주서 학부모 500여 명과 소통...지역 교육현안...",
-      "snippet": "한편 경기도교육청은 오는 30일 안산과 의정부에서 예정된 타운홀 미팅을 끝으로 31개 시군을 대상으로 진행한 '찾아가는 교육감실' 일정을 마무리할 계획이며 그동안 현장에서 제기된 지역별 교육 현안과 학부모...",
-      "url": "https://www.ajunews.com/view/20261030104830197"
-    },
-    {
-      "source": "naver",
-      "press": "pointdaily.co.kr",
-      "date": "2026.10.30",
-      "title": "한샘, '안산용신학교' 공간 개선 지원…\"만학도 위한 건강한 배움 환경...",
-      "snippet": "사진=한샘 한샘이 경기도 안산시에 위치한 만학도 교육시설인 '안산용신학교'의 교육 공간을 개선하고 기념식을 진행했다고 30일 밝혔다. 이번 지원은 한샘의 대표 사회공헌 사업인 '공간개선 사업'의 일환이다. 한샘은...",
-      "url": "https://www.pointdaily.co.kr/news/articleView.html?idxno=324307"
-    },
-    {
-      "source": "naver",
-      "press": "news1.kr",
-      "date": "2026.10.30",
-      "title": "광주시 \"경기도교육청 교육예산 통계 오류\" 정정 요구",
-      "snippet": "하남·이천·안산시는 일반회계만 반영한 반면, 광주·성남·남양주·오산시는 특별회계까지 포함해 교육예산 비율을 산출했다는 것이다. 광주시는 \"동일한 일반회계 기준을 적용하면 시의 교육예산 비율은 1.326%에서 1....",
-      "url": "https://www.news1.kr/local/gyeonggi/6337689"
-    },
-    {
-      "source": "naver",
-      "press": "goodkyung.com",
-      "date": "2026.10.30",
-      "title": "[굿모닝! 30일 유통가 소식] 현대백화점·롯데백화점·LG생활건강·배민...",
-      "snippet": "한샘은 경기 안산시 안산용신학교의 교육 공간을 개선하는 '찬란한샘' 사회공헌 사업을 펼쳤다. 1987년 설립된 안산용신학교는 경제적·사회적 어려움으로 배움의 기회를 놓친 어르신을 위한 교육기관으로, 현재...",
-      "url": "https://www.goodkyung.com/news/articleView.html?idxno=292945"
-    },
-    {
-      "source": "naver",
-      "press": "weeklytoday.com",
-      "date": "2026.10.30",
-      "title": "[위클리오늘] 광주시, 경기도교육청 교육예산 통계 정정 요구…산출 기...",
-      "snippet": "그러나 광주시가 발표 자료를 검증한 결과, 교육예산 비율 산정의 기준이 되는 전체 예산에 시군별로 서로 다른 회계 기준이 적용된 것으로 확인됐다. 하남시와 이천시, 안산시 등은 일반회계만 전체 예산에 포함한...",
-      "url": "http://www.weeklytoday.com/news/articleView.html?idxno=800356"
-    },
-    {
       "source": "google",
-      "press": "www.newszoom.kr",
-      "date": "2026.10.30",
-      "title": "안산교육지원청, ‘2026 안산 루트 아카데미’ 성황리 마무리",
-      "snippet": "안산교육지원청, ‘2026 안산 루트 아카데미’ 성황리 마무리 www.newszoom.kr",
-      "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE5kMHh6WTc3SXhvYVBjZ0NaRlZ5S0xNN3VRMGl4Z2o1M2Zta3FoS19YX0lUOUhaMURmY0hnRG1HdWNHLXlLRmc?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "경기매일",
+      "press": "엔디엔뉴스",
       "date": "2026.10.30",
       "title": "안산교육지원청, 학부모와 함께하는 편한교복으로 교복문화 대전환",
-      "snippet": "안산교육지원청, 학부모와 함께하는 편한교복으로 교복문화 대전환 경기매일",
-      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5IR2lBNDdSaHAxSkVsTl9oQlowTFlvejBZVjFGaG5GV3R6TzhLemIteGdZTW5VVm44TzJTQjdlRVR5d193WWQxMXdEX0ljdy1uYXhQXzRlOFVycngxSXhpVFdQT1BJSTA?oc=5"
+      "snippet": "안산교육지원청, 학부모와 함께하는 편한교복으로 교복문화 대전환 엔디엔뉴스",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE92M09yUkRkTkxrUU5QVkRaZHJEenpaUzZuLXYyelBzYmllTDNoNHhXQllwWTluV3lzekRCVmNESHcxYnd4MFdRcE1WanlSYmFfOU91NDhYaWJrRFVjeWF3ekI2S0t6eWhMbktqSURteEd2d9IBckFVX3lxTE92M09yUkRkTkxrUU5QVkRaZHJEenpaUzZuLXYyelBzYmllTDNoNHhXQllwWTluV3lzekRCVmNESHcxYnd4MFdRcE1WanlSYmFfOU91NDhYaWJrRFVjeWF3ekI2S0t6eWhMbktqSURteEd2dw?oc=5"
     },
     {
       "source": "google",
-      "press": "서프라이즈뉴스",
+      "press": "경기in",
+      "date": "2026.10.30",
+      "title": "안산교육지원청, ‘2026 안산 루트 아카데미’ 성황리 마무리",
+      "snippet": "안산교육지원청, ‘2026 안산 루트 아카데미’ 성황리 마무리 경기in",
+      "url": "https://news.google.com/rss/articles/CBMiQ0FVX3lxTE1Nb3BSdlBUQ3hsRzc1MFpHcEpfczVnMFl0dk5STXlkYm1WZ2JhNGJUaFB3WG9xU0N5RHh0cFRDOWJSMGM?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "필드뉴스",
+      "date": "2026.10.30",
+      "title": "안민석 경기도교육감, 안산서 이주배경학생 교육현안 점검…한국어교육·학교 적응 지원",
+      "snippet": "안민석 경기도교육감, 안산서 이주배경학생 교육현안 점검…한국어교육·학교 적응 지원 필드뉴스",
+      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE5aZ0MwWXQ4MUlURUpNeFBxcWZvTDhDeEI0RERkR3UxYV9SaDBLdzNLcEJuYWlFUldLSTMxTTVzdGJROVp3S1FZSVdVYnJEc2syNXg3Z1R0SXhNelhta3pqVThqM1VsUUd3bUtBcdIBbEFVX3lxTE5aZ0MwWXQ4MUlURUpNeFBxcWZvTDhDeEI0RERkR3UxYV9SaDBLdzNLcEJuYWlFUldLSTMxTTVzdGJROVp3S1FZSVdVYnJEc2syNXg3Z1R0SXhNelhta3pqVThqM1VsUUd3bUtBcQ?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "천지일보",
+      "date": "2026.10.30",
+      "title": "안민석 경기도교육감, 안산서 학부모와 교육현안 논의… 이주배경학생 지원 강화",
+      "snippet": "안민석 경기도교육감, 안산서 학부모와 교육현안 논의… 이주배경학생 지원 강화 천지일보",
+      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE82Mms2SHlUTXNDN3YzY1dMdGdpdUM0OUNEbUNZWFpNNEd6S0JwX0NnbTh6c0w2T1dkOTFWS0czZjdkYWJJZFZDNXkta2RGbndIMkdrOHZpaVhvdXlHUnc3eUptX2F5S3pjTkE?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "월드장애인사랑뉴스",
+      "date": "2026.10.30",
+      "title": "안민석 경기도교육감, 안산 이주배경학생 교육지원 강화 논의…박해철 의원, 교육지원청·시청·학부모 TF 구성 추진",
+      "snippet": "안민석 경기도교육감, 안산 이주배경학생 교육지원 강화 논의…박해철 의원, 교육지원청·시청·학부모 TF 구성 추진 월드장애인사랑뉴스",
+      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE10c0FjY0h4dWVqMjQ5cEhlY0RWRElPbFJHaHEyUUhDS3k3Y1NVajhGM3YySzJwbFFUZUgxYUNLR244NFFWU0hoNHgyN0prQTlNaWRYbFNWRDdkRzJNclQwUXhKYTZhSC05cldLRmNhdw?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "머니투데이",
+      "date": "2026.10.30",
+      "title": "안산 간 안민석 경기도교육감 \"이주배경학생 종합지원 체계 만들 것\" - 머니투데이",
+      "snippet": "안산 간 안민석 경기도교육감 \"이주배경학생 종합지원 체계 만들 것\" - 머니투데이 머니투데이",
+      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTFBXcEFWOV9uaXpDNDRXaTNfOHRBbEYwM3pPUWoyQm9nVXdQcHY5dVdqVmRaUVVpZUtjNDlKVDFyOFhWeW1lN1JHUFdfcVZFcldVSHMxQ0lCSkRKQ0hNZTZSTzltbURCUjRpYWVUcm1wc9IBb0FVX3lxTFBXcEFWOV9uaXpDNDRXaTNfOHRBbEYwM3pPUWoyQm9nVXdQcHY5dVdqVmRaUVVpZUtjNDlKVDFyOFhWeW1lN1JHUFdfcVZFcldVSHMxQ0lCSkRKQ0hNZTZSTzltbURCUjRpYWVUcm1wcw?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "피디언뉴스",
+      "date": "2026.10.30",
+      "title": "안산교육지원청, 이주배경학생 지원TF 구성… '함께 성장' 교육환경 조성 시동",
+      "snippet": "안산교육지원청, 이주배경학생 지원TF 구성… '함께 성장' 교육환경 조성 시동 피디언뉴스",
+      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE1VUFZNWGM4UU1VTlBVZnRmNTZ1WG8ydjNMeEFfeUVCX09DWEdRa20za0NxME9PeERnbkY3UTIxMEV6cVVDRlphSEJBM3k5d0M2S0dDX3kxbTFYUV9X?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "아주경제",
+      "date": "2026.10.30",
+      "title": "안민석 교육감, 안산서 이주배경학생 지원 논의...통합 교육환경 조성 강조",
+      "snippet": "안민석 교육감, 안산서 이주배경학생 지원 논의...통합 교육환경 조성 강조 아주경제",
+      "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE5ZaURtX2VVcmJpcTBSYWhYSjFJaXJNS2pNRmVzam5veU0zSDJPVXpzbl9OQTNOaE5FREJxbmpfc0lhZ1BGeDVaMGhXNHQ2WUI5UWpPT2FxMTTSAVhBVV95cUxOWWlEbV9lVXJiaXEwUmFoWEoxSWlyTUtqTUZlc2pub3lNM0gyT1V6c25fTkEzTmhORURCcW5qX3NJYWdQRng1WjBoVzR0NllCOVFqT09hcTE0?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "광교신문",
       "date": "2026.10.30",
       "title": "안민석 교육감, 이주배경학생과 내국학생이 함께 성장하는 교육환경 만들어야",
-      "snippet": "안민석 교육감, 이주배경학생과 내국학생이 함께 성장하는 교육환경 만들어야 서프라이즈뉴스",
-      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1uRzJxcFhHZkpPNFVPVEJOUUFueVhJbVpJaVhfQmprbzE2bWlXVC1zV1VrRmJRZlk1SkRJSWkxYlFfZF9XOGl3Z1JPTjBpNGw1NGFLR1NWS2pCNWwtYnFYbDBrLWw1eFRfWmFtZnln?oc=5"
+      "snippet": "안민석 교육감, 이주배경학생과 내국학생이 함께 성장하는 교육환경 만들어야 광교신문",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE0tOUhncTk4c0xGLUJtQW4zMERCQjcwNm91SGN1VUdnWjFxWVY4djV5XzZTYUFKdmRfeXRyU09XUXJtRXpTc0NHbG5ESERpSF95azUyNGN1RDEzUnVpMllDU2RCb2o0eC0y?oc=5"
     },
     {
       "source": "google",
@@ -619,51 +755,27 @@
     },
     {
       "source": "google",
-      "press": "더코리아",
+      "press": "투데이안산",
       "date": "2026.10.30",
-      "title": "안민석 경기도교육감, 이주배경학생과 내국학생이 함께 성장하는 교육환경 만들어야 > 뉴스",
-      "snippet": "안민석 경기도교육감, 이주배경학생과 내국학생이 함께 성장하는 교육환경 만들어야 > 뉴스 더코리아",
-      "url": "https://news.google.com/rss/articles/CBMiREFVX3lxTE1ZLWwtTk1CY1NEQlZOVnBfRFZRTFg5MUIxRW1wYWNfbGFPbC1IV21yMFdKV2VzbTFJM3h6aU1rUE1TbmVO?oc=5"
+      "title": "박은경 경기도의원, 안산 유보통합 현안 살피고 정책 추진 방향 논의",
+      "snippet": "박은경 경기도의원, 안산 유보통합 현안 살피고 정책 추진 방향 논의 투데이안산",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5zQTN0dk1mNmE5cnlVc2FBb0JQXzIyeTlhX0ZmZnUtQ05ISW5WdkswZC1ITm9YeWphWUl4ZmFJRUJDMDllbS0zcVZiSS1mZXRPQjlMRmR3OG9veWttX3I4TFJqaEo2TjZnLUstZ1dvaFZkQdIBckFVX3lxTE5zQTN0dk1mNmE5cnlVc2FBb0JQXzIyeTlhX0ZmZnUtQ05ISW5WdkswZC1ITm9YeWphWUl4ZmFJRUJDMDllbS0zcVZiSS1mZXRPQjlMRmR3OG9veWttX3I4TFJqaEo2TjZnLUstZ1dvaFZkQQ?oc=5"
     },
     {
       "source": "google",
-      "press": "뉴스포스트",
+      "press": "내외뉴스통신",
       "date": "2026.10.30",
-      "title": "한샘, 만학도 배움터 '안산용신학교' 교육환경 개선",
-      "snippet": "한샘, 만학도 배움터 '안산용신학교' 교육환경 개선 뉴스포스트",
-      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE9TazUzR3gtZzEzSUViNnBISFg2MGhPT0NSUGt6bXBfSXl2dDU4QzFmUW52S2FNdDhVRkI1ZG05VUdRaFF3Vk9iR3k1NTU0VjFmaVNzYXdWZ2RZVVZqSW1Hakk5eENFZnJL?oc=5"
+      "title": "안민석 경기도교육감, 안산서 학부모 타운홀미팅",
+      "snippet": "안민석 경기도교육감, 안산서 학부모 타운홀미팅 내외뉴스통신",
+      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5IUUJuYjAwVVJoQjhtbjhkMm9rSGd5WnpJemEyaGtTSmNDSWphc2FWVUxKTV9pRGxZWXRRdThzWlNPNTBXNjdWMHlJWE5GNFducU02bEZWSEJqMmhveHVNZjVJQzZCaVpUZ0c3MDVR0gFwQVVfeXFMTUxXNno0bmtwQW85UmprbGRuRS1KdVNXLUc4YjJHc3FzYWVjT2wtLWdxdHVGb19YcXA2SjJHclRLOHFEbFpwNUxKZWJCRVVpSGVkUUVkTjA1UzBLakV5UGFDdDZvcHZUZ1pCUFJJTVFvRw?oc=5"
     },
     {
       "source": "google",
-      "press": "브레이크뉴스",
+      "press": "일간경기",
       "date": "2026.10.30",
-      "title": "한샘, 만학도 교육시설 '안산용신학교' 교육 공간 개선",
-      "snippet": "한샘, 만학도 교육시설 '안산용신학교' 교육 공간 개선 브레이크뉴스",
-      "url": "https://news.google.com/rss/articles/CBMiQkFVX3lxTE9XYVpZMVV4Wmk0d0ZBd1l0LWxmNXBSNndEN1Y3U05IcXhDRWd5bVZJV0YtMHRianlZcll3andMNWJTZw?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "경기종합뉴스",
-      "date": "2026.10.30",
-      "title": "(재)안산인재육성재단, “2026년 하반기 영어로 배우는 시티투어” 성료!",
-      "snippet": "(재)안산인재육성재단, “2026년 하반기 영어로 배우는 시티투어” 성료! 경기종합뉴스",
-      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE4zaFd2R240RkU5LXAtRTJHUnFKREl1eTR2RUpRelV6Z3ZOOEFJc3N3emdEdENVdU9EQ1c3VVZ5X1BaOXFHQWxwYWhlaGhJdEdaR0pBWWFYeFdhSjhtVnhqTm13NkF6bHZPYVNPMmNKamQwcUp4?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "뉴스락",
-      "date": "2026.10.30",
-      "title": "[함께가자 우리ESG] 한샘, 안산용신학교에 가구 110여점 지원…교육 공간 개선",
-      "snippet": "[함께가자 우리ESG] 한샘, 안산용신학교에 가구 110여점 지원…교육 공간 개선 뉴스락",
-      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE8wN2hqYU9qX1lDdkJCc2w0VUdvQzB5Z09VQTdwb0ZEc0QxWlFQcWk3SG9ya2lzdFNXZFZTd1k0NEJ0a3FHZDdHald5c3hzT1MzbksyYWFOQTFPMzdOeG1iaUxqMmFhdjZfLXh4dQ?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "위키트리",
-      "date": "2026.10.30",
-      "title": "한샘, 안산 만학도 학교에 책상·의자 110여 점 지원…'찬란한샘' 공간 개선",
-      "snippet": "한샘, 안산 만학도 학교에 책상·의자 110여 점 지원…'찬란한샘' 공간 개선 위키트리",
-      "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE13SG9Ma2N6aVFvZnQxODhlZHBkVVYtYlByb1Zmc0ZmN1hVNnMxMllVXzkzNkQ1TF9GY1JtQmc4eEtRNFZtZkw0MldUeDJQaTNxa2hjUXRB?oc=5"
+      "title": "안민석 교육감 타운홀미팅, 내국인·이주배경학생 동반성장 TF 띄운다",
+      "snippet": "안민석 교육감 타운홀미팅, 내국인·이주배경학생 동반성장 TF 띄운다 일간경기",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5SbzdGZ1NHbEIxY19mdDFsZGpBS2dZSjZKRmo4NG5mYlExajhGcFBRelJEQUZGUTlwLUdvaEtBR3J4MDg3b25mT1ltSFJFLURrWko3SXpxSXJrbk1WaGJodS1zNG9XODF4?oc=5"
     },
     {
       "source": "naver",
@@ -808,6 +920,30 @@
       "title": "장윤정 경기도의원 경기신보 안산지점장 체험...\"기업에 도움 되도록 제도 개선\"",
       "snippet": "장윤정 경기도의원 경기신보 안산지점장 체험...\"기업에 도움 되도록 제도 개선\" 국제뉴스",
       "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE02SVVhLWR2RnRIbE0zdERiOTJwblBwb29pYUNyczdISW1TRF9RUlhFOURVMnlSRVJ0TVNEa3BKRVFPYUtKVkF1VWJ0OGdsYmI0T093bnl2SXJkcnhvQnlzQmVpVVI4RDR0MklSY2p3?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "아주경제",
+      "date": "2026.10.29",
+      "title": "경기신보, 일일명예지점장 장윤정 경기도의원 위촉...안산 기업 자금난 해소 협력",
+      "snippet": "경기신보, 일일명예지점장 장윤정 경기도의원 위촉...안산 기업 자금난 해소 협력 아주경제",
+      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBTZlZzMkp0UGZoaHQ1WFBfT3otSUhyZ1UxaTBLd2pBWGZNdnNtQ3JmZEpXWTVJVEMtZEhXTjBZTUVGT2N2b3FaVUt4Y0tRNUhvTUtqN2tGYm5kUdIBWEFVX3lxTFBfMUtrWTVFOFlERXZHZzBMR2FSbU5IWjlYek5tT3h1YlU3eW1fR05PWVdubk8zTlhCMVBFZ2o1dnRTVi00RElWWmtka1lNQ3NxZ3JFd3lDdlc?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "뉴스파이어",
+      "date": "2026.10.29",
+      "title": "경기도의회 장윤정 의원, 지역경제 현안 챙겨, 일일명예지점장 맡아 보증 상담, “기업인 목소리를 제도 개선으로 잇겠다”",
+      "snippet": "경기도의회 장윤정 의원, 지역경제 현안 챙겨, 일일명예지점장 맡아 보증 상담, “기업인 목소리를 제도 개선으로 잇겠다” 뉴스파이어",
+      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTFBKRlpmM09KdnZwVG14UWFhVnR6M0ZZUkZfbnJOMWRyWTZSR0M4NUF2dlkwMXVsU0FudGVkMGxLbVh1TFVYMnk0R2VaQWtPYkx6aXhZYzZSVFBKcThnWnlGZU0weXIwRms5QlhBcFJuTQ?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "경기일보",
+      "date": "2026.10.29",
+      "title": "장윤정 도의회 경노위 부위원장, 경기신보 일일명예지점장…기업 애로 청취",
+      "snippet": "장윤정 도의회 경노위 부위원장, 경기신보 일일명예지점장…기업 애로 청취 경기일보",
+      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE1SSTBYVW8yMFZPV2pLdkVybTRQbm9ZOVBnS0pvMzhGOTZ4UlZTbTB2N19LQlRZcmt5TmxJOHhFNnVmQ2pWWXU2R2VLNDZ1c0VsRkVZeUFRVHNyT3M?oc=5"
     },
     {
       "source": "google",
@@ -986,28 +1122,12 @@
       "url": "https://www.etoday.co.kr/news/view/2641772"
     },
     {
-      "source": "naver",
-      "press": "fieldnews.kr",
-      "date": "2026.10.29",
-      "title": "장윤정 경기도의회 부위원장, 경기신보 일일명예지점장으로…소상공인...",
-      "snippet": "장윤정 경기도의회 경제노동위원회 부위원장이 경기신용보증재단 안산지점 상담창구에 직접 앉아 중소기업·소상공인의 자금 사정을 살폈다. 현장에서는 판매 부진과 높은 금리 부담, 운영자금 부족 등이 주요 경영...",
-      "url": "http://www.fieldnews.kr/news/articleView.html?idxno=32646"
-    },
-    {
       "source": "google",
       "press": "문화일보",
       "date": "2026.10.29",
       "title": "경기신보 안산 명예지점장 맡은 장윤정 도의원 “지역경제 어려움 와닿아”",
       "snippet": "경기신보 안산 명예지점장 맡은 장윤정 도의원 “지역경제 어려움 와닿아” 문화일보",
       "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE96bmxZZTNhVEMyMkxIZGRHYmVGZTRlbVNiOWF1dmVJS21QQTJjUnlLLTJnYTVjRGJlU0Y4OXk1UktvOGt6UUd1RU9MNjI2YzYw?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "경인투데이뉴스",
-      "date": "2026.10.29",
-      "title": "경기신용보증재단, 장윤정 경기도의회 부위원장 안산지점 일일명예지점장 위촉:경인투데이뉴스",
-      "snippet": "경기신용보증재단, 장윤정 경기도의회 부위원장 안산지점 일일명예지점장 위촉:경인투데이뉴스 경인투데이뉴스",
-      "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE9vYUkweXN1YmluMEVCUHVYVko1WGh0UEJUbDlYM2xudGgxVl9SdTRqWXFsM3N4NXJXakcwZ0ZqVkYxVlhDbmRJQVowZG0zcFdpM1hZTzZFaC1rY04xd2k40gFfQVVfeXFMT29hSTB5c3ViaW4wRUJQdVhWSjVYaHRQQlRsOVgzbG50aDFWX1J1NGpZcWwzc3g1cldqRzBnRmpWRjFWWENuZElBWjBkbTNwV2kzWFlPNkVoLWtjTjF3aTg?oc=5"
     },
     {
       "source": "naver",
@@ -1056,38 +1176,6 @@
       "title": "경기도의회 장윤정 부위원장, \"기업 목소리 금융지원 제도 개선으로 연결\"",
       "snippet": "경기도의회 장윤정 부위원장, \"기업 목소리 금융지원 제도 개선으로 연결\" 기호일보",
       "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE4xLUxhTi1yRzU3WGdCVFBIYzV4dnM5RWxHWkpRTUdrUl9tcTkwWHVuM0w5VDFvMlI1OW9SaWFBQ1laOHFPbERydXg5YWR1NEVGck11YkwwZFpnR2FRdE5maENRU2M3bFFTREV2cnQ1SQ?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "경기일보",
-      "date": "2026.10.29",
-      "title": "장윤정 도의회 경노위 부위원장, 경기신보 일일명예지점장…기업 애로 청취",
-      "snippet": "장윤정 도의회 경노위 부위원장, 경기신보 일일명예지점장…기업 애로 청취 경기일보",
-      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE1SSTBYVW8yMFZPV2pLdkVybTRQbm9ZOVBnS0pvMzhGOTZ4UlZTbTB2N19LQlRZcmt5TmxJOHhFNnVmQ2pWWXU2R2VLNDZ1c0VsRkVZeUFRVHNyT3M?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "경인매일",
-      "date": "2026.10.29",
-      "title": "장윤정 경기도의회 부위원장, 안산 기업 자금난 청취… 금융지원 제도 개선 협력 약속",
-      "snippet": "장윤정 경기도의회 부위원장, 안산 기업 자금난 청취… 금융지원 제도 개선 협력 약속 경인매일",
-      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5CRVhYR01DNWkzMHhTWFZWZEhaT0RYd0FyRjBuQlVYajVfYi02MFZFc0QzSldyc0RXZmJ1SFUwQmpKbHk1Vkl1WjZ6NEJLVUVsQWpmLVhWTHN4NkQ0MU0wNzd3MnhmYzhw?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "경인매일",
-      "date": "2026.10.29",
-      "title": "한샘, 안산용신학교 교육환경 개선...만학도 위해 가구 110여 점 지원",
-      "snippet": "한샘, 안산용신학교 교육환경 개선...만학도 위해 가구 110여 점 지원 경인매일",
-      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5XYzhIRTh1Q0s2N01SQTE1Rm9sLU9BY1pqYm4taE9iend4aDhIekpHV1NpaWxRSFJkRF9qUlhGSWRLVUhBZEdHWTdXMnN3MFkyZnFRaWV5V0NRT19nQUpqbFlTdTBuX0ll?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "글로벌이코노믹",
-      "date": "2026.10.29",
-      "title": "한샘, ‘안산용신학교’ 공간 개선 지원…만학도 배움터 개선",
-      "snippet": "한샘, ‘안산용신학교’ 공간 개선 지원…만학도 배움터 개선 글로벌이코노믹",
-      "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxNQS1sTV9zMEdRUWZ1YTNZdXN0RXAxSVoyZjBrZ09nYlU3V2VydEFMODJJeE5ldU5vZWQzcjhHMW56M2w0OWZtUWJGc2diU2hnNUNIY1JXUWNkQXdCRUw2NDNSLUt1T3RrclVYd1lPS2k0NUNZdURpcm1xUDlrY3RuZTN4WGJIX0ZZelE?oc=5"
     },
     {
       "source": "naver",
@@ -1259,14 +1347,6 @@
     },
     {
       "source": "google",
-      "press": "참좋은뉴스",
-      "date": "2026.10.28",
-      "title": "안산시 상록구청, 지하차도진입차단시설 안전에 만전",
-      "snippet": "안산시 상록구청, 지하차도진입차단시설 안전에 만전 참좋은뉴스",
-      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE1lMDN3elFXbVpIMkVNNHpMM0ExSkwyU0o2SmdHMzJBdEwyN193LWROTlhfWXo4RXlIcURhLThJdEFReXNFV080WXh6RTRqXzR3WnhqNnNkYTlEZmM3TE1xcWJ1UEdRbVo5VzNvSGl4eHN5ZWs?oc=5"
-    },
-    {
-      "source": "google",
       "press": "한국사회복지저널",
       "date": "2026.10.28",
       "title": "안산시 상록시니어클럽에 차량 2대 전달…노인일자리 현장 지원",
@@ -1280,14 +1360,6 @@
       "title": "안산시, 상록시니어클럽에 업무 지원 차량 2대 기탁받아",
       "snippet": "안산시, 상록시니어클럽에 업무 지원 차량 2대 기탁받아 웹이코노미",
       "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE80bjhqNHczVHVhMGJ6SmNidlhYeVVlUXZOZXVOLXNHWUFQYnM3Yi1GaDdfS1lQRWlOS2pMS3pfdWowRGhiYUxNcXBwTGNpdl8tc0xodncwLXM2UE9Lbk1uTUo3TElmcVhnb2FzdEl3NWZvdw?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "연합뉴스",
-      "date": "2026.10.28",
-      "title": "안산시, 과학으로 미래 연다…안산사이언스밸리 과학축제 개최",
-      "snippet": "안산시, 과학으로 미래 연다…안산사이언스밸리 과학축제 개최 연합뉴스",
-      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE8wX1F5VHlHWHFSMDdhUGEyVTBoT19UaEEyMnNSV1V0ZHg3eGp2NWRGVWNpa05BZGhMR1pJNWpLdGNuWGJUeWwtNXNGTkQ3dmJ6aUNtQ3dmenRVRDA?oc=5"
     },
     {
       "source": "naver",
@@ -1347,14 +1419,6 @@
     },
     {
       "source": "google",
-      "press": "경기신문",
-      "date": "2026.10.27",
-      "title": "안산교육지원청·중국 저장성 닝보시교육국, 국제교류협력 업무협약 체결",
-      "snippet": "안산교육지원청·중국 저장성 닝보시교육국, 국제교류협력 업무협약 체결 경기신문",
-      "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE9Oa2xzY2Y2TDh3c2tJVVJ1VEZxcUdxclFVaUJjem1jYnREdnhEVjFFdVQxUHdVXzVLRjNVcFdhQlV6clp6UG9pVFVRTDFQOUEtaDV1dll0S0dOM2FZaVI5STZB?oc=5"
-    },
-    {
-      "source": "google",
       "press": "신아일보",
       "date": "2026.10.27",
       "title": "안산교육지원청, 中 닝보시교육국과 국제교육교류 업무협약",
@@ -1363,11 +1427,11 @@
     },
     {
       "source": "google",
-      "press": "미디어투데이",
+      "press": "경기신문",
       "date": "2026.10.27",
-      "title": "안산교육지원청, `2026 안산 상록수 문화예술 RAS Festa` 개최",
-      "snippet": "안산교육지원청, `2026 안산 상록수 문화예술 RAS Festa` 개최 미디어투데이",
-      "url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTE5ZeUdEWGhwd21jX2R2ak9qYkwwMVJHc2JoUTJJdHpoXzdkb3l4VFJNei1zeERYOEk4R2plclFRVVdfeVVhX2pKN3FR?oc=5"
+      "title": "안산교육지원청·중국 저장성 닝보시교육국, 국제교류협력 업무협약 체결",
+      "snippet": "안산교육지원청·중국 저장성 닝보시교육국, 국제교류협력 업무협약 체결 경기신문",
+      "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE9Oa2xzY2Y2TDh3c2tJVVJ1VEZxcUdxclFVaUJjem1jYnREdnhEVjFFdVQxUHdVXzVLRjNVcFdhQlV6clp6UG9pVFVRTDFQOUEtaDV1dll0S0dOM2FZaVI5STZB?oc=5"
     },
     {
       "source": "naver",
@@ -1378,108 +1442,12 @@
       "url": "https://www.newsclaim.co.kr/news/articleView.html?idxno=3080151"
     },
     {
-      "source": "naver",
-      "press": "newsis.com",
-      "date": "2026.10.26",
-      "title": "안산시, '팔곡당산 산신제' 봉행…마을 평안 기원",
-      "snippet": "경기 안산시는 지난 23일 상록구 팔곡일동 팔곡당산 산신당에서 마을의 안녕을 기원하는 '팔곡당산 산신제'를 봉행했다고 26일 밝혔다. 팔곡당산 산신제는 팔곡동 일대 주민들이 천신(天神)과 팔곡산 산신(山神)에게...",
-      "url": "https://www.newsis.com/view/NISX20261026_0003841155"
-    },
-    {
-      "source": "naver",
-      "press": "ekn.kr",
-      "date": "2026.10.26",
-      "title": "[패트롤] 과천시-광명시-군포시-안산시-안양시",
-      "snippet": "안산=에너지경제신문 강근주기자 안산시가 지난 22일 상록구 해안로에 위치한 인테그리스코리아 테크놀로지센터(KTC)에서 투자유치 보조금 5억원을 전달하고 '안산시 제1호 투자유치기업' 현판식을 개최했다. 이날...",
-      "url": "https://www.ekn.kr/web/view.php?key=20261026023181084"
-    },
-    {
-      "source": "naver",
-      "press": "naeil.com",
-      "date": "2026.10.26",
-      "title": "안산시 ‘제1호 투자유치기업’에 보조금 5억 지급",
-      "snippet": "26일 안산시에 따르면 시는 지난 22일 상록구 해안로에 위치한 KTC에서 ‘안산시 제1호 투자유치기업’ 현판식을 갖고 보조금을 전달했다. 이날 행사에는 이민근 안산시장과 한명훈 안산시의회 의장, 김재원...",
-      "url": "https://www.naeil.com/news/read/606368?ref=naver"
-    },
-    {
-      "source": "naver",
-      "press": "kbsm.net",
-      "date": "2026.10.26",
-      "title": "[사진 톡톡] 단풍 물들어가는 가을",
-      "snippet": "25일 경기도 안산시 상록구 안산호수공원에 단풍이 물들어 있다. 연합뉴스",
-      "url": "https://www.kbsm.net/news/view.php?idx=538989"
-    },
-    {
-      "source": "naver",
-      "press": "seoul.co.kr",
-      "date": "2026.10.26",
-      "title": "붉게 물드는 가을",
-      "snippet": "완연한 가을 날씨가 이어진 25일 경기 안산시 상록구 안산호수공원이 울긋불긋한 단풍으로 물들어 있다. 26일 전국 아침 최저기온은 9~18도, 낮 최고기온은 19~25도까지 오르며 평년보다 따뜻한 날씨가 이어지겠다....",
-      "url": "https://www.seoul.co.kr/news/society/2026/10/26/20261026008008?wlog_tag3=naver"
-    },
-    {
-      "source": "naver",
-      "press": "newsis.com",
-      "date": "2026.10.26",
-      "title": "[오늘의 주요일정]경기남부(10월26일 월요일)",
-      "snippet": "앞 ◇안산시 ▲오전 8시, 상록구 동장단 회의, 시장실 ▲오전 9시, 2026년 제10회 조례·규칙심의회, 상황실 ▲오후 2시, 2026년 제4차 용역과제심의위원회, 제1회의실 ▲오후 2시30분, 대부황금로 확·포장공사 2단계...",
-      "url": "https://www.newsis.com/view/NISX20261025_0003840203"
-    },
-    {
       "source": "google",
       "press": "경기신문",
       "date": "2026.10.26",
       "title": "안산교육지원청, 결식 우려 학생 283가정에 쌀 지원",
       "snippet": "안산교육지원청, 결식 우려 학생 283가정에 쌀 지원 경기신문",
       "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE0tdEhfUVlBNDl1R05hOHllWU5PTnBhQUxEaWl0QzhxTzB0dG5iSjBfbjVZZ3lCR1lQcDZ1MTFsWDlDZ3NHM04xUV94ZVM3TGtJMThSRXRIWDNiU21mblY3aVBB?oc=5"
-    },
-    {
-      "source": "naver",
-      "press": "newstown.co.kr",
-      "date": "2026.10.25",
-      "title": "안산시, 경자구역내 제1호 투자기업 '인테그리스코리아' 지정...조례 개...",
-      "snippet": "지난 22일 안산시 상록구 해안로 인테그리스코리아 테크놀로지센터에서 열린 '안산시 제1호 투자유치기업 지정 기념행사'에서 관계자들이 보조금 5억 원 전달 기념판을 들고 기념촬영을 하고 있다. /안산시 안산시가...",
-      "url": "http://www.newstown.co.kr/news/articleView.html?idxno=719620"
-    },
-    {
-      "source": "naver",
-      "press": "businesspost.co.kr",
-      "date": "2026.10.25",
-      "title": "[부음] 정진욱 모친, 김동욱 부친, 권영적 외",
-      "snippet": "△남수남씨 별세, 김요섭(경기일보 서부권본부장·파주 주재·국회 출입 겸직)씨·김대섭(KT 차장)씨 모친상 = 24일, 안산 상록구 안산제일장례식장 특1호실, 발인 26일 오전 6시, (031)406-2000. △원규식씨 별세...",
-      "url": "https://www.businesspost.co.kr/BP?command=article_view&num=450219"
-    },
-    {
-      "source": "naver",
-      "press": "kgnews.co.kr",
-      "date": "2026.10.25",
-      "title": "안산시, ‘제1호 투자유치기업’ 인테그리스코리아에 보조금 5억 원 지...",
-      "snippet": "앞서 지난 22일 안산 상록구 해안로 인테그리스코리아 테크놀로지센터(KTC)에서 열린 현판식에는 이민근 안산시장, 한명훈 안산시의회 의장, 김재원 인테그리스코리아 대표 등 20여 명이 참석했다. 이날 행사는 보조금...",
-      "url": "https://www.kgnews.co.kr/news/article.html?no=916458"
-    },
-    {
-      "source": "naver",
-      "press": "kbsm.net",
-      "date": "2026.10.25",
-      "title": "[카메라 속 세상] 울긋불긋 단풍",
-      "snippet": "25일 경기도 안산시 상록구 안산호수공원에 단풍이 물들어 있다. 연합",
-      "url": "https://www.kbsm.net/news/view.php?idx=538975"
-    },
-    {
-      "source": "naver",
-      "press": "yna.co.kr",
-      "date": "2026.10.25",
-      "title": "화려한 가을",
-      "snippet": "25일 경기도 안산시 상록구 안산호수공원에 단풍이 물들어 있다. 2026.10.25",
-      "url": "https://www.yna.co.kr/view/PYH20261025056100061?input=1196m"
-    },
-    {
-      "source": "naver",
-      "press": "yna.co.kr",
-      "date": "2026.10.25",
-      "title": "울긋불긋 단풍",
-      "snippet": "25일 경기도 안산시 상록구 안산호수공원에 단풍이 물들어 있다. 2026.10.25",
-      "url": "https://www.yna.co.kr/view/PYH20261025055100061?input=1196m"
     },
     {
       "source": "google",
@@ -1730,14 +1698,6 @@
       "url": "http://www.newstown.co.kr/news/articleView.html?idxno=715438"
     },
     {
-      "source": "naver",
-      "press": "discoverynews.kr",
-      "date": "2026.09.10",
-      "title": "경기도의회 AI 의정플랫폼 구축 시동…디지털의정위 출범",
-      "snippet": "도의원은 장윤정, 한승훈, 김영수, 최혜경, 우현욱, 최보라 의원 등 6명이 참여한다. 외부 전문가로는 차경진 한양대학교 경영대학 교수, 나교민 네이버클라우드 이사, 이홍철 KT AX사업본부 상무가 합류했다. 경기도의회...",
-      "url": "https://www.discoverynews.kr/news/articleView.html?idxno=1101185"
-    },
-    {
       "source": "google",
       "press": "KBS 뉴스",
       "date": "2026.05.26",
@@ -1752,6 +1712,14 @@
       "title": "안산 상록구 비닐하우스서 불…1시간 20여분 만에 진화",
       "snippet": "안산 상록구 비닐하우스서 불…1시간 20여분 만에 진화 연합뉴스",
       "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9RU2dkakIwbl9yY3JnSlZIRTV0LVBTdWpOejh4eEd5Rm9yUEE1TXQ0R25zX0l3ZDlSNmtLTi12MmtqUWVISThZR3ZaNE5NcGV4cVRmd0FIaDJwcDTSAWBBVV95cUxQNldVQmI2OEdEejFPM2N5eUhZRHN3MjJxUU9PR0FYLVVqWEhjRnBlRXIzRWZuQnRkcURjLWxvbHJydzJCM3ZVRTNlamhGQnJIZktIYkQzcjk5Rk9iR0pNX0M?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "KBS 뉴스",
+      "date": "2026.05.13",
+      "title": "안산 상록구 다세대 주택서 불…1명 사망·3명 중경상",
+      "snippet": "안산 상록구 다세대 주택서 불…1명 사망·3명 중경상 KBS 뉴스",
+      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE1kYlRxczl6dGRHR1JpUkhSTEY1OGdOVjRMVmZtVHAyS0NkajBLbmVsN0EyNUVsREVDREh4ZTM5a2ROTGo5SGhjZnJNaW5hVWFhVk9fMUU0M0k4d0U?oc=5"
     }
   ]
 }
