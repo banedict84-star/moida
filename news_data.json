@@ -1,6 +1,14 @@
 {
-  "updated": "2026-10-31 06:07 UTC",
+  "updated": "2026-10-31 12:57 UTC",
   "items": [
+    {
+      "source": "google",
+      "press": "천지일보",
+      "date": "2026.10.31",
+      "title": "장윤정 경기도의원, 안산 한대앞역상점가 186억 혁신사업… 상인 의견 반영 촉구",
+      "snippet": "장윤정 경기도의원, 안산 한대앞역상점가 186억 혁신사업… 상인 의견 반영 촉구 천지일보",
+      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5SdXU1MnU5Si1feFktNXBIOHR5emQ2dVBORGdHdXdGOFMwNS1TWHRTYnlaZHlQdFpnUmJKNDBjZEMycGE0eHRxY3R6Vkt3UF9HbUtIRERjU2d5cEhZTnN6SnNmaWN2cTF6cUE?oc=5"
+    },
     {
       "source": "google",
       "press": "뉴스잡",
@@ -8,6 +16,30 @@
       "title": "경기도의회 장윤정 의원, 안산 한대앞역상점가 ‘전통시장 혁신모델 구축’ 간담회",
       "snippet": "경기도의회 장윤정 의원, 안산 한대앞역상점가 ‘전통시장 혁신모델 구축’ 간담회 뉴스잡",
       "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE03NXpyR3V6Y1ctbEpzQ2pIUEFhWFN2dG5wX0VkdHQ3MGF3LVpFb2dWOThGMWxKSDh2R3dfb2N6VUdUeU04SzRDeTRvZ3FicUlwZmlwSm9Fem9vS1hkTkhNMHBrSmZZWmNvMURn0gFrQVVfeXFMTTc1enJHdXpjVy1sSnNDakhQQWFYU3Z0bnBfRWR0dDcwYXctWkVvZ1Y5OEYxbEpIOHZHd19vY3pVR1R5TThLNEN5NG9ncWJxSXBmaXBKb0V6b29LWGROSE0wcGtKZllaY28xRGc?oc=5"
+    },
+    {
+      "source": "naver",
+      "press": "newstown.co.kr",
+      "date": "2026.10.31",
+      "title": "안산 청년기업 7곳, 싱가포르서 투자·구매 의향서 체결",
+      "snippet": "안산시는 한양·예대·초지·월피 등 청년큐브 4곳을 운영한다. 예비 창업자와 창업 3년 미만 기업에 업무공간을 제공하고, 경기테크노파크를 통해 창업 교육과 사업화·판로 개척·시제품 제작 등을 지원하고 있다....",
+      "url": "http://www.newstown.co.kr/news/articleView.html?idxno=720358"
+    },
+    {
+      "source": "naver",
+      "press": "gukjenews.com",
+      "date": "2026.10.31",
+      "title": "안산시, '청년 성호 유람일기' 연수 11월 27~28일 운영",
+      "snippet": "연수 대상은 성호박물관의 교육 프로그램에 참여한 교육생과 박물관 관람 인증이 가능한 성인이다. 참가 신청은 11월 3일부터 안산시 통합예약시스템에서 가능하며, 자세한 안내는 성호박물관을 통해 받을 수 있다....",
+      "url": "https://www.gukjenews.com/news/articleView.html?idxno=3738463"
+    },
+    {
+      "source": "naver",
+      "press": "gukjenews.com",
+      "date": "2026.10.31",
+      "title": "안산시, 청년 창업기업 해외 진출 지원…싱가포르서 교류 프로그램 진행",
+      "snippet": "창업 교육, 사업화 지원금, 판로 개척, 기업 간 교류, 시제품 제작 등 다양한 지원책을 경기테크노파크에 위탁해 이어가고 있다. 이러한 지원 정책의 일환으로, 안산시와 (재)경기테크노파크는 지난 26일부터 30일까지...",
+      "url": "https://www.gukjenews.com/news/articleView.html?idxno=3738456"
     },
     {
       "source": "naver",
@@ -155,14 +187,6 @@
     },
     {
       "source": "google",
-      "press": "서울Pn",
-      "date": "2026.10.30",
-      "title": "장윤정 경기도의원, 안산 한대앞역상점가 ‘전통시장 혁신모델 구축’ 현장 간담회 개최",
-      "snippet": "장윤정 경기도의원, 안산 한대앞역상점가 ‘전통시장 혁신모델 구축’ 현장 간담회 개최 서울Pn",
-      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5iN1hHdWdIa0U5NVZ6RUJwbGJRX3B0V21LODlBLVVyWG5YLW1HMDY0TjF4Vk1wcTR1RDMxT05CSzNSTm53V2RXY1hsM1NvQXhOUzlld2xPZjJLeEhiUkFfOVZTZ1JMTHlQbUE?oc=5"
-    },
-    {
-      "source": "google",
       "press": "전국매일신문",
       "date": "2026.10.30",
       "title": "장윤정 경기도의원, 안산 기업인 금융애로 청취",
@@ -171,19 +195,19 @@
     },
     {
       "source": "google",
-      "press": "광교신문",
-      "date": "2026.10.30",
-      "title": "경기도의회 장윤정 의원, 안산 한대앞역상점가",
-      "snippet": "경기도의회 장윤정 의원, 안산 한대앞역상점가 광교신문",
-      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE0wS3ZUU0I5c0JwYkxZanFBZ1lLUENKM0hKT1JPbTc1enExMF9iQkpSUFpuSTFocG9DUGhGUjA2NW9KRmdfUFN4SkVpM1cxTDJaUi1hcWtMUWtHeFZhRU5fR25iSU5rMF9L?oc=5"
-    },
-    {
-      "source": "google",
       "press": "대한경제",
       "date": "2026.10.30",
       "title": "장윤정 경기도의원, 경기신보 일일명예지점장…안산 기업·소상공인 애로 청취",
       "snippet": "장윤정 경기도의원, 경기신보 일일명예지점장…안산 기업·소상공인 애로 청취 대한경제",
       "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTFBGNjVlMEpydnJRWDFaR0daUURUaUhLTFZIQk9WMDM1Z1VaQ3NheDRvS2hXdENoWTROM2dpazdrdmNSOXVTWDZSekhQWmZvTl9hLU1rc3ZlSGdibkpJUDFIdWRYSXRRZ194dlkxOUgzRkVWcEts?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "서울Pn",
+      "date": "2026.10.30",
+      "title": "장윤정 경기도의원, 안산 한대앞역상점가 ‘전통시장 혁신모델 구축’ 현장 간담회 개최",
+      "snippet": "장윤정 경기도의원, 안산 한대앞역상점가 ‘전통시장 혁신모델 구축’ 현장 간담회 개최 서울Pn",
+      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5iN1hHdWdIa0U5NVZ6RUJwbGJRX3B0V21LODlBLVVyWG5YLW1HMDY0TjF4Vk1wcTR1RDMxT05CSzNSTm53V2RXY1hsM1NvQXhOUzlld2xPZjJLeEhiUkFfOVZTZ1JMTHlQbUE?oc=5"
     },
     {
       "source": "google",
@@ -227,11 +251,43 @@
     },
     {
       "source": "google",
-      "press": "리버럴미디어",
+      "press": "광교신문",
       "date": "2026.10.30",
-      "title": "경기도의회 장윤정 의원, 안산 한대앞역상점가 전통시장 혁신모델 구축 간담회 개최",
-      "snippet": "경기도의회 장윤정 의원, 안산 한대앞역상점가 전통시장 혁신모델 구축 간담회 개최 리버럴미디어",
-      "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE5ETGM3bXVJVlNnQzZaVjR6SmNKdnNVYnFldFktV0NZZFQweDNRaGVxakxkeHJPUTRySWtoVHlHa2pZbDYxS3UwZHZxdHNVM1BKX3QtRlIwYWR4WWkwNFctNE9tZDk?oc=5"
+      "title": "경기도의회 장윤정 의원, 안산 한대앞역상점가",
+      "snippet": "경기도의회 장윤정 의원, 안산 한대앞역상점가 광교신문",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE0wS3ZUU0I5c0JwYkxZanFBZ1lLUENKM0hKT1JPbTc1enExMF9iQkpSUFpuSTFocG9DUGhGUjA2NW9KRmdfUFN4SkVpM1cxTDJaUi1hcWtMUWtHeFZhRU5fR25iSU5rMF9L?oc=5"
+    },
+    {
+      "source": "naver",
+      "press": "news1.kr",
+      "date": "2026.10.30",
+      "title": "창작뮤지컬 '우리가 사랑을 쓰던 날'",
+      "snippet": "30일 경기 안산시 상록구 소극장 보노마루에서 열린 창작 뮤지컬 '우리가 사랑을 쓰던 날' 프레스콜에서 배우들이 열연을 펼치고 있다. 2026.10.30/뉴스1",
+      "url": "https://www.news1.kr/photos/8189589"
+    },
+    {
+      "source": "naver",
+      "press": "news1.kr",
+      "date": "2026.10.30",
+      "title": "엄마의 청춘을 찾아 제주로…뮤지컬 '우리가 사랑을 쓰던 날'",
+      "snippet": "30일 경기 안산시 상록구 소극장 보노마루에서 열린 창작 뮤지컬 '우리가 사랑을 쓰던 날' 프레스콜에서 배우들이 열연을 펼치고 있다. 2026.10.30/뉴스1",
+      "url": "https://www.news1.kr/photos/8189596"
+    },
+    {
+      "source": "naver",
+      "press": "news1.kr",
+      "date": "2026.10.30",
+      "title": "엄마의 청춘을 찾아 제주로",
+      "snippet": "30일 경기 안산시 상록구 소극장 보노마루에서 열린 창작 뮤지컬 '우리가 사랑을 쓰던 날' 프레스콜에서 배우들이 열연을 펼치고 있다. 2026.10.30/뉴스1",
+      "url": "https://www.news1.kr/photos/8189592"
+    },
+    {
+      "source": "naver",
+      "press": "news1.kr",
+      "date": "2026.10.30",
+      "title": "창작뮤지컬 '우리가 사랑을 쓰던 날' 프레스콜",
+      "snippet": "30일 경기 안산시 상록구 소극장 보노마루에서 열린 창작 뮤지컬 '우리가 사랑을 쓰던 날' 프레스콜에서 배우들이 열연을 펼치고 있다. 2026.10.30/뉴스1",
+      "url": "https://www.news1.kr/photos/8189584"
     },
     {
       "source": "naver",
@@ -248,38 +304,6 @@
       "title": "힐링 뮤지컬 '우리가 사랑을 쓰던 날'",
       "snippet": "30일 경기 안산시 상록구 소극장 보노마루에서 열린 창작 뮤지컬 '우리가 사랑을 쓰던 날' 프레스콜에서 배우들이 열연을 펼치고 있다. 2026.10.30/뉴스1",
       "url": "https://www.news1.kr/photos/8189593"
-    },
-    {
-      "source": "naver",
-      "press": "news1.kr",
-      "date": "2026.10.30",
-      "title": "창작뮤지컬 '우리가 사랑을 쓰던 날' 프레스콜",
-      "snippet": "30일 경기 안산시 상록구 소극장 보노마루에서 열린 창작 뮤지컬 '우리가 사랑을 쓰던 날' 프레스콜에서 배우들이 열연을 펼치고 있다. 2026.10.30/뉴스1",
-      "url": "https://www.news1.kr/photos/8189586"
-    },
-    {
-      "source": "naver",
-      "press": "news1.kr",
-      "date": "2026.10.30",
-      "title": "창작뮤지컬 '우리가 사랑을 쓰던 날'",
-      "snippet": "30일 경기 안산시 상록구 소극장 보노마루에서 열린 창작 뮤지컬 '우리가 사랑을 쓰던 날' 프레스콜에서 배우들이 열연을 펼치고 있다. 2026.10.30/뉴스1",
-      "url": "https://www.news1.kr/photos/8189589"
-    },
-    {
-      "source": "naver",
-      "press": "news1.kr",
-      "date": "2026.10.30",
-      "title": "엄마의 청춘을 찾아 제주로…뮤지컬 '우리가 사랑을 쓰던 날'",
-      "snippet": "30일 경기 안산시 상록구 소극장 보노마루에서 열린 창작 뮤지컬 '우리가 사랑을 쓰던 날' 프레스콜에서 배우들이 열연을 펼치고 있다. 2026.10.30/뉴스1",
-      "url": "https://www.news1.kr/photos/8189594"
-    },
-    {
-      "source": "naver",
-      "press": "news1.kr",
-      "date": "2026.10.30",
-      "title": "엄마의 청춘을 찾아 제주로",
-      "snippet": "30일 경기 안산시 상록구 소극장 보노마루에서 열린 창작 뮤지컬 '우리가 사랑을 쓰던 날' 프레스콜에서 배우들이 열연을 펼치고 있다. 2026.10.30/뉴스1",
-      "url": "https://www.news1.kr/photos/8189592"
     },
     {
       "source": "naver",
@@ -355,11 +379,11 @@
     },
     {
       "source": "google",
-      "press": "피디언뉴스",
+      "press": "웹이코노미",
       "date": "2026.10.30",
-      "title": "경기도의회 장윤정 의원, 안산 한대앞역상점가 혁신 모델 구축 간담회 개최",
-      "snippet": "경기도의회 장윤정 의원, 안산 한대앞역상점가 혁신 모델 구축 간담회 개최 피디언뉴스",
-      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFBHSUNYcU1nTHdxdFhkZEstVFpadFFfTUw5Nmlpb01yUEFkWEdzN3huVFFHMjNMQXVSQkFkemp3NzBCMHlGY3A1N3lTbldLUEVMc2xOZW9icUx2cG5H?oc=5"
+      "title": "경기도의회 장윤정 의원, 안산 한대앞역상점가 전통시장 혁신모델 구축 간담회 개최",
+      "snippet": "경기도의회 장윤정 의원, 안산 한대앞역상점가 전통시장 혁신모델 구축 간담회 개최 웹이코노미",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE95LWtUZU5qMkMyZlVmSVZ6OHJhc2tVZTZHY0FOWmRZbU91anUxM1BBX0VITHU0NkFPT2poNm90YUVjU2xXMXAyUW01S2QzOGFGVi1fM1UxYTBrNU05YVU1eFlvSDVuak1BbFFzd1J4cVFHQQ?oc=5"
     },
     {
       "source": "naver",
@@ -658,28 +682,28 @@
       "url": "https://www.fntoday.co.kr/news/articleView.html?idxno=396668"
     },
     {
-      "source": "naver",
-      "press": "sidae.com",
+      "source": "google",
+      "press": "누리일보",
       "date": "2026.10.30",
-      "title": "경기 광주시, 교육청에 교육예산 통계 '동일한 기준 적용' 요구",
-      "snippet": "이천시, 안산시 등은 일반회계만 전체 예산에 포함한 반면 광주시와 성남시, 남양주시, 오산시 등은 일반회계에 기타 특별회계까지 합산한 금액을 적용했다. 광주시의 올해 총교육 예산 비율을 일반회계만을...",
-      "url": "https://www.sidae.com/article/2026103014024479038"
-    },
-    {
-      "source": "naver",
-      "press": "moneystorm.kr",
-      "date": "2026.10.30",
-      "title": "[패션·뷰티 돋보기] 한샘, 만학도에 가구 110여 점 지원…에스트라 1,0...",
-      "snippet": "30일 업계에 따르면 한샘은 경기도 안산시에 위치한 만학도 교육시설 '안산용신학교'에 책상과 의자 등 가구 110여 점을 지원하고 강의실을 새롭게 단장했다. 1987년 설립된 안산용신학교는 경제적·사회적 어려움으로...",
-      "url": "https://www.moneystorm.kr/news/articleView.html?idxno=7876"
+      "title": "안산교육지원청, ‘2026 안산 루트 아카데미’ 성황리 마무리",
+      "snippet": "안산교육지원청, ‘2026 안산 루트 아카데미’ 성황리 마무리 누리일보",
+      "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFBrTVluZlFMaGRic3NzZGFNeFVhZURZemlIa0tnNXhUb0YtdmZXaFpZeVRiaEFfSFR2U095RjJlWlMyaFVYblFrbW84TXI5WFhYTGxYS3ZfTFhFVHIwRXd2bGpHVkY?oc=5"
     },
     {
       "source": "google",
-      "press": "월드장애인사랑뉴스",
+      "press": "부천포커스",
       "date": "2026.10.30",
-      "title": "안민석 경기도교육감, 안산 이주배경학생 교육지원 강화 논의…박해철 의원, 교육지원청·시청·학부모 TF 구성 추진",
-      "snippet": "안민석 경기도교육감, 안산 이주배경학생 교육지원 강화 논의…박해철 의원, 교육지원청·시청·학부모 TF 구성 추진 월드장애인사랑뉴스",
-      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE10c0FjY0h4dWVqMjQ5cEhlY0RWRElPbFJHaHEyUUhDS3k3Y1NVajhGM3YySzJwbFFUZUgxYUNLR244NFFWU0hoNHgyN0prQTlNaWRYbFNWRDdkRzJNclQwUXhKYTZhSC05cldLRmNhdw?oc=5"
+      "title": "안민석 교육감, 이주배경학생과 내국학생이 함께 성장하는 교육환경 만들어야",
+      "snippet": "안민석 교육감, 이주배경학생과 내국학생이 함께 성장하는 교육환경 만들어야 부천포커스",
+      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE45QWd0aHg2Y3Z3ZVYyNG1SWmVZblhHUXdySmNXX3JJTDAwNkx3VHhKaDdnOGxhQmdhMzhmTkhEeExQUmRvS2l1WGNOUllrS1RudE1iNnpPMFdrR0VFanFmb1JFTHJxWms0a0E?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "엔디엔뉴스",
+      "date": "2026.10.30",
+      "title": "안산교육지원청, 학부모와 함께하는 편한교복으로 교복문화 대전환",
+      "snippet": "안산교육지원청, 학부모와 함께하는 편한교복으로 교복문화 대전환 엔디엔뉴스",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE92M09yUkRkTkxrUU5QVkRaZHJEenpaUzZuLXYyelBzYmllTDNoNHhXQllwWTluV3lzekRCVmNESHcxYnd4MFdRcE1WanlSYmFfOU91NDhYaWJrRFVjeWF3ekI2S0t6eWhMbktqSURteEd2d9IBckFVX3lxTE92M09yUkRkTkxrUU5QVkRaZHJEenpaUzZuLXYyelBzYmllTDNoNHhXQllwWTluV3lzekRCVmNESHcxYnd4MFdRcE1WanlSYmFfOU91NDhYaWJrRFVjeWF3ekI2S0t6eWhMbktqSURteEd2dw?oc=5"
     },
     {
       "source": "google",
@@ -695,31 +719,15 @@
       "date": "2026.10.30",
       "title": "안민석 경기도교육감, 안산서 이주배경학생 교육현안 점검…한국어교육·학교 적응 지원",
       "snippet": "안민석 경기도교육감, 안산서 이주배경학생 교육현안 점검…한국어교육·학교 적응 지원 필드뉴스",
-      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE5aZ0MwWXQ4MUlURUpNeFBxcWZvTDhDeEI0RERkR3UxYV9SaDBLdzNLcEJuYWlFUldLSTMxTTVzdGJROVp3S1FZSVdVYnJEc2syNXg3Z1R0SXhNelhta3pqVThqM1VsUUd3bUtBcdIBbEFVX3lxTE5aZ0MwWXQ4MUlURUpNeFBxcWZvTDhDeEI0RERkR3UxYV9SaDBLdzNLcEJuYWlFUldLSTMxTTVzdGJROVp3S1FZSVdVYnJEc2syNXg3Z1R0SXhNelhta3pqVThqM1VsUUd3bUtBcQ?oc=5"
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBIOEt3RjZVX2IxZS03RjhmWkpNM2VTdXprZ0NPZGtZOVVKbDU1ZGRSdXI3Q2FKbWJoUlV3V01iOVB0eERsajJySTc0cDFGaVZRRFEyTTJlM3A3X0JtOVpkTDR1cDJhWDdj0gFsQVVfeXFMTlpnQzBZdDgxSVRFSk14UHFxZm9MOEN4QjRERGRHdTFhX1JoMEt3M0twQm5haUVSV0tJMzFNNXN0YlE5WndLUVlJV1VickRzazI1eDdnVHRJeE16WG1rempVOGozVWxRR3dtS0Fx?oc=5"
     },
     {
       "source": "google",
-      "press": "엔디엔뉴스",
+      "press": "월드장애인사랑뉴스",
       "date": "2026.10.30",
-      "title": "안산교육지원청, 학부모와 함께하는 편한교복으로 교복문화 대전환",
-      "snippet": "안산교육지원청, 학부모와 함께하는 편한교복으로 교복문화 대전환 엔디엔뉴스",
-      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE92M09yUkRkTkxrUU5QVkRaZHJEenpaUzZuLXYyelBzYmllTDNoNHhXQllwWTluV3lzekRCVmNESHcxYnd4MFdRcE1WanlSYmFfOU91NDhYaWJrRFVjeWF3ekI2S0t6eWhMbktqSURteEd2d9IBckFVX3lxTE92M09yUkRkTkxrUU5QVkRaZHJEenpaUzZuLXYyelBzYmllTDNoNHhXQllwWTluV3lzekRCVmNESHcxYnd4MFdRcE1WanlSYmFfOU91NDhYaWJrRFVjeWF3ekI2S0t6eWhMbktqSURteEd2dw?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "경기in",
-      "date": "2026.10.30",
-      "title": "안산교육지원청, ‘2026 안산 루트 아카데미’ 성황리 마무리",
-      "snippet": "안산교육지원청, ‘2026 안산 루트 아카데미’ 성황리 마무리 경기in",
-      "url": "https://news.google.com/rss/articles/CBMiQ0FVX3lxTE1Nb3BSdlBUQ3hsRzc1MFpHcEpfczVnMFl0dk5STXlkYm1WZ2JhNGJUaFB3WG9xU0N5RHh0cFRDOWJSMGM?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "광교신문",
-      "date": "2026.10.30",
-      "title": "안민석 교육감, 이주배경학생과 내국학생이 함께 성장하는 교육환경 만들어야",
-      "snippet": "안민석 교육감, 이주배경학생과 내국학생이 함께 성장하는 교육환경 만들어야 광교신문",
-      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE0tOUhncTk4c0xGLUJtQW4zMERCQjcwNm91SGN1VUdnWjFxWVY4djV5XzZTYUFKdmRfeXRyU09XUXJtRXpTc0NHbG5ESERpSF95azUyNGN1RDEzUnVpMllDU2RCb2o0eC0y?oc=5"
+      "title": "안민석 경기도교육감, 안산 이주배경학생 교육지원 강화 논의…박해철 의원, 교육지원청·시청·학부모 TF 구성 추진",
+      "snippet": "안민석 경기도교육감, 안산 이주배경학생 교육지원 강화 논의…박해철 의원, 교육지원청·시청·학부모 TF 구성 추진 월드장애인사랑뉴스",
+      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE10c0FjY0h4dWVqMjQ5cEhlY0RWRElPbFJHaHEyUUhDS3k3Y1NVajhGM3YySzJwbFFUZUgxYUNLR244NFFWU0hoNHgyN0prQTlNaWRYbFNWRDdkRzJNclQwUXhKYTZhSC05cldLRmNhdw?oc=5"
     },
     {
       "source": "google",
@@ -731,11 +739,11 @@
     },
     {
       "source": "google",
-      "press": "아주경제",
+      "press": "투데이안산",
       "date": "2026.10.30",
-      "title": "안민석 교육감, 안산서 이주배경학생 지원 논의...통합 교육환경 조성 강조",
-      "snippet": "안민석 교육감, 안산서 이주배경학생 지원 논의...통합 교육환경 조성 강조 아주경제",
-      "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE5ZaURtX2VVcmJpcTBSYWhYSjFJaXJNS2pNRmVzam5veU0zSDJPVXpzbl9OQTNOaE5FREJxbmpfc0lhZ1BGeDVaMGhXNHQ2WUI5UWpPT2FxMTTSAVhBVV95cUxOWWlEbV9lVXJiaXEwUmFoWEoxSWlyTUtqTUZlc2pub3lNM0gyT1V6c25fTkEzTmhORURCcW5qX3NJYWdQRng1WjBoVzR0NllCOVFqT09hcTE0?oc=5"
+      "title": "박은경 경기도의원, 안산 유보통합 현안 살피고 정책 추진 방향 논의",
+      "snippet": "박은경 경기도의원, 안산 유보통합 현안 살피고 정책 추진 방향 논의 투데이안산",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5zQTN0dk1mNmE5cnlVc2FBb0JQXzIyeTlhX0ZmZnUtQ05ISW5WdkswZC1ITm9YeWphWUl4ZmFJRUJDMDllbS0zcVZiSS1mZXRPQjlMRmR3OG9veWttX3I4TFJqaEo2TjZnLUstZ1dvaFZkQdIBckFVX3lxTE5zQTN0dk1mNmE5cnlVc2FBb0JQXzIyeTlhX0ZmZnUtQ05ISW5WdkswZC1ITm9YeWphWUl4ZmFJRUJDMDllbS0zcVZiSS1mZXRPQjlMRmR3OG9veWttX3I4TFJqaEo2TjZnLUstZ1dvaFZkQQ?oc=5"
     },
     {
       "source": "naver",
@@ -875,6 +883,14 @@
     },
     {
       "source": "google",
+      "press": "서울Pn",
+      "date": "2026.10.29",
+      "title": "경기신보 명예지점장 장윤정 경기도의원, “현장의 목소리 제도개선으로 잇겠다”",
+      "snippet": "경기신보 명예지점장 장윤정 경기도의원, “현장의 목소리 제도개선으로 잇겠다” 서울Pn",
+      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE4zWjI3Z2JHWm9jQ3dCajNjSUVJaGlVZklsMW1jdENMblZJRVFmVWNZM0Z6UXZTSFNrYUtTYVZ4UkdmWEZqUnlpQzZZZ1FnUHJkNWoxWlNUY0xoMUp4WFk3dFhvTmdXaUJSZWc?oc=5"
+    },
+    {
+      "source": "google",
       "press": "국제뉴스",
       "date": "2026.10.29",
       "title": "장윤정 경기도의원 경기신보 안산지점장 체험...\"기업에 도움 되도록 제도 개선\"",
@@ -896,14 +912,6 @@
       "title": "장윤정 도의회 경노위 부위원장, 경기신보 일일명예지점장…기업 애로 청취",
       "snippet": "장윤정 도의회 경노위 부위원장, 경기신보 일일명예지점장…기업 애로 청취 경기일보",
       "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE1SSTBYVW8yMFZPV2pLdkVybTRQbm9ZOVBnS0pvMzhGOTZ4UlZTbTB2N19LQlRZcmt5TmxJOHhFNnVmQ2pWWXU2R2VLNDZ1c0VsRkVZeUFRVHNyT3M?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "서울신문",
-      "date": "2026.10.29",
-      "title": "경기신보 명예지점장 장윤정 경기도의원, “현장의 목소리 제도개선으로 잇겠다”",
-      "snippet": "경기신보 명예지점장 장윤정 경기도의원, “현장의 목소리 제도개선으로 잇겠다” 서울신문",
-      "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPTjZ1Q1RzM2NRNFZ0WHlZUVF1ckM2TjJxdngteEZHQ2lLeVM5NDdDSnlTVDhIRXZkY3dKMkhKNzR6R3MwUFpYVWhiY2tkdlIzaVg5WVRNaWVpUmtsZ2k5MVNqOGJfbmlJTkZtR0t2b1VXQUNmTkpTdUdRZC03b0pTU1hwblhYTlNJVEhQLWVGX2tVMzA?oc=5"
     },
     {
       "source": "google",
@@ -1104,6 +1112,14 @@
       "title": "경기신보, 장윤정 도의회 경노위 부위원장 안산지점 일일명예지점장 위촉",
       "snippet": "경기신보, 장윤정 도의회 경노위 부위원장 안산지점 일일명예지점장 위촉 뉴스핌",
       "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE9jTGdXQWdJUVo2RGNQcmJ5SGRLdjl1YVJpVG5Mbk5CTXJsdzlHWFcwQ3ptNzdyZFdYeEd2NXRSNGQ5eHY0OTZoRU9QX0Jvem94QkJ5LVNjVGFIc3B2?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "일간경기",
+      "date": "2026.10.29",
+      "title": "경기도의회 경노위 장윤정 부위원장, 안산지역경제 현안 챙겨",
+      "snippet": "경기도의회 경노위 장윤정 부위원장, 안산지역경제 현안 챙겨 일간경기",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE8yNThuTGo2eUg1UUpOdTJwWW5oSy1Lb3h0VjBFWDNNSTNSWERZN0drcFJpTGJDbVJlZFY0QzNuaUdhWjF1QXJLQlNWRFNLMXJvRnMwN3hBWGtDenhFYzRNZ3EtQ29MSkg0?oc=5"
     },
     {
       "source": "naver",
@@ -1323,6 +1339,30 @@
     },
     {
       "source": "google",
+      "press": "안산신문",
+      "date": "2026.10.28",
+      "title": "상록구, 2027년 지적재조사사업 수립",
+      "snippet": "상록구, 2027년 지적재조사사업 수립 안산신문",
+      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9NbU41UHNVX1BjTGN5bHN4TzdZNTJQSkYxa2NLRzd4OFhNVHpxQjE5VmthQk1QYWw2R1RvOHdJN3lmQ1FCei1TdUtFWkQ2SFBwTmVkMEJJUXBxZjVRWTRNR3VSMlp0aEk?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "누리일보",
+      "date": "2026.10.28",
+      "title": "안산시, 상록시니어클럽 업무 지원 차량 2대 기탁받아",
+      "snippet": "안산시, 상록시니어클럽 업무 지원 차량 2대 기탁받아 누리일보",
+      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE5QMHN4ZDBYZ0F1cTRFb0h4cnZSUndVRzExTEFrRldaU19TalJjNlpsVWxRTUtVLTNpX2ZUbmx4M01td0Zsd2gtYkFVdjlqNWcxRFhqdTVrSzR4cVpT?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "한국사회복지저널",
+      "date": "2026.10.28",
+      "title": "안산시 상록시니어클럽에 차량 2대 전달…노인일자리 현장 지원",
+      "snippet": "안산시 상록시니어클럽에 차량 2대 전달…노인일자리 현장 지원 한국사회복지저널",
+      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE1sQ2VBNlpxOUl4VDhBQnlvbWFzMktPR3I5YnUtOEVmclgwS2hVR0tROVNCS1hPYzFxNkNSbjh1MHQ5X0JVMndhOWx5cEh0OTFPcGJlVkIxREFlME51LTZZR0VFNTJFVkQ3S25NMg?oc=5"
+    },
+    {
+      "source": "google",
       "press": "연합뉴스",
       "date": "2026.10.28",
       "title": "안산시, 과학으로 미래 연다…안산사이언스밸리 과학축제 개최",
@@ -1336,6 +1376,14 @@
       "title": "'과학으로 미래를'…안산사이언스밸리 과학축제 내달 7일 개막",
       "snippet": "'과학으로 미래를'…안산사이언스밸리 과학축제 내달 7일 개막 연합뉴스",
       "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE0wd2Z0b1plQnFES3ZOVDZtUkxTbkE0bjJjT3haclBqOXR4dXprZzcxNGw5T0lvdEFVa09UaW04bXZhZUtCQkJEdTEtSTRzSmVUN09wbl84OGZ3X2RPcE1IcdIBYEFVX3lxTE0wd2Z0b1plQnFES3ZOVDZtUkxTbkE0bjJjT3haclBqOXR4dXprZzcxNGw5T0lvdEFVa09UaW04bXZhZUtCQkJEdTEtSTRzSmVUN09wbl84OGZ3X2RPcE1IcQ?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "뉴시스",
+      "date": "2026.10.28",
+      "title": "안산시, 특성화고 반도체교육과 대학계약학과 신설 추진",
+      "snippet": "안산시, 특성화고 반도체교육과 대학계약학과 신설 추진 뉴시스",
+      "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE5kZFV6VEtFRGdScC1LdHRmdjVnZ3B2SjBzbHNrT1BhQTNFVU9FQlk0dlVjZVR0Nm9IQV9DQ3AzNUlIWmUxaUhMZVdnRllKTDFrMHNvU0RQNmJ6aW9NYzkyc0s5ZDNXVzBjSHM1QUZUaVJ3el9CVWN2WdIBeEFVX3lxTE5kZFV6VEtFRGdScC1LdHRmdjVnZ3B2SjBzbHNrT1BhQTNFVU9FQlk0dlVjZVR0Nm9IQV9DQ3AzNUlIWmUxaUhMZVdnRllKTDFrMHNvU0RQNmJ6aW9NYzkyc0s5ZDNXVzBjSHM1QUZUaVJ3el9CVWN2WQ?oc=5"
     },
     {
       "source": "naver",
@@ -1371,6 +1419,14 @@
     },
     {
       "source": "google",
+      "press": "경기매일",
+      "date": "2026.10.27",
+      "title": "안산시 상록구, 커피 향과 함께 잠시 쉬어가는 '마음힐링교육' 운영",
+      "snippet": "안산시 상록구, 커피 향과 함께 잠시 쉬어가는 '마음힐링교육' 운영 경기매일",
+      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBPRE44VHBlcHRxUGdNdnJ3dnlia3Q2bjE3OGhkQ2phRi1HVDVIcGdTQ0J6c1p5aGJGaHIwYzJaODJIUzZzOEk5WFhuZTdrTDRkQkNTbHk4djJhLUJweGpINzFrYWlvTG8?oc=5"
+    },
+    {
+      "source": "google",
       "press": "한국사회복지저널",
       "date": "2026.10.27",
       "title": "안산 상록구 사사동 173필지 경계 재조사, 국비 4,759만 원 확보",
@@ -1379,11 +1435,11 @@
     },
     {
       "source": "google",
-      "press": "경기헤드뉴스",
+      "press": "시민일보",
       "date": "2026.10.27",
       "title": "안산시 상록구, 2027년 지적재조사사업 실시계획 수립",
-      "snippet": "안산시 상록구, 2027년 지적재조사사업 실시계획 수립 경기헤드뉴스",
-      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBRZFo3UnFqMlhwaGtMaVRiQldxQWVqbGkwUnk3dUxwc04yczlvMVJldDNtOUN0WURTZjM5RW1kRDk0Vy1tNlRZQ1hkT0NuOGFBZ3ZKZkZ4bUhWZw?oc=5"
+      "snippet": "안산시 상록구, 2027년 지적재조사사업 실시계획 수립 시민일보",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTFAtOXZ5eTRfNzl5VG9ma2oxdVpkeTcxd1dhVFgzQkI4SnRXd2RxUTNfcGp4M0ljQXNXN3k1eS15QnZzYUpnTHFOUUFBOGd2MEh0QnRQbkRfM0FLcHd4ZElLb3dpbWJtcjBTdDY0MG5KWlNrUdIBb0FVX3lxTFAyNkJJVGVQNWVCUjJEN09YcExzTVg2RVBOaEpIdXFUSEZwM0ZaSkZJeEczUmlHbjc0ckpMMkwwVlF1SThURmJTTnBicW1weFp6cmdDZ25mdUJSbjJlN0ZoZzFPUmUtTzJISXdLNzktdw?oc=5"
     },
     {
       "source": "google",
@@ -1403,19 +1459,19 @@
     },
     {
       "source": "google",
-      "press": "투데이안산",
-      "date": "2026.10.27",
-      "title": "안산교육지원청, 안산문화원 협력 안산읍성 RAS 프로그램 운영",
-      "snippet": "안산교육지원청, 안산문화원 협력 안산읍성 RAS 프로그램 운영 투데이안산",
-      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBaTFk0c1l4Zi1YcUUtclEzTTR5TTNEM0RsWXBWcHFsUmZxSnZ5SXBmTkdrTkVXazMzSHNPaEhMVTBHbExKUWhDMUdYX0VkLVlWODF3UkxWa2FKYzZ0cURaTFJ6czZDVzV3MVZCeTd30gFyQVVfeXFMUHk3ZzRGbUZBQlMyTEVheG1pcEVWQjRCZ2ZHUlNaSmREQW9lZmItWlo1RXJtTmhhREFseHFhTnk1MHVic3NieE9PSUhFN3FiV3p4UnVpWFZ2Z2RCaUt5ajhpOHlzNVlWUEpVcnNrVENUdXRn?oc=5"
-    },
-    {
-      "source": "google",
       "press": "경기헤드라인",
       "date": "2026.10.27",
       "title": "안산교육지원청, 지역별 맞춤형 연수로 적정규모학교 육성 공감대 넓혀",
       "snippet": "안산교육지원청, 지역별 맞춤형 연수로 적정규모학교 육성 공감대 넓혀 경기헤드라인",
       "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE5aR09WdVZBVGwwdkhNNmZjZXJ4LUk3Zm5SM0k0YXhSUEVVcnJJUWtxV3ktOENGblhjVm5kSWpnckNOdmN1MmZDUFlRYzI3RzFSNkdMMTJYaHJIUDFFYXhGSzNSN1RsQQ?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "투데이안산",
+      "date": "2026.10.27",
+      "title": "안산교육지원청, 안산문화원 협력 안산읍성 RAS 프로그램 운영",
+      "snippet": "안산교육지원청, 안산문화원 협력 안산읍성 RAS 프로그램 운영 투데이안산",
+      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBaTFk0c1l4Zi1YcUUtclEzTTR5TTNEM0RsWXBWcHFsUmZxSnZ5SXBmTkdrTkVXazMzSHNPaEhMVTBHbExKUWhDMUdYX0VkLVlWODF3UkxWa2FKYzZ0cURaTFJ6czZDVzV3MVZCeTd30gFyQVVfeXFMUHk3ZzRGbUZBQlMyTEVheG1pcEVWQjRCZ2ZHUlNaSmREQW9lZmItWlo1RXJtTmhhREFseHFhTnk1MHVic3NieE9PSUhFN3FiV3p4UnVpWFZ2Z2RCaUt5ajhpOHlzNVlWUEpVcnNrVENUdXRn?oc=5"
     },
     {
       "source": "google",
@@ -1448,6 +1504,14 @@
       "title": "안산 상록구 미용업 영업자 헤어 커트 교육, 전액 시비로 9회 과정 마쳐",
       "snippet": "안산 상록구 미용업 영업자 헤어 커트 교육, 전액 시비로 9회 과정 마쳐 한국사회복지저널",
       "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE9LRDZtWkY4VXhoOG94WnJocEFTcjZqd2hjb0tzT1lLVVp3Y3ZhTnFmSHRLVm1nc0NSRlY5UVA3a2s0SDRPUkhKcDlTVFcwa0pFVVJDOG91eFpFQ0lsWmIxUWdiMlQ1dEc0ajcw?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "광교신문",
+      "date": "2026.10.21",
+      "title": "안산시, 상록구 일반헤어 뷰티아카데미 교육생 15명 수료",
+      "snippet": "안산시, 상록구 일반헤어 뷰티아카데미 교육생 15명 수료 광교신문",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1aSHlaMnpaNTBCX2tLR0J6QTZOYzJCVGpXR0Q0bWFTVkt4R09UVG1oX3k2djZGdWh5S0k1OWZ6akFmWHZOSnN4UzZXdHBFTDNyMnFEZVlZZjREMExnNERSTTh5ZEo3bXR3?oc=5"
     },
     {
       "source": "naver",
@@ -1496,6 +1560,30 @@
       "title": "[위클리오늘] 경기도의회, AI 비서로 의원 맞춤형 의정활동 지원 나선다",
       "snippet": "경기도의회, AI 비서로 의원 맞춤형 의정활동 지원 나선다 경기도의회(의장 남종섭) 디지털의정위원회(위원장 장윤정)는 15일부터 16일까지 1박 2일간 시흥 웨이브엠호텔에서 「디지털 의정 역량 강화 워크숍」을...",
       "url": "http://www.weeklytoday.com/news/articleView.html?idxno=798387"
+    },
+    {
+      "source": "google",
+      "press": "안산신문",
+      "date": "2026.10.15",
+      "title": "귀국선 1호, 상록구 보노마루서 경기도 초연",
+      "snippet": "귀국선 1호, 상록구 보노마루서 경기도 초연 안산신문",
+      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE53MEpxTUJrazhXU3pEY2VheVNONG9PUDdlS3plVnp3WXJwdVVUaFdFUGg0dFVZWU9YSzVYTmtoUXJuWXpOWmxzSHlfdWVXQ0U1cGRBVERRblBUS3UxMUp1Sk5sQlZjY3c?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "경인신문",
+      "date": "2026.10.14",
+      "title": "안산상록경찰서·상록구자율방범대, 가을 행락철 대비 상록수역 일대 민·경 합동순찰 실시",
+      "snippet": "안산상록경찰서·상록구자율방범대, 가을 행락철 대비 상록수역 일대 민·경 합동순찰 실시 경인신문",
+      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBNTjhPbWJVdXFVNzhMazlTbEhFWXVqV2FNRXl5UE9zTnJocC1fdHhBckNnZXQ0eUZEaXFZd3JhX0dNNk5WYkpsRU90NGRkb0lRLTJLU1VJX080U2piZ0ZvSUN0R0dkTHM?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "매일일보",
+      "date": "2026.10.14",
+      "title": "안산 상록구청 ‘혜안 갤러리’, 내년 전시 참여 예술인 모집",
+      "snippet": "안산 상록구청 ‘혜안 갤러리’, 내년 전시 참여 예술인 모집 매일일보",
+      "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE02bmhyVFBldmUyNHU2bE5tZ2FabXo1WWdpLW9qU0p3bEhsZmxSOGRBSzU2M3dvMEdiYW0tTTdFNjAzOTI1SnNZcFUyVU1jTjFzUy1UVkpkaUNDeEZwcVNTTXZNa24?oc=5"
     },
     {
       "source": "google",
@@ -1554,36 +1642,12 @@
       "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBJaVRuQzNpdFhqUElsencyaEk4dmJsMmpnY0pxQkt6RkN6amNlTFhwQU5kNzR5dGtFNGpLbGFhMnhfNjc4R3BSTEoxdVE4a3J3UXd1Q0tnV0lMSkHSAWBBVV95cUxOMGg1Z3hYYk9mNkV3U1FDNlM1NVdfU1BxTnM1RFhzdzdYOXdac2RMbEExdC16eV9RTV9wSjFIOUgxbFkweEoxMzN6NzZXdGlnY3Z5cFBoX0ZXV1dFNzlESFk?oc=5"
     },
     {
-      "source": "google",
-      "press": "MBC 뉴스",
-      "date": "2026.09.26",
-      "title": "안산서 노모 살해한 50대 딸 체포‥\"범행 전 음주\" 진술",
-      "snippet": "안산서 노모 살해한 50대 딸 체포‥\"범행 전 음주\" 진술 MBC 뉴스",
-      "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE5hTnVxUE8zMjdabERSS25iRkZNNDUtOXY0blRxMGFYREU3el81OGNQRUZDVHFvUHprRWMxMVUxa0RnbGxaTlBtUG9TeHVKVjJaa2djellaeXF4YzdPWENqWXpxbWt6V0FEUUloeFk3UVNCOWctM29V0gF3QVVfeXFMT2hlTG1FT0lBOTl4TFFCQllpWm9Qbk01bGxoZ0JkNTE5YlBPdlJIV1ZIdnhERVU2WFVrcExGN1loZS1nVEtBU2lCanltV195RXY4dWV3NzhKb0NEVDd1enlfa0loUkpDdjlsaFZEMUJhOXZ2REZCMVk?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "경기일보",
-      "date": "2026.09.26",
-      "title": "‘추석 연휴 비극’ 안산서 70대 노모 살해한 50대 딸, 지인에게 털어놔 ‘현행범 체포’",
-      "snippet": "‘추석 연휴 비극’ 안산서 70대 노모 살해한 50대 딸, 지인에게 털어놔 ‘현행범 체포’ 경기일보",
-      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE8tbnZyUGhBRVc3NUtrWkU2ZmNoQWdxc3Y4UzloM0U1NEpEcU0tR0FBWW5RY0pnRGlITDFBZHBjbXVhcGI0ZjRNR0JZQUZzclpXUlpWeHljQ0c2NFE?oc=5"
-    },
-    {
       "source": "naver",
       "press": "news.tvchosun.com",
       "date": "2026.09.25",
       "title": "與 김현, 추석 물가 현장점검…\"애로사항 개선에 총력\"",
       "snippet": "이날 현장에는 김현 국회의원을 비롯해 유재수·이은미·장윤정 경기도의원, 이재복·이상우·윤오일·백승희 안산시의원과 지역 당원들이 함께했다. 이들은 청과·수산물 매장과 시장 일대를 돌며 상인과 시민들에게 명절...",
       "url": "https://news.tvchosun.com/site/data/html_dir/2026/09/25/2026092590027.html"
-    },
-    {
-      "source": "google",
-      "press": "국제뉴스",
-      "date": "2026.09.20",
-      "title": "[속보] 안산 상록구 주택서 화재 발생… \"도로 우회 당부\"",
-      "snippet": "[속보] 안산 상록구 주택서 화재 발생… \"도로 우회 당부\" 국제뉴스",
-      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE82VFR6elRiZVg3Z0ducGlfaS1hMHAzS1BTNEhkOV8wMGYzRWo3alI3Y1hNenY2dlNLd0ExZDIxNk9Fa3BGUXpEcVRPVlkwcVoydzF4RDB4Q0NmNGpydVVzeG5Ga1Fqb2JQOXdyNE5n?oc=5"
     },
     {
       "source": "google",
@@ -1699,51 +1763,11 @@
     },
     {
       "source": "google",
-      "press": "참좋은뉴스",
-      "date": "2026.07.01",
-      "title": "폭우 예고 속 지하차도 침수 기준 ‘인천 5cm vs 안산 상록구 15cm’",
-      "snippet": "폭우 예고 속 지하차도 침수 기준 ‘인천 5cm vs 안산 상록구 15cm’ 참좋은뉴스",
-      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE56NDJ2QjZTYUFfOUFfX0tpalBVSVh4Q3drRmZQZmdVVWhfQmNwVDFmUnpsRkJrS0NpdHkyUDZhTmdkRlVHNWRHTEhiem16VkFqbHFpVm5PSk5KWFltLS1qbkkyZ0VoSGl3c25Eb24zWTJRMk0?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "반월신문",
-      "date": "2026.05.27",
-      "title": "차량 1대·집기류 화재 안산 상록구 본오동 카센터 화재",
-      "snippet": "차량 1대·집기류 화재 안산 상록구 본오동 카센터 화재 반월신문",
-      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE42WEotQmM5ZHRNeVZacjByMV9yTGNsaDdvZUVnZWhUckZBSzhiMU1ycFZXQjlSSGRMdW1aYXZtQTFMLTd6T01VV0pESExhYlVUakhXNFhHOFFfNFFxNUlMRlFJN3F6RTA?oc=5"
-    },
-    {
-      "source": "google",
       "press": "KBS 뉴스",
       "date": "2026.05.26",
       "title": "경기 안산 상록구 카센터서 불…인명 피해 없어",
       "snippet": "경기 안산 상록구 카센터서 불…인명 피해 없어 KBS 뉴스",
       "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9BZ0ZQQk1lYXVtWXJsTk1jYU5GbTJTMWk0TXh1VG1aTEVmaVhsRUZXM2lhZzNoQzJMNWU0MVk0OFlBcUlzZkFfSFpHbEVDOTlHMGp4cGFWT2JGdXM?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "서울신문",
-      "date": "2026.05.13",
-      "title": "안산 상록구 다세대 주택 불…1명 사망·3명 부상",
-      "snippet": "안산 상록구 다세대 주택 불…1명 사망·3명 부상 서울신문",
-      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9ERkxuNk5RRFVpQmNqRVMtalpDU05MNndSNGIzb1l0bmZvOUZNU0dYeUptT2NyNDlvN2ZyLW9neG8xZWRKb2FPMzl0STFERTNjYWpqVF9jc1NhWlhMTlNBNWUyMGttZEl4YkdYTFJ2ZkJrUWNtdmFkSDlhOA?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "경향신문",
-      "date": "2026.05.13",
-      "title": "안산 상록구 다세대주택서 화재···1명 숨지고 3명 부상",
-      "snippet": "안산 상록구 다세대주택서 화재···1명 숨지고 3명 부상 경향신문",
-      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE94ZFJWc1liZGRLTWM0aVAxVjY5c0VSOE40bVN0RXA3QlRidXMzdVkwdFljWVIxTG5oOGNwLUtsMl9pT2NJY1VTOEh4OGRMRU02b3Bob0pwa3dSQdIBX0FVX3lxTE52SDdudTdHX3NXYVFOQkhjSnFLR2pmVW5hbmE0aEZYM3B6WXVLNGpoY09DY0xlMVpuZVEzYWIzZVFjY1h1TTYtRHFMVFdPR0RfQ05pWGVIRm5NUG16cTRN?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "news.sbs.co.kr",
-      "date": "2026.05.13",
-      "title": "안산 상록구 비닐하우스 화재…\"인명피해 없어\"",
-      "snippet": "안산 상록구 비닐하우스 화재…\"인명피해 없어\" news.sbs.co.kr",
-      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE14bkNRMWFTb2ZUdWNwcThiMFdQRFRuWHpyYU9JWWdJSFVwdnliRmRYcWFpdW92TWc3RzVlUFplalFpLV8tb0FOdW40SHh2QkdRX2dZMEVXR2dsVVVNU09jZkwtMHFUN0JROEE?oc=5"
     },
     {
       "source": "google",
@@ -1763,11 +1787,11 @@
     },
     {
       "source": "google",
-      "press": "경기일보",
+      "press": "서울신문",
       "date": "2026.05.13",
-      "title": "안산 상록구 다세대 주택 화재…1명 사망·3명 부상",
-      "snippet": "안산 상록구 다세대 주택 화재…1명 사망·3명 부상 경기일보",
-      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE53M3hjTDY4NG44T0Q5TkNFaXJrSGZxNzdhM2h4Vjg5SzgyVEs0enRjRGNTa0NpaUxsSTBSRjdjaW42RmVabHdfVGlaakkwOTRFWnRZU0ZpTWFKZ0k?oc=5"
+      "title": "안산 상록구 다세대 주택 불…1명 사망·3명 부상",
+      "snippet": "안산 상록구 다세대 주택 불…1명 사망·3명 부상 서울신문",
+      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9ERkxuNk5RRFVpQmNqRVMtalpDU05MNndSNGIzb1l0bmZvOUZNU0dYeUptT2NyNDlvN2ZyLW9neG8xZWRKb2FPMzl0STFERTNjYWpqVF9jc1NhWlhMTlNBNWUyMGttZEl4YkdYTFJ2ZkJrUWNtdmFkSDlhOA?oc=5"
     }
   ]
 }
