@@ -1,6 +1,14 @@
 {
-  "updated": "2026-11-10 10:15 UTC",
+  "updated": "2026-11-10 18:05 UTC",
   "items": [
+    {
+      "source": "google",
+      "press": "이투데이",
+      "date": "2026.11.10",
+      "title": "경기신보·장윤정, 안산 기업자금난",
+      "snippet": "경기신보·장윤정, 안산 기업자금난 이투데이",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE9lUUJoTEszN0hJME5vZUxxeEhBRWJWa2NFR1kySEd0bDJsd2c5dGVxeVVPYUZGU0dDRl9HYU4wcFp2X1VPR09oU0xqNXlzV3JBZkJkenhURngzY19YSzllUFgxbllRcUN2?oc=5"
+    },
     {
       "source": "naver",
       "press": "kgnews.co.kr",
@@ -13,7 +21,7 @@
       "source": "naver",
       "press": "hankyung.com",
       "date": "2026.11.10",
-      "title": "갤러리 품은 아파트…안산에 49층 '랜드마크'",
+      "title": "갤러리 품은 단지…안산에 49층 '랜드마크'",
       "snippet": "GS건설이 이달 경기 안산시 상록구 성포동 옛 홈플러스 안산점 부지에 분양하는 ‘아르뮤제자이’가 대표적이다. 광역교통망 확충과 안산에서 오랜만에 공급되는 새 아파트라는 기대가 맞물리며 관심을 끌고 있다....",
       "url": "https://www.hankyung.com/article/2026111082581"
     },
@@ -75,6 +83,46 @@
     },
     {
       "source": "naver",
+      "press": "thefirstmedia.net",
+      "date": "2026.11.10",
+      "title": "공무원연금공단 경인강원지부, 퇴직공무원 12명 참여 책 읽어주기 봉사...",
+      "snippet": "단원들은 도서 선정과 동화구연 실습 등 봉사활동에 필요한 교육을 마쳤으며, 오는 12월부터 본격적인 활동에 나설 예정이다. 공단 경인강원지부는 지난해 인천광역시와 경기도 안산시, 강원도 춘천시에서 '책읽어주는...",
+      "url": "http://www.thefirstmedia.net/news/articleView.html?idxno=213215"
+    },
+    {
+      "source": "naver",
+      "press": "newsis.com",
+      "date": "2026.11.10",
+      "title": "단체대화방서 남학생들과 금욕 대화…30대 상담교사 송치",
+      "snippet": "남학생들을 상대로 성착취적 대화를 나눈 혐의를 받는 교육청 상담교사가 공소청에 송치된 것으로 뒤늦게 확인됐다. 10일 안산단원경찰서는 아동·청소년의 성보호에 관한 법률 위반(성착취목적대화·준강제추행)...",
+      "url": "https://www.newsis.com/view/NISX20261110_0003862904"
+    },
+    {
+      "source": "naver",
+      "press": "newstown.co.kr",
+      "date": "2026.11.10",
+      "title": "안산시, 노후도시 정비·폐기물 처리시설 확충 추진",
+      "snippet": "/송은경 기자 안산시가 노후 주거지 정비와 생활폐기물 처리기반 확충을 함께 추진한다. 노후계획도시... 생활폐기물 감량 교육과 다회용품 이용도 확대한다. 일반주택지역의 배출 특성과 발생량을 고려해 배출요일...",
+      "url": "http://www.newstown.co.kr/news/articleView.html?idxno=721459"
+    },
+    {
+      "source": "naver",
+      "press": "cnbnews.com",
+      "date": "2026.11.10",
+      "title": "안산시, 초등생 영어 감각 쑥쑥…화정영어마을 '겨울방학 캠프' 모집",
+      "snippet": "한편, 안산시 화정영어마을은 이번 초등 캠프 외에도 유치원 입소 교육, 중·고교생 글로벌 캠퍼스 탐방단, 성인 대상 영어회화 등 전 연령층을 아우르는 탄탄한 맞춤형 교육 프로그램을 가동하며 지역 사회의 글로벌...",
+      "url": "https://www.cnbnews.com/news/articleView.html?idxno=1023181"
+    },
+    {
+      "source": "naver",
+      "press": "discoverynews.kr",
+      "date": "2026.11.10",
+      "title": "경기도 특사경, 서해안 음식점 24곳 식품위생법 위반 적발",
+      "snippet": "경기도는 지난 10월 6일부터 20일까지 안산·화성·시흥·평택·김포 등 연안지역 식품접객업소 120곳을 점검해... 소비기한이 지난 제품을 교육용이나 폐기용으로 표시하지 않고 보관한 경우에도 같은 수준의 형사처벌...",
+      "url": "https://www.discoverynews.kr/news/articleView.html?idxno=1106380"
+    },
+    {
+      "source": "naver",
       "press": "daejonilbo.com",
       "date": "2026.11.10",
       "title": "안전 허점·재정 부실 우려까지…대전시의회 행감 '송곳 추궁'",
@@ -123,6 +171,14 @@
     },
     {
       "source": "naver",
+      "press": "kgnews.co.kr",
+      "date": "2026.11.10",
+      "title": "중진공, 2030년까지 AI 전문인력 6만 명 양성…안산에 ‘제조AI 교육센터...",
+      "snippet": "중진공은 안산 연수원을 시작으로 전국 6개 연수원에 제조AI 교육을 확대할 계획이며, 이를 통해 중소기업의 글로벌 경쟁력 강화를 도모한다는 계획이다. 연말까지 시범 운영하며 내년부터 정규과정을 본격 운영할...",
+      "url": "https://www.kgnews.co.kr/news/article.html?no=918962"
+    },
+    {
+      "source": "naver",
       "press": "thepublic.kr",
       "date": "2026.11.10",
       "title": "'영업신고 안 하고 새우 팔아' 경기 연안 식품접객업소 24곳 무더기 적발",
@@ -139,14 +195,6 @@
     },
     {
       "source": "naver",
-      "press": "kgnews.co.kr",
-      "date": "2026.11.10",
-      "title": "중진공, 2030년까지 AI 전문인력 6만 명 양성…안산에 ‘제조AI 교육센터...",
-      "snippet": "중진공은 안산 연수원을 시작으로 전국 6개 연수원에 제조AI 교육을 확대할 계획이며, 이를 통해 중소기업의 글로벌 경쟁력 강화를 도모한다는 계획이다. 연말까지 시범 운영하며 내년부터 정규과정을 본격 운영할...",
-      "url": "https://www.kgnews.co.kr/news/article.html?no=918962"
-    },
-    {
-      "source": "naver",
       "press": "kmib.co.kr",
       "date": "2026.11.10",
       "title": "“함께 평화 배운다”…기독교 정신으로 한∙일 22년 자매결연",
@@ -155,19 +203,19 @@
     },
     {
       "source": "naver",
-      "press": "kgnews.co.kr",
-      "date": "2026.11.10",
-      "title": "안산대 푸드테라피학과, ‘2026 Korea 월드푸드 챔피언십’ 푸드카빙 대...",
-      "snippet": "학생들은 안산대학교 앵커사업단이 지원하는 비교과 푸드카빙 교육과정에서 섬세한 조형 기술과 창의성, 집중력을 함양했다. 특히 푸드카빙 명장 유은희 지도 아래 수업뿐 아니라 개인 시간에도 꾸준히 작품 연습에...",
-      "url": "https://www.kgnews.co.kr/news/article.html?no=918954"
-    },
-    {
-      "source": "naver",
       "press": "m-i.kr",
       "date": "2026.11.10",
       "title": "김선희 경기도의원, 학생 보호 공백과 범죄경력 조회 부실 지적",
       "snippet": "안산교육지원청 감사에서는 한 학기 내내 훈련에 불참하고 선수 등록조차 안 된 고교 체육특기자를 방치하다 뒤늦게 조사에 나선 '유령 체육특기자' 늑장 대응을 지적하며 관내 고교 운동부 전수조사를 주문했다....",
       "url": "https://www.m-i.kr/news/articleView.html?idxno=2016842"
+    },
+    {
+      "source": "naver",
+      "press": "kgnews.co.kr",
+      "date": "2026.11.10",
+      "title": "안산대 푸드테라피학과, ‘2026 Korea 월드푸드 챔피언십’ 푸드카빙 대...",
+      "snippet": "학생들은 안산대학교 앵커사업단이 지원하는 비교과 푸드카빙 교육과정에서 섬세한 조형 기술과 창의성, 집중력을 함양했다. 특히 푸드카빙 명장 유은희 지도 아래 수업뿐 아니라 개인 시간에도 꾸준히 작품 연습에...",
+      "url": "https://www.kgnews.co.kr/news/article.html?no=918954"
     },
     {
       "source": "naver",
@@ -323,19 +371,19 @@
     },
     {
       "source": "naver",
-      "press": "news1.kr",
-      "date": "2026.11.10",
-      "title": "안산시 \"자원회수시설 360톤 규모 확충…2037년까지 추진\"",
-      "snippet": "시는 찾아가는 자원순환 교육·체험 프로그램을 운영하고 일회용품 사용 줄이기와 다회용품 사용 확대, 올바른 분리배출 실천을 위한 교육과 홍보도 강화한다. 또 자원순환 정책의 제도적 기반을 강화하기 위해 '안산...",
-      "url": "https://www.news1.kr/local/gyeonggi/6349075"
-    },
-    {
-      "source": "naver",
       "press": "idsn.co.kr",
       "date": "2026.11.10",
       "title": "경기도, 바닷가 인근 음식점 120곳 단속...식품위생법 위반 24곳 적발",
       "snippet": "경기도 특별사법경찰단은 지난달 6일부터 20일까지 안산·화성·시흥·평택·김포 등 연안 5개 시의 바닷가... 소비기한이 지난 식품을 교육용이나 폐기용으로 구분해 표시하지 않은 채 보관하는 행위 역시 같은 법에 따라...",
       "url": "https://idsn.co.kr/news/view/1065589060518611"
+    },
+    {
+      "source": "naver",
+      "press": "news1.kr",
+      "date": "2026.11.10",
+      "title": "안산시 \"자원회수시설 360톤 규모 확충…2037년까지 추진\"",
+      "snippet": "시는 찾아가는 자원순환 교육·체험 프로그램을 운영하고 일회용품 사용 줄이기와 다회용품 사용 확대, 올바른 분리배출 실천을 위한 교육과 홍보도 강화한다. 또 자원순환 정책의 제도적 기반을 강화하기 위해 '안산...",
+      "url": "https://www.news1.kr/local/gyeonggi/6349075"
     },
     {
       "source": "naver",
@@ -355,19 +403,19 @@
     },
     {
       "source": "naver",
-      "press": "lcnews.co.kr",
-      "date": "2026.11.10",
-      "title": "[사회공헌 Pick] 태광그룹·삼표그룹·고려아연, 교육 지원과 건강 회복...",
-      "snippet": "태광그룹 일주학술문화재단은 온라인 교육 기회가 상대적으로 부족한 전국 30개 그룹홈 아동·청소년들을... 삼표그룹은 지난 7일 서울 연세대학교 신촌캠퍼스와 안산자락길 일원에서 열린 '제2회 온코런(ONCORUN)'을 공식...",
-      "url": "https://www.lcnews.co.kr/news/articleView.html?idxno=211097"
-    },
-    {
-      "source": "naver",
       "press": "startuptoday.co.kr",
       "date": "2026.11.10",
       "title": "[현장] 안산시, 폐기물 소각능력 하루 360톤으로 확대…2017억원 투입",
       "snippet": "안산시가 2017억원을 투입해 생활폐기물 소각시설의 하루 처리능력을 기존 200톤에서 360톤으로 확대한다.... 추진하고, 순환경제 관련 조례 정비와 분리배출 교육, 수거체계 개선을 단계적으로 시행할 예정이다.",
       "url": "https://www.startuptoday.co.kr/news/articleView.html?idxno=818605"
+    },
+    {
+      "source": "naver",
+      "press": "lcnews.co.kr",
+      "date": "2026.11.10",
+      "title": "[사회공헌 Pick] 태광그룹·삼표그룹·고려아연, 교육 지원과 건강 회복...",
+      "snippet": "태광그룹 일주학술문화재단은 온라인 교육 기회가 상대적으로 부족한 전국 30개 그룹홈 아동·청소년들을... 삼표그룹은 지난 7일 서울 연세대학교 신촌캠퍼스와 안산자락길 일원에서 열린 '제2회 온코런(ONCORUN)'을 공식...",
+      "url": "https://www.lcnews.co.kr/news/articleView.html?idxno=211097"
     },
     {
       "source": "naver",
@@ -379,19 +427,19 @@
     },
     {
       "source": "naver",
-      "press": "financialpost.co.kr",
-      "date": "2026.11.10",
-      "title": "삼표, 암 생존자 응원 '온코런' 후원…임직원 50명 함께 달려",
-      "snippet": "삼표그룹은 서울 연세대 신촌캠퍼스와 안산자락길 일대에서 열린 '제2회 온코런(ONCORUN)'을 공식 후원하고... 에스피네이처는 임직원 대상 교육과 내부 점검을 강화하고, 공정하고 투명한 거래 문화 정착을 통해...",
-      "url": "https://www.financialpost.co.kr/news/articleView.html?idxno=285875"
-    },
-    {
-      "source": "naver",
       "press": "joongang.co.kr",
       "date": "2026.11.10",
       "title": "“대기업 유치급 호재인데…” 통합사관학교 흔들리자 대전 ‘당혹’",
       "snippet": "육·해·공군사관학교 생도를 통합 교육하는 '자운대 통합 국군사관학교' 정부 구상이 수정될 가능성이... 또 국방과학연구소(ADD), 한국과학기술원(KAIST), 방위사업청, 안산 국방국가산업단지와 연계한 국방혁신 거점을...",
       "url": "https://www.joongang.co.kr/article/25477289"
+    },
+    {
+      "source": "naver",
+      "press": "financialpost.co.kr",
+      "date": "2026.11.10",
+      "title": "삼표, 암 생존자 응원 '온코런' 후원…임직원 50명 함께 달려",
+      "snippet": "삼표그룹은 서울 연세대 신촌캠퍼스와 안산자락길 일대에서 열린 '제2회 온코런(ONCORUN)'을 공식 후원하고... 에스피네이처는 임직원 대상 교육과 내부 점검을 강화하고, 공정하고 투명한 거래 문화 정착을 통해...",
+      "url": "https://www.financialpost.co.kr/news/articleView.html?idxno=285875"
     },
     {
       "source": "naver",
@@ -418,38 +466,6 @@
       "url": "https://daily.hankooki.com/news/articleView.html?idxno=1423594"
     },
     {
-      "source": "naver",
-      "press": "gukjenews.com",
-      "date": "2026.11.10",
-      "title": "안산시, 자원순환 정책 추진...소각시설·폐플라스틱 선별센터 확충",
-      "snippet": "찾아가는 자원순환 교육·체험 프로그램 운영, 일회용품 사용 줄이기, 다회용품 사용 확대, 올바른 분리배출 실천을 위한 교육과 홍보가 강화될 예정이다. 제도 개선 측면에서는 '안산시 순환경제사회 전환 촉진 조례...",
-      "url": "https://www.gukjenews.com/news/articleView.html?idxno=3747400"
-    },
-    {
-      "source": "naver",
-      "press": "imnews.imbc.com",
-      "date": "2026.11.10",
-      "title": "경기특사경, 신고 없이 새우 등 판매한 바닷가 식당 24곳 적발",
-      "snippet": "경기도 특별사법경찰단은 지난달 6일부터 2주간 안산·화성·시흥·평택·김포 등 해안을 접한 도내 5개 시의... 소비기한이 지난 제품을 폐기용 또는 교육용 표시 없이 보관한 경우에도 같은 처벌을 받을 수 있습니다.",
-      "url": "https://imnews.imbc.com/news/2026/society/article/6864510_36918.html"
-    },
-    {
-      "source": "naver",
-      "press": "newsworks.co.kr",
-      "date": "2026.11.10",
-      "title": "[부동산나들이] 다방 '서울 소형 거래 비중 47%'·DL '아크로 성수 홍보...",
-      "snippet": "시티오씨엘은 약 154만㎡ 부지에 1만3000여 가구의 주거시설과 상업·업무·문화·교육·공원 기능이... ◆삼표 '온코런 후원' 삼표그룹이 지난 7일 서울 연세대 신촌캠퍼스와 안산자락길 일대에서 열린 '제2회 온코런...",
-      "url": "https://www.newsworks.co.kr/news/articleView.html?idxno=902515"
-    },
-    {
-      "source": "naver",
-      "press": "news.unn.net",
-      "date": "2026.11.10",
-      "title": "안산대 · 부설석학유치원 연계 '석학랜드' 현장 교육…대학생, 유아와...",
-      "snippet": "안산대 유아교육과 부설석학유치원 놀이축제 석학랜드 참여 모습(사진 = 안산대) 안산대학교(총장 윤동열) 유아교육과는 지난 3일 부설석학유치원에서 열린 유아 주도 놀이축제 '석학랜드'에 학생들이 참여했다고 밝혔다....",
-      "url": "https://news.unn.net/news/articleView.html?idxno=600271"
-    },
-    {
       "source": "google",
       "press": "경기신문",
       "date": "2026.11.10",
@@ -459,11 +475,19 @@
     },
     {
       "source": "google",
-      "press": "경기탑뉴스",
+      "press": "비전21뉴스",
       "date": "2026.11.10",
       "title": "경기도의회 김영훈 의원, 다문화 교육, 언어 지원 넘어 우리 사회 구성원으로 성장하도록 체계 마련해야",
-      "snippet": "경기도의회 김영훈 의원, 다문화 교육, 언어 지원 넘어 우리 사회 구성원으로 성장하도록 체계 마련해야 경기탑뉴스",
-      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE9aV2xBcTFxeVVFbl9mVkVvWnNSWWRKUThzTXVpVzJmTHIzbnFCRFNCSVlfOWZNTEpsblFpRGRqcks3TGVXZlM0Ym1VRWsyTWlYY2FnbjFyZ3pnUW5TQzg4RU1CVTA2dw?oc=5"
+      "snippet": "경기도의회 김영훈 의원, 다문화 교육, 언어 지원 넘어 우리 사회 구성원으로 성장하도록 체계 마련해야 비전21뉴스",
+      "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE5OM0dJSFpJS2k2Y1d5Q1BhaEd6UnJnWjRSZUVZdDJCS25la0dmbDNHLWJMLVAyNGlYNzE3R292c0lUVHJyTkhKOHBSazJCMm1JcXEtZ1FhWHRtUjQ0dzU1Uw?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "뉴스파노라마",
+      "date": "2026.11.10",
+      "title": "안산시, 시민 생활 집수리 교육…주거관리 역량 높여",
+      "snippet": "안산시, 시민 생활 집수리 교육…주거관리 역량 높여 뉴스파노라마",
+      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE1vVjd1YlRHUzV0a0J3Tl9oR19YMkpQRGZZZHdtejh4cHVLQ0VUZFp1dWhDZGpZX3lBNEtpVU9hRk1nTUhZdk51R2l1Z1UtRkRxZUdZRVVCRnZhd2tubkh6cm05VjdsaTh3MERLQXRBQQ?oc=5"
     },
     {
       "source": "google",
@@ -483,11 +507,11 @@
     },
     {
       "source": "google",
-      "press": "경인매일",
+      "press": "경기경제신문",
       "date": "2026.11.10",
-      "title": "안산시 단원구, ‘명예환경감시단 교육·간담회’ 진행",
-      "snippet": "안산시 단원구, ‘명예환경감시단 교육·간담회’ 진행 경인매일",
-      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBsS3hqSkJHclJpWHNWVjdLZ1FPd19HbWszUG93bVlORHNacUNSRjBTRmxaem03dTNEWGZsd2NuUnNfS0RVNUlYWENJdFJueklYbFNhcF9FSkJFRWtjeVhsdmhXekQwTXZ5?oc=5"
+      "title": "경기도의회 김선희 의원, “교육 안전망 재정비해야” 피해 학생 보호 공백 및 성범죄 조회 관리 소홀 질타...",
+      "snippet": "경기도의회 김선희 의원, “교육 안전망 재정비해야” 피해 학생 보호 공백 및 성범죄 조회 관리 소홀 질타... 경기경제신문",
+      "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE9VSjRUREFXWEhiTmxpRXVyLVVkb2Q2TXl5YUc0T2tNNzZKYjJ1dXNRYjVrQmd1NWlNS2l5RUpMTDIwaFVRZUNjNWhveU5HbURhVm13TDZsSExZRmJXTjV3Tw?oc=5"
     },
     {
       "source": "google",
@@ -499,27 +523,19 @@
     },
     {
       "source": "google",
-      "press": "경기평화신문",
-      "date": "2026.11.10",
-      "title": "경기도의회 한운옥 의원, 이주배경학생 학습권 사각지대 해소 촉구... “중·고교 교내 지원 및 조기 진단 체계 강화해야”",
-      "snippet": "경기도의회 한운옥 의원, 이주배경학생 학습권 사각지대 해소 촉구... “중·고교 교내 지원 및 조기 진단 체계 강화해야” 경기평화신문",
-      "url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE45UHRWNVhmcnlubUhVUmRNN2cyb3ZLci1Od3FRcGUwX2xxaWxSenVnQm9hMHhENmtHc1JjZmVLOUs2VXZvQjN3Nw?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "경기종합뉴스",
-      "date": "2026.11.10",
-      "title": "안산시, 시민 생활 집수리 교육…주거관리 역량 높여",
-      "snippet": "안산시, 시민 생활 집수리 교육…주거관리 역량 높여 경기종합뉴스",
-      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTFBOWTA3Y2ItdlNvd3hWMjQzOFA2bjZsVTh6emdxNnZQTFc2ODY4NFJIRUpQbURVRktVNDQtR3MxeVVuc1plNW5Wem9nd0tHVXJYVWp1dW1PbVlqd0pzY3IyX0tBU2h6SWc1TGJtbmVmUG1qS2M0?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "경기종합뉴스",
+      "press": "뉴스파노라마",
       "date": "2026.11.10",
       "title": "안산시, 장애인식개선 교육으로 차별 없는 조직문화 조성 나서",
-      "snippet": "안산시, 장애인식개선 교육으로 차별 없는 조직문화 조성 나서 경기종합뉴스",
-      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTFBfZ3lzQXNDYnAwS1AtNW5rR1NydkRURXFmc0JYVFI0R1ItTGNzSTZrVms5Z1ZqdmpIUktMYXBjYnZSQWRZR0h6Q2RERXpOSEs4WFFpdmZJSFc3YUdzcjdJc0lBZ3RlSklQVFpFSnh6QjVuTW1p?oc=5"
+      "snippet": "안산시, 장애인식개선 교육으로 차별 없는 조직문화 조성 나서 뉴스파노라마",
+      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE8yVHA4RG83dnA3Z2k2SU96S1FYQmlhd1RNZnRCcUNrTUtxZWxicEY2YXRmc2xhLS1tMkVqX05iZkF3X01hTUpMelJwTmkzUE00UldHemlPNEkxcmdnT1Jrb0RFcFZ3UFBqZXBmSjJSaw?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "뉴스파노라마",
+      "date": "2026.11.10",
+      "title": "안산시 단원구, 명예환경감시단 교육·간담회 실시",
+      "snippet": "안산시 단원구, 명예환경감시단 교육·간담회 실시 뉴스파노라마",
+      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE5pdGtHSUxhZkwwaEV1RTZ3RDE5cGt1V2FCaWFtODhtUHI1OXZsdXNxa0FIdHVQZm9HVnlpenl2QzJST3Z6Q1Q5c3lqZTBud2Fwak5CLV9DV0o1SU5UYkpIdlE4MkIxWUdzcEVCaU9UWQ?oc=5"
     },
     {
       "source": "naver",
@@ -547,14 +563,6 @@
     },
     {
       "source": "google",
-      "press": "투데이안산",
-      "date": "2026.11.09",
-      "title": "장윤정 경기도의원, “경기신용보증재단 정원관리 지침의 유연·경속화 및 지점별 조직·업무분장 재검토 촉구”",
-      "snippet": "장윤정 경기도의원, “경기신용보증재단 정원관리 지침의 유연·경속화 및 지점별 조직·업무분장 재검토 촉구” 투데이안산",
-      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5YVnYwVS03TlJvREtYS3IxdGNIeHJIeUh1OTNZX3Zta3NSTkZpNll1QW83QjlEWHhIWExTemtUNUNFUDNYRUx5ZmYyZnQ0eTFUWDNNM2dyN21HNlFGZHhnakF5dEtIUDU1XzZwb1hBblIxd9IBckFVX3lxTE5YVnYwVS03TlJvREtYS3IxdGNIeHJIeUh1OTNZX3Zta3NSTkZpNll1QW83QjlEWHhIWExTemtUNUNFUDNYRUx5ZmYyZnQ0eTFUWDNNM2dyN21HNlFGZHhnakF5dEtIUDU1XzZwb1hBblIxdw?oc=5"
-    },
-    {
-      "source": "google",
       "press": "서울Pn",
       "date": "2026.11.09",
       "title": "장윤정 경기도의원 “예산 투입된 프리랜서 플랫폼 ‘프리웨이’ 실적 저조… 대대적 개선 촉구”",
@@ -568,6 +576,14 @@
       "title": "장윤정 경기도의원, 프리랜서 플랫폼 ‘프리웨이’ 등록 68명… 운영 개선 촉구",
       "snippet": "장윤정 경기도의원, 프리랜서 플랫폼 ‘프리웨이’ 등록 68명… 운영 개선 촉구 경인매일",
       "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5YS0RQRjlra0RqckdVVFhnWnFwOXFTaG4tQ0ROZHdsbnJMeTdjNXNOX3duVnh4ZVkybk9lbm5MajJGZlJxVWZwLTB4dTZvVDNkelhpbzc4T0h3b21nUmg3SDBaQnZRYWYy?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "투데이안산",
+      "date": "2026.11.09",
+      "title": "장윤정 경기도의원, “경기신용보증재단 정원관리 지침의 유연·경속화 및 지점별 조직·업무분장 재검토 촉구”",
+      "snippet": "장윤정 경기도의원, “경기신용보증재단 정원관리 지침의 유연·경속화 및 지점별 조직·업무분장 재검토 촉구” 투데이안산",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5YVnYwVS03TlJvREtYS3IxdGNIeHJIeUh1OTNZX3Zta3NSTkZpNll1QW83QjlEWHhIWExTemtUNUNFUDNYRUx5ZmYyZnQ0eTFUWDNNM2dyN21HNlFGZHhnakF5dEtIUDU1XzZwb1hBblIxd9IBckFVX3lxTE5YVnYwVS03TlJvREtYS3IxdGNIeHJIeUh1OTNZX3Zta3NSTkZpNll1QW83QjlEWHhIWExTemtUNUNFUDNYRUx5ZmYyZnQ0eTFUWDNNM2dyN21HNlFGZHhnakF5dEtIUDU1XzZwb1hBblIxdw?oc=5"
     },
     {
       "source": "google",
@@ -643,19 +659,19 @@
     },
     {
       "source": "google",
-      "press": "글로벌뉴스통신GNA",
-      "date": "2026.11.09",
-      "title": "안산시, 세계교육문화원으로부터 즉석밥 100박스 기탁받아",
-      "snippet": "안산시, 세계교육문화원으로부터 즉석밥 100박스 기탁받아 글로벌뉴스통신GNA",
-      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE5YLXpYa05DbnhXbW9oZFBKOU8zWmVKT2EyZEh4NjE5ODdwVVJCMTRRanRHRTh1dE9GakQtdG93MDl3ODhXU3pWYWlIVFFDalpDcmNQM2RZY1Qyb1hWczRsWDFDaHpHdHd2Vi1lV3dXQUlndXVU?oc=5"
-    },
-    {
-      "source": "google",
       "press": "경기헤드뉴스",
       "date": "2026.11.09",
       "title": "안산교육지원청, '2026 안산사이언스밸리 과학·디지털 축제 학생 체험한마당' 운영",
       "snippet": "안산교육지원청, '2026 안산사이언스밸리 과학·디지털 축제 학생 체험한마당' 운영 경기헤드뉴스",
       "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE9rNFhVQ3VLa25OMVl2RXBnMGZteHJXOEpkdEhlTHU2WjhzR3BYYkNNSzJ3Yjd3SzV3WVd2RG1QV0hvc01QYzV0RDBkZWdmT1E0Y1o4NExDdVdjZw?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "글로벌뉴스통신GNA",
+      "date": "2026.11.09",
+      "title": "안산시, 세계교육문화원으로부터 즉석밥 100박스 기탁받아",
+      "snippet": "안산시, 세계교육문화원으로부터 즉석밥 100박스 기탁받아 글로벌뉴스통신GNA",
+      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE5YLXpYa05DbnhXbW9oZFBKOU8zWmVKT2EyZEh4NjE5ODdwVVJCMTRRanRHRTh1dE9GakQtdG93MDl3ODhXU3pWYWlIVFFDalpDcmNQM2RZY1Qyb1hWczRsWDFDaHpHdHd2Vi1lV3dXQUlndXVU?oc=5"
     },
     {
       "source": "google",
@@ -875,19 +891,19 @@
     },
     {
       "source": "naver",
-      "press": "newscj.com",
-      "date": "2026.11.06",
-      "title": "[포토] '가을 단풍 사이로'",
-      "snippet": "겨울의 시작을 알리는 절기 '입동'을 하루 앞둔 6일 경기 안산시 상록구 안산호수공원에서 시민들이 붉게 물든 단풍나무 사이를 걸어가고 있다.",
-      "url": "https://www.newscj.com/news/articleView.html?idxno=3446557"
-    },
-    {
-      "source": "naver",
       "press": "joongboo.com",
       "date": "2026.11.06",
       "title": "[금주의 안산시] 25개 동 지역사회보장협의체 위원 100여 명 워크숍 外",
       "snippet": "교육 장소는 안산시 상록구 해안로 705에 위치한 경기테크노파이며, 참여 희망자는 온라인 신청서를 작성하거나 전자우편으로 신청하면 된다. 자세한 사항은 안산시 누리집 공고문을 확인하거나 경기테크노파크로...",
       "url": "https://www.joongboo.com/news/articleView.html?idxno=363741682"
+    },
+    {
+      "source": "naver",
+      "press": "newscj.com",
+      "date": "2026.11.06",
+      "title": "[포토] '가을 단풍 사이로'",
+      "snippet": "겨울의 시작을 알리는 절기 '입동'을 하루 앞둔 6일 경기 안산시 상록구 안산호수공원에서 시민들이 붉게 물든 단풍나무 사이를 걸어가고 있다.",
+      "url": "https://www.newscj.com/news/articleView.html?idxno=3446557"
     },
     {
       "source": "naver",
@@ -901,17 +917,17 @@
       "source": "naver",
       "press": "newscj.com",
       "date": "2026.11.06",
-      "title": "[포토] 낙엽 쌓인 길",
+      "title": "[포토] '낙엽을 밟으며'",
       "snippet": "겨울의 시작을 알리는 절기 '입동'을 하루 앞둔 6일 경기 안산시 상록구 안산호수공원에서 시민들이 낙엽 쌓인 산책로를 걸어가고 있다.",
-      "url": "https://www.newscj.com/news/articleView.html?idxno=3446555"
+      "url": "https://www.newscj.com/news/articleView.html?idxno=3446554"
     },
     {
       "source": "naver",
       "press": "newscj.com",
       "date": "2026.11.06",
-      "title": "[포토] '낙엽을 밟으며'",
+      "title": "[포토] 낙엽 쌓인 길",
       "snippet": "겨울의 시작을 알리는 절기 '입동'을 하루 앞둔 6일 경기 안산시 상록구 안산호수공원에서 시민들이 낙엽 쌓인 산책로를 걸어가고 있다.",
-      "url": "https://www.newscj.com/news/articleView.html?idxno=3446554"
+      "url": "https://www.newscj.com/news/articleView.html?idxno=3446555"
     },
     {
       "source": "naver",
@@ -1016,6 +1032,14 @@
       "title": "안산시 상록구, 신규 사회복지직 대상 '고민타파, 토론학습방' 운영",
       "snippet": "매일일보 = 송훈희 기자 | 안산시 상록구는 5일 상록구청 4층 대회의실에서 동 행정복지센터 신규 사회복지직 공무원과 구청 복지업무 담당자 등 25명을 대상으로 '2026년 고민타파, 토론학습방'을 운영했다. '고민타파...",
       "url": "https://www.m-i.kr/news/articleView.html?idxno=2015249"
+    },
+    {
+      "source": "google",
+      "press": "NSP통신",
+      "date": "2026.11.06",
+      "title": "안산시 상록구, ‘고민타파 토론학습방’ 운영…복지 실무 역량 강화",
+      "snippet": "안산시 상록구, ‘고민타파 토론학습방’ 운영…복지 실무 역량 강화 NSP통신",
+      "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE1ickJvTlFlZ19Fajd6UlF4eW8wT0stRzlsdXc3Wno2SVJ3ZWJfaDhLcVNTTnpxUkJYZWNMVnNyZlNyVHczamVMT2lJa0p2aFBDakJ4TTAwQUxUaVd0QW56OQ?oc=5"
     },
     {
       "source": "google",
@@ -1728,14 +1752,6 @@
       "title": "與 김현, 추석 물가 현장점검…\"애로사항 개선에 총력\"",
       "snippet": "이날 현장에는 김현 국회의원을 비롯해 유재수·이은미·장윤정 경기도의원, 이재복·이상우·윤오일·백승희 안산시의원과 지역 당원들이 함께했다. 이들은 청과·수산물 매장과 시장 일대를 돌며 상인과 시민들에게 명절...",
       "url": "https://news.tvchosun.com/site/data/html_dir/2026/09/25/2026092590027.html"
-    },
-    {
-      "source": "google",
-      "press": "국제뉴스",
-      "date": "2026.09.20",
-      "title": "[속보] 안산 상록구 주택서 화재 발생… \"도로 우회 당부\"",
-      "snippet": "[속보] 안산 상록구 주택서 화재 발생… \"도로 우회 당부\" 국제뉴스",
-      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE82VFR6elRiZVg3Z0ducGlfaS1hMHAzS1BTNEhkOV8wMGYzRWo3alI3Y1hNenY2dlNLd0ExZDIxNk9Fa3BGUXpEcVRPVlkwcVoydzF4RDB4Q0NmNGpydVVzeG5Ga1Fqb2JQOXdyNE5n?oc=5"
     },
     {
       "source": "google",
