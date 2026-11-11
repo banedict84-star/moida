@@ -1,6 +1,30 @@
 {
-  "updated": "2026-11-10 23:38 UTC",
+  "updated": "2026-11-11 06:57 UTC",
   "items": [
+    {
+      "source": "google",
+      "press": "전국매일신문",
+      "date": "2026.11.11",
+      "title": "장윤정 경기도의원, 킨텍스 안전관리·계약 개선 촉구",
+      "snippet": "장윤정 경기도의원, 킨텍스 안전관리·계약 개선 촉구 전국매일신문",
+      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBxTzZJM09ZUnVGMHRDbHlMeXBnZ2xJNUpBUjM5X2N6U19EWXNOamcxS2lWWXc1Y2lKbDNFV1hVTXNPVWh0WUYyM2dyQm1mekw1dkdTWlRBajltSWxKZ1haQW9qQ2JqeHpyYWR2THZ3?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "서프라이즈뉴스",
+      "date": "2026.11.11",
+      "title": "장윤정 경기도의원, 킨텍스 제3전시장 안전관리 강화 및 도내 업체 계약 확대 촉구",
+      "snippet": "장윤정 경기도의원, 킨텍스 제3전시장 안전관리 강화 및 도내 업체 계약 확대 촉구 서프라이즈뉴스",
+      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5pMWFpQ1VCcEZXXzJ4aUJhcm5paDB3WVFlZ2xKa0hFZ1dreXE1WDNOdEpnTjM2YWNLUTJOTjdabHY0ekw4SzdBaHdPZFBGQWxCNmdUODFiVGJfVGtlamZKc043amowNTFpX1VfT3hn?oc=5"
+    },
+    {
+      "source": "naver",
+      "press": "dt.co.kr",
+      "date": "2026.11.11",
+      "title": "집 안으로 들어온 문화와 예술… 아파트의 가치가 달라진다",
+      "snippet": "경기 안산에서는 ‘그랑시티자이 2차’가 대표적이다. 실내 수영장과 실내체육관, 44층 스카이 피트니스와 라운지 카페 등을 갖춘 이 단지는 올해 7월 전용 115㎡가 10억8,500만원에 거래되며 최근 1년간 상록구 아파트...",
+      "url": "https://www.dt.co.kr/article/12094475?ref=naver"
+    },
     {
       "source": "naver",
       "press": "newscj.com",
@@ -10,60 +34,452 @@
       "url": "https://www.newscj.com/news/articleView.html?idxno=3447583"
     },
     {
-      "source": "naver",
-      "press": "viva100.com",
+      "source": "google",
+      "press": "웹이코노미",
       "date": "2026.11.11",
-      "title": "안산시, 생활폐기물 처리시설 현대화…2037년 하루 360톤 처리체계 구축",
-      "snippet": "위한 교육과 홍보를 확대할 예정이다. 관련 제도 정비도 추진한다. 시는 자원순환 정책의 제도적 기반을 강화하기 위해 「안산시 순환경제사회 전환 촉진 조례」 전부개정을 추진하고, 변화하는 생활폐기물 배출·수거...",
-      "url": "https://www.viva100.com/article/20261111500100"
+      "title": "경기도의회 장윤정 의원, 킨텍스 제3전시장 안전관리 및 도내 업체 계약 확대 촉구",
+      "snippet": "경기도의회 장윤정 의원, 킨텍스 제3전시장 안전관리 및 도내 업체 계약 확대 촉구 웹이코노미",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE50UnlBWXYxNEowZlZseWc0dkhUVGxEWUFWWlVlTV9sVDA0ZnNMb1dmV1NsM3lGcEluM3RSQTR6ZTV0NDNuYnVQcm42RUg0UzBfNnZFQTNnY0RjdnNWQkZ5QWxJbDNGYU5COVdmemZ1V3ZYQQ?oc=5"
     },
     {
       "source": "naver",
-      "press": "veritas-a.com",
+      "press": "kihoilbo.co.kr",
       "date": "2026.11.11",
-      "title": "[단독] [2026진학률] 경기 387개 일반고 54.95% '하락'.. 동두천 현화 수...",
-      "snippet": "뛰어난 대입 실적 이면에 '재수 필수' 그늘이 짙어 진학률 40%대에 머무는 일반 교육특구... 졸업생이 20명 미만인 청운고(양평)와 대부고(안산)는 제외했다. 신성고(안양)는 졸업생 전원이...",
-      "url": "https://www.veritas-a.com/news/articleView.html?idxno=636226"
+      "title": "안산시, 유럽서 ASV 투자유치·첨단산업 협력 기반 다져",
+      "snippet": "경제·산업·교육·문화 분야의 협력 확대 방안을 논의했다. 사절단은 항공·이동수단 분야 연구시설인 메르츠브뤼크 연구비행장도 방문했다. 이번 순방의 핵심은 안산의 산업 기반을 유럽 기업에 직접 소개하고 투자...",
+      "url": "https://www.kihoilbo.co.kr/news/articleView.html?idxno=3040634"
     },
     {
       "source": "naver",
-      "press": "veritas-a.com",
+      "press": "news.tvchosun.com",
       "date": "2026.11.11",
-      "title": "[단독] [2026진학률] '대입 겨냥' 전국 고교 77.9% '하락'.. 영재학교 전...",
-      "snippet": "기사의 '대학 진학률'은 한국교육개발원 교육통계서비스에 공시된 자료를 분석한 결과로, 국내외... 안산동산고는 4년 내내 50%대에 머물며 비서울 광역자사고 가운데 진학률이 가장 낮다. 학교별로...",
-      "url": "https://www.veritas-a.com/news/articleView.html?idxno=636287"
+      "title": "與 김현 \"'AI 교육' 위한 고속도로 깔자\"…방송의 공적 책임도 강조",
+      "snippet": "더불어민주당 김현 의원(경기 안산시을)은 10일 국회 예산결산특별위원회 경제부처 부별심사에서 2029년까지... 가까운 곳에서 배우는 AI…생활권 시설로 교육 거점 확대 전국 AI디지털배움터는 올해 69곳으로...",
+      "url": "https://news.tvchosun.com/site/data/html_dir/2026/11/11/2026111190189.html"
+    },
+    {
+      "source": "naver",
+      "press": "kmaeil.com",
+      "date": "2026.11.11",
+      "title": "경기도의회 서혜진 의원 \"과밀학급은 줄이고 유휴교실은 살려야\"",
+      "snippet": "이에 김수진 안산교육장은 향후 갈등이 발생할 경우 교육공동체 구성원들과 충분한 협의 과정을 거쳐 추진하겠다는 입장을 밝혔다. 끝으로 서혜진 의원은 \"과밀학급은 줄이고 유휴교실은 살리는 것이 학생들의 학습권을...",
+      "url": "https://www.kmaeil.com/news/articleView.html?idxno=657858"
+    },
+    {
+      "source": "naver",
+      "press": "news1.kr",
+      "date": "2026.11.11",
+      "title": "안산시, 내년도 본예산 2조4560억원 편성…올해보다 5.42% 증액",
+      "snippet": "미래교육도시 △교통환경도시 등을 중심으로 편성됐다. 또 △버스공공관리제 △어르신·청소년 대중교통비 지원 △공유자전거·개인형 이동장치(PM) 주차장 조성사업 등도 반영했다. 내년도 시 예산안은 안산시...",
+      "url": "https://www.news1.kr/local/gyeonggi/6350693"
+    },
+    {
+      "source": "naver",
+      "press": "shinailbo.co.kr",
+      "date": "2026.11.11",
+      "title": "경기 중부권 7개 도시, 철도·복지 등 공동 현안 논의…시흥서 정기회의",
+      "snippet": "경기중부권행정협의회는 시흥·안산·안양·광명·군포·의왕·과천 등 경기도 중부권 7개 지방자치단체가... 현장에서는 바이오산업 전문인력 양성을 위한 교육 기반과 시흥시의 관련 산업 육성 인프라를 살펴보는 시간이...",
+      "url": "https://www.shinailbo.co.kr/news/articleView.html?idxno=5082223"
+    },
+    {
+      "source": "naver",
+      "press": "financialpost.co.kr",
+      "date": "2026.11.11",
+      "title": "교촌치킨, 이주배경 청소년 진로·문화 체험 지원",
+      "snippet": "서울·수원·화성·안산 지역 글로벌청소년 지원기관 소속 청소년·청년 약 130명이 참여해 기업 탐방과 직무... 앞서 10월15일에는 서울시글로벌청소년교육센터 소속 18명이 교촌의 소스 생산 자회사 비에이치앤바이오...",
+      "url": "https://www.financialpost.co.kr/news/articleView.html?idxno=300122"
+    },
+    {
+      "source": "naver",
+      "press": "pinpointnews.co.kr",
+      "date": "2026.11.11",
+      "title": "교촌에프앤비, 이주배경 청소년 진로체험 마무리…본사·소스공장 견학...",
+      "snippet": "참여 기관은 서울시글로벌청소년교육센터와 수원시글로벌청소년드림센터, 화성시글로벌청소년센터, 안산시글로벌청소년센터이다. 교촌은 다음달 전국 이주배경 지원기관을 대상으로 3000만원 규모의 교촌치킨도 지원할...",
+      "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=503072"
+    },
+    {
+      "source": "naver",
+      "press": "shinailbo.co.kr",
+      "date": "2026.11.11",
+      "title": "김현 의원, AI디지털배움터 조기 확대 촉구…생활권 시설 활용 제안",
+      "snippet": "김현 더불어민주당 국회의원(경기 안산시을)이 국민의 인공지능(AI) 교육 접근성을 높이기 위해 AI디지털배움터를 조기에 확대해야 한다고 촉구했다. 11일 김 의원실에 따르면 김 의원은 지난 10일 국회...",
+      "url": "https://www.shinailbo.co.kr/news/articleView.html?idxno=5082286"
+    },
+    {
+      "source": "naver",
+      "press": "shinailbo.co.kr",
+      "date": "2026.11.11",
+      "title": "안산시, 내년 본예산 2조4560억원 편성…민생·복지 중점",
+      "snippet": "교육 분야에는 총 300억원의 교육경비를 마련했다. 안산상호문화공유학교 건립 17억원과 한양대 ERICA 영재교육원 4억2000만원 등이 주요 사업이다. 이 밖에 선부2·3동 공공복합청사 건립 44억원, 시민안전보험...",
+      "url": "https://www.shinailbo.co.kr/news/articleView.html?idxno=5082295"
+    },
+    {
+      "source": "naver",
+      "press": "enewstoday.co.kr",
+      "date": "2026.11.11",
+      "title": "안산시, 내년도 예산안 2조 4,560억 원 편성…전년 대비 5.42% 증가",
+      "snippet": "주요 사업은 ▲중·고생 인터넷 수능방송 수강 지원(8천만 원) ▲진로진학상담센터 운영(2억 원) ▲한양대학교 에리카(ERICA) 영재교육원(4억 2천만 원)을 편성했으며, 상호문화 교육지원의 거점 역할을 수행할 ▲안산상...",
+      "url": "http://www.enewstoday.co.kr/news/articleView.html?idxno=2491156"
+    },
+    {
+      "source": "naver",
+      "press": "newsworker.co.kr",
+      "date": "2026.11.11",
+      "title": "[뉴스워커_김현 의원] AI배움터 2029년까지 229곳…\"우체국·경로당 활용...",
+      "snippet": "김현 더불어민주당 의원(경기 안산시을)이 인공지능(AI) 교육 격차를 줄이기 위해 전국 AI디지털배움터 확충 시기를 앞당겨야 한다고 촉구했다. 우체국과 학교, 경로당 등 기존 생활권 시설을 활용하면 별도의...",
+      "url": "https://www.newsworker.co.kr/news/articleView.html?idxno=513469"
     },
     {
       "source": "naver",
       "press": "discoverynews.kr",
       "date": "2026.11.11",
-      "title": "이건한 의원, 교육지원청 정책 실행력과 법적 책임 명확화 요구",
-      "snippet": "이 의원은 2026년 부천·안산·시흥교육지원청 행정사무감사에서 교육행정의 소통 체계와 지역 교육 현안 대응 실태를 집중적으로 살폈다. 먼저 교육지원청의 소셜미디어 운영과 관련해 게시물 수나 조회 실적보다 학부모와...",
-      "url": "https://www.discoverynews.kr/news/articleView.html?idxno=1106411"
+      "title": "안산시 경제사절단 유럽 순방 마무리, ASV 투자유치 본격화",
+      "snippet": "그뤼테마이어 시장은 \"안산시와 아헨특구는 오랜 기간 신뢰를 쌓아 온 동반자\"라며 \"앞으로도 경제와 교육, 문화 등 다양한 분야에서 교류를 이어 가자\"고 화답했다. 사절단은 항공·이동수단 분야 연구가 이뤄지는...",
+      "url": "https://www.discoverynews.kr/news/articleView.html?idxno=1106440"
     },
     {
       "source": "naver",
-      "press": "consumernews.co.kr",
+      "press": "newsis.com",
       "date": "2026.11.11",
-      "title": "【분양현장 톺아보기】 시흥 거모 아테라, 초품아에 산단 직주근접 매력...",
-      "snippet": "안산역과 정왕역은 각각 약 2.5~2.7㎞ 떨어져 있어 차량으로 6~7분 정도 걸릴 것으로 예상된다. ▲시흥 거모 아테라 인근 예정된 학교 부지들 교육환경은 입주 시점에 개선될 전망이다. 단지 바로 앞에는 가칭...",
-      "url": "http://www.consumernews.co.kr/news/articleView.html?idxno=767942"
+      "title": "ASV경자구역 출범 첫해…안산시, 유럽 외투유치 \"물꼬\"",
+      "snippet": "이 시장은 이번 방문에서 팀 그뤼테마이어 아헨특구시장 및 소속 도시 대표들과 연쇄 간담회를 갖고 경제·산업·교육·문화 등 다각적인 협력 방안을 논의했다. 안산시는 경제자유구역 지정 첫해를 맞은 ASV의 투자...",
+      "url": "https://www.newsis.com/view/NISX20261111_0003863915"
+    },
+    {
+      "source": "naver",
+      "press": "finomy.com",
+      "date": "2026.11.11",
+      "title": "LX판토스, 해외 취약계층 아동 지원에 2억원 기부",
+      "snippet": "참가자들은 도시생태 전문 강사의 교육을 받은 뒤 나뭇가지와 식물 씨앗을 활용해 곤충호텔과 씨드밤을 제작했다. 이어 안산 일대에서 식물 탐사와 곤충호텔 설치 활동을 진행했다. LX판토스는 국내 주요 사업장 인근의...",
+      "url": "http://www.finomy.com/news/articleView.html?idxno=266317"
+    },
+    {
+      "source": "naver",
+      "press": "news.tf.co.kr",
+      "date": "2026.11.11",
+      "title": "교촌에프앤비, 이주배경 청소년·청년에 외식산업 탐방 마련",
+      "snippet": "올해는 총 5회 동안 서울시글로벌청소년교육센터·수원시글로벌청소년드림센터·화성시글로벌청소년센터·안산시글로벌청소년센터 이주배경 청소년·청년 약 130명이 함께 했다. 12월에는 전국 이주배경 지원기관을...",
+      "url": "https://news.tf.co.kr/read/economy/2387541.htm"
+    },
+    {
+      "source": "naver",
+      "press": "ajunews.com",
+      "date": "2026.11.11",
+      "title": "예결위 교육부 부별심사 격돌…\"기숙사비 원룸 수준, 1조 원 결단을\" vs...",
+      "snippet": "김 의원은 “다문화·이주배경 학생이 급증했으나 경기도의 경우 한국어 학급당 평균 인원이 28.9명에 달해 교육부 권고 기준(10명 내외)을 3배 가까이 초과한다”고 지적했다. 또한 “안산 등 일부 밀집 학교는 이주배경...",
+      "url": "https://www.ajunews.com/view/20261111142057262"
+    },
+    {
+      "source": "naver",
+      "press": "nspna.com",
+      "date": "2026.11.11",
+      "title": "[의회 브리핑]김경옥 경기도의원, 시흥 교육활동 침해 급증 지적",
+      "snippet": "안산교육지원청 행정사무감사서 특수학급 과밀 해소 촉구 김경옥 경기도의원(교육기획위,평택)이 행정사무감사에서 교육 현안의 실효성 있는 대책을 촉구했다. 김 의원은 안산교육지원청에서 열린 행정사무감사에서...",
+      "url": "https://www.nspna.com/news/?mode=view&newsid=835565"
+    },
+    {
+      "source": "naver",
+      "press": "sisajournal.com",
+      "date": "2026.11.11",
+      "title": "[안산 24시] 안산시, 2027년 본예산 2조4560억원 편성…민생·미래 성장 ...",
+      "snippet": "미래교육도시 분야에는 총 300억원의 교육경비를 편성해 지역 인재 육성과 교육격차 해소를 지원한다. 안산상호문화공유학교 건립비 17억원과 진로진학상담센터 운영비 2억원 등도 포함됐다. 교통환경도시 분야에는...",
+      "url": "https://www.sisajournal.com/news/articleView.html?idxno=393592"
+    },
+    {
+      "source": "naver",
+      "press": "ajunews.com",
+      "date": "2026.11.11",
+      "title": "이민근 안산시장 \"해외 교류 기업 유치와 양질의 일자리 창출로 이어져...",
+      "snippet": "독일 중소기업 응용과학대학(FHM), 안산상공회의소와 '미래산업 맞춤형 인재 양성 및 글로벌 산학협력 강화를 위한 업무협약'을 체결했다. 기업이 필요로 하는 전문인력을 양성하고 지역 대학·기업·해외 교육기관 간...",
+      "url": "https://www.ajunews.com/view/20261111134351049"
+    },
+    {
+      "source": "naver",
+      "press": "wsobi.com",
+      "date": "2026.11.11",
+      "title": "소아암 환아 후원·김장 나누기 동참·문화예술 후원·이주배경 지원사...",
+      "snippet": "양측은 청소년 문화예술 교육을 비롯해 시민 참여형 도심 음악회, 정기연주회, 국제 문화교류 등 다양한... 지난 5일 경기도 성남시 교촌에프앤비 판교 본사에서 기업탐방 프로그램으로 열린 다섯 번째 활동에는 안산시...",
+      "url": "http://www.wsobi.com/news/articleView.html?idxno=321512"
+    },
+    {
+      "source": "naver",
+      "press": "news.kbs.co.kr",
+      "date": "2026.11.11",
+      "title": "경기교육청, 도내 37개 대학들과 ‘벽 깨기’ 협약",
+      "snippet": "안산 한양대 에리카는 과학·융합 교육을, 시흥 한국공학대는 직업교육을 맡습니다. 도교육청은 대학들과 통합 소통 창구를 마련해 교육 협력을 공고히 하고 정례 회의를 통해 추진 과제들을 구체화할 계획입니다....",
+      "url": "https://news.kbs.co.kr/news/pc/view/view.do?ncd=8709873&ref=A"
+    },
+    {
+      "source": "naver",
+      "press": "nspna.com",
+      "date": "2026.11.11",
+      "title": "[송곳 질문]이건한 경기도의원, “교육정책 성과는 현장 변화로 증명해...",
+      "snippet": "지역 협력과 법적 책임 강화 시흥교육지원청에는 지역추천 공모제 교육장의 취지에 맞춰 산업체와 특성화고 연계 등 지역 현안을 주도적으로 해결할 것을 당부했다. 또한 안산과 시흥의 학교복합시설 사업과 관련해...",
+      "url": "https://www.nspna.com/news/?mode=view&newsid=835558"
+    },
+    {
+      "source": "naver",
+      "press": "sidae.com",
+      "date": "2026.11.11",
+      "title": "안산시, 내년 복지예산 올해보다 7.49% 늘려",
+      "snippet": "교육경비는 총 300억원으로, 안산상호문화공유학교 건립에 17억원을 편성하는 등 교육격차 해소와 지역 인재 육성에 투입할 계획이다. 내년도 예산안은 안산시의회 심의·의결을 거쳐 12월17일 확정될 예정이다....",
+      "url": "https://www.sidae.com/article/2026111113212051075"
+    },
+    {
+      "source": "naver",
+      "press": "safetimes.co.kr",
+      "date": "2026.11.11",
+      "title": "경기도, 제철 수산물 판매 음식점 24곳 적발",
+      "snippet": "경기도는 안산·화성·시흥·평택·김포 등 연안 5개 시의 바닷가 인근 식품접객업소 120곳을 집중 단속해... 소비기한이 지난 제품을 교육용이나 폐기용으로 표시하지 않고 보관한 경우에도 같은 수준의 처벌을 받을 수...",
+      "url": "https://www.safetimes.co.kr/news/articleView.html?idxno=247384"
+    },
+    {
+      "source": "naver",
+      "press": "newsworker.co.kr",
+      "date": "2026.11.11",
+      "title": "[뉴스워커_교촌에프앤비] 치킨 공장부터 본사 직무까지…이주배경 청소...",
+      "snippet": "지난 5일 경기 성남시 판교 본사에서 열린 마지막 프로그램에는 안산시글로벌청소년센터 소속 청소년·청년... 앞서 10월 15일에는 서울시글로벌청소년교육센터 소속 18명이 충북 진천의 교촌 소스 생산 자회사...",
+      "url": "https://www.newsworker.co.kr/news/articleView.html?idxno=513448"
+    },
+    {
+      "source": "naver",
+      "press": "lawissue.co.kr",
+      "date": "2026.11.11",
+      "title": "교촌에프앤비, 이주배경 청소년·청년 대상 진로·문화 체험 마무리",
+      "snippet": "지난 5일 판교 본사에서 열린 마지막 프로그램에는 안산시글로벌청소년센터 소속 참가자 22명이 함께했다.... 앞서 10월 15일에는 서울시글로벌청소년교육센터 소속 청소년·청년 18명이 충북 진천의 소스 생산 자회사...",
+      "url": "https://www.lawissue.co.kr/view.php?ud=202611111248335960204ead0791_12"
+    },
+    {
+      "source": "naver",
+      "press": "segye.com",
+      "date": "2026.11.11",
+      "title": "아이에게 즐거운 모험, 부모에겐 휴식…늦가을 경기도 가족 나들이 명소",
+      "snippet": "안산 바다향기수목원. 경기관광공사 제공 ◆안산 바다향기수목원: 서해 풍경과 숲이 빚어낸 쉼터 서해안... 자유의 다리와 평화곤돌라 등 주변 안보·역사 관광지와 연계해 교육적 가치도 풍부하다.",
+      "url": "https://www.segye.com/newsView/20261111509121?OutUrl=naver"
+    },
+    {
+      "source": "naver",
+      "press": "breaknews.com",
+      "date": "2026.11.11",
+      "title": "김현 민주당 의원 “AI에 수조 원 투입, 일자리 통계없어…AI교육 고속도...",
+      "snippet": "브레이크뉴스 김충열 정치전문기자 = 김현 더불어민주당 국회의원(경기 안산시... 가까운 곳에서 배우는 AI…생활권 시설로 교육 거점 확대 전국 AI디지털배움터는...",
+      "url": "http://www.breaknews.com/1250153"
+    },
+    {
+      "source": "naver",
+      "press": "weekly.hankooki.com",
+      "date": "2026.11.11",
+      "title": "\"안산의 1호 영업사원 자처\"…이민근 시장, 세계 시장 문 두드리다",
+      "snippet": "안산시는 독일 중소기업 응용과학대학(FHM), 안산상공회의소와 미래산업 분야의 교육 및 산학협력을 위한 업무협약을 체결했다. 기술과 투자만으로 산업이 성장할 수 없는 만큼 기업에서 필요로 하는 전문인력을 함께...",
+      "url": "https://weekly.hankooki.com/news/articleView.html?idxno=7193279"
+    },
+    {
+      "source": "naver",
+      "press": "breaknews.com",
+      "date": "2026.11.11",
+      "title": "안산시, '안산사이언스밸리' 투자 유치 행보 마쳐",
+      "snippet": "안산시는 이민근 안산시장을 단장으로 한 안산시 경제사절단이 스페인과 독일을... 경제·산업·문화·교육을 아우르는 전방위적 교류 확대를 확약받았다. 아래는 위...",
+      "url": "http://www.breaknews.com/1250106"
+    },
+    {
+      "source": "naver",
+      "press": "breaknews.com",
+      "date": "2026.11.11",
+      "title": "안산시, 2027년 예산안 2조 4,560억 편성… 전년比 5.42% 증가",
+      "snippet": "또한 시는 미래 인재 육성을 위해 300억 원 규모의 교육경비를 편성하고, 안산상호문화공유학교 건립(17억 원) 등을 추진할 계획이다. 이민근 안산시장은 예산이...",
+      "url": "http://www.breaknews.com/1250105"
+    },
+    {
+      "source": "naver",
+      "press": "donga.com",
+      "date": "2026.11.11",
+      "title": "교촌, 이주배경 청소년 진로 탐색 지원…현장 중심 진로 체험 진행",
+      "snippet": "올해는 서울·수원·화성·안산 지역 글로벌청소년센터 소속 청소년·청년 약 130명이 참여했다. 지난 10월과... 앞서 지난달 15일에는 서울시글로벌청소년교육센터 소속 이주배경 청소년·청년 등 18명과 함께 충북 진천과...",
+      "url": "https://www.donga.com/news/Economy/article/all/20261111/135005434/1"
+    },
+    {
+      "source": "naver",
+      "press": "yna.co.kr",
+      "date": "2026.11.11",
+      "title": "캠퍼스 열어 학생·교사 교육 돕는다…경기교육청-대학 맞손",
+      "snippet": "안산 한양대 에리카는 과학·융합 교육을, 시흥 한국공학대는 직업교육을 맡는다. 도교육청은 대학들과 통합 소통 창구를 마련해 교육 협력을 공고히 하고 정례 회의를 통해 추진 과제들을 구체화할 계획이다....",
+      "url": "https://www.yna.co.kr/view/AKR20261111085400061?input=1195m"
+    },
+    {
+      "source": "naver",
+      "press": "kdfnews.com",
+      "date": "2026.11.11",
+      "title": "교촌, 이주배경 청소년 진로 탐색 지원…기업탐방 진행",
+      "snippet": "지난 5일 경기 성남시 판교 본사에서 열린 마지막 기업탐방에는 안산시글로벌청소년센터 소속 이주배경... 앞서 지난달 15일에는 서울시글로벌청소년교육센터 소속 18명이 교촌의 소스 생산 자회사 비에이치앤바이오...",
+      "url": "http://www.kdfnews.com/news/articleView.html?idxno=190766"
+    },
+    {
+      "source": "naver",
+      "press": "e-science.co.kr",
+      "date": "2026.11.11",
+      "title": "교촌에프앤비, 이주배경 청소년 130명에 외식산업 진로·한국문화 체험...",
+      "snippet": "지난 5일 경기 성남시 판교 본사에서 진행된 마지막 프로그램에는 안산시글로벌청소년센터 소속 22명이... 이번 프로그램은 기업이 보유한 산업 현장과 지역의 문화자원을 청소년 교육에 활용했다는 의미가 있다. 다양한...",
+      "url": "https://www.e-science.co.kr/news/articleView.html?idxno=139459"
+    },
+    {
+      "source": "naver",
+      "press": "incheonilbo.com",
+      "date": "2026.11.11",
+      "title": "안산시, ASV 경제자유구역 투자유치 총력",
+      "snippet": "이에 대해 그뤼테마이어 시장은 \"안산시와 아헨 특구는 오랜 기간 신뢰를 쌓아 온 동반자\"라며 \"앞으로도 경제와 교육, 문화 등 다양한 분야에서 교류를 이어 가자\"고 했다. 경제사절단은 항공·이동수단 분야의 연구가...",
+      "url": "https://www.incheonilbo.com/news/articleView.html?idxno=1336517"
     },
     {
       "source": "naver",
       "press": "ekn.kr",
       "date": "2026.11.11",
-      "title": "[패트롤] 고양시의회-과천시의회-군포시의회-시흥시의회",
-      "snippet": "경제자유구역은 2022년 함께 후보지가 된 안산이 올해 1월 지정을 받은 데 비해 고양시는 아직 사전자문... 이에 따라 청년과 기업 간 연계 강화, 맞춤형 직무교육, 기업 협력을 중심으로 3대 전략 13개 정책과제를 제시했다....",
-      "url": "https://www.ekn.kr/web/view.php?key=20261111021118002"
+      "title": "[똑똑한외식] 아웃백, 크리스탈제이드, 백미당, 할리스, 애슐리퀸즈, 뚜...",
+      "snippet": "서울·수원·화성·안산 지역의 관련 지원기관 소속 청소년과 청년 약 130명이 참여했다. 이달 5일 경기 성남... 앞서 지난달 15일에는 서울시글로벌청소년교육센터 소속 18명이 교촌의 소스 생산 자회사인 비에이치앤바이오...",
+      "url": "https://www.ekn.kr/web/view.php?key=20261111022358144"
     },
     {
       "source": "naver",
       "press": "kmib.co.kr",
       "date": "2026.11.11",
-      "title": "기독교 정신으로, 한국 학교 찾은 일본 고교생들",
-      "snippet": "10일 오전 9시 경기도 안산 경일고등학교 정문 앞. 교복을 입은 학생들이 일본 야마가타가쿠인(山形學院)... 기독교학교교육동맹을 통해 닿은 곳이 야마가타가쿠인고였다. 2019년까지 매년 서로의 학교를 방문했던 교류는...",
-      "url": "https://www.kmib.co.kr/article/20261110502108"
+      "title": "안산시, 유럽 순방 마무리…ASV 글로벌 투자유치 박차",
+      "snippet": "산업·교육 분야 협력 방안을 논의하고 지난 10일 귀국했다고 11일 밝혔다. 이번 순방은 올해 1월 경제자유구역으로 공식 출범한 안산사이언스밸리의 투자 경쟁력을 유럽에 알리고, 첨단산업 분야의 글로벌 협력 기반을...",
+      "url": "https://www.kmib.co.kr/article/20261111500230"
+    },
+    {
+      "source": "naver",
+      "press": "asiatoday.co.kr",
+      "date": "2026.11.11",
+      "title": "스페인·독일 방문한 이민근 안산시장…\"ASV 강점 알려 기업 유치 이룰...",
+      "snippet": "간담회에서 그뤼테마이어 시장은 \"안산시와 아헨특구는 오랜 기간 신뢰를 쌓아 온 동반자\"라며 \"앞으로도 경제와 교육, 문화 등 다양한 분야에서 교류를 이어 가자\"고 화답했다.사절단은 항공·이동수단 분야의 연구가...",
+      "url": "https://www.asiatoday.co.kr/kn/view.php?key=20261111010004084"
+    },
+    {
+      "source": "naver",
+      "press": "businessplus.kr",
+      "date": "2026.11.11",
+      "title": "[잘먹잘살+]교촌에프앤비·아모레퍼시픽·교원웰스·경동나비엔",
+      "snippet": "활동에는 안산시글로벌청소년센터 소속 이주배경 청소년·청년 등 22명(러시아·우크라이나·카자흐스탄... 아모레퍼시픽과 월드비전, 오리진디자인, 진도교육지원청이 협력해 지역 청소년들이 자신의 관심사와 강점을...",
+      "url": "https://www.businessplus.kr/news/articleView.html?idxno=119634"
+    },
+    {
+      "source": "naver",
+      "press": "newsquest.co.kr",
+      "date": "2026.11.11",
+      "title": "교촌, 이주배경 청소년 '진로 길잡이'…130명 기업·직무 체험",
+      "snippet": "올해는 서울시글로벌청소년교육센터, 수원시글로벌청소년드림센터, 화성시글로벌청소년센터, 안산시글로벌청소년센터 등을 통해 약 130명의 이주배경 청소년·청년이 참여했다. 교촌은 오는 12월 전국 이주배경...",
+      "url": "https://www.newsquest.co.kr/news/articleView.html?idxno=304708"
+    },
+    {
+      "source": "naver",
+      "press": "joongboo.com",
+      "date": "2026.11.11",
+      "title": "[사람in] 김제연 안산환경재단 대표 \"환경교육이 미래 바꾼다…찾아가는...",
+      "snippet": "김 대표는 \"어릴 때 형성된 환경에 대한 인식과 실천 습관은 성장한 뒤에도 큰 영향을 미친다\"며 \"아이들이 자연스럽게 환경의 가치를 배우고 스스로 실천할 수 있도록 교육 기회를 넓혀야 한다\"고 강조했다. 김제연 안산환...",
+      "url": "https://www.joongboo.com/news/articleView.html?idxno=363742126"
+    },
+    {
+      "source": "naver",
+      "press": "popcornnews.net",
+      "date": "2026.11.11",
+      "title": "교촌에프앤비 \"이주배경 미래세대 성장 지원\"...올해 체험 프로그램 5회...",
+      "snippet": "올해는 서울시글로벌청소년교육센터와 수원시글로벌청소년드림센터, 화성시글로벌청소년센터, 안산시글로벌청소년센터 소속 청소년·청년 약 130명이 참여했다. 진로 탐색과 기업 현장 견학, 전통문화 체험, 봉사활동...",
+      "url": "http://www.popcornnews.net/news/articleView.html?idxno=139523"
+    },
+    {
+      "source": "naver",
+      "press": "starnewskorea.com",
+      "date": "2026.11.11",
+      "title": "\"부산 사람들이 만만한가요\" 가정폭력·음주운전 세터 복귀에 성난 팬심...",
+      "snippet": "지난해 시장 확장성을 이유로 안산을 떠나 부산에 새롭게 둥지를 튼 OK저축은행이 가정폭력과 음주운전... 구단은 이번 일을 계기로 선수단 윤리교육과 위험 관리체계를 전면 재정비하고 더욱 엄격한 도덕적 기준으로...",
+      "url": "https://www.starnewskorea.com/sports/2026/11/11/2026111020244043206"
+    },
+    {
+      "source": "naver",
+      "press": "joongangenews.com",
+      "date": "2026.11.11",
+      "title": "안산시, 7박 9일 유럽 순방 마무리…'안산사이언스밸리' 투자유치 총력",
+      "snippet": "그뤼테마이어 시장은 \"안산시와 아헨특구는 오랜 기간 신뢰를 쌓아 온 동반자\"라며 \"앞으로도 경제와 교육, 문화 등 다양한 분야에서 교류를 이어 가자\"고 화답했다. 사절단은 항공·이동수단 분야의 연구가 이뤄지는...",
+      "url": "https://www.joongangenews.com/news/articleView.html?idxno=562841"
+    },
+    {
+      "source": "naver",
+      "press": "theviewers.co.kr",
+      "date": "2026.11.11",
+      "title": "[유통갤러리] CJ제일제당, F&B 특화 제조AI 표준모델 개발 外",
+      "snippet": "올해는 총 5회에 걸친 진로 탐색 및 한국 문화 체험 프로그램을 운영했고, 서울시글로벌청소년교육센터·수원시글로벌청소년드림센터·화성시글로벌청소년센터·안산시글로벌청소년센터 이주배경 청소년·청년 약...",
+      "url": "https://theviewers.co.kr/View.aspx?No=4306953"
+    },
+    {
+      "source": "naver",
+      "press": "news.unn.net",
+      "date": "2026.11.11",
+      "title": "안산대, 재학생 대상 미국심장협회 BLS Provider 교육과정 운영",
+      "snippet": "안산대 재난안전교육센터는 축적한 전문 교육 운영 경험을 타 대학과 공유하며 대학 간 교육협력의 범위를 넓혔다. 교육 대상 대학의 실습실을 직접 찾아가는 방식으로 학생들의 교육 접근성을 높였으며, 전문...",
+      "url": "https://news.unn.net/news/articleView.html?idxno=600341"
+    },
+    {
+      "source": "naver",
+      "press": "gosiweek.com",
+      "date": "2026.11.11",
+      "title": "요리학원 코리아요리아트아카데미 대구지점, 임금피크제 대상자 퇴직 후...",
+      "snippet": "한국의 요리교육을 선도하고 있는 코리아요리아트아카데미는 서울 강남, 홍대(신촌), 부산(울산), 대구(경산), 대전(세종), 인천(부평), 안산(시흥), 수원(동탄), 광주(전남) 등 전국 9개 지점을 기반으로 학교·기업·공공기관을...",
+      "url": "https://www.gosiweek.com/article/1065573809753675"
+    },
+    {
+      "source": "google",
+      "press": "중부일보",
+      "date": "2026.11.11",
+      "title": "[사람in] 김제연 안산환경재단 대표 “환경교육이 미래 바꾼다…찾아가는 교육 두 배 확대”",
+      "snippet": "[사람in] 김제연 안산환경재단 대표 “환경교육이 미래 바꾼다…찾아가는 교육 두 배 확대” 중부일보",
+      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE9QX1JzTHBWWWtoRjlGZGFPajA5ZTJWdXVfU2ltX3RsN2M4VGdpRHdiTjFoblcxTVM5dVlNVHdPdkZTcDdBQUFFVHdzdXBNa3Ridk5PS2toX2lnN2tqckZrMUJTdU9UbS1NQm95TkFLUQ?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "중부시사신문",
+      "date": "2026.11.11",
+      "title": "안산교육지원청, 예방 중심 유아 정서‧심리 지원",
+      "snippet": "안산교육지원청, 예방 중심 유아 정서‧심리 지원 중부시사신문",
+      "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE5STzVid1Jja0tTd2lsbWxmRmZtZHg2cVFqTi1MYlc4LUl1TDZNemNSV2NJcG5jdFBzRHpzWE9pWm9xdllmS2Z2MC1ZcmhSSUpZX3FuTkd3VjdDemwzLUoxUGUyZw?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "경기평화신문",
+      "date": "2026.11.11",
+      "title": "경기도의회 김경옥 의원, “시흥 교육활동 침해 47.7% 증가…말뿐인 예방대책 안 돼”",
+      "snippet": "경기도의회 김경옥 의원, “시흥 교육활동 침해 47.7% 증가…말뿐인 예방대책 안 돼” 경기평화신문",
+      "url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTE5Ta1pBMTZBdFgzUXlnSndCQzFvd1hpZFVEcnd0NWhzS0UtOU96YmhTVjFMR294ZHl6RGVUaldOR2R2ZGxWSWJ5cjln?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "경기경제신문",
+      "date": "2026.11.11",
+      "title": "경기도의회 김영희 교육기획부위원장, 학교 누수 대응 격차·초등돌봄 운영 실효성 점검",
+      "snippet": "경기도의회 김영희 교육기획부위원장, 학교 누수 대응 격차·초등돌봄 운영 실효성 점검 경기경제신문",
+      "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE5yU1dKTnEyZTJ2bWNLRTZ1S3RqdncyTWx0Mmd5NktiS0psTUIxOVpuZHMtOXE4bU1MXzNQNFBwckJsdEpJTDY0LUFiWVM0Q1Z3eFExdWdUcF9HRzJmeUtGTQ?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "경기포커스",
+      "date": "2026.11.11",
+      "title": "유병수 경기도의원, 급식노동자는 다치고 아픈 교사는 못 쉰다…교육지원청 대응 도마 위에",
+      "snippet": "유병수 경기도의원, 급식노동자는 다치고 아픈 교사는 못 쉰다…교육지원청 대응 도마 위에 경기포커스",
+      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBBNXYyRk4wRHpPZUlFVEdiQjBxeFd4M3ZPdktNOEt2MXBWZ3JycGN3d0dybVNpOW5tNkRpNGwxTDJULVpiVm9SWTJscXR5dzNwcWtmSFdrNlZVcWFBV2hlMF84ZFhUU1lFZ3RDaA?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "글로벌뉴스통신GNA",
+      "date": "2026.11.11",
+      "title": "안산시, ‘2026 장애인 평생학습 성과 공유회’ 13일 개최",
+      "snippet": "안산시, ‘2026 장애인 평생학습 성과 공유회’ 13일 개최 글로벌뉴스통신GNA",
+      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE5hUXVqdFh1b0lZWURRMFR0OEs5a0YycHd6RjUxTTZRNlFoVkpkOXJtNDlfa3hhT2dtYUdBd2hDMVVvNmhlX05YUEhRRTJOZFd5MHpCWXZlREF5VURYSjBzQ0pqSlVvNzZhUnFTTFhkbk1ZeDVC?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "대한투데이",
+      "date": "2026.11.11",
+      "title": "상록시니어클럽, 신안산대학교와 산학헙력 업무협약체결",
+      "snippet": "상록시니어클럽, 신안산대학교와 산학헙력 업무협약체결 대한투데이",
+      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE41UEVlMl9nTDBLbEg1cFpMeU5MZWhhMmF2U1U0b25NczJwM0RGb3BFamFYY0FBa20xUXBOcTExUEFRLUoxY3RneVBOTmVWMG5qVGIzQk1ub2s0cTI1OFZaNHpUZDJVTm90N1E?oc=5"
     },
     {
       "source": "google",
@@ -146,326 +562,6 @@
       "url": "https://www.joongang.co.kr/article/25477105"
     },
     {
-      "source": "naver",
-      "press": "thefirstmedia.net",
-      "date": "2026.11.10",
-      "title": "공무원연금공단 경인강원지부, 퇴직공무원 12명 참여 책 읽어주기 봉사...",
-      "snippet": "단원들은 도서 선정과 동화구연 실습 등 봉사활동에 필요한 교육을 마쳤으며, 오는 12월부터 본격적인 활동에 나설 예정이다. 공단 경인강원지부는 지난해 인천광역시와 경기도 안산시, 강원도 춘천시에서 '책읽어주는...",
-      "url": "http://www.thefirstmedia.net/news/articleView.html?idxno=213215"
-    },
-    {
-      "source": "naver",
-      "press": "newsis.com",
-      "date": "2026.11.10",
-      "title": "대화방서 남학생들과 성착취적 대화…30대 교사 송치",
-      "snippet": "남학생들을 상대로 성착취적 대화를 나눈 혐의를 받는 교육청 상담교사가 공소청에 송치된 것으로 뒤늦게 확인됐다. 10일 안산단원경찰서는 아동·청소년의 성보호에 관한 법률 위반(성착취목적대화·준강제추행)...",
-      "url": "https://www.newsis.com/view/NISX20261110_0003862904"
-    },
-    {
-      "source": "naver",
-      "press": "newstown.co.kr",
-      "date": "2026.11.10",
-      "title": "안산시, 노후도시 정비·폐기물 처리시설 확충 추진",
-      "snippet": "/송은경 기자 안산시가 노후 주거지 정비와 생활폐기물 처리기반 확충을 함께 추진한다. 노후계획도시... 생활폐기물 감량 교육과 다회용품 이용도 확대한다. 일반주택지역의 배출 특성과 발생량을 고려해 배출요일...",
-      "url": "http://www.newstown.co.kr/news/articleView.html?idxno=721459"
-    },
-    {
-      "source": "naver",
-      "press": "cnbnews.com",
-      "date": "2026.11.10",
-      "title": "안산시, 초등생 영어 감각 쑥쑥…화정영어마을 '겨울방학 캠프' 모집",
-      "snippet": "한편, 안산시 화정영어마을은 이번 초등 캠프 외에도 유치원 입소 교육, 중·고교생 글로벌 캠퍼스 탐방단, 성인 대상 영어회화 등 전 연령층을 아우르는 탄탄한 맞춤형 교육 프로그램을 가동하며 지역 사회의 글로벌...",
-      "url": "https://www.cnbnews.com/news/articleView.html?idxno=1023181"
-    },
-    {
-      "source": "naver",
-      "press": "discoverynews.kr",
-      "date": "2026.11.10",
-      "title": "경기도 특사경, 서해안 음식점 24곳 식품위생법 위반 적발",
-      "snippet": "경기도는 지난 10월 6일부터 20일까지 안산·화성·시흥·평택·김포 등 연안지역 식품접객업소 120곳을 점검해... 소비기한이 지난 제품을 교육용이나 폐기용으로 표시하지 않고 보관한 경우에도 같은 수준의 형사처벌...",
-      "url": "https://www.discoverynews.kr/news/articleView.html?idxno=1106380"
-    },
-    {
-      "source": "naver",
-      "press": "daejonilbo.com",
-      "date": "2026.11.10",
-      "title": "안전 허점·재정 부실 우려까지…대전시의회 행감 '송곳 추궁'",
-      "snippet": "이와 함께 하경옥 위원장은 14년째 방치된 대덕특구 공동관리아파트와 착수 11년째인 안산국방국가산업단지 조성 지연에 대해서도 시의 적극적인 대응을 요구했다. 교육위 시교육청 감사에서는 방과후학교 강사 채용...",
-      "url": "https://www.daejonilbo.com/news/articleView.html?idxno=2312831"
-    },
-    {
-      "source": "naver",
-      "press": "view.asiae.co.kr",
-      "date": "2026.11.10",
-      "title": "안산시, 반월·고잔 등 43㎢ 재건축 ‘속도전’…2000억 들여 소각장도...",
-      "snippet": "찾아가는 자원순환 교육·체험 프로그램을 운영하고, 일회용품 줄이기와 다회용품 사용, 올바른 분리배출 교육을 강화한다. '안산시 순환경제사회 전환 촉진 조례' 전부개정도 추진한다. 일반주택지역의 재활용품...",
-      "url": "https://view.asiae.co.kr/article/2026111018424509843"
-    },
-    {
-      "source": "naver",
-      "press": "hani.co.kr",
-      "date": "2026.11.10",
-      "title": "11월11일 알림",
-      "snippet": "◇ 제주도교육청은 제주4·3 희생자 유족인 고영옥씨가 4·3으로 희생된 아버지를 기리는 마음을 담아... ◇ 농림축산식품부는 11∼13일 경기 안산에서 제21차 인웨프 운영위원회와 심포지엄을 연다. 인웨프는 회원국이...",
-      "url": "https://www.hani.co.kr/arti/society/ngo/1286685.html"
-    },
-    {
-      "source": "naver",
-      "press": "seoul.co.kr",
-      "date": "2026.11.10",
-      "title": "김선희 경기도의원 “교육 안전망 재정비해야”… 피해 학생 보호 공백...",
-      "snippet": "이어 안산교육지원청을 대상으로 한 감사에서는 한 학기 동안 훈련에 참여하지 않고 선수 등록조차 이뤄지지 않은 고교 체육특기자를 방치했다가 뒤늦게 조사에 착수한 ‘유령 체육특기자’ 늑장 대처를 지적하며 관내...",
-      "url": "https://www.seoul.co.kr/news/publicnews/local_govern/kyungki_do/2026/11/10/20261110500354?wlog_tag3=naver"
-    },
-    {
-      "source": "naver",
-      "press": "enewstoday.co.kr",
-      "date": "2026.11.10",
-      "title": "김선희 도의원 \"학폭 피해 학생만 가정학습\"…분리 조치 실효성 질타",
-      "snippet": "안산교육지원청 감사에서는 한 학기 내내 훈련에 참여하지 않고 선수 등록도 하지 않은 고교 체육특기자에 대해 교육지원청이 뒤늦게 조사에 나섰다고 지적했다. 김 의원은 '유령 체육특기자' 사례가 더 있는지 관내 고교...",
-      "url": "http://www.enewstoday.co.kr/news/articleView.html?idxno=2490772"
-    },
-    {
-      "source": "naver",
-      "press": "kgnews.co.kr",
-      "date": "2026.11.10",
-      "title": "중진공, 2030년까지 AI 전문인력 6만 명 양성…안산에 ‘제조AI 교육센터...",
-      "snippet": "중진공은 안산 연수원을 시작으로 전국 6개 연수원에 제조AI 교육을 확대할 계획이며, 이를 통해 중소기업의 글로벌 경쟁력 강화를 도모한다는 계획이다. 연말까지 시범 운영하며 내년부터 정규과정을 본격 운영할...",
-      "url": "https://www.kgnews.co.kr/news/article.html?no=918962"
-    },
-    {
-      "source": "naver",
-      "press": "thepublic.kr",
-      "date": "2026.11.10",
-      "title": "'영업신고 안 하고 새우 팔아' 경기 연안 식품접객업소 24곳 무더기 적발",
-      "snippet": "경기도 특별사법경찰단은 지난달 6일부터 20일까지 보름 동안 바다를 끼고 있는 안산·화성·시흥·평택·김포... 제품을 교육용이나 폐기용 표시 없이 보관한 경우 모두 3년 이하의 징역 또는 3천만 원 이하의 벌금에...",
-      "url": "https://www.thepublic.kr/news/articleView.html?idxno=325812"
-    },
-    {
-      "source": "naver",
-      "press": "thereport.co.kr",
-      "date": "2026.11.10",
-      "title": "안산시, 2037년까지 하루 360t 소각 처리능력 확보 추진",
-      "snippet": "위한 교육·홍보를 강화할 예정이다. 관련 제도 정비도 추진한다. 시는 자원순환 정책의 법적·제도적 기반을 강화하기 위해 '안산시 순환경제사회 전환 촉진 조례' 전부개정을 추진하고, 생활폐기물 배출·수거 환경...",
-      "url": "https://www.thereport.co.kr/news/articleView.html?idxno=93211"
-    },
-    {
-      "source": "naver",
-      "press": "kmib.co.kr",
-      "date": "2026.11.10",
-      "title": "“함께 평화 배운다”…기독교 정신으로 한∙일 22년 자매결연",
-      "snippet": "10일 오전 9시 경기도 안산 경일고 정문 앞. 학생들이 일본 야마가타가쿠인고 학생 38명의 이름이 적힌 종이를... 기독교학교교육동맹을 통해 닿은 곳이 야마가타가쿠인고였다. 일본 야마가타현에 위치한 이 학교는 현에 두...",
-      "url": "https://www.kmib.co.kr/article/20261110501471"
-    },
-    {
-      "source": "naver",
-      "press": "m-i.kr",
-      "date": "2026.11.10",
-      "title": "김선희 경기도의원, 학생 보호 공백과 범죄경력 조회 부실 지적",
-      "snippet": "안산교육지원청 감사에서는 한 학기 내내 훈련에 불참하고 선수 등록조차 안 된 고교 체육특기자를 방치하다 뒤늦게 조사에 나선 '유령 체육특기자' 늑장 대응을 지적하며 관내 고교 운동부 전수조사를 주문했다....",
-      "url": "https://www.m-i.kr/news/articleView.html?idxno=2016842"
-    },
-    {
-      "source": "naver",
-      "press": "kgnews.co.kr",
-      "date": "2026.11.10",
-      "title": "안산대 푸드테라피학과, ‘2026 Korea 월드푸드 챔피언십’ 푸드카빙 대...",
-      "snippet": "학생들은 안산대학교 앵커사업단이 지원하는 비교과 푸드카빙 교육과정에서 섬세한 조형 기술과 창의성, 집중력을 함양했다. 특히 푸드카빙 명장 유은희 지도 아래 수업뿐 아니라 개인 시간에도 꾸준히 작품 연습에...",
-      "url": "https://www.kgnews.co.kr/news/article.html?no=918954"
-    },
-    {
-      "source": "naver",
-      "press": "kmaeil.com",
-      "date": "2026.11.10",
-      "title": "경기도의회 김선희 의원, 피해 학생 보호 공백 및 성범죄 조회 관리 소...",
-      "snippet": "한편, 안산교육지원청 감사에서는 한 학기 내내 훈련에 불참하고 선수 등록조차 안 된 고교 체육특기자를 방치하다 뒤늦게 조사에 나선 '유령 체육특기자' 늑장 대응을 지적하며 관내 고교 운동부 전수 조사를 주문했으며...",
-      "url": "https://www.kmaeil.com/news/articleView.html?idxno=657703"
-    },
-    {
-      "source": "naver",
-      "press": "kwnews.co.kr",
-      "date": "2026.11.10",
-      "title": "춘천시의회 ESG 실천 연구회, 시민참여형 에너지 협동조합 벤치마킹",
-      "snippet": "연구회는 이날 안산시에 위치한 시민발전이종협동조합연합회를 방문해 시민참여형 에너지협동조합의 비즈니스 모델에 관련해 교육을 받았다. 이어 연합회 관계자들과 시민발전에너지 협동조합 설치와 효율적인 운영...",
-      "url": "https://www.kwnews.co.kr/article/20261110501396"
-    },
-    {
-      "source": "naver",
-      "press": "kyeonggi.com",
-      "date": "2026.11.10",
-      "title": "미신고 영업·소비기한 경과…경기도 특사경, 바닷가 불법 음식점 24곳 ...",
-      "snippet": "경기도 특별사법경찰단은 지난달 안산·화성·시흥·평택·김포 등 도내 연안 5개 시의 바닷가 인근... 제품을 교육용 또는 폐기용 표시 없이 보관할 경우 3년 이하의 징역 또는 3천만원 이하의 벌금에 처해질 수 있다....",
-      "url": "https://www.kyeonggi.com/article/20261110580354"
-    },
-    {
-      "source": "naver",
-      "press": "news.kbs.co.kr",
-      "date": "2026.11.10",
-      "title": "경기도 특사경, 바닷가 인근 식당 등 24곳 적발…“영업신고 없이 새우...",
-      "snippet": "경기도가 안산·화성·시흥·평택·김포 지역 바닷가 인근 식품접객업 120개소를 집중단속해 식품위생법을... 또 소비기한이 지난 제품을 ‘교육용’ 또는 ‘폐기용’ 표시 없이 보관한 경우 3년 이하의 징역 또는 3천만 원...",
-      "url": "https://news.kbs.co.kr/news/pc/view/view.do?ncd=8708798&ref=A"
-    },
-    {
-      "source": "naver",
-      "press": "beyondpost.co.kr",
-      "date": "2026.11.10",
-      "title": "건양대, 안산대 초청 보건의료 교육 벤치마킹 프로그램 진행",
-      "snippet": "건양대학교(총장 김용하) KY ANCHOR 사업단은 지난 6일 대전 메디컬캠퍼스에서 안산대학교 관계자들을 대상으로 '보건의료 분야 실습교육 벤치마킹 프로그램'을 진행했다고 10일 밝혔다. 이번 교류 행사는 건양대가 운영...",
-      "url": "http://www.beyondpost.co.kr/view.php?ud=2026111016015723392e75d13a3_30"
-    },
-    {
-      "source": "naver",
-      "press": "suhyupnews.co.kr",
-      "date": "2026.11.10",
-      "title": "해수부, '2027년도 어촌뉴딜 3.0' 신규 대상지 40개소 확정",
-      "snippet": "안산 탄도항은 해양레저 및 산업 잠수 교육 복합시설을 유치해 산업 중심 자립 모델을 구현한다. 주민 삶의 질 향상에 중점을 둔 '어촌회복형' 35개소는 어촌스테이션과 주민 공동시설을 조성해 돌봄·건강·문화·복지...",
-      "url": "https://www.suhyupnews.co.kr/news/articleView.html?idxno=40845"
-    },
-    {
-      "source": "naver",
-      "press": "siminilbo.co.kr",
-      "date": "2026.11.10",
-      "title": "안산시, 생활폐기물 처리능력 2037년까지 하루 360톤으로 확대",
-      "snippet": "10일 안산시청 제1회의실에서 이범열 환경녹지국장이 정책브리핑 후 질의응답시간을 가지고 있다... 찾아가는 자원순환 교육과 체험 프로그램을 운영하고 일회용품 줄이기, 다회용품 사용, 올바른 분리배출 실천을...",
-      "url": "https://www.siminilbo.co.kr/news/newsview.php?ncode=1160281169825172"
-    },
-    {
-      "source": "naver",
-      "press": "incheonilbo.com",
-      "date": "2026.11.10",
-      "title": "\"생활폐기물 감량부터 재활용까지\"…안산시, 자원순환 정책 본격 추진",
-      "snippet": "시는 찾아가는 자원순환 교육·체험 프로그램을 운영하고, 일회용품 사용 줄이기와 다회용품 사용 확대, 올바른 분리배출 실천을 위한 교육과 홍보를 강화할 계획이다. 아울러 '안산시 순환경제사회 전환 촉진 조례...",
-      "url": "https://www.incheonilbo.com/news/articleView.html?idxno=1336429"
-    },
-    {
-      "source": "naver",
-      "press": "newstnt.com",
-      "date": "2026.11.10",
-      "title": "경기도, 바닷가 음식점 120곳 단속…식품위생법 위반 24곳 적발",
-      "snippet": "경기도가 안산·화성·시흥·평택·김포 등 연안 5개 시의 바닷가 인근 식품접객업소 120곳을 단속해... 소비기한이 지난 식품을 교육용이나 폐기용 표시 없이 보관한 경우에도 같은 수준의 형사처벌 대상이 될 수 있다....",
-      "url": "https://www.newstnt.com/news/articleView.html?idxno=727664"
-    },
-    {
-      "source": "naver",
-      "press": "ngonews.kr",
-      "date": "2026.11.10",
-      "title": "여성노동자 300만 명의 안전망 '흔들'…경기도 여성노동자복지센터 예산...",
-      "snippet": "노동권 교육과 교류의 장을 마련했으며 한부모 가정에는 가사서비스와 지역 복지자원 연계도 지원했다. \"잠시 쉴 공간마저 사라질까 걱정\" 이날 현장에서는 센터를 이용한 여성노동자들의 경험도 소개됐다. 안산에서...",
-      "url": "https://www.ngonews.kr/news/articleView.html?idxno=242792"
-    },
-    {
-      "source": "naver",
-      "press": "incheonilbo.com",
-      "date": "2026.11.10",
-      "title": "[지붕없는 박물관 10년-경계를 넘어 연결로] ⑤ 느슨한 연결의 힘 '네트...",
-      "snippet": "김미경 김포문화재단 전시교육팀 대리는 \"저희는 투어를 매우 강도 높게 진행했는데 비가 굉장히 많이... 평택시문화재단, 안산문화재단이 참여한 분과다. 지자체와 기초문화재단 등 지역의 문화사업을 협력...",
-      "url": "https://www.incheonilbo.com/news/articleView.html?idxno=1336424"
-    },
-    {
-      "source": "naver",
-      "press": "cnbnews.com",
-      "date": "2026.11.10",
-      "title": "경기도 특사경, 바닷가 인근 식품접객업소 불법행위 24곳 적발",
-      "snippet": "경기도가 연안 5개 시(안산·화성·시흥·평택·김포) 바닷가 인근 식품접객업 120개소를 대상으로 불법행위를... 또한 소비기한이 지난 제품을 '교육용' 또는 '폐기용' 표시 없이 보관한 경우 3년 이하의 징역 또는 3000만 원...",
-      "url": "https://www.cnbnews.com/news/articleView.html?idxno=1023109"
-    },
-    {
-      "source": "naver",
-      "press": "womennews.co.kr",
-      "date": "2026.11.10",
-      "title": "‘삭감 위기’ 경기도 여성노동자복지센터, 11일 상담사례 보고회 연다",
-      "snippet": "강화 교육 등을 하는 여성노동 특화 기관이다. IMF 외환위기 이후 비정규직·해고 여성 노동자를 보호하기 위해 1998년 안산에 처음 문을 열었고, 이후 2001년 고양, 2012년 수원에 설치돼 운영 중이다. 여성신문은 지난 5일...",
-      "url": "https://www.womennews.co.kr/news/articleView.html?idxno=284308"
-    },
-    {
-      "source": "naver",
-      "press": "wikitree.co.kr",
-      "date": "2026.11.10",
-      "title": "하나금융그룹, 춘천 지역 복지시설 개선에 8000만원 지원",
-      "snippet": "당시에는 장애인과 중장년층 등의 자립을 돕는 디지털 교육과 취업 지원 프로그램이 주요 지원 대상이었다.지난해 안산에서는 취업과 자립에 필요한 교육을, 올해 춘천에서는 복지시설과 돌봄 환경을 지원하는 방식으로...",
-      "url": "https://www.wikitree.co.kr/articles/1173422"
-    },
-    {
-      "source": "naver",
-      "press": "agrinet.co.kr",
-      "date": "2026.11.10",
-      "title": "'제31회 경기도 농업인의 날 기념식' 성료",
-      "snippet": "활용 교육과 워크숍 개최 등 농업인들도 많은 노력을 기울이고 있다\"고 강조했다. 추미애 지사는 축사를 통해... 수상자는 △식량작물 화성시 백승재 △원예작물 여주시 최종환 △특용작물 파주시 전명수 △수산 안산시...",
-      "url": "https://www.agrinet.co.kr/news/articleView.html?idxno=408699"
-    },
-    {
-      "source": "naver",
-      "press": "ekn.kr",
-      "date": "2026.11.10",
-      "title": "[패트롤] 과천시-군포시-안산시-안양시-의왕시",
-      "snippet": "군포시는 개정 기준 시행에 맞춰 제도를 적용했으며, 이달 중 담당자 교육을 실시한 뒤 내년 1월부터... 안산=에너지경제신문 강근주기자 안산시가 10일 열린 11월 정례 정책브리핑을 통해 노후계획도시 체계적인 정비와...",
-      "url": "https://www.ekn.kr/web/view.php?key=20261110027547762"
-    },
-    {
-      "source": "naver",
-      "press": "megaeconomy.co.kr",
-      "date": "2026.11.10",
-      "title": "하나금융, 골프대회 기부금 8000만원 춘천 지역사회 환원",
-      "snippet": "춘천시아이돌봄지원센터와 춘천시가족센터에는 돌봄 종사자 역량 강화 프로그램과 교육용 기자재 등을... 지난 9월 경기 안산에서 개최한 하나금융그룹 챔피언십에서는 최대 2억5000만원 규모의 지역사회 기부 프로그램을...",
-      "url": "https://www.megaeconomy.co.kr/news/newsview.php?ncode=1065590186473465"
-    },
-    {
-      "source": "naver",
-      "press": "kgnews.co.kr",
-      "date": "2026.11.10",
-      "title": "안산시, 도시재생·자원순환 혁신 박차",
-      "snippet": "찾아가는 자원순환 교육, 1회용품 줄이기 캠페인을 전개하는 한편, 2027년 1월 시행을 목표로 ‘안산시 순환경제사회 전환 촉진 조례’ 전부 개정을 추진한다. 이민근 시장은 “도시재생과 자원순환 혁신을 통해 시민이...",
-      "url": "https://www.kgnews.co.kr/news/article.html?no=918918"
-    },
-    {
-      "source": "naver",
-      "press": "sportsseoul.com",
-      "date": "2026.11.10",
-      "title": "경기도, 신고 없이 불법 새우 판매 등 24곳 적발",
-      "snippet": "미신고 불법 음식점 및 무단 영업장 등 적발 〔스포츠서울│수원=좌승훈기자〕경기도는 안산·화성·시흥... 제품을 ‘교육용’ 또는 ‘폐기용’ 표시 없이 보관한 경우 3년 이하의 징역 또는 3000만 원 이하의 벌금에...",
-      "url": "https://www.sportsseoul.com/news/read/1648745?ref=naver"
-    },
-    {
-      "source": "naver",
-      "press": "idsn.co.kr",
-      "date": "2026.11.10",
-      "title": "경기도, 바닷가 인근 음식점 120곳 단속...식품위생법 위반 24곳 적발",
-      "snippet": "경기도 특별사법경찰단은 지난달 6일부터 20일까지 안산·화성·시흥·평택·김포 등 연안 5개 시의 바닷가... 소비기한이 지난 식품을 교육용이나 폐기용으로 구분해 표시하지 않은 채 보관하는 행위 역시 같은 법에 따라...",
-      "url": "https://idsn.co.kr/news/view/1065589060518611"
-    },
-    {
-      "source": "naver",
-      "press": "news1.kr",
-      "date": "2026.11.10",
-      "title": "안산시 \"자원회수시설 360톤 규모 확충…2037년까지 추진\"",
-      "snippet": "시는 찾아가는 자원순환 교육·체험 프로그램을 운영하고 일회용품 사용 줄이기와 다회용품 사용 확대, 올바른 분리배출 실천을 위한 교육과 홍보도 강화한다. 또 자원순환 정책의 제도적 기반을 강화하기 위해 '안산...",
-      "url": "https://www.news1.kr/local/gyeonggi/6349075"
-    },
-    {
-      "source": "naver",
-      "press": "view.asiae.co.kr",
-      "date": "2026.11.10",
-      "title": "경기 특사경, 바닷가 식품접객업소 불법행위 24건 적발",
-      "snippet": "경기도가 안산·화성 등 연안 5개 지역 바닷가 인근 식품접객업소를 대상으로 집중단속을 벌여 식품위생법... 또한 소비기한이 지난 제품을 '교육용' 또는 '폐기용' 표시 없이 보관한 경우 3년 이하의 징역 또는 3000만원...",
-      "url": "https://view.asiae.co.kr/article/2026111014015805189"
-    },
-    {
-      "source": "naver",
-      "press": "newspim.com",
-      "date": "2026.11.10",
-      "title": "[단독] 형제복지원 등 국가배상 판결 확정됐지만, 지연 미지급액 1100억...",
-      "snippet": "삼청교육대 사건에는 75건, 20억원이 지급됐으며 여수·순천 10·19 사건은 36건, 262억원이다. 형제복지원... 선감학원 사건도 1942년부터 1982년까지 경기도 안산 선감도에서 부랑아 보호를 명분으로 아동·청소년을 강제...",
-      "url": "https://www.newspim.com/news/view/20261109000821"
-    },
-    {
-      "source": "naver",
-      "press": "startuptoday.co.kr",
-      "date": "2026.11.10",
-      "title": "[현장] 안산시, 폐기물 소각능력 하루 360톤으로 확대…2017억원 투입",
-      "snippet": "안산시가 2017억원을 투입해 생활폐기물 소각시설의 하루 처리능력을 기존 200톤에서 360톤으로 확대한다.... 추진하고, 순환경제 관련 조례 정비와 분리배출 교육, 수거체계 개선을 단계적으로 시행할 예정이다.",
-      "url": "https://www.startuptoday.co.kr/news/articleView.html?idxno=818605"
-    },
-    {
       "source": "google",
       "press": "서프라이즈뉴스",
       "date": "2026.11.10",
@@ -488,62 +584,6 @@
       "title": "경기도의회 김영훈 의원, 다문화 교육, 언어 지원 넘어 우리 사회 구성원으로 성장하도록 체계 마련해야",
       "snippet": "경기도의회 김영훈 의원, 다문화 교육, 언어 지원 넘어 우리 사회 구성원으로 성장하도록 체계 마련해야 경기평화신문",
       "url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTE44WUlwUFhpZ3hvLWRVUVhQcmUzMmFKVGNQQlEyV2lfeXpjaTBMY25PU3NKbDJyeVhYRnhXYkNFWTY5Q0puLVF6UGpB?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "뉴스파노라마",
-      "date": "2026.11.10",
-      "title": "안산시 단원구, 명예환경감시단 교육·간담회 실시",
-      "snippet": "안산시 단원구, 명예환경감시단 교육·간담회 실시 뉴스파노라마",
-      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE5pdGtHSUxhZkwwaEV1RTZ3RDE5cGt1V2FCaWFtODhtUHI1OXZsdXNxa0FIdHVQZm9HVnlpenl2QzJST3Z6Q1Q5c3lqZTBud2Fwak5CLV9DV0o1SU5UYkpIdlE4MkIxWUdzcEVCaU9UWQ?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "경인미래신문",
-      "date": "2026.11.10",
-      "title": "안산 화정영어마을 겨울방학 캠프 모집…16일부터 접수",
-      "snippet": "안산 화정영어마을 겨울방학 캠프 모집…16일부터 접수 경인미래신문",
-      "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE9xZmFORlg2bUw4VFJ2UFpFcEdTUVFWdk9sbG4yQjlvQlZzY2dub0hDRTN6WDgwT2o3NkZ0N043eGFsa0FvanJmdDk2ZHc3YjFFZDUtdFAzckdaVFZkWV9XNkxR?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "경기경제신문",
-      "date": "2026.11.10",
-      "title": "경기도의회 김선희 의원, “교육 안전망 재정비해야” 피해 학생 보호 공백 및 성범죄 조회 관리 소홀 질타...",
-      "snippet": "경기도의회 김선희 의원, “교육 안전망 재정비해야” 피해 학생 보호 공백 및 성범죄 조회 관리 소홀 질타... 경기경제신문",
-      "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE9VSjRUREFXWEhiTmxpRXVyLVVkb2Q2TXl5YUc0T2tNNzZKYjJ1dXNRYjVrQmd1NWlNS2l5RUpMTDIwaFVRZUNjNWhveU5HbURhVm13TDZsSExZRmJXTjV3Tw?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "시흥타임즈",
-      "date": "2026.11.10",
-      "title": "김영훈 도의원, 이주배경 학생 한국어 선이수제 조례 검토",
-      "snippet": "김영훈 도의원, 이주배경 학생 한국어 선이수제 조례 검토 시흥타임즈",
-      "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE5DTXJZR1AtNmJ4Uy04ZWx4cm9IY0pvOUU4MlctQmIxSllLNFpoTDU0M1VGNlA2TFZPVTBWNl9GWVEtLXYwVTNKUVVqaklnTXhERXJ2TUZXM2RpQUtybnc?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "서프라이즈뉴스",
-      "date": "2026.11.10",
-      "title": "유병수 경기도의원, 급식노동자는 다치고 아픈 교사는 못 쉰다…교육지원청 대응 도마 위에",
-      "snippet": "유병수 경기도의원, 급식노동자는 다치고 아픈 교사는 못 쉰다…교육지원청 대응 도마 위에 서프라이즈뉴스",
-      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE42aUxxZlJMYlJtRHE1QXgzc1BMNTJHaDBZX1lkRXZRTmIwN01zRENRSVNZZVlUZ1VpaDdfazB3d2xqTjUweWNjNW00VVRUbUN4aHJlUG5EVTAtREFYMXZNQy02Wm5JbHpGaFdrZjVB?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "뉴스파노라마",
-      "date": "2026.11.10",
-      "title": "안산시, 시민 생활 집수리 교육…주거관리 역량 높여",
-      "snippet": "안산시, 시민 생활 집수리 교육…주거관리 역량 높여 뉴스파노라마",
-      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE1vVjd1YlRHUzV0a0J3Tl9oR19YMkpQRGZZZHdtejh4cHVLQ0VUZFp1dWhDZGpZX3lBNEtpVU9hRk1nTUhZdk51R2l1Z1UtRkRxZUdZRVVCRnZhd2tubkh6cm05VjdsaTh3MERLQXRBQQ?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "뉴스파노라마",
-      "date": "2026.11.10",
-      "title": "안산시, 장애인식개선 교육으로 차별 없는 조직문화 조성 나서",
-      "snippet": "안산시, 장애인식개선 교육으로 차별 없는 조직문화 조성 나서 뉴스파노라마",
-      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE8yVHA4RG83dnA3Z2k2SU96S1FYQmlhd1RNZnRCcUNrTUtxZWxicEY2YXRmc2xhLS1tMkVqX05iZkF3X01hTUpMelJwTmkzUE00UldHemlPNEkxcmdnT1Jrb0RFcFZ3UFBqZXBmSjJSaw?oc=5"
     },
     {
       "source": "naver",
@@ -587,11 +627,11 @@
     },
     {
       "source": "google",
-      "press": "투데이안산",
+      "press": "뉴스피크",
       "date": "2026.11.09",
-      "title": "장윤정 경기도의원, “경기신용보증재단 정원관리 지침의 유연·경속화 및 지점별 조직·업무분장 재검토 촉구”",
-      "snippet": "장윤정 경기도의원, “경기신용보증재단 정원관리 지침의 유연·경속화 및 지점별 조직·업무분장 재검토 촉구” 투데이안산",
-      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5YVnYwVS03TlJvREtYS3IxdGNIeHJIeUh1OTNZX3Zta3NSTkZpNll1QW83QjlEWHhIWExTemtUNUNFUDNYRUx5ZmYyZnQ0eTFUWDNNM2dyN21HNlFGZHhnakF5dEtIUDU1XzZwb1hBblIxd9IBckFVX3lxTE5YVnYwVS03TlJvREtYS3IxdGNIeHJIeUh1OTNZX3Zta3NSTkZpNll1QW83QjlEWHhIWExTemtUNUNFUDNYRUx5ZmYyZnQ0eTFUWDNNM2dyN21HNlFGZHhnakF5dEtIUDU1XzZwb1hBblIxdw?oc=5"
+      "title": "장윤정 경기도의원 “경기신용보증재단 정원관리 지침의 유연·경속화 및 지점별 조직·업무분장 재검토 촉구”",
+      "snippet": "장윤정 경기도의원 “경기신용보증재단 정원관리 지침의 유연·경속화 및 지점별 조직·업무분장 재검토 촉구” 뉴스피크",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5aZm54TEhlMzU4REEwSWRPUjhXTGRwMG93SjkzeGxwOHJiblFEMlZBaFllOWgyeE5OOFIwdklQZWh2MWpodXdWNjdHZVZNSUJCMUF2ZHFkMkswY1J5S1JRUUxoX3NpRWc4?oc=5"
     },
     {
       "source": "google",
@@ -667,11 +707,11 @@
     },
     {
       "source": "google",
-      "press": "광흥타임즈",
+      "press": "비전21뉴스",
       "date": "2026.11.09",
       "title": "안산교육지원청, '2026 안산사이언스밸리 과학·디지털 축제 학생 체험한마당' 운영",
-      "snippet": "안산교육지원청, '2026 안산사이언스밸리 과학·디지털 축제 학생 체험한마당' 운영 광흥타임즈",
-      "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE55VUZmejhYcUV1eDZGcmZxWjIzMllOMURUbVU2SFlKUHVjRFJfa3V6ZkxFYzNBS0hEd3hLZzFxbmkzbFNKZGp0dkpyWTlsQVByZmVaSDlWbjN0ekRjTXFn?oc=5"
+      "snippet": "안산교육지원청, '2026 안산사이언스밸리 과학·디지털 축제 학생 체험한마당' 운영 비전21뉴스",
+      "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE9LeXY2cmFMSzNhUFQ5ZEJCYnppU1lIaEVObklRbDBDOXpHbWFEdG1TVW9RX01sd000MWlDbzgxU1ZPcjZrdGNkOTNqbFhnQzhhRE83WjlSTlo4ckJvb1ozeg?oc=5"
     },
     {
       "source": "google",
@@ -763,11 +803,11 @@
     },
     {
       "source": "google",
-      "press": "중부일보",
+      "press": "경기신문",
       "date": "2026.11.08",
-      "title": "안산교육지원청, 뮤지컬로 배우는 AI 시대 공감과 소통",
-      "snippet": "안산교육지원청, 뮤지컬로 배우는 AI 시대 공감과 소통 중부일보",
-      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE13VTJKdFhnejZidE5ZLVV6VHRUTm9jV1VJYURwX19ENjZOYjJTTTZLdlZKRjlKb25kZk8yQUpyNW91RE5HVDlJcEdUZ1Y3emMtaE53VjVDQnI0eWxtMGFXXzNlUUZNQVJGQlNwMHhtOA?oc=5"
+      "title": "안산교육지원청, 필리핀 OLFU와 국제교류협력 업무협약 체결",
+      "snippet": "안산교육지원청, 필리핀 OLFU와 국제교류협력 업무협약 체결 경기신문",
+      "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE8xd09SUW16ekpuNVVnU1AyWHhiQ0ZTMzNxRm53UTB3VEg1cE83WEhIOWhWT0ZCSXhoMjE1RUpOR2N3STJSdTBHdkdaZjZQdGNKbnZtQk52LTl3YnZ4VVh1MHl3?oc=5"
     },
     {
       "source": "google",
@@ -787,11 +827,11 @@
     },
     {
       "source": "google",
-      "press": "미디어투데이",
+      "press": "중부일보",
       "date": "2026.11.08",
-      "title": "안산교육지원청, 필리핀 OLFU와 국제교류협력 업무협약 체결",
-      "snippet": "안산교육지원청, 필리핀 OLFU와 국제교류협력 업무협약 체결 미디어투데이",
-      "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQaHZDVEptSFAwakUtLUxzeXpiTEs1Unl6dmJwNV81UWlOQk5OZXhTNlNDU0kybEVvZXVpV1VxNFc5YkFYa0lTczgtS2p0RURLSWNyVHdhNExGT2tpOGx5SlhmbU1CbzJvZjdDZXlPTE03bll0OGVTbzkyc3RWS2ozNjhOaml4VkR0V3F2M2hXQnI3dlpUU2Q3NA?oc=5"
+      "title": "안산교육지원청, 뮤지컬로 배우는 AI 시대 공감과 소통",
+      "snippet": "안산교육지원청, 뮤지컬로 배우는 AI 시대 공감과 소통 중부일보",
+      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE13VTJKdFhnejZidE5ZLVV6VHRUTm9jV1VJYURwX19ENjZOYjJTTTZLdlZKRjlKb25kZk8yQUpyNW91RE5HVDlJcEdUZ1Y3emMtaE53VjVDQnI0eWxtMGFXXzNlUUZNQVJGQlNwMHhtOA?oc=5"
     },
     {
       "source": "naver",
@@ -1067,14 +1107,6 @@
     },
     {
       "source": "naver",
-      "press": "gukjenews.com",
-      "date": "2026.11.05",
-      "title": "안산시, 고양 킨텍스서 ASV지구 투자설명회 개최…\"2026 로보월드\"",
-      "snippet": "경기 안산시 상록구 사동 일원 1.66㎢ 규모로 지난 1월 15일 경기경제자유구역으로 지정된 안산사이언스밸리(ASV)지구는 첨단로봇과 스마트제조 산업을 중심으로 혁신거점 역할을 하고 있다. 이곳에는 한양대학교...",
-      "url": "https://www.gukjenews.com/news/articleView.html?idxno=3743605"
-    },
-    {
-      "source": "naver",
       "press": "bizwnews.com",
       "date": "2026.11.05",
       "title": "경기도의회 경제노동위, 경기신보 찾아 소상공인 보증지원 확대 논의",
@@ -1088,14 +1120,6 @@
       "title": "안산교육지원청, 2027학년도 준비 초등교원 역량강화 연수 운영",
       "snippet": "안산교육지원청, 2027학년도 준비 초등교원 역량강화 연수 운영 매일일보",
       "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE9ua0h5bl9QbTZMMlBxMWZWYzI5RDBNNEtkelRucVBhTG5DR0t2TGRWRjhJdDA3anFSR0w3Z0wybURacmNJSHlhQ0dsYkJXZXRvNXV5YVgwc2o3bGhKMkRQN01sREM?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "경기일보",
-      "date": "2026.11.05",
-      "title": "안산교육지원청, 처벌보다 대화로, 상처는 공감으로…‘화해중재’ 소통으로 갈등 풀어요 [꿈꾸는 경기교육]",
-      "snippet": "안산교육지원청, 처벌보다 대화로, 상처는 공감으로…‘화해중재’ 소통으로 갈등 풀어요 [꿈꾸는 경기교육] 경기일보",
-      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBhSXpDMHFER0txRzZkeFFJOXBxNER0RnhoRUtzdU1FT084LUtpVE5rdW5tVFgzZzluMl82bDBTQVJPaFcxblVvdW96bmItLWEtb244RnFoc19Mclk?oc=5"
     },
     {
       "source": "naver",
@@ -1811,14 +1835,6 @@
     },
     {
       "source": "google",
-      "press": "경기종합뉴스",
-      "date": "2026.08.27",
-      "title": "한국공인중개사협회안산상록구지회, ‘경기 부동산거래 안전망’ 전문교육 개최… 안전한 거래문화 조성 앞장",
-      "snippet": "한국공인중개사협회안산상록구지회, ‘경기 부동산거래 안전망’ 전문교육 개최… 안전한 거래문화 조성 앞장 경기종합뉴스",
-      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE84cGt6Ymd2dnlkZjNYRmpoUmNpbHhQVzZiX1BOLW05b1AzbV8wazZyTk8zblRfc3E2MTFHWWhWYjk0Wm9mS2N1QXpRNEU0dUJ3ZHo5MGdGaXRZWThtMERiQzNCNElzRklBT0d0NnZGRm9ILTRR?oc=5"
-    },
-    {
-      "source": "google",
       "press": "경인매일",
       "date": "2026.08.13",
       "title": "경기도의회 장윤정 의원, 안산시 사회적경제연대와 현장 소통 나서",
@@ -1835,19 +1851,19 @@
     },
     {
       "source": "google",
-      "press": "안전신문",
-      "date": "2026.07.27",
-      "title": "장윤정 경기도의원, 교육청 예결특위 위원 선임…\"불필요한 예산 정비·학생 안전 투자 강화\"",
-      "snippet": "장윤정 경기도의원, 교육청 예결특위 위원 선임…\"불필요한 예산 정비·학생 안전 투자 강화\" 안전신문",
-      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE01XzVVU3hNNUVMc2dUUUJMZW8tS0VTTGpGOXBROUl5VW03WXlFQUZFRnVrU2ZIS19uYXBJYTNVeXFIdkhKNWd4R0hlbkxsSHFWUjV5b05ZX1hNZ1R6eFJHenZldTNsNGhBRXphQWJJYjY?oc=5"
-    },
-    {
-      "source": "google",
       "press": "경기경제신문",
       "date": "2026.07.22",
       "title": "경기도의회 장윤정 의원, 경기도 사회적경제원 및 신용보증재단 현안 집중 질의",
       "snippet": "경기도의회 장윤정 의원, 경기도 사회적경제원 및 신용보증재단 현안 집중 질의 경기경제신문",
       "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE1uR1RrMHRaYThZUDZHSTRiWDE4VHQ3SmJNdmhKSV9iQ3BIVVEyWDI5NGk1cEtYZXRpa0tzVm9HVk8xVXBoeHFici1wdGRMOGNpaHEteXJCeFZjS0Rib3FMeA?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "참좋은뉴스",
+      "date": "2026.07.01",
+      "title": "폭우 예고 속 지하차도 침수 기준 ‘인천 5cm vs 안산 상록구 15cm’",
+      "snippet": "폭우 예고 속 지하차도 침수 기준 ‘인천 5cm vs 안산 상록구 15cm’ 참좋은뉴스",
+      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE56NDJ2QjZTYUFfOUFfX0tpalBVSVh4Q3drRmZQZmdVVWhfQmNwVDFmUnpsRkJrS0NpdHkyUDZhTmdkRlVHNWRHTEhiem16VkFqbHFpVm5PSk5KWFltLS1qbkkyZ0VoSGl3c25Eb24zWTJRMk0?oc=5"
     },
     {
       "source": "google",
@@ -1920,6 +1936,14 @@
       "title": "[시사초대석] - 장윤정 경기도의회 의원 인터뷰",
       "snippet": "[시사초대석] - 장윤정 경기도의회 의원 인터뷰 반월신문",
       "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBEVUtmZVBQYXU3VTdEVkNwZEg1YTlnWk1ybDVDS3VwOUhkdE4zZlM5XzQtdnQ3ZUFYODhfcEFPZXBlQllYWXVnMmIyNURHZGgwN2pVNEZhWXZ1N1plMFNhZ3daV3hZdm8?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "새한일보",
+      "date": "2024.08.14",
+      "title": "경기도의회 장윤정 의원, 안산 공예협회와 소통…경기도의회 기능과 역할 소개",
+      "snippet": "경기도의회 장윤정 의원, 안산 공예협회와 소통…경기도의회 기능과 역할 소개 새한일보",
+      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE41aHNJajNfbFFLR182X3NyWG92QmRSVVVWdXlmT0FlcW9KdG1SQWRscVEzeXhYbWprTnB4MnY4QUZ6R3UtMl8zRGdUckxCYTdlY0FsTWF2RVMtTmxSRldhTk9SOXByUdIBakFVX3lxTE0yVzFGQVlweDk2ZlBPNDU5c1VIVkthWHlVaDJTdlJaclNrQnN0V1A1Zk83YVFlN192NWgzR21MbDdLandMRC00bGU5RkthZllYUTZ0d29FcjlhWmN2NzY1ZDFETDhBcTNJekE?oc=5"
     }
   ]
 }
