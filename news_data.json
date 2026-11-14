@@ -1,6 +1,14 @@
 {
-  "updated": "2026-11-14 19:23 UTC",
+  "updated": "2026-11-14 23:15 UTC",
   "items": [
+    {
+      "source": "naver",
+      "press": "newsway.co.kr",
+      "date": "2026.11.15",
+      "title": "\"높을수록 비싸다\"...초고층 단지 신고가에 건설사들 '높이 경쟁'",
+      "snippet": "GS건설은 경기 안산시 상록구 성포동 586번지 일원에 '아르뮤제자이'를 공급한다. 지하 6층~지상 49층, 아파트 984가구와 오피스텔 370실 등 총 1354가구·실 규모다. 롯데백화점과 롯데마트가 가깝다. 현대엔지니어링은...",
+      "url": "https://www.newsway.co.kr/news/view?ud=2026111311170186339"
+    },
     {
       "source": "naver",
       "press": "econovill.com",
@@ -8,6 +16,14 @@
       "title": "로또 1250회 1등 당첨 판매점 9곳·2등 89곳…전국 복권 명당 주소 총정...",
       "snippet": "경기 안산시 상록구 본삼로 60 136호 물왕호수복권 전자담배: 경기 시흥시 목감남서로 9-29 109호 천하명당우만점: 경기 수원시 팔달구 월드컵로369번길 4 팡팡로또&토토: 경기 성남시 수정구 수정로 202 1층...",
       "url": "https://www.econovill.com/news/articleView.html?idxno=757263"
+    },
+    {
+      "source": "naver",
+      "press": "ekn.kr",
+      "date": "2026.11.15",
+      "title": "[패트롤] 광명시-군포시-김포시-부천시-의왕시",
+      "snippet": "지정되면 최초 2년간 10억원(국비 50%, 지방비 50%) 사업비와 맞춤형 컨설팅-정부 연계 정책 자문-교육 등... 위례~과천선 의왕 연장(안)은 위례~과천선을 의왕역까지 연장하는 사업으로, 의왕군포안산 3기 신도시 연결은 물론...",
+      "url": "https://www.ekn.kr/web/view.php?key=20261115027559728"
     },
     {
       "source": "naver",
@@ -546,14 +562,6 @@
       "url": "https://www.joongboo.com/news/articleView.html?idxno=363742187"
     },
     {
-      "source": "naver",
-      "press": "kmaeil.com",
-      "date": "2026.11.13",
-      "title": "안산시, 소비자식품위생감시원 역량강화 연찬회 열어",
-      "snippet": "직무교육을 진행해 감시 활동에 필요한 실무 역량을 높였다. 이어 안산의 향토개발음식인 '바고찌'를 체험하고 지역 와이너리인 '그랑꼬또 와이너리'를 방문해 지역 음식과 기업 현장을 살펴봤다. 또한 바다향기수목원을...",
-      "url": "https://www.kmaeil.com/news/articleView.html?idxno=658160"
-    },
-    {
       "source": "google",
       "press": "누리일보",
       "date": "2026.11.13",
@@ -579,27 +587,11 @@
     },
     {
       "source": "google",
-      "press": "반월신문",
-      "date": "2026.11.13",
-      "title": "박은경 의원 경기교육·안산 미래 비전 밝혀",
-      "snippet": "박은경 의원 경기교육·안산 미래 비전 밝혀 반월신문",
-      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE1HcFFJTTFIdkkyXy1US0V6LUptaFFHdWpJUlNseTBqMFVhVXIzUGhfQXlSNzBNOW5HVG5pQUhFSmh5SlRwUnFpX1FMV1BraUhfQWhVek9idmEzaUhyQ3A0NGcyaXRqY3c?oc=5"
-    },
-    {
-      "source": "google",
       "press": "주간한국",
       "date": "2026.11.13",
       "title": "“학교 체육관에 새 숨결, 다문화 교육엔 새 공간”…이민근 안산시장, 경일고 감사패",
       "snippet": "“학교 체육관에 새 숨결, 다문화 교육엔 새 공간”…이민근 안산시장, 경일고 감사패 주간한국",
       "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFAxaHlUeGlmSjVmVjZZWWNoNnp2dEpBdmdPVXZmLXA4XzliWlc3cW1XbXB0bkV2T3JzbDVNRDdKS3NUQUVoNGtZVGtPQ3FZZGtjblQ3YUNoTXJWRVNSd3daSkdtRFVRTDhMSm0ta0JQRmvSAXRBVV95cUxPek1neERfdFNfRWVjbS0wb19XQkdQQk1qcUxWQlRpX1pvUHpSX2RtV2RsbjFGLW1FOTB2WW9rTjV4NEc4UWE1QlE4Q01yQ2NNN1BuNWt2YnFYQi1yeEIwaG5Kc1Q3ejQ5cWFIalR3YkkzYUZhdA?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "반월신문",
-      "date": "2026.11.13",
-      "title": "안산시기획예산과, 초등학생 대상 ‘찾아가는 인구 인식 개선 교육’ 운영",
-      "snippet": "안산시기획예산과, 초등학생 대상 ‘찾아가는 인구 인식 개선 교육’ 운영 반월신문",
-      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE02RlRjYWpVOFVhU3QweWdQbWdGdi10ZGRVMFZGcVJMUUJMNFhoX3dQWV9ZbmpDNDdDNTV3ODVINnVXWTQzc2lHS00tMHJFeXVCMlE3N0dkY3RndzEyaG1LMDZXSWFtRDg?oc=5"
     },
     {
       "source": "google",
@@ -843,19 +835,19 @@
     },
     {
       "source": "naver",
-      "press": "sedaily.com",
-      "date": "2026.11.12",
-      "title": "채비, 1.2MW급 고출력 충전 시스템 실증…“전기트럭·버스 충전 시간 줄...",
-      "snippet": "전기차 급속 충전 인프라 운영 사업자(CPO) 채비(0011T0)는 12일 경기 안산시 상록구 한국전기연구원 안산분원에 1.2MW(메가와트)급 메가와트 충전 시스템(MCS)을 구축하고 통합 실증에 돌입했다고 밝혔다. 2024년부터 참여해...",
-      "url": "https://www.sedaily.com/article/20113506?ref=naver"
-    },
-    {
-      "source": "naver",
       "press": "asiatoday.co.kr",
       "date": "2026.11.12",
       "title": "[르포] 안산 옛 홈플러스 부지 '아르뮤제자이'…주거에 예술을 입히다",
       "snippet": "아시아투데이 전원준 기자 = 12일 오전 경기 안산시 상록구 성포동 '아르뮤제자이' 견본주택 앞. 오전 11시 정식 개관을 앞두고 일찌감치 방문객들 발길이 이어졌다. 오전 10시께부터 현장을 찾은 일부 방문객은 개관 전...",
       "url": "https://www.asiatoday.co.kr/kn/view.php?key=20261112010004763"
+    },
+    {
+      "source": "naver",
+      "press": "sedaily.com",
+      "date": "2026.11.12",
+      "title": "채비, 1.2MW급 고출력 충전 시스템 실증…“전기트럭·버스 충전 시간 줄...",
+      "snippet": "전기차 급속 충전 인프라 운영 사업자(CPO) 채비(0011T0)는 12일 경기 안산시 상록구 한국전기연구원 안산분원에 1.2MW(메가와트)급 메가와트 충전 시스템(MCS)을 구축하고 통합 실증에 돌입했다고 밝혔다. 2024년부터 참여해...",
+      "url": "https://www.sedaily.com/article/20113506?ref=naver"
     },
     {
       "source": "naver",
@@ -891,19 +883,19 @@
     },
     {
       "source": "naver",
-      "press": "biz.newdaily.co.kr",
-      "date": "2026.11.12",
-      "title": "미술관 품은 우리집, 창밖엔 수경정원이 … 안산 '아르뮤제자이' [르포...",
-      "snippet": "뉴데일리 박정환 기자 = 경기 안산시 상록구 옛 홈플러스 안산점 부지에 들어서는 '아르뮤제자이'가 12일 견본주택을 열고 본격적인 청약 일정에 돌입했다. 단지는 1000가구 이상 대단지이면서 기조성된 문화·상업...",
-      "url": "https://biz.newdaily.co.kr/site/data/html/2026/11/12/2026111200176.html"
-    },
-    {
-      "source": "naver",
       "press": "newslock.co.kr",
       "date": "2026.11.12",
       "title": "GS건설, 안산 아르뮤제자이 분양..전용 84㎡ 추첨 60%",
       "snippet": "GS건설이 경기 안산시 상록구 성포동에 아파트 984가구와 오피스텔 370실로 구성된 '아르뮤제자이'를 공급한다. GS건설은 안산시 상록구 성포동 586번지 일원에 들어서는 아르뮤제자이의 견본주택을 개관하고...",
       "url": "http://www.newslock.co.kr/news/articleView.html?idxno=139964"
+    },
+    {
+      "source": "naver",
+      "press": "biz.newdaily.co.kr",
+      "date": "2026.11.12",
+      "title": "미술관 품은 우리집, 창밖엔 수경정원이 … 안산 '아르뮤제자이' [르포...",
+      "snippet": "뉴데일리 박정환 기자 = 경기 안산시 상록구 옛 홈플러스 안산점 부지에 들어서는 '아르뮤제자이'가 12일 견본주택을 열고 본격적인 청약 일정에 돌입했다. 단지는 1000가구 이상 대단지이면서 기조성된 문화·상업...",
+      "url": "https://biz.newdaily.co.kr/site/data/html/2026/11/12/2026111200176.html"
     },
     {
       "source": "naver",
@@ -962,14 +954,6 @@
       "url": "https://www.goodkyung.com/news/articleView.html?idxno=293379"
     },
     {
-      "source": "naver",
-      "press": "updownnews.co.kr",
-      "date": "2026.11.12",
-      "title": "GS건설, 철거 없는 신속형 리모델링 사업 진출…안산 '아르뮤제자이' 분...",
-      "snippet": "아르뮤제자이 조감도.[사진=GS건설 제공] GS건설은 경기 안산시 상록구 성포동 586번지 일원에 공급하는 '아르뮤제자이'의 견본주택을 열고 본격적인 분양에 나선다고 이날 밝혔다. 아르뮤제자이는 지하 6층~지상 최고...",
-      "url": "https://www.updownnews.co.kr/news/articleView.html?idxno=319545"
-    },
-    {
       "source": "google",
       "press": "국토일보",
       "date": "2026.11.12",
@@ -995,11 +979,11 @@
     },
     {
       "source": "google",
-      "press": "경기포커스",
+      "press": "경기평화신문",
       "date": "2026.11.12",
       "title": "경기도의회 장윤정 의원, 취약계층 노동자 복지 예산 확보 및 지원 사업 확대 촉구",
-      "snippet": "경기도의회 장윤정 의원, 취약계층 노동자 복지 예산 확보 및 지원 사업 확대 촉구 경기포커스",
-      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9yR0l6dmxJUDUxenljNG4yMEk3ZG9mRmRhakp2RVpjZVBPSDBuV2xWeUx2VldnNjlwVTJ0U0V5V2JyMTMyVU1mRE9IZm9iVnNQNjY0d08wOWpXWkRMRmZvTW9TVlZTelVTSEZGcg?oc=5"
+      "snippet": "경기도의회 장윤정 의원, 취약계층 노동자 복지 예산 확보 및 지원 사업 확대 촉구 경기평화신문",
+      "url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTE5XV2hnTmZaR0MycThLcGFEMVNaT2d4V3BTSkc5aXRKdTlhRTdFWlBIcmdKa2FpYWlBalVsdmpqcEZfUl9OWmRYUUF3?oc=5"
     },
     {
       "source": "google",
@@ -1032,6 +1016,14 @@
       "title": "경기신보·장윤정, 안산 기업자금난",
       "snippet": "경기신보·장윤정, 안산 기업자금난 이투데이",
       "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE9lUUJoTEszN0hJME5vZUxxeEhBRWJWa2NFR1kySEd0bDJsd2c5dGVxeVVPYUZGU0dDRl9HYU4wcFp2X1VPR09oU0xqNXlzV3JBZkJkenhURngzY19YSzllUFgxbllRcUN2?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "경기평화신문",
+      "date": "2026.11.10",
+      "title": "경기도의회 김영훈 의원, 다문화 교육, 언어 지원 넘어 우리 사회 구성원으로 성장하도록 체계 마련해야",
+      "snippet": "경기도의회 김영훈 의원, 다문화 교육, 언어 지원 넘어 우리 사회 구성원으로 성장하도록 체계 마련해야 경기평화신문",
+      "url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTE44WUlwUFhpZ3hvLWRVUVhQcmUzMmFKVGNQQlEyV2lfeXpjaTBMY25PU3NKbDJyeVhYRnhXYkNFWTY5Q0puLVF6UGpB?oc=5"
     },
     {
       "source": "naver",
@@ -1067,14 +1059,6 @@
     },
     {
       "source": "google",
-      "press": "서울뉴스통신",
-      "date": "2026.11.09",
-      "title": "장윤정 경기도의원, “경기신용보증재단 정원관리 지침의 유연·경속화 및 지점별 조직·업무분장 재검토 촉구”",
-      "snippet": "장윤정 경기도의원, “경기신용보증재단 정원관리 지침의 유연·경속화 및 지점별 조직·업무분장 재검토 촉구” 서울뉴스통신",
-      "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE5KUElUNDlIRW5iaWNqcHE1Q04zbXROazNRUk82OUdlLXo1Sy1FQ2dVaE5xdmxoelpfMktib1NVUEJvTHhxZlc1bHRHa21XS3NWazVqcGJiVDZLdU4tUjhwQ0VSOU1KU3RKSE9r?oc=5"
-    },
-    {
-      "source": "google",
       "press": "경인매일",
       "date": "2026.11.09",
       "title": "장윤정 경기도의원, 프리랜서 플랫폼 ‘프리웨이’ 등록 68명… 운영 개선 촉구",
@@ -1093,33 +1077,25 @@
       "source": "google",
       "press": "누리일보",
       "date": "2026.11.09",
-      "title": "경기도의회 장윤정 의원, 경기신보 정원관리 지침의 유연 경속화 및 지점별 조직 업무분장 재검토 촉구",
-      "snippet": "경기도의회 장윤정 의원, 경기신보 정원관리 지침의 유연 경속화 및 지점별 조직 업무분장 재검토 촉구 누리일보",
-      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFBZVk16OHR6Zzd3QnN0RTFDWnprVkZfc19VOGQyRE9ma056a1N0SVhNejhaRHJHRzFDZVZlV3dKQWlRZFJndEhlODhnNDk1VXkwa01XS3FVZlN2ZGNh?oc=5"
-    },
-    {
-      "source": "google",
-      "press": "경기경제신문",
-      "date": "2026.11.09",
       "title": "경기도의회 장윤정 의원, 예산 쏟아부은 프리랜서 플랫폼, 프리웨이 실적은 바닥, 대대적 개선 촉구",
-      "snippet": "경기도의회 장윤정 의원, 예산 쏟아부은 프리랜서 플랫폼, 프리웨이 실적은 바닥, 대대적 개선 촉구 경기경제신문",
-      "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE1kejVVT2FqQjZFT2xoc3A5Vkthcy1US2U3ZU4yamkxV3M3SUVmX3h5N3pjVV93Q21zbm12em1aMTNVR3ctRm43OTh1enJkQkFxNEVuZWJZSmc5TEYtRUo0QQ?oc=5"
+      "snippet": "경기도의회 장윤정 의원, 예산 쏟아부은 프리랜서 플랫폼, 프리웨이 실적은 바닥, 대대적 개선 촉구 누리일보",
+      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFBtUHZ2S2pZWUNyNFJYM3JQQkdpSHZ4MXllMnA3QTBVelhhWGhDRWdSY3RqMTRFYXl3ejdEbkc0YUpDWWVaclZrM0RXSTNaTVp5c0JzUGJoOXNNZ1VV?oc=5"
     },
     {
       "source": "google",
-      "press": "경기신문",
+      "press": "서프라이즈뉴스",
       "date": "2026.11.09",
-      "title": "‘2026 안산사이언스밸리 과학축제’…첨단기술과 지역사회가 함께한 축제의 장",
-      "snippet": "‘2026 안산사이언스밸리 과학축제’…첨단기술과 지역사회가 함께한 축제의 장 경기신문",
-      "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE15cHoyLVBJYUsyUzExNFlPanNxell4ampHNmlrelNZLXhBSDNBRklHVUhZemVXNDJCMGZpUFVqODhDeU9mYjB1c0pjYWlSSW5zemhMeXVrUnQ3T3JQenBudkVn?oc=5"
+      "title": "경기도의회 장윤정 의원, “경기신용보증재단 정원관리 지침의 유연·경속화 및 지점별 조직·업무분장 재검토 촉구”",
+      "snippet": "경기도의회 장윤정 의원, “경기신용보증재단 정원관리 지침의 유연·경속화 및 지점별 조직·업무분장 재검토 촉구” 서프라이즈뉴스",
+      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1Hc3ZBY29fbldEcGtacmYyLWh2emlLcVBBcXZpSWFpNTZZOXY2bERVVS1WRTQ4MGtrZzFnVFlIaDgxTFRxcm1xYUk2SGJPdUhrdS1nMFZmczNlT1dzSHFHTGctanJvZFFncTlac1Vn?oc=5"
     },
     {
       "source": "google",
-      "press": "비전21뉴스",
+      "press": "경기헤드뉴스",
       "date": "2026.11.09",
       "title": "안산교육지원청, '2026 안산사이언스밸리 과학·디지털 축제 학생 체험한마당' 운영",
-      "snippet": "안산교육지원청, '2026 안산사이언스밸리 과학·디지털 축제 학생 체험한마당' 운영 비전21뉴스",
-      "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE9LeXY2cmFMSzNhUFQ5ZEJCYnppU1lIaEVObklRbDBDOXpHbWFEdG1TVW9RX01sd000MWlDbzgxU1ZPcjZrdGNkOTNqbFhnQzhhRE83WjlSTlo4ckJvb1ozeg?oc=5"
+      "snippet": "안산교육지원청, '2026 안산사이언스밸리 과학·디지털 축제 학생 체험한마당' 운영 경기헤드뉴스",
+      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE9rNFhVQ3VLa25OMVl2RXBnMGZteHJXOEpkdEhlTHU2WjhzR3BYYkNNSzJ3Yjd3SzV3WVd2RG1QV0hvc01QYzV0RDBkZWdmT1E0Y1o4NExDdVdjZw?oc=5"
     },
     {
       "source": "google",
@@ -1218,6 +1194,14 @@
       "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE9ua0h5bl9QbTZMMlBxMWZWYzI5RDBNNEtkelRucVBhTG5DR0t2TGRWRjhJdDA3anFSR0w3Z0wybURacmNJSHlhQ0dsYkJXZXRvNXV5YVgwc2o3bGhKMkRQN01sREM?oc=5"
     },
     {
+      "source": "google",
+      "press": "경기일보",
+      "date": "2026.11.05",
+      "title": "안산교육지원청, 처벌보다 대화로, 상처는 공감으로…‘화해중재’ 소통으로 갈등 풀어요 [꿈꾸는 경기교육]",
+      "snippet": "안산교육지원청, 처벌보다 대화로, 상처는 공감으로…‘화해중재’ 소통으로 갈등 풀어요 [꿈꾸는 경기교육] 경기일보",
+      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBhSXpDMHFER0txRzZkeFFJOXBxNER0RnhoRUtzdU1FT084LUtpVE5rdW5tVFgzZzluMl82bDBTQVJPaFcxblVvdW96bmItLWEtb244RnFoc19Mclk?oc=5"
+    },
+    {
       "source": "naver",
       "press": "seoul.co.kr",
       "date": "2026.11.04",
@@ -1256,6 +1240,22 @@
       "title": "장윤정 도의원 전통시장 관련 현장 간담회",
       "snippet": "장윤정 도의원 전통시장 관련 현장 간담회 안산뉴스",
       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9RZWNzVGpUVV9QT2tmcDEzYW5OdVktSWVaX2lrcXZmVFVURXNIM1NleWVDQlV0NF9yelpYdHZGZFlhaXNFQm9vdXRoakZLWW9GRmFOMjRQUTJtRUk2NDROZl9EalZFTTVhLUdUVA?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "뉴스클레임",
+      "date": "2026.11.02",
+      "title": "안산 상록구 자율방범대 한마음 체육대회",
+      "snippet": "안산 상록구 자율방범대 한마음 체육대회 뉴스클레임",
+      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBTYS1zQWhsSmhyZ1loQlNDMFZXcGRXMWdmamY3SXJLeFY2TElwaV9paW5ZT2VqU1Y2emNGRHNZN3ctMEFBck9TZVRMTVYyY3M3Y3EyZ2JhWTBXT2hUWjlEZUJJU2hMTnFERUhRaHVrQ0nSAXRBVV95cUxPOEpCbzJZSjhuQ1AyUEltaTFxSnh6MVJYbUx2TzJNcG41T2o3M2FUTFVfTlh0eG9qNi1tTTJhODJjdDBrYm1TZWhjVmh6aG1VSm51dzlhWWhsSFJ6OGdaZDNIdjZRdHJlM1NUblM0dHlmSUkyNQ?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "경인일보",
+      "date": "2026.11.02",
+      "title": "안산교육지원청, 체육관 대청소 지원사업 추진",
+      "snippet": "안산교육지원청, 체육관 대청소 지원사업 추진 경인일보",
+      "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE1WTWVaLWpyUWJPNXM1ZG43Rm9YYklYblRjcFhoekNhU2h2dWpIY0ZmTEozaC03OFo1eUhwUy05b2JqbVNldmc1a05IWXhRNU1zX1E?oc=5"
     },
     {
       "source": "google",
@@ -1331,19 +1331,19 @@
     },
     {
       "source": "google",
-      "press": "서울Pn",
-      "date": "2026.10.30",
-      "title": "장윤정 경기도의원, 안산 한대앞역상점가 ‘전통시장 혁신모델 구축’ 현장 간담회 개최",
-      "snippet": "장윤정 경기도의원, 안산 한대앞역상점가 ‘전통시장 혁신모델 구축’ 현장 간담회 개최 서울Pn",
-      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5iN1hHdWdIa0U5NVZ6RUJwbGJRX3B0V21LODlBLVVyWG5YLW1HMDY0TjF4Vk1wcTR1RDMxT05CSzNSTm53V2RXY1hsM1NvQXhOUzlld2xPZjJLeEhiUkFfOVZTZ1JMTHlQbUE?oc=5"
-    },
-    {
-      "source": "google",
       "press": "전국매일신문",
       "date": "2026.10.30",
       "title": "장윤정 경기도의원, 안산 기업인 금융애로 청취",
       "snippet": "장윤정 경기도의원, 안산 기업인 금융애로 청취 전국매일신문",
       "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBQMXRJaHZCX000ZFhCc2ZKOTNGRFJSaUMtLWxlcU9BNUNMWjlkVm1hbkJpTF9PYnRpeXNSQ25LckRWczZqUXVqRzRnUFV2ZnJvWDZaaWR1M19pNUQ3YWM3eVlteHk3dTVOV0dJdktR?oc=5"
+    },
+    {
+      "source": "google",
+      "press": "서울Pn",
+      "date": "2026.10.30",
+      "title": "장윤정 경기도의원, 안산 한대앞역상점가 ‘전통시장 혁신모델 구축’ 현장 간담회 개최",
+      "snippet": "장윤정 경기도의원, 안산 한대앞역상점가 ‘전통시장 혁신모델 구축’ 현장 간담회 개최 서울Pn",
+      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5iN1hHdWdIa0U5NVZ6RUJwbGJRX3B0V21LODlBLVVyWG5YLW1HMDY0TjF4Vk1wcTR1RDMxT05CSzNSTm53V2RXY1hsM1NvQXhOUzlld2xPZjJLeEhiUkFfOVZTZ1JMTHlQbUE?oc=5"
     },
     {
       "source": "naver",
@@ -1651,6 +1651,14 @@
     },
     {
       "source": "google",
+      "press": "뉴스체인지",
+      "date": "2026.10.29",
+      "title": "경기도의회 경제노동위원회 장윤정 부위원장, 경기신보 안산지점서 지역경제 현안 챙겨",
+      "snippet": "경기도의회 경제노동위원회 장윤정 부위원장, 경기신보 안산지점서 지역경제 현안 챙겨 뉴스체인지",
+      "url": "https://news.google.com/rss/articles/CBMiTEFVX3lxTE9LSGRHMDVVOGVCU3dmT1RNVXBzOVdkMm81WS1JOW5Dd2VZc1JJd2VIRS1NdlZ3eVJ0ZG9MRHJDRW4yX1VVdWNXUVVVMUU?oc=5"
+    },
+    {
+      "source": "google",
       "press": "경기일보",
       "date": "2026.10.29",
       "title": "장윤정 도의회 경노위 부위원장, 경기신보 일일명예지점장…기업 애로 청취",
@@ -1824,14 +1832,6 @@
       "title": "與 김현, 추석 물가 현장점검…\"애로사항 개선에 총력\"",
       "snippet": "이날 현장에는 김현 국회의원을 비롯해 유재수·이은미·장윤정 경기도의원, 이재복·이상우·윤오일·백승희 안산시의원과 지역 당원들이 함께했다. 이들은 청과·수산물 매장과 시장 일대를 돌며 상인과 시민들에게 명절...",
       "url": "https://news.tvchosun.com/site/data/html_dir/2026/09/25/2026092590027.html"
-    },
-    {
-      "source": "google",
-      "press": "국제뉴스",
-      "date": "2026.09.20",
-      "title": "[속보] 안산 상록구 주택서 화재 발생… \"도로 우회 당부\"",
-      "snippet": "[속보] 안산 상록구 주택서 화재 발생… \"도로 우회 당부\" 국제뉴스",
-      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE82VFR6elRiZVg3Z0ducGlfaS1hMHAzS1BTNEhkOV8wMGYzRWo3alI3Y1hNenY2dlNLd0ExZDIxNk9Fa3BGUXpEcVRPVlkwcVoydzF4RDB4Q0NmNGpydVVzeG5Ga1Fqb2JQOXdyNE5n?oc=5"
     },
     {
       "source": "google",
