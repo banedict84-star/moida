@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {zipSync,strToU8} from 'fflate';
-import {extractDongEvents} from '../weekly-xlsx.js';
+import {extractDongEvents, extractWeeklyEvents} from '../weekly-xlsx.js';
 import {duplicateEvent,eventKey} from '../weekly-mail-automation.js';
 import {readWeeklyMail} from '../weekly-mail-reader.js';
 import {createWeeklyAutomation} from '../weekly-mail-automation.js';
@@ -11,6 +11,29 @@ const header=['날짜','시','부서명','행사명','장소','주요내용'];co
 return zipSync({'xl/worksheets/sheet1.xml':strToU8(`<worksheet><sheetData><row>${cells(header)}</row><row><c r="A2"><v>${date}</v></c><c r="B2"><v>${time}</v></c>${cells(['','','성포동','회의','센터','내용']).replace('성포동',dong).replace(/r="([C-F])1"/g,'r="$12"').replace(/<c r="[AB]1".*?<\/c>/g,'')}</row></sheetData></worksheet>`)});
 }
 test('담당 동 정확히 필터링하고 수치 날짜/시각만 허용',()=>{assert.equal(extractDongEvents(file()).events.length,1);assert.equal(extractDongEvents(file('사이동')).events.length,0);assert.equal(extractDongEvents(file('이동 시장실')).events.length,0);assert.throws(()=>extractDongEvents(file('성포동','불명')),/날짜/);});
+test('본청 양식의 병합 날짜, 평일 주요 행사, 토·일요일 전체를 처리한다', () => {
+  const rows = [
+    ['주 간 행 사 계 획'], ['(2026. 11. 16. ~ 11. 22.)'],
+    ['월일', '시간', '행 사 명', '장 소', '주 관', '비 고'],
+    ['11/16 (월)', '08:30', '간부회의', '시청', '총무과'],
+    ['', '09:30', '공원 준공식', '공원', '녹지과'],
+    ['', '13:00', '현장 방문', '복지관', '복지과', '시장 참석'],
+    ['11/21 (토)', '10:00', '정기회의', '시청', '총무과'],
+    ['', '0.5', '환경 정비', '하천', '환경과'],
+    ['11/22 (일)', '11:00', '생활체육 교류', '체육관', '체육과'],
+  ];
+  const xml = rows.map((row, i) => '<row>' + row.map((v, j) => `<c r="${String.fromCharCode(65+j)}${i+1}" t="inlineStr"><is><t>${v}</t></is></c>`).join('') + '</row>').join('');
+  const sheet = zipSync({'xl/worksheets/sheet1.xml':strToU8('<worksheet><sheetData>'+xml+'</sheetData></worksheet>')});
+  const result = extractWeeklyEvents(sheet, '(본청)주간행사계획.xlsx');
+  assert.equal(result.warnings, 0);
+  assert.deepEqual(result.events.map(e => [e.date, e.title]), [
+    ['2026-11-16', '공원 준공식'], ['2026-11-16', '현장 방문'],
+    ['2026-11-21', '정기회의'], ['2026-11-21', '환경 정비'], ['2026-11-22', '생활체육 교류'],
+  ]);
+  const event = result.events[0];
+  assert(duplicateEvent(event, [{summary:'[성포동] 공원·준공식', start:{dateTime:event.start}}]));
+  assert(!duplicateEvent(event, [{summary:'[성포동] 공원·준공식', start:{dateTime:'2026-11-16T10:30:00+09:00'}}]));
+});
 test('같은 행사를 재시도해도 결정적 ID, 기존 수동 등록 제목도 인식',async()=>{const e={dong:'성포동',start:'2026-10-21T09:00:00+09:00',title:'회의'};assert.equal(await eventKey(e),await eventKey({...e}));assert(duplicateEvent(e,[{summary:'[성포동] 회의',start:{dateTime:e.start}}]));assert(!duplicateEvent(e,[{summary:'[성포동] 회의',start:{dateTime:'2026-10-22T09:00:00+09:00'}}]));});
 test('IMAP 사용자 폴더도 검색하고 BODY.PEEK 바이트 literal을 읽으며 읽음 표시를 바꾸지 않는다',async()=>{
  const enc=new TextEncoder(),commands=[];let controller,closed=false;

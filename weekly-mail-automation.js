@@ -1,5 +1,5 @@
 import PostalMime from 'postal-mime';
-import {extractDongEvents} from './weekly-xlsx.js';
+import {extractWeeklyEvents} from './weekly-xlsx.js';
 import {readWeeklyMail} from './weekly-mail-reader.js';
 const calendarId='ansan3work031@gmail.com';
 const senders=['sangnokadm@korea.kr','danwongu@korea.kr'];
@@ -7,18 +7,55 @@ const mailbox='ansan3work031@naver.com';
 const normalize=s=>String(s||'').replace(/\[[^\]]*\]/g,'').replace(/\s+/g,'').replace(/^(일동|이동|성포동)/,'').trim();
 const error=s=>{throw Object.assign(Error(s),{status:409});};
 export async function eventKey(e){const bytes=await crypto.subtle.digest('SHA-256',new TextEncoder().encode([calendarId,e.dong,e.start,normalize(e.title)].join('|')));return 'moida'+Array.from(new Uint8Array(bytes),b=>b.toString(16).padStart(2,'0')).join('');}
-export function duplicateEvent(e,existing){return existing.some(v=>v.status!=='cancelled'&&Date.parse(v.start?.dateTime)===Date.parse(e.start)&&normalize(v.summary)===normalize(e.title));}
+const comparableTitle = title => normalize(title).normalize('NFKC').replace(/[^\p{L}\p{N}]/gu, '').toLowerCase();
+export function duplicateEvent(event, existing) {
+  const title = comparableTitle(event.title);
+  return !!title && existing.some(item => item.status !== 'cancelled' &&
+    Date.parse(item.start?.dateTime) === Date.parse(event.start) &&
+    comparableTitle(item.summary) === title);
+}
 async function schema(db){await db.prepare('CREATE TABLE IF NOT EXISTS weekly_mail_jobs(uid TEXT PRIMARY KEY,enabled INTEGER NOT NULL DEFAULT 0,since_at INTEGER NOT NULL,next_at INTEGER NOT NULL DEFAULT 0,last_at INTEGER,status TEXT,summary TEXT)').run();await db.prepare('CREATE TABLE IF NOT EXISTS weekly_mail_events(uid TEXT NOT NULL,event_key TEXT NOT NULL,event_id TEXT NOT NULL,created_at INTEGER NOT NULL,PRIMARY KEY(uid,event_key))').run();}
 export function createWeeklyAutomation({decrypt,google,connect,readMail=readWeeklyMail}){
  async function access(env,uid){const row=await env.AGENT_DB.prepare('SELECT * FROM naver_mail_connections WHERE uid=?').bind(uid).first();if(!row||row.mailbox!==mailbox)error('ansan3work031@naver.com 네이버 연결을 먼저 확인해 주세요.');const credentials=JSON.parse(await decrypt(env,row.cipher,row.iv));if(credentials.uid!==uid||credentials.mailbox!==mailbox)error('메일 소유자 확인 실패');const g=await google(env,uid);const target=await g.api('https://www.googleapis.com/calendar/v3/users/me/calendarList/'+encodeURIComponent(calendarId),{allowNotFound:true});if(!target||!['owner','writer','writerWithoutPrivateAccess'].includes(target.accessRole))error('ansan3work031@gmail.com 캘린더 쓰기 권한이 필요합니다. 해당 캘린더를 모이다에 연결된 구글 계정과 공유하고 일정 변경 권한을 부여해 주세요.');return {credentials,g};}
  async function run(env,job){const db=env.AGENT_DB;let created=0,skipped=0;
  try{const {credentials,g}=await access(env,job.uid);const since=new Date(Math.max(job.since_at,Date.now()-7*86400000));const imapDate=since.getUTCDate()+'-'+['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][since.getUTCMonth()]+'-'+since.getUTCFullYear();const raw=await readMail({...credentials,connect:await connect(),since:imapDate,senders});const events=[];let warnings=0;
  for(const bytes of raw){const mail=await PostalMime.parse(bytes);if(!senders.includes(String(mail.from?.address||'').toLowerCase()))continue;if(!/주간.*행사|행사.*계획/.test(mail.subject||''))continue;if(!mail.date||Date.parse(mail.date)<job.since_at)continue;
- let found=false;for(const a of mail.attachments||[]){if(!/\.xlsx$/i.test(a.filename||''))continue;const parsed=extractDongEvents(a.content);if(parsed.recognized)found=true;events.push(...parsed.events.map(e=>({...e,source:(mail.subject||'')+' / '+a.filename})));}if(!found)warnings++;}
+ let found = false;
+ for (const attachment of mail.attachments || []) {
+   if (!/\.xlsx$/i.test(attachment.filename || '')) continue;
+   try {
+     const parsed = extractWeeklyEvents(attachment.content, attachment.filename);
+     found ||= parsed.recognized;
+     warnings += parsed.warnings;
+     events.push(...parsed.events.map(event => ({...event, source: (mail.subject || '') + ' / ' + attachment.filename})));
+   } catch {
+     warnings++;
+   }
+ }
+ if (!found) warnings++;
+ }
+ // Prefer the more specific district record when both attachments cover the same event.
+ events.sort((left, right) => Number(left.dong === '안산시') - Number(right.dong === '안산시'));
+ const existingByDate = new Map();
  for(const e of events){if(Date.parse(e.start)<Date.now())continue;const id=await eventKey(e);if(await db.prepare('SELECT event_id FROM weekly_mail_events WHERE uid=? AND event_key=?').bind(job.uid,id).first()){skipped++;continue;}
- const base='https://www.googleapis.com/calendar/v3/calendars/'+encodeURIComponent(calendarId)+'/events';const q=new URLSearchParams({timeMin:e.date+'T00:00:00+09:00',timeMax:new Date(Date.parse(e.date+'T00:00:00+09:00')+86400000).toISOString(),singleEvents:'true',maxResults:'250'});const list=await g.api(base+'?'+q);if(list.nextPageToken)throw Error('일정이 많아 중복 확인이 필요합니다.');let savedId;
- if(duplicateEvent(e,list.items||[])){skipped++;savedId=(list.items||[]).find(v=>duplicateEvent(e,[v])).id;}
+ const base='https://www.googleapis.com/calendar/v3/calendars/'+encodeURIComponent(calendarId)+'/events';
+ if (!existingByDate.has(e.date)) {
+   const query = new URLSearchParams({timeMin:e.date+'T00:00:00+09:00',timeMax:new Date(Date.parse(e.date+'T00:00:00+09:00')+86400000).toISOString(),singleEvents:'true',maxResults:'250'});
+   const items = [];
+   do {
+     const page = await g.api(base + '?' + query);
+     items.push(...(page.items || []));
+     if (!page.nextPageToken) break;
+     query.set('pageToken', page.nextPageToken);
+   } while (true);
+   existingByDate.set(e.date, items);
+ }
+ const existing = existingByDate.get(e.date);
+ const match = existing.find(item => duplicateEvent(e, [item]));
+ let savedId;
+ if(match){skipped++;savedId=match.id;}
  else {const prior=await g.api(base+'/'+id,{allowNotFound:true});if(prior?.id){savedId=prior.id;skipped++;}else {const end=new Date(Date.parse(e.start)+3600000).toISOString();const body={id,summary:'['+e.dong+'] '+e.title,location:e.location,description:e.description+'\n\n종료 시각 미정 — 캘린더상 임시 1시간.\n출처: '+e.source,start:{dateTime:e.start,timeZone:'Asia/Seoul'},end:{dateTime:end,timeZone:'Asia/Seoul'},extendedProperties:{private:{moidaWeekly:'1'}}};const result=await g.api(base+'?sendUpdates=none',{method:'POST',body:JSON.stringify(body)});if(!result.id)throw Error('일정 생성 결과 미확인');savedId=result.id;created++;}}
+ if (!match) existing.push({id:savedId, summary:'['+e.dong+'] '+e.title, start:{dateTime:e.start}});
  await db.prepare('INSERT OR IGNORE INTO weekly_mail_events VALUES(?,?,?,?)').bind(job.uid,id,savedId,Date.now()).run();}
  await db.prepare('UPDATE weekly_mail_jobs SET last_at=?,status=?,summary=? WHERE uid=?').bind(Date.now(),warnings?'needs_review':'ok',`등록 ${created}건 · 중복 ${skipped}건`+(warnings?` · 첨부 형식 확인 필요 ${warnings}건`:''),job.uid).run();
  }catch(e){await db.prepare('UPDATE weekly_mail_jobs SET last_at=?,status=?,summary=? WHERE uid=?').bind(Date.now(),'error',String(e.message||'실행 오류').slice(0,350),job.uid).run();}
